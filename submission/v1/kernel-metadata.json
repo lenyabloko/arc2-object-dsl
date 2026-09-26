@@ -1,0 +1,20 @@
+{
+  "id": "lenyabloko/arc2-object-dsl-symbolic-submission-v1",
+  "title": "ARC2 object DSL symbolic submission v1",
+  "code_file": "arc2_object_dsl_submission.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "lenyabloko/arc2-object-dsl-stationary-payload-v4",
+    "lenyabloko/arc2-public-evaluation-parity-v1"
+  ],
+  "competition_sources": [
+    "arc-prize-2026-arc-agi-2"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
