@@ -675,6 +675,65 @@ def nrules(rules):
     return len(rb) + (sum(1 for x in re_ if not (len(x) == 1)) if re_ else 0) + (len(rp) if rp else 0)
 
 
+
+# ---------------------------------------------------------------- DSL primitive: frame (cycle 3)
+def frame_candidates(task, limit=3):
+    """Select, by a lattice concept, the unique object whose bounding box becomes the output frame."""
+    outs = []
+    for ab in ("nbccg", "mcccg", "ccgbr"):
+        try:
+            per_pair = []
+            for p in task["train"]:
+                nodes, bg, at, src, others, oc = prepare(p["input"], ab)
+                h, w = len(p["output"]), len(p["output"][0])
+                dims = [(bbox(n["pix"])[2] - bbox(n["pix"])[0] + 1, bbox(n["pix"])[3] - bbox(n["pix"])[1] + 1) for n in nodes]
+                per_pair.append((nodes, at, [d == (h, w) for d in dims]))
+            tests = [prepare(t["input"], ab) for t in task["test"]]
+        except Timeout:
+            raise
+        except Exception:
+            continue
+        if not all(any(c) for _, _, c in per_pair): continue
+        attrs = sorted({x for _, at, _ in per_pair for a in at for x in a})
+        gens = [(a,) for a in attrs] + list(combinations(attrs, 2))
+        for g in gens:
+            ok = True
+            for nodes, at, cand in per_pair:
+                hits = [i for i, a in enumerate(at) if all(x in a for x in g)]
+                if len(hits) != 1 or not cand[hits[0]]: ok = False; break
+            if not ok: continue
+            thits = [[i for i, a in enumerate(tp[2]) if all(x in a for x in g)] for tp in tests]
+            if any(len(h) != 1 for h in thits): continue
+            sel = [nodes[[i for i, a in enumerate(at) if all(x in a for x in g)][0]] for nodes, at, _ in per_pair]
+            tsel = [tp[0][h[0]] for tp, h in zip(tests, thits)]
+            outs.append((ab, g, sel, tsel))
+            if len(outs) >= limit: return outs
+    return outs
+
+
+def crop(grid, node):
+    r0, c0, r1, c1 = bbox(node["pix"])
+    return [row[c0:c1 + 1] for row in grid[r0:r1 + 1]]
+
+
+def solve_frame(task):
+    global FRAME_ACTIVE
+    found = []
+    FRAME_ACTIVE = True
+    try:
+        for ab, g, sel, tsel in frame_candidates(task):
+            inner = {"train": [{"input": crop(p["input"], n), "output": p["output"]} for p, n in zip(task["train"], sel)],
+                     "test": [{"input": crop(t["input"], n)} for t, n in zip(task["test"], tsel)]}
+            att, _, fnd = solve(inner)
+            for f in att:
+                found.append(dict(f, frame=(ab, g), rules=f["rules"]))
+            if found: break
+    finally:
+        FRAME_ACTIVE = False
+    return found
+
+FRAME_ACTIVE = False
+
 PIXEL_ACTIVE = False
 
 
@@ -689,6 +748,11 @@ def solve(task, abstractions=ABSTRACTIONS):
             res = solve_once(task, abstractions)
         finally:
             PIXEL_ACTIVE = False
+    if not res[2] and "P_frame" in VOCAB and not FRAME_ACTIVE and any(
+            (len(p["input"]), len(p["input"][0])) != (len(p["output"]), len(p["output"][0])) for p in task["train"]):
+        fr = solve_frame(task)
+        if fr:
+            res = (fr[:2], dict(res[1], frame="occupied"), fr)
     return res
 
 

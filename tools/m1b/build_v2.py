@@ -4,7 +4,7 @@ import hashlib, json, os, sys
 
 vocab, digest, correct, outdir = sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4]
 here = os.path.dirname(os.path.abspath(__file__))
-probe = open(os.path.join(here, "frozen_v3_occupancy2.py")).read()
+probe = open(os.path.join(here, os.environ.get("FROZEN_PROBE", "frozen_v3_occupancy2.py"))).read()
 driver = open(os.path.join(here, "predict_m1.py")).read()
 probe_sha = hashlib.sha256(probe.encode()).hexdigest()
 
@@ -60,7 +60,7 @@ env = dict(os.environ, PYTHONHASHSEED='0', OMP_NUM_THREADS='1', MPLBACKEND='Agg'
 def run(ch, out):
     subprocess.run([sys.executable, '/kaggle/working/predict_m1.py', '--candidate', str(cand),
                     '--probe', '/kaggle/working/probe', '--vocab', VOCAB, '--challenges', str(ch),
-                    '--out', out, '--task-seconds', '120'], check=True, env=env)
+                    '--out', out, '--task-seconds', '300'], check=True, env=env)
     return json.load(open(out))
 ev = run(evals[0], '/kaggle/working/parity_eval.json')
 digest = hashlib.sha256(json.dumps(ev, sort_keys=True).encode()).hexdigest()
