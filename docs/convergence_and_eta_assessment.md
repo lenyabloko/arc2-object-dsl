@@ -143,8 +143,26 @@ The author has stated the goal: place one symbolic solution on the ARC-AGI-2 map
 
 **Revised estimate.** The eval rate of 1.2% was reached only after tuning on the same two tasks. The hidden result suggests the true rate on unseen ARC-AGI-2 tasks is below about 1%. Reaching a non-zero score now requires a real coverage increase, not one more resubmission. The estimate falls to **roughly 30–45% by November 2**, depending on how much the general-operation widening raises the rate on training and the sealed tasks.
 
+
+**Update, 2026-09-26 09:30 UTC.** The widened search (`search2.py`: all object abstractions, ARGA-style enumeration of the registered object operations, and attempt 2) solves 2/158 slots on a random 150-task same-extent ARC-2 *training* subset. The unchanged candidate solves 0/158 on the same subset. On 72 of the 99 non-sealed ARC-2 *evaluation* tasks it found **no** training-exact program at all. Since ARC-2 evaluation difficulty is what the hidden set measures, the estimate for a non-zero score from this system by November 2 falls to **roughly 10–20%**.
+
 ## 5. Stopping criteria (to be decided before Phase 1)
 
 - **After Phase 2:** if deterministic induction solves 0 of 22 sealed tasks, the primitive vocabulary or the abstractions are inadequate. Revisit them before building the Assistant.
 - **After four weeks of Phase 4:** if human-guided cycles don't raise the sealed transfer count above the Phase 2 result, the second-order inductive bias isn't paying off at this scale.
 - **At any point:** Python code growth beyond the pinned budget, or any gate failure, stops work until you review it.
+
+
+**Milestone M1, 2026-09-26 (occupancy probe, option 3).** Criteria were pre-registered in `M1_PREREG.md` before measurement. Setup: ARCGraph segmentation; a fixed prior-concept layer (topology, geometry, number and extremes, property chains such as `adjColor`, `contextColor`, `alignedColor`); rules are lattice concepts (minimal generators of at most 2 attributes) in an RDR-style decision list; attempt 2 prefers the more specific generator.
+
+| Measure | Training (1000) | Public-eval dev (99 non-sealed) |
+|---|---|---|
+| Occupied (all change classes are lattice concepts) | 41 | 1 |
+| Leave-one-out pass | 16 | 0 |
+| **Test-exact, 2 attempts** | **29 (2.9%)** | **0** |
+| Output size changes (outside node-change vocabulary) | 318 | 35 |
+| Pixels added that no node explains | 340 | 18 |
+| Change not in the label vocabulary | 99 | 16 |
+| Labels exist, no concept separates them (lattice gap) | 200 | 28 |
+
+Training test-exact is about twice v1 (14/1076 slots) at a runtime of about 3 minutes. The pre-registered verdict is **MARGINAL** (20 ≤ T < 50 and E = 0): continue only through an enrichment round driven by the gap report. On evaluation, the largest pool that the vocabulary can represent is the lattice gap (28 tasks). Half of those are cases that the priors cannot tell apart; many involve moves whose target is set by another object, which is where ARCGraph's parameter binders come in. Estimate unchanged at **about 15–20%**.

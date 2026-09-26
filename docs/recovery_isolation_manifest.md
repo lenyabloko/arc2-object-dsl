@@ -246,3 +246,14 @@ Sources: `KNOWLEDGE_MODEL.md` (Brain-Blood Barrier Policy), `SOURCE_AUTHORITY.md
 - Deduplicate induction candidates by canonical form.
 - Define RDR compression as rewriting to smaller equivalent expressions.
 - Check that each detector test is a total, deterministic predicate, so that the Boolean-algebra assumption holds on fixtures.
+
+## Part 5: Conceptual enrichment and case occupancy in the history
+
+The design: the conceptual lattice is the analogue of latent feature dimensions. It is enriched by borrowing prior topological and geometric concepts from upper-level ontologies, plus concepts that a human introduces during train-time learning. Case clustering aims at high case occupancy. Convergence is not guaranteed as it is with SGD; the human in the loop makes the learning semi-supervised.
+
+What the docs and history show:
+- The docs state the design: lattice occupancy and prior axes that have no cases yet (VERTICAL_CLOSURE_AND_CLASS_DIFFERENTIATION.md), and complete conceptual-cluster coverage (LIFETIME_LEARNING_ARCHITECTURE.md).
+- History: 07-26 spectral clusters; 07-27 conceptual clusters; 08-02 conceptual occupancy separated from rule profiles.
+- Turn at about 08-10: "Close <X> detector cluster" and "Lower <X> lattice rule to native typed actions" commits. Occupancy rose because narrow detectors were written for task families, and "lattice" came to mean grid lattices in tasks. Enrichment turned into writing detectors for each task family.
+- No upper-level ontology source was found (no `.owl` and no topology or geometry vocabulary). `runtime_semantics.ttl` describes only executor semantics.
+- M1 builds the missing prior layer explicitly as a fixed, task-independent vocabulary (see convergence_and_eta_assessment.md, Milestone M1).
