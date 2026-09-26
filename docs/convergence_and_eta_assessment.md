@@ -166,3 +166,33 @@ The author has stated the goal: place one symbolic solution on the ARC-AGI-2 map
 | Labels exist, no concept separates them (lattice gap) | 200 | 28 |
 
 Training test-exact is about twice v1 (14/1076 slots) at a runtime of about 3 minutes. The pre-registered verdict is **MARGINAL** (20 ≤ T < 50 and E = 0): continue only through an enrichment round driven by the gap report. On evaluation, the largest pool that the vocabulary can represent is the lattice gap (28 tasks). Half of those are cases that the priors cannot tell apart; many involve moves whose target is set by another object, which is where ARCGraph's parameter binders come in. Estimate unchanged at **about 15–20%**.
+
+
+**Milestone M1b and 12-hour report, 2026-09-26 (times now given in EDT, New York).** Claude played the reviewer in the train-time loop, under `M1B_PREREG.md`. The rules:
+- Proposals may be motivated only by the training tasks and half A of the evaluation dev set.
+- Half B is held out: counts only.
+- The sealed tasks are untouched.
+- A proposal is admitted only with zero regressions and no MDL growth on tasks already solved.
+- On the user's correction, new DSL primitives are allowed, not only existing ARCGraph operations.
+
+| Vocabulary | Training test-exact | Eval half A | Eval half B (held out) | Public eval 120 (172 outputs) |
+|---|---|---|---|---|
+| M1 prior layer | 29 | 0 | 0 | — |
+| V1: + 6 effect families (fill interior, extend, connect, box ring, box fill, outline) | 47 | 1 | 0 | — |
+| V2: + inertia root, hole count with a same-hole-count reference chain, touch count, size rank, same-size chain | 58 | 2 | 0 | 3/172 (v1: 2/172) |
+| V3: + pixel refinement (new DSL primitive: per-pixel RDR inside an object) | **70** | 2 | 0 | 3/172 |
+
+Rejected: row/column alignment split (3 regressions). Five learner realization fixes were applied, each logged in `perturbations.jsonl`:
+- effect families learned on the residual left by the object rules;
+- FCA attribute clarification;
+- leave-one-out stability ranking of programs;
+- tie-break toward the more general concept (maximal subsumption);
+- effect families chosen in MDL order.
+
+The two half-A solves read as a person would state them. One is e3721c99: objects of the most common color take the color of the reference token with the same number of holes; objects with no counterpart are removed; everything else stays.
+
+**Against the pre-registered M1 thresholds:** training 70 ≥ 50 and dev-eval 2 ≥ 1, so **GO**. The honest caveat: both evaluation solves are in half A, which motivated the proposals, and held-out half B is still 0/49.
+
+**Kaggle v2 is ready:** notebook `arc2-lattice-rdr-symbolic-submission`. It embeds the frozen probe (sha256 7f18566219fa…) and gates on parity: digest e89d9db0…, 3/172. A run of the notebook in the local Kaggle-layout simulation passed the parity gate and wrote the full test submission. Per-task runtime peaks at about 7 s against the 120 s limit, so timeouts can't break determinism.
+
+**Estimate** of a non-zero hidden score from v2 by Nov 2: **about 20–30%**, up from 15–20%. Public evaluation went from 2 to 3 of 172 with more general concepts, but the held-out half is still 0. The next report is due at about 22:30 EDT.

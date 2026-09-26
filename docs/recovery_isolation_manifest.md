@@ -257,3 +257,9 @@ What the docs and history show:
 - Turn at about 08-10: "Close <X> detector cluster" and "Lower <X> lattice rule to native typed actions" commits. Occupancy rose because narrow detectors were written for task families, and "lattice" came to mean grid lattices in tasks. Enrichment turned into writing detectors for each task family.
 - No upper-level ontology source was found (no `.owl` and no topology or geometry vocabulary). `runtime_semantics.ttl` describes only executor semantics.
 - M1 builds the missing prior layer explicitly as a fixed, task-independent vocabulary (see convergence_and_eta_assessment.md, Milestone M1).
+
+## Part 6: The loop as actually run (M1b)
+
+- The LLM-driven reviewer cycle now exists in a minimal form: gap report, proposal, deterministic realization, measurement, admission or rejection, and a ledger entry (`perturbations.jsonl`).
+- The BBB holds by construction. Proposals are named vocabulary entries (attributes, chains, action families, DSL primitives). The learner code holds no task knowledge. Every admitted concept is general (for example hole count, outline, inertia), and none names a task.
+- The DSL evolves: `P_pixel` is the first new primitive. It is a second, pixel-level lattice nested inside objects.
