@@ -1,0 +1,33 @@
+{
+ "rule": "Codex grid-op types admitted only if they solve >=2 distinct training tasks (cycle 8)",
+ "types": [
+  [
+   "beam",
+   "box_based"
+  ],
+  [
+   "connect",
+   "connect_rectangles"
+  ],
+  [
+   "downscale",
+   "horizontal"
+  ],
+  [
+   "extract",
+   "periodic_hole_patch"
+  ],
+  [
+   "mirror",
+   "diagonal"
+  ],
+  [
+   "placement",
+   "align_all_colors_to_guide_top"
+  ],
+  [
+   "tile",
+   "macro_mask_self_substitution"
+  ]
+ ]
+}
