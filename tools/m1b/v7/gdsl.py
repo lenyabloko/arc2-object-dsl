@@ -1,0 +1,582 @@
+"""G-DSL: whole-grid primitives with parameters inferred from training pairs only.
+
+Every program is verified exactly on all training pairs before it is applied to a test input.
+Programs are enumerated in description-length order (cheapest first). No task identifiers,
+no task-specific constants: every parameter (colours, factors, selectors, masks) is induced
+from the task's own training pairs.
+"""
+from __future__ import annotations
+from collections import Counter
+from itertools import product
+
+# ------------------------------------------------------------------ grid helpers
+def H(g): return len(g)
+def W(g): return len(g[0])
+def T(g): return [list(r) for r in zip(*g)]
+def fh(g): return [r[::-1] for r in g]
+def fv(g): return g[::-1]
+def r90(g): return fh(T(g))
+def r180(g): return fv(fh(g))
+def r270(g): return fv(T(g))
+def at(g): return r180(T(g))
+D8 = {"id": lambda g: [list(r) for r in g], "r90": r90, "r180": r180, "r270": r270,
+      "fh": fh, "fv": fv, "T": T, "aT": at}
+def bg_of(g):
+    return Counter(v for r in g for v in r).most_common(1)[0][0]
+def colours(g): return {v for r in g for v in r}
+def eq(a, b): return a == b
+
+def objects(g, bg, diag=False, by_colour=True):
+    h, w = H(g), W(g); seen = [[False] * w for _ in range(h)]; out = []
+    nb = [(-1, 0), (1, 0), (0, -1), (0, 1)] + ([(-1, -1), (-1, 1), (1, -1), (1, 1)] if diag else [])
+    for r in range(h):
+        for c in range(w):
+            if seen[r][c] or g[r][c] == bg: continue
+            col = g[r][c]; st = [(r, c)]; seen[r][c] = True; cells = []
+            while st:
+                y, x = st.pop(); cells.append((y, x))
+                for dy, dx in nb:
+                    yy, xx = y + dy, x + dx
+                    if 0 <= yy < h and 0 <= xx < w and not seen[yy][xx] and g[yy][xx] != bg and (not by_colour or g[yy][xx] == col):
+                        seen[yy][xx] = True; st.append((yy, xx))
+            out.append(cells)
+    return out
+
+def bbox(cells):
+    ys = [y for y, _ in cells]; xs = [x for _, x in cells]
+    return min(ys), min(xs), max(ys), max(xs)
+
+def crop(g, b):
+    r0, c0, r1, c1 = b
+    return [row[c0:c1 + 1] for row in g[r0:r1 + 1]]
+
+# ------------------------------------------------------------------ colour map (post-step)
+def fit_cmap(preds, outs):
+    """Global colour substitution consistent across all pairs; None if impossible."""
+    m = {}
+    for p, o in zip(preds, outs):
+        if p is None or H(p) != H(o) or W(p) != W(o): return None
+        for rp, ro in zip(p, o):
+            for a, b in zip(rp, ro):
+                if m.setdefault(a, b) != b: return None
+    return m
+
+def apply_cmap(g, m):
+    """Apply an induced colour substitution; refuse colours never seen in training (no extrapolation)."""
+    if g is None: return None
+    if any(v not in m for r in g for v in r): return None
+    return [[m[v] for v in r] for r in g]
+
+# ------------------------------------------------------------------ primitive families
+# Each family yields (name, cost, fn) where fn(grid) -> grid or None. Families may inspect
+# training pairs to induce parameters (never test outputs).
+
+def fam_geometric(train):
+    for k, f in D8.items():
+        if k != "id": yield ("dihedral:" + k, 1, f)
+
+def fam_tile(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if H(o) % H(i) or W(o) % W(i): return
+    n, m = H(o) // H(i), W(o) // W(i)
+    if n * m == 1 or n * m > 16: return
+    # per-tile dihedral transform inferred from the first pair, verified later on all pairs
+    pat = []
+    for a in range(n):
+        row = []
+        for b in range(m):
+            blk = [r[b * W(i):(b + 1) * W(i)] for r in o[a * H(i):(a + 1) * H(i)]]
+            ks = [k for k, f in D8.items() if (H(i) == W(i) or k in ("id", "r180", "fh", "fv")) and f(i) == blk]
+            if not ks: return
+            row.append(ks[0])
+        pat.append(row)
+    def fn(g, pat=pat, n=n, m=m):
+        out = []
+        for a in range(n):
+            blks = [D8[pat[a][b]](g) for b in range(m)]
+            if any(H(x) != H(blks[0]) for x in blks): return None
+            for rr in range(H(blks[0])):
+                out.append(sum((x[rr] for x in blks), []))
+        return out
+    yield (f"tile:{n}x{m}", 2, fn)
+
+def fam_scale(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if H(o) % H(i) == 0 and W(o) % W(i) == 0 and (H(o) > H(i) or W(o) > W(i)):
+        kh, kw = H(o) // H(i), W(o) // W(i)
+        yield (f"upscale:{kh}x{kw}", 2, lambda g, kh=kh, kw=kw: [[v for v in r for _ in range(kw)] for r in g for _ in range(kh)])
+    if H(i) % H(o) == 0 and W(i) % W(o) == 0 and (H(i) > H(o) or W(i) > W(o)):
+        kh, kw = H(i) // H(o), W(i) // W(o)
+        def down(g, kh=kh, kw=kw, mode="mode"):
+            if H(g) % kh or W(g) % kw: return None
+            bg = bg_of(g); out = []
+            for a in range(0, H(g), kh):
+                row = []
+                for b in range(0, W(g), kw):
+                    blk = [v for r in g[a:a + kh] for v in r[b:b + kw]]
+                    nz = [v for v in blk if v != bg]
+                    row.append(Counter(nz).most_common(1)[0][0] if (mode == "any" and nz) else (Counter(blk).most_common(1)[0][0] if mode == "mode" else bg))
+                out.append(row)
+            return out
+        yield (f"downscale-mode:{kh}x{kw}", 2, down)
+        yield (f"downscale-any:{kh}x{kw}", 3, lambda g, d=down: d(g, mode="any"))
+
+def fam_fractal(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i) * H(i), W(i) * W(i)): return
+    for inv, bgm in product((False, True), ("mode", "zero")):
+        def fn(g, inv=inv, bgm=bgm):
+            bg = bg_of(g) if bgm == "mode" else 0
+            h, w = H(g), W(g); out = [[bg] * (w * w) for _ in range(h * h)]
+            for a in range(h):
+                for b in range(w):
+                    if (g[a][b] != bg) != inv:
+                        for y in range(h):
+                            for x in range(w):
+                                out[a * h + y][b * w + x] = g[y][x]
+            return out
+        yield ("fractal" + (":inverse" if inv else "") + ("" if bgm == "mode" else ":bg0"), 3, fn)
+
+SELECTORS = ("largest", "smallest", "most_colours", "unique_colour", "unique_shape", "topmost", "bottommost",
+             "leftmost", "rightmost", "densest_bbox", "sparsest_bbox", "most_frequent_shape")
+
+def select(objs, g, how):
+    if not objs: return None
+    key = {
+        "largest": lambda o: len(o), "smallest": lambda o: -len(o),
+        "topmost": lambda o: -bbox(o)[0], "bottommost": lambda o: bbox(o)[2],
+        "leftmost": lambda o: -bbox(o)[1], "rightmost": lambda o: bbox(o)[3],
+        "most_colours": lambda o: len({g[y][x] for y, x in o}),
+        "densest_bbox": lambda o: len(o) / ((bbox(o)[2] - bbox(o)[0] + 1) * (bbox(o)[3] - bbox(o)[1] + 1)),
+        "sparsest_bbox": lambda o: -len(o) / ((bbox(o)[2] - bbox(o)[0] + 1) * (bbox(o)[3] - bbox(o)[1] + 1)),
+    }
+    if how in key:
+        vals = [key[how](o) for o in objs]; best = max(vals)
+        hits = [o for o, v in zip(objs, vals) if v == best]
+        return hits[0] if len(hits) == 1 else None
+    def shape(o):
+        r0, c0, _, _ = bbox(o); return tuple(sorted((y - r0, x - c0) for y, x in o))
+    if how == "unique_colour":
+        cs = Counter(g[o[0][0]][o[0][1]] for o in objs)
+        hits = [o for o in objs if cs[g[o[0][0]][o[0][1]]] == 1]
+        return hits[0] if len(hits) == 1 else None
+    if how in ("unique_shape", "most_frequent_shape"):
+        cs = Counter(shape(o) for o in objs)
+        if how == "unique_shape":
+            hits = [o for o in objs if cs[shape(o)] == 1]
+        else:
+            top = cs.most_common(1)[0]
+            if len(cs) > 1 and cs.most_common(2)[1][1] == top[1]: return None
+            hits = [o for o in objs if shape(o) == top[0]][:1]
+        return hits[0] if len(hits) == 1 else None
+    return None
+
+def fam_crop(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if H(o) > H(i) or W(o) > W(i) or (H(o), W(o)) == (H(i), W(i)): return
+    def all_fg(g):
+        bg = bg_of(g); cells = [(y, x) for y in range(H(g)) for x in range(W(g)) if g[y][x] != bg]
+        return crop(g, bbox(cells)) if cells else None
+    yield ("crop:all-foreground", 2, all_fg)
+    for diag, byc, how in product((False, True), (True, False), SELECTORS):
+        def fn(g, diag=diag, byc=byc, how=how):
+            bg = bg_of(g); ob = select(objects(g, bg, diag, byc), g, how)
+            return crop(g, bbox(ob)) if ob else None
+        yield (f"crop:object[{'8' if diag else '4'}{'' if byc else ',multi'}]:{how}", 3, fn)
+
+def split_panels(g):
+    """Split by full-length single-colour separator rows/cols; returns (panels, sep_colour) or None."""
+    h, w = H(g), W(g)
+    for sc in colours(g):
+        rows = [r for r in range(h) if all(v == sc for v in g[r])]
+        cols = [c for c in range(w) if all(g[r][c] == sc for r in range(h))]
+        if not rows and not cols: continue
+        if len(rows) == h or len(cols) == w: continue
+        rb = [-1] + rows + [h]; cb = [-1] + cols + [w]
+        panels = []
+        for a in range(len(rb) - 1):
+            for b in range(len(cb) - 1):
+                if rb[a + 1] - rb[a] > 1 and cb[b + 1] - cb[b] > 1:
+                    panels.append(crop(g, (rb[a] + 1, cb[b] + 1, rb[a + 1] - 1, cb[b + 1] - 1)))
+        if len(panels) >= 2 and all((H(p), W(p)) == (H(panels[0]), W(panels[0])) for p in panels):
+            return panels, sc
+    # no separator: equal halves
+    if h % 2 == 0 and h >= 2: pass
+    return None
+
+def halves(g):
+    h, w = H(g), W(g); out = []
+    if w % 2 == 0: out.append([[r[:w // 2] for r in g], [r[w // 2:] for r in g]])
+    if h % 2 == 0: out.append([g[:h // 2], g[h // 2:]])
+    return out
+
+BOOLS = {"and": lambda a, b: a and b, "or": lambda a, b: a or b, "xor": lambda a, b: a != b,
+         "nor": lambda a, b: not a and not b, "a_not_b": lambda a, b: a and not b, "b_not_a": lambda a, b: b and not a}
+
+def fam_panels(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) == (H(i), W(i)): return
+    def getp(g, mode):
+        if mode == "sep":
+            sp = split_panels(g); return sp[0] if sp else None
+        hs = halves(g); k = int(mode[-1])
+        return hs[k] if len(hs) > k else None
+    oc = [c for c in colours(o)]
+    for mode in ("sep", "half0", "half1"):
+        ps = getp(i, mode)
+        if not ps or (H(ps[0]), W(ps[0])) != (H(o), W(o)): continue
+        # boolean combination of two panels -> constant colour on true, bg on false
+        if len(ps) == 2:
+            for bn, f in BOOLS.items():
+                for on_c in oc:
+                    def fn(g, mode=mode, f=f, on_c=on_c):
+                        p = getp(g, mode)
+                        if not p or len(p) != 2: return None
+                        a, b = p; bg = bg_of(g)
+                        return [[on_c if f(a[y][x] != bg, b[y][x] != bg) else bg for x in range(W(a))] for y in range(H(a))]
+                    yield (f"panels[{mode}]:{bn}->colour", 3, fn)
+        # overlay: later panels painted over earlier (non-zero wins), both orders
+        for order in ("fwd", "rev"):
+            def ov(g, mode=mode, order=order):
+                p = getp(g, mode)
+                if not p: return None
+                p = p if order == "fwd" else p[::-1]
+                bgg = bg_of(g); out = [r[:] for r in p[0]]
+                for q in p[1:]:
+                    for y in range(H(q)):
+                        for x in range(W(q)):
+                            if q[y][x] != bgg: out[y][x] = q[y][x]
+                return out
+            yield (f"panels[{mode}]:overlay-{order}", 3, ov)
+        for how in ("most_fg", "least_fg", "unique", "most_colours", "least_colours"):
+            def sel(g, mode=mode, how=how):
+                p = getp(g, mode)
+                if not p: return None
+                if how == "unique":
+                    cs = Counter(str(q) for q in p); hits = [q for q in p if cs[str(q)] == 1]
+                    return hits[0] if len(hits) == 1 else None
+                bgg = bg_of(g)
+                key = {"most_fg": lambda q: sum(v != bgg for r in q for v in r), "least_fg": lambda q: -sum(v != bgg for r in q for v in r),
+                       "most_colours": lambda q: len(colours(q)), "least_colours": lambda q: -len(colours(q))}[how]
+                vals = [key(q) for q in p]; hits = [q for q, v in zip(p, vals) if v == max(vals)]
+                return hits[0] if len(hits) == 1 else None
+            yield (f"panels[{mode}]:select-{how}", 3, sel)
+
+SYMS = {"fh": fh, "fv": fv, "r180": r180, "T": T, "aT": at, "r90": r90}
+
+def fam_symmetry(train):
+    """Occluder colour (present in input, absent in output) is replaced by symmetric counterparts.
+    Output either the repaired grid (same size) or the repaired patch under the occluder."""
+    i, o = train[0]["input"], train[0]["output"]
+    occ = [c for c in colours(i) if all(c in colours(p["input"]) and c not in colours(p["output"]) for p in train)]
+    same = (H(o), W(o)) == (H(i), W(i))
+    for c in occ:
+        for combo in (("fh",), ("fv",), ("fh", "fv"), ("fh", "fv", "r180"), ("T",), ("fh", "fv", "T", "aT", "r90", "r180")):
+            def rep(g, c=c, combo=combo):
+                out = [r[:] for r in g]
+                for _ in range(3):
+                    changed = False
+                    for k in combo:
+                        if k in ("T", "aT", "r90") and H(g) != W(g): return None
+                        m = SYMS[k](out)
+                        for y in range(H(g)):
+                            for x in range(W(g)):
+                                if out[y][x] == c and m[y][x] != c:
+                                    out[y][x] = m[y][x]; changed = True
+                    if not changed: break
+                return None if any(v == c for r in out for v in r) else out
+            if same:
+                yield (f"symmetry-repair:{'+'.join(combo)}", 3, rep)
+            else:
+                def patch(g, c=c, rep=rep):
+                    cells = [(y, x) for y in range(H(g)) for x in range(W(g)) if g[y][x] == c]
+                    if not cells: return None
+                    r = rep(g)
+                    return crop(r, bbox(cells)) if r else None
+                yield (f"symmetry-patch:{'+'.join(combo)}", 4, patch)
+
+def fam_gravity(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    # (to frame, from frame): transform so that the motion direction becomes 'down'
+    frames = {"down": (lambda g: g, lambda g: g), "up": (fv, fv), "right": (T, T), "left": (lambda g: T(fh(g)), lambda g: fh(T(g)))}
+    for d, (to, back) in frames.items():
+        def fn(g, to=to, back=back):
+            bg = bg_of(g); out = [r[:] for r in to(g)]
+            for x in range(W(out)):
+                col = [out[y][x] for y in range(H(out)) if out[y][x] != bg]
+                for y in range(H(out)): out[y][x] = bg
+                for k, v in enumerate(reversed(col)): out[H(out) - 1 - k][x] = v
+            return back(out)
+        yield (f"gravity-cells:{d}", 2, fn)
+
+def fam_colour_count(train):
+    """Output is a 1-row/col strip or square filled from colour counts (sorted by frequency)."""
+    i, o = train[0]["input"], train[0]["output"]
+    if H(o) * W(o) > 30: return
+    def strip(g, orient):
+        bg = bg_of(g); cs = Counter(v for r in g for v in r if v != bg)
+        seq = [c for c, _ in cs.most_common()]
+        if not seq: return None
+        return [seq] if orient == "row" else [[c] for c in seq]
+    yield ("colours-by-frequency:row", 3, lambda g: strip(g, "row"))
+    yield ("colours-by-frequency:col", 3, lambda g: strip(g, "col"))
+
+FAMILIES = (fam_geometric, fam_tile, fam_scale, fam_fractal, fam_crop, fam_panels, fam_symmetry, fam_gravity, fam_colour_count)
+
+
+# ------------------------------------------------------------------ cycle 2 families
+def fam_crop_colour(train):
+    """Crop to the bbox of one colour's cells, or to the interior of that bbox (frame contents).
+    The colour is induced: it must reproduce every training output."""
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) == (H(i), W(i)) or H(o) > H(i) or W(o) > W(i): return
+    for c in sorted(colours(i)):
+        for inner in (False, True):
+            def fn(g, c=c, inner=inner):
+                cells = [(y, x) for y in range(H(g)) for x in range(W(g)) if g[y][x] == c]
+                if not cells: return None
+                r0, c0, r1, c1 = bbox(cells)
+                if inner: r0, c0, r1, c1 = r0 + 1, c0 + 1, r1 - 1, c1 - 1
+                if r1 < r0 or c1 < c0: return None
+                return crop(g, (r0, c0, r1, c1))
+            yield (f"crop:colour-bbox{'-interior' if inner else ''}[c{c}]", 3, fn)
+
+def fam_fill_enclosed(train):
+    """Background regions not connected to the border are filled with an induced colour."""
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    new = Counter(o[y][x] for y in range(H(i)) for x in range(W(i)) if i[y][x] != o[y][x])
+    for c, _ in new.most_common(2):
+        for diag in (False, True):
+            def fn(g, c=c, diag=diag):
+                bg = bg_of(g); h, w = H(g), W(g); out = [r[:] for r in g]
+                seen = [[False] * w for _ in range(h)]
+                st = [(y, x) for y in range(h) for x in range(w) if (y in (0, h - 1) or x in (0, w - 1)) and g[y][x] == bg]
+                for y, x in st: seen[y][x] = True
+                nb = [(-1, 0), (1, 0), (0, -1), (0, 1)] + ([(-1, -1), (-1, 1), (1, -1), (1, 1)] if diag else [])
+                while st:
+                    y, x = st.pop()
+                    for dy, dx in nb:
+                        yy, xx = y + dy, x + dx
+                        if 0 <= yy < h and 0 <= xx < w and not seen[yy][xx] and g[yy][xx] == bg:
+                            seen[yy][xx] = True; st.append((yy, xx))
+                for y in range(h):
+                    for x in range(w):
+                        if g[y][x] == bg and not seen[y][x]: out[y][x] = c
+                return out
+            yield (f"fill-enclosed[c{c}{',8' if diag else ''}]", 2, fn)
+
+def fam_symmetrize(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    for combo in (("fh",), ("fv",), ("fh", "fv", "r180"), ("T",), ("fh", "fv", "T", "aT", "r90", "r180", "r270")):
+        def fn(g, combo=combo):
+            bg = bg_of(g); out = [r[:] for r in g]
+            for k in combo:
+                if k in ("T", "aT", "r90", "r270") and H(g) != W(g): return None
+                m = (SYMS.get(k) or D8[k])(g)
+                for y in range(H(g)):
+                    for x in range(W(g)):
+                        if out[y][x] == bg and m[y][x] != bg: out[y][x] = m[y][x]
+            return out
+        yield (f"symmetrize:{'+'.join(combo)}", 2, fn)
+
+def fam_object_filter(train):
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    for diag, byc in product((False, True), (True, False)):
+        for k in (1, 2, 3):
+            def noise(g, k=k, diag=diag, byc=byc):
+                bg = bg_of(g); out = [r[:] for r in g]
+                for ob in objects(g, bg, diag, byc):
+                    if len(ob) <= k:
+                        for y, x in ob: out[y][x] = bg
+                return out
+            yield (f"remove-objects-size<={k}[{'8' if diag else '4'}{'' if byc else ',multi'}]", 2, noise)
+        for how in ("largest", "smallest", "unique_colour", "unique_shape", "most_colours"):
+            def keep(g, how=how, diag=diag, byc=byc):
+                bg = bg_of(g); obs = objects(g, bg, diag, byc); ob = select(obs, g, how)
+                if not ob: return None
+                out = [[bg] * W(g) for _ in range(H(g))]
+                for y, x in ob: out[y][x] = g[y][x]
+                return out
+            yield (f"keep-object[{'8' if diag else '4'}{'' if byc else ',multi'}]:{how}", 3, keep)
+
+RAYS = {"orth": [(-1, 0), (1, 0), (0, -1), (0, 1)], "diag": [(-1, -1), (-1, 1), (1, -1), (1, 1)],
+        "up": [(-1, 0)], "down": [(1, 0)], "left": [(0, -1)], "right": [(0, 1)], "vert": [(-1, 0), (1, 0)], "horiz": [(0, -1), (0, 1)]}
+
+def fam_rays(train):
+    """Cells of an induced colour emit rays (own colour) in induced directions, stopping at non-background
+    (or passing over it)."""
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    src = sorted({i[y][x] for y in range(H(i)) for x in range(W(i)) if i[y][x] != bg_of(i)})
+    for c in src:
+        for dn, dirs in RAYS.items():
+            for stop in (True, False):
+                def fn(g, c=c, dirs=dirs, stop=stop):
+                    bg = bg_of(g); out = [r[:] for r in g]
+                    for y in range(H(g)):
+                        for x in range(W(g)):
+                            if g[y][x] != c: continue
+                            for dy, dx in dirs:
+                                yy, xx = y + dy, x + dx
+                                while 0 <= yy < H(g) and 0 <= xx < W(g):
+                                    if g[yy][xx] != bg:
+                                        if stop: break
+                                    else: out[yy][xx] = c
+                                    yy += dy; xx += dx
+                    return out
+                yield (f"rays[c{c}]:{dn}{':stop' if stop else ':through'}", 3, fn)
+
+def fam_connect(train):
+    """Same-colour cells sharing a row/column are joined by a line of their colour (or an induced colour)."""
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    new = [None] + [c for c, _ in Counter(o[y][x] for y in range(H(i)) for x in range(W(i)) if i[y][x] != o[y][x]).most_common(1)]
+    for axes in ("both", "row", "col"):
+        for lc in new:
+            def fn(g, axes=axes, lc=lc):
+                bg = bg_of(g); out = [r[:] for r in g]
+                pts = {}
+                for y in range(H(g)):
+                    for x in range(W(g)):
+                        if g[y][x] != bg: pts.setdefault(g[y][x], []).append((y, x))
+                for c, ps in pts.items():
+                    for (y1, x1), (y2, x2) in product(ps, ps):
+                        if (y1, x1) >= (y2, x2): continue
+                        if y1 == y2 and axes in ("both", "row"):
+                            for x in range(min(x1, x2) + 1, max(x1, x2)):
+                                if out[y1][x] == bg: out[y1][x] = lc if lc is not None else c
+                        if x1 == x2 and axes in ("both", "col"):
+                            for y in range(min(y1, y2) + 1, max(y1, y2)):
+                                if out[y][x1] == bg: out[y][x1] = lc if lc is not None else c
+                return out
+            yield (f"connect-same-colour:{axes}{'' if lc is None else f'[c{lc}]'}", 3, fn)
+
+PROPS = {"size": lambda o, g: len(o), "height": lambda o, g: bbox(o)[2] - bbox(o)[0] + 1, "width": lambda o, g: bbox(o)[3] - bbox(o)[1] + 1,
+         "size_rank": None, "is_rect": lambda o, g: len(o) == (bbox(o)[2] - bbox(o)[0] + 1) * (bbox(o)[3] - bbox(o)[1] + 1),
+         "shape": lambda o, g: tuple(sorted((y - bbox(o)[0], x - bbox(o)[1]) for y, x in o)),
+         "touches_border": lambda o, g: any(y in (0, H(g) - 1) or x in (0, W(g) - 1) for y, x in o),
+         "n_holes": None}
+
+def fam_recolour_by_property(train):
+    """Each object is recoloured by a mapping property-value -> colour induced from training pairs.
+    Refuses property values never seen in training."""
+    i, o = train[0]["input"], train[0]["output"]
+    if (H(o), W(o)) != (H(i), W(i)): return
+    for diag, byc in product((False, True), (True, False)):
+        for pn in ("size", "height", "width", "size_rank", "is_rect", "shape", "touches_border"):
+            def pval(obs, g, pn=pn):
+                if pn == "size_rank":
+                    sizes = sorted({len(x) for x in obs}, reverse=True)
+                    return [sizes.index(len(x)) for x in obs]
+                return [PROPS[pn](x, g) for x in obs]
+            m = {}; ok = True
+            for p in train:
+                gi, go = p["input"], p["output"]
+                if (H(gi), W(gi)) != (H(go), W(go)): ok = False; break
+                bg = bg_of(gi); obs = objects(gi, bg, diag, byc)
+                for ob, v in zip(obs, pval(obs, gi)):
+                    cs = {go[y][x] for y, x in ob}
+                    if len(cs) != 1 or m.setdefault(v, cs.pop()) != go[ob[0][0]][ob[0][1]]: ok = False; break
+                if not ok: break
+            if not ok or not m: continue
+            def fn(g, m=m, diag=diag, byc=byc, pval=pval):
+                bg = bg_of(g); out = [r[:] for r in g]; obs = objects(g, bg, diag, byc)
+                for ob, v in zip(obs, pval(obs, g)):
+                    if v not in m: return None
+                    for y, x in ob: out[y][x] = m[v]
+                return out
+            yield (f"recolour-by-{pn}[{'8' if diag else '4'}{'' if byc else ',multi'}]", 3, fn)
+
+def fam_panels_multi(train):
+    i, o = train[0]["input"], train[0]["output"]
+    sp = split_panels(i)
+    if not sp or len(sp[0]) < 3 or (H(sp[0][0]), W(sp[0][0])) != (H(o), W(o)): return
+    for rule in ("all", "any", "one", "none"):
+        for on_c in sorted(colours(o)):
+            def fn(g, rule=rule, on_c=on_c):
+                s = split_panels(g)
+                if not s: return None
+                ps = s[0]; bg = bg_of(g)
+                if any((H(p), W(p)) != (H(ps[0]), W(ps[0])) for p in ps): return None
+                def f(y, x):
+                    n = sum(p[y][x] != bg for p in ps)
+                    return {"all": n == len(ps), "any": n > 0, "one": n == 1, "none": n == 0}[rule]
+                return [[on_c if f(y, x) else bg for x in range(W(ps[0]))] for y in range(H(ps[0]))]
+            yield (f"panels[sep]:{rule}-of-{len(sp[0])}->colour", 3, fn)
+
+RESHAPERS = ("tile", "crop", "panels", "upscale", "downscale", "fractal", "symmetry-patch")
+
+def compose_dihedral(base):
+    """Any output-reshaping program followed by a dihedral transform (one extra step)."""
+    for name, cost, fn in base:
+        if not name.startswith(RESHAPERS): continue
+        for k, f in D8.items():
+            if k == "id": continue
+            yield (name + ">" + k, cost + 1, lambda g, fn=fn, f=f: (lambda r: f(r) if r else None)(fn(g)))
+
+def fam_codex(train):
+    try:
+        import codex_ops
+    except Exception:
+        return
+    yield from codex_ops.programs(train)
+
+FAMILIES = FAMILIES + (fam_crop_colour, fam_fill_enclosed, fam_symmetrize, fam_object_filter, fam_rays, fam_connect, fam_recolour_by_property, fam_panels_multi, fam_codex)
+
+def candidates(train):
+    out = []
+    for fam in FAMILIES:
+        try:
+            out.extend(fam(train))
+        except Exception:
+            continue
+    out = out + list(compose_dihedral(out))
+    out.sort(key=lambda x: x[1])
+    return out
+
+def run(fn, g):
+    try:
+        r = fn(g)
+        if r is not None and not isinstance(r, list): r = [list(map(int, row)) for row in r]
+        elif r is not None: r = [list(map(int, row)) for row in r]
+        if r is None or not r or not r[0] or H(r) > 30 or W(r) > 30: return None
+        return r
+    except Exception:
+        return None
+
+def search(task, max_programs=6):
+    """Return verified programs: list of dicts {program, cost, preds}. Cheapest first; with and without colour map."""
+    train = task["train"]; outs = [p["output"] for p in train]
+    found = []
+    # identity + colour map alone (pure recolouring)
+    ident = [p["input"] for p in train]
+    m = fit_cmap(ident, outs)
+    if m and any(k != v for k, v in m.items()) and all(apply_cmap(a, m) == b for a, b in zip(ident, outs)):
+        found.append(("colour-map", 1, lambda g, m=m: apply_cmap(g, m)))
+    for name, cost, fn in candidates(train):
+        preds = []
+        for p, o in zip(train, outs):
+            r = run(fn, p["input"])
+            if r is None or H(r) != H(o) or W(r) != W(o): preds = None; break
+            if not preds and fit_cmap([r], [o]) is None: preds = None; break
+            preds.append(r)
+        if not preds: continue
+        if preds == outs:
+            found.append((name, cost, fn))
+        else:
+            m = fit_cmap(preds, outs)
+            if m and all(apply_cmap(a, m) == b for a, b in zip(preds, outs)):
+                found.append((name + "+colour-map", cost + 1, lambda g, fn=fn, m=m: apply_cmap(run(fn, g), m)))
+        if len(found) >= max_programs: break
+    res, seen = [], set()
+    for name, cost, fn in sorted(found, key=lambda x: x[1]):
+        preds = [run(fn, t["input"]) for t in task["test"]]
+        if any(p is None for p in preds): continue
+        k = str(preds)
+        if k in seen: continue
+        seen.add(k); res.append({"program": name, "cost": cost, "preds": preds})
+    return res

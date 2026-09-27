@@ -1,0 +1,1 @@
+{"correct_of_172": 3, "eval_digest": "e89d9db043bfd98e568bc157f5ac115a847f3bf95147657df1d1b3fad07880b3", "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl", "requires_dataset": "lenyabloko/arc2-codex-atoms-v1"}

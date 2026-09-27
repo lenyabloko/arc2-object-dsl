@@ -1,0 +1,478 @@
+{
+"00576224": {
+"program": "tile:3x3",
+"family": "tile"
+},
+"007bbfb7": {
+"program": "fractal:bg0",
+"family": "fractal"
+},
+"00d62c1b": {
+"program": "fill-enclosed[c4]",
+"family": "fill-enclosed"
+},
+"070dd51e": {
+"program": "connect-same-colour:both",
+"family": "connect-same-colour"
+},
+"08ed6ac7": {
+"program": "recolour-by-size_rank[4]",
+"family": "recolour-by-size_rank"
+},
+"0c786b71": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"0c9aba6e": {
+"program": "panels[sep]:nor->colour",
+"family": "panels"
+},
+"0d3d703e": {
+"program": "colour-map",
+"family": "colour-map"
+},
+"1caeab9d": {
+"program": "codex:placement[align_all_colors_to_guide_top](guide_color=1)",
+"family": "codex"
+},
+"1e0a9b12": {
+"program": "gravity-cells:down",
+"family": "gravity-cells"
+},
+"1f85a75f": {
+"program": "crop:object[4]:largest",
+"family": "crop"
+},
+"1cf80156": {
+"program": "crop:all-foreground",
+"family": "crop"
+},
+"1d61978c": {
+"program": "recolour-by-size[8]",
+"family": "recolour-by-size"
+},
+"22168020": {
+"program": "connect-same-colour:both",
+"family": "connect-same-colour"
+},
+"22eb0ac0": {
+"program": "connect-same-colour:both",
+"family": "connect-same-colour"
+},
+"253bf280": {
+"program": "connect-same-colour:both[c3]",
+"family": "connect-same-colour"
+},
+"23b5c85d": {
+"program": "crop:object[4]:smallest",
+"family": "crop"
+},
+"292dd178": {
+"program": "codex:beam[box_based](color1=2)",
+"family": "codex"
+},
+"2dc579da": {
+"program": "panels[sep]:overlay-fwd",
+"family": "panels"
+},
+"31d5ba1a": {
+"program": "panels[half0]:xor->colour",
+"family": "panels"
+},
+"3428a4f5": {
+"program": "panels[sep]:xor->colour+colour-map",
+"family": "panels"
+},
+"34b99a2b": {
+"program": "panels[sep]:xor->colour",
+"family": "panels"
+},
+"3906de3d": {
+"program": "gravity-cells:up",
+"family": "gravity-cells"
+},
+"39a8645d": {
+"program": "crop:object[8]:most_frequent_shape",
+"family": "crop"
+},
+"3af2c5a8": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"3c9b0459": {
+"program": "dihedral:r180",
+"family": "dihedral"
+},
+"42a50994": {
+"program": "remove-objects-size<=1[8]",
+"family": "remove-objects-size<=1"
+},
+"46442a0e": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"496994bd": {
+"program": "symmetrize:fv",
+"family": "symmetrize"
+},
+"4c4377d9": {
+"program": "tile:2x1",
+"family": "tile"
+},
+"506d28a5": {
+"program": "panels[sep]:or->colour",
+"family": "panels"
+},
+"5614dbcf": {
+"program": "downscale-mode:3x3",
+"family": "downscale-mode"
+},
+"56ff96f3": {
+"program": "codex:connect[connect_rectangles]",
+"family": "codex"
+},
+"551d5bf1": {
+"program": "codex:beam[box_based](color1=8)",
+"family": "codex"
+},
+"5582e5ca": {
+"program": "remove-objects-size<=2[4]",
+"family": "remove-objects-size<=2"
+},
+"5751f35e": {
+"program": "symmetrize:fh+fv+T+aT+r90+r180+r270",
+"family": "symmetrize"
+},
+"59341089": {
+"program": "tile:1x4",
+"family": "tile"
+},
+"5b6cbef5": {
+"program": "fractal:bg0",
+"family": "fractal"
+},
+"60c09cac": {
+"program": "upscale:2x2",
+"family": "upscale"
+},
+"6150a2bd": {
+"program": "dihedral:r180",
+"family": "dihedral"
+},
+"62c24649": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"6430c8c4": {
+"program": "panels[sep]:nor->colour",
+"family": "panels"
+},
+"66f2d22f": {
+"program": "panels[half0]:nor->colour",
+"family": "panels"
+},
+"67e8384a": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"67a3c6ac": {
+"program": "dihedral:fh",
+"family": "dihedral"
+},
+"68b16354": {
+"program": "dihedral:fv",
+"family": "dihedral"
+},
+"68b67ca3": {
+"program": "downscale-any:2x2",
+"family": "downscale-any"
+},
+"6d0aefbc": {
+"program": "tile:1x2",
+"family": "tile"
+},
+"6e82a1ae": {
+"program": "recolour-by-size[4]",
+"family": "recolour-by-size"
+},
+"6fa7a44f": {
+"program": "tile:2x1",
+"family": "tile"
+},
+"7468f01a": {
+"program": "crop:all-foreground>fh",
+"family": "crop"
+},
+"746b3537": {
+"program": "codex:downscale[horizontal]",
+"family": "codex"
+},
+"74dd1130": {
+"program": "dihedral:T",
+"family": "dihedral"
+},
+"7953d61e": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"7fe24cdd": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"80af3007": {
+"program": "codex:tile[macro_mask_self_substitution]",
+"family": "codex"
+},
+"833dafe3": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"88a62173": {
+"program": "crop:object[8]:unique_shape",
+"family": "crop"
+},
+"8be77c9e": {
+"program": "tile:2x1",
+"family": "tile"
+},
+"8f2ea7aa": {
+"program": "codex:tile[macro_mask_self_substitution]",
+"family": "codex"
+},
+"9172f3a0": {
+"program": "upscale:3x3",
+"family": "upscale"
+},
+"90347967": {
+"program": "codex:mirror[diagonal](color1=5)",
+"family": "codex"
+},
+"90c28cc7": {
+"program": "codex:downscale[horizontal]",
+"family": "codex"
+},
+"9565186b": {
+"program": "recolour-by-size[4]",
+"family": "recolour-by-size"
+},
+"9a4bb226": {
+"program": "crop:object[4,multi]:most_colours",
+"family": "crop"
+},
+"9ddd00f0": {
+"program": "symmetrize:fh+fv+T+aT+r90+r180+r270",
+"family": "symmetrize"
+},
+"9dfd6313": {
+"program": "dihedral:T",
+"family": "dihedral"
+},
+"a416b8f3": {
+"program": "tile:1x2",
+"family": "tile"
+},
+"a5313dff": {
+"program": "fill-enclosed[c1]",
+"family": "fill-enclosed"
+},
+"a68b268e": {
+"program": "panels[sep]:overlay-rev",
+"family": "panels"
+},
+"a699fb00": {
+"program": "connect-same-colour:row[c2]",
+"family": "connect-same-colour"
+},
+"a740d043": {
+"program": "crop:all-foreground+colour-map",
+"family": "crop"
+},
+"aa18de87": {
+"program": "connect-same-colour:both[c2]",
+"family": "connect-same-colour"
+},
+"ae58858e": {
+"program": "recolour-by-size[4]",
+"family": "recolour-by-size"
+},
+"ad38a9d0": {
+"program": "recolour-by-shape[4]",
+"family": "recolour-by-shape"
+},
+"b1948b0a": {
+"program": "colour-map",
+"family": "colour-map"
+},
+"b8825c91": {
+"program": "symmetry-repair:fh+fv",
+"family": "symmetry-repair"
+},
+"ba97ae07": {
+"program": "codex:connect[connect_rectangles]",
+"family": "codex"
+},
+"bc4146bd": {
+"program": "tile:1x5",
+"family": "tile"
+},
+"be03b35f": {
+"program": "symmetry-patch:fh>aT",
+"family": "symmetry-patch"
+},
+"be94b721": {
+"program": "crop:object[4]:largest",
+"family": "crop"
+},
+"c3202e5a": {
+"program": "panels[sep]:select-least_colours",
+"family": "panels"
+},
+"c59eb873": {
+"program": "upscale:2x2",
+"family": "upscale"
+},
+"c48954c1": {
+"program": "tile:3x3",
+"family": "tile"
+},
+"cd3c21df": {
+"program": "crop:object[4]:unique_colour",
+"family": "crop"
+},
+"ce4f8723": {
+"program": "panels[sep]:or->colour",
+"family": "panels"
+},
+"ce8d95cc": {
+"program": "codex:downscale[horizontal]",
+"family": "codex"
+},
+"c8f0f002": {
+"program": "colour-map",
+"family": "colour-map"
+},
+"c909285e": {
+"program": "crop:object[4]:unique_colour",
+"family": "crop"
+},
+"cf5fd0ad": {
+"program": "tile:4x4",
+"family": "tile"
+},
+"cf98881b": {
+"program": "panels[sep]:overlay-rev",
+"family": "panels"
+},
+"d19f7514": {
+"program": "panels[half1]:or->colour",
+"family": "panels"
+},
+"d5d6de2d": {
+"program": "fill-enclosed[c3]+colour-map",
+"family": "fill-enclosed"
+},
+"d4f3cd78": {
+"program": "codex:beam[box_based](color1=8)",
+"family": "codex"
+},
+"d511f180": {
+"program": "colour-map",
+"family": "colour-map"
+},
+"dae9d2b5": {
+"program": "panels[half0]:or->colour",
+"family": "panels"
+},
+"dbc1a6ce": {
+"program": "connect-same-colour:both[c8]",
+"family": "connect-same-colour"
+},
+"e133d23d": {
+"program": "panels[sep]:or->colour",
+"family": "panels"
+},
+"e1baa8a4": {
+"program": "codex:downscale[horizontal]",
+"family": "codex"
+},
+"e21a174a": {
+"program": "codex:mirror[diagonal](mirror_type=upside_down)",
+"family": "codex"
+},
+"e345f17b": {
+"program": "panels[half0]:nor->colour",
+"family": "panels"
+},
+"e41c6fd3": {
+"program": "codex:placement[align_all_colors_to_guide_top](guide_color=8)",
+"family": "codex"
+},
+"e57337a4": {
+"program": "downscale-any:5x5",
+"family": "downscale-any"
+},
+"ded97339": {
+"program": "connect-same-colour:both",
+"family": "connect-same-colour"
+},
+"e74e1818": {
+"program": "codex:mirror[diagonal](mirror_type=upside_down_each_object)",
+"family": "codex"
+},
+"e98196ab": {
+"program": "panels[sep]:overlay-fwd",
+"family": "panels"
+},
+"e8593010": {
+"program": "recolour-by-size[4]",
+"family": "recolour-by-size"
+},
+"eb5a1d5d": {
+"program": "codex:downscale[horizontal]",
+"family": "codex"
+},
+"ed36ccf7": {
+"program": "dihedral:r270",
+"family": "dihedral"
+},
+"ed98d772": {
+"program": "tile:2x2",
+"family": "tile"
+},
+"ea32f347": {
+"program": "recolour-by-size_rank[4]",
+"family": "recolour-by-size_rank"
+},
+"ea786f4a": {
+"program": "rays[c0]:diag:stop",
+"family": "rays"
+},
+"f25ffba3": {
+"program": "symmetrize:fv",
+"family": "symmetrize"
+},
+"f2829549": {
+"program": "panels[sep]:nor->colour",
+"family": "panels"
+},
+"f5aa3634": {
+"program": "crop:object[4,multi]:most_frequent_shape",
+"family": "crop"
+},
+"f823c43c": {
+"program": "codex:extract[periodic_hole_patch](fill_color=6)",
+"family": "codex"
+},
+"ff805c23": {
+"program": "symmetry-patch:fh+fv",
+"family": "symmetry-patch"
+},
+"f8ff0b80": {
+"program": "colours-by-frequency:col",
+"family": "colours-by-frequency"
+},
+"f9012d9b": {
+"program": "codex:extract[periodic_hole_patch]",
+"family": "codex"
+}
+}
