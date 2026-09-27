@@ -208,3 +208,32 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - Downward pass: 21 of the 420 atoms are used in rules of fully explained tasks; 399 are retirement candidates.
 - **Infrastructure:** WSL Claude delivered T1 (full atom sweep, 25 min on 4 cores), T2 (digest-keyed stratum cache with lineage and invalidation, 12 tests passing) and T3 (parallel admission runner, reproduces the baseline exactly, about 12 min per proposal on 4 cores). T4 published the Codex atom dataset. The cloud workspace restarted twice mid-run, so long measurements move to WSL.
 - **Assessment:** the held-out signals are unchanged: dev-eval half B 0/49, sealed 0, hidden 0.00. The Codex import confirms that the bottleneck is transfer, not coverage. Estimated chance of a non-zero hidden score by Nov 2: **about 20–30%** (was 25–35%). The decision point stays at Oct 12.
+
+
+**12-hour report, 2026-09-27 10:30 EDT.**
+- **Kaggle:**
+  - Outbox batch-0014 was pushed at 10:16 EDT (commit b1d1e79), so `LATEST=v6` is live and tonight's slot (after 8 pm EDT) submits v6.
+  - v6 carries vocabulary V7 and passes the same parity gate as v5 (digest e89d9db0…, 3/172): its predictions on all 120 public-eval tasks are identical. It can only differ from v5 on hidden tasks.
+  - v5 is superseded and was never submitted.
+- **Cycle 7 (WSL T5, verified here):** none of the four changes was admitted.
+  - V6used: −1 training.
+  - V6prim: −3 training, −2 half A.
+  - V6d13: +1 new solve but 2 regressions.
+  - V6d14: no effect.
+  - Lesson for vertical closure: atoms that are not in the winning rule still steer program ranking, so the downward pass must keep every atom that affects selection.
+- **Cycle 8, admitted as V7:** a whole-grid DSL stratum `G_dsl`.
+  - Primitives: tile, scale, fractal, crop, panel logic, symmetry repair and symmetrise, fill enclosed, rays, connect, recolour-by-property, gravity and colour map, plus 7 general Codex grid operators.
+  - Every program must reproduce all training pairs exactly. The stratum engages only when every other stratum finds nothing, so it cannot cause regressions.
+  - Results: **training 83 → 174, no regressions; half A 2; held-out half B 0.**
+  - 51 Codex operator types that each solved exactly one training task were excluded as bespoke; this repeats the finding that Codex's per-task programs don't transfer.
+  - G_dsl found no program on any of the 99 non-sealed public-eval tasks.
+- **Review system:**
+  - The category graph v1 (4 roots, 14 categories spanning the lattice axes and the ontology) was approved.
+  - The 1,050 non-held-out tasks were re-clustered on atoms plus detector concepts into 130 groups (104 with more than one task), keeping the reviewer's G077 judgment as a must-link.
+  - An initial review of all groups is loaded for the reviewer to confirm.
+  - Exact grid checks show Codex's separator detector over-fires: 714 tasks flagged, 159 with a real separator line.
+- **Assessment:**
+  - Training coverage doubled, but transfer is unchanged: half B 0/49, sealed not measured this cycle, public eval unchanged, hidden 0.00 so far.
+  - ARC-AGI-2 evaluation tasks are not reached by whole-grid primitives of this kind. The next DSL work must target the failure modes of half A, not add training solves.
+  - Estimated chance of a non-zero hidden score by Nov 2: **about 20–25%** (was 20–30%). Tonight's v6 score is expected to equal v4's.
+  - The decision point stays at Oct 12. The next report is at 22:30 EDT.
