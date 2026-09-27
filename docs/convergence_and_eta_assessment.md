@@ -196,3 +196,15 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 **Kaggle v2 is ready:** notebook `arc2-lattice-rdr-symbolic-submission`. It embeds the frozen probe (sha256 7f18566219fa…) and gates on parity: digest e89d9db0…, 3/172. A run of the notebook in the local Kaggle-layout simulation passed the parity gate and wrote the full test submission. Per-task runtime peaks at about 7 s against the 120 s limit, so timeouts can't break determinism.
 
 **Estimate** of a non-zero hidden score from v2 by Nov 2: **about 20–30%**, up from 15–20%. Public evaluation went from 2 to 3 of 172 with more general concepts, but the held-out half is still 0. The next report is due at about 22:30 EDT.
+
+
+**12-hour report, 2026-09-26 22:30 EDT.**
+- **Kaggle:** v4 (submission 56592852) passed the parity gate on Kaggle (digest match, 3/172) and scored **0.00** on the public leaderboard. v5 (Codex-atom fallback stratum) passed parity in the local Kaggle simulation, changes test predictions relative to v4, and is queued as `LATEST=v5` for the 28 Sep slot (after 8 pm EDT). The daily script now confirms submissions from the submissions list instead of the CLI's reply text.
+- **Codex knowledge, analysed:**
+  - The 201 composition programs are 1:1:1 selector/binder/effect monoliths. Only 4 helpers are shared, and each program solves only its origin task (31 training, 11 dev-eval, 0 sealed).
+  - Of the 1,395 detector atoms (swept in full on WSL, task T1), 197 are task-specific. Merging atoms with identical firing sets leaves 470 distinct concepts, with 8,156 subsumption edges.
+  - Importing 121 selectors as concepts was **rejected** (net loss of 2 training solves).
+  - 420 atom concepts as a fallback stratum were **admitted**: training 81 → 83, eval half A 2, half B 0.
+  - Downward pass: 21 of the 420 atoms are used in rules of fully explained tasks; 399 are retirement candidates.
+- **Infrastructure:** WSL Claude delivered T1 (full atom sweep, 25 min on 4 cores), T2 (digest-keyed stratum cache with lineage and invalidation, 12 tests passing) and T3 (parallel admission runner, reproduces the baseline exactly, about 12 min per proposal on 4 cores). T4 published the Codex atom dataset. The cloud workspace restarted twice mid-run, so long measurements move to WSL.
+- **Assessment:** the held-out signals are unchanged: dev-eval half B 0/49, sealed 0, hidden 0.00. The Codex import confirms that the bottleneck is transfer, not coverage. Estimated chance of a non-zero hidden score by Nov 2: **about 20–30%** (was 25–35%). The decision point stays at Oct 12.
