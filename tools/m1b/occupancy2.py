@@ -8,7 +8,7 @@ used only on training pairs.
 """
 from __future__ import annotations
 
-import copy, json, signal, sys, time
+import copy, json, os, signal, sys, time
 from collections import Counter
 from itertools import combinations
 from types import SimpleNamespace
@@ -527,6 +527,114 @@ def extra_attrs(nodes, grid):
     return res
 
 
+
+# ---------------------------------------------------------------- Codex selectors as concepts (cycle 5)
+_CODEX = None
+_CODEX_CACHE = {}
+ROLE_KEYS = ("role", "marker", "source", "separator", "foreground", "base", "color", "background")
+
+
+def _codex():
+    global _CODEX
+    if _CODEX is None:
+        import importlib, json as _j
+        root = os.environ.get("CODEX_ROOT", "/mnt/user-data/uploads/arc_extended_arga")
+        if root not in sys.path: sys.path.insert(0, root)
+        cr = importlib.import_module("wake.composition_runtime")
+        spec = _j.load(open(os.environ.get("CODEX_SELECTORS", "/home/claude/work/au/seltime.json")))
+        _CODEX = [(name, getattr(cr, name), v["spec"]) for name, v in sorted(spec.items())]
+    return _CODEX
+
+
+def _cells(v, H, W):
+    if isinstance(v, (list, tuple, set)) and v:
+        items = list(v)[:2000]
+        if all(isinstance(x, (list, tuple)) and len(x) == 2 and all(isinstance(y, int) for y in x) for x in items):
+            cs = {(x[0], x[1]) for x in items}
+            if all(0 <= r < H and 0 <= c < W for r, c in cs): return cs
+    return None
+
+
+def codex_features(grid):
+    """Run each Codex selector on the grid; return (role attributes by colour, cell-set attributes, chain sources)."""
+    key = tuple(map(tuple, grid))
+    if key in _CODEX_CACHE: return _CODEX_CACHE[key]
+    H, W = len(grid), len(grid[0])
+    roles, cellsets, sources = {}, {}, {}
+    for name, f, spec in _codex():
+        try:
+            out = f(grid, spec)
+        except Exception:
+            continue
+        if not isinstance(out, dict): continue
+        short = name[len("_select_"):] if name.startswith("_select_") else name
+        for k, v in out.items():
+            tag = f"cx:{short}.{k}"
+            if isinstance(v, int) and not isinstance(v, bool) and 0 <= v <= 9 and any(r in k for r in ROLE_KEYS):
+                roles.setdefault(v, set()).add(tag); sources[tag] = v
+            else:
+                cs = _cells(v, H, W)
+                if cs: cellsets[tag] = cs
+    _CODEX_CACHE[key] = (roles, cellsets, sources)
+    if len(_CODEX_CACHE) > 5000: _CODEX_CACHE.clear()
+    return roles, cellsets, sources
+
+
+
+# ---------------------------------------------------------------- S0 atoms (Codex detectors) as a fallback stratum (cycle 6)
+_ATOMS = None
+_ATOM_CACHE = {}
+ATOM_ACTIVE = False
+
+
+def _atoms():
+    global _ATOMS
+    if _ATOMS is None:
+        import importlib, json as _j
+        root = os.environ.get("CODEX_ROOT", "/home/claude/work/codex")
+        if root not in sys.path: sys.path.insert(0, root)
+        reps = _j.load(open(os.environ.get("S0_REPS", "/home/claude/work/s0/s0_reps.json")))
+        fns = []
+        for name in sorted(reps):
+            mod, fn = name.rsplit(".", 1)
+            try:
+                fns.append((name, getattr(importlib.import_module("detectors." + mod), fn)))
+            except Exception:
+                pass
+        _ATOMS = fns
+    return _ATOMS
+
+
+def _collect_cells(ev, H, W, out):
+    if isinstance(ev, dict):
+        if isinstance(ev.get("row"), int) and isinstance(ev.get("col"), int):
+            if 0 <= ev["row"] < H and 0 <= ev["col"] < W: out.add((ev["row"], ev["col"]))
+        for v in ev.values(): _collect_cells(v, H, W, out)
+    elif isinstance(ev, (list, tuple, set, frozenset)):
+        if len(ev) == 2 and all(isinstance(x, int) and not isinstance(x, bool) for x in ev):
+            r, c = ev
+            if 0 <= r < H and 0 <= c < W: out.add((r, c))
+            return
+        for v in ev: _collect_cells(v, H, W, out)
+
+
+def atom_cells(grid):
+    key = tuple(map(tuple, grid))
+    if key in _ATOM_CACHE: return _ATOM_CACHE[key]
+    H, W = len(grid), len(grid[0]); res = {}
+    for name, fn in _atoms():
+        try:
+            ev = fn([row[:] for row in grid])
+        except Exception:
+            continue
+        if not ev: continue
+        cs = set(); _collect_cells(ev, H, W, cs)
+        if cs: res["at:" + name.split(".", 1)[1][:-len("_evidence")] if name.endswith("_evidence") else "at:" + name] = cs
+    _ATOM_CACHE[key] = res
+    if len(_ATOM_CACHE) > 4000: _ATOM_CACHE.clear()
+    return res
+
+
 def prepare(grid, abstraction):
     nodes = segment(grid, abstraction)
     bg = background(grid)
@@ -549,6 +657,19 @@ def prepare(grid, abstraction):
                 cs = {nodes[j]["color"] for j in best}
                 if len(cs) == 1:
                     s[key] = next(iter(cs)); at[i].add(f"exists_{key}")  # OWL existential restriction
+    if "S_codex" in VOCAB:
+        roles, cellsets, csrc = codex_features(grid)
+        for n, a, s in zip(nodes, at, src):
+            if n["color"] is not None:
+                a |= roles.get(n["color"], set())
+            for tag, cs in cellsets.items():
+                if n["pix"] & cs: a.add(tag)
+            for tag, v in csrc.items():
+                s[tag] = v
+    if ATOM_ACTIVE:
+        for tag, cs in atom_cells(grid).items():
+            for n, a in zip(nodes, at):
+                if n["pix"] & cs: a.add(tag)
     dv = {v for v in VOCAB if v.startswith("D")}
     if dv:
         for a, e in zip(at, extra_attrs(nodes, grid)):
@@ -748,6 +869,17 @@ def solve(task, abstractions=ABSTRACTIONS):
             res = solve_once(task, abstractions)
         finally:
             PIXEL_ACTIVE = False
+    if not res[2] and "S_atoms" in VOCAB:
+        global ATOM_ACTIVE
+        ATOM_ACTIVE = True
+        try:
+            res = solve_once(task, abstractions)
+            if not res[2] and "P_pixel" in VOCAB:
+                PIXEL_ACTIVE = True
+                try: res = solve_once(task, abstractions)
+                finally: PIXEL_ACTIVE = False
+        finally:
+            ATOM_ACTIVE = False
     if not res[2] and "P_frame" in VOCAB and not FRAME_ACTIVE and any(
             (len(p["input"]), len(p["input"][0])) != (len(p["output"]), len(p["output"][0])) for p in task["train"]):
         fr = solve_frame(task)

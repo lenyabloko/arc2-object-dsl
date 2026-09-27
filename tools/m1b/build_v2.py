@@ -40,7 +40,16 @@ except ImportError:
 challenges = [p for p in Path('/kaggle/input').rglob('arc-agi_test_challenges.json')]
 assert len(challenges) == 1, challenges
 Path('/kaggle/working/probe').mkdir(exist_ok=True)
-print(payload, challenges[0])
+CODEX_SHA = '__CODEX_SHA__'
+codex = [p for p in Path('/kaggle/input').rglob('codex_atoms.tgz')]
+if codex:
+    import tarfile
+    assert hashlib.sha256(codex[0].read_bytes()).hexdigest() == CODEX_SHA, 'codex atom bundle digest mismatch'
+    cx = Path('/kaggle/working/codex')
+    if not cx.exists():
+        with tarfile.open(codex[0]) as t: t.extractall(cx)
+    os.environ['CODEX_ROOT'] = str(cx); os.environ['S0_REPS'] = str(cx / 's0_reps.json')
+print(payload, challenges[0], 'codex' if codex else 'no-codex')
 """),
     code("%%writefile /kaggle/working/probe/occupancy2.py\n" + probe),
     code("%%writefile /kaggle/working/predict_m1.py\n" + driver),
@@ -81,6 +90,7 @@ assert set(sub) == set(src) and all(len(sub[k]) == len(src[k]['test']) for k in 
 print(len(sub), 'tasks written')
 """),
 ]
+cells[1]["source"] = [l.replace("__CODEX_SHA__", os.environ.get("CODEX_SHA", "")) for l in cells[1]["source"]]
 nb = {"cells": cells, "metadata": {"kernelspec": {"name": "python3", "display_name": "Python 3", "language": "python"},
                                    "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 5}
 os.makedirs(outdir, exist_ok=True)
@@ -88,7 +98,7 @@ json.dump(nb, open(os.path.join(outdir, "arc2_lattice_rdr_submission.ipynb"), "w
 meta = {"id": "lenyabloko/arc2-lattice-rdr-symbolic-submission", "title": "ARC2 lattice RDR symbolic submission",
         "code_file": "arc2_lattice_rdr_submission.ipynb", "language": "python", "kernel_type": "notebook",
         "is_private": True, "enable_gpu": False, "enable_tpu": False, "enable_internet": False,
-        "dataset_sources": ["lenyabloko/arc2-object-dsl-stationary-payload-v4", "lenyabloko/arc2-public-evaluation-parity-v1"],
+        "dataset_sources": ["lenyabloko/arc2-object-dsl-stationary-payload-v4", "lenyabloko/arc2-public-evaluation-parity-v1"] + ([os.environ["CODEX_DATASET"]] if os.environ.get("CODEX_DATASET") else []),
         "competition_sources": ["arc-prize-2026-arc-agi-2"], "kernel_sources": [], "model_sources": []}
 json.dump(meta, open(os.path.join(outdir, "kernel-metadata.json"), "w"), indent=2)
 print("built", outdir, "probe", probe_sha[:12])
