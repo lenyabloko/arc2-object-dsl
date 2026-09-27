@@ -41,6 +41,12 @@ P="$OUTD/parity_report.json"
 OK=$(python3 -c "import json;r=json.load(open('$P'));print(int(r.get('digest_match') is True and r.get('correct_of_172')==$EXP))")
 cp "$P" "$REPORT_DIR/${TODAY}_parity.json"
 [ "$OK" = 1 ] || { out status parity_failed kernel_version "$KV"; exit 1; }
-SUB=$(kaggle competitions submit -c "$COMP" -k "$KID" -f submission.json -v "$KV" -m "$V kernel v$KV parity ok" 2>&1); echo "$SUB"
-case "$SUB" in *uccess*|*ubmitted*) echo "$TODAY $HASH" >> "$STATE"; out status submitted kernel_version "$KV" detail "$(echo "$SUB" | tail -1)";;
-  *) out status submit_failed kernel_version "$KV" detail "$(echo "$SUB" | tail -1)"; exit 1;; esac
+MSG="$V kernel v$KV parity ok $(date -u +%H%M%S)"
+SUB=$(kaggle competitions submit -c "$COMP" -k "$KID" -f submission.json -v "$KV" -m "$MSG" 2>&1); echo "$SUB"
+sleep 20
+# Do not trust the CLI's reply text: confirm by finding our unique message in the submissions list.
+if kaggle competitions submissions -c "$COMP" --csv 2>/dev/null | grep -qF "$MSG"; then
+  echo "$TODAY $HASH" >> "$STATE"; out status submitted kernel_version "$KV" message "$MSG" detail "$(echo "$SUB" | tail -1)"
+else
+  out status submit_failed kernel_version "$KV" detail "$(echo "$SUB" | tail -1)"; exit 1
+fi
