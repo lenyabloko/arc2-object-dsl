@@ -523,6 +523,16 @@ def extra_attrs(nodes, grid):
         if sizes[i] == min(sizes[j] for j in same): a.add("D10:smallest_of_its_color")
         a.add(f"D11:n_cells_of_color_in_bbox={sum(1 for r in range(r0,r1+1) for c in range(c0,c1+1) if grid[r][c]==colors[i])==sizes[i]}")
         a.add(f"D12:n_holes={min(n_holes(n['pix']), 5)}")
+        big = max(range(len(nodes)), key=lambda j: (sizes[j], -j))
+        if big != i:
+            br0, bc0, br1, bc1 = boxes[big]
+            cy, cx = (r0 + r1) / 2, (c0 + c1) / 2; by, bx = (br0 + br1) / 2, (bc0 + bc1) / 2
+            a.add("D13:above_largest" if cy < by else ("D13:below_largest" if cy > by else "D13:level_with_largest"))
+            a.add("D13:left_of_largest" if cx < bx else ("D13:right_of_largest" if cx > bx else "D13:centered_on_largest"))
+            if not (r1 < br0 or r0 > br1): a.add("D13:row_overlaps_largest")
+            if not (c1 < bc0 or c0 > bc1): a.add("D13:col_overlaps_largest")
+        dens = sizes[i] / ((r1 - r0 + 1) * (c1 - c0 + 1))
+        a.add("D14:dense_full" if dens == 1 else ("D14:dense_high" if dens >= 0.5 else "D14:dense_low"))
         res.append(a)
     return res
 
@@ -580,6 +590,64 @@ def codex_features(grid):
     return roles, cellsets, sources
 
 
+
+# ---------------------------------------------------------------- S0 atoms (Codex detectors) as a fallback stratum (cycle 6)
+_ATOMS = None
+_ATOM_CACHE = {}
+ATOM_ACTIVE = False
+
+
+def _atoms():
+    global _ATOMS
+    if _ATOMS is None:
+        import importlib, json as _j
+        root = os.environ.get("CODEX_ROOT", "/home/claude/work/codex")
+        if root not in sys.path: sys.path.insert(0, root)
+        reps = _j.load(open(os.environ.get("S0_REPS", "/home/claude/work/s0/s0_reps.json")))
+        if "S_atoms_used" in VOCAB or "S_atoms_primary" in VOCAB:
+            used = set(_j.load(open(os.environ.get("S0_REPS_USED", "/home/claude/work/s0/s0_reps_used.json"))))
+            reps = [r for r in reps if r in used]
+        fns = []
+        for name in sorted(reps):
+            mod, fn = name.rsplit(".", 1)
+            try:
+                fns.append((name, getattr(importlib.import_module("detectors." + mod), fn)))
+            except Exception:
+                pass
+        _ATOMS = fns
+    return _ATOMS
+
+
+def _collect_cells(ev, H, W, out):
+    if isinstance(ev, dict):
+        if isinstance(ev.get("row"), int) and isinstance(ev.get("col"), int):
+            if 0 <= ev["row"] < H and 0 <= ev["col"] < W: out.add((ev["row"], ev["col"]))
+        for v in ev.values(): _collect_cells(v, H, W, out)
+    elif isinstance(ev, (list, tuple, set, frozenset)):
+        if len(ev) == 2 and all(isinstance(x, int) and not isinstance(x, bool) for x in ev):
+            r, c = ev
+            if 0 <= r < H and 0 <= c < W: out.add((r, c))
+            return
+        for v in ev: _collect_cells(v, H, W, out)
+
+
+def atom_cells(grid):
+    key = tuple(map(tuple, grid))
+    if key in _ATOM_CACHE: return _ATOM_CACHE[key]
+    H, W = len(grid), len(grid[0]); res = {}
+    for name, fn in _atoms():
+        try:
+            ev = fn([row[:] for row in grid])
+        except Exception:
+            continue
+        if not ev: continue
+        cs = set(); _collect_cells(ev, H, W, cs)
+        if cs: res["at:" + name.split(".", 1)[1][:-len("_evidence")] if name.endswith("_evidence") else "at:" + name] = cs
+    _ATOM_CACHE[key] = res
+    if len(_ATOM_CACHE) > 4000: _ATOM_CACHE.clear()
+    return res
+
+
 def prepare(grid, abstraction):
     nodes = segment(grid, abstraction)
     bg = background(grid)
@@ -611,6 +679,10 @@ def prepare(grid, abstraction):
                 if n["pix"] & cs: a.add(tag)
             for tag, v in csrc.items():
                 s[tag] = v
+    if ATOM_ACTIVE or "S_atoms_primary" in VOCAB:
+        for tag, cs in atom_cells(grid).items():
+            for n, a in zip(nodes, at):
+                if n["pix"] & cs: a.add(tag)
     dv = {v for v in VOCAB if v.startswith("D")}
     if dv:
         for a, e in zip(at, extra_attrs(nodes, grid)):
@@ -810,6 +882,17 @@ def solve(task, abstractions=ABSTRACTIONS):
             res = solve_once(task, abstractions)
         finally:
             PIXEL_ACTIVE = False
+    if not res[2] and ("S_atoms" in VOCAB or "S_atoms_used" in VOCAB):
+        global ATOM_ACTIVE
+        ATOM_ACTIVE = True
+        try:
+            res = solve_once(task, abstractions)
+            if not res[2] and "P_pixel" in VOCAB:
+                PIXEL_ACTIVE = True
+                try: res = solve_once(task, abstractions)
+                finally: PIXEL_ACTIVE = False
+        finally:
+            ATOM_ACTIVE = False
     if not res[2] and "P_frame" in VOCAB and not FRAME_ACTIVE and any(
             (len(p["input"]), len(p["input"][0])) != (len(p["output"]), len(p["output"][0])) for p in task["train"]):
         fr = solve_frame(task)
