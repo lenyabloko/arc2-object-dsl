@@ -28,7 +28,7 @@ if grep -q " $HASH$" "$STATE"; then out status skipped reason "this notebook ver
 PUSH=$(kaggle kernels push -p "$DIR" 2>&1); echo "$PUSH"
 KV=$(echo "$PUSH" | grep -o 'version [0-9]*' | head -1 | cut -d' ' -f2)
 [ -n "$KV" ] || { out status push_failed detail "$(echo "$PUSH" | tail -1)"; exit 1; }
-for i in $(seq 1 90); do                       # up to ~3 hours
+for i in $(seq 1 180); do                      # up to ~6 hours
   S=$(kaggle kernels status "$KID" 2>&1)
   case "$S" in *COMPLETE*) break;; *ERROR*|*CANCEL*) out status kernel_error kernel_version "$KV" detail "$S"; exit 1;; esac
   sleep 120
