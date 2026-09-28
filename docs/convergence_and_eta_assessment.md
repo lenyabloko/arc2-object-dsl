@@ -237,3 +237,30 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - ARC-AGI-2 evaluation tasks are not reached by whole-grid primitives of this kind. The next DSL work must target the failure modes of half A, not add training solves.
   - Estimated chance of a non-zero hidden score by Nov 2: **about 20–25%** (was 20–30%). Tonight's v6 score is expected to equal v4's.
   - The decision point stays at Oct 12. The next report is at 22:30 EDT.
+
+
+**12-hour report, 2026-09-27 22:30 EDT.**
+- **Kaggle:**
+  - The Sep 27 UTC slot went to v4 (public score 0.00). v6, v7 and v8 were never submitted; each was superseded before a free slot.
+  - Outbox batch-0018 was pushed at 19:46 EDT, so `LATEST=v9` (V11) is live.
+  - The local parity run for v9 is byte-identical to V10 on the public eval (digest fee33f1f…, 9/172, up from v4's 3/172).
+  - WSL has not yet written the Sep 28 submission record: its run is either in progress or not started. The score will be reported at the next check-in.
+- **Cycles 9–11, all admitted (training is the lattice and G-DSL results combined):**
+
+  | Cycle | Vocabulary | Training | Half A | Half B |
+  |---|---|---|---|---|
+  | 9 | V8 | 178 | 4 | 1 |
+  | 10 | V9 | 182 | 5 | 1 |
+  | 10b | V10 | 184 | 5 | — |
+  | 11 | V11 | 191 | 5 | 1 |
+
+  - Held-out half B moved from 0 to 1 in cycle 9, the first transfer signal. Public eval moved from 3 to 9 of 172.
+- **Codex latent-primitive audit:**
+  - Every Codex wake-rule mode was run against every training and half-A task. Each binding was induced from the training pairs, verified on all of them, then scored on test.
+  - Of 463 modes, only 46 are test-correct on 2 or more tasks.
+  - Codex modes solve 500 tasks that we do not, but 361 of those rely on single-task modes, so they are bespoke.
+  - On half A, Codex modes are correct on only 4 tasks.
+  - Conclusion: Codex's solutions encode very few reusable primitives. New primitives are written from scratch, using Codex recurrence only as a hint.
+- **Review:** all 863 non-held-out tasks now carry a status (196 solved, with the verified program) or a per-task reading (rule, capabilities, feasibility, confidence). A "Needs you" filter narrows human review to 245 tasks.
+  - Capability gaps on the unsolved tasks, ranked: grid-partition cells, pattern continuation, context recolour, layered composition, marker stamps, counting.
+- **Assessment:** the estimated chance of a non-zero hidden score by Nov 2 is **about 25–30%** (was 20–25%), because held-out transfer is now non-zero on half B and public eval rose to 9/172. The decision point stays at Oct 12.
