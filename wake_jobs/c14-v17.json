@@ -1,0 +1,2 @@
+{"job_id": "c14-v17", "probe": "tools/m1b/v17", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 30,
+ "note": "V17 = group primitives (passes 1-5) + priors enrichment lane (topology, geometry, combinatorics). Cycle 14 half-B count."}
