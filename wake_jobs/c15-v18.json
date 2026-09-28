@@ -1,0 +1,2 @@
+{"job_id": "c15-v18", "probe": "tools/m1b/v18", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 30,
+ "note": "V18 = V17 + round-2 priors (optics, mechanics, fluids, least action, arithmetic). Cycle 15 half-B count."}
