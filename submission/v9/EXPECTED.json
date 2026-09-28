@@ -1,0 +1,1 @@
+{"correct_of_172": 9, "eval_digest": "fee33f1f3d91f732f9c2b27ef4860a58f62048eae953bf118823fd5ed0f404c0", "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl", "probe": "V11 (G_dsl v4: object gravity, move-to-anchor, two-step residual search)", "requires_dataset": "lenyabloko/arc2-codex-atoms-v1"}
