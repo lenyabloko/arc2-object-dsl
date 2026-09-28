@@ -1,0 +1,2 @@
+{"job_id": "c13-v15", "probe": "tools/m1b/v15", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 25,
+ "note": "Dream passes 2-4 integrated (23 own group primitives). Cycle 13 half-B count."}
