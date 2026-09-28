@@ -1,0 +1,2 @@
+{"job_id": "c12-calibration", "probe": "tools/m1b/v13", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 25,
+ "expect": {"train_exact": 224, "halfA_exact": 3, "wrong_first": 11, "halfB_exact_count": 1, "note": "cloud reference run g10 (2 workers); WSL must reproduce these before later jobs are trusted"}}

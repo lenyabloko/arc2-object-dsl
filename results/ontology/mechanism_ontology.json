@@ -1,0 +1,4356 @@
+{
+"subclasses": {
+"recolour.by_colour_map": {
+"parent": "RECOLOUR",
+"definition": "Output = input with a cellwise colour substitution phi (bijection or many-to-one) applied to every cell (optionally outside a key region, optionally after cropping to the main object); phi is either constant across pairs or read from in-grid legend pairs.",
+"parameters": {
+"phi": "colour->colour map",
+"phi_source": "constant | legend_pairs | 2x2_key",
+"scope": "whole grid | outside key | cropped main object"
+},
+"detector": "Same shape (or crop of largest object); for every cell, out colour is a function of in colour alone (consistent across all pairs, or consistent with legend adjacency pairs present in input).",
+"related": [
+"recolour.by_legend",
+"COMPLEMENT"
+],
+"tasks": [
+"d511f180",
+"6ea4a07e",
+"1c0d0a4b",
+"0becf7df",
+"e4888269",
+"e9b4f6fc",
+"1e81d6f9"
+],
+"coverage_risk": [
+"6ea4a07e",
+"e9b4f6fc",
+"1e81d6f9"
+],
+"primitive_sketch": "phi = induce_map(pairs) or read_pairs(key_region(inp))\nout = apply(phi, inp) on scope; if scope==crop: out = crop(largest_obj(out))",
+"source": "A"
+},
+"recolour.by_key_position": {
+"parent": "RECOLOUR",
+"definition": "Targets (objects, rows, columns, quadrants, rank-ordered segments) are recoloured with the colour of the key cell at the corresponding position of a small in-grid key (key column/row, minimap, corner cells, ordered legend stripes); key optionally erased and output optionally cropped to the target area.",
+"parameters": {
+"key": "region: first column/row, small multicolour block, corner cells, stripe list",
+"targets": "uniform-colour cells/objects",
+"correspondence": "same row | same column | relative layout | rank order"
+},
+"detector": "Input has a uniform target colour T and a small key K of distinct colours; every output T-cell colour equals K[pos(cell)] under one of the listed correspondences; non-T cells unchanged (or key erased/cropped away).",
+"related": [
+"recolour.by_legend",
+"recolour.by_touching_marker"
+],
+"tasks": [
+"c9f8e694",
+"c7d4e6ad",
+"fafd9572",
+"1da012fc",
+"33b52de3",
+"7c008303",
+"77fdfe62",
+"278e5215",
+"9b365c51"
+],
+"coverage_risk": [
+"33b52de3",
+"9b365c51",
+"278e5215",
+"77fdfe62"
+],
+"primitive_sketch": "K = find_key(inp); T = target_colour\nfor corr in [row,col,layout_scaled,rank]: out = paint(T-cells, K[corr(cell)])\nkeep corr matching all pairs; post: erase_key / crop_to_targets as induced",
+"source": "A"
+},
+"recolour.by_shape_match": {
+"parent": "RECOLOUR",
+"definition": "Each candidate object (uniform colour) whose shape equals an exemplar/key shape (up to translation, dihedral transform, optionally scale) is recoloured to that exemplar colour; unmatched candidates unchanged.",
+"parameters": {
+"exemplars": "shapes of distinct colours (in frames / corner / key)",
+"candidates": "objects of the candidate colour",
+"equivalence": "translation | dihedral | scale"
+},
+"detector": "Changed cells form whole candidate objects; each changed object shape-equals an input object of the new colour under the induced equivalence.",
+"related": [
+"match",
+"recolour.by_legend"
+],
+"tasks": [
+"845d6e51",
+"776ffc46",
+"50f325b5",
+"bd14c3bf",
+"15113be4"
+],
+"coverage_risk": [
+"bd14c3bf",
+"15113be4",
+"50f325b5"
+],
+"primitive_sketch": "ex = objects(not cand colour); for o in objects(cand):\n  m = [e for e in ex if canon(o.shape,equiv)==canon(e.shape,equiv)]\n  if m: paint(o, m[0].colour)",
+"source": "A"
+},
+"recolour.by_touching_marker": {
+"parent": "RECOLOUR",
+"definition": "Each target object/region/cell takes the colour of the marker associated with it (marker inside it, touching it, nearest to it, containing ancestor, or paired panel); markers optionally erased.",
+"parameters": {
+"targets": "objects/regions of target colour",
+"markers": "singletons or lines of other colours",
+"association": "contains | 4/8-adjacent | nearest | enclosing ancestor | paired panel",
+"erase_markers": "bool"
+},
+"detector": "Every changed cell belongs to a target component whose new colour equals the colour of exactly one marker associated with it under one association rule; changes are constant per component.",
+"related": [
+"recolour.by_key_position",
+"fill.region_by_property"
+],
+"tasks": [
+"b7256dcd",
+"6df30ad6",
+"e681b708",
+"2204b7a8",
+"c3fa4749",
+"09c534e7",
+"7d1f7ee8",
+"ef26cbf6"
+],
+"coverage_risk": [
+"c3fa4749",
+"09c534e7",
+"ef26cbf6",
+"7d1f7ee8"
+],
+"primitive_sketch": "for t in segment(targets): m = assoc(t, markers, rule)\n  paint(t, m.colour); if erase: clear(m)\nrule induced by trying contains/adjacent/nearest/ancestor",
+"source": "A"
+},
+"recolour.object_by_property": {
+"parent": "RECOLOUR",
+"definition": "Each foreground object (component, row or panel) is recoloured by a table g(feature), feature from {size, size rank, shape/topology class, contains pattern, count of a colour, marker column}; objects not selected keep colour.",
+"parameters": {
+"objects": "components / rows / panels",
+"feature": "size | rank | topology class | predicate",
+"table": "feature value -> colour (induced)"
+},
+"detector": "Changes are constant per input object; new colour is a function of one computed object feature consistent over all pairs.",
+"related": [
+"recolour.by_property",
+"fill.region_by_property"
+],
+"tasks": [
+"ea32f347",
+"e509e548",
+"ecb67b6d",
+"25094a63",
+"17cae0c1",
+"29623171",
+"a85d4709"
+],
+"coverage_risk": [
+"25094a63",
+"29623171",
+"a85d4709"
+],
+"primitive_sketch": "objs = segment(inp, mode)\nfor f in FEATURES: g = induce_table(f, objs, pairs); if consistent: break\nfor o in objs: paint(o, g[f(o)]) if f(o) in g",
+"source": "A"
+},
+"recolour.by_ordinal_index": {
+"parent": "RECOLOUR",
+"definition": "Elements (columns, cells in scan order, objects, runs of rows, regions, cells along a line) are ordered along an axis; element with index i gets palette[i mod k] (or palette[i] for rank) where palette is induced.",
+"parameters": {
+"element": "column | cell | object | row-run | region",
+"order": "axis and direction (from left/right, top/bottom)",
+"k": "period",
+"palette": "colours incl. unchanged"
+},
+"detector": "Changed cells are exactly the fg cells of elements whose index mod k is in a fixed residue set (index counted from a consistent end); colour depends only on residue.",
+"related": [
+"recolour.by_property",
+"sort"
+],
+"tasks": [
+"ba26e723",
+"d406998b",
+"7447852a",
+"22a4bbc2",
+"a5f85a15",
+"817e6c09",
+"9473c6fb",
+"575b1a71"
+],
+"coverage_risk": [
+"7447852a",
+"575b1a71",
+"9473c6fb"
+],
+"primitive_sketch": "els = order(segment(inp, elem), axis, dir)\nfor i,e in enumerate(els): c = palette[i % k]; if c: paint(e.fg, c)\nsearch elem/axis/dir/k consistent with pairs",
+"source": "A"
+},
+"recolour.by_distance_layers": {
+"parent": "RECOLOUR",
+"definition": "Cell colour = palette[d mod k] (or palette[d]) where d is a distance of the cell from a source set (object boundary depth, seed cell, frame) under a metric (Chebyshev/Manhattan/geodesic in region); palette constant, from key, or reversed input layer colours.",
+"parameters": {
+"source": "object boundary | seed cell | frame",
+"metric": "chebyshev | manhattan | geodesic",
+"mask": "object / frame interior / bg region",
+"palette": "cycle constant | key sequence | reversed layers"
+},
+"detector": "Within mask, output colour is a function of (d mod k) for one metric/source; cells outside mask unchanged.",
+"related": [
+"distance_transform",
+"fill.flood"
+],
+"tasks": [
+"516b51b7",
+"a3f84088",
+"aaef0977",
+"8dae5dfc",
+"85c4e7cd",
+"b457fec5",
+"d22278a0",
+"b7fb29bc",
+"b782dc8a",
+"d492a647"
+],
+"coverage_risk": [
+"d492a647",
+"d22278a0",
+"b457fec5"
+],
+"primitive_sketch": "D = distance(mask, source, metric)\npal = induce(palette_source)\nout[mask] = pal[D % len(pal)] (None = keep)",
+"source": "A"
+},
+"recolour.by_region_position": {
+"parent": "RECOLOUR",
+"definition": "Each container (object, panel, frame interior, lattice cell, whole grid) is split into position classes (halves, quadrants, 3x3 cells, border ring vs interior, corners vs edges); each class painted with a colour from a table (constant or from corner markers).",
+"parameters": {
+"container": "object | panel | frame interior | grid",
+"partition": "half | quadrant | 3x3 | ring/interior",
+"colour_source": "constant table | corner markers"
+},
+"detector": "Changed cells lie in containers; within a container the new colour depends only on the cell relative-position class.",
+"related": [
+"recolour.by_key_position"
+],
+"tasks": [
+"e7dd8335",
+"ce9e57f2",
+"639f5a19",
+"a834deea",
+"272f95fa",
+"e9c9d9a1",
+"8a371977",
+"e9ac8c9e",
+"94414823",
+"87ab05b8"
+],
+"coverage_risk": [
+"639f5a19",
+"87ab05b8",
+"e9c9d9a1"
+],
+"primitive_sketch": "for C in containers(inp): for cell in C: cls = partition(C, cell)\n  out[cell] = table[cls] (table induced or from markers at corners)",
+"source": "A"
+},
+"recolour.along_ray": {
+"parent": "RECOLOUR",
+"definition": "Straight lines are cast from source cells/objects (edge markers, odd block, endpoint pair) in induced directions; cells on the line are painted line colour and crossed objects/cells recoloured by rule (to line colour, bg, alt colour, or underlying region colour).",
+"parameters": {
+"sources": "markers",
+"directions": "orthogonal/diagonal set",
+"crossing_rule": "object->line colour | same colour->bg | noise->alt"
+},
+"detector": "All changed cells lie on straight rows/cols/diagonals through source cells; change on each cell depends on its input colour class.",
+"related": [
+"ray",
+"connect"
+],
+"tasks": [
+"981add89",
+"0d87d2a6",
+"bcb3040b",
+"d07ae81c",
+"4f537728",
+"ddf7fa4f"
+],
+"coverage_risk": [
+"d07ae81c",
+"ddf7fa4f",
+"4f537728"
+],
+"primitive_sketch": "for s in sources: for dir in dirs: for cell on line(s,dir):\n  out[cell] = rule(inp[cell], s.colour)  # rule table induced from pairs",
+"source": "A"
+},
+"recolour.template_sites": {
+"parent": "RECOLOUR",
+"definition": "Find every placement of a template (all-bg window of fixed shape, or a mixed-colour pattern with wildcards) and paint the union of placements (only its bg/target cells) with paint.",
+"parameters": {
+"template": "window shape (2x2, 3x3, plus) or learned motif",
+"paint": "new colour",
+"overlap": "union | greedy non-overlapping"
+},
+"detector": "Changed cells = union of placements of one fixed shape where all covered input cells match the template.",
+"related": [
+"fill.largest_empty",
+"match"
+],
+"tasks": [
+"a8d7556c",
+"6cf79266",
+"7e02026e",
+"14754a24",
+"31adaf00",
+"4ff4c9da"
+],
+"coverage_risk": [
+"31adaf00",
+"4ff4c9da",
+"14754a24"
+],
+"primitive_sketch": "T = induce_template(pairs); hits = [p for p in positions if matches(inp,T,p)]\nfor p in hits (greedy if overlap=nonoverlap): paint(target cells of T at p, paint)",
+"source": "A"
+},
+"fill.largest_empty": {
+"parent": "FILL",
+"definition": "Find the maximal empty (bg-only) shape of a family (axis rectangle, band, diagonal run) and paint it (optionally shrunk by 1).",
+"parameters": {
+"family": "rectangle | band | diagonal",
+"shrink": "0|1",
+"paint": "new colour"
+},
+"detector": "Changed cells form one bg rectangle/segment of maximal size containing no fg.",
+"related": [
+"recolour.template_sites"
+],
+"tasks": [
+"3eda0437",
+"e88171ec",
+"a64e4611",
+"aa300dc3"
+],
+"coverage_risk": [
+"a64e4611",
+"aa300dc3"
+],
+"primitive_sketch": "R = argmax_area(empty_shapes(inp, family)); paint(shrink(R,s), paint)",
+"source": "A"
+},
+"recolour.cyclic_shift": {
+"parent": "RECOLOUR",
+"definition": "Colour-bearing regions are ordered cyclically (clockwise around core, along loop, left-to-right bands) and each takes the colour of its successor.",
+"parameters": {
+"regions": "sectors | boxes on loop | column bands",
+"order": "cyclic order",
+"shift": "+1/-1"
+},
+"detector": "Multiset of region colours preserved; each region new colour = old colour of a neighbour region in one consistent cyclic order.",
+"related": [
+"permute"
+],
+"tasks": [
+"880c1354",
+"ad173014",
+"c4d1a9ae"
+],
+"coverage_risk": [
+"c4d1a9ae",
+"ad173014"
+],
+"primitive_sketch": "R = ordered_regions(inp, order); for i: paint(R[i], colour(R[(i+s)%n]))",
+"source": "A"
+},
+"recolour.by_tiling": {
+"parent": "RECOLOUR",
+"definition": "Decompose a monochrome shape exactly into pieces from a fixed set (2x2 squares, bars, L-trominoes) and colour each piece by its type/orientation.",
+"parameters": {
+"pieces": "piece set",
+"table": "piece type -> colour"
+},
+"detector": "Output partitions the input shape into pieces of the set, each piece monochrome with colour determined by its type.",
+"related": [
+"tiling"
+],
+"tasks": [
+"626c0bcc",
+"150deff5"
+],
+"coverage_risk": [
+"626c0bcc"
+],
+"primitive_sketch": "tiling = exact_cover(shape, pieces)  # backtracking\nfor p in tiling: paint(p.cells, table[p.type])",
+"source": "A"
+},
+"fill.bbox_bg": {
+"parent": "FILL",
+"definition": "For each object (component, cluster, or group of 4 corner markers, or cells of colour A), fill cells of target colour (default bg) inside its bbox (margin m, strict interior optional) with paint (constant or legend-mapped from object colour).",
+"parameters": {
+"objects": "components | corner groups | colour A cells",
+"margin": "-1|0|1",
+"target": "bg | colour B",
+"paint": "constant | legend(obj colour)"
+},
+"detector": "Every changed cell lies in the bbox(+m) of some object and had target colour; all target cells in those bboxes changed.",
+"related": [
+"recolour.by_property",
+"bbox"
+],
+"tasks": [
+"af902bf9",
+"60b61512",
+"8fbca751",
+"36fdfd69",
+"32597951",
+"305b1341",
+"5adee1b2"
+],
+"coverage_risk": [
+"305b1341",
+"36fdfd69",
+"af902bf9"
+],
+"primitive_sketch": "for o in group(inp, mode): B = bbox(o, margin)\n  for c in B: if inp[c]==target: out[c]=paint_of(o)",
+"source": "A"
+},
+"fill.between_pair_on_line": {
+"parent": "FILL",
+"definition": "Per row and/or column, bg cells between two consecutive fg cells (optionally facing blocks, overlap span inset, only fully-bg spans, min span) are painted.",
+"parameters": {
+"axis": "row | col | both",
+"endpoints": "fg cells / facing same-colour blocks",
+"inset": "0|1",
+"condition": "all bg | min span",
+"paint": "constant"
+},
+"detector": "Changed cells form horizontal/vertical runs of former bg whose two neighbours along the axis are endpoint-class cells.",
+"related": [
+"connect",
+"fill"
+],
+"tasks": [
+"aa18de87",
+"ef135b50",
+"f3b10344",
+"d6ad076f",
+"2bee17df",
+"5ad8a7c0",
+"770cc55f"
+],
+"coverage_risk": [
+"5ad8a7c0",
+"770cc55f",
+"2bee17df"
+],
+"primitive_sketch": "for line in lines(axis): for (a,b) consecutive endpoints on line:\n  if cond(a,b): paint(cells strictly between a,b (inset), paint)",
+"source": "A"
+},
+"fill.region_by_property": {
+"parent": "FILL",
+"definition": "Segment bg into regions separated by walls; paint each region by a rule on a region feature: enclosed vs border-touching, area rank, rectangularity, size parity, colour of seed inside/adjacent, majority marker colour inside/on boundary.",
+"parameters": {
+"walls": "fg colours",
+"connectivity": "4 | 8",
+"feature": "enclosed | area rank | is_rect | parity | seed colour | majority marker",
+"table": "feature -> colour"
+},
+"detector": "Changed cells are whole bg components (under the walls); each component uniformly painted with a colour determined by one component feature.",
+"related": [
+"recolour.object_by_property",
+"flood_fill"
+],
+"tasks": [
+"6455b5f5",
+"62ab2642",
+"84db8fc4",
+"7b6016b9",
+"e73095fd",
+"868de0fa",
+"753ea09b",
+"4b6b68e5",
+"7c8af763",
+"17b866bd",
+"9edfc990",
+"e69241bd",
+"3ad05f52",
+"83302e8f",
+"896d5239"
+],
+"coverage_risk": [
+"3ad05f52",
+"83302e8f",
+"896d5239",
+"753ea09b"
+],
+"primitive_sketch": "R = components(inp==bg or seeds, conn)\nfor f in FEATURES: g = induce(f); if consistent: break\nfor r in R: paint(r, g(f(r)))",
+"source": "A"
+},
+"combine.boolean_panels": {
+"parent": "COMBINE",
+"definition": "Split into two panels (halves, separator, or grid vs its mirror); output cell colour = truth table T(a_fg, b_fg) over the two fg masks, colours induced.",
+"parameters": {
+"split": "halves | separator | self-mirror",
+"T": "(a,b)->colour table"
+},
+"detector": "Output shape equals a panel; output colour at each cell is a function of the fg bits of the corresponding panel cells.",
+"related": [
+"combine.priority_overlay"
+],
+"tasks": [
+"fafffa47",
+"1b2d62fb",
+"0520fde7",
+"94f9d214",
+"99b1bc43",
+"5d2a5c43",
+"195ba7dc",
+"d47aa2ff",
+"ce039d91",
+"a8610ef7"
+],
+"coverage_risk": [
+"195ba7dc",
+"a8610ef7"
+],
+"primitive_sketch": "A,B = split(inp); T = induce_table(pairs)\nout[c] = T[(A[c]!=bg, B[c]!=bg)]",
+"source": "A"
+},
+"combine.priority_overlay": {
+"parent": "COMBINE",
+"definition": "Split into k equal panels / overlapping windows; output cell = the non-bg value of highest priority (priority by colour order or panel order, induced).",
+"parameters": {
+"split": "panels | quadrants | stacked | overlapping windows",
+"priority": "colour ranking"
+},
+"detector": "Output shape equals a panel; each output cell equals one of the corresponding panel cells, always the one ranked first by a fixed order.",
+"related": [
+"combine.boolean_panels"
+],
+"tasks": [
+"281123b4",
+"e99362f0",
+"75b8110e",
+"ea9794b1",
+"3d31c5b3",
+"6a11f6da",
+"bc1d5164"
+],
+"coverage_risk": [
+"bc1d5164"
+],
+"primitive_sketch": "P = split(inp); order = induce_priority(pairs)\nout[c] = min((v for v in [p[c] for p in P] if v!=bg), key=order, default=bg)",
+"source": "A"
+},
+"ca.local_rule": {
+"parent": "CA",
+"definition": "Output cell = f(input neighbourhood of radius r), f a learned lookup (e.g. bg with diagonal fg neighbour -> paint, convex/concave loop corner -> colour); optionally applied after tiling.",
+"parameters": {
+"radius": "1..3",
+"f": "neighbourhood pattern -> colour",
+"pre": "none | tile 2x2"
+},
+"detector": "Output(c) is determined by the input window around c consistently across all pairs (no conflicting windows).",
+"related": [
+"stamp"
+],
+"tasks": [
+"9f5f939b",
+"10fcaaa3",
+"15663ba9",
+"95a58926"
+],
+"coverage_risk": [
+"9f5f939b",
+"95a58926"
+],
+"primitive_sketch": "g = pre(inp); table = {window(g,c,r): out[c]} from pairs\nout[c] = table.get(window(g,c,r), g[c])",
+"source": "A"
+},
+"ca.row_recurrence": {
+"parent": "CA",
+"definition": "Starting from seed rows, each subsequent row (step s) is computed from the previous row(s) by a local rule over diagonal/vertical neighbours; colours optionally alternate by level.",
+"parameters": {
+"seed": "top rows",
+"step": "1|2",
+"rule": "f(upper-left, up, upper-right)",
+"palette": "level parity colours"
+},
+"detector": "For rows below the seed, out row r is a function of out row r-s cells (r-s, c-1..c+1).",
+"related": [
+"ca.local_rule"
+],
+"tasks": [
+"b5bb5719",
+"af726779"
+],
+"coverage_risk": [
+"af726779"
+],
+"primitive_sketch": "for r from seed_end: out[r][c] = f(out[r-s][c-1], out[r-s][c], out[r-s][c+1], level parity)",
+"source": "A"
+},
+"ray.bounce": {
+"parent": "RAY",
+"definition": "A ray/path starts at a seed and travels diagonally or in zigzag, reflecting off grid edges or mirror-colour lines, passing through passable lines, until exiting.",
+"parameters": {
+"seed": "cell or diagonal segment",
+"reflectors": "grid edges | mirror colour",
+"paint": "ray colour"
+},
+"detector": "Changed cells form a diagonal path whose direction flips only at edges or reflector cells.",
+"related": [
+"ray"
+],
+"tasks": [
+"7e2bad24",
+"e179c5f4",
+"c1990cce"
+],
+"coverage_risk": [
+"c1990cce"
+],
+"primitive_sketch": "p,d = seed; while in_grid(p): paint(p); if blocked(p+d): d = reflect(d)\n p += d",
+"source": "A"
+},
+"stamp.reflect_recoloured": {
+"parent": "STAMP",
+"definition": "Reflect an object across an axis (separator line, object edge marked by markers, or towards a marker dot) and paint the copy (and/or original) with a recolouring induced from markers.",
+"parameters": {
+"axis": "line | marked edge",
+"recolour": "marker colour | swap two colours"
+},
+"detector": "Output = input plus a mirrored copy of an object about an axis adjacent to it; copy colours are a colour map of the original.",
+"related": [
+"transform.mirror",
+"stamp"
+],
+"tasks": [
+"2bcee788",
+"88207623",
+"2b01abd0",
+"dc2e9a9d",
+"6f473927",
+"66ac4c3b"
+],
+"coverage_risk": [
+"66ac4c3b",
+"6f473927",
+"dc2e9a9d"
+],
+"primitive_sketch": "axis = find_axis(inp); copy = reflect(obj, axis)\npaint(copy, phi(obj colours)); optionally recolour original",
+"source": "A"
+},
+"move.translate_recolour": {
+"parent": "MOVE",
+"definition": "All foreground translated by a constant vector and recoloured by a colour map.",
+"parameters": {
+"vector": "(dy,dx)",
+"phi": "colour map"
+},
+"detector": "Output fg equals shifted input fg with uniform colour change.",
+"related": [
+"move"
+],
+"tasks": [
+"a79310a0",
+"32e9702f"
+],
+"coverage_risk": [
+"32e9702f"
+],
+"primitive_sketch": "out = apply(phi, shift(inp, v)); v, phi induced",
+"source": "A"
+},
+"summarise.class_to_constant": {
+"parent": "SUMMARISE",
+"definition": "Classify the input (dominant colour, binary shape mask) and output a fixed glyph from a table indexed by the class.",
+"parameters": {
+"classifier": "dominant colour | shape mask",
+"table": "class -> fixed output grid"
+},
+"detector": "Outputs are constant for inputs with the same class; output size constant.",
+"related": [
+"lookup"
+],
+"tasks": [
+"d4469b4b",
+"9110e3c5",
+"27a28665"
+],
+"coverage_risk": [
+"27a28665"
+],
+"primitive_sketch": "k = classify(inp); return TABLE[k]  # TABLE induced from train",
+"source": "A"
+},
+"segment.filter_objects": {
+"parent": "SEGMENT",
+"definition": "Delete objects failing a predicate on a count of a marker colour inside them (e.g. keep count<=1, remove argmin).",
+"parameters": {
+"marker": "colour",
+"predicate": "threshold | argmin/argmax"
+},
+"detector": "Output = input with some whole components erased; erased set determined by marker counts.",
+"related": [
+"select"
+],
+"tasks": [
+"a934301b",
+"54db823b"
+],
+"coverage_risk": [],
+"primitive_sketch": "objs = components(inp); n = count(o, marker)\nerase(o for o in objs if not pred(n(o), all n))",
+"source": "A"
+},
+"segment.pack_pieces": {
+"parent": "SEGMENT",
+"definition": "Translate (and possibly rotate) the pieces so that they tile a fixed-size rectangle/frame exactly.",
+"parameters": {
+"pieces": "objects",
+"target": "rectangle size | frame"
+},
+"detector": "Output cells counts per colour equal input piece cell counts; output is a filled rectangle.",
+"related": [
+"pack"
+],
+"tasks": [
+"681b3aeb",
+"b7cb93ac",
+"83b6b474"
+],
+"coverage_risk": [
+"83b6b474"
+],
+"primitive_sketch": "for placement of pieces (backtracking): if exact cover of target: return",
+"source": "A"
+},
+"recolour.residual": {
+"parent": "RECOLOUR",
+"definition": "No generic primitive; see reasons",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"cfb2ce5a",
+"017c7c7b",
+"d255d7a7",
+"1acc24af",
+"7d419a02",
+"6a1e5592",
+"913fb3ed",
+"fea12743",
+"cc9053aa",
+"48634b99",
+"dd2401ed",
+"234bbc79",
+"5117e062",
+"5ad4f10b",
+"2a28add5",
+"aa62e3f4",
+"d6e50e54",
+"4093f84a",
+"103eff5b",
+"5a5a2103",
+"5a719d11",
+"ed74f2f2",
+"c074846d",
+"b71a7747",
+"332202d5",
+"b20f7c8b",
+"2de01db2",
+"3de23699",
+"18286ef8",
+"4e7e0eb9",
+"bd5af378",
+"f8c80d96",
+"6350f1f4",
+"d2acf2cb",
+"e26a3af2",
+"696d4842",
+"3bd292e8"
+],
+"reasons": {
+"cfb2ce5a": "mirror quadrant + inferred map; multi-step",
+"017c7c7b": "misfiled: EXTEND periodic pattern then constant recolour",
+"d255d7a7": "tube cap move, specific",
+"1acc24af": "piece-fits-cavity selection needs slide simulation",
+"7d419a02": "strip-distance widening rule, unique",
+"6a1e5592": "misfiled: MOVE pieces into cavities by shape match",
+"913fb3ed": "misfiled: STAMP ring around singleton with colour map",
+"fea12743": "glyph union relation, unique",
+"cc9053aa": "misfiled: PATH routing",
+"48634b99": "bar marking transfer, unique",
+"dd2401ed": "misfiled: MOVE line + side recolour",
+"234bbc79": "chaining pieces with compression",
+"5117e062": "misfiled: CROP object containing marker",
+"5ad4f10b": "misfiled: downscale shape (TRANSFORM)",
+"2a28add5": "gather to anchor (MOVE)",
+"aa62e3f4": "outline halo of object in minority colour (STAMP/OUTLINE)",
+"d6e50e54": "misfiled: MOVE markers to rect",
+"4093f84a": "misfiled: move.until_contact",
+"103eff5b": "scaled dihedral key match to large target",
+"5a5a2103": "copy template into panels + row legend",
+"5a719d11": "panel content swap",
+"ed74f2f2": "glyph classification to colour, crop",
+"c074846d": "rotate arm about pivot",
+"b71a7747": "lattice line crop + denoise",
+"332202d5": "nearest-line fill with crossing accents",
+"b20f7c8b": "bidirectional pattern/solid block swap by legend",
+"2de01db2": "per-row dominant colour swap",
+"3de23699": "misfiled: CROP by corner markers",
+"18286ef8": "indicator-driven token move",
+"4e7e0eb9": "divider-dependent group swap",
+"bd5af378": "L shift + diagonal ray",
+"f8c80d96": "misfiled: EXTEND spiral/nested lines",
+"6350f1f4": "denoise + tile classification swap",
+"d2acf2cb": "involution only on marker-bounded lines",
+"e26a3af2": "stripe majority denoise",
+"696d4842": "misfiled: EXTEND polyline to marker",
+"3bd292e8": "alternating colours across staircase path"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "A"
+},
+"fill.residual": {
+"parent": "FILL",
+"definition": "No generic primitive; see reasons",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"1190bc91",
+"9d9215db",
+"984d8a3e",
+"538b439f",
+"692cd3b6",
+"9b30e358",
+"9def23fe",
+"d37a1ef5",
+"df8cc377",
+"7acdf6d3",
+"95755ff2",
+"cf133acc",
+"834ec97d",
+"4a1cacc2",
+"bf32578f",
+"db7260a4",
+"782b5218",
+"13713586",
+"62b74c02",
+"444801d8"
+],
+"reasons": {
+"1190bc91": "V-shaped shifted copies + wedge fills",
+"9d9215db": "D4 symmetry completion with dotted sides",
+"984d8a3e": "per-row run shift",
+"538b439f": "misfiled: TRANSFORM reflect across separator",
+"692cd3b6": "ring gap projections",
+"9b30e358": "misfiled: TILE band",
+"9def23fe": "misfiled: PROJECT block bands",
+"d37a1ef5": "frame interior minus dots bbox",
+"df8cc377": "rank-matching frames to dot colours",
+"7acdf6d3": "capacity matching",
+"95755ff2": "diamond stripe fill",
+"cf133acc": "gap connection with column fill",
+"834ec97d": "marker move + column parity fill",
+"4a1cacc2": "rect from seed to corner",
+"bf32578f": "misfiled: COMPLETE mirror then fill",
+"db7260a4": "marker column selects cup",
+"782b5218": "partition above/below line",
+"13713586": "sweep bars to wall with priority",
+"62b74c02": "prefix copy + per-row fill",
+"444801d8": "cup interior plus row above, marker colour"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "A"
+},
+"segment.residual": {
+"parent": "SEGMENT",
+"definition": "No generic primitive; see reasons",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"fd4b2b02",
+"7d18a6fb",
+"b0f4d537",
+"20fb2937",
+"8618d23e",
+"522fdd07",
+"9b5080bb",
+"0607ce86",
+"52df9849",
+"0f63c0b9",
+"f3e14006",
+"3391f8c0",
+"f18ec8cc",
+"25c199f5",
+"ca8de6ea",
+"d017b73f",
+"52364a65",
+"833966f4",
+"d968ffd4",
+"b190f7f5",
+"689c358e"
+],
+"reasons": {
+"fd4b2b02": "recursive bar growth",
+"7d18a6fb": "key-corner assembly",
+"b0f4d537": "lattice redraw",
+"20fb2937": "decode arrangement",
+"8618d23e": "diagonal panel layout",
+"522fdd07": "per-object grow/shrink",
+"9b5080bb": "defect straddle paint",
+"0607ce86": "misfiled: tile majority denoise",
+"52df9849": "relayer overlapping rects",
+"0f63c0b9": "1D voronoi bands",
+"f3e14006": "weave from crossing lines",
+"3391f8c0": "swap shape templates",
+"f18ec8cc": "band permutation",
+"25c199f5": "stack shapes",
+"ca8de6ea": "compress X pattern",
+"d017b73f": "chain fragments",
+"52364a65": "erase first two columns of each object",
+"833966f4": "fixed permutation of list",
+"d968ffd4": "grow blocks toward each other",
+"b190f7f5": "kronecker colour x mask",
+"689c358e": "arm-length border paint"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "A"
+},
+"combine.residual": {
+"parent": "COMBINE",
+"definition": "No generic primitive; see reasons",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"5ecac7f7",
+"bbb1b8b6",
+"337b420f",
+"c8cbb738",
+"e84fef15"
+],
+"reasons": {
+"5ecac7f7": "band k from panel k",
+"bbb1b8b6": "conditional hole-fit overlay",
+"337b420f": "denoise then shifted overlay",
+"c8cbb738": "centre-aligned point sets",
+"e84fef15": "diff vs consensus tile"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "A"
+},
+"unknown.residual": {
+"parent": "UNKNOWN",
+"definition": "No generic primitive; see reasons",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"332efdb3",
+"28e73c20",
+"41ace6b5"
+],
+"reasons": {
+"332efdb3": "generate lattice from size",
+"28e73c20": "generate spiral from size",
+"41ace6b5": "unclear column recolour"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "A"
+},
+"stamp.template_at_markers": {
+"parent": "STAMP",
+"definition": "One multi-cell template object exists in the input; every marker (lone cell or small cluster not part of the template) receives a translated copy of the template, positioned by an anchor rule; the copy may be recoloured to the marker colour or transformed by a per-anchor-colour dihedral; original template/markers optionally erased; output may be the grid or the concatenation of copies.",
+"parameters": {
+"template": "largest multi-cell / multicolour object",
+"markers": "singleton cells (or tiny clusters) of marker colour(s)",
+"anchor_rule": "centre | same-colour cell of template | fixed offset | sequence index",
+"recolour": "none | marker colour",
+"transform": "identity | dihedral keyed by anchor colour",
+"erase": "subset of {template, markers}",
+"output": "in-place | concat along marker axis"
+},
+"detector": "Input has exactly one object with >=3 cells (template) and >=1 marker singletons; each output diff region is congruent (up to recolour/dihedral) to the template and contains/centres on a marker cell with consistent relative offset across all markers and pairs.",
+"related": [
+"stamp.complete_partial_matches",
+"COPY",
+"move.to_anchor"
+],
+"tasks": [
+"363442ee",
+"88a10436",
+"2c737e39",
+"1b59e163",
+"f5c89df1",
+"3e980e27",
+"5af49b42",
+"12997ef3",
+"9b2a60aa"
+],
+"coverage_risk": [
+"12997ef3",
+"9b2a60aa",
+"5af49b42"
+],
+"primitive_sketch": "tpl,markers=segment_template_markers(I)\nrule,rec,tf=induce_anchor(train)  # search anchor\u2208{centre,same-colour,offset}\nfor m in markers: paste(O, tf[m.colour](recolour(tpl,rec,m)), align(rule,tpl,m))\nerase(O, erase_set); return O or concat(copies)",
+"source": "B1"
+},
+"stamp.complete_partial_matches": {
+"parent": "STAMP",
+"definition": "A complete reference template (a multicolour object, or a patch plus its frame) is present; every other object/configuration that equals a subset of the template under an allowed transform group G (dihedral) and scale s is completed by painting the missing template cells in place (colours from template, or a fixed paint colour).",
+"parameters": {
+"template": "most complete object / object containing the frame colour",
+"G": "{id} | D4",
+"scale": "1 | induced from fragment block size",
+"paint": "template colours | constant",
+"match_domain": "objects | windows in noise | lattice cells"
+},
+"detector": "Output \u2287 input; every added cell set, together with an input fragment, forms a copy of one template (under some g\u2208G, scale s); every fragment is a proper subset of that copy with >=1 cell of distinctive colour.",
+"related": [
+"stamp.template_at_markers",
+"complete.symmetry_per_object",
+"MATCH"
+],
+"tasks": [
+"bb52a14b",
+"d6542281",
+"7df24a62",
+"e2092e0c",
+"ac0c5833",
+"36d67576",
+"6aa20dc0",
+"57aa92db",
+"447fd412",
+"f8cc533f",
+"39e1d7f9",
+"fd096ab6",
+"72322fa7",
+"50846271",
+"79369cc6"
+],
+"coverage_risk": [
+"f8cc533f",
+"39e1d7f9",
+"50846271",
+"447fd412",
+"57aa92db"
+],
+"primitive_sketch": "T=select_templates(I)  # completest\nfor frag in candidates(I, domain): for g,s in G\u00d7S: if frag \u2286 place(g(scale(T,s)),at): paint missing\nparams G,S,domain,paint chosen as smallest set consistent with all train pairs",
+"source": "B1"
+},
+"stamp.copy_to_congruent_target": {
+"parent": "STAMP",
+"definition": "A source object carries a pattern; target regions have the same outline/size as the source (silhouette of placeholder colour, same-colour plain rect, same-size frame, or empty bg hole) and receive the source pattern (optionally mirrored, 9-slice resized, or recoloured to the target frame colour); unmatched targets or the source may be erased.",
+"parameters": {
+"source": "patterned object",
+"target_key": "silhouette colour | frame colour+size | bg hole of source interior size",
+"transform": "identity | mirror | 9-slice resize",
+"recolour": "none | target colour",
+"erase": "source | non-matching frames"
+},
+"detector": "Each changed output region coincides with an input region whose shape (bbox or cell mask) equals the source's shape/interior; the output content there equals T(source pattern) for one T across all pairs.",
+"related": [
+"stamp.panel_copy",
+"stamp.complete_partial_matches"
+],
+"tasks": [
+"e76a88a6",
+"321b1fc6",
+"9f27f097",
+"40f6cd08",
+"f21745ec",
+"890034e9",
+"e5062a87"
+],
+"coverage_risk": [
+"40f6cd08",
+"890034e9",
+"e5062a87"
+],
+"primitive_sketch": "src=select_source(I); targets=find_regions(I, same_shape(src, key))\nfor t in targets: paste(O, recolour(T(src, size=t.size), t), t.origin)\nkey/T induced by trying keys in order and verifying on train",
+"source": "B1"
+},
+"stamp.panel_copy": {
+"parent": "STAMP",
+"definition": "Grid is partitioned into panels by separator lines; the content of the source panel(s) is copied into target panels chosen by a rule (all, marked, same frame colour, parity lattice, pattern continuation) with an optional per-target transform (rotation by index) or recolour (separator colour).",
+"parameters": {
+"separator": "full row/col lines colour",
+"source": "non-empty / patterned panel",
+"targets": "all | marked | same frame colour | same parity | continuation",
+"transform": "identity | rot(k\u00b790) by panel index",
+"paint": "source colours | separator colour",
+"keep_existing": "bool"
+},
+"detector": "Separator lines partition input into equal panels; every changed panel in output equals T(source panel) for a single source panel; unchanged panels keep input.",
+"related": [
+"stamp.copy_to_congruent_target",
+"TILE",
+"complete.period"
+],
+"tasks": [
+"c444b776",
+"e734a0e8",
+"1e32b0e9",
+"42918530",
+"8e5a5113",
+"92e50de0",
+"a416fc5b"
+],
+"coverage_risk": [
+"a416fc5b",
+"92e50de0",
+"8e5a5113"
+],
+"primitive_sketch": "P=split_panels(I); src=select(P, rule_src)\nfor p in select(P, rule_tgt): p[:]=merge(T_idx(src), p, keep_existing, paint)\nrules searched over small finite menu, validated on train",
+"source": "B1"
+},
+"stamp.local_stencil": {
+"parent": "STAMP",
+"definition": "Each seed (single cell, 2x2 block, or small object matched by a local pattern) gets a fixed relative stencil of cells painted around it; stencil offsets/colours are a function of the seed's colour (or taken from the seed's own cells), optionally gated by context (inside region, nearest border colour) and optionally erasing the seed.",
+"parameters": {
+"seed": "cell colour / local pattern",
+"stencil": "map offset\u2192colour (constant, seed colour, or seed-part colour)",
+"gate": "none | inside region colour | nearest border line",
+"erase_seed": "bool",
+"select": "all seeds | unique-colour seed"
+},
+"detector": "All diff cells lie within Chebyshev radius r (<=2) of seeds; grouping diffs by seed gives the same (offset\u2192colour) map for all seeds with same colour signature across all train pairs.",
+"related": [
+"CA",
+"stamp.stencil_at_computed_point",
+"recolour.by_touching_marker"
+],
+"tasks": [
+"0ca9ddb6",
+"d364b489",
+"a9f96cdd",
+"b60334d2",
+"95990924",
+"93b581b8",
+"0962bcdd",
+"14b8e18c",
+"a04b2602",
+"31aa019c",
+"1e5d6875",
+"642248e4"
+],
+"coverage_risk": [
+"642248e4",
+"31aa019c",
+"14b8e18c",
+"1e5d6875"
+],
+"primitive_sketch": "seeds=find_seeds(I, pattern)\nstencil[sig]=learn_offset_colour_map(train diffs grouped by seed signature)\nfor s in seeds if gate(s): paint(O, s.pos+off, colour(sig,s)) for off in stencil[sig]; erase if flagged",
+"source": "B1"
+},
+"stamp.stencil_at_computed_point": {
+"parent": "STAMP",
+"definition": "A fixed stencil (plus, 3x3 ring, cross of marker colours) is painted at a point computed from markers: midpoint of two markers, centroid of three markers, or intersection of a horizontal and vertical line.",
+"parameters": {
+"markers": "2-3 singleton cells or two full lines",
+"point": "midpoint | centroid | intersection",
+"stencil": "plus | ring3x3 | step-toward-markers",
+"paint": "new constant colour"
+},
+"detector": "Diff cells form one fixed-shape stencil whose centre equals the midpoint/centroid/intersection of the non-bg input markers in every train pair.",
+"related": [
+"stamp.local_stencil",
+"CONNECT"
+],
+"tasks": [
+"e9614598",
+"11e1fe23",
+"67a423a3"
+],
+"coverage_risk": [
+"11e1fe23"
+],
+"primitive_sketch": "pts=find_markers(I); c=point_rule(pts)  # try midpoint,centroid,intersection\npaint(O, c+stencil, paint)",
+"source": "B1"
+},
+"stamp.grow_ring": {
+"parent": "STAMP",
+"definition": "Around each object (or seed) paint a metric ball/ring (Chebyshev square or Manhattan diamond) of thickness/radius r computed from an object property (inner-core size, count of inner dots, distance to nearest obstacle minus 1, half segment length), colour from a role, painting only background.",
+"parameters": {
+"objects": "rects / seeds / segments / loops",
+"metric": "cheb | manhattan",
+"r": "core size | dot count | dist-1 | len/2 | 1",
+"colour": "inner colour | dot colour | constant",
+"side": "outside | inside+outside with two colours"
+},
+"detector": "Output \u2287 input; all new cells for each object lie at metric distance 1..r from it (or its centre) and fill that shell completely except where blocked; r matches one property function across pairs.",
+"related": [
+"stamp.local_stencil",
+"EXTEND",
+"FILL"
+],
+"tasks": [
+"3a301edc",
+"52fd389e",
+"d931c21c",
+"ff72ca3e",
+"c97c0139"
+],
+"coverage_risk": [
+"d931c21c",
+"c97c0139"
+],
+"primitive_sketch": "for o in objects(I): r=prop(o); shell=dilate(o or centre(o), r, metric)-o\npaint_bg(O, shell, colour(o))",
+"source": "B1"
+},
+"stamp.bbox_outline": {
+"parent": "STAMP",
+"definition": "Draw a 1-cell rectangle outline defined by the bbox of selected cells (markers, all cells of a colour, or the whole grid), optionally inset/outset by d, in a paint colour; optionally erase everything else / the seed.",
+"parameters": {
+"cells": "marker colour | mode colour | whole grid",
+"inset": "-1..1",
+"paint": "constant | seed colour | central-object colour",
+"erase": "none | rest | seed"
+},
+"detector": "Output diff equals (outline of bbox(selected cells) shifted by d) painted in one colour, possibly plus erasure of non-outline cells.",
+"related": [
+"CONNECT",
+"FRAME"
+],
+"tasks": [
+"e7639916",
+"928ad970",
+"6f8cd79b",
+"fc754716",
+"ff2825db"
+],
+"coverage_risk": [
+"ff2825db",
+"928ad970"
+],
+"primitive_sketch": "B=bbox(select(I)); B=inset(B,d)\ndraw_rect_outline(O,B,paint); erase(O,erase_set)",
+"source": "B1"
+},
+"stamp.count_bar": {
+"parent": "STAMP",
+"definition": "Draw one straight bar per counted item whose length equals an induced count (cells per colour, distinct colours in a block, difference of two colour counts), placed at a slot relative to the item (next slot, below block, beside key entry, histogram column).",
+"parameters": {
+"items": "colours | blocks | key entries",
+"count": "cells | distinct colours | diff",
+"placement": "histogram | below item | key row",
+"colour": "item colour | constant"
+},
+"detector": "Every diff component is a 1-wide straight segment (or width = item width) whose length equals a count computed from the input; segments ordered/placed by items.",
+"related": [
+"SUMMARISE",
+"COUNT"
+],
+"tasks": [
+"9af7a82c",
+"edcc2ff0",
+"37ce87bb",
+"fcc82909"
+],
+"coverage_risk": [
+"37ce87bb",
+"9af7a82c"
+],
+"primitive_sketch": "for it in items(I): n=count_fn(it); draw_bar(O, anchor(it), dir, n, colour(it))",
+"source": "B1"
+},
+"stamp.residual": {
+"parent": "STAMP",
+"definition": "Tasks whose STAMP step is embedded in a task-specific pipeline (rays, moves, summaries) or uses a bespoke template.",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"15660dd6",
+"9772c176",
+"ecdecbb3",
+"8886d717",
+"a2d730bd",
+"ac3e2b04",
+"673ef223",
+"3befdf3e",
+"db615bd4",
+"b74ca5d1",
+"1bfc4729",
+"fd02da9e",
+"9841fdad",
+"902510d5",
+"4522001f",
+"db118e2a",
+"98c475bf",
+"140c817e",
+"695367ec"
+],
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"residual_reasons": {
+"15660dd6": "panel summarise/concat, belongs to SUMMARISE",
+"9772c176": "triangle caps on flat sides, bespoke",
+"ecdecbb3": "ray then frame stamp at contact",
+"8886d717": "context region recolour+extend",
+"a2d730bd": "connect stray to rect with bump",
+"ac3e2b04": "ray through anchors + ring at intersections",
+"673ef223": "ray from bar to dots + copy to other bar (RAY)",
+"3befdf3e": "colour swap + side bars",
+"db615bd4": "scale keys into frame",
+"b74ca5d1": "recolour swap + copy to corners",
+"1bfc4729": "fixed canvas half-frame template",
+"fd02da9e": "corner-dependent fixed template",
+"9841fdad": "cross-panel stretch copy",
+"902510d5": "count-to-triangle at corner singleton",
+"4522001f": "orientation-driven 4x4 squares",
+"db118e2a": "fixed canvas composition",
+"98c475bf": "legend relocate decorated line",
+"140c817e": "rays + stencil priority",
+"695367ec": "grid lines period N+1 on fixed canvas"
+},
+"source": "B1"
+},
+"tile.block_placement": {
+"parent": "TILE",
+"definition": "Output is a block lattice of input-sized (or template-sized) blocks; block (i,j) holds template X (input, colour-swapped input, fixed 2x2 checker, downscaled template) iff mask(i,j), where mask = X==fg, X==bg, uniform row/col index, or first k blocks in reading order (k=count).",
+"parameters": {
+"X": "input | swap(fg,bg)(input) | constant | downscaled region",
+"mask": "X==fg | X==bg | uniform line index | first k (k=fg count)",
+"canvas": "(h\u00b7H)x(w\u00b7W)"
+},
+"detector": "Output dims are integer multiples of a block size; every block is either all-bg or equal to one fixed block X; the set of filled blocks matches one mask rule.",
+"related": [
+"KRON",
+"stamp.panel_copy"
+],
+"tasks": [
+"0692e18c",
+"8e2edd66",
+"2072aba6",
+"b4a43f3b",
+"15696249",
+"91413438",
+"8719f442"
+],
+"coverage_risk": [
+"8719f442",
+"91413438"
+],
+"primitive_sketch": "X=template_rule(I); M=mask_rule(I)\nO=zeros(M.h*X.h, M.w*X.w); for (i,j) where M: O[block i,j]=X",
+"source": "B1"
+},
+"tile.arrangement": {
+"parent": "TILE",
+"definition": "Output = fixed arrangement of transformed copies of the input (or its cropped object): n\u00d7m repeat, rotations around centre, frame+stack; then an optional learned local post-rule (stencil/column projection) applied on the tiled canvas.",
+"parameters": {
+"layout": "n x m | 4 rotations around centre | vertical stack with shared border",
+"per_copy_transform": "dihedral per slot",
+"post": "none | stencil | fg-column projection | frame"
+},
+"detector": "Output dims = k\u00b7input dims (+border); after undoing post-rule cells, each slot equals a dihedral image of the input.",
+"related": [
+"tile.block_placement",
+"stamp.local_stencil"
+],
+"tasks": [
+"f5b8619d",
+"310f3251",
+"c92b942c",
+"412b6263",
+"2697da3f"
+],
+"coverage_risk": [
+"412b6263",
+"2697da3f"
+],
+"primitive_sketch": "C=assemble([g_s(X) for slot s in layout])\nreturn post_rule(C)  # post learned from diff of assemble vs output",
+"source": "B1"
+},
+"tile.residual": {
+"parent": "TILE",
+"definition": "Bespoke motif propagation.",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"d304284e",
+"762cd429"
+],
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"residual_reasons": {
+"d304284e": "tile to edge with every-3rd recolour",
+"762cd429": "fractal doubling"
+},
+"source": "B1"
+},
+"complete.symmetry_global": {
+"parent": "COMPLETE",
+"definition": "Whole grid (or the single motif around a centre anchor/separator axes) is symmetric under an inferred group (mirror H/V, rot90, rot180, D4) about an inferred centre; missing or occluder-coloured cells are filled from their orbit (optionally in a paint colour).",
+"parameters": {
+"group": "H | V | HV | rot90 | rot180 | D4",
+"centre": "grid centre | anchor | separator lines | offset search",
+"mask": "bg cells | occluder colour",
+"paint": "orbit colour | new constant"
+},
+"detector": "There exist group G and centre c such that all non-masked input cells are consistent with G-orbits; output = orbit fill of masked cells.",
+"related": [
+"complete.symmetry_per_object",
+"TRANSFORM"
+],
+"tasks": [
+"11852cab",
+"e40b9e2f",
+"f9d67f8b",
+"4938f0c2",
+"60d73be6",
+"2546ccf6",
+"c35c1b4c",
+"1b60fb0c",
+"e729b7be"
+],
+"coverage_risk": [
+"e729b7be",
+"2546ccf6",
+"c35c1b4c"
+],
+"primitive_sketch": "G,c=search_symmetry(I, mask)  # maximise consistency\nfor cell in masked: O[cell]=paint or vote(I[orbit(cell)])",
+"source": "B1"
+},
+"complete.symmetry_per_object": {
+"parent": "COMPLETE",
+"definition": "Same as symmetry_global but applied independently inside each object/frame: axis from an in-object line, frame notches, or best-fit; noise outside frames/occluder erased.",
+"parameters": {
+"scope": "object | frame interior",
+"axis": "in-object line | notches | best fit",
+"erase": "outside noise | occluder"
+},
+"detector": "Per object/frame, output content is mirror-symmetric about an axis detectable from the input and \u2287 input content (minus occluder/noise).",
+"related": [
+"complete.symmetry_global",
+"stamp.complete_partial_matches"
+],
+"tasks": [
+"5b692c0f",
+"18419cfa",
+"93c31fbe",
+"3345333e",
+"8dab14c2"
+],
+"coverage_risk": [
+"8dab14c2"
+],
+"primitive_sketch": "for R in scopes(I): ax=axis(R); R[:]=union(R, mirror(R,ax)); erase(noise)",
+"source": "B1"
+},
+"complete.period": {
+"parent": "COMPLETE",
+"definition": "Grid (or lattice of sites) follows a 2D period (possibly diagonal); cells masked by holes/occluders or missing lattice sites are restored from the period (missing sites optionally painted a new colour or marked).",
+"parameters": {
+"period": "(py,px) or (r+c) mod k",
+"mask": "bg | occluder colour",
+"paint": "period colour | new constant"
+},
+"detector": "Minimal period P fits all unmasked cells; output = periodic extension over masked cells.",
+"related": [
+"complete.symmetry_global",
+"stamp.panel_copy"
+],
+"tasks": [
+"484b58aa",
+"ea959feb",
+"05269061",
+"456873bc",
+"5b526a93"
+],
+"coverage_risk": [
+"456873bc",
+"5b526a93"
+],
+"primitive_sketch": "P=min_period(I, ignore=mask)\nfor cell in mask: O[cell]=paint if newsite else I[canon(cell,P)]",
+"source": "B1"
+},
+"complete.prefix_by_template": {
+"parent": "COMPLETE",
+"definition": "Rows/bands are prefixes of a full template row/band; each prefix is extended to full length following the template (through a colour map induced from the prefix, or in a new paint colour).",
+"parameters": {
+"template": "full row/band",
+"partials": "prefix rows/bands",
+"colour": "colour map from prefix | new paint"
+},
+"detector": "One row/band is full; every other non-empty row/band equals the template's prefix under a colour bijection; output extends them.",
+"related": [
+"EXTEND"
+],
+"tasks": [
+"90f3ed37",
+"82819916"
+],
+"coverage_risk": [],
+"primitive_sketch": "T=full_row(I); for r in partial_rows: m=bijection(T[:len], r); O[r]=paint_new or m(T)",
+"source": "B1"
+},
+"complete.rectangle": {
+"parent": "COMPLETE",
+"definition": "Objects are solid (possibly overlapping) rectangles corrupted by a noise colour; restore each rectangle and erase noise.",
+"parameters": {
+"noise": "colour not forming rectangles",
+"bg": "mode colour"
+},
+"detector": "Output components are all axis-aligned solid rectangles whose union covers input rectangle-colour cells.",
+"related": [
+"FILL"
+],
+"tasks": [
+"b7955b3c"
+],
+"coverage_risk": [],
+"primitive_sketch": "for c in colours-noise: R=bbox(c); fill R; noise\u2192bg",
+"source": "B1"
+},
+"complete.residual": {
+"parent": "COMPLETE",
+"definition": "Constraint-style or bespoke completions (latin square, colour-set, panel merge, move+occlusion, dashed-line gaps).",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"4cd1b7b2",
+"e3fe1151",
+"2e65ae53",
+"4e45f183",
+"c6e1b8da",
+"4612dd53"
+],
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"residual_reasons": {
+"4cd1b7b2": "latin square",
+"e3fe1151": "missing colour from panel set",
+"2e65ae53": "merge panel assignments",
+"4e45f183": "panel rearrangement symmetry",
+"c6e1b8da": "move by tail + occluded rect completion",
+"4612dd53": "fill gaps in lines of rectangle skeleton"
+},
+"source": "B1"
+},
+"move.slide_until_contact": {
+"parent": "MOVE",
+"definition": "Every mover object (connected component, rigid) is translated along one axis direction until it touches a non-background cell or the grid edge; direction is a global constant or a lookup keyed by an object property (colour, shape class, containing region). Movers processed nearest-to-destination first so they stack. Optional: paint swept cells, recolour by class.",
+"parameters": {
+"mover_selector": "colour / shape predicate (e.g. contains 2x2, ring vs cross)",
+"direction": "constant | map(colour|class|region colour)->dir4",
+"stop": "non-bg contact | grid edge",
+"trail_colour": "optional constant",
+"class_recolour": "optional map class->colour"
+},
+"detector": "Output objects of mover colour are congruent to input objects and displaced along a single axis; after displacement each touches the edge or a non-mover cell in the direction of travel; all non-mover cells unchanged.",
+"related": [
+"move.toward_anchor",
+"gravity",
+"SORT"
+],
+"tasks": [
+"9c56f360",
+"963c33f8",
+"6ad5bdfd",
+"6ca952ad",
+"ac2e8ecf",
+"320afe60",
+"f3e62deb",
+"9b4c17c4",
+"5623160b",
+"4acc7107",
+"84ba50d3",
+"b25e450b",
+"98cf29f8",
+"56dc2b01"
+],
+"coverage_risk": [
+"84ba50d3 (width-1 pieces pass through barrier)",
+"4acc7107 (lane/stacking order by size)",
+"b25e450b (swept band paint)",
+"98cf29f8 (direction from connector, connector erased)",
+"320afe60 (class recolour)"
+],
+"primitive_sketch": "dir_of = induce map from {const, colour, class, region} that explains train\nfor obj in sorted(movers, key=dist_to_edge(dir_of(obj))): erase(obj); shift obj by dir until next cell hits non-bg/edge; paint(obj); optionally paint swept cells trail_colour",
+"source": "B2"
+},
+"move.toward_anchor": {
+"parent": "MOVE",
+"definition": "Each mover (cell or object) moves straight toward the anchor it is paired with (same colour border/line/block, or nearest aligned anchor) until adjacent to it; unpaired/unaligned movers are erased or kept by an induced flag.",
+"parameters": {
+"anchor_selector": "lines/blocks/borders (colour or shape)",
+"pairing": "same colour | nearest aligned | compatibility table",
+"unmatched": "erase | keep | send to far edge",
+"connectivity": "4 | 8 direction"
+},
+"detector": "Every changed mover ends orthogonally/diagonally adjacent to (or stacked against) an anchor it was aligned with in the input and moved along the line joining them; anchors unchanged.",
+"related": [
+"move.slide_until_contact",
+"move.to_position"
+],
+"tasks": [
+"f0100645",
+"17829a00",
+"f28a3cbb",
+"1a07d186",
+"e1d2900e",
+"a48eeaf7",
+"1b8318e3",
+"494ef9d7",
+"7d7772cc",
+"d687bc17"
+],
+"coverage_risk": [
+"7d7772cc (mismatch goes to far edge)",
+"494ef9d7 (learned compatible colour pair table)",
+"d687bc17 (dot stops next to side, frame not an obstacle object)"
+],
+"primitive_sketch": "anchors = select(anchor_selector); for m in movers: a = pair(m, anchors) (same colour / nearest aligned)\nif a is None: apply unmatched policy; else dir = sign(a - m); slide m by dir until adjacent to a or blocked",
+"source": "B2"
+},
+"move.by_vector": {
+"parent": "MOVE",
+"definition": "Each object is translated by a vector computed from its own properties or a global count: v = k * unit_dir where k in {1, width, height, size, marker count} or v = map(colour).",
+"parameters": {
+"unit_dir": "dir8 constant | toward anchor | toward marked corner | away from floor",
+"magnitude": "1 | own width | own height | cell count | count(markers) | map(colour)",
+"clip": "clip at grid edge"
+},
+"detector": "Output objects are congruent translates of input objects; for every object the displacement equals a fixed function of that object (size, bbox dim, colour) consistent across all train pairs.",
+"related": [
+"move.slide_until_contact",
+"transform.row_shift"
+],
+"tasks": [
+"342dd610",
+"b2bc3ffd",
+"8e301a54",
+"64a7c07e",
+"5521c0d9",
+"f45f5ca7",
+"e48d4e1a",
+"470c91de",
+"dc433765",
+"5034a0b5",
+"22208ba4",
+"4364c1c4"
+],
+"coverage_risk": [
+"4364c1c4 (vector per colour-part inside object)",
+"470c91de (marker corner recoloured)",
+"e48d4e1a (markers erased)",
+"22208ba4 (only shared-colour corners move)"
+],
+"primitive_sketch": "for obj: feats = {w,h,size,colour,count_markers}; induce v(obj) = dir(obj)*f(feats) from train by search over small feature set\nerase all; paint obj at pos+v (clip)",
+"source": "B2"
+},
+"move.to_position": {
+"parent": "MOVE",
+"definition": "Mover is placed so a reference point of it (a key-coloured cell, centre, corner) coincides with a target point defined by an anchor (matching-colour marker cell, lattice-cell centre, opposite frame corner, anchor-block cell in same quadrant); original erased.",
+"parameters": {
+"ref_point": "key-colour cell | centre | bbox corner",
+"target": "matching colour marker | lattice cell centre | reflected corner of frame | quadrant anchor cell",
+"dihedral": "optional orientation to match markers"
+},
+"detector": "Each output mover is a translate (optionally dihedral image) of an input object whose reference cell lands exactly on a cell defined by an anchor that exists in the input; source cells cleared.",
+"related": [
+"move.toward_anchor",
+"STAMP"
+],
+"tasks": [
+"952a094c",
+"d89b689b",
+"20981f0e",
+"54dc2872",
+"0e206a2e",
+"e4941b18",
+"917bccba"
+],
+"coverage_risk": [
+"0e206a2e (dihedral match of end colours)",
+"e4941b18 (two chained moves)",
+"917bccba (lines relocated to frame edges)"
+],
+"primitive_sketch": "pairs = match(movers, targets by colour/quadrant/cell)\nfor m,t in pairs: T = argmin dihedral s.t. ref colours align (identity default); erase m; paint T(m) translated so ref(m)->t",
+"source": "B2"
+},
+"move.fit_into_hole": {
+"parent": "MOVE",
+"definition": "Loose pieces are matched to holes/cavities/gaps/complementary profiles of container objects by shape (optionally rotation) and translated so they exactly fill it; unmatched pieces/noise erased.",
+"parameters": {
+"container_selector": "objects with holes / floor with gaps / profiles",
+"match": "exact shape | up to rotation | complement profile",
+"unmatched": "erase | keep"
+},
+"detector": "For each moved piece there is an input container whose background hole has the same shape as the piece (mod rotation); in output the hole is filled with piece colour and piece's old cells are bg.",
+"related": [
+"move.to_position",
+"COMPLETE"
+],
+"tasks": [
+"184a9768",
+"228f6490",
+"18447a8d",
+"67c52801",
+"fe45cba4"
+],
+"coverage_risk": [
+"18447a8d (profile complement abut, not enclosed hole)",
+"fe45cba4 (piece forms rectangle with larger)"
+],
+"primitive_sketch": "holes = bg components enclosed/indented by containers; for piece in pieces: h = find hole with shape(piece)==shape(h) (try rot)\nerase piece; paint piece colour on h; erase unmatched/noise",
+"source": "B2"
+},
+"transform.kronecker": {
+"parent": "TRANSFORM",
+"definition": "Fractal/Kronecker product: output is an (H*h)x(W*w) grid of blocks; block (i,j) = tile_on(in[i,j]) if pred(in[i,j]) else tile_off, where tile_on is the input itself, the input masked to colour c, or a legend motif for c.",
+"parameters": {
+"pred": "colour==C | most/least frequent colour | non-bg",
+"tile_on": "input | mask(input==c) painted c | legend motif(c) | panel",
+"tile_off": "bg | solid colour"
+},
+"detector": "Output dims are product of input dims (or of mask and tile dims); each output block equals either a fixed tile or empty, and the on/off pattern equals a predicate on the corresponding input cell.",
+"related": [
+"transform.tile_dihedral",
+"transform.scale"
+],
+"tasks": [
+"48f8583b",
+"973e499e",
+"c3e719e8",
+"27f8ce4f",
+"ad7e01d0",
+"cce03e0d",
+"c803e39c",
+"42f83767"
+],
+"coverage_risk": [
+"c803e39c (mask/fg/bg panels roles)",
+"42f83767 (legend lookup motif per colour)"
+],
+"primitive_sketch": "mask_src,tile_src = induce roles; for (i,j) in mask: block = tile_on(mask[i,j]) if pred(mask[i,j]) else tile_off\nout = assemble blocks; pred from {==C, most frequent, least frequent, !=bg}",
+"source": "B2"
+},
+"transform.tile_dihedral": {
+"parent": "TRANSFORM",
+"definition": "Output is an r x c arrangement of dihedral images of a source S (whole input, cropped object, recoloured input, quadrant), possibly with shared-edge overlap; r,c constant or from a count (distinct colours, markers, input side).",
+"parameters": {
+"source": "whole | fg bbox crop | quadrant | colour-swapped",
+"layout": "r x c matrix of dihedral ops",
+"count": "const | #distinct colours | #markers | side length",
+"overlap": "0 | 1 shared row"
+},
+"detector": "Output size is a multiple (minus overlaps) of source size and every output block equals one of the 8 dihedral images of the same source.",
+"related": [
+"transform.kronecker",
+"extend.periodic_fill",
+"TILE"
+],
+"tasks": [
+"c9e6f938",
+"ccd554ac",
+"eb281b96",
+"8d5021e8",
+"28bf18c6",
+"a59b95c0",
+"48131b3c",
+"4852f2fa",
+"47c1f68c"
+],
+"coverage_risk": [
+"eb281b96 (ping-pong overlap)",
+"47c1f68c (recolour to separator colour)",
+"48131b3c (fg/bg swap first)"
+],
+"primitive_sketch": "S = source(in); (r,c) = count(in); ops = induce per-block dihedral from train output blocks\nout = concat_grid([[ops[i][j](S) for j] for i], overlap)",
+"source": "B2"
+},
+"transform.scale": {
+"parent": "TRANSFORM",
+"definition": "Output is the source (whole input, fg bbox, inner block, sampled lattice) upscaled by an integer factor k (constant, #distinct colours) or to fit a target frame interior; optional non-uniform per-row/col factors.",
+"parameters": {
+"source": "whole | fg crop | inner block | sampled lattice",
+"factor": "const | #distinct non-bg colours | frame_size/source_size",
+"row_col_factors": "optional vector"
+},
+"detector": "Output = source with every cell replaced by a k x k (or kr x kc) block; checkable by downsampling output.",
+"related": [
+"transform.kronecker",
+"CROP"
+],
+"tasks": [
+"b91ae062",
+"ac0a08a4",
+"d4b1c2b1",
+"f25fbde4",
+"46f33fce",
+"e633a9e5",
+"e7a25a18",
+"465b7d93"
+],
+"coverage_risk": [
+"e633a9e5 (non-uniform: edge rows x2)",
+"e7a25a18/465b7d93 (scale into frame, keep frame)",
+"46f33fce (stride-2 sampling first)"
+],
+"primitive_sketch": "S = source(in); k = induce from {const, n_colours, target_dim/src_dim}\nout = repeat(repeat(S,k,axis0),k,axis1); if frame: place in frame interior",
+"source": "B2"
+},
+"transform.dihedral": {
+"parent": "TRANSFORM",
+"definition": "Output = one dihedral op D applied to a source (whole grid, crop, block-summary, tile-lattice of motifs); D constant or inferred from an in-grid example pair or marker layout.",
+"parameters": {
+"source": "whole | crop | block summary | lattice of motif tiles",
+"granularity": "cell | tile",
+"D": "const | inferred from example pair | chosen to match markers"
+},
+"detector": "Some D in the dihedral group maps source to output exactly (at cell or tile granularity).",
+"related": [
+"transform.tile_dihedral",
+"SUMMARISE"
+],
+"tasks": [
+"80214e03",
+"9f236235",
+"94133066",
+"b0722778",
+"f0f8a26d",
+"8ee62060"
+],
+"coverage_risk": [
+"94133066 (D chosen by markers)",
+"b0722778 (D inferred from in-grid pair)",
+"8ee62060 (tile granularity, motifs keep orientation)"
+],
+"primitive_sketch": "S = source(in) at granularity g; D = const from train or argmin_D match(D(A),B) / marker layout\nout = D(S) (tiles moved as units when g=tile)",
+"source": "B2"
+},
+"transform.row_shift": {
+"parent": "TRANSFORM",
+"definition": "Each row (or column) is shifted horizontally by s(r): linear shear relative to an anchor row, periodic sequence, parity, or a constant roll given by a marker offset; cyclic (roll) or with padding/clamp.",
+"parameters": {
+"axis": "rows | cols",
+"s": "a*r+b | periodic seq | marker offset",
+"mode": "cyclic | pad bg | clamp to object"
+},
+"detector": "For every row r, out row r equals in row r shifted by an integer s(r); s fits one of the listed families.",
+"related": [
+"move.by_vector"
+],
+"tasks": [
+"3cd86f4f",
+"423a55dc",
+"1c56ad9f",
+"9968a131",
+"6d1d5c90",
+"79cce52d",
+"025d127b"
+],
+"coverage_risk": [
+"025d127b (bottom row fixed, clamp at max column)",
+"79cce52d (2D roll + crop border)",
+"6d1d5c90 (marker column removed)"
+],
+"primitive_sketch": "for each r: find s(r) in train by matching rows; fit family (linear/periodic/const-from-marker)\nout[r] = shift(in[r], s(r), mode)",
+"source": "B2"
+},
+"transform.reflect_object": {
+"parent": "TRANSFORM",
+"definition": "An object is reflected across an axis given by a marker/bracket/line/bbox edge (or its own centre); copy is OR-ed with original or replaces it, optionally painted in marker colour.",
+"parameters": {
+"axis": "bbox edge facing marker | bracket | explicit line | centre object | own centre",
+"keep_original": "bool",
+"paint": "object colour | marker colour"
+},
+"detector": "Output new cells = reflection of an input object across a line determined by input geometry; with keep_original false the source cells become bg.",
+"related": [
+"transform.dihedral",
+"COMPLETE",
+"symmetry"
+],
+"tasks": [
+"b775ac94",
+"963f59bc",
+"4c5c2cf0",
+"ad3b40cf",
+"9bebae7a",
+"760b3cac",
+"6855a6e4",
+"f8a8fe49",
+"11dc524f",
+"f341894c"
+],
+"coverage_risk": [
+"11dc524f (slide then mirror at anchor)",
+"f341894c (in-place flip decided by marker)",
+"f8a8fe49 (split at centre, halves reflected separately)",
+"4c5c2cf0 (H,V,HV about centre)"
+],
+"primitive_sketch": "for obj: axis = induce(axis_source); cp = reflect(obj, axis)\nif not keep_original: erase(obj); paint(cp, paint_colour)",
+"source": "B2"
+},
+"transform.rotate_about_pivot": {
+"parent": "TRANSFORM",
+"definition": "A segment/offset is rotated by 90 degrees about a pivot cell (anchor, marked pivot, bar base) and repainted; source erased.",
+"parameters": {
+"pivot": "anchor cell | marked cell | bar base",
+"angle": "+-90",
+"paint": "orig | new constant"
+},
+"detector": "Changed cells are the 90-degree rotation of removed cells about a single pivot cell per object.",
+"related": [
+"transform.reflect_object"
+],
+"tasks": [
+"1a244afd",
+"230f2e48",
+"84551f4c"
+],
+"coverage_risk": [
+"84551f4c (chained toppling of reached bars)"
+],
+"primitive_sketch": "for each (pivot, part): rot = rotate_offsets(part - pivot, angle); erase part; paint pivot + rot",
+"source": "B2"
+},
+"extend.periodic_fill": {
+"parent": "EXTEND",
+"definition": "A periodic pattern (1D or 2D, possibly diagonal-shifted translation lattice) visible in a known region is continued over the whole canvas (possibly enlarged), overwriting noise/strip/bg cells.",
+"parameters": {
+"known_region": "non-bg cells | outside noise strip | per bg-region",
+"period": "min consistent (py,px[,shift])",
+"canvas": "same | 2x | square",
+"phase": "aligned to seed"
+},
+"detector": "There exist translations such that the output is invariant under them and output agrees with input on the known-region cells.",
+"related": [
+"transform.tile_dihedral",
+"COMPLETE"
+],
+"tasks": [
+"12422b43",
+"53b68214",
+"963e52fc",
+"cad67732",
+"8eb1be9a",
+"539a4f51",
+"50a16a69",
+"caa06a1f",
+"a57f2f04",
+"58c02a16",
+"e21d9049",
+"3979b1a8"
+],
+"coverage_risk": [
+"58c02a16 (unit includes L border)",
+"3979b1a8 (concentric rings)",
+"e21d9049 (1D per line through cross)",
+"50a16a69/caa06a1f (phase shift by 1 column)"
+],
+"primitive_sketch": "known = mask(in); for (py,px,shift) in small search: if consistent(known): break\nout = canvas; out[y,x] = representative of lattice class of (y,x)",
+"source": "B2"
+},
+"extend.periodic_lines": {
+"parent": "EXTEND",
+"definition": "Full lines are drawn perpendicular to an axis at positions seed + k*p (p from seed spacing), colours cycling through seed colours/legend; optional caps.",
+"parameters": {
+"seeds": "edge cells | legend row",
+"period": "seed spacing | 2 | k from marker",
+"colour_cycle": "seed colours | legend",
+"caps": "optional constant at alternating ends"
+},
+"detector": "Output contains full rows/cols of seed colours at arithmetic positions, colour sequence periodic.",
+"related": [
+"extend.periodic_fill",
+"RAY"
+],
+"tasks": [
+"0a938d79",
+"8403a5d5",
+"bd4472b8",
+"e7b06bea"
+],
+"coverage_risk": [
+"e7b06bea (run length k from corner marker)",
+"8403a5d5 (alternating caps)"
+],
+"primitive_sketch": "seeds = sorted seed cells; p = spacing; cols = cycle(seed colours)\nfor k: draw full line at seed0 + k*p in cols[k]; add caps",
+"source": "B2"
+},
+"extend.repeat_stamp": {
+"parent": "EXTEND",
+"definition": "A template object is copied repeatedly along a translation vector (from marker/fragment/object dims) until edge or target, each copy optionally recoloured.",
+"parameters": {
+"template": "object | largest complete shape",
+"vector": "marker direction | template size+gap | (h,+-w)",
+"stop": "edge | target overlap",
+"colour": "template | marker | legend order"
+},
+"detector": "Output new cells are translates of one input object by multiples of a fixed vector.",
+"related": [
+"extend.periodic_fill",
+"STAMP"
+],
+"tasks": [
+"e8dc4411",
+"045e512c",
+"985ae207",
+"c62e2108",
+"e619ca6e",
+"94be5b80"
+],
+"coverage_risk": [
+"94be5b80 (stack by legend order)",
+"045e512c (fragments complete + extend)"
+],
+"primitive_sketch": "t = template; v = induce vector from marker/fragment\nk=1..: paint(t shifted k*v, colour_k) until out of grid/stop",
+"source": "B2"
+},
+"extend.sequence_positions": {
+"parent": "EXTEND",
+"definition": "Seed items (cells/rings) are repeated at positions following an arithmetic/triangular sequence inferred from seeds, colours cycling.",
+"parameters": {
+"seeds": "collinear cells",
+"gap_rule": "constant | increasing +1",
+"colour": "cycle seeds | new constant"
+},
+"detector": "New cells lie on the seed line at positions continuing the seed position sequence.",
+"related": [
+"extend.repeat_stamp"
+],
+"tasks": [
+"0b17323b",
+"72207abc",
+"5c2c9af4"
+],
+"coverage_risk": [
+"5c2c9af4 (concentric rings)"
+],
+"primitive_sketch": "pos = seed positions; fit gaps d_i (const or +1)\ncontinue positions until edge; paint colours cycling (or constant)",
+"source": "B2"
+},
+"extend.staircase": {
+"parent": "EXTEND",
+"definition": "From a seed bar, successive parallel bars at distance k have length L0 + a*k (a per side), colour per side or by parity.",
+"parameters": {
+"seed": "bar",
+"delta": "per side +-1/2",
+"colour": "per side | parity alternation",
+"range": "until length 0 / grid edge / W/2 rows"
+},
+"detector": "Output bars parallel to seed with lengths an arithmetic progression of distance.",
+"related": [
+"extend.sequence_positions"
+],
+"tasks": [
+"a65b410d",
+"5207a7b5",
+"db3e9e38",
+"bbc9ae5d"
+],
+"coverage_risk": [
+"db3e9e38 (parity colours)",
+"bbc9ae5d (output height W/2)"
+],
+"primitive_sketch": "seed = bar; for side in sides: for k=1..: L = L0 + delta[side]*k; if L<=0 break; draw bar at offset k colour[side/parity]",
+"source": "B2"
+},
+"extend.stretch_to_marker": {
+"parent": "EXTEND",
+"definition": "A framed rectangle is stretched along an axis until it reaches a marker singleton; marker erased, internal structure (frame/dividers) preserved.",
+"parameters": {
+"object": "framed rectangle",
+"marker": "singleton"
+},
+"detector": "Output rectangle = input rectangle with one side moved to marker's row/column; interior pattern extended.",
+"related": [
+"transform.scale"
+],
+"tasks": [
+"baf41dbf",
+"b548a754"
+],
+"coverage_risk": [
+"baf41dbf (multiple markers, dividers kept)"
+],
+"primitive_sketch": "for m in markers: side = side of rect facing m; extend side to m row/col; redraw frame+interior",
+"source": "B2"
+},
+"extend.smear": {
+"parent": "EXTEND",
+"definition": "Each coloured cell in a key line is smeared parallel to a bar / upward until next colour or span end.",
+"parameters": {
+"direction": "parallel to bar | up",
+"stop": "span end | next colour"
+},
+"detector": "Changed cells copy colour of nearest seed along direction.",
+"related": [
+"RAY"
+],
+"tasks": [
+"9c1e755f",
+"17b80ad2"
+],
+"coverage_risk": [
+"17b80ad2 (column selection by grey bottom)"
+],
+"primitive_sketch": "for seed in key cells: walk direction painting seed colour until stop",
+"source": "B2"
+},
+"move.residual": {
+"parent": "MOVE",
+"definition": "Tasks needing bespoke mechanisms",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"fc4aaf52",
+"2faf500b",
+"9f669b64",
+"c61be7dc",
+"05a7bcf2",
+"1efba499",
+"85b81ff1",
+"dc46ea44",
+"e39e9282",
+"df9fd884",
+"97c75046",
+"825aa9e9",
+"6d0160f0",
+"99caaf76",
+"bc93ec48",
+"03560426",
+"d749d46f",
+"4c177718",
+"fc10701f",
+"182e5d0f"
+],
+"reasons": {
+"fc4aaf52": "split two-colour object halves with offset + colour swap",
+"2faf500b": "halves pushed apart across marker stripe",
+"9f669b64": "block passes through bar splitting it",
+"c61be7dc": "count-driven line drawing plus separators moved",
+"05a7bcf2": "rays with zone recolour, wall relocated",
+"1efba499": "dot swap across structure",
+"85b81ff1": "rule unclear (motif rearrangement)",
+"dc46ea44": "reflect hook then move object to tip",
+"e39e9282": "case by block colour",
+"df9fd884": "align object with other cup slot",
+"97c75046": "diagonal sliding gravity",
+"825aa9e9": "stopping rule unclear",
+"6d0160f0": "panel content moved to panel indexed by marker (panel logic)",
+"99caaf76": "head flip + move along tail",
+"bc93ec48": "corner objects cycled with reflection",
+"03560426": "chain stacking by sort order",
+"d749d46f": "bars flipped to bottom, canvas enlarged, unclear",
+"4c177718": "pointer-orientation relative placement",
+"fc10701f": "token swap + paint between markers",
+"182e5d0f": "path truncation + token relocation"
+},
+"coverage_risk": [
+"fc4aaf52",
+"2faf500b",
+"9f669b64",
+"c61be7dc",
+"05a7bcf2",
+"1efba499",
+"85b81ff1",
+"dc46ea44",
+"e39e9282",
+"df9fd884",
+"97c75046",
+"825aa9e9",
+"6d0160f0",
+"99caaf76",
+"bc93ec48",
+"03560426",
+"d749d46f",
+"4c177718",
+"fc10701f",
+"182e5d0f"
+],
+"primitive_sketch": "n/a",
+"source": "B2"
+},
+"transform.residual": {
+"parent": "TRANSFORM",
+"definition": "Tasks needing bespoke mechanisms",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"22233c11",
+"9f41bd9c",
+"d753a70b",
+"58743b76",
+"846bdb03",
+"6ecd11f4",
+"8a004b2b",
+"c9680e90",
+"8b28cd80",
+"46c35fc7",
+"49d1d64f",
+"e9afcf9a",
+"b745798f",
+"e3f79277",
+"ecaa0ec1"
+],
+"reasons": {
+"22233c11": "radial rot90 stamp about symmetry centre",
+"9f41bd9c": "move + shear + ground paint",
+"d753a70b": "diamond scale step unclear",
+"58743b76": "scaled key used as recolour mask",
+"846bdb03": "crop frame, insert shape with conditional flip",
+"6ecd11f4": "downscale mask AND multicolour grid",
+"8a004b2b": "scale template to frame with alignment",
+"c9680e90": "movers along trails plus mirrored markers",
+"8b28cd80": "fixed spiral stamp",
+"46c35fc7": "corner/edge cells rotated opposite ways",
+"49d1d64f": "pad with edge replication",
+"e9afcf9a": "checkerboard interleave of two rows",
+"b745798f": "glyphs moved to corners and arms scaled",
+"e3f79277": "corner triangle scaled + outline on fixed canvas",
+"ecaa0ec1": "rotation angle chosen by marker layout + paint"
+},
+"coverage_risk": [
+"22233c11",
+"9f41bd9c",
+"d753a70b",
+"58743b76",
+"846bdb03",
+"6ecd11f4",
+"8a004b2b",
+"c9680e90",
+"8b28cd80",
+"46c35fc7",
+"49d1d64f",
+"e9afcf9a",
+"b745798f",
+"e3f79277",
+"ecaa0ec1"
+],
+"primitive_sketch": "n/a",
+"source": "B2"
+},
+"extend.residual": {
+"parent": "EXTEND",
+"definition": "Tasks needing bespoke mechanisms",
+"parameters": {},
+"detector": "none",
+"related": [],
+"tasks": [
+"34cfa167",
+"396d80d7",
+"3ac3eb23",
+"50c07299",
+"5b37cb25",
+"758abdf0",
+"351d6448",
+"5d588b4d",
+"30f42897",
+"2ccd9fef",
+"58e15b12"
+],
+"reasons": {
+"34cfa167": "corner mirror completion + edge periodicity",
+"396d80d7": "concentric outward layer with inner colour",
+"3ac3eb23": "zigzag period-2 trail from seeds",
+"50c07299": "diagonal segment relocated and lengthened n->n+1",
+"5b37cb25": "notches recoloured by facing border and grown",
+"758abdf0": "case by segment length",
+"351d6448": "next panel of a sequence",
+"5d588b4d": "1..n..1 run sequence row-major",
+"30f42897": "period along perimeter cycle",
+"2ccd9fef": "panel progression by delta",
+"58e15b12": "diverging zigzag trails with overlap colour"
+},
+"coverage_risk": [
+"34cfa167",
+"396d80d7",
+"3ac3eb23",
+"50c07299",
+"5b37cb25",
+"758abdf0",
+"351d6448",
+"5d588b4d",
+"30f42897",
+"2ccd9fef",
+"58e15b12"
+],
+"primitive_sketch": "n/a",
+"source": "B2"
+},
+"reassigned_out": {
+"parent": "OTHER",
+"definition": "Tasks reassigned to other effect classes",
+"parameters": {},
+"detector": "n/a",
+"related": [
+"sort.by_property",
+"combine.fold_overlay"
+],
+"tasks": [],
+"reasons": {
+"42a15761": "panels sorted by hole count -> SORT",
+"e3497940": "fold halves at separator and OR -> COMBINE"
+},
+"coverage_risk": [],
+"primitive_sketch": "n/a",
+"source": "B2"
+},
+"ray.full_line": {
+"parent": "RAY",
+"definition": "Each seed (singleton cell, or a designated cell/axis of an object such as a domino's orientation or a block's centre) paints its entire row and/or column (axis chosen per seed colour or object orientation), optionally clipped to an enclosing region (band, cropped rectangle). Crossings resolved by a priority order or painted with a new constant colour; original objects stay on top.",
+"parameters": {
+"seed": "singleton cells | object centre | object long axis",
+"axis_of": "colour->{row,col,both} table or orientation rule",
+"clip": "none | enclosing band/rect",
+"crossing": "priority order | new colour | background",
+"layer": "under/over objects"
+},
+"detector": "Output same size (or = crop of region); every changed cell lies on a full row/col (or full span of the clipping region) that passes through a seed; per-colour axis table consistent across pairs.",
+"related": [
+"ray.orthogonal_directed",
+"project.and_intersection",
+"lattice:line",
+"EXTEND"
+],
+"tasks": [
+"41e4d17e",
+"178fcbfb",
+"855e0971",
+"bdad9b1f",
+"8731374e",
+"e9bb6954",
+"9344f635",
+"23581191",
+"45bbe264"
+],
+"coverage_risk": [
+"8731374e",
+"855e0971",
+"41e4d17e"
+],
+"primitive_sketch": "seeds=segment(inp); axis=learn(colour|orient->axis)\nfor s in seeds: for a in axis(s): paint line(s.anchor,a) within clip(s)\nresolve overlaps by learned priority / crossing colour; redraw objects if layer=under",
+"source": "C"
+},
+"ray.orthogonal_directed": {
+"parent": "RAY",
+"definition": "Each seed cell/object emits an axis-aligned half-ray in a direction given by a rule (fixed per colour, toward/away from an aligned target, toward the nearest edge, pointing out of the object away from its odd cell) and stops at the edge, just before the first non-bg cell, or at contact with the target. Paint = seed colour or role colour, optionally a periodic pattern.",
+"parameters": {
+"seed": "singleton cells | odd cell / apex of object | object rows/cols",
+"dir_rule": "colour->dir | toward aligned target | away from separator | nearest edge(s) | away from odd cell",
+"stop": "edge | before obstacle | adjacent to target",
+"paint": "seed colour | role colour",
+"blockers": "colour class that stops the ray"
+},
+"detector": "Every added cell lies on a straight axis-aligned run starting at a seed and ending at the border or next to a non-bg cell; each run has constant colour equal to seed colour (or a constant); direction consistent with a learned rule across pairs.",
+"related": [
+"ray.full_line",
+"project.marker_onto_target",
+"move.until_contact"
+],
+"tasks": [
+"d43fd935",
+"13f06aa5",
+"8d510a79",
+"f8be4b64",
+"6ffe8f07",
+"6d58a25d",
+"b527c5c6",
+"25d487eb",
+"705a3229",
+"72a961c9",
+"5daaa586",
+"2c608aff"
+],
+"coverage_risk": [
+"5daaa586",
+"6ffe8f07",
+"b527c5c6",
+"72a961c9",
+"13f06aa5",
+"6d58a25d"
+],
+"primitive_sketch": "for s in seeds: for dir in dir_rule(s): walk from s in dir painting paint(s) until stop(cell)\ninduce dir_rule by testing candidate rules on train; stop by testing {edge, before-nonbg, adj-target}",
+"source": "C"
+},
+"ray.diagonal_from_object": {
+"parent": "RAY",
+"definition": "Diagonal rays emitted from selected corners of objects (all corners, the missing corner of an L-triomino, closed-side corners of a cup, marker-flagged corners, or a single seed's 4 diagonals) outward to the border or until non-bg, in object/role colour, optionally with beam width = object width and after a canvas rescale.",
+"parameters": {
+"corner_sel": "all | missing | closed-side | flagged | by colour->direction",
+"width": "1 | object width",
+"stop": "edge | non-bg",
+"paint": "object colour | centre colour | constant",
+"pre": "none | scale k | canvas enlarge"
+},
+"detector": "All added cells lie on 45-degree lines starting at a corner cell of an input object (after optional scaling); per line constant colour.",
+"related": [
+"ray.orthogonal_directed",
+"EXTEND"
+],
+"tasks": [
+"1d398264",
+"5c0a986e",
+"f0afb749",
+"469497ad",
+"ec883f72",
+"3bd67248",
+"252143c9",
+"1f0c79e5",
+"623ea044",
+"6e19193c",
+"73c3b0d8",
+"2b9ef948",
+"b8cdaf2b",
+"85fa5666",
+"d13f3404",
+"feca6190",
+"8cb8642d"
+],
+"coverage_risk": [
+"469497ad",
+"f0afb749",
+"feca6190",
+"8cb8642d",
+"3bd67248",
+"73c3b0d8",
+"252143c9",
+"85fa5666",
+"2b9ef948"
+],
+"primitive_sketch": "g=pre(inp); objs=segment(g)\nfor o in objs: for (c,dir) in corner_sel(o): cast diagonal from c+dir, width w, colour paint(o), until stop\ninduce corner_sel/paint by enumerating rules consistent with train",
+"source": "C"
+},
+"ray.periodic_motif": {
+"parent": "RAY",
+"definition": "A seed emits a trail along a direction in which a fixed short motif (separator/own colour alternation, 2-step staircase, dotted stride) is repeated to the border.",
+"parameters": {
+"seed": "cell or small object",
+"dir": "fixed dirs",
+"motif": "periodic sequence/stamp learned from train",
+"paint": "seed colour + constant"
+},
+"detector": "Added cells form a periodic sequence along a line/diagonal from each seed to the border; period and motif identical across pairs.",
+"related": [
+"ray.orthogonal_directed",
+"TILE"
+],
+"tasks": [
+"97999447",
+"fe9372f3",
+"d06dbe63"
+],
+"coverage_risk": [
+"fe9372f3"
+],
+"primitive_sketch": "for s in seeds: for dir in dirs: k=1; while inside: stamp motif[k%p] at s+k*dir; k+=1\nlearn motif and dirs from diff of first train pair",
+"source": "C"
+},
+"ray.walker_turn_split": {
+"parent": "RAY",
+"definition": "A ray from a seed (usually on an edge) travels straight; on hitting an obstacle it reacts by a policy: split perpendicular both ways, turn cw/ccw keyed by obstacle colour, reflect off a wall, or spiral; continues until edge. Paint = seed colour or constant.",
+"parameters": {
+"seed": "edge cell / segment end",
+"policy": "split | turn(colour->cw/ccw) | reflect | spiral",
+"paint": "seed colour | constant",
+"obstacle": "non-bg except medium colour"
+},
+"detector": "Added cells form a single polyline/tree of axis/diagonal runs from a seed; each bend occurs adjacent to an obstacle cell.",
+"related": [
+"path.walker_detour",
+"ray.orthogonal_directed"
+],
+"tasks": [
+"508bd3b6",
+"6bcdb01e",
+"b942fd60",
+"f9a67cb5",
+"e5790162",
+"e5c44e8f"
+],
+"coverage_risk": [
+"f9a67cb5",
+"e5c44e8f",
+"508bd3b6"
+],
+"primitive_sketch": "queue=[(seed,dir0)]; while queue: pos,dir=pop; step; if blocked: push per policy(dir,obstacle colour)\npaint visited; induce policy by trying the finite set on train",
+"source": "C"
+},
+"path.walker_detour": {
+"parent": "PATH",
+"definition": "Rays from seeds advance in a fixed direction; when the next cell is an obstacle they sidestep (fixed side or nearest free) around it and resume the original direction, ending at the border.",
+"parameters": {
+"seed": "cells on an edge",
+"dir": "away from that edge",
+"sidestep": "right | left | nearest free | around bbox",
+"paint": "seed colour"
+},
+"detector": "Each added path is monotone in the main direction, deviates only beside obstacles, and returns to its column/row after passing.",
+"related": [
+"ray.walker_turn_split",
+"ray.orthogonal_directed"
+],
+"tasks": [
+"712bf12e",
+"c87289bb",
+"2dd70a9a",
+"d9f24cd1",
+"69889d6e",
+"96a8c0cd",
+"891232d6"
+],
+"coverage_risk": [
+"69889d6e",
+"891232d6",
+"2dd70a9a",
+"c87289bb"
+],
+"primitive_sketch": "for s in seeds: p=s; while inside: if free(p+dir): p+=dir else p=sidestep(p); paint p\nlearn sidestep rule from train",
+"source": "C"
+},
+"ray.container_leak": {
+"parent": "RAY",
+"definition": "Hollow container/bracket objects with an opening: interior is filled with a paint colour and a beam of the same colour escapes through the opening (width = opening, optional diagonal flare) to the edge.",
+"parameters": {
+"container": "hollow object with gap",
+"paint": "constant | centre-marker colour",
+"flare": "none | diagonals from opening corners"
+},
+"detector": "Added cells = container interior plus straight beam(s) starting at gap cells and running outward to the border.",
+"related": [
+"FILL",
+"ray.orthogonal_directed"
+],
+"tasks": [
+"4e469f39",
+"aba27056",
+"78e78cff"
+],
+"coverage_risk": [
+"4e469f39",
+"aba27056"
+],
+"primitive_sketch": "for c in hollow(objs): fill interior(c); for gap g of c: cast beam outward (width |g|) ; optionally diagonals from gap ends",
+"source": "C"
+},
+"select.empty_lines_paint": {
+"parent": "SELECT",
+"definition": "Rows/columns that contain no foreground (globally, or within the span of an object / block lattice) are painted with a constant colour (optionally different colours inside vs outside the fg bbox).",
+"parameters": {
+"scope": "whole grid | object bbox span",
+"paint_in": "constant",
+"paint_out": "constant | none"
+},
+"detector": "Changed cells are exactly bg cells on lines that are entirely bg (inside the relevant span); single new colour (or two by inside/outside bbox).",
+"related": [
+"ray.full_line",
+"lattice:gap"
+],
+"tasks": [
+"da2b0fe3",
+"137f0df0",
+"c1d99e64"
+],
+"coverage_risk": [
+"da2b0fe3"
+],
+"primitive_sketch": "lines=[r for r in rows+cols if all bg in scope(r)]\npaint lines (full length) with paint_in inside fg bbox, paint_out outside",
+"source": "C"
+},
+"project.and_intersection": {
+"parent": "PROJECT",
+"definition": "Markers along a border row and border column (or colour runs of a legend row/column) project across the grid; a cell is painted where a row-projection and column-projection intersect (AND), with the marker colour or a constant, optionally only inside a target rectangle.",
+"parameters": {
+"row_markers": "cells/runs on one edge column",
+"col_markers": "cells/runs on one edge row",
+"paint": "constant | marker colour",
+"region": "whole grid | target rect"
+},
+"detector": "Every changed cell (r,c) has a marker in row r on the side edge and a marker in column c on the top/bottom edge (same colour if colour-keyed).",
+"related": [
+"ray.full_line"
+],
+"tasks": [
+"2281f1f4",
+"a406ac07",
+"1c02dbbe"
+],
+"coverage_risk": [
+"1c02dbbe"
+],
+"primitive_sketch": "R={r:col of marker in edge col}; C={c: colour of marker in edge row}\nfor r in R for c in C: if region(r,c) and key match: paint",
+"source": "C"
+},
+"project.marker_onto_target": {
+"parent": "PROJECT",
+"definition": "A marker cell is transported along its row/col to a landing position (first cell of target object, cell adjacent to a separator, far edge cell) and only the landing cell is painted (source kept or erased).",
+"parameters": {
+"marker": "cells on border / scattered fg / object axis",
+"dir": "toward target | fixed",
+"landing": "first target cell | adjacent to stop | far edge",
+"keep_source": "bool",
+"paint": "marker colour | constant"
+},
+"detector": "Output differs from input only at landing cells (and optionally erased sources); each landing cell is aligned with exactly one source marker.",
+"related": [
+"ray.orthogonal_directed",
+"move.until_contact"
+],
+"tasks": [
+"f83cb3f6",
+"1f642eb9",
+"54d82841",
+"e048c9ed"
+],
+"coverage_risk": [
+"e048c9ed",
+"54d82841"
+],
+"primitive_sketch": "for m in markers: p=walk(m,dir) until landing rule; paint p; if not keep_source: erase m",
+"source": "C"
+},
+"connect.aligned_pair": {
+"parent": "CONNECT",
+"definition": "Pairs of same-colour cells/objects aligned on a row, column or diagonal (nearest facing partner) are joined by a straight segment between their facing tips, painted with a constant or the pair colour.",
+"parameters": {
+"items": "cells | objects of same shape/colour",
+"align": "row/col | diagonal",
+"pair": "nearest facing",
+"paint": "constant | own colour",
+"half_colour": "optional split halves by endpoint colour + midpoint colour"
+},
+"detector": "Every added cell lies strictly between two aligned same-class items on a straight line with no other fg between them.",
+"related": [
+"ray.orthogonal_directed",
+"lattice:alignment"
+],
+"tasks": [
+"55059096",
+"60a26a3e",
+"342ae2ed",
+"fb791726",
+"29c11459",
+"6cdd2623"
+],
+"coverage_risk": [
+"fb791726",
+"29c11459",
+"6cdd2623"
+],
+"primitive_sketch": "for a,b in pairs(items) if aligned(a,b) and clear_between: draw segment(facing tips) with paint\ninduce align set and paint from train",
+"source": "C"
+},
+"connect.lattice_between": {
+"parent": "CONNECT",
+"definition": "Grid partitioned into a lattice of tiles; tiles with the same mark (colour at same intra-tile position, or matching an exemplar) in the same lattice row/col cause the tiles/gaps between them to be filled with that mark (or new colour; overlap -> mix colour).",
+"parameters": {
+"lattice": "separator lines | periodic blocks",
+"mark": "colour at intra-tile position",
+"fill": "mark colour | constant",
+"overlap": "mix colour | priority"
+},
+"detector": "Output = input except tiles lying between two same-marked tiles in one lattice row/col, which receive the mark.",
+"related": [
+"connect.aligned_pair",
+"SEGMENT"
+],
+"tasks": [
+"b7f8a4d8",
+"d94c3b52",
+"06df4c85",
+"a096bf4d",
+"97239e3d",
+"cbded52d",
+"e760a62e"
+],
+"coverage_risk": [
+"d94c3b52",
+"b7f8a4d8",
+"97239e3d"
+],
+"primitive_sketch": "L=lattice(inp); for each lattice row/col: for same-mark pairs (i<j): mark tiles i..j\napply connect on the coarse tile grid then upsample",
+"source": "C"
+},
+"path.elbow_route": {
+"parent": "PATH",
+"definition": "Draw a route between 2-3 marker cells using a fixed move order (vertical-then-horizontal, horizontal-then-vertical, diagonal-then-straight, king moves), chained across markers; paint new constant or marker colour on bg only.",
+"parameters": {
+"endpoints": "marker cells (order by colour/role)",
+"move_order": "VH | HV | diag-then-straight | king",
+"paint": "constant | source colour"
+},
+"detector": "Added cells form an elbow/octilinear polyline whose endpoints are adjacent to/at markers; one bend.",
+"related": [
+"connect.aligned_pair",
+"path.shortest_route"
+],
+"tasks": [
+"d4a91cb9",
+"a2fd1cf0",
+"992798f6",
+"0e671a1a",
+"cb227835",
+"29700607",
+"7ec998c9"
+],
+"coverage_risk": [
+"cb227835",
+"7ec998c9",
+"992798f6",
+"29700607"
+],
+"primitive_sketch": "for (a,b) in chain(endpoints): for leg in move_order: advance from a toward b along leg axis painting bg\ninduce move_order by fitting train",
+"source": "C"
+},
+"path.shortest_route": {
+"parent": "PATH",
+"definition": "Endpoints (same-colour cells/segments) are joined by a shortest 4-connected path avoiding obstacle cells (or crossing barriers only at their gaps).",
+"parameters": {
+"endpoints": "cells of endpoint colour",
+"obstacles": "wall colour",
+"paint": "constant | endpoint colour"
+},
+"detector": "Added cells form a connected path between endpoints whose length equals BFS distance avoiding obstacles.",
+"related": [
+"path.elbow_route",
+"connect.aligned_pair"
+],
+"tasks": [
+"f8f52ecc",
+"b15fca0b",
+"7e576d6e"
+],
+"coverage_risk": [
+"f8f52ecc",
+"7e576d6e"
+],
+"primitive_sketch": "for group in endpoint sets: path=bfs(a,b, passable=bg|gap); paint path (tie-break learned)",
+"source": "C"
+},
+"crop.odd_one_out": {
+"parent": "CROP",
+"definition": "Segment panels/objects; output the one whose content differs from all others (unique pattern, unique colour, unique (a)symmetry).",
+"parameters": {
+"units": "separator panels | components | equal blocks",
+"feature": "pattern | colour | symmetry predicate"
+},
+"detector": "Output equals exactly one input unit (bbox crop) and that unit is the unique one w.r.t. some feature in each pair.",
+"related": [
+"crop.by_score",
+"SELECT"
+],
+"tasks": [
+"d56f2372",
+"a87f7484",
+"662c240a",
+"aee291af",
+"0b148d64",
+"73ccf9c2",
+"88a62173"
+],
+"coverage_risk": [
+"aee291af"
+],
+"primitive_sketch": "units=segment(inp); for f in features: u=[x for x in units if count(f(x)) == 1]; if len(u)==1: return crop(u)",
+"source": "C"
+},
+"crop.by_score": {
+"parent": "CROP",
+"definition": "Segment objects/frames; select the one maximising/minimising a score (count of marker colour/sub-pattern, size, adjacency to marker, inclusion in guides, content colour = frame colour) and output its bbox or interior.",
+"parameters": {
+"units": "components | frames | bars",
+"score": "count(colour) | count(pattern) | area | adjacent-to-marker | predicate",
+"extremum": "max | min | true",
+"part": "bbox | interior | bbox-minus-marker"
+},
+"detector": "Output equals the crop (bbox or interior) of one input unit that is the arg-extremum of a score in every train pair.",
+"related": [
+"crop.odd_one_out",
+"SELECT"
+],
+"tasks": [
+"bf699163",
+"9ba4a9aa",
+"ce602527",
+"da6e95e5",
+"8efcae92",
+"e50d258f",
+"2c0b0aff",
+"7bb29440",
+"48d8fb45",
+"ae4f1146",
+"3f7978a0",
+"a644e277",
+"1a6449f1",
+"fbf15a0b"
+],
+"coverage_risk": [
+"a644e277",
+"fbf15a0b",
+"ce602527",
+"9ba4a9aa",
+"bf699163"
+],
+"primitive_sketch": "units=segment(inp); for score in library: pick=argext(units,score); if all train match crop(pick,part): use it",
+"source": "C"
+},
+"crop.canonical_window": {
+"parent": "CROP",
+"definition": "Output is a window of the input chosen canonically: a fixed corner window, the top-left quadrant of a symmetric object's bbox (fundamental domain), or one period of a periodic grid.",
+"parameters": {
+"window": "fixed corner+size | quadrant of bbox | one period along axis",
+"corner": "fixed or parity rule"
+},
+"detector": "Output equals a subgrid of input located at a fixed/derived position; or input is periodic/symmetric and output is one fundamental tile.",
+"related": [
+"TILE",
+"lattice:period"
+],
+"tasks": [
+"73182012",
+"2013d3e2",
+"d10ecb37",
+"2dee498d",
+"7b7f7511",
+"a6953f00",
+"5bd6f4ac"
+],
+"coverage_risk": [
+"a6953f00"
+],
+"primitive_sketch": "cands=[fixed windows, bbox quadrants, minimal period tile]; return first candidate matching all train",
+"source": "C"
+},
+"crop.overlay_windows": {
+"parent": "CROP",
+"definition": "Several equal-size windows/fragments (aligned by frame or by a shared anchor cell) are overlaid with non-base cells winning, output = the overlay.",
+"parameters": {
+"windows": "equal framed panels | fragments with anchor colour",
+"align": "frame | anchor cell",
+"priority": "non-base wins"
+},
+"detector": "All windows same size after alignment; every output cell equals the non-base value in some window at that position.",
+"related": [
+"COMBINE"
+],
+"tasks": [
+"25e02866",
+"7c9b52a0",
+"137eaa0f"
+],
+"coverage_risk": [
+"137eaa0f"
+],
+"primitive_sketch": "W=segment windows; align; out=base; for w in W: out[w!=base]=w",
+"source": "C"
+},
+"crop.fit_by_anchor": {
+"parent": "CROP",
+"definition": "Pieces carrying a marker cell/constellation are translated so that their markers coincide with matching markers in a target panel/canvas; output = the target region.",
+"parameters": {
+"target": "canvas rect | panel",
+"pieces": "shapes with anchor cells",
+"match": "marker colour | marker constellation"
+},
+"detector": "Output size = target region; each piece appears in output translated (no rotation) so its markers land on same-colour target markers.",
+"related": [
+"move.to_anchor",
+"crop.fit_by_shape"
+],
+"tasks": [
+"414297c0",
+"e6721834",
+"2f0c5170"
+],
+"coverage_risk": [
+"e6721834"
+],
+"primitive_sketch": "T=target region; for p in pieces: find t so markers(p)+t == markers(T) subset; stamp p at t; return crop(T)",
+"source": "C"
+},
+"crop.fit_by_shape": {
+"parent": "CROP",
+"definition": "Host region with holes; each loose piece whose shape (up to dihedral) matches a hole is inserted into it; output = the host bbox.",
+"parameters": {
+"host": "largest solid region",
+"pieces": "coloured shapes",
+"transform": "identity | dihedral"
+},
+"detector": "Output = host bbox where each hole is replaced by a piece of identical (dihedral) shape from elsewhere in input.",
+"related": [
+"crop.fit_by_anchor",
+"COMPLETE"
+],
+"tasks": [
+"97a05b5b",
+"93b4f4b3",
+"42f14c03"
+],
+"coverage_risk": [
+"97a05b5b",
+"42f14c03"
+],
+"primitive_sketch": "H=host; for hole in holes(H): p=match(pieces,shape(hole),dihedral); paint p into hole; return crop(H)",
+"source": "C"
+},
+"crop.extract_and_concat": {
+"parent": "CROP",
+"definition": "Selected pieces (objects passing a predicate, or strips between paired markers, or panel shapes) are each cropped and concatenated in positional order along the axis of spread (or packed in a 2x2 layout preserving quadrant).",
+"parameters": {
+"pieces": "objects | strips between markers | panel contents",
+"filter": "predicate (hollow, all)",
+"order": "position along spread axis",
+"layout": "row | column | 2x2",
+"recolour": "optional nearest marker colour"
+},
+"detector": "Output is a concatenation of subgrids each equal to (possibly recoloured) crops from input, ordered by input position.",
+"related": [
+"SORT",
+"STACK"
+],
+"tasks": [
+"50aad11f",
+"0bb8deee",
+"aab50785",
+"505fff84",
+"a680ac02",
+"67636eac",
+"1990f7a8"
+],
+"coverage_risk": [
+"50aad11f",
+"aab50785",
+"505fff84",
+"1990f7a8"
+],
+"primitive_sketch": "P=sorted([crop(p) for p in pieces if filter(p)], key=pos along axis)\nreturn concat(P, axis) or grid2x2(P)",
+"source": "C"
+},
+"complete.crop_occluded": {
+"parent": "COMPLETE",
+"definition": "Input is a symmetric/periodic pattern with a solid occluder rectangle; the occluded content is reconstructed and only the occluder region is output.",
+"parameters": {
+"occluder": "solid rect of unique colour",
+"model": "period | mirror symmetry"
+},
+"detector": "Output size = occluder rect size; output cells equal pattern values predicted by symmetry/period.",
+"related": [
+"COMPLETE",
+"crop.canonical_window"
+],
+"tasks": [
+"abbfd121",
+"de493100"
+],
+"coverage_risk": [],
+"primitive_sketch": "M=occluder bbox; G=complete(inp, model, mask=M); return G[M]",
+"source": "C"
+},
+"summarise.panel_to_pixel": {
+"parent": "SUMMARISE",
+"definition": "Grid is split into panels (by separator lines, equal kxk blocks, or solid rectangles in a row/col layout); output has one pixel per panel given by a reduction (majority colour, single non-bg colour, bg colour, predicate->colour).",
+"parameters": {
+"partition": "separator lines | equal blocks | component layout",
+"reduce": "majority | unique non-bg | bg | predicate(count)->colour",
+"border": "optional frame"
+},
+"detector": "Output dims = panel layout dims; each output pixel is a function of the corresponding panel only.",
+"related": [
+"SEGMENT",
+"lattice:panels"
+],
+"tasks": [
+"458e3a53",
+"ac6f9922",
+"780d0b14",
+"af24b4cc",
+"7039b2d7",
+"1190e5a7",
+"19bb5feb",
+"0a1d4ef5",
+"996ec1f3",
+"5783df64",
+"6773b310",
+"7837ac64"
+],
+"coverage_risk": [
+"7837ac64",
+"458e3a53",
+"0a1d4ef5",
+"ac6f9922"
+],
+"primitive_sketch": "P=partition(inp) (grid of panels); out[i][j]=reduce(P[i][j]); induce reduce from library",
+"source": "C"
+},
+"summarise.count_to_glyph": {
+"parent": "SUMMARISE",
+"definition": "Count N of a selected item class (cells, objects, 2x2 squares, empty rows) and render N marks into a fixed canvas following a fixed slot order (reading order, snake, diagonal, bar), in item colour or constant.",
+"parameters": {
+"item": "cells | components | kxk squares of colour c | empty rows",
+"canvas": "fixed size | 1xN | NxN",
+"slots": "learned order",
+"paint": "item colour | constant"
+},
+"detector": "Output has a fixed shape (or size a function of N) and number of painted cells monotone in an input count; same slot prefix pattern across pairs.",
+"related": [
+"COUNT",
+"summarise.ranked_bars"
+],
+"tasks": [
+"c8b7cc0f",
+"3b4c2228",
+"ff28f65a",
+"e872b94a",
+"d0f5fe59",
+"794b24be",
+"5289ad53",
+"1fad071e",
+"b0c4d837",
+"d631b094",
+"dce56571"
+],
+"coverage_risk": [
+"e872b94a",
+"b0c4d837",
+"5289ad53",
+"dce56571"
+],
+"primitive_sketch": "N=count(select(inp)); slots=learn from train outputs (union of painted positions ordered by N); paint first N slots",
+"source": "C"
+},
+"summarise.ranked_bars": {
+"parent": "SUMMARISE",
+"definition": "Items (colours, objects, lines, bands) are ranked by a key (count, size, position, layering) and rendered as a list of bars/cells: one row/column per item, bar length = its count/size (or 1), aligned to a side.",
+"parameters": {
+"items": "colour classes | objects | lines | bands",
+"key": "count | height | position | occlusion order | first appearance",
+"length": "count | size | 1 | full",
+"axis": "row | column",
+"align": "left | right | bottom",
+"drop": "optional first item"
+},
+"detector": "Output rows (or cols) each contain a single colour run; their colours are a permutation of input item colours sorted by a checkable key.",
+"related": [
+"SORT",
+"COUNT",
+"summarise.count_to_glyph"
+],
+"tasks": [
+"81c0276b",
+"d4c90558",
+"68bc2e87",
+"3d6c6e23",
+"8e1813be",
+"22425bda",
+"8ba14f53",
+"4be741c5",
+"b7999b51",
+"aaecdb9a",
+"a3325580",
+"668eec9a",
+"2753e76c",
+"f3cdc58f",
+"bd283c4a",
+"8abad3cf",
+"f8b3ba0a"
+],
+"coverage_risk": [
+"bd283c4a",
+"8ba14f53",
+"22425bda",
+"68bc2e87",
+"8e1813be",
+"3d6c6e23",
+"8abad3cf"
+],
+"primitive_sketch": "items=extract(inp); items.sort(key); for i,it in enumerate(items): draw bar(i, length(it), colour(it), align)\ninduce key/length/axis/align from train",
+"source": "C"
+},
+"summarise.concentric_rings": {
+"parent": "SUMMARISE",
+"definition": "An ordered list of colours (items ranked by size/count/distance/legend order) is rendered as nested concentric square rings (outer->inner), on a canvas sized by the list or inside a frame/around a seed.",
+"parameters": {
+"items": "rect outlines | colour classes | legend | scattered cells",
+"key": "size | count | distance | legend order",
+"canvas": "derived square | inside frame | around seed on input"
+},
+"detector": "Output (or changed region) is a set of nested square rings, each monochrome, whose colours are a ranked list of input colours.",
+"related": [
+"summarise.ranked_bars",
+"STAMP"
+],
+"tasks": [
+"c658a4bd",
+"c920a713",
+"4290ef0e",
+"5587a8d0",
+"8fff9e47",
+"9356391f",
+"ac0c2ac3",
+"99306f82",
+"759f3fd3",
+"652646ff",
+"3ee1011a"
+],
+"coverage_risk": [
+"c920a713",
+"4290ef0e",
+"652646ff",
+"8fff9e47",
+"759f3fd3",
+"9356391f"
+],
+"primitive_sketch": "L=ranked colour list (+ ring thickness); n=len(L); canvas=square(2n-1) or frame; for d,c in enumerate(L): paint ring at Chebyshev d",
+"source": "C"
+},
+"summarise.select_colour": {
+"parent": "SUMMARISE",
+"definition": "Select one object/colour by a predicate or extremum (has hole, uninterrupted line, most noise, max arm count, max growth) and output a small solid grid (1x1/2x2) of its colour.",
+"parameters": {
+"units": "objects | lines | colour classes",
+"criterion": "predicate | argmax score",
+"out_shape": "1x1 | fixed"
+},
+"detector": "Output is a small monochrome grid whose colour is present in input and identifies a unit that is extreme/unique by a checkable feature.",
+"related": [
+"crop.by_score"
+],
+"tasks": [
+"1a2e2828",
+"b9b7f026",
+"de1cd16c",
+"8597cfd7",
+"642d658d"
+],
+"coverage_risk": [
+"642d658d",
+"8597cfd7"
+],
+"primitive_sketch": "units=segment(inp); u=argext(units,criterion); return full(out_shape, colour(u))",
+"source": "C"
+},
+"summarise.lookup_by_feature": {
+"parent": "SUMMARISE",
+"definition": "Output (whole grid or per-panel pixel) is taken from a table learned from train keyed by a discrete feature of the input (symmetry predicate, connectivity, count of distinct colours, shape class/hole pattern).",
+"parameters": {
+"feature": "symmetric? | connected? | #colours | shape class",
+"table": "feature value -> output grid/colour"
+},
+"detector": "Train outputs take few distinct values (or are templates) and a single discrete feature separates them consistently.",
+"related": [
+"summarise.count_to_glyph"
+],
+"tasks": [
+"b1fc8b8e",
+"44f52bb0",
+"239be575",
+"995c5fa3",
+"6e02f1e3"
+],
+"coverage_risk": [
+"995c5fa3",
+"239be575",
+"b1fc8b8e"
+],
+"primitive_sketch": "for f in features: table={f(x):y}; if consistent over train: return table[f(test)]",
+"source": "C"
+},
+"sort.rank_and_pack": {
+"parent": "SORT",
+"definition": "Items (objects, bars, cells, panels) are sorted by a key (size, length, column, count) and placed into a sequence of slots (along an edge bottom-aligned, stacked on a floor, snake order in a small canvas, nested at a corner).",
+"parameters": {
+"items": "objects | bars | cells | panels",
+"key": "size | length | column | count",
+"slots": "edge row | floor stack | 3x3 snake | nested corner",
+"order": "asc | desc"
+},
+"detector": "Output contains the same items (shape/colour preserved) at new positions whose order along the slot sequence is monotone in the key.",
+"related": [
+"crop.extract_and_concat",
+"summarise.ranked_bars",
+"MOVE"
+],
+"tasks": [
+"4df5b0ae",
+"beb8660c",
+"cdecee7f",
+"20818e16",
+"dc2aa30b"
+],
+"coverage_risk": [
+"dc2aa30b",
+"20818e16"
+],
+"primitive_sketch": "I=sorted(items, key, order); pos=slot0; for it in I: place(it,pos); pos=next_slot(pos,it)",
+"source": "C"
+},
+"sort.permute_attribute_sequence": {
+"parent": "SORT",
+"definition": "Items ordered along an axis/path keep their geometry while one attribute sequence (colour, height) is reversed or cyclically shifted.",
+"parameters": {
+"items": "bars | cells along a path",
+"attribute": "colour | height",
+"perm": "reverse | cyclic shift +-1"
+},
+"detector": "Output has identical positions/shape multiset; the attribute sequence along the order is a reversal or rotation of the input's.",
+"related": [
+"SORT",
+"recolour.by_permutation"
+],
+"tasks": [
+"2601afb7",
+"5792cb4d"
+],
+"coverage_risk": [],
+"primitive_sketch": "I=order(items); A=[attr(i) for i in I]; A2=perm(A); assign",
+"source": "C"
+},
+"ray.residual": {
+"parent": "RAY",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"264363fd",
+"e45ef808",
+"f15e1fac",
+"212895b5",
+"ac605cbb",
+"db93a21d",
+"bae5c565",
+"9f8de559",
+"a78176bb",
+"3f23242b",
+"6a980be1",
+"256b0a75",
+"f1cefba8"
+],
+"coverage_risk": [
+"e45ef808",
+"264363fd",
+"f15e1fac",
+"212895b5",
+"ac605cbb",
+"3f23242b",
+"6a980be1",
+"256b0a75",
+"f1cefba8",
+"a78176bb",
+"db93a21d",
+"bae5c565",
+"9f8de559"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"e45ef808": "paints only argmin/argmax height columns of a terrain; selection-by-extreme not generic ray",
+"264363fd": "template stamping at markers with arm rays to rect edges; composite",
+"f15e1fac": "rays shifted at marker rows; ray + shear composite",
+"212895b5": "diagonal rays plus staircase from sides stopping at obstacles; two motifs",
+"ac605cbb": "per-colour arm length/cap/crossing diagonal; many ad-hoc rules",
+"3f23242b": "fixed template stamp + floor line; STAMP-dominated",
+"6a980be1": "frame erase + band extension; restructure",
+"256b0a75": "odd-L rectangle fill with band noise rays; composite",
+"f1cefba8": "notch rays that change colour inside/outside frame",
+"a78176bb": "parallel copy of diagonal offset by attachment extent",
+"db93a21d": "halo stamp + object-width downward ray; multi-layer",
+"bae5c565": "widening cone keyed by top row colours",
+"9f8de559": "line extension that paints the border cell hit with region colour"
+},
+"source": "C"
+},
+"connect.residual": {
+"parent": "CONNECT",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"bf89d739",
+"3490cc26",
+"e4075551",
+"b7249182",
+"c6141b15",
+"b9630600",
+"f35d900a"
+],
+"coverage_risk": [
+"bf89d739",
+"e4075551",
+"b7249182",
+"c6141b15",
+"b9630600",
+"f35d900a",
+"3490cc26"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"bf89d739": "rectilinear Steiner tree",
+"e4075551": "rectangle sides from markers + cross; composite",
+"b7249182": "meeting half-brackets shape between two markers",
+"c6141b15": "role swap between line and shapes",
+"b9630600": "merging rectangle outlines into corridors",
+"f35d900a": "ring stamps + alternating dash connectors",
+"3490cc26": "greedy nearest-block chain with block-width bands"
+},
+"source": "C"
+},
+"path.residual": {
+"parent": "PATH",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"1478ab18",
+"99fa7670",
+"e6de6e8f"
+],
+"coverage_risk": [
+"1478ab18",
+"99fa7670",
+"e6de6e8f"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"1478ab18": "infers 4th corner and draws right-triangle outline",
+"99fa7670": "ray to edge then run down edge column to next seed row",
+"e6de6e8f": "token sequence interpreted as path program"
+},
+"source": "C"
+},
+"project.residual": {
+"parent": "PROJECT",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"2685904e"
+],
+"coverage_risk": [
+"2685904e"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"2685904e": "bar heights from indicator length filtered by key-row frequency"
+},
+"source": "C"
+},
+"crop.residual": {
+"parent": "CROP",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"c64f1187",
+"1be83260",
+"83eb0a57",
+"8a6d367c",
+"2037f2c7",
+"7e4d4f7c",
+"57edb29d",
+"e9fc42f2",
+"9aec4887",
+"6b9890af",
+"a61ba2ce",
+"6cbe9eb8",
+"e78887d1"
+],
+"coverage_risk": [
+"c64f1187",
+"1be83260",
+"83eb0a57",
+"8a6d367c",
+"2037f2c7",
+"7e4d4f7c",
+"57edb29d",
+"e9fc42f2",
+"6cbe9eb8",
+"e78887d1",
+"6b9890af",
+"9aec4887",
+"a61ba2ce"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"c64f1187": "legend-driven shape stamping then crop",
+"1be83260": "holed-tile key map",
+"83eb0a57": "recursive box nesting",
+"8a6d367c": "legend shape upscaled into frame",
+"2037f2c7": "diff of object pair",
+"7e4d4f7c": "crop rows + recoloured appended row",
+"57edb29d": "copy shared mark pattern onto unmarked panel",
+"e9fc42f2": "jigsaw assembly by connector colours",
+"6cbe9eb8": "pack blobs into frame corners amid periodic noise",
+"e78887d1": "progression extrapolation of glyph bands",
+"6b9890af": "scale shape to fill frame interior",
+"9aec4887": "move shape into frame, recolour by nearest side",
+"a61ba2ce": "pack four L corners into 4x4"
+},
+"source": "C"
+},
+"select.residual": {
+"parent": "SELECT",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"a8c38be5",
+"22806e14",
+"9caba7c3",
+"3d588dc9",
+"941d9a10",
+"2f767503",
+"9720b24f",
+"d23f8c26"
+],
+"coverage_risk": [
+"a8c38be5",
+"22806e14",
+"9caba7c3",
+"3d588dc9",
+"941d9a10",
+"2f767503",
+"9720b24f",
+"d23f8c26"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"a8c38be5": "3x3 jigsaw assembly by notch classes",
+"22806e14": "mark centre of odd-sized squares",
+"9caba7c3": "3x3 window pattern match painting",
+"3d588dc9": "object modification aligned with reference",
+"941d9a10": "paint fixed panels (TL,centre,BR) of separator layout",
+"2f767503": "directional erase of targets from emitter",
+"9720b24f": "erase foreign cells enclosed by another object",
+"d23f8c26": "keep middle column only (erase rest)"
+},
+"source": "C"
+},
+"summarise.residual": {
+"parent": "SUMMARISE",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"5833af48",
+"ba1aa698",
+"6165ea8f",
+"d5c634a2",
+"b1986d4b",
+"09629e4f",
+"33067df9",
+"a1aa0c1e"
+],
+"coverage_risk": [
+"5833af48",
+"ba1aa698",
+"6165ea8f",
+"33067df9",
+"a1aa0c1e",
+"09629e4f",
+"d5c634a2",
+"b1986d4b"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"5833af48": "Kronecker pattern x template (TILE)",
+"ba1aa698": "extrapolate marker displacement in panels",
+"6165ea8f": "pairwise congruence relation matrix",
+"33067df9": "merge lattice cells into bars on fixed canvas",
+"a1aa0c1e": "ladder rung counts with flag column",
+"09629e4f": "sparsest panel key upscaled to panel fills",
+"d5c634a2": "orientation-class counts into fixed slots",
+"b1986d4b": "nested squares by size-class counts"
+},
+"source": "C"
+},
+"sort.residual": {
+"parent": "SORT",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"df978a02",
+"5e6bbc0b"
+],
+"coverage_risk": [
+"df978a02",
+"5e6bbc0b"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"df978a02": "tip removal/growth by size rank",
+"5e6bbc0b": "per-line gravity toward marked edge with overflow count"
+},
+"source": "C"
+},
+"count.residual": {
+"parent": "COUNT",
+"definition": "Tasks not covered by a generic primitive; reasons in \"reasons\".",
+"parameters": {},
+"detector": "n/a",
+"related": [],
+"tasks": [
+"d93c6891",
+"878187ab",
+"27a77e38",
+"afe3afe9"
+],
+"coverage_risk": [
+"d93c6891",
+"878187ab",
+"27a77e38",
+"afe3afe9"
+],
+"primitive_sketch": "n/a",
+"reasons": {
+"d93c6891": "transfer segment length to recolour block cells",
+"878187ab": "two counts to block+V motif canvas",
+"27a77e38": "mode colour of top panel into bottom centre cell",
+"afe3afe9": "slot occupancy counts packed toward border"
+},
+"source": "C"
+},
+"sort.by_property": {
+"parent": "SORT",
+"definition": "(named by another agent; to be defined)",
+"tasks": [
+"42a15761"
+],
+"source": "x"
+},
+"combine.fold_overlay": {
+"parent": "COMBINE",
+"definition": "(named by another agent; to be defined)",
+"tasks": [
+"e3497940"
+],
+"source": "x"
+}
+},
+"assign": {
+"d511f180": "recolour.by_colour_map",
+"6ea4a07e": "recolour.by_colour_map",
+"1c0d0a4b": "recolour.by_colour_map",
+"0becf7df": "recolour.by_colour_map",
+"e4888269": "recolour.by_colour_map",
+"e9b4f6fc": "recolour.by_colour_map",
+"1e81d6f9": "recolour.by_colour_map",
+"c9f8e694": "recolour.by_key_position",
+"c7d4e6ad": "recolour.by_key_position",
+"fafd9572": "recolour.by_key_position",
+"1da012fc": "recolour.by_key_position",
+"33b52de3": "recolour.by_key_position",
+"7c008303": "recolour.by_key_position",
+"77fdfe62": "recolour.by_key_position",
+"278e5215": "recolour.by_key_position",
+"9b365c51": "recolour.by_key_position",
+"845d6e51": "recolour.by_shape_match",
+"776ffc46": "recolour.by_shape_match",
+"50f325b5": "recolour.by_shape_match",
+"bd14c3bf": "recolour.by_shape_match",
+"15113be4": "recolour.by_shape_match",
+"b7256dcd": "recolour.by_touching_marker",
+"6df30ad6": "recolour.by_touching_marker",
+"e681b708": "recolour.by_touching_marker",
+"2204b7a8": "recolour.by_touching_marker",
+"c3fa4749": "recolour.by_touching_marker",
+"09c534e7": "recolour.by_touching_marker",
+"7d1f7ee8": "recolour.by_touching_marker",
+"ef26cbf6": "recolour.by_touching_marker",
+"ea32f347": "recolour.object_by_property",
+"e509e548": "recolour.object_by_property",
+"ecb67b6d": "recolour.object_by_property",
+"25094a63": "recolour.object_by_property",
+"17cae0c1": "recolour.object_by_property",
+"29623171": "recolour.object_by_property",
+"a85d4709": "recolour.object_by_property",
+"ba26e723": "recolour.by_ordinal_index",
+"d406998b": "recolour.by_ordinal_index",
+"7447852a": "recolour.by_ordinal_index",
+"22a4bbc2": "recolour.by_ordinal_index",
+"a5f85a15": "recolour.by_ordinal_index",
+"817e6c09": "recolour.by_ordinal_index",
+"9473c6fb": "recolour.by_ordinal_index",
+"575b1a71": "recolour.by_ordinal_index",
+"516b51b7": "recolour.by_distance_layers",
+"a3f84088": "recolour.by_distance_layers",
+"aaef0977": "recolour.by_distance_layers",
+"8dae5dfc": "recolour.by_distance_layers",
+"85c4e7cd": "recolour.by_distance_layers",
+"b457fec5": "recolour.by_distance_layers",
+"d22278a0": "recolour.by_distance_layers",
+"b7fb29bc": "recolour.by_distance_layers",
+"b782dc8a": "recolour.by_distance_layers",
+"d492a647": "recolour.by_distance_layers",
+"e7dd8335": "recolour.by_region_position",
+"ce9e57f2": "recolour.by_region_position",
+"639f5a19": "recolour.by_region_position",
+"a834deea": "recolour.by_region_position",
+"272f95fa": "recolour.by_region_position",
+"e9c9d9a1": "recolour.by_region_position",
+"8a371977": "recolour.by_region_position",
+"e9ac8c9e": "recolour.by_region_position",
+"94414823": "recolour.by_region_position",
+"87ab05b8": "recolour.by_region_position",
+"981add89": "recolour.along_ray",
+"0d87d2a6": "recolour.along_ray",
+"bcb3040b": "recolour.along_ray",
+"d07ae81c": "recolour.along_ray",
+"4f537728": "recolour.along_ray",
+"ddf7fa4f": "recolour.along_ray",
+"a8d7556c": "recolour.template_sites",
+"6cf79266": "recolour.template_sites",
+"7e02026e": "recolour.template_sites",
+"14754a24": "recolour.template_sites",
+"31adaf00": "recolour.template_sites",
+"4ff4c9da": "recolour.template_sites",
+"3eda0437": "fill.largest_empty",
+"e88171ec": "fill.largest_empty",
+"a64e4611": "fill.largest_empty",
+"aa300dc3": "fill.largest_empty",
+"880c1354": "recolour.cyclic_shift",
+"ad173014": "recolour.cyclic_shift",
+"c4d1a9ae": "recolour.cyclic_shift",
+"626c0bcc": "recolour.by_tiling",
+"150deff5": "recolour.by_tiling",
+"af902bf9": "fill.bbox_bg",
+"60b61512": "fill.bbox_bg",
+"8fbca751": "fill.bbox_bg",
+"36fdfd69": "fill.bbox_bg",
+"32597951": "fill.bbox_bg",
+"305b1341": "fill.bbox_bg",
+"5adee1b2": "fill.bbox_bg",
+"aa18de87": "fill.between_pair_on_line",
+"ef135b50": "fill.between_pair_on_line",
+"f3b10344": "fill.between_pair_on_line",
+"d6ad076f": "fill.between_pair_on_line",
+"2bee17df": "fill.between_pair_on_line",
+"5ad8a7c0": "fill.between_pair_on_line",
+"770cc55f": "fill.between_pair_on_line",
+"6455b5f5": "fill.region_by_property",
+"62ab2642": "fill.region_by_property",
+"84db8fc4": "fill.region_by_property",
+"7b6016b9": "fill.region_by_property",
+"e73095fd": "fill.region_by_property",
+"868de0fa": "fill.region_by_property",
+"753ea09b": "fill.region_by_property",
+"4b6b68e5": "fill.region_by_property",
+"7c8af763": "fill.region_by_property",
+"17b866bd": "fill.region_by_property",
+"9edfc990": "fill.region_by_property",
+"e69241bd": "fill.region_by_property",
+"3ad05f52": "fill.region_by_property",
+"83302e8f": "fill.region_by_property",
+"896d5239": "fill.region_by_property",
+"fafffa47": "combine.boolean_panels",
+"1b2d62fb": "combine.boolean_panels",
+"0520fde7": "combine.boolean_panels",
+"94f9d214": "combine.boolean_panels",
+"99b1bc43": "combine.boolean_panels",
+"5d2a5c43": "combine.boolean_panels",
+"195ba7dc": "combine.boolean_panels",
+"d47aa2ff": "combine.boolean_panels",
+"ce039d91": "combine.boolean_panels",
+"a8610ef7": "combine.boolean_panels",
+"281123b4": "combine.priority_overlay",
+"e99362f0": "combine.priority_overlay",
+"75b8110e": "combine.priority_overlay",
+"ea9794b1": "combine.priority_overlay",
+"3d31c5b3": "combine.priority_overlay",
+"6a11f6da": "combine.priority_overlay",
+"bc1d5164": "combine.priority_overlay",
+"9f5f939b": "ca.local_rule",
+"10fcaaa3": "ca.local_rule",
+"15663ba9": "ca.local_rule",
+"95a58926": "ca.local_rule",
+"b5bb5719": "ca.row_recurrence",
+"af726779": "ca.row_recurrence",
+"7e2bad24": "ray.bounce",
+"e179c5f4": "ray.bounce",
+"c1990cce": "ray.bounce",
+"2bcee788": "stamp.reflect_recoloured",
+"88207623": "stamp.reflect_recoloured",
+"2b01abd0": "stamp.reflect_recoloured",
+"dc2e9a9d": "stamp.reflect_recoloured",
+"6f473927": "stamp.reflect_recoloured",
+"66ac4c3b": "stamp.reflect_recoloured",
+"a79310a0": "move.translate_recolour",
+"32e9702f": "move.translate_recolour",
+"d4469b4b": "summarise.class_to_constant",
+"9110e3c5": "summarise.class_to_constant",
+"27a28665": "summarise.class_to_constant",
+"a934301b": "segment.filter_objects",
+"54db823b": "segment.filter_objects",
+"681b3aeb": "segment.pack_pieces",
+"b7cb93ac": "segment.pack_pieces",
+"83b6b474": "segment.pack_pieces",
+"cfb2ce5a": "recolour.residual",
+"017c7c7b": "recolour.residual",
+"d255d7a7": "recolour.residual",
+"1acc24af": "recolour.residual",
+"7d419a02": "recolour.residual",
+"6a1e5592": "recolour.residual",
+"913fb3ed": "recolour.residual",
+"fea12743": "recolour.residual",
+"cc9053aa": "recolour.residual",
+"48634b99": "recolour.residual",
+"dd2401ed": "recolour.residual",
+"234bbc79": "recolour.residual",
+"5117e062": "recolour.residual",
+"5ad4f10b": "recolour.residual",
+"2a28add5": "recolour.residual",
+"aa62e3f4": "recolour.residual",
+"d6e50e54": "recolour.residual",
+"4093f84a": "recolour.residual",
+"103eff5b": "recolour.residual",
+"5a5a2103": "recolour.residual",
+"5a719d11": "recolour.residual",
+"ed74f2f2": "recolour.residual",
+"c074846d": "recolour.residual",
+"b71a7747": "recolour.residual",
+"332202d5": "recolour.residual",
+"b20f7c8b": "recolour.residual",
+"2de01db2": "recolour.residual",
+"3de23699": "recolour.residual",
+"18286ef8": "recolour.residual",
+"4e7e0eb9": "recolour.residual",
+"bd5af378": "recolour.residual",
+"f8c80d96": "recolour.residual",
+"6350f1f4": "recolour.residual",
+"d2acf2cb": "recolour.residual",
+"e26a3af2": "recolour.residual",
+"696d4842": "recolour.residual",
+"3bd292e8": "recolour.residual",
+"1190bc91": "fill.residual",
+"9d9215db": "fill.residual",
+"984d8a3e": "fill.residual",
+"538b439f": "fill.residual",
+"692cd3b6": "fill.residual",
+"9b30e358": "fill.residual",
+"9def23fe": "fill.residual",
+"d37a1ef5": "fill.residual",
+"df8cc377": "fill.residual",
+"7acdf6d3": "fill.residual",
+"95755ff2": "fill.residual",
+"cf133acc": "fill.residual",
+"834ec97d": "fill.residual",
+"4a1cacc2": "fill.residual",
+"bf32578f": "fill.residual",
+"db7260a4": "fill.residual",
+"782b5218": "fill.residual",
+"13713586": "fill.residual",
+"62b74c02": "fill.residual",
+"444801d8": "fill.residual",
+"fd4b2b02": "segment.residual",
+"7d18a6fb": "segment.residual",
+"b0f4d537": "segment.residual",
+"20fb2937": "segment.residual",
+"8618d23e": "segment.residual",
+"522fdd07": "segment.residual",
+"9b5080bb": "segment.residual",
+"0607ce86": "segment.residual",
+"52df9849": "segment.residual",
+"0f63c0b9": "segment.residual",
+"f3e14006": "segment.residual",
+"3391f8c0": "segment.residual",
+"f18ec8cc": "segment.residual",
+"25c199f5": "segment.residual",
+"ca8de6ea": "segment.residual",
+"d017b73f": "segment.residual",
+"52364a65": "segment.residual",
+"833966f4": "segment.residual",
+"d968ffd4": "segment.residual",
+"b190f7f5": "segment.residual",
+"689c358e": "segment.residual",
+"5ecac7f7": "combine.residual",
+"bbb1b8b6": "combine.residual",
+"337b420f": "combine.residual",
+"c8cbb738": "combine.residual",
+"e84fef15": "combine.residual",
+"332efdb3": "unknown.residual",
+"28e73c20": "unknown.residual",
+"41ace6b5": "unknown.residual",
+"363442ee": "stamp.template_at_markers",
+"88a10436": "stamp.template_at_markers",
+"2c737e39": "stamp.template_at_markers",
+"1b59e163": "stamp.template_at_markers",
+"f5c89df1": "stamp.template_at_markers",
+"3e980e27": "stamp.template_at_markers",
+"5af49b42": "stamp.template_at_markers",
+"12997ef3": "stamp.template_at_markers",
+"9b2a60aa": "stamp.template_at_markers",
+"bb52a14b": "stamp.complete_partial_matches",
+"d6542281": "stamp.complete_partial_matches",
+"7df24a62": "stamp.complete_partial_matches",
+"e2092e0c": "stamp.complete_partial_matches",
+"ac0c5833": "stamp.complete_partial_matches",
+"36d67576": "stamp.complete_partial_matches",
+"6aa20dc0": "stamp.complete_partial_matches",
+"57aa92db": "stamp.complete_partial_matches",
+"447fd412": "stamp.complete_partial_matches",
+"f8cc533f": "stamp.complete_partial_matches",
+"39e1d7f9": "stamp.complete_partial_matches",
+"fd096ab6": "stamp.complete_partial_matches",
+"72322fa7": "stamp.complete_partial_matches",
+"50846271": "stamp.complete_partial_matches",
+"79369cc6": "stamp.complete_partial_matches",
+"e76a88a6": "stamp.copy_to_congruent_target",
+"321b1fc6": "stamp.copy_to_congruent_target",
+"9f27f097": "stamp.copy_to_congruent_target",
+"40f6cd08": "stamp.copy_to_congruent_target",
+"f21745ec": "stamp.copy_to_congruent_target",
+"890034e9": "stamp.copy_to_congruent_target",
+"e5062a87": "stamp.copy_to_congruent_target",
+"c444b776": "stamp.panel_copy",
+"e734a0e8": "stamp.panel_copy",
+"1e32b0e9": "stamp.panel_copy",
+"42918530": "stamp.panel_copy",
+"8e5a5113": "stamp.panel_copy",
+"92e50de0": "stamp.panel_copy",
+"a416fc5b": "stamp.panel_copy",
+"0ca9ddb6": "stamp.local_stencil",
+"d364b489": "stamp.local_stencil",
+"a9f96cdd": "stamp.local_stencil",
+"b60334d2": "stamp.local_stencil",
+"95990924": "stamp.local_stencil",
+"93b581b8": "stamp.local_stencil",
+"0962bcdd": "stamp.local_stencil",
+"14b8e18c": "stamp.local_stencil",
+"a04b2602": "stamp.local_stencil",
+"31aa019c": "stamp.local_stencil",
+"1e5d6875": "stamp.local_stencil",
+"642248e4": "stamp.local_stencil",
+"e9614598": "stamp.stencil_at_computed_point",
+"11e1fe23": "stamp.stencil_at_computed_point",
+"67a423a3": "stamp.stencil_at_computed_point",
+"3a301edc": "stamp.grow_ring",
+"52fd389e": "stamp.grow_ring",
+"d931c21c": "stamp.grow_ring",
+"ff72ca3e": "stamp.grow_ring",
+"c97c0139": "stamp.grow_ring",
+"e7639916": "stamp.bbox_outline",
+"928ad970": "stamp.bbox_outline",
+"6f8cd79b": "stamp.bbox_outline",
+"fc754716": "stamp.bbox_outline",
+"ff2825db": "stamp.bbox_outline",
+"9af7a82c": "stamp.count_bar",
+"edcc2ff0": "stamp.count_bar",
+"37ce87bb": "stamp.count_bar",
+"fcc82909": "stamp.count_bar",
+"15660dd6": "stamp.residual",
+"9772c176": "stamp.residual",
+"ecdecbb3": "stamp.residual",
+"8886d717": "stamp.residual",
+"a2d730bd": "stamp.residual",
+"ac3e2b04": "stamp.residual",
+"673ef223": "stamp.residual",
+"3befdf3e": "stamp.residual",
+"db615bd4": "stamp.residual",
+"b74ca5d1": "stamp.residual",
+"1bfc4729": "stamp.residual",
+"fd02da9e": "stamp.residual",
+"9841fdad": "stamp.residual",
+"902510d5": "stamp.residual",
+"4522001f": "stamp.residual",
+"db118e2a": "stamp.residual",
+"98c475bf": "stamp.residual",
+"140c817e": "stamp.residual",
+"695367ec": "stamp.residual",
+"0692e18c": "tile.block_placement",
+"8e2edd66": "tile.block_placement",
+"2072aba6": "tile.block_placement",
+"b4a43f3b": "tile.block_placement",
+"15696249": "tile.block_placement",
+"91413438": "tile.block_placement",
+"8719f442": "tile.block_placement",
+"f5b8619d": "tile.arrangement",
+"310f3251": "tile.arrangement",
+"c92b942c": "tile.arrangement",
+"412b6263": "tile.arrangement",
+"2697da3f": "tile.arrangement",
+"d304284e": "tile.residual",
+"762cd429": "tile.residual",
+"11852cab": "complete.symmetry_global",
+"e40b9e2f": "complete.symmetry_global",
+"f9d67f8b": "complete.symmetry_global",
+"4938f0c2": "complete.symmetry_global",
+"60d73be6": "complete.symmetry_global",
+"2546ccf6": "complete.symmetry_global",
+"c35c1b4c": "complete.symmetry_global",
+"1b60fb0c": "complete.symmetry_global",
+"e729b7be": "complete.symmetry_global",
+"5b692c0f": "complete.symmetry_per_object",
+"18419cfa": "complete.symmetry_per_object",
+"93c31fbe": "complete.symmetry_per_object",
+"3345333e": "complete.symmetry_per_object",
+"8dab14c2": "complete.symmetry_per_object",
+"484b58aa": "complete.period",
+"ea959feb": "complete.period",
+"05269061": "complete.period",
+"456873bc": "complete.period",
+"5b526a93": "complete.period",
+"90f3ed37": "complete.prefix_by_template",
+"82819916": "complete.prefix_by_template",
+"b7955b3c": "complete.rectangle",
+"4cd1b7b2": "complete.residual",
+"e3fe1151": "complete.residual",
+"2e65ae53": "complete.residual",
+"4e45f183": "complete.residual",
+"c6e1b8da": "complete.residual",
+"4612dd53": "complete.residual",
+"56dc2b01": "move.slide_until_contact",
+"9c56f360": "move.slide_until_contact",
+"963c33f8": "move.slide_until_contact",
+"6ad5bdfd": "move.slide_until_contact",
+"6ca952ad": "move.slide_until_contact",
+"ac2e8ecf": "move.slide_until_contact",
+"320afe60": "move.slide_until_contact",
+"f3e62deb": "move.slide_until_contact",
+"9b4c17c4": "move.slide_until_contact",
+"5623160b": "move.slide_until_contact",
+"4acc7107": "move.slide_until_contact",
+"84ba50d3": "move.slide_until_contact",
+"b25e450b": "move.slide_until_contact",
+"98cf29f8": "move.slide_until_contact",
+"f0100645": "move.toward_anchor",
+"17829a00": "move.toward_anchor",
+"f28a3cbb": "move.toward_anchor",
+"1a07d186": "move.toward_anchor",
+"e1d2900e": "move.toward_anchor",
+"a48eeaf7": "move.toward_anchor",
+"1b8318e3": "move.toward_anchor",
+"494ef9d7": "move.toward_anchor",
+"7d7772cc": "move.toward_anchor",
+"d687bc17": "move.toward_anchor",
+"342dd610": "move.by_vector",
+"b2bc3ffd": "move.by_vector",
+"8e301a54": "move.by_vector",
+"64a7c07e": "move.by_vector",
+"5521c0d9": "move.by_vector",
+"f45f5ca7": "move.by_vector",
+"e48d4e1a": "move.by_vector",
+"470c91de": "move.by_vector",
+"dc433765": "move.by_vector",
+"5034a0b5": "move.by_vector",
+"22208ba4": "move.by_vector",
+"4364c1c4": "move.by_vector",
+"952a094c": "move.to_position",
+"d89b689b": "move.to_position",
+"20981f0e": "move.to_position",
+"54dc2872": "move.to_position",
+"0e206a2e": "move.to_position",
+"e4941b18": "move.to_position",
+"917bccba": "move.to_position",
+"184a9768": "move.fit_into_hole",
+"228f6490": "move.fit_into_hole",
+"18447a8d": "move.fit_into_hole",
+"67c52801": "move.fit_into_hole",
+"fe45cba4": "move.fit_into_hole",
+"48f8583b": "transform.kronecker",
+"973e499e": "transform.kronecker",
+"c3e719e8": "transform.kronecker",
+"27f8ce4f": "transform.kronecker",
+"ad7e01d0": "transform.kronecker",
+"cce03e0d": "transform.kronecker",
+"c803e39c": "transform.kronecker",
+"42f83767": "transform.kronecker",
+"c9e6f938": "transform.tile_dihedral",
+"ccd554ac": "transform.tile_dihedral",
+"eb281b96": "transform.tile_dihedral",
+"8d5021e8": "transform.tile_dihedral",
+"28bf18c6": "transform.tile_dihedral",
+"a59b95c0": "transform.tile_dihedral",
+"48131b3c": "transform.tile_dihedral",
+"4852f2fa": "transform.tile_dihedral",
+"47c1f68c": "transform.tile_dihedral",
+"b91ae062": "transform.scale",
+"ac0a08a4": "transform.scale",
+"d4b1c2b1": "transform.scale",
+"f25fbde4": "transform.scale",
+"46f33fce": "transform.scale",
+"e633a9e5": "transform.scale",
+"e7a25a18": "transform.scale",
+"465b7d93": "transform.scale",
+"80214e03": "transform.dihedral",
+"9f236235": "transform.dihedral",
+"94133066": "transform.dihedral",
+"b0722778": "transform.dihedral",
+"f0f8a26d": "transform.dihedral",
+"8ee62060": "transform.dihedral",
+"3cd86f4f": "transform.row_shift",
+"423a55dc": "transform.row_shift",
+"1c56ad9f": "transform.row_shift",
+"9968a131": "transform.row_shift",
+"6d1d5c90": "transform.row_shift",
+"79cce52d": "transform.row_shift",
+"025d127b": "transform.row_shift",
+"b775ac94": "transform.reflect_object",
+"963f59bc": "transform.reflect_object",
+"4c5c2cf0": "transform.reflect_object",
+"ad3b40cf": "transform.reflect_object",
+"9bebae7a": "transform.reflect_object",
+"760b3cac": "transform.reflect_object",
+"6855a6e4": "transform.reflect_object",
+"f8a8fe49": "transform.reflect_object",
+"11dc524f": "transform.reflect_object",
+"f341894c": "transform.reflect_object",
+"1a244afd": "transform.rotate_about_pivot",
+"230f2e48": "transform.rotate_about_pivot",
+"84551f4c": "transform.rotate_about_pivot",
+"12422b43": "extend.periodic_fill",
+"53b68214": "extend.periodic_fill",
+"963e52fc": "extend.periodic_fill",
+"cad67732": "extend.periodic_fill",
+"8eb1be9a": "extend.periodic_fill",
+"539a4f51": "extend.periodic_fill",
+"50a16a69": "extend.periodic_fill",
+"caa06a1f": "extend.periodic_fill",
+"a57f2f04": "extend.periodic_fill",
+"58c02a16": "extend.periodic_fill",
+"e21d9049": "extend.periodic_fill",
+"3979b1a8": "extend.periodic_fill",
+"0a938d79": "extend.periodic_lines",
+"8403a5d5": "extend.periodic_lines",
+"bd4472b8": "extend.periodic_lines",
+"e7b06bea": "extend.periodic_lines",
+"e8dc4411": "extend.repeat_stamp",
+"045e512c": "extend.repeat_stamp",
+"985ae207": "extend.repeat_stamp",
+"c62e2108": "extend.repeat_stamp",
+"e619ca6e": "extend.repeat_stamp",
+"94be5b80": "extend.repeat_stamp",
+"0b17323b": "extend.sequence_positions",
+"72207abc": "extend.sequence_positions",
+"5c2c9af4": "extend.sequence_positions",
+"a65b410d": "extend.staircase",
+"5207a7b5": "extend.staircase",
+"db3e9e38": "extend.staircase",
+"bbc9ae5d": "extend.staircase",
+"baf41dbf": "extend.stretch_to_marker",
+"b548a754": "extend.stretch_to_marker",
+"9c1e755f": "extend.smear",
+"17b80ad2": "extend.smear",
+"fc4aaf52": "move.residual",
+"2faf500b": "move.residual",
+"9f669b64": "move.residual",
+"c61be7dc": "move.residual",
+"05a7bcf2": "move.residual",
+"1efba499": "move.residual",
+"85b81ff1": "move.residual",
+"dc46ea44": "move.residual",
+"e39e9282": "move.residual",
+"df9fd884": "move.residual",
+"97c75046": "move.residual",
+"825aa9e9": "move.residual",
+"6d0160f0": "move.residual",
+"99caaf76": "move.residual",
+"bc93ec48": "move.residual",
+"03560426": "move.residual",
+"d749d46f": "move.residual",
+"4c177718": "move.residual",
+"fc10701f": "move.residual",
+"182e5d0f": "move.residual",
+"22233c11": "transform.residual",
+"9f41bd9c": "transform.residual",
+"d753a70b": "transform.residual",
+"58743b76": "transform.residual",
+"846bdb03": "transform.residual",
+"6ecd11f4": "transform.residual",
+"8a004b2b": "transform.residual",
+"c9680e90": "transform.residual",
+"8b28cd80": "transform.residual",
+"46c35fc7": "transform.residual",
+"49d1d64f": "transform.residual",
+"e9afcf9a": "transform.residual",
+"b745798f": "transform.residual",
+"e3f79277": "transform.residual",
+"ecaa0ec1": "transform.residual",
+"34cfa167": "extend.residual",
+"396d80d7": "extend.residual",
+"3ac3eb23": "extend.residual",
+"50c07299": "extend.residual",
+"5b37cb25": "extend.residual",
+"758abdf0": "extend.residual",
+"351d6448": "extend.residual",
+"5d588b4d": "extend.residual",
+"30f42897": "extend.residual",
+"2ccd9fef": "extend.residual",
+"58e15b12": "extend.residual",
+"42a15761": "sort.by_property",
+"e3497940": "combine.fold_overlay",
+"da2b0fe3": "select.empty_lines_paint",
+"4e469f39": "ray.container_leak",
+"aba27056": "ray.container_leak",
+"41e4d17e": "ray.full_line",
+"d43fd935": "ray.orthogonal_directed",
+"1d398264": "ray.diagonal_from_object",
+"13f06aa5": "ray.orthogonal_directed",
+"178fcbfb": "ray.full_line",
+"8d510a79": "ray.orthogonal_directed",
+"5c0a986e": "ray.diagonal_from_object",
+"f8be4b64": "ray.orthogonal_directed",
+"f0afb749": "ray.diagonal_from_object",
+"469497ad": "ray.diagonal_from_object",
+"264363fd": "ray.residual",
+"855e0971": "ray.full_line",
+"508bd3b6": "ray.walker_turn_split",
+"e45ef808": "ray.residual",
+"6ffe8f07": "ray.orthogonal_directed",
+"6d58a25d": "ray.orthogonal_directed",
+"b527c5c6": "ray.orthogonal_directed",
+"25d487eb": "ray.orthogonal_directed",
+"f15e1fac": "ray.residual",
+"ec883f72": "ray.diagonal_from_object",
+"6bcdb01e": "ray.walker_turn_split",
+"b942fd60": "ray.walker_turn_split",
+"f9a67cb5": "ray.walker_turn_split",
+"212895b5": "ray.residual",
+"e5790162": "ray.walker_turn_split",
+"bdad9b1f": "ray.full_line",
+"97999447": "ray.periodic_motif",
+"705a3229": "ray.orthogonal_directed",
+"ac605cbb": "ray.residual",
+"72a961c9": "ray.orthogonal_directed",
+"db93a21d": "ray.residual",
+"3bd67248": "ray.diagonal_from_object",
+"fe9372f3": "ray.periodic_motif",
+"bae5c565": "ray.residual",
+"9f8de559": "ray.residual",
+"a78176bb": "ray.residual",
+"252143c9": "ray.diagonal_from_object",
+"1f0c79e5": "ray.diagonal_from_object",
+"d06dbe63": "ray.periodic_motif",
+"623ea044": "ray.diagonal_from_object",
+"6e19193c": "ray.diagonal_from_object",
+"3f23242b": "ray.residual",
+"8731374e": "ray.full_line",
+"73c3b0d8": "ray.diagonal_from_object",
+"5daaa586": "ray.orthogonal_directed",
+"6a980be1": "ray.residual",
+"e9bb6954": "ray.full_line",
+"2b9ef948": "ray.diagonal_from_object",
+"256b0a75": "ray.residual",
+"f1cefba8": "ray.residual",
+"b8cdaf2b": "ray.diagonal_from_object",
+"85fa5666": "ray.diagonal_from_object",
+"d13f3404": "ray.diagonal_from_object",
+"feca6190": "ray.diagonal_from_object",
+"9344f635": "ray.full_line",
+"b7f8a4d8": "connect.lattice_between",
+"8cb8642d": "ray.diagonal_from_object",
+"2281f1f4": "project.and_intersection",
+"2685904e": "project.residual",
+"a406ac07": "project.and_intersection",
+"f83cb3f6": "project.marker_onto_target",
+"1c02dbbe": "project.and_intersection",
+"78e78cff": "ray.container_leak",
+"23581191": "ray.full_line",
+"45bbe264": "ray.full_line",
+"1f642eb9": "project.marker_onto_target",
+"137f0df0": "select.empty_lines_paint",
+"54d82841": "project.marker_onto_target",
+"e048c9ed": "project.marker_onto_target",
+"bf89d739": "connect.residual",
+"55059096": "connect.aligned_pair",
+"60a26a3e": "connect.aligned_pair",
+"f8f52ecc": "path.shortest_route",
+"342ae2ed": "connect.aligned_pair",
+"fb791726": "connect.aligned_pair",
+"3490cc26": "connect.residual",
+"d94c3b52": "connect.lattice_between",
+"2c608aff": "ray.orthogonal_directed",
+"d4a91cb9": "path.elbow_route",
+"a2fd1cf0": "path.elbow_route",
+"992798f6": "path.elbow_route",
+"0e671a1a": "path.elbow_route",
+"e4075551": "connect.residual",
+"29c11459": "connect.aligned_pair",
+"b7249182": "connect.residual",
+"06df4c85": "connect.lattice_between",
+"a096bf4d": "connect.lattice_between",
+"97239e3d": "connect.lattice_between",
+"cbded52d": "connect.lattice_between",
+"c6141b15": "connect.residual",
+"6cdd2623": "connect.aligned_pair",
+"e760a62e": "connect.lattice_between",
+"b9630600": "connect.residual",
+"f35d900a": "connect.residual",
+"cb227835": "path.elbow_route",
+"1478ab18": "path.residual",
+"29700607": "path.elbow_route",
+"712bf12e": "path.walker_detour",
+"c87289bb": "path.walker_detour",
+"2dd70a9a": "path.walker_detour",
+"d9f24cd1": "path.walker_detour",
+"e5c44e8f": "ray.walker_turn_split",
+"69889d6e": "path.walker_detour",
+"96a8c0cd": "path.walker_detour",
+"99fa7670": "path.residual",
+"7ec998c9": "path.elbow_route",
+"b15fca0b": "path.shortest_route",
+"e6de6e8f": "path.residual",
+"7e576d6e": "path.shortest_route",
+"891232d6": "path.walker_detour",
+"c64f1187": "crop.residual",
+"414297c0": "crop.fit_by_anchor",
+"1be83260": "crop.residual",
+"83eb0a57": "crop.residual",
+"e6721834": "crop.fit_by_anchor",
+"2f0c5170": "crop.fit_by_anchor",
+"8a6d367c": "crop.residual",
+"97a05b5b": "crop.fit_by_shape",
+"25e02866": "crop.overlay_windows",
+"7c9b52a0": "crop.overlay_windows",
+"50aad11f": "crop.extract_and_concat",
+"93b4f4b3": "crop.fit_by_shape",
+"bf699163": "crop.by_score",
+"9ba4a9aa": "crop.by_score",
+"2037f2c7": "crop.residual",
+"ce602527": "crop.by_score",
+"da6e95e5": "crop.by_score",
+"73182012": "crop.canonical_window",
+"d56f2372": "crop.odd_one_out",
+"a87f7484": "crop.odd_one_out",
+"2013d3e2": "crop.canonical_window",
+"d10ecb37": "crop.canonical_window",
+"662c240a": "crop.odd_one_out",
+"8efcae92": "crop.by_score",
+"aee291af": "crop.odd_one_out",
+"e50d258f": "crop.by_score",
+"2c0b0aff": "crop.by_score",
+"7bb29440": "crop.by_score",
+"48d8fb45": "crop.by_score",
+"ae4f1146": "crop.by_score",
+"3f7978a0": "crop.by_score",
+"a644e277": "crop.by_score",
+"0b148d64": "crop.odd_one_out",
+"137eaa0f": "crop.overlay_windows",
+"7e4d4f7c": "crop.residual",
+"abbfd121": "complete.crop_occluded",
+"458e3a53": "summarise.panel_to_pixel",
+"42f14c03": "crop.fit_by_shape",
+"57edb29d": "crop.residual",
+"73ccf9c2": "crop.odd_one_out",
+"de493100": "complete.crop_occluded",
+"1a6449f1": "crop.by_score",
+"0bb8deee": "crop.extract_and_concat",
+"e9fc42f2": "crop.residual",
+"2dee498d": "crop.canonical_window",
+"7b7f7511": "crop.canonical_window",
+"a6953f00": "crop.canonical_window",
+"5bd6f4ac": "crop.canonical_window",
+"fbf15a0b": "crop.by_score",
+"9aec4887": "crop.residual",
+"6b9890af": "crop.residual",
+"a61ba2ce": "crop.residual",
+"aab50785": "crop.extract_and_concat",
+"88a62173": "crop.odd_one_out",
+"6cbe9eb8": "crop.residual",
+"e78887d1": "crop.residual",
+"505fff84": "crop.extract_and_concat",
+"c1d99e64": "select.empty_lines_paint",
+"a8c38be5": "select.residual",
+"22806e14": "select.residual",
+"9caba7c3": "select.residual",
+"3d588dc9": "select.residual",
+"941d9a10": "select.residual",
+"2f767503": "select.residual",
+"b1fc8b8e": "summarise.lookup_by_feature",
+"9720b24f": "select.residual",
+"d23f8c26": "select.residual",
+"c658a4bd": "summarise.concentric_rings",
+"c920a713": "summarise.concentric_rings",
+"81c0276b": "summarise.ranked_bars",
+"5833af48": "summarise.residual",
+"ac6f9922": "summarise.panel_to_pixel",
+"4290ef0e": "summarise.concentric_rings",
+"780d0b14": "summarise.panel_to_pixel",
+"c8b7cc0f": "summarise.count_to_glyph",
+"af24b4cc": "summarise.panel_to_pixel",
+"d4c90558": "summarise.ranked_bars",
+"68bc2e87": "summarise.ranked_bars",
+"ba1aa698": "summarise.residual",
+"44f52bb0": "summarise.lookup_by_feature",
+"3b4c2228": "summarise.count_to_glyph",
+"ff28f65a": "summarise.count_to_glyph",
+"1a2e2828": "summarise.select_colour",
+"7039b2d7": "summarise.panel_to_pixel",
+"e872b94a": "summarise.count_to_glyph",
+"1190e5a7": "summarise.panel_to_pixel",
+"b9b7f026": "summarise.select_colour",
+"3d6c6e23": "summarise.ranked_bars",
+"239be575": "summarise.lookup_by_feature",
+"de1cd16c": "summarise.select_colour",
+"8e1813be": "summarise.ranked_bars",
+"8597cfd7": "summarise.select_colour",
+"22425bda": "summarise.ranked_bars",
+"8ba14f53": "summarise.ranked_bars",
+"4be741c5": "summarise.ranked_bars",
+"19bb5feb": "summarise.panel_to_pixel",
+"b7999b51": "summarise.ranked_bars",
+"aaecdb9a": "summarise.ranked_bars",
+"a3325580": "summarise.ranked_bars",
+"6165ea8f": "summarise.residual",
+"668eec9a": "summarise.ranked_bars",
+"2753e76c": "summarise.ranked_bars",
+"d0f5fe59": "summarise.count_to_glyph",
+"d5c634a2": "summarise.residual",
+"f3cdc58f": "summarise.ranked_bars",
+"0a1d4ef5": "summarise.panel_to_pixel",
+"642d658d": "summarise.select_colour",
+"b1986d4b": "summarise.residual",
+"09629e4f": "summarise.residual",
+"794b24be": "summarise.count_to_glyph",
+"996ec1f3": "summarise.panel_to_pixel",
+"33067df9": "summarise.residual",
+"a1aa0c1e": "summarise.residual",
+"5289ad53": "summarise.count_to_glyph",
+"bd283c4a": "summarise.ranked_bars",
+"5783df64": "summarise.panel_to_pixel",
+"6773b310": "summarise.panel_to_pixel",
+"8abad3cf": "summarise.ranked_bars",
+"1fad071e": "summarise.count_to_glyph",
+"5587a8d0": "summarise.concentric_rings",
+"8fff9e47": "summarise.concentric_rings",
+"9356391f": "summarise.concentric_rings",
+"995c5fa3": "summarise.lookup_by_feature",
+"7837ac64": "summarise.panel_to_pixel",
+"f8b3ba0a": "summarise.ranked_bars",
+"b0c4d837": "summarise.count_to_glyph",
+"ac0c2ac3": "summarise.concentric_rings",
+"99306f82": "summarise.concentric_rings",
+"759f3fd3": "summarise.concentric_rings",
+"652646ff": "summarise.concentric_rings",
+"3ee1011a": "summarise.concentric_rings",
+"d631b094": "summarise.count_to_glyph",
+"a680ac02": "crop.extract_and_concat",
+"df978a02": "sort.residual",
+"2601afb7": "sort.permute_attribute_sequence",
+"4df5b0ae": "sort.rank_and_pack",
+"beb8660c": "sort.rank_and_pack",
+"cdecee7f": "sort.rank_and_pack",
+"67636eac": "crop.extract_and_concat",
+"20818e16": "sort.rank_and_pack",
+"1990f7a8": "crop.extract_and_concat",
+"dc2aa30b": "sort.rank_and_pack",
+"5e6bbc0b": "sort.residual",
+"5792cb4d": "sort.permute_attribute_sequence",
+"dce56571": "summarise.count_to_glyph",
+"d93c6891": "count.residual",
+"6e02f1e3": "summarise.lookup_by_feature",
+"878187ab": "count.residual",
+"27a77e38": "count.residual",
+"afe3afe9": "count.residual"
+}
+}
