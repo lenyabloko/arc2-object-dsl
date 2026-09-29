@@ -1,0 +1,8 @@
+{
+ "correct_of_172": 49,
+ "eval_digest": "c93d287bfd585cd4c60e39d00ca09a52e09e50c8f745d6a4f4862be4e8569f32",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl",
+ "probe": "V20 (V19 + compose_objmap2, compose_ctx, fam_fill_bg_windows v1; deterministic budgets)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "note": "WSL parity c21: digest identical to V19 (public-eval predictions unchanged), 49/172, max task 57 s, 0 timeouts. Training +12 vs V19, no losses; N2/half B unchanged. Staged as a fallback for the Sep 30 slot; LATEST stays v12 tonight."
+}

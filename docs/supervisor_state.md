@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 18:05 UTC (14:05 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 18:30 UTC (14:30 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -106,6 +106,8 @@ _Last updated: 2026-09-29 18:05 UTC (14:05 EDT). Updated with every outbox batch
 - Reviewer rule for M050 ("cover the largest square background patch with colour") → `latent/fam_fill_bg_windows.py` (greedy largest all-r squares / windows / square components). Alone: ARC1 6 exact, 0 wrong (new: 31adaf00, 6cf79266), N2 0. The rule fits 2 of M050's 6 tasks exactly; a8d7556c nearly (one pair), the other three are template/plus patterns.
 - **V20** = V19 + fam_fill_bg_windows + COMPOSE_ENGINES (objmap2, lift, ctx). Probe `tools/m1b/v20`. WSL jobs: `c20-v20` (train/half A, N2 + half-B counts) and `c21-v20-parity` (public eval, sealed count, timing). Admit only with no regressions and public eval ≥ 49/172, max task well under 300 s.
 - Finding: design-set gains (+6 N1, +15 ARC1) did not move N2. Held-out transfer remains the bottleneck; the remaining design failures are dominated by creations nobody explains (CA, paths, progressions: 31), different-size outputs (25) and multi-step per-object changes (19).
+- **Review principle (Len, 14:30 EDT): the review page is for corrections/perturbations only and stays subordinate to the main pipeline; it is not the classification or inference engine.** Keep: group Primary/Present/Absent, verdict/split, misfit, notes/new concepts, ✗ group/task out of a category. Removed: category approval flow (Approve/Split/Merge/Drop + submit). Every correction is ingested as a perturbation and kept only if it does not hurt the solver.
+- Prior-domain categories (8) hidden from the review page (v41; data kept as `cats_prior` / `categories_prior`): they were a suggestion to strengthen inductive bias and have not shown held-out gains (half B / sealed / N2 unchanged by the prior families). `apply_op_domains.py` is dropped from the pipeline.
 - Review page v40 (13:50 EDT): **categories are evidence-based** (`tools/review/category_evidence.py`; Codex detector strengths dropped for non-prior categories). A task carries a category by exact grid check (palette = every output a colour relabelling of its input; crop = sub-grid; scale = size multiple; sparse ≤ 20% cells change; partition = full-length line), solver module, or reading (operators / roles / wording); a group carries it when ≥ half its members do. Palette mapping now = M024, M027, M135, M148, M078, M130, M089, M085 (+12 stray tasks listed on the category page). Pipeline order: regroup → patch_review_json → apply_op_domains → apply_solved_names → category_evidence → render.
 - Project doc `claude/supervisor_state.md`: write at most once per 30 min (Len). The repo copy is updated with every batch.
 - Review page v39 (13:35 EDT): **group membership is algorithmic** (Len: not a review task). `tools/review/regroup_algorithmic.py`: a task solved by a group primitive (module fam_<key>, or BIND e.g. fill_bg_windows → fill.largest_empty) joins that group; solved-family/residual groups dissolve into mechanism groups; multi-group modules never move tasks between mechanism groups; mechanism-group medoids never move. 91 moves, 18 solved-family groups dissolved (ids retired, e.g. M141, M145), 152 groups. Pipeline: regroup → patch_review_json.py → apply_op_domains.py → apply_solved_names.py → render. No membership dropdown (removed); misfit flags stay as evidence. Default tab = Categories.
@@ -117,6 +119,11 @@ _Last updated: 2026-09-29 18:05 UTC (14:05 EDT). Updated with every outbox batch
 ## Update 14:05 EDT Sep 29: V20 wake results (c20-v20)
 - G-stratum training exact 594 → 606 (+12: 31adaf00, 44d8ac46, 52364a65, 5a719d11, 6cf79266, 9720b24f, aabf363d, bda2d7a6, c444b776, c4d1a9ae, e734a0e8, e76a88a6); LOST none; half A 36 (=); **N2 37 exact / 39 fit (=)**; half B 1/49 (=); fit-but-wrong 13 → 14; max task 164 s under 4 workers (training). c21-v20-parity pending.
 - batch-0039 rejected (sha mismatch, see rule above); contents resent in batch-0041.
+
+## Update 14:30 EDT Sep 29: V20 admitted (cycle 18)
+- c21-v20-parity: digest **c93d287b… identical to V19** (the new engines change no public-eval prediction), 49/172, half A 35, half B 1, sealed 1, max task 57 s, 0 timeouts.
+- Admitted for training coverage (+12, no losses). Notebook **v13 = V20** built with `tools/m1b/build_nb.py` and staged in `submission/v13` (EXPECTED c93d287b / 49); **LATEST stays v12** for tonight. v13 is a fallback for the Sep 30 slot (same public-eval output; may differ only on hidden tasks where the new engines fire).
+- Lesson: cycle-18 composition gains are all on the design set; held-out transfer (N2, half B, sealed, public-eval predictions) did not move. Next cycle must target held-out failure modes, not design coverage.
 
 ## Next steps
 1. Tonight after 20:00 EDT: WSL runs `bash submission/daily_submit.sh` (v12 = V19, expected c93d287b / 49). Read `submissions/2026-09-30.json` and `scores.txt` at the 22:30 EDT check-in.
