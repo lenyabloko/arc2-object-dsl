@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 18:30 UTC (14:30 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 18:50 UTC (14:50 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -124,6 +124,12 @@ _Last updated: 2026-09-29 18:30 UTC (14:30 EDT). Updated with every outbox batch
 - c21-v20-parity: digest **c93d287b… identical to V19** (the new engines change no public-eval prediction), 49/172, half A 35, half B 1, sealed 1, max task 57 s, 0 timeouts.
 - Admitted for training coverage (+12, no losses). Notebook **v13 = V20** built with `tools/m1b/build_nb.py` and staged in `submission/v13` (EXPECTED c93d287b / 49); **LATEST stays v12** for tonight. v13 is a fallback for the Sep 30 slot (same public-eval output; may differ only on hidden tasks where the new engines fire).
 - Lesson: cycle-18 composition gains are all on the design set; held-out transfer (N2, half B, sealed, public-eval predictions) did not move. Next cycle must target held-out failure modes, not design coverage.
+
+## Update 14:50 EDT Sep 29: cycle 19 — near-miss fallback (hidden-score lever)
+- Unsolved tasks got a 1×1 placeholder on Kaggle (always wrong). Experiment `latent/nearmiss_exp.py` (design splits only): leave-one-pair-out library programs (fit all training pairs but one, k ≥ 3) as best-effort attempts. ARC1 unsolved 249 → 20 guesses, **10 exact**; N1 80 → 4 guesses, **1 exact**; half A 14 → 0. Results `results/cycle19/nearmiss_design.txt`.
+- V21 = V20 + fam_fill_bg_windows v2 + `gdsl.nearmiss_fallback` (last stage after compose; deterministic, size cap 2400 input cells; names prefixed `nearmiss:`). Probe `tools/m1b/v21`; WSL jobs c22-v21 (N2/half-B counts) and c23-v21-parity (timing vs the 300 s alarm).
+- Review page v43: palette category lists every candidate group ('minority' ranked last), shape-palette-transfer grid check (23 tasks); closure-notes card removed. Slip: the 23 shape-palette ids were printed without filtering N2 — treat that concept's N2 count as possibly contaminated; design any primitive from ARC1/N1/half A members only.
+- Pending design fixes from Len's review: regroup should ADD a task to a second group (overlap) instead of moving a mechanism-group medoid; priors should act as ranking/pruning bias in search, not as more whole-task families; stop adding monolithic families (North Star).
 
 ## Next steps
 1. Tonight after 20:00 EDT: WSL runs `bash submission/daily_submit.sh` (v12 = V19, expected c93d287b / 49). Read `submissions/2026-09-30.json` and `scores.txt` at the 22:30 EDT check-in.

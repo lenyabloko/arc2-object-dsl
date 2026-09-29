@@ -5,7 +5,9 @@ A task carries a category only with verifiable evidence, strongest first:
           input; crop: every output is a sub-grid of its input);
   solver  the task is solved by a primitive whose module implements that kind of mechanism;
   reading the abstract reading's operators / roles / wording name it.
-A group carries a category when at least half of its members (all of them for a singleton) carry it.
+A group carries a category when at least half of its members (all of them for a singleton) carry it; a group
+where only a minority carries it is still listed (marked 'minority', ranked last) if one of them has exact or solver
+evidence, so the reviewer sees every candidate and can exclude it.
 Prior-domain categories (p_*) are left as they are (they are already solver / grounding / operator evidence).
 
 usage: python3 category_evidence.py <review_groups_mview.json> <S0 dir>"""
@@ -30,6 +32,43 @@ def subgrid(a, b):
     H, W = dims(a); h, w = dims(b)
     if h > H or w > W or h * w >= H * W: return False
     return any(all(a[y + i][x:x + w] == b[i] for i in range(h)) for y in range(H - h + 1) for x in range(W - w + 1))
+def comps8(g, col):
+    H, W = dims(g); seen = set(); out = []
+    for y in range(H):
+        for x in range(W):
+            if g[y][x] != col or (y, x) in seen: continue
+            st = [(y, x)]; seen.add((y, x)); c = [(y, x)]
+            while st:
+                a0, b0 = st.pop()
+                for dy in (-1, 0, 1):
+                    for dx in (-1, 0, 1):
+                        n = (a0 + dy, b0 + dx)
+                        if 0 <= n[0] < H and 0 <= n[1] < W and n not in seen and g[n[0]][n[1]] == col: seen.add(n); c.append(n); st.append(n)
+            out.append(c)
+    return out
+def shape_palette(P):
+    """shapes of one colour are each recoloured uniformly with colours that appear elsewhere in the input (a palette);
+    at least two different palette colours are used (erasing the palette itself is allowed)."""
+    allc = set(); multi = False
+    for a, b in P:
+        if dims(a) != dims(b): return False
+        B = bg(a)
+        ch = {(y, x) for y in range(len(a)) for x in range(len(a[0])) if a[y][x] != b[y][x] and b[y][x] != B}
+        if not ch: return False
+        src = {a[y][x] for y, x in ch}
+        if len(src) != 1: return False
+        m = src.pop(); new = set()
+        for c in comps8(a, m):
+            if not set(c) & ch: continue
+            oc = {b[y][x] for y, x in c}
+            if len(oc) != 1: return False
+            o = oc.pop()
+            if o == m: continue
+            if o == B or not any(o in r for r in a): return False
+            new.add(o)
+        if not new: return False
+        multi |= len(new) >= 2; allc |= new
+    return multi or len(allc) >= 2
 def full_line(g):
     c0 = bg(g)
     rows = any(len(set(r)) == 1 and r[0] != c0 for r in g)
@@ -45,6 +84,7 @@ def exact(t):
             U = {}
             glob = all(U.setdefault(k, v) == v for f in fs for k, v in f.items())
             ev['palette'] = 'exact colour relabelling' + (' (one map for all pairs)' if glob else ' (map changes per pair)')
+        if 'palette' not in ev and shape_palette(P): ev['palette'] = 'exact: shapes take their colours from an in-grid palette'
         fr = [sum(x != y for ra, rb in zip(a, b) for x, y in zip(ra, rb)) / (len(a) * len(a[0])) for a, b in P]
         if all(0 < f <= 0.2 for f in fr): ev['sparse'] = 'exact: at most %d%% of cells change' % round(100 * max(fr))
     if all(subgrid(a, b) for a, b in P): ev['crop'] = 'exact: every output is a sub-grid of its input'
@@ -125,13 +165,15 @@ for g in D['groups']:
     keep = [c for c in g['cats'] if c['id'].startswith('p_')]
     for c in CATS:
         hit = [t for t in ts if c in EV[t]]
-        if not hit or len(hit) < (1 if n == 1 else n / 2): continue
+        strong_hits = [t for t in hit if rank(EV[t][c]) < 2]
+        major = len(hit) >= (1 if n == 1 else n / 2)
+        if not hit or not (major or strong_hits): continue          # minority groups are listed when a member has exact/solver evidence
         kinds = collections.Counter(EV[t][c].split(':')[0].split(' ')[0] for t in hit)
         cov = len(hit) / n; lift = round(cov / base[c], 1) if base[c] else 0
         strong = sum(1 for t in hit if rank(EV[t][c]) < 2)
-        keep.append({'axes': [], 'classes': [], 'id': c, 'cov': round(cov, 2), 'lift': lift,
-                     'score': round(cov * min(3, max(lift, 1)) * (1 + strong / n), 3), 'concepts': [],
-                     'evidence': '%d of %d members: ' % (len(hit), n) + ', '.join('%s %d' % (k, v) for k, v in kinds.most_common())
+        keep.append({'axes': [], 'classes': [], 'id': c, 'cov': round(cov, 2), 'lift': lift, 'minority': not major,
+                     'score': round(cov * min(3, max(lift, 1)) * (1 + strong / n) * (1 if major else 0.25), 3), 'concepts': [],
+                     'evidence': ('' if major else 'minority · ') + '%d of %d members: ' % (len(hit), n) + ', '.join('%s %d' % (k, v) for k, v in kinds.most_common())
                                  + ' · e.g. ' + EV[hit[0]][c]})
     g['cats'] = sorted(keep, key=lambda c: -c['score'])
 D['task_cats'] = {t: e for t, e in EV.items() if e}

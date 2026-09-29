@@ -1,0 +1,2 @@
+{"job_id": "c22-v21", "probe": "tools/m1b/v21", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V21 = V20 + fam_fill_bg_windows v2 (largest empty patch) + near-miss fallback (leave-one-pair-out library programs as best-effort attempts for tasks with no verified program; prefixed nearmiss:). N2 and half-B counts; 'occupied' includes near-miss guesses."}

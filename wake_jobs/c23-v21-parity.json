@@ -1,0 +1,2 @@
+{"job_id": "c23-v21-parity", "mode": "parity", "probe": "tools/m1b/v21", "task_seconds": 300,
+ "note": "Full-probe parity + per-task timing of V21 on the public eval (near-miss stage adds up to k library searches on unsolved tasks; check max_s against the 300 s alarm)."}
