@@ -1,0 +1,66 @@
+# Supervisor state (read this first when taking over)
+
+_Last updated: 2026-09-29 02:20 UTC (22:20 EDT Sep 28). Updated with every outbox batch._
+
+## Goal and rules (unchanged)
+- Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
+- Symbolic solver only.
+- **Kaggle:** submit only via `submission/daily_submit.sh` after the Kaggle parity check passes (digest match plus `correct_of_172`). One submission per UTC day.
+- **Data discipline:**
+  - Design uses training, dev-eval half A (burned as a design set) and N1, the design half of the 233 ARC-AGI-2-new training tasks (`tools/m1b/novel_N1.txt`).
+  - N2 (`novel_N2.txt`), half B and sealed: counts only; task ids are never inspected.
+- No task-specific code; no Codex solutions.
+- Never touch Kaggle credentials; no deletions on the user's machine.
+
+## Current builds
+
+| Build | Probe | Training (lattice + G) | Half A | Half B | Sealed | Public eval | Status |
+|---|---|---|---|---|---|---|---|
+| V17 | `tools/m1b/v17` | 504 | 35 | 1/49 | 0/21 | 46/172 | **Submitted** 2026-09-29 01:05 UTC as notebook v11 (kernel v3). Kaggle parity passed; score pending. |
+| V18 | `tools/m1b/v18` | 590 | 36 | 1/49 | — | 47/172 | Admitted (cycle 15). Has 2 wall-clock budgets, so it is not Kaggle-safe. |
+| V18d | `tools/m1b/v18d` | — | — | — | — | digest 087dfbc6 | V18 with those budgets removed. Last parity run was under heavy load: 1 task timed out at 300 s, and 5 took >150 s. **Re-time on an idle machine before building notebook v12.** |
+
+- ADMIT for c13–c15 is done (`results/m1b/perturbations.txt`, cycles 13–15): no regressions, all admitted.
+- **Finding:** held-out half B stays at 1/49 and sealed at 0/21 across V13→V18. Monolithic families and priors are at a fixed point for transfer.
+
+## Lanes
+- **Group primitives** (`latent/fam_*.py`, 29 modules): done through pass 5.
+- **Priors** (`latent/prior_*.py`, 8 domains): done through round 2.
+- **Composition engines** (`latent/compose_*.py`), the current lane.
+  - N2 exact counts: objmap 4, lift 5, residual 0.
+  - Kaggle parity needs deterministic work budgets:
+
+  | Engine | Deterministic conversion |
+  |---|---|
+  | compose_objmap | Done and verified: byte-identical under load and with a different hash seed; N2 4 exact / 5 fit / 1 wrong. |
+  | compose_lift | Converted by an agent that was interrupted; not verified. Orphan eval (`out_compose_lift_det.jsonl`) was still running at 02:30 UTC. The first det-eval log showed ARC1 160, N1 11, half A 1, N2 5 exact / 0 wrong. |
+  | compose_residual | Converted by an interrupted agent; not verified. Orphan eval was still running at 02:30 UTC. |
+
+  - The originals are kept as `compose_*_timed.py`.
+- **Ontology:**
+  - `results/ontology/mechanism_ontology.json`
+  - `latent/ontology_links.ttl` (635 verified external links)
+  - The review page shows mechanism groups (M001–M170) and 8 prior categories.
+
+## Infrastructure
+- **Cloud workspace:**
+  - `/home/claude/work/widen`: gdsl.py plus probes and parity runs.
+  - `/home/claude/work/latent`: engines, briefs and eval harnesses (`eval_fam.py`, `eval_fam2.py` = transfer-aware).
+  - `/home/claude/work/s0`: review page (`mview/build_mview.py` → `mview/arc_group_review.html`).
+- **WSL wake loop** (`~/arc/wsl_work/wake/wake_loop.sh`) runs `wake_jobs/*.json` via `tools/wake/wake_eval.py`.
+  - Results go to `cloud_outbox/wsl_results/wake/<job>/`.
+  - From batch-0026 on, `summary.json` includes N2 counts.
+- **Outbox:** batches carry `files.tar.gz` and `MANIFEST.json`, with `READY` written last. Allowed extensions only (no `.jsonl`; use `.txt`). Always read `RESULT.json` before claiming a batch was pushed.
+- **Review page:** claude.ai artifact `Ty8UPeb21xRCRamtphdZj2` (db capability; decisions keyed by group id; the v1 spectral groups are still reachable through the toggle).
+
+## Operating rules (learned the hard way)
+- Run long jobs detached (`nohup … &`) and poll. Never block a tool call on a job longer than a few minutes; that includes multi-agent batches, so keep agent batches small.
+- Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
+- Kill processes only with exact patterns such as `pgrep -f "^python3 eval_gdsl2"`; broad patterns kill the shell.
+- Wall-clock budgets anywhere in the probe break Kaggle parity.
+
+## Next steps
+1. Poll the orphan det evals (lift, residual). Verify determinism: rerun 60 tasks with and without load and compare sha256.
+2. Re-time V18d parity on an idle machine. If no task comes close to 300 s, build notebook v12 = V18d, possibly with the verified compose engines as a fallback stage after the library, using a deterministic budget.
+3. Integrate the composition engines as a G stratum fallback. Wake job with N2 and half-B counts. Admit if N2 or half B rises with no regressions.
+4. Check-ins run 12-hourly at 10:30 and 22:30 EDT (scheduled task `trig_01JDWgxUrkaFnHa3baDkown8` fires 2026-09-29 14:30 UTC).

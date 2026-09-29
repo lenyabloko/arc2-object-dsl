@@ -1,0 +1,3546 @@
+@prefix arcm: <https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix om_set1: <http://www.openmath.org/cd/set1#> .
+@prefix om_arith1: <http://www.openmath.org/cd/arith1#> .
+@prefix om_integer1: <http://www.openmath.org/cd/integer1#> .
+@prefix om_integer2: <http://www.openmath.org/cd/integer2#> .
+@prefix om_relation1: <http://www.openmath.org/cd/relation1#> .
+@prefix om_logic1: <http://www.openmath.org/cd/logic1#> .
+@prefix om_setname1: <http://www.openmath.org/cd/setname1#> .
+@prefix om_minmax1: <http://www.openmath.org/cd/minmax1#> .
+@prefix om_permut1: <http://www.openmath.org/cd/permut1#> .
+@prefix om_permutation1: <http://www.openmath.org/cd/permutation1#> .
+@prefix om_permgp1: <http://www.openmath.org/cd/permgp1#> .
+@prefix om_permgp2: <http://www.openmath.org/cd/permgp2#> .
+@prefix om_groupname1: <http://www.openmath.org/cd/groupname1#> .
+@prefix om_plangeo1: <http://www.openmath.org/cd/plangeo1#> .
+@prefix om_plangeo2: <http://www.openmath.org/cd/plangeo2#> .
+@prefix om_plangeo3: <http://www.openmath.org/cd/plangeo3#> .
+@prefix om_graph1: <http://www.openmath.org/cd/graph1#> .
+
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism> a owl:Ontology ;
+    rdfs:label "ARC mechanism and prior ontology - semantic links"@en ;
+    dcterms:created "2026-09-28"^^xsd:date ;
+    rdfs:comment "Grounds the local ARC ontology layers (effect operators, mechanism subclasses, prior families, task categories) in OpenMath, Wikidata, DBpedia and the DUL / BFO upper-level ontologies. Every external IRI was verified with WebFetch / WebSearch before being recorded (see the verified_by field of ontology_links.json). SKOS mapping properties and the arcm annotation properties are used on OWL classes as annotations."@en .
+
+# ---------------------------------------------------------------- vocabulary
+arcm:Operator a owl:Class ; rdfs:label "effect operator"@en ; rdfs:comment "A class of grid-to-grid transformations named by its effect (RECOLOUR, MOVE, ...)."@en ;
+    rdfs:subClassOf dul:Process .
+arcm:Mechanism a owl:Class ; rdfs:label "mechanism"@en ; rdfs:comment "A mechanism subclass of an effect operator (a generic primitive with parameters)."@en ;
+    rdfs:subClassOf arcm:Operator .
+arcm:Prior a owl:Class ; rdfs:label "prior"@en ; rdfs:comment "A prior: a domain theory (topology, geometry, ...) or one of its parametric program families."@en ;
+    rdfs:subClassOf dul:Description .
+arcm:Principle a owl:Class ; rdfs:label "physical principle"@en ; rdfs:comment "A physics principle or law used to ground mechanisms and priors."@en ;
+    rdfs:subClassOf dul:Theory .
+arcm:Analogy a owl:Class ; rdfs:label "common-sense analogy"@en ; rdfs:comment "A common-sense concept (artifact, phenomenon, game) used as an analogy."@en ;
+    rdfs:subClassOf dul:Concept .
+arcm:MathConcept a owl:Class ; rdfs:label "mathematical concept"@en ; rdfs:comment "A mathematical or computational concept used to ground mechanisms and priors."@en ;
+    rdfs:subClassOf dul:FormalEntity .
+arcm:Category a owl:Class ; rdfs:label "task category"@en ; rdfs:comment "A meta-class of tasks from categories.json."@en ;
+    rdfs:subClassOf dul:Concept .
+arcm:groundedIn a owl:AnnotationProperty ; rdfs:label "grounded in"@en ; rdfs:comment "Links a mechanism or prior to a principle, analogy or mathematical concept that it instantiates or is explained by."@en .
+arcm:domain a owl:AnnotationProperty ; rdfs:label "prior domain"@en ; rdfs:comment "topology | geometry | combinatorics | optics | mechanics | fluids | action | arithmetic"@en .
+arcm:partOfPrior a owl:AnnotationProperty ; rdfs:label "part of prior"@en ; rdfs:comment "Links a prior family (or planned aspect) to its domain prior."@en .
+arcm:familyName a owl:AnnotationProperty ; rdfs:label "family name"@en ; rdfs:comment "Program-name prefix yielded by the prior family (e.g. topo:fill)."@en .
+arcm:status a owl:AnnotationProperty ; rdfs:label "status"@en ; rdfs:comment "Implementation status of a prior at linking time."@en .
+arcm:sourceFile a owl:AnnotationProperty ; rdfs:label "source file"@en ; rdfs:comment "Local file that defines the node."@en .
+arcm:concerns a owl:AnnotationProperty ; rdfs:label "concerns"@en ; rdfs:comment "Upper-level (DUL / BFO) kind of entity a task category is about."@en .
+arcm:taskCount a owl:AnnotationProperty ; rdfs:label "task count"@en ; rdfs:comment "Number of tasks assigned to a mechanism in mechanism_ontology.json."@en .
+arcm:residual a owl:AnnotationProperty ; rdfs:label "residual"@en ; rdfs:comment "True for residual / bookkeeping bins that have no generic primitive."@en .
+
+# ---------------------------------------------------------------- effect operators (rdfs:subClassOf arcm:Operator; upper alignment dul:Process)
+arcm:RECOLOUR
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "RECOLOUR"@en ;
+    rdfs:comment "Effect operator (13 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Palette_(computing)> ,
+        wd:Q7127464 .
+
+arcm:FILL
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "FILL"@en ;
+    rdfs:comment "Effect operator (5 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Flood_fill> ,
+        wd:Q1196156 .
+
+arcm:COMBINE
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "COMBINE"@en ;
+    rdfs:comment "Effect operator (4 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Digital_compositing> ,
+        wd:Q3286562 .
+
+arcm:CA
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "CA"@en ;
+    rdfs:comment "Effect operator (2 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Cellular_automaton> ,
+        wd:Q189156 .
+
+arcm:RAY
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "RAY"@en ;
+    rdfs:comment "Effect operator (8 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Ray_(optics)> ,
+        wd:Q633620 .
+
+arcm:STAMP
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "STAMP"@en ;
+    rdfs:comment "Effect operator (11 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Rubber_stamp> ,
+        wd:Q644099 .
+
+arcm:MOVE
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "MOVE"@en ;
+    rdfs:comment "Effect operator (7 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Translation_(geometry)> ,
+        wd:Q211459 .
+
+arcm:SUMMARISE
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "SUMMARISE"@en ;
+    rdfs:comment "Effect operator (8 mechanism subclasses)."@en .
+
+arcm:SEGMENT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "SEGMENT"@en ;
+    rdfs:comment "Effect operator (3 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Image_segmentation> ,
+        wd:Q56933 .
+
+arcm:UNKNOWN
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "UNKNOWN"@en ;
+    rdfs:comment "Bookkeeping operator: tasks whose effect class is unknown."@en .
+
+arcm:TILE
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "TILE"@en ;
+    rdfs:comment "Effect operator (3 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Tessellation> ,
+        wd:Q214856 .
+
+arcm:COMPLETE
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "COMPLETE"@en ;
+    rdfs:comment "Effect operator (7 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Inpainting> ,
+        wd:Q1628157 .
+
+arcm:TRANSFORM
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "TRANSFORM"@en ;
+    rdfs:comment "Effect operator (8 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Geometric_transformation> ,
+        wd:Q1196371 .
+
+arcm:EXTEND
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "EXTEND"@en ;
+    rdfs:comment "Effect operator (8 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Extrapolation> ,
+        wd:Q744069 .
+
+arcm:OTHER
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "OTHER"@en ;
+    rdfs:comment "Bookkeeping operator: tasks reassigned to other effect classes."@en .
+
+arcm:PATH
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "PATH"@en ;
+    rdfs:comment "Effect operator (4 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Pathfinding> ,
+        wd:Q1969601 .
+
+arcm:SELECT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "SELECT"@en ;
+    rdfs:comment "Effect operator (2 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Filter_(higher-order_function)> ,
+        om_set1:suchthat .
+
+arcm:PROJECT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "PROJECT"@en ;
+    rdfs:comment "Effect operator (3 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Parallel_projection> ,
+        wd:Q2112445 .
+
+arcm:CONNECT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "CONNECT"@en ;
+    rdfs:comment "Effect operator (3 mechanism subclasses)."@en ;
+    skos:related <http://dbpedia.org/resource/Line_segment> ,
+        wd:Q166154 .
+
+arcm:CROP
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "CROP"@en ;
+    rdfs:comment "Effect operator (8 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Cropping_(image)> ,
+        wd:Q785116 .
+
+arcm:SORT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "SORT"@en ;
+    rdfs:comment "Effect operator (4 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Sorting> ,
+        wd:Q2303697 .
+
+arcm:COUNT
+    a owl:Class ;
+    rdfs:subClassOf arcm:Operator ,
+        dul:Process ;
+    rdfs:label "COUNT"@en ;
+    rdfs:comment "Effect operator (1 mechanism subclasses)."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Counting> ,
+        wd:Q247154 ;
+    skos:related om_set1:size .
+
+# ---------------------------------------------------------------- mechanism subclasses (rdfs:subClassOf their operator; upper alignment dul:Process)
+arcm:recolour.by_colour_map
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_colour_map"@en ;
+    skos:definition "Output = input with a cellwise colour substitution phi (bijection or many-to-one) applied to every cell (optionally outside a key region, optionally after cropping to the main object); phi is either constant across pairs or read from in-grid legend pairs."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.map ,
+        arcm:analogy.palette_swap ,
+        arcm:analogy.legend .
+
+arcm:recolour.by_key_position
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_key_position"@en ;
+    skos:definition "Targets (objects, rows, columns, quadrants, rank-ordered segments) are recoloured with the colour of the key cell at the corresponding position of a small in-grid key (key column/row, minimap, corner cells, ordered legend stripes); key optionally erased and output optionally cropped to the target area."@en ;
+    arcm:taskCount 9 ;
+    arcm:groundedIn arcm:analogy.legend ,
+        arcm:math.lookup_table .
+
+arcm:recolour.by_shape_match
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_shape_match"@en ;
+    skos:definition "Each candidate object (uniform colour) whose shape equals an exemplar/key shape (up to translation, dihedral transform, optionally scale) is recoloured to that exemplar colour; unmatched candidates unchanged."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.congruence ,
+        arcm:math.similarity ,
+        arcm:math.dihedral_group ,
+        arcm:math.template_matching .
+
+arcm:recolour.by_touching_marker
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_touching_marker"@en ;
+    skos:definition "Each target object/region/cell takes the colour of the marker associated with it (marker inside it, touching it, nearest to it, containing ancestor, or paired panel); markers optionally erased."@en ;
+    arcm:taskCount 8 ;
+    arcm:groundedIn arcm:math.voronoi ,
+        arcm:math.containment_tree .
+
+arcm:recolour.object_by_property
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.object_by_property"@en ;
+    skos:definition "Each foreground object (component, row or panel) is recoloured by a table g(feature), feature from {size, size rank, shape/topology class, contains pattern, count of a colour, marker column}; objects not selected keep colour."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.lookup_table ,
+        arcm:math.connected_component .
+
+arcm:recolour.by_ordinal_index
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_ordinal_index"@en ;
+    skos:definition "Elements (columns, cells in scan order, objects, runs of rows, regions, cells along a line) are ordered along an axis; element with index i gets palette[i mod k] (or palette[i] for rank) where palette is induced."@en ;
+    arcm:taskCount 8 ;
+    arcm:groundedIn arcm:math.ranking ,
+        arcm:math.modulo .
+
+arcm:recolour.by_distance_layers
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_distance_layers"@en ;
+    skos:definition "Cell colour = palette[d mod k] (or palette[d]) where d is a distance of the cell from a source set (object boundary depth, seed cell, frame) under a metric (Chebyshev/Manhattan/geodesic in region); palette constant, from key, or reversed input layer colours."@en ;
+    arcm:taskCount 10 ;
+    arcm:groundedIn arcm:math.distance_transform ,
+        arcm:math.chebyshev_metric ,
+        arcm:math.taxicab_metric ,
+        arcm:math.modulo .
+
+arcm:recolour.by_region_position
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_region_position"@en ;
+    skos:definition "Each container (object, panel, frame interior, lattice cell, whole grid) is split into position classes (halves, quadrants, 3x3 cells, border ring vs interior, corners vs edges); each class painted with a colour from a table (constant or from corner markers)."@en ;
+    arcm:taskCount 10 ;
+    arcm:groundedIn arcm:math.boundary ,
+        arcm:math.midpoint .
+
+arcm:recolour.along_ray
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.along_ray"@en ;
+    skos:definition "Straight lines are cast from source cells/objects (edge markers, odd block, endpoint pair) in induced directions; cells on the line are painted line colour and crossed objects/cells recoloured by rule (to line colour, bg, alt colour, or underlying region colour)."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:principle.geometrical_optics ,
+        arcm:math.ray .
+
+arcm:recolour.template_sites
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.template_sites"@en ;
+    skos:definition "Find every placement of a template (all-bg window of fixed shape, or a mixed-colour pattern with wildcards) and paint the union of placements (only its bg/target cells) with paint."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:math.template_matching ,
+        arcm:math.set_union .
+
+arcm:fill.largest_empty
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:FILL ,
+        dul:Process ;
+    rdfs:label "fill.largest_empty"@en ;
+    skos:definition "Find the maximal empty (bg-only) shape of a family (axis rectangle, band, diagonal run) and paint it (optionally shrunk by 1)."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.largest_empty_rectangle ,
+        arcm:math.extremum .
+
+arcm:recolour.cyclic_shift
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.cyclic_shift"@en ;
+    skos:definition "Colour-bearing regions are ordered cyclically (clockwise around core, along loop, left-to-right bands) and each takes the colour of its successor."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.circular_shift ,
+        arcm:math.permutation .
+
+arcm:recolour.by_tiling
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.by_tiling"@en ;
+    skos:definition "Decompose a monochrome shape exactly into pieces from a fixed set (2x2 squares, bars, L-trominoes) and colour each piece by its type/orientation."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.polyomino ,
+        arcm:math.exact_cover ,
+        arcm:math.tessellation .
+
+arcm:fill.bbox_bg
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:FILL ,
+        dul:Process ;
+    rdfs:label "fill.bbox_bg"@en ;
+    skos:definition "For each object (component, cluster, or group of 4 corner markers, or cells of colour A), fill cells of target colour (default bg) inside its bbox (margin m, strict interior optional) with paint (constant or legend-mapped from object colour)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.bounding_box .
+
+arcm:fill.between_pair_on_line
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:FILL ,
+        dul:Process ;
+    rdfs:label "fill.between_pair_on_line"@en ;
+    skos:definition "Per row and/or column, bg cells between two consecutive fg cells (optionally facing blocks, overlap span inset, only fully-bg spans, min span) are painted."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.line_segment ,
+        arcm:math.collinearity .
+
+arcm:fill.region_by_property
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:FILL ,
+        dul:Process ;
+    rdfs:label "fill.region_by_property"@en ;
+    skos:definition "Segment bg into regions separated by walls; paint each region by a rule on a region feature: enclosed vs border-touching, area rank, rectangularity, size parity, colour of seed inside/adjacent, majority marker colour inside/on boundary."@en ;
+    arcm:taskCount 15 ;
+    arcm:groundedIn arcm:math.flood_fill ,
+        arcm:math.jordan_curve_theorem ,
+        arcm:math.connected_component ,
+        arcm:analogy.container .
+
+arcm:combine.boolean_panels
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMBINE ,
+        dul:Process ;
+    rdfs:label "combine.boolean_panels"@en ;
+    skos:definition "Split into two panels (halves, separator, or grid vs its mirror); output cell colour = truth table T(a_fg, b_fg) over the two fg masks, colours induced."@en ;
+    arcm:taskCount 10 ;
+    arcm:groundedIn arcm:math.truth_table ,
+        arcm:math.set_union ,
+        arcm:math.set_intersection ,
+        arcm:math.set_difference ,
+        arcm:math.symmetric_difference ,
+        arcm:math.conjunction ,
+        arcm:math.disjunction ,
+        arcm:math.exclusive_or ,
+        arcm:math.negation .
+
+arcm:combine.priority_overlay
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMBINE ,
+        dul:Process ;
+    rdfs:label "combine.priority_overlay"@en ;
+    skos:definition "Split into k equal panels / overlapping windows; output cell = the non-bg value of highest priority (priority by colour order or panel order, induced)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.painters_algorithm ,
+        arcm:math.z_order ,
+        arcm:analogy.occlusion .
+
+arcm:ca.local_rule
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CA ,
+        dul:Process ;
+    rdfs:label "ca.local_rule"@en ;
+    skos:definition "Output cell = f(input neighbourhood of radius r), f a learned lookup (e.g. bg with diagonal fg neighbour -> paint, convex/concave loop corner -> colour); optionally applied after tiling."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.cellular_automaton ,
+        arcm:math.lookup_table .
+
+arcm:ca.row_recurrence
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CA ,
+        dul:Process ;
+    rdfs:label "ca.row_recurrence"@en ;
+    skos:definition "Starting from seed rows, each subsequent row (step s) is computed from the previous row(s) by a local rule over diagonal/vertical neighbours; colours optionally alternate by level."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.elementary_ca ,
+        arcm:math.recurrence_relation .
+
+arcm:ray.bounce
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.bounce"@en ;
+    skos:definition "A ray/path starts at a seed and travels diagonally or in zigzag, reflecting off grid edges or mirror-colour lines, passing through passable lines, until exiting."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:principle.specular_reflection ,
+        arcm:math.dynamical_billiards ,
+        arcm:analogy.mirror .
+
+arcm:stamp.reflect_recoloured
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.reflect_recoloured"@en ;
+    skos:definition "Reflect an object across an axis (separator line, object edge marked by markers, or towards a marker dot) and paint the copy (and/or original) with a recolouring induced from markers."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:math.reflection ,
+        arcm:analogy.mirror .
+
+arcm:move.translate_recolour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.translate_recolour"@en ;
+    skos:definition "All foreground translated by a constant vector and recoloured by a colour map."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:math.map .
+
+arcm:summarise.class_to_constant
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.class_to_constant"@en ;
+    skos:definition "Classify the input (dominant colour, binary shape mask) and output a fixed glyph from a table indexed by the class."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.lookup_table .
+
+arcm:segment.filter_objects
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SEGMENT ,
+        dul:Process ;
+    rdfs:label "segment.filter_objects"@en ;
+    skos:definition "Delete objects failing a predicate on a count of a marker colour inside them (e.g. keep count<=1, remove argmin)."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.filter ,
+        arcm:math.counting .
+
+arcm:segment.pack_pieces
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SEGMENT ,
+        dul:Process ;
+    rdfs:label "segment.pack_pieces"@en ;
+    skos:definition "Translate (and possibly rotate) the pieces so that they tile a fixed-size rectangle/frame exactly."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.exact_cover ,
+        arcm:math.polyomino ,
+        arcm:analogy.jigsaw_puzzle ,
+        arcm:principle.conservation_law .
+
+arcm:recolour.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RECOLOUR ,
+        dul:Process ;
+    rdfs:label "recolour.residual"@en ;
+    skos:definition "No generic primitive; see reasons"@en ;
+    arcm:taskCount 37 ;
+    arcm:residual true .
+
+arcm:fill.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:FILL ,
+        dul:Process ;
+    rdfs:label "fill.residual"@en ;
+    skos:definition "No generic primitive; see reasons"@en ;
+    arcm:taskCount 20 ;
+    arcm:residual true .
+
+arcm:segment.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SEGMENT ,
+        dul:Process ;
+    rdfs:label "segment.residual"@en ;
+    skos:definition "No generic primitive; see reasons"@en ;
+    arcm:taskCount 21 ;
+    arcm:residual true .
+
+arcm:combine.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMBINE ,
+        dul:Process ;
+    rdfs:label "combine.residual"@en ;
+    skos:definition "No generic primitive; see reasons"@en ;
+    arcm:taskCount 5 ;
+    arcm:residual true .
+
+arcm:unknown.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:UNKNOWN ,
+        dul:Process ;
+    rdfs:label "unknown.residual"@en ;
+    skos:definition "No generic primitive; see reasons"@en ;
+    arcm:taskCount 3 ;
+    arcm:residual true .
+
+arcm:stamp.template_at_markers
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.template_at_markers"@en ;
+    skos:definition "One multi-cell template object exists in the input; every marker (lone cell or small cluster not part of the template) receives a translated copy of the template, positioned by an anchor rule; the copy may be recoloured to the marker colour or transformed by a per-anchor-colour dihedral; original template/markers optionally erased; output may be the grid or the concatenation of copies."@en ;
+    arcm:taskCount 9 ;
+    arcm:groundedIn arcm:analogy.rubber_stamp ,
+        arcm:math.translation .
+
+arcm:stamp.complete_partial_matches
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.complete_partial_matches"@en ;
+    skos:definition "A complete reference template (a multicolour object, or a patch plus its frame) is present; every other object/configuration that equals a subset of the template under an allowed transform group G (dihedral) and scale s is completed by painting the missing template cells in place (colours from template, or a fixed paint colour)."@en ;
+    arcm:taskCount 15 ;
+    arcm:groundedIn arcm:math.template_matching ,
+        arcm:math.similarity ,
+        arcm:math.dihedral_group ,
+        arcm:analogy.amodal_completion .
+
+arcm:stamp.copy_to_congruent_target
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.copy_to_congruent_target"@en ;
+    skos:definition "A source object carries a pattern; target regions have the same outline/size as the source (silhouette of placeholder colour, same-colour plain rect, same-size frame, or empty bg hole) and receive the source pattern (optionally mirrored, 9-slice resized, or recoloured to the target frame colour); unmatched targets or the source may be erased."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.congruence ,
+        arcm:math.template_matching .
+
+arcm:stamp.panel_copy
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.panel_copy"@en ;
+    skos:definition "Grid is partitioned into panels by separator lines; the content of the source panel(s) is copied into target panels chosen by a rule (all, marked, same frame colour, parity lattice, pattern continuation) with an optional per-target transform (rotation by index) or recolour (separator colour)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:analogy.rubber_stamp .
+
+arcm:stamp.local_stencil
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.local_stencil"@en ;
+    skos:definition "Each seed (single cell, 2x2 block, or small object matched by a local pattern) gets a fixed relative stencil of cells painted around it; stencil offsets/colours are a function of the seed's colour (or taken from the seed's own cells), optionally gated by context (inside region, nearest border colour) and optionally erasing the seed."@en ;
+    arcm:taskCount 12 ;
+    arcm:groundedIn arcm:analogy.stencil ,
+        arcm:math.dilation .
+
+arcm:stamp.stencil_at_computed_point
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.stencil_at_computed_point"@en ;
+    skos:definition "A fixed stencil (plus, 3x3 ring, cross of marker colours) is painted at a point computed from markers: midpoint of two markers, centroid of three markers, or intersection of a horizontal and vertical line."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:analogy.stencil ,
+        arcm:math.midpoint ,
+        arcm:math.centroid ,
+        arcm:math.line_intersection .
+
+arcm:stamp.grow_ring
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.grow_ring"@en ;
+    skos:definition "Around each object (or seed) paint a metric ball/ring (Chebyshev square or Manhattan diamond) of thickness/radius r computed from an object property (inner-core size, count of inner dots, distance to nearest obstacle minus 1, half segment length), colour from a role, painting only background."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.dilation ,
+        arcm:math.chebyshev_metric ,
+        arcm:math.taxicab_metric .
+
+arcm:stamp.bbox_outline
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.bbox_outline"@en ;
+    skos:definition "Draw a 1-cell rectangle outline defined by the bbox of selected cells (markers, all cells of a colour, or the whole grid), optionally inset/outset by d, in a paint colour; optionally erase everything else / the seed."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.bounding_box ,
+        arcm:math.boundary .
+
+arcm:stamp.count_bar
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.count_bar"@en ;
+    skos:definition "Draw one straight bar per counted item whose length equals an induced count (cells per colour, distinct colours in a block, difference of two colour counts), placed at a slot relative to the item (next slot, below block, beside key entry, histogram column)."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.counting ,
+        arcm:analogy.bar_chart ,
+        arcm:math.histogram ,
+        arcm:math.subtraction .
+
+arcm:stamp.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:STAMP ,
+        dul:Process ;
+    rdfs:label "stamp.residual"@en ;
+    skos:definition "Tasks whose STAMP step is embedded in a task-specific pipeline (rays, moves, summaries) or uses a bespoke template."@en ;
+    arcm:taskCount 19 ;
+    arcm:residual true .
+
+arcm:tile.block_placement
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TILE ,
+        dul:Process ;
+    rdfs:label "tile.block_placement"@en ;
+    skos:definition "Output is a block lattice of input-sized (or template-sized) blocks; block (i,j) holds template X (input, colour-swapped input, fixed 2x2 checker, downscaled template) iff mask(i,j), where mask = X==fg, X==bg, uniform row/col index, or first k blocks in reading order (k=count)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.kronecker_product ,
+        arcm:math.tessellation .
+
+arcm:tile.arrangement
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TILE ,
+        dul:Process ;
+    rdfs:label "tile.arrangement"@en ;
+    skos:definition "Output = fixed arrangement of transformed copies of the input (or its cropped object): n×m repeat, rotations around centre, frame+stack; then an optional learned local post-rule (stencil/column projection) applied on the tiled canvas."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.tessellation ,
+        arcm:math.dihedral_group ,
+        arcm:math.translation .
+
+arcm:tile.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TILE ,
+        dul:Process ;
+    rdfs:label "tile.residual"@en ;
+    skos:definition "Bespoke motif propagation."@en ;
+    arcm:taskCount 2 ;
+    arcm:residual true .
+
+arcm:complete.symmetry_global
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.symmetry_global"@en ;
+    skos:definition "Whole grid (or the single motif around a centre anchor/separator axes) is symmetric under an inferred group (mirror H/V, rot90, rot180, D4) about an inferred centre; missing or occluder-coloured cells are filled from their orbit (optionally in a paint colour)."@en ;
+    arcm:taskCount 9 ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.dihedral_group ,
+        arcm:math.orbit ,
+        arcm:math.reflection_symmetry ,
+        arcm:math.rotational_symmetry ,
+        arcm:analogy.kaleidoscope ,
+        arcm:math.inpainting .
+
+arcm:complete.symmetry_per_object
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.symmetry_per_object"@en ;
+    skos:definition "Same as symmetry_global but applied independently inside each object/frame: axis from an in-object line, frame notches, or best-fit; noise outside frames/occluder erased."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.reflection_symmetry ,
+        arcm:math.dihedral_group ,
+        arcm:math.orbit .
+
+arcm:complete.period
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.period"@en ;
+    skos:definition "Grid (or lattice of sites) follows a 2D period (possibly diagonal); cells masked by holes/occluders or missing lattice sites are restored from the period (missing sites optionally painted a new colour or marked)."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.periodicity ,
+        arcm:math.lattice ,
+        arcm:math.wallpaper_group ,
+        arcm:math.inpainting .
+
+arcm:complete.prefix_by_template
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.prefix_by_template"@en ;
+    skos:definition "Rows/bands are prefixes of a full template row/band; each prefix is extended to full length following the template (through a colour map induced from the prefix, or in a new paint colour)."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.template_matching ,
+        arcm:math.extrapolation .
+
+arcm:complete.rectangle
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.rectangle"@en ;
+    skos:definition "Objects are solid (possibly overlapping) rectangles corrupted by a noise colour; restore each rectangle and erase noise."@en ;
+    arcm:taskCount 1 ;
+    arcm:groundedIn arcm:analogy.amodal_completion ,
+        arcm:math.noise_reduction ,
+        arcm:math.bounding_box .
+
+arcm:complete.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.residual"@en ;
+    skos:definition "Constraint-style or bespoke completions (latin square, colour-set, panel merge, move+occlusion, dashed-line gaps)."@en ;
+    arcm:taskCount 6 ;
+    arcm:residual true .
+
+arcm:move.slide_until_contact
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.slide_until_contact"@en ;
+    skos:definition "Every mover object (connected component, rigid) is translated along one axis direction until it touches a non-background cell or the grid edge; direction is a global constant or a lookup keyed by an object property (colour, shape class, containing region). Movers processed nearest-to-destination first so they stack. Optional: paint swept cells, recolour by class."@en ;
+    arcm:taskCount 14 ;
+    arcm:groundedIn arcm:principle.gravity ,
+        arcm:principle.inertia ,
+        arcm:principle.mechanical_equilibrium ,
+        arcm:math.rigid_transformation ,
+        arcm:analogy.tetris .
+
+arcm:move.toward_anchor
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.toward_anchor"@en ;
+    skos:definition "Each mover (cell or object) moves straight toward the anchor it is paired with (same colour border/line/block, or nearest aligned anchor) until adjacent to it; unpaired/unaligned movers are erased or kept by an induced flag."@en ;
+    arcm:taskCount 10 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:principle.gravity .
+
+arcm:move.by_vector
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.by_vector"@en ;
+    skos:definition "Each object is translated by a vector computed from its own properties or a global count: v = k * unit_dir where k in {1, width, height, size, marker count} or v = map(colour)."@en ;
+    arcm:taskCount 12 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:math.multiplication .
+
+arcm:move.to_position
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.to_position"@en ;
+    skos:definition "Mover is placed so a reference point of it (a key-coloured cell, centre, corner) coincides with a target point defined by an anchor (matching-colour marker cell, lattice-cell centre, opposite frame corner, anchor-block cell in same quadrant); original erased."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:math.image_registration .
+
+arcm:move.fit_into_hole
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.fit_into_hole"@en ;
+    skos:definition "Loose pieces are matched to holes/cavities/gaps/complementary profiles of container objects by shape (optionally rotation) and translated so they exactly fill it; unmatched pieces/noise erased."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:analogy.lock_and_key ,
+        arcm:analogy.jigsaw_puzzle ,
+        arcm:math.congruence ,
+        arcm:math.rotation .
+
+arcm:transform.kronecker
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.kronecker"@en ;
+    skos:definition "Fractal/Kronecker product: output is an (H*h)x(W*w) grid of blocks; block (i,j) = tile_on(in[i,j]) if pred(in[i,j]) else tile_off, where tile_on is the input itself, the input masked to colour c, or a legend motif for c."@en ;
+    arcm:taskCount 8 ;
+    arcm:groundedIn arcm:math.kronecker_product ,
+        arcm:math.self_similarity .
+
+arcm:transform.tile_dihedral
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.tile_dihedral"@en ;
+    skos:definition "Output is an r x c arrangement of dihedral images of a source S (whole input, cropped object, recoloured input, quadrant), possibly with shared-edge overlap; r,c constant or from a count (distinct colours, markers, input side)."@en ;
+    arcm:taskCount 9 ;
+    arcm:groundedIn arcm:math.dihedral_group ,
+        arcm:math.tessellation ,
+        arcm:analogy.kaleidoscope .
+
+arcm:transform.scale
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.scale"@en ;
+    skos:definition "Output is the source (whole input, fg bbox, inner block, sampled lattice) upscaled by an integer factor k (constant, #distinct colours) or to fit a target frame interior; optional non-uniform per-row/col factors."@en ;
+    arcm:taskCount 8 ;
+    arcm:groundedIn arcm:math.scaling ,
+        arcm:math.image_scaling .
+
+arcm:transform.dihedral
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.dihedral"@en ;
+    skos:definition "Output = one dihedral op D applied to a source (whole grid, crop, block-summary, tile-lattice of motifs); D constant or inferred from an in-grid example pair or marker layout."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:math.dihedral_group ,
+        arcm:math.reflection ,
+        arcm:math.rotation .
+
+arcm:transform.row_shift
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.row_shift"@en ;
+    skos:definition "Each row (or column) is shifted horizontally by s(r): linear shear relative to an anchor row, periodic sequence, parity, or a constant roll given by a marker offset; cyclic (roll) or with padding/clamp."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.shear_mapping ,
+        arcm:math.circular_shift ,
+        arcm:analogy.slot_machine .
+
+arcm:transform.reflect_object
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.reflect_object"@en ;
+    skos:definition "An object is reflected across an axis given by a marker/bracket/line/bbox edge (or its own centre); copy is OR-ed with original or replaces it, optionally painted in marker colour."@en ;
+    arcm:taskCount 10 ;
+    arcm:groundedIn arcm:math.reflection ,
+        arcm:analogy.mirror .
+
+arcm:transform.rotate_about_pivot
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.rotate_about_pivot"@en ;
+    skos:definition "A segment/offset is rotated by 90 degrees about a pivot cell (anchor, marked pivot, bar base) and repainted; source erased."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.rotation ,
+        arcm:analogy.lever .
+
+arcm:extend.periodic_fill
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.periodic_fill"@en ;
+    skos:definition "A periodic pattern (1D or 2D, possibly diagonal-shifted translation lattice) visible in a known region is continued over the whole canvas (possibly enlarged), overwriting noise/strip/bg cells."@en ;
+    arcm:taskCount 12 ;
+    arcm:groundedIn arcm:math.periodicity ,
+        arcm:math.lattice ,
+        arcm:math.wallpaper_group ,
+        arcm:math.extrapolation .
+
+arcm:extend.periodic_lines
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.periodic_lines"@en ;
+    skos:definition "Full lines are drawn perpendicular to an axis at positions seed + k*p (p from seed spacing), colours cycling through seed colours/legend; optional caps."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.arithmetic_progression ,
+        arcm:math.periodicity ,
+        arcm:math.modulo .
+
+arcm:extend.repeat_stamp
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.repeat_stamp"@en ;
+    skos:definition "A template object is copied repeatedly along a translation vector (from marker/fragment/object dims) until edge or target, each copy optionally recoloured."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:math.translation ,
+        arcm:math.frieze_group ,
+        arcm:analogy.rubber_stamp .
+
+arcm:extend.sequence_positions
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.sequence_positions"@en ;
+    skos:definition "Seed items (cells/rings) are repeated at positions following an arithmetic/triangular sequence inferred from seeds, colours cycling."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.arithmetic_progression ,
+        arcm:math.triangular_number ,
+        arcm:math.modulo .
+
+arcm:extend.staircase
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.staircase"@en ;
+    skos:definition "From a seed bar, successive parallel bars at distance k have length L0 + a*k (a per side), colour per side or by parity."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.arithmetic_progression ,
+        arcm:analogy.stairs ,
+        arcm:math.parity .
+
+arcm:extend.stretch_to_marker
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.stretch_to_marker"@en ;
+    skos:definition "A framed rectangle is stretched along an axis until it reaches a marker singleton; marker erased, internal structure (frame/dividers) preserved."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.scaling .
+
+arcm:extend.smear
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.smear"@en ;
+    skos:definition "Each coloured cell in a key line is smeared parallel to a bar / upward until next colour or span end."@en ;
+    arcm:taskCount 2 .
+
+arcm:move.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:MOVE ,
+        dul:Process ;
+    rdfs:label "move.residual"@en ;
+    skos:definition "Tasks needing bespoke mechanisms"@en ;
+    arcm:taskCount 20 ;
+    arcm:residual true .
+
+arcm:transform.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:TRANSFORM ,
+        dul:Process ;
+    rdfs:label "transform.residual"@en ;
+    skos:definition "Tasks needing bespoke mechanisms"@en ;
+    arcm:taskCount 15 ;
+    arcm:residual true .
+
+arcm:extend.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:EXTEND ,
+        dul:Process ;
+    rdfs:label "extend.residual"@en ;
+    skos:definition "Tasks needing bespoke mechanisms"@en ;
+    arcm:taskCount 11 ;
+    arcm:residual true .
+
+arcm:reassigned_out
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:OTHER ,
+        dul:Process ;
+    rdfs:label "reassigned_out"@en ;
+    skos:definition "Tasks reassigned to other effect classes"@en ;
+    arcm:taskCount 0 ;
+    arcm:residual true .
+
+arcm:ray.full_line
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.full_line"@en ;
+    skos:definition "Each seed (singleton cell, or a designated cell/axis of an object such as a domino's orientation or a block's centre) paints its entire row and/or column (axis chosen per seed colour or object orientation), optionally clipped to an enclosing region (band, cropped rectangle). Crossings resolved by a priority order or painted with a new constant colour; original objects stay on top."@en ;
+    arcm:taskCount 9 ;
+    arcm:groundedIn arcm:math.line .
+
+arcm:ray.orthogonal_directed
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.orthogonal_directed"@en ;
+    skos:definition "Each seed cell/object emits an axis-aligned half-ray in a direction given by a rule (fixed per colour, toward/away from an aligned target, toward the nearest edge, pointing out of the object away from its odd cell) and stops at the edge, just before the first non-bg cell, or at contact with the target. Paint = seed colour or role colour, optionally a periodic pattern."@en ;
+    arcm:taskCount 12 ;
+    arcm:groundedIn arcm:math.ray ,
+        arcm:principle.geometrical_optics .
+
+arcm:ray.diagonal_from_object
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.diagonal_from_object"@en ;
+    skos:definition "Diagonal rays emitted from selected corners of objects (all corners, the missing corner of an L-triomino, closed-side corners of a cup, marker-flagged corners, or a single seed's 4 diagonals) outward to the border or until non-bg, in object/role colour, optionally with beam width = object width and after a canvas rescale."@en ;
+    arcm:taskCount 17 ;
+    arcm:groundedIn arcm:math.ray ,
+        arcm:principle.geometrical_optics .
+
+arcm:ray.periodic_motif
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.periodic_motif"@en ;
+    skos:definition "A seed emits a trail along a direction in which a fixed short motif (separator/own colour alternation, 2-step staircase, dotted stride) is repeated to the border."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.ray ,
+        arcm:math.periodicity ,
+        arcm:math.frieze_group .
+
+arcm:ray.walker_turn_split
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.walker_turn_split"@en ;
+    skos:definition "A ray from a seed (usually on an edge) travels straight; on hitting an obstacle it reacts by a policy: split perpendicular both ways, turn cw/ccw keyed by obstacle colour, reflect off a wall, or spiral; continues until edge. Paint = seed colour or constant."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:principle.specular_reflection ,
+        arcm:principle.geometrical_optics ,
+        arcm:analogy.beam_splitter .
+
+arcm:path.walker_detour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PATH ,
+        dul:Process ;
+    rdfs:label "path.walker_detour"@en ;
+    skos:definition "Rays from seeds advance in a fixed direction; when the next cell is an obstacle they sidestep (fixed side or nearest free) around it and resume the original direction, ending at the border."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.pathfinding ,
+        arcm:principle.fluid_flow .
+
+arcm:ray.container_leak
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.container_leak"@en ;
+    skos:definition "Hollow container/bracket objects with an opening: interior is filled with a paint colour and a beam of the same colour escapes through the opening (width = opening, optional diagonal flare) to the edge."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:analogy.container ,
+        arcm:analogy.leak ,
+        arcm:principle.fluid_flow .
+
+arcm:select.empty_lines_paint
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SELECT ,
+        dul:Process ;
+    rdfs:label "select.empty_lines_paint"@en ;
+    skos:definition "Rows/columns that contain no foreground (globally, or within the span of an object / block lattice) are painted with a constant colour (optionally different colours inside vs outside the fg bbox)."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.empty_set ,
+        arcm:math.filter .
+
+arcm:project.and_intersection
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PROJECT ,
+        dul:Process ;
+    rdfs:label "project.and_intersection"@en ;
+    skos:definition "Markers along a border row and border column (or colour runs of a legend row/column) project across the grid; a cell is painted where a row-projection and column-projection intersect (AND), with the marker colour or a constant, optionally only inside a target rectangle."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.cartesian_product ,
+        arcm:math.conjunction ,
+        arcm:math.parallel_projection .
+
+arcm:project.marker_onto_target
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PROJECT ,
+        dul:Process ;
+    rdfs:label "project.marker_onto_target"@en ;
+    skos:definition "A marker cell is transported along its row/col to a landing position (first cell of target object, cell adjacent to a separator, far edge cell) and only the landing cell is painted (source kept or erased)."@en ;
+    arcm:taskCount 4 ;
+    arcm:groundedIn arcm:math.parallel_projection ,
+        arcm:analogy.shadow .
+
+arcm:connect.aligned_pair
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CONNECT ,
+        dul:Process ;
+    rdfs:label "connect.aligned_pair"@en ;
+    skos:definition "Pairs of same-colour cells/objects aligned on a row, column or diagonal (nearest facing partner) are joined by a straight segment between their facing tips, painted with a constant or the pair colour."@en ;
+    arcm:taskCount 6 ;
+    arcm:groundedIn arcm:math.line_segment ,
+        arcm:math.collinearity .
+
+arcm:connect.lattice_between
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CONNECT ,
+        dul:Process ;
+    rdfs:label "connect.lattice_between"@en ;
+    skos:definition "Grid partitioned into a lattice of tiles; tiles with the same mark (colour at same intra-tile position, or matching an exemplar) in the same lattice row/col cause the tiles/gaps between them to be filled with that mark (or new colour; overlap -> mix colour)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.collinearity ,
+        arcm:math.line_segment .
+
+arcm:path.elbow_route
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PATH ,
+        dul:Process ;
+    rdfs:label "path.elbow_route"@en ;
+    skos:definition "Draw a route between 2-3 marker cells using a fixed move order (vertical-then-horizontal, horizontal-then-vertical, diagonal-then-straight, king moves), chained across markers; paint new constant or marker colour on bg only."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.taxicab_metric ,
+        arcm:math.pathfinding .
+
+arcm:path.shortest_route
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PATH ,
+        dul:Process ;
+    rdfs:label "path.shortest_route"@en ;
+    skos:definition "Endpoints (same-colour cells/segments) are joined by a shortest 4-connected path avoiding obstacle cells (or crossing barriers only at their gaps)."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.shortest_path ,
+        arcm:math.taxicab_metric ,
+        arcm:principle.least_action ,
+        arcm:analogy.maze .
+
+arcm:crop.odd_one_out
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.odd_one_out"@en ;
+    skos:definition "Segment panels/objects; output the one whose content differs from all others (unique pattern, unique colour, unique (a)symmetry)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.odd_one_out .
+
+arcm:crop.by_score
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.by_score"@en ;
+    skos:definition "Segment objects/frames; select the one maximising/minimising a score (count of marker colour/sub-pattern, size, adjacency to marker, inclusion in guides, content colour = frame colour) and output its bbox or interior."@en ;
+    arcm:taskCount 14 ;
+    arcm:groundedIn arcm:math.extremum ,
+        arcm:math.ranking .
+
+arcm:crop.canonical_window
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.canonical_window"@en ;
+    skos:definition "Output is a window of the input chosen canonically: a fixed corner window, the top-left quadrant of a symmetric object's bbox (fundamental domain), or one period of a periodic grid."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.fundamental_domain ,
+        arcm:math.periodicity .
+
+arcm:crop.overlay_windows
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.overlay_windows"@en ;
+    skos:definition "Several equal-size windows/fragments (aligned by frame or by a shared anchor cell) are overlaid with non-base cells winning, output = the overlay."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.painters_algorithm ,
+        arcm:math.set_union .
+
+arcm:crop.fit_by_anchor
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.fit_by_anchor"@en ;
+    skos:definition "Pieces carrying a marker cell/constellation are translated so that their markers coincide with matching markers in a target panel/canvas; output = the target region."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:math.image_registration ,
+        arcm:analogy.jigsaw_puzzle .
+
+arcm:crop.fit_by_shape
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.fit_by_shape"@en ;
+    skos:definition "Host region with holes; each loose piece whose shape (up to dihedral) matches a hole is inserted into it; output = the host bbox."@en ;
+    arcm:taskCount 3 ;
+    arcm:groundedIn arcm:analogy.lock_and_key ,
+        arcm:analogy.jigsaw_puzzle ,
+        arcm:math.congruence .
+
+arcm:crop.extract_and_concat
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.extract_and_concat"@en ;
+    skos:definition "Selected pieces (objects passing a predicate, or strips between paired markers, or panel shapes) are each cropped and concatenated in positional order along the axis of spread (or packed in a 2x2 layout preserving quadrant)."@en ;
+    arcm:taskCount 7 ;
+    arcm:groundedIn arcm:math.concatenation ,
+        arcm:math.filter .
+
+arcm:complete.crop_occluded
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMPLETE ,
+        dul:Process ;
+    rdfs:label "complete.crop_occluded"@en ;
+    skos:definition "Input is a symmetric/periodic pattern with a solid occluder rectangle; the occluded content is reconstructed and only the occluder region is output."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.inpainting ,
+        arcm:analogy.occlusion ,
+        arcm:analogy.amodal_completion ,
+        arcm:math.symmetry_group ,
+        arcm:math.periodicity .
+
+arcm:summarise.panel_to_pixel
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.panel_to_pixel"@en ;
+    skos:definition "Grid is split into panels (by separator lines, equal kxk blocks, or solid rectangles in a row/col layout); output has one pixel per panel given by a reduction (majority colour, single non-bg colour, bg colour, predicate->colour)."@en ;
+    arcm:taskCount 12 ;
+    arcm:groundedIn arcm:math.image_scaling ,
+        arcm:math.mode .
+
+arcm:summarise.count_to_glyph
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.count_to_glyph"@en ;
+    skos:definition "Count N of a selected item class (cells, objects, 2x2 squares, empty rows) and render N marks into a fixed canvas following a fixed slot order (reading order, snake, diagonal, bar), in item colour or constant."@en ;
+    arcm:taskCount 11 ;
+    arcm:groundedIn arcm:math.counting ,
+        arcm:analogy.tally_marks ,
+        arcm:analogy.boustrophedon .
+
+arcm:summarise.ranked_bars
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.ranked_bars"@en ;
+    skos:definition "Items (colours, objects, lines, bands) are ranked by a key (count, size, position, layering) and rendered as a list of bars/cells: one row/column per item, bar length = its count/size (or 1), aligned to a side."@en ;
+    arcm:taskCount 17 ;
+    arcm:groundedIn arcm:math.ranking ,
+        arcm:math.sorting ,
+        arcm:analogy.bar_chart ,
+        arcm:math.histogram .
+
+arcm:summarise.concentric_rings
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.concentric_rings"@en ;
+    skos:definition "An ordered list of colours (items ranked by size/count/distance/legend order) is rendered as nested concentric square rings (outer->inner), on a canvas sized by the list or inside a frame/around a seed."@en ;
+    arcm:taskCount 11 ;
+    arcm:groundedIn arcm:math.ranking ,
+        arcm:analogy.matryoshka ,
+        arcm:math.chebyshev_metric .
+
+arcm:summarise.select_colour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.select_colour"@en ;
+    skos:definition "Select one object/colour by a predicate or extremum (has hole, uninterrupted line, most noise, max arm count, max growth) and output a small solid grid (1x1/2x2) of its colour."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.extremum .
+
+arcm:summarise.lookup_by_feature
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.lookup_by_feature"@en ;
+    skos:definition "Output (whole grid or per-panel pixel) is taken from a table learned from train keyed by a discrete feature of the input (symmetry predicate, connectivity, count of distinct colours, shape class/hole pattern)."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.lookup_table .
+
+arcm:sort.rank_and_pack
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SORT ,
+        dul:Process ;
+    rdfs:label "sort.rank_and_pack"@en ;
+    skos:definition "Items (objects, bars, cells, panels) are sorted by a key (size, length, column, count) and placed into a sequence of slots (along an edge bottom-aligned, stacked on a floor, snake order in a small canvas, nested at a corner)."@en ;
+    arcm:taskCount 5 ;
+    arcm:groundedIn arcm:math.sorting ,
+        arcm:math.ranking ,
+        arcm:principle.gravity ,
+        arcm:analogy.stack ,
+        arcm:analogy.boustrophedon .
+
+arcm:sort.permute_attribute_sequence
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SORT ,
+        dul:Process ;
+    rdfs:label "sort.permute_attribute_sequence"@en ;
+    skos:definition "Items ordered along an axis/path keep their geometry while one attribute sequence (colour, height) is reversed or cyclically shifted."@en ;
+    arcm:taskCount 2 ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:math.circular_shift .
+
+arcm:ray.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:RAY ,
+        dul:Process ;
+    rdfs:label "ray.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 13 ;
+    arcm:residual true .
+
+arcm:connect.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CONNECT ,
+        dul:Process ;
+    rdfs:label "connect.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 7 ;
+    arcm:residual true .
+
+arcm:path.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PATH ,
+        dul:Process ;
+    rdfs:label "path.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 3 ;
+    arcm:residual true .
+
+arcm:project.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:PROJECT ,
+        dul:Process ;
+    rdfs:label "project.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 1 ;
+    arcm:residual true .
+
+arcm:crop.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:CROP ,
+        dul:Process ;
+    rdfs:label "crop.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 13 ;
+    arcm:residual true .
+
+arcm:select.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SELECT ,
+        dul:Process ;
+    rdfs:label "select.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 8 ;
+    arcm:residual true .
+
+arcm:summarise.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SUMMARISE ,
+        dul:Process ;
+    rdfs:label "summarise.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 8 ;
+    arcm:residual true .
+
+arcm:sort.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SORT ,
+        dul:Process ;
+    rdfs:label "sort.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 2 ;
+    arcm:residual true .
+
+arcm:count.residual
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COUNT ,
+        dul:Process ;
+    rdfs:label "count.residual"@en ;
+    skos:definition "Tasks not covered by a generic primitive; reasons in \"reasons\"."@en ;
+    arcm:taskCount 4 ;
+    arcm:residual true .
+
+arcm:sort.by_property
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:SORT ,
+        dul:Process ;
+    rdfs:label "sort.by_property"@en ;
+    skos:definition "(named by another agent; to be defined)"@en ;
+    skos:editorialNote "definition pending; grounded from the mechanism name only"@en ;
+    arcm:taskCount 1 ;
+    arcm:groundedIn arcm:math.sorting .
+
+arcm:combine.fold_overlay
+    a owl:Class ;
+    rdfs:subClassOf arcm:Mechanism ,
+        arcm:COMBINE ,
+        dul:Process ;
+    rdfs:label "combine.fold_overlay"@en ;
+    skos:definition "(named by another agent; to be defined)"@en ;
+    skos:editorialNote "definition pending; grounded from the mechanism name only"@en ;
+    arcm:taskCount 1 ;
+    arcm:groundedIn arcm:analogy.paper_folding ,
+        arcm:math.reflection .
+
+# ---------------------------------------------------------------- priors (domain priors: dul:Theory; families / aspects: dul:Method)
+arcm:prior.topology
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "TOPOLOGY prior"@en ;
+    rdfs:comment "Invariants under continuous deformation of the grid read as a planar cell complex: holes/genus, containment tree, boundary contact, region adjacency, path-connected zones."@en ;
+    arcm:domain "topology" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    skos:related <http://dbpedia.org/resource/Topology> ,
+        wd:Q42989 ;
+    arcm:groundedIn arcm:math.digital_topology ,
+        arcm:math.jordan_curve_theorem ,
+        arcm:math.genus ,
+        arcm:math.euler_characteristic ,
+        arcm:math.path_connectedness ,
+        arcm:math.containment_tree .
+
+arcm:prior.geometry
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "GEOMETRY prior"@en ;
+    rdfs:comment "Symmetry groups (D4 about arbitrary centres), lattices, glides and similarity transforms, fitted exhaustively."@en ;
+    arcm:domain "geometry" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    skos:related <http://dbpedia.org/resource/Geometry> ,
+        wd:Q8087 ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.dihedral_group ,
+        arcm:math.wallpaper_group ,
+        arcm:math.lattice ,
+        arcm:math.similarity .
+
+arcm:prior.combinatorics
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "COMBINATORICS prior"@en ;
+    rdfs:comment "The output is a permutation of parts of the input, explained by generic permutation generators."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    skos:related <http://dbpedia.org/resource/Combinatorics> ,
+        wd:Q76592 ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:math.symmetric_group ,
+        arcm:math.sorting .
+
+arcm:prior.optics
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "OPTICS prior"@en ;
+    rdfs:comment "Opaque layers seen from above: painter's law, depth order from overlaps, amodal completion, projection, light rays reflected by mirrors."@en ;
+    arcm:domain "optics" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_optics.py" ;
+    skos:related <http://dbpedia.org/resource/Optics> ,
+        wd:Q14620 ;
+    arcm:groundedIn arcm:analogy.occlusion ,
+        arcm:math.painters_algorithm ,
+        arcm:math.z_order ,
+        arcm:analogy.amodal_completion ,
+        arcm:principle.geometrical_optics ,
+        arcm:analogy.shadow ,
+        arcm:principle.specular_reflection .
+
+arcm:prior.mechanics
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "MECHANICS prior"@en ;
+    rdfs:comment "Rigid bodies in mechanical equilibrium (rigidity, impenetrability, field, support) and common-sense machines (lock and key, lever)."@en ;
+    arcm:domain "mechanics" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_mechanics.py" ;
+    skos:related <http://dbpedia.org/resource/Mechanics> ,
+        wd:Q41217 ;
+    arcm:groundedIn arcm:principle.mechanical_equilibrium ,
+        arcm:principle.gravity ,
+        arcm:math.rigid_transformation ,
+        arcm:analogy.lock_and_key ,
+        arcm:analogy.lever .
+
+arcm:prior.fluids
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "FLUIDS prior"@en ;
+    rdfs:comment "Common-sense hydraulics: gravity, support, hydrostatics (basins fill to the spill level), conservation of volume, thin streams (least detour), pressure-driven jets through gaps."@en ;
+    arcm:domain "fluids" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_fluids.py" ;
+    skos:related <http://dbpedia.org/resource/Fluid_mechanics> ,
+        wd:Q172145 ;
+    arcm:groundedIn arcm:principle.fluid_flow ,
+        arcm:principle.gravity ,
+        arcm:principle.hydrostatics ,
+        arcm:principle.conservation_law ,
+        arcm:analogy.container .
+
+arcm:prior.action
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "ACTION prior"@en ;
+    rdfs:comment "Principle of least action (geodesics with obstacles) and conservation laws (mass balance, equilibrium)."@en ;
+    arcm:domain "action" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_action.py" ;
+    skos:related <http://dbpedia.org/resource/Action_(physics)> ,
+        wd:Q846785 ;
+    arcm:groundedIn arcm:principle.least_action ,
+        arcm:principle.conservation_law ,
+        arcm:principle.mechanical_equilibrium .
+
+arcm:prior.arithmetic
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Theory ;
+    rdfs:label "ARITHMETIC prior"@en ;
+    rdfs:comment "The grid as a piece of Z x Z: congruence (residue classes, parity), order, counting arithmetic, set algebra, affine maps of offsets."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    skos:related <http://dbpedia.org/resource/Arithmetic> ,
+        wd:Q11205 ;
+    arcm:groundedIn arcm:math.modular_arithmetic ,
+        arcm:math.parity ,
+        arcm:math.order_comparison ,
+        arcm:math.equality ,
+        arcm:math.counting ,
+        arcm:math.arithmetic_progression ,
+        arcm:math.set_union ,
+        arcm:math.set_intersection ,
+        arcm:math.set_difference ,
+        arcm:math.symmetric_difference ,
+        arcm:math.complement ,
+        arcm:math.shear_mapping .
+
+arcm:prior.topology.recolour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:recolour"@en ;
+    rdfs:comment "Object -> action table over a topological feature (holes, depth, containment, border contact, RAG degree, Euler class, ...)."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:recolour" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.genus ,
+        arcm:math.euler_characteristic ,
+        arcm:math.containment_tree ,
+        arcm:math.region_adjacency_graph ,
+        arcm:math.lookup_table ,
+        arcm:math.boundary .
+
+arcm:prior.topology.fill
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:fill"@en ;
+    rdfs:comment "Zones (object holes, enclosed background, background components) painted by encloser / content colour or a zone-feature table."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:fill" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.jordan_curve_theorem ,
+        arcm:math.flood_fill ,
+        arcm:analogy.container ,
+        arcm:math.lookup_table .
+
+arcm:prior.topology.cellmap
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:cellmap"@en ;
+    rdfs:comment "Cellwise map keyed by containment (inside, depth, innermost encloser colour, enclosed)."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:cellmap" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.winding_number ,
+        arcm:math.jordan_curve_theorem ,
+        arcm:math.containment_tree .
+
+arcm:prior.topology.select
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:select-colour / topo:keep / topo:crop"@en ;
+    rdfs:comment "The object with the unique max / min of a topological measure -> its colour, kept alone, or cropped."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:select-colour / topo:keep / topo:crop" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.extremum ,
+        arcm:math.genus .
+
+arcm:prior.topology.seed_region
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:seed-region"@en ;
+    rdfs:comment "The path-connected background region of each seed painted (whole, boundary layer or outer boundary)."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:seed-region" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.path_connectedness ,
+        arcm:math.flood_fill ,
+        arcm:math.boundary .
+
+arcm:prior.topology.hole_vote
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "topo:hole-vote"@en ;
+    rdfs:comment "Each empty hole of the most-holed host takes the majority colour of the free objects congruent to it."@en ;
+    arcm:domain "topology" ;
+    arcm:partOfPrior arcm:prior.topology ;
+    arcm:familyName "topo:hole-vote" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_topology.py" ;
+    arcm:groundedIn arcm:math.genus ,
+        arcm:math.congruence ,
+        arcm:math.mode ,
+        arcm:analogy.lock_and_key .
+
+arcm:prior.geometry.sym_complete
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-sym-complete"@en ;
+    rdfs:comment "Background holes restored from G-orbits; group and centre fitted per grid, object, frame, anchor or separator crossing (incl. lattice / auto wallpaper-like groups)."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-sym-complete" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.dihedral_group ,
+        arcm:math.orbit ,
+        arcm:math.wallpaper_group ,
+        arcm:math.glide_reflection ,
+        arcm:math.lattice ,
+        arcm:analogy.kaleidoscope .
+
+arcm:prior.geometry.sym_repair
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-sym-repair(-patch)"@en ;
+    rdfs:comment "Occluder-coloured cells restored from the fitted symmetry (fixed, auto or local partial symmetries); optionally only the occluded window is output."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-sym-repair(-patch)" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.orbit ,
+        arcm:math.inpainting ,
+        arcm:analogy.occlusion .
+
+arcm:prior.geometry.symmetrize_colour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-symmetrize-colour"@en ;
+    rdfs:comment "The largest blob's colour is made G-invariant."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-symmetrize-colour" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.orbit .
+
+arcm:prior.geometry.fold_dominant
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-fold-dominant"@en ;
+    rdfs:comment "Each object mirror-symmetrised about its best axis; the fuller half wins."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-fold-dominant" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.reflection_symmetry ,
+        arcm:math.reflection .
+
+arcm:prior.geometry.twisted_quadrants
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-twisted-quadrants"@en ;
+    rdfs:comment "D2 symmetry up to a per-quadrant colour substitution."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-twisted-quadrants" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.dihedral_group ,
+        arcm:math.permutation .
+
+arcm:prior.geometry.frieze
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-frieze"@en ;
+    rdfs:comment "The input continued as a 1-D frieze per axis (translation, mirror with repeated or shared boundary)."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-frieze" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.frieze_group ,
+        arcm:math.glide_reflection ,
+        arcm:math.translation .
+
+arcm:prior.geometry.product_sites
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-product-sites"@en ;
+    rdfs:comment "Congruent motifs at anchors; the anchor set is completed to rows x cols."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-product-sites" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.cartesian_product ,
+        arcm:math.lattice .
+
+arcm:prior.geometry.fold
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-fold"@en ;
+    rdfs:comment "Fold along the central separator: the mirrored half shows through the base half background."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-fold" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.reflection ,
+        arcm:analogy.paper_folding .
+
+arcm:prior.geometry.similarity_complete
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-similarity-complete"@en ;
+    rdfs:comment "Partial copies of a template under D8 x integer scale x translation are completed with the template's hidden colours."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-similarity-complete" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.similarity ,
+        arcm:math.dihedral_group ,
+        arcm:math.template_matching ,
+        arcm:analogy.amodal_completion .
+
+arcm:prior.geometry.select_by_symmetry
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-select-by-symmetry"@en ;
+    rdfs:comment "Crop the unique object / panel that has or lacks a D4 element, the odd symmetry signature, or the most / least symmetric one."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-select-by-symmetry" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.symmetry_group ,
+        arcm:math.odd_one_out ,
+        arcm:math.extremum .
+
+arcm:prior.geometry.fundamental_domain
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-fundamental-domain"@en ;
+    rdfs:comment "Output the top-left quadrant / half of the symmetric picture."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-fundamental-domain" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.fundamental_domain .
+
+arcm:prior.geometry.orbit_recolour
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "geom-orbit-recolour"@en ;
+    rdfs:comment "Cells recoloured by whether their whole G-orbit is present."@en ;
+    arcm:domain "geometry" ;
+    arcm:partOfPrior arcm:prior.geometry ;
+    arcm:familyName "geom-orbit-recolour" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_geometry.py" ;
+    arcm:groundedIn arcm:math.orbit ,
+        arcm:math.lookup_table .
+
+arcm:prior.combinatorics.axis_permute
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "perm-axis"@en ;
+    rdfs:comment "Rows / columns (unit lines, k-line groups, strips, bands) permuted by reversal, cyclic shift, sort by key or a fixed permutation."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "perm-axis" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:math.circular_shift ,
+        arcm:math.sorting .
+
+arcm:prior.combinatorics.lattice_permute
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "perm-lattice"@en ;
+    rdfs:comment "Panels of a separator lattice sorted (or kept) and written in one of 8 slot traversals (row/col, corner, plain/boustrophedon)."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "perm-lattice" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:analogy.boustrophedon ,
+        arcm:math.dihedral_group ,
+        arcm:math.sorting .
+
+arcm:prior.combinatorics.attr_permute
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "perm-attr"@en ;
+    rdfs:comment "The colour sequence and the shape sequence of ordered items permuted independently."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "perm-attr" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:math.circular_shift ,
+        arcm:math.sorting .
+
+arcm:prior.combinatorics.legend_perm
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "perm-legend"@en ;
+    rdfs:comment "A legend block of adjacent colour pairs defines a colour permutation."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "perm-legend" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:analogy.legend .
+
+arcm:prior.combinatorics.sort_pack
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "sort-pack"@en ;
+    rdfs:comment "Objects / panels cropped, ordered by key or position and concatenated."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "sort-pack" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.sorting ,
+        arcm:math.concatenation .
+
+arcm:prior.combinatorics.panel_chain
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "panel-chain"@en ;
+    rdfs:comment "Panels chained by matching edge profiles (unique chain) and concatenated."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "panel-chain" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:analogy.edge_matching_puzzle ,
+        arcm:math.permutation .
+
+arcm:prior.combinatorics.class_swap
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "class-swap"@en ;
+    rdfs:comment "Two shape classes exchange shapes (optionally carrying colour)."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "class-swap" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.permutation ,
+        arcm:math.congruence .
+
+arcm:prior.combinatorics.sorted_stack
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "sorted-stack"@en ;
+    rdfs:comment "Movable items removed, sorted and stacked one per band against a wall."@en ;
+    arcm:domain "combinatorics" ;
+    arcm:partOfPrior arcm:prior.combinatorics ;
+    arcm:familyName "sorted-stack" ;
+    arcm:status "implemented (round 1)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_combinatorics.py" ;
+    arcm:groundedIn arcm:math.sorting ,
+        arcm:analogy.stack ,
+        arcm:principle.gravity .
+
+arcm:prior.optics.overlay
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "optics:overlay"@en ;
+    rdfs:comment "Explicit layers (panels, windows) composed by the painter's law with a depth order induced from training overlaps (L1 + L2)."@en ;
+    arcm:domain "optics" ;
+    arcm:partOfPrior arcm:prior.optics ;
+    arcm:familyName "optics:overlay" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_optics.py" ;
+    arcm:groundedIn arcm:math.painters_algorithm ,
+        arcm:math.z_order ,
+        arcm:math.digital_compositing ,
+        arcm:analogy.occlusion .
+
+arcm:prior.optics.scene
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "optics:depth / optics:disocclude / optics:relayer"@en ;
+    rdfs:comment "One layered-scene parse (amodal layers L3 + depth order L2) read out as a depth summary, a disocclusion (occluder removed) or a re-layering."@en ;
+    arcm:domain "optics" ;
+    arcm:partOfPrior arcm:prior.optics ;
+    arcm:familyName "optics:depth / optics:disocclude / optics:relayer" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_optics.py" ;
+    arcm:groundedIn arcm:analogy.amodal_completion ,
+        arcm:analogy.occlusion ,
+        arcm:math.z_order ,
+        arcm:math.inpainting .
+
+arcm:prior.optics.project
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "optics:project"@en ;
+    rdfs:comment "Bodies project onto a screen line along the facing axis; nearer bodies occlude farther images (L4)."@en ;
+    arcm:domain "optics" ;
+    arcm:partOfPrior arcm:prior.optics ;
+    arcm:familyName "optics:project" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_optics.py" ;
+    arcm:groundedIn arcm:math.parallel_projection ,
+        arcm:analogy.shadow ,
+        arcm:principle.geometrical_optics .
+
+arcm:prior.optics.light
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "optics:light"@en ;
+    rdfs:comment "Diagonal light rays from emitters (L-triomino corner, diagonal segment ends, corner cell) bounce off opaque bodies (mirrors) and pass transparent colours (L5)."@en ;
+    arcm:domain "optics" ;
+    arcm:partOfPrior arcm:prior.optics ;
+    arcm:familyName "optics:light" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_optics.py" ;
+    arcm:groundedIn arcm:principle.geometrical_optics ,
+        arcm:principle.specular_reflection ,
+        arcm:math.dynamical_billiards ,
+        arcm:analogy.mirror .
+
+arcm:prior.mechanics.lockkey
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "mech:lockkey"@en ;
+    rdfs:comment "Keys moved (translation or D4 motion) into the lock cavities they fit exactly; unique maximum matching between keys and cavities (L5)."@en ;
+    arcm:domain "mechanics" ;
+    arcm:partOfPrior arcm:prior.mechanics ;
+    arcm:familyName "mech:lockkey" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_mechanics.py" ;
+    arcm:groundedIn arcm:analogy.lock_and_key ,
+        arcm:math.congruence ,
+        arcm:math.dihedral_group ,
+        arcm:math.assignment_problem ,
+        arcm:math.exact_cover .
+
+arcm:prior.mechanics.gravity
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "mech:gravity"@en ;
+    rdfs:comment "Rigid bodies driven by a field (constant direction, class table or attractor) move until contact; settling in order gives piling / stacking (L1-L4)."@en ;
+    arcm:domain "mechanics" ;
+    arcm:partOfPrior arcm:prior.mechanics ;
+    arcm:familyName "mech:gravity" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_mechanics.py" ;
+    arcm:groundedIn arcm:principle.gravity ,
+        arcm:principle.mechanical_equilibrium ,
+        arcm:math.rigid_transformation ,
+        arcm:analogy.tetris ,
+        arcm:analogy.stack .
+
+arcm:prior.mechanics.lever
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "mech:lever"@en ;
+    rdfs:comment "Arms rotate by a quarter turn about a static pivot (L7)."@en ;
+    arcm:domain "mechanics" ;
+    arcm:partOfPrior arcm:prior.mechanics ;
+    arcm:familyName "mech:lever" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_mechanics.py" ;
+    arcm:groundedIn arcm:analogy.lever ,
+        arcm:math.rotation .
+
+arcm:prior.action.geodesic
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "act-geodesic"@en ;
+    rdfs:comment "Terminals joined by minimal-action curves (length + eps * turns) in an N4 / N8 metric: pair, rectilinear comb, chain or star networks (L1)."@en ;
+    arcm:domain "action" ;
+    arcm:partOfPrior arcm:prior.action ;
+    arcm:familyName "act-geodesic" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_action.py" ;
+    arcm:groundedIn arcm:principle.least_action ,
+        arcm:math.shortest_path ,
+        arcm:math.taxicab_metric ,
+        arcm:math.chebyshev_metric ,
+        arcm:principle.inertia .
+
+arcm:prior.arithmetic.residue
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-residue"@en ;
+    rdfs:comment "out(p) = F(class(p), phi(p)) with phi a residue class mod k (parity for k = 2), a half, or an ordinal index."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-residue" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.modulo ,
+        arcm:math.modular_arithmetic ,
+        arcm:math.parity ,
+        arcm:math.ranking .
+
+arcm:prior.arithmetic.shift
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-shift"@en ;
+    rdfs:comment "Each line translated by s(u) = a*u (shear) or a periodic shift sequence S[u mod k]."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-shift" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.shear_mapping ,
+        arcm:math.circular_shift ,
+        arcm:math.modulo .
+
+arcm:prior.arithmetic.count_scale
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-count-scale"@en ;
+    rdfs:comment "Scale / tile multiplicity k = a*n + b of an input count n."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-count-scale" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.counting ,
+        arcm:math.multiplication ,
+        arcm:math.addition ,
+        arcm:math.image_scaling ,
+        arcm:math.tessellation .
+
+arcm:prior.arithmetic.union
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-union"@en ;
+    rdfs:comment "Panels combined by union; conflicts resolved by an induced colour order."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-union" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.set_union ,
+        arcm:math.order_comparison .
+
+arcm:prior.arithmetic.progression
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-progression"@en ;
+    rdfs:comment "Bars parallel to a seed bar with lengths L + a*d (arithmetic progression)."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-progression" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.arithmetic_progression ,
+        arcm:math.modulo .
+
+arcm:prior.arithmetic.congruence
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-congruence"@en ;
+    rdfs:comment "Unknown cells completed from the congruence classes of a lattice."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-congruence" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.modular_arithmetic ,
+        arcm:math.periodicity ,
+        arcm:math.inpainting .
+
+arcm:prior.arithmetic.complement
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-complement"@en ;
+    rdfs:comment "Figure / ground complement, then identity, tiling or Kronecker repeat."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-complement" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.complement ,
+        arcm:math.kronecker_product ,
+        arcm:math.tessellation .
+
+arcm:prior.arithmetic.window
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arith-window"@en ;
+    rdfs:comment "Quotient windows: output a window of size H/ky x W/kx (divisibility) or one minimal period of the grid, optionally recoloured by a parity table."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:familyName "arith-window" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.divisibility ,
+        arcm:math.periodicity ,
+        arcm:math.parity ,
+        arcm:math.fundamental_domain .
+
+arcm:prior.fluids.gravity
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "fluid:gravity"@en ;
+    rdfs:comment "Liquid from sources (infinite, finite and conserved, or rain) falls under gravity, spreads along supports, fills hydrostatic basins to the spill level and overflows; finite volumes are conserved (L1-L4)."@en ;
+    arcm:domain "fluids" ;
+    arcm:partOfPrior arcm:prior.fluids ;
+    arcm:familyName "fluid:gravity" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_fluids.py" ;
+    arcm:groundedIn arcm:principle.fluid_flow ,
+        arcm:principle.gravity ,
+        arcm:principle.hydrostatics ,
+        arcm:principle.mechanical_equilibrium ,
+        arcm:analogy.container ,
+        arcm:principle.conservation_law .
+
+arcm:prior.fluids.trickle
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "fluid:trickle"@en ;
+    rdfs:comment "A zero-volume thin stream: blocked along gravity it slides to the nearest point from which it can fall again (least detour), or always to one side (L5)."@en ;
+    arcm:domain "fluids" ;
+    arcm:partOfPrior arcm:prior.fluids ;
+    arcm:familyName "fluid:trickle" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_fluids.py" ;
+    arcm:groundedIn arcm:principle.fluid_flow ,
+        arcm:principle.gravity ,
+        arcm:principle.least_action .
+
+arcm:prior.fluids.jet
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "fluid:jet"@en ;
+    rdfs:comment "Incompressible fluid fills a container and escapes as jets straight outward through every gap in its wall, optionally with a diagonal spray (L6)."@en ;
+    arcm:domain "fluids" ;
+    arcm:partOfPrior arcm:prior.fluids ;
+    arcm:familyName "fluid:jet" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_fluids.py" ;
+    arcm:groundedIn arcm:principle.fluid_flow ,
+        arcm:analogy.leak ,
+        arcm:analogy.container .
+
+arcm:prior.mechanics.slot_machine
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "mechanics: slot machine"@en ;
+    rdfs:comment "Rows / columns / reels shift cyclically until a target line aligns."@en ;
+    arcm:domain "mechanics" ;
+    arcm:partOfPrior arcm:prior.mechanics ;
+    arcm:status "planned (named in PRIORS2/LINK briefs; not in prior_mechanics.py FAMILIES)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_mechanics.py" ;
+    arcm:groundedIn arcm:analogy.slot_machine ,
+        arcm:math.circular_shift .
+
+arcm:prior.fluids.spreading
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "fluids: spreading"@en ;
+    rdfs:comment "Diffusion / infection spreading from sources, blocked by barriers (contagion between touching objects, competing diffusion from several sources)."@en ;
+    arcm:domain "fluids" ;
+    arcm:partOfPrior arcm:prior.fluids ;
+    arcm:status "dropped after measurement (0 tasks fit), per the prior_fluids.py docstring" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_fluids.py" ;
+    arcm:groundedIn arcm:principle.diffusion ,
+        arcm:math.flood_fill ,
+        arcm:math.voronoi .
+
+arcm:prior.action.conserve
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "act-conserve:capacity / act-conserve:heap"@en ;
+    rdfs:comment "Conservation (mass balance): the mobile cells are poured into the container whose capacity equals their count (or heaped), settling into the lowest-potential configuration (L2 + L3)."@en ;
+    arcm:domain "action" ;
+    arcm:partOfPrior arcm:prior.action ;
+    arcm:familyName "act-conserve:capacity / act-conserve:heap" ;
+    arcm:status "round 2, in progress (module read 2026-09-28)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_action.py" ;
+    arcm:groundedIn arcm:principle.conservation_law ,
+        arcm:principle.mechanical_equilibrium ,
+        arcm:analogy.container ,
+        arcm:math.counting ,
+        arcm:principle.gravity .
+
+arcm:prior.arithmetic.prime
+    a owl:Class ;
+    rdfs:subClassOf arcm:Prior ,
+        dul:Method ;
+    rdfs:label "arithmetic: prime"@en ;
+    rdfs:comment "Primality of counts / sizes."@en ;
+    arcm:domain "arithmetic" ;
+    arcm:partOfPrior arcm:prior.arithmetic ;
+    arcm:status "planned (named in LINK brief; no family yet)" ;
+    arcm:sourceFile "/home/claude/work/latent/prior_arithmetic.py" ;
+    arcm:groundedIn arcm:math.prime .
+
+# ---------------------------------------------------------------- physical principles
+arcm:principle.gravity
+    a arcm:Principle ;
+    rdfs:label "gravity"@en ;
+    rdfs:comment "Bodies are drawn in a field direction until supported."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Gravity> ,
+        wd:Q11412 .
+
+arcm:principle.mechanical_equilibrium
+    a arcm:Principle ;
+    rdfs:label "mechanical equilibrium"@en ;
+    rdfs:comment "Net force zero: bodies at rest once supported / balanced."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Mechanical_equilibrium> ,
+        wd:Q716915 .
+
+arcm:principle.least_action
+    a arcm:Principle ;
+    rdfs:label "principle of least action (stationary action)"@en ;
+    rdfs:comment "The realised path extremises the action; on the grid: shortest / straightest connection, minimal displacement."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Action_principles> ;
+    skos:exactMatch wd:Q722799 .
+
+arcm:principle.conservation_law
+    a arcm:Principle ;
+    rdfs:label "conservation law"@en ;
+    rdfs:comment "A measurable quantity (cell count, colour mass, object count) is invariant."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Conservation_law> ,
+        wd:Q205805 ;
+    skos:related wd:Q483948 ,
+        wd:Q578555 .
+
+arcm:principle.fluid_flow
+    a arcm:Principle ;
+    rdfs:label "fluid flow"@en ;
+    rdfs:comment "Liquid pours from sources, falls, spreads along supports and flows around obstacles."@en ;
+    skos:exactMatch wd:Q12142910 ;
+    skos:related <http://dbpedia.org/resource/Fluid_dynamics> ,
+        wd:Q216320 .
+
+arcm:principle.hydrostatics
+    a arcm:Principle ;
+    rdfs:label "hydrostatic equilibrium (filling to the spill level)"@en ;
+    rdfs:comment "Liquid at rest fills a container bottom-up to a level surface."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Hydrostatics> ,
+        wd:Q177807 .
+
+arcm:principle.diffusion
+    a arcm:Principle ;
+    rdfs:label "diffusion (spreading from sources)"@en ;
+    rdfs:comment "Spreading from sources through free space, blocked by barriers."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Diffusion> ,
+        wd:Q163214 .
+
+arcm:principle.geometrical_optics
+    a arcm:Principle ;
+    rdfs:label "rectilinear propagation of light (ray optics)"@en ;
+    rdfs:comment "Light travels along straight rays and is stopped by opaque bodies."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Geometrical_optics> ,
+        wd:Q467980 ;
+    skos:related <http://dbpedia.org/resource/Ray_(optics)> ,
+        wd:Q633620 .
+
+arcm:principle.specular_reflection
+    a arcm:Principle ;
+    rdfs:label "law of reflection (specular reflection)"@en ;
+    rdfs:comment "A ray hitting a mirror line leaves at the mirrored angle."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Specular_reflection> ,
+        wd:Q1079524 .
+
+arcm:principle.inertia
+    a arcm:Principle ;
+    rdfs:label "inertia"@en ;
+    rdfs:comment "A moving body keeps its direction until something stops or deflects it."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Inertia> ,
+        wd:Q122508 .
+
+# ---------------------------------------------------------------- common-sense analogies
+arcm:analogy.lock_and_key
+    a arcm:Analogy ;
+    rdfs:label "lock and key (key and keyhole)"@en ;
+    rdfs:comment "A key fits the complementary cavity of a lock. Wikipedia \"Keyhole\" redirects to \"Lock and key\"; no standalone keyhole item was confirmed."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Lock_and_key> ;
+    skos:closeMatch wd:Q228039 ;
+    skos:related wd:Q132041 .
+
+arcm:analogy.slot_machine
+    a arcm:Analogy ;
+    rdfs:label "slot machine (reels shift until a line aligns)"@en ;
+    rdfs:comment "Rows/columns shift cyclically like reels."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Slot_machine> ,
+        wd:Q33972 .
+
+arcm:analogy.stack
+    a arcm:Analogy ;
+    rdfs:label "stack (pile of items, LIFO)"@en ;
+    rdfs:comment "Items piled one atop another against a floor or wall."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Stack_(abstract_data_type)> ,
+        wd:Q177929 ;
+    skos:related wd:Q1142376 .
+
+arcm:analogy.container
+    a arcm:Analogy ;
+    rdfs:label "container"@en ;
+    rdfs:comment "A receptacle with an interior that can be filled or leak."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Container> ,
+        wd:Q987767 .
+
+arcm:analogy.shadow
+    a arcm:Analogy ;
+    rdfs:label "shadow"@en ;
+    rdfs:comment "Dark area where light from a source is blocked by a body."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Shadow> ,
+        wd:Q160020 .
+
+arcm:analogy.mirror
+    a arcm:Analogy ;
+    rdfs:label "mirror"@en ;
+    rdfs:comment "A surface that produces a reflected (mirror) image."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Mirror> ,
+        wd:Q35197 ;
+    skos:related wd:Q2703478 .
+
+arcm:analogy.occlusion
+    a arcm:Analogy ;
+    rdfs:label "occlusion (interposition)"@en ;
+    rdfs:comment "A body in front hides part of a body behind it. Wikipedia \"Occlusion\" is a disambiguation page; the general sense is in \"Occultation\"."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Occultation> ,
+        wd:Q202746 ;
+    skos:related <http://dbpedia.org/resource/Depth_perception> ,
+        wd:Q1749840 ,
+        <http://dbpedia.org/resource/Hidden-surface_determination> ,
+        wd:Q1421323 .
+
+arcm:analogy.amodal_completion
+    a arcm:Analogy ;
+    rdfs:label "amodal completion"@en ;
+    rdfs:comment "The hidden part of a partly occluded shape is perceived / completed."@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Amodal_perception> ,
+        wd:Q4747455 .
+
+arcm:analogy.stencil
+    a arcm:Analogy ;
+    rdfs:label "stencil"@en ;
+    rdfs:comment "A fixed pattern painted through a template around a seed."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Stencil> ,
+        wd:Q504073 .
+
+arcm:analogy.rubber_stamp
+    a arcm:Analogy ;
+    rdfs:label "rubber stamp"@en ;
+    rdfs:comment "The same image is printed again at each target location."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Rubber_stamp> ,
+        wd:Q644099 .
+
+arcm:analogy.jigsaw_puzzle
+    a arcm:Analogy ;
+    rdfs:label "jigsaw puzzle"@en ;
+    rdfs:comment "Pieces assembled so they interlock / tile a region exactly."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Jigsaw_puzzle> ,
+        wd:Q181008 ;
+    skos:related wd:Q7802162 .
+
+arcm:analogy.edge_matching_puzzle
+    a arcm:Analogy ;
+    rdfs:label "edge-matching puzzle"@en ;
+    rdfs:comment "Tiles placed so the edges of adjacent tiles match."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Edge-matching_puzzle> ,
+        wd:Q1720892 .
+
+arcm:analogy.tetris
+    a arcm:Analogy ;
+    rdfs:label "Tetris (falling blocks that pile up)"@en ;
+    rdfs:comment "Rigid pieces fall until they land and pile up."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Tetris> ,
+        wd:Q71910 ;
+    skos:related wd:Q2082757 .
+
+arcm:analogy.kaleidoscope
+    a arcm:Analogy ;
+    rdfs:label "kaleidoscope"@en ;
+    rdfs:comment "Repeated mirror reflections produce a symmetric pattern from a fragment."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Kaleidoscope> ,
+        wd:Q180049 .
+
+arcm:analogy.matryoshka
+    a arcm:Analogy ;
+    rdfs:label "matryoshka doll (nesting)"@en ;
+    rdfs:comment "Objects of decreasing size nested one inside another."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Matryoshka_doll> ,
+        wd:Q17297 .
+
+arcm:analogy.maze
+    a arcm:Analogy ;
+    rdfs:label "maze"@en ;
+    rdfs:comment "Paths through walls from an entrance to a goal."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Maze> ,
+        wd:Q606777 ;
+    skos:related wd:Q1606072 .
+
+arcm:analogy.stairs
+    a arcm:Analogy ;
+    rdfs:label "staircase"@en ;
+    rdfs:comment "Successive steps whose extent grows by a constant amount."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Stairs> ,
+        wd:Q12511 .
+
+arcm:analogy.bar_chart
+    a arcm:Analogy ;
+    rdfs:label "bar chart"@en ;
+    rdfs:comment "Bars whose lengths are proportional to counts."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Bar_chart> ,
+        wd:Q1124595 .
+
+arcm:analogy.tally_marks
+    a arcm:Analogy ;
+    rdfs:label "tally marks"@en ;
+    rdfs:comment "A count rendered as that many marks (unary numeral)."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Tally_marks> ,
+        wd:Q1860391 ;
+    skos:related wd:Q724775 .
+
+arcm:analogy.legend
+    a arcm:Analogy ;
+    rdfs:label "legend / key"@en ;
+    rdfs:comment "A small key mapping symbols (colours, shapes) to meanings. No standalone Wikipedia article (Map_legend redirects to Map layout)."@en ;
+    skos:closeMatch wd:Q1200435 .
+
+arcm:analogy.palette_swap
+    a arcm:Analogy ;
+    rdfs:label "palette swap"@en ;
+    rdfs:comment "The same graphic re-used with a different colour palette. Wikipedia \"Palette_swap\" redirects to a glossary."@en ;
+    skos:exactMatch wd:Q7127464 ;
+    rdfs:seeAlso <http://dbpedia.org/resource/Palette_(computing)> .
+
+arcm:analogy.paper_folding
+    a arcm:Analogy ;
+    rdfs:label "folding a sheet (paper folding)"@en ;
+    rdfs:comment "A sheet folded along a crease so one half lies over the other."@en ;
+    skos:related <http://dbpedia.org/resource/Origami> ,
+        wd:Q83357 ,
+        wd:Q3299105 .
+
+arcm:analogy.boustrophedon
+    a arcm:Analogy ;
+    rdfs:label "boustrophedon (snake order)"@en ;
+    rdfs:comment "Alternate lines are traversed in opposite directions."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Boustrophedon> ,
+        wd:Q194233 .
+
+arcm:analogy.lever
+    a arcm:Analogy ;
+    rdfs:label "lever (rotation about a pivot)"@en ;
+    rdfs:comment "A rigid arm pivoted at a fulcrum."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Lever> ,
+        wd:Q40164 .
+
+arcm:analogy.leak
+    a arcm:Analogy ;
+    rdfs:label "leak"@en ;
+    rdfs:comment "Contents escape a container through an opening."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Leak> ,
+        wd:Q1349983 .
+
+arcm:analogy.beam_splitter
+    a arcm:Analogy ;
+    rdfs:label "beam splitter"@en ;
+    rdfs:comment "A beam is split into two beams at an obstacle."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Beam_splitter> ,
+        wd:Q947542 .
+
+# ---------------------------------------------------------------- mathematical concepts
+arcm:math.set_union
+    a arcm:MathConcept ;
+    rdfs:label "set union"@en ;
+    skos:exactMatch om_set1:union ,
+        <http://dbpedia.org/resource/Union_(set_theory)> ,
+        wd:Q185359 .
+
+arcm:math.set_intersection
+    a arcm:MathConcept ;
+    rdfs:label "set intersection"@en ;
+    skos:exactMatch om_set1:intersect ,
+        <http://dbpedia.org/resource/Intersection_(set_theory)> ,
+        wd:Q185837 .
+
+arcm:math.set_difference
+    a arcm:MathConcept ;
+    rdfs:label "set difference (relative complement)"@en ;
+    rdfs:comment "Covered by the Wikipedia article \"Complement (set theory)\"."@en ;
+    skos:exactMatch om_set1:setdiff ,
+        wd:Q845126 ;
+    skos:closeMatch <http://dbpedia.org/resource/Complement_(set_theory)> .
+
+arcm:math.symmetric_difference
+    a arcm:MathConcept ;
+    rdfs:label "symmetric difference"@en ;
+    rdfs:comment "No set1 symbol; membership is the XOR of memberships."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Symmetric_difference> ,
+        wd:Q1147242 ;
+    skos:related om_logic1:xor .
+
+arcm:math.complement
+    a arcm:MathConcept ;
+    rdfs:label "complement (figure <-> ground)"@en ;
+    rdfs:comment "No set1 symbol; the absolute complement is U \\ A."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Complement_(set_theory)> ,
+        wd:Q242767 ;
+    skos:related om_set1:setdiff .
+
+arcm:math.empty_set
+    a arcm:MathConcept ;
+    rdfs:label "empty set"@en ;
+    skos:exactMatch om_set1:emptyset ,
+        <http://dbpedia.org/resource/Empty_set> ,
+        wd:Q226183 .
+
+arcm:math.cartesian_product
+    a arcm:MathConcept ;
+    rdfs:label "Cartesian product"@en ;
+    skos:exactMatch om_set1:cartesian_product ,
+        <http://dbpedia.org/resource/Cartesian_product> ,
+        wd:Q173740 .
+
+arcm:math.filter
+    a arcm:MathConcept ;
+    rdfs:label "filter by a predicate (set comprehension)"@en ;
+    rdfs:comment "No confirmed Wikidata item."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Filter_(higher-order_function)> ;
+    skos:closeMatch om_set1:suchthat .
+
+arcm:math.map
+    a arcm:MathConcept ;
+    rdfs:label "map (apply a function to every element)"@en ;
+    rdfs:comment "No confirmed Wikidata item."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Map_(higher-order_function)> ;
+    skos:closeMatch om_set1:map .
+
+arcm:math.truth_table
+    a arcm:MathConcept ;
+    rdfs:label "truth table"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Truth_table> ,
+        wd:Q219079 .
+
+arcm:math.conjunction
+    a arcm:MathConcept ;
+    rdfs:label "logical conjunction (AND)"@en ;
+    skos:exactMatch om_logic1:and ,
+        <http://dbpedia.org/resource/Logical_conjunction> ,
+        wd:Q191081 .
+
+arcm:math.disjunction
+    a arcm:MathConcept ;
+    rdfs:label "logical disjunction (OR)"@en ;
+    skos:exactMatch om_logic1:or ,
+        <http://dbpedia.org/resource/Logical_disjunction> ,
+        wd:Q1651704 .
+
+arcm:math.exclusive_or
+    a arcm:MathConcept ;
+    rdfs:label "exclusive or (XOR)"@en ;
+    skos:exactMatch om_logic1:xor ,
+        <http://dbpedia.org/resource/Exclusive_or> ,
+        wd:Q498186 .
+
+arcm:math.negation
+    a arcm:MathConcept ;
+    rdfs:label "negation (NOT)"@en ;
+    skos:exactMatch om_logic1:not ,
+        <http://dbpedia.org/resource/Negation> ,
+        wd:Q190558 .
+
+arcm:math.counting
+    a arcm:MathConcept ;
+    rdfs:label "counting"@en ;
+    rdfs:comment "Determining the size of a finite set."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Counting> ,
+        wd:Q247154 ;
+    skos:closeMatch om_set1:size .
+
+arcm:math.addition
+    a arcm:MathConcept ;
+    rdfs:label "addition"@en ;
+    skos:exactMatch om_arith1:plus ,
+        <http://dbpedia.org/resource/Addition> ,
+        wd:Q32043 .
+
+arcm:math.subtraction
+    a arcm:MathConcept ;
+    rdfs:label "subtraction (difference of counts)"@en ;
+    skos:exactMatch om_arith1:minus ,
+        <http://dbpedia.org/resource/Subtraction> ,
+        wd:Q40754 .
+
+arcm:math.multiplication
+    a arcm:MathConcept ;
+    rdfs:label "multiplication"@en ;
+    skos:exactMatch om_arith1:times ,
+        <http://dbpedia.org/resource/Multiplication> ,
+        wd:Q40276 .
+
+arcm:math.order_comparison
+    a arcm:MathConcept ;
+    rdfs:label "order comparison (less / greater)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Inequality_(mathematics)> ;
+    skos:closeMatch wd:Q165309 ,
+        om_relation1:lt ,
+        om_relation1:gt .
+
+arcm:math.equality
+    a arcm:MathConcept ;
+    rdfs:label "equality"@en ;
+    skos:exactMatch om_relation1:eq ,
+        <http://dbpedia.org/resource/Equality_(mathematics)> ,
+        wd:Q842346 .
+
+arcm:math.extremum
+    a arcm:MathConcept ;
+    rdfs:label "maximum / minimum (extremum, arg-max)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Maximum_and_minimum> ,
+        wd:Q845060 ;
+    skos:closeMatch om_minmax1:max ,
+        om_minmax1:min .
+
+arcm:math.parity
+    a arcm:MathConcept ;
+    rdfs:label "parity (even / odd)"@en ;
+    rdfs:comment "Parity is the residue modulo 2."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Parity_(mathematics)> ,
+        wd:Q230967 ;
+    skos:related wd:Q13366104 ,
+        wd:Q13366129 ,
+        om_integer1:remainder .
+
+arcm:math.modulo
+    a arcm:MathConcept ;
+    rdfs:label "modulo operation (remainder)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Modulo> ,
+        wd:Q1799665 ;
+    skos:closeMatch om_integer1:remainder ;
+    skos:related wd:Q846677 .
+
+arcm:math.modular_arithmetic
+    a arcm:MathConcept ;
+    rdfs:label "modular arithmetic / congruence classes"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Modular_arithmetic> ,
+        wd:Q319400 ;
+    skos:closeMatch om_integer2:eqmod ,
+        wd:Q3773677 .
+
+arcm:math.prime
+    a arcm:MathConcept ;
+    rdfs:label "prime number"@en ;
+    rdfs:comment "OpenMath setname1#P is the set of positive primes."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Prime_number> ,
+        wd:Q49008 ;
+    skos:closeMatch om_setname1:P ,
+        wd:Q47370614 .
+
+arcm:math.divisibility
+    a arcm:MathConcept ;
+    rdfs:label "divisibility"@en ;
+    rdfs:comment "Defined in the Wikipedia article \"Divisor\"."@en ;
+    skos:exactMatch wd:Q5284415 ,
+        om_integer2:divides ;
+    skos:closeMatch om_integer1:factorof ,
+        <http://dbpedia.org/resource/Divisor> ;
+    skos:related wd:Q50708 .
+
+arcm:math.permutation
+    a arcm:MathConcept ;
+    rdfs:label "permutation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Permutation> ,
+        wd:Q161519 ;
+    skos:closeMatch om_permut1:permutation ,
+        om_permutation1:permutation .
+
+arcm:math.circular_shift
+    a arcm:MathConcept ;
+    rdfs:label "circular shift (cyclic rotation of a sequence)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Circular_shift> ,
+        wd:Q3042450 ;
+    skos:related om_permgp2:cyclic_group .
+
+arcm:math.symmetric_group
+    a arcm:MathConcept ;
+    rdfs:label "symmetric group"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Symmetric_group> ,
+        wd:Q849512 ;
+    skos:closeMatch om_permgp2:symmetric_group ,
+        om_permutation1:permutationsn .
+
+arcm:math.sorting
+    a arcm:MathConcept ;
+    rdfs:label "sorting"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Sorting> ,
+        wd:Q2303697 .
+
+arcm:math.ranking
+    a arcm:MathConcept ;
+    rdfs:label "ranking (ordinal index)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Ranking> ;
+    skos:closeMatch wd:Q9303985 .
+
+arcm:math.dihedral_group
+    a arcm:MathConcept ;
+    rdfs:label "dihedral group (D4 on the square lattice)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Dihedral_group> ,
+        wd:Q558339 ;
+    skos:closeMatch om_permgp2:dihedral_group ,
+        om_groupname1:dihedral_group .
+
+arcm:math.symmetry_group
+    a arcm:MathConcept ;
+    rdfs:label "symmetry group"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Symmetry_group> ,
+        wd:Q902019 ;
+    skos:related wd:Q1455736 .
+
+arcm:math.wallpaper_group
+    a arcm:MathConcept ;
+    rdfs:label "wallpaper group"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Wallpaper_group> ,
+        wd:Q906867 .
+
+arcm:math.frieze_group
+    a arcm:MathConcept ;
+    rdfs:label "frieze group"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Frieze_group> ,
+        wd:Q265785 .
+
+arcm:math.glide_reflection
+    a arcm:MathConcept ;
+    rdfs:label "glide reflection"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Glide_reflection> ,
+        wd:Q876450 .
+
+arcm:math.reflection
+    a arcm:MathConcept ;
+    rdfs:label "reflection (mirror map)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Reflection_(mathematics)> ,
+        wd:Q426221 .
+
+arcm:math.rotation
+    a arcm:MathConcept ;
+    rdfs:label "rotation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Rotation_(mathematics)> ,
+        wd:Q848368 .
+
+arcm:math.translation
+    a arcm:MathConcept ;
+    rdfs:label "translation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Translation_(geometry)> ,
+        wd:Q211459 .
+
+arcm:math.rigid_transformation
+    a arcm:MathConcept ;
+    rdfs:label "rigid transformation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Rigid_transformation> ,
+        wd:Q7333813 ;
+    skos:related wd:Q908686 .
+
+arcm:math.scaling
+    a arcm:MathConcept ;
+    rdfs:label "scaling"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Scaling_(geometry)> ,
+        wd:Q102441924 .
+
+arcm:math.image_scaling
+    a arcm:MathConcept ;
+    rdfs:label "image scaling (up / down-sampling)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Image_scaling> ,
+        wd:Q440296 .
+
+arcm:math.shear_mapping
+    a arcm:MathConcept ;
+    rdfs:label "shear mapping"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Shear_mapping> ,
+        wd:Q1411898 .
+
+arcm:math.similarity
+    a arcm:MathConcept ;
+    rdfs:label "similarity (same shape up to scale)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Similarity_(geometry)> ,
+        wd:Q254465 .
+
+arcm:math.congruence
+    a arcm:MathConcept ;
+    rdfs:label "congruence (same shape and size)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Congruence_(geometry)> ,
+        wd:Q154210 .
+
+arcm:math.reflection_symmetry
+    a arcm:MathConcept ;
+    rdfs:label "reflection symmetry"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Reflection_symmetry> ,
+        wd:Q15955882 .
+
+arcm:math.rotational_symmetry
+    a arcm:MathConcept ;
+    rdfs:label "rotational symmetry"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Rotational_symmetry> ,
+        wd:Q593950 .
+
+arcm:math.orbit
+    a arcm:MathConcept ;
+    rdfs:label "orbit of a group action"@en ;
+    rdfs:comment "Defined in the Wikipedia article \"Group action\"."@en ;
+    skos:exactMatch wd:Q17859776 ;
+    skos:closeMatch om_permgp1:orbit ;
+    skos:related <http://dbpedia.org/resource/Group_action> ,
+        wd:Q288465 .
+
+arcm:math.fundamental_domain
+    a arcm:MathConcept ;
+    rdfs:label "fundamental domain"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Fundamental_domain> ,
+        wd:Q1474108 .
+
+arcm:math.lattice
+    a arcm:MathConcept ;
+    rdfs:label "translation lattice"@en ;
+    rdfs:comment "No unambiguous Wikidata item for the group-theoretic lattice was confirmed."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Lattice_(group)> ;
+    skos:related wd:Q1252145 .
+
+arcm:math.periodicity
+    a arcm:MathConcept ;
+    rdfs:label "periodicity (periodic function / sequence)"@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Periodic_function> ,
+        wd:Q184743 ,
+        wd:Q3503302 .
+
+arcm:math.tessellation
+    a arcm:MathConcept ;
+    rdfs:label "tessellation (tiling)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Tessellation> ,
+        wd:Q214856 .
+
+arcm:math.polyomino
+    a arcm:MathConcept ;
+    rdfs:label "polyomino"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Polyomino> ,
+        wd:Q1144819 ;
+    skos:related wd:Q2981223 .
+
+arcm:math.exact_cover
+    a arcm:MathConcept ;
+    rdfs:label "exact cover"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Exact_cover> ,
+        wd:Q388260 .
+
+arcm:math.kronecker_product
+    a arcm:MathConcept ;
+    rdfs:label "Kronecker product"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Kronecker_product> ,
+        wd:Q1238125 .
+
+arcm:math.self_similarity
+    a arcm:MathConcept ;
+    rdfs:label "self-similarity"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Self-similarity> ,
+        wd:Q262372 .
+
+arcm:math.cellular_automaton
+    a arcm:MathConcept ;
+    rdfs:label "cellular automaton"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Cellular_automaton> ,
+        wd:Q189156 .
+
+arcm:math.elementary_ca
+    a arcm:MathConcept ;
+    rdfs:label "elementary cellular automaton"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Elementary_cellular_automaton> ,
+        wd:Q1875447 .
+
+arcm:math.recurrence_relation
+    a arcm:MathConcept ;
+    rdfs:label "recurrence relation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Recurrence_relation> ,
+        wd:Q740970 .
+
+arcm:math.lookup_table
+    a arcm:MathConcept ;
+    rdfs:label "lookup table (learned feature -> value table)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Lookup_table> ,
+        wd:Q690265 .
+
+arcm:math.connected_component
+    a arcm:MathConcept ;
+    rdfs:label "connected component"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Component_(graph_theory)> ,
+        wd:Q2997928 .
+
+arcm:math.path_connectedness
+    a arcm:MathConcept ;
+    rdfs:label "path-connectedness"@en ;
+    rdfs:comment "Defined in the Wikipedia article \"Connected space\"."@en ;
+    skos:exactMatch wd:Q3487687 ;
+    skos:closeMatch <http://dbpedia.org/resource/Connected_space> ,
+        wd:Q1491995 .
+
+arcm:math.genus
+    a arcm:MathConcept ;
+    rdfs:label "genus / number of holes"@en ;
+    rdfs:comment "No unambiguous Wikidata item confirmed."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Genus_(mathematics)> .
+
+arcm:math.euler_characteristic
+    a arcm:MathConcept ;
+    rdfs:label "Euler characteristic (Euler number = 1 - holes)"@en ;
+    rdfs:comment "Wikidata search only returned the property P6438, not an item."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Euler_characteristic> .
+
+arcm:math.jordan_curve_theorem
+    a arcm:MathConcept ;
+    rdfs:label "Jordan curve theorem (inside / outside)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Jordan_curve_theorem> ,
+        wd:Q260928 ;
+    skos:related wd:Q1392659 .
+
+arcm:math.winding_number
+    a arcm:MathConcept ;
+    rdfs:label "winding number (cell depth analogue)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Winding_number> ,
+        wd:Q576728 .
+
+arcm:math.containment_tree
+    a arcm:MathConcept ;
+    rdfs:label "containment tree (laminar family of interiors)"@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Laminar_set_family> ,
+        wd:Q104868956 .
+
+arcm:math.region_adjacency_graph
+    a arcm:MathConcept ;
+    rdfs:label "region adjacency graph"@en ;
+    rdfs:comment "No Wikipedia article (page not available) and no Wikidata item found; only the generic OpenMath graph constructor."@en ;
+    skos:related om_graph1:graph .
+
+arcm:math.digital_topology
+    a arcm:MathConcept ;
+    rdfs:label "digital topology (4/8-connectivity)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Digital_topology> ,
+        wd:Q5276205 .
+
+arcm:math.boundary
+    a arcm:MathConcept ;
+    rdfs:label "boundary / interior"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Boundary_(topology)> ,
+        wd:Q875399 ;
+    skos:related wd:Q862761 .
+
+arcm:math.shortest_path
+    a arcm:MathConcept ;
+    rdfs:label "shortest path problem"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Shortest_path_problem> ,
+        wd:Q1058754 .
+
+arcm:math.taxicab_metric
+    a arcm:MathConcept ;
+    rdfs:label "Manhattan (taxicab) metric"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Taxicab_geometry> ,
+        wd:Q573509 .
+
+arcm:math.chebyshev_metric
+    a arcm:MathConcept ;
+    rdfs:label "Chebyshev (king-move) metric"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Chebyshev_distance> ,
+        wd:Q573482 .
+
+arcm:math.distance_transform
+    a arcm:MathConcept ;
+    rdfs:label "distance transform"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Distance_transform> ,
+        wd:Q2940504 .
+
+arcm:math.dilation
+    a arcm:MathConcept ;
+    rdfs:label "dilation (mathematical morphology)"@en ;
+    rdfs:comment "No unambiguous Wikidata item for the morphological operation."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Dilation_(morphology)> ;
+    skos:related <http://dbpedia.org/resource/Mathematical_morphology> ,
+        wd:Q530242 .
+
+arcm:math.bounding_box
+    a arcm:MathConcept ;
+    rdfs:label "bounding box"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Minimum_bounding_box> ,
+        wd:Q6865426 ;
+    skos:closeMatch wd:Q1134256 .
+
+arcm:math.largest_empty_rectangle
+    a arcm:MathConcept ;
+    rdfs:label "largest empty rectangle"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Largest_empty_rectangle> ,
+        wd:Q6489240 .
+
+arcm:math.line
+    a arcm:MathConcept ;
+    rdfs:label "straight line"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Line_(geometry)> ,
+        wd:Q37105 ;
+    skos:closeMatch om_plangeo1:line .
+
+arcm:math.ray
+    a arcm:MathConcept ;
+    rdfs:label "ray (half-line)"@en ;
+    rdfs:comment "Defined in the Wikipedia article \"Line (geometry)\"."@en ;
+    skos:exactMatch wd:Q1147832 ;
+    skos:closeMatch om_plangeo2:halfline ;
+    skos:related <http://dbpedia.org/resource/Line_(geometry)> .
+
+arcm:math.line_segment
+    a arcm:MathConcept ;
+    rdfs:label "line segment"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Line_segment> ,
+        wd:Q166154 ;
+    skos:closeMatch om_plangeo2:segment .
+
+arcm:math.collinearity
+    a arcm:MathConcept ;
+    rdfs:label "collinearity (alignment)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Collinearity> ,
+        wd:Q1419761 ,
+        om_plangeo1:are_on_line .
+
+arcm:math.midpoint
+    a arcm:MathConcept ;
+    rdfs:label "midpoint"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Midpoint> ,
+        wd:Q1645406 ;
+    skos:closeMatch om_plangeo3:midpoint .
+
+arcm:math.centroid
+    a arcm:MathConcept ;
+    rdfs:label "centroid"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Centroid> ,
+        wd:Q511093 ;
+    skos:closeMatch om_plangeo3:center_of_gravity .
+
+arcm:math.line_intersection
+    a arcm:MathConcept ;
+    rdfs:label "line-line intersection"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Line–line_intersection> ,
+        wd:Q17097267 .
+
+arcm:math.parallel_projection
+    a arcm:MathConcept ;
+    rdfs:label "parallel projection"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Parallel_projection> ,
+        wd:Q2112445 .
+
+arcm:math.voronoi
+    a arcm:MathConcept ;
+    rdfs:label "nearest-site partition (Voronoi diagram)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Voronoi_diagram> ,
+        wd:Q757267 .
+
+arcm:math.mode
+    a arcm:MathConcept ;
+    rdfs:label "majority value (statistical mode)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Mode_(statistics)> ;
+    skos:closeMatch wd:Q74524855 .
+
+arcm:math.histogram
+    a arcm:MathConcept ;
+    rdfs:label "histogram"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Histogram> ,
+        wd:Q185020 .
+
+arcm:math.arithmetic_progression
+    a arcm:MathConcept ;
+    rdfs:label "arithmetic progression"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Arithmetic_progression> ,
+        wd:Q170008 .
+
+arcm:math.triangular_number
+    a arcm:MathConcept ;
+    rdfs:label "triangular number"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Triangular_number> ,
+        wd:Q245102 .
+
+arcm:math.template_matching
+    a arcm:MathConcept ;
+    rdfs:label "template matching"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Template_matching> ,
+        wd:Q3983303 .
+
+arcm:math.image_registration
+    a arcm:MathConcept ;
+    rdfs:label "image registration (anchor alignment)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Image_registration> ,
+        wd:Q861092 .
+
+arcm:math.inpainting
+    a arcm:MathConcept ;
+    rdfs:label "inpainting (restoring missing parts)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Inpainting> ,
+        wd:Q1628157 .
+
+arcm:math.flood_fill
+    a arcm:MathConcept ;
+    rdfs:label "flood fill"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Flood_fill> ,
+        wd:Q1196156 .
+
+arcm:math.extrapolation
+    a arcm:MathConcept ;
+    rdfs:label "extrapolation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Extrapolation> ,
+        wd:Q744069 .
+
+arcm:math.pathfinding
+    a arcm:MathConcept ;
+    rdfs:label "pathfinding"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Pathfinding> ,
+        wd:Q1969601 .
+
+arcm:math.digital_compositing
+    a arcm:MathConcept ;
+    rdfs:label "digital compositing"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Digital_compositing> ,
+        wd:Q3286562 ;
+    skos:related wd:Q693457 .
+
+arcm:math.painters_algorithm
+    a arcm:MathConcept ;
+    rdfs:label "painter's algorithm (front-most layer wins)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Painter's_algorithm> ,
+        wd:Q936719 .
+
+arcm:math.z_order
+    a arcm:MathConcept ;
+    rdfs:label "z-order (depth order of overlapping shapes)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Z-order> ,
+        wd:Q135778 .
+
+arcm:math.concatenation
+    a arcm:MathConcept ;
+    rdfs:label "concatenation"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Concatenation> ,
+        wd:Q126002 .
+
+arcm:math.odd_one_out
+    a arcm:MathConcept ;
+    rdfs:label "odd one out (anomaly / outlier detection)"@en ;
+    skos:closeMatch <http://dbpedia.org/resource/Anomaly_detection> ,
+        wd:Q3560506 ;
+    skos:related wd:Q779824 .
+
+arcm:math.noise_reduction
+    a arcm:MathConcept ;
+    rdfs:label "noise reduction"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Noise_reduction> ,
+        wd:Q581861 .
+
+arcm:math.dynamical_billiards
+    a arcm:MathConcept ;
+    rdfs:label "dynamical billiards"@en ;
+    rdfs:comment "Straight free motion alternating with specular reflections at a boundary."@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Dynamical_billiards> ,
+        wd:Q2903467 .
+
+arcm:math.assignment_problem
+    a arcm:MathConcept ;
+    rdfs:label "assignment problem (matching)"@en ;
+    skos:exactMatch <http://dbpedia.org/resource/Assignment_problem> ,
+        wd:Q620614 .
+
+# ---------------------------------------------------------------- task categories (arcm:concerns = upper-level kind of entity the category is about)
+arcm:category.structure
+    a arcm:Category ;
+    rdfs:label "Structure"@en ;
+    rdfs:comment "what objects the grid contains"@en ;
+    arcm:concerns dul:PhysicalObject .
+
+arcm:category.colour
+    a arcm:Category ;
+    rdfs:label "Colour"@en ;
+    rdfs:comment "how colours are chosen or mapped"@en ;
+    arcm:concerns dul:Quality ;
+    skos:related <http://dbpedia.org/resource/Color> ,
+        wd:Q1075 .
+
+arcm:category.canvas
+    a arcm:Category ;
+    rdfs:label "Canvas"@en ;
+    rdfs:comment "what stays fixed and what is edited in place"@en ;
+    arcm:concerns dul:SpaceRegion .
+
+arcm:category.extent
+    a arcm:Category ;
+    rdfs:label "Extent"@en ;
+    rdfs:comment "how the output grid size relates to the input"@en ;
+    arcm:concerns dul:Region .
+
+arcm:category.guide
+    a arcm:Category ;
+    rdfs:label "Guide & selector"@en ;
+    rdfs:comment "a structure that selects or explains another region"@en ;
+    skos:broader arcm:category.structure ;
+    arcm:concerns dul:Role .
+
+arcm:category.partition
+    a arcm:Category ;
+    rdfs:label "Partition & separators"@en ;
+    rdfs:comment "separator lines split the grid into panels or lanes"@en ;
+    skos:broader arcm:category.guide ,
+        arcm:category.structure ;
+    arcm:concerns dul:Configuration ;
+    skos:related <http://dbpedia.org/resource/Partition_of_a_set> ,
+        wd:Q381060 .
+
+arcm:category.key
+    a arcm:Category ;
+    rdfs:label "Key, legend & glyph"@en ;
+    rdfs:comment "a small mark or legend defines colours or shapes used elsewhere"@en ;
+    skos:broader arcm:category.guide ;
+    arcm:concerns dul:InformationObject ;
+    skos:related wd:Q1200435 .
+
+arcm:category.path
+    a arcm:Category ;
+    rdfs:label "Paths & lines"@en ;
+    rdfs:comment "connected runs, rays and polylines"@en ;
+    skos:broader arcm:category.structure ;
+    arcm:concerns dul:PhysicalObject ;
+    skos:related <http://dbpedia.org/resource/Polygonal_chain> ,
+        wd:Q633674 .
+
+arcm:category.corner
+    a arcm:Category ;
+    rdfs:label "Corners & local shape"@en ;
+    rdfs:comment "corners, crosses, protrusions and small shape motifs"@en ;
+    skos:broader arcm:category.structure ;
+    arcm:concerns obo:BFO_0000024 .
+
+arcm:category.cavity
+    a arcm:Category ;
+    rdfs:label "Cavity & fit"@en ;
+    rdfs:comment "a shape fills or fits negative space"@en ;
+    skos:broader arcm:category.structure ;
+    arcm:concerns obo:BFO_0000029 .
+
+arcm:category.layout
+    a arcm:Category ;
+    rdfs:label "Layout & lattice"@en ;
+    rdfs:comment "components arranged in slots, quadrants or a lattice"@en ;
+    skos:broader arcm:category.structure ,
+        arcm:category.extent ;
+    arcm:concerns dul:Configuration .
+
+arcm:category.template
+    a arcm:Category ;
+    rdfs:label "Exemplar & template"@en ;
+    rdfs:comment "one instance is copied or stamped onto others"@en ;
+    skos:broader arcm:category.structure ,
+        arcm:category.key ;
+    arcm:concerns dul:InformationObject ;
+    skos:related <http://dbpedia.org/resource/Template_matching> ,
+        wd:Q3983303 .
+
+arcm:category.palette
+    a arcm:Category ;
+    rdfs:label "Palette mapping"@en ;
+    rdfs:comment "colours are relabelled, reduced, expanded or ranked"@en ;
+    skos:broader arcm:category.colour ;
+    arcm:concerns dul:PhysicalAttribute ;
+    skos:closeMatch <http://dbpedia.org/resource/Palette_(computing)> .
+
+arcm:category.shapemap
+    a arcm:Category ;
+    rdfs:label "Shape-to-output mapping"@en ;
+    rdfs:comment "input shapes determine output geometry, often with colour"@en ;
+    skos:broader arcm:category.colour ,
+        arcm:category.structure ;
+    arcm:concerns dul:PhysicalAttribute .
+
+arcm:category.sparse
+    a arcm:Category ;
+    rdfs:label "Sparse edit on fixed canvas"@en ;
+    rdfs:comment "most cells stay; a few are added, erased or recoloured"@en ;
+    skos:broader arcm:category.canvas ;
+    arcm:concerns dul:Process .
+
+arcm:category.repair
+    a arcm:Category ;
+    rdfs:label "Repair & symmetry"@en ;
+    rdfs:comment "occluded or noisy cells are restored from periodicity or symmetry"@en ;
+    skos:broader arcm:category.canvas ;
+    arcm:concerns dul:Pattern ;
+    skos:related <http://dbpedia.org/resource/Inpainting> ,
+        wd:Q1628157 ,
+        wd:Q1455736 .
+
+arcm:category.crop
+    a arcm:Category ;
+    rdfs:label "Crop & extract"@en ;
+    rdfs:comment "the output is a sub-region of the input"@en ;
+    skos:broader arcm:category.extent ;
+    arcm:concerns dul:SpaceRegion ;
+    skos:closeMatch <http://dbpedia.org/resource/Cropping_(image)> ,
+        wd:Q785116 .
+
+arcm:category.scale
+    a arcm:Category ;
+    rdfs:label "Scale & tile"@en ;
+    rdfs:comment "the output enlarges, repeats or reflects the input"@en ;
+    skos:broader arcm:category.extent ,
+        arcm:category.layout ;
+    arcm:concerns dul:Process ;
+    skos:related <http://dbpedia.org/resource/Image_scaling> ,
+        wd:Q440296 ,
+        <http://dbpedia.org/resource/Tessellation> .
+

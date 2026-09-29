@@ -1,0 +1,19 @@
+# Semantic linking of the local ARC ontology (priors enrichment, design-time)
+
+Goal: ground the local ontology layers in open Semantic Web vocabularies so that priors are named, related and reusable:
+- mechanism layer: /home/claude/work/s0/taskan/mechanism_ontology.json (effect operators = subclasses' "parent", and ~115 subclasses with definitions)
+- priors layer: families in /home/claude/work/latent/prior_topology.py, prior_geometry.py, prior_combinatorics.py (read their docstrings), plus the round-2 prior domains being built now: OPTICS (occlusion/layering), MECHANICS (equilibrium, gravity, stacks, key-and-keyhole, slot machine), FLUIDS (fluid flow, filling, spreading), ACTION (least action, conservation laws), ARITHMETIC (parity, modulo, prime, divisibility, counting, set operations).
+- existing categories (meta-classes): /home/claude/work/s0/categories.json
+
+## Targets (link ONLY to IRIs you have verified exist, using WebFetch/WebSearch; never curl/python for web access; if a site refuses, skip it)
+- OpenMath content dictionaries (https://www.openmath.org/cd/...): set1 (verified: union, intersect, setdiff, in, subset, size, emptyset, cartesian_product, map, set, suchthat, notin, prsubset, notsubset, notprsubset), and verify arith1, integer1 (remainder, quotient, factorof), relation1, logic1, and any CD for primes/permutations/transformations if it exists. IRI form: http://www.openmath.org/cd/<cd>#<symbol>.
+- Wikidata items (https://www.wikidata.org/wiki/Q...): live wikidata.org is not fetchable here, so verify Q-ids through WebSearch results whose URL contains the Q-id (query like "<concept> wikidata"). Only record a Q-id seen in a result URL.
+- DBpedia resources http://dbpedia.org/resource/<Wikipedia_title>: verify the Wikipedia article title by fetching https://en.wikipedia.org/wiki/<Title> (cached pages work).
+- Upper-level ontologies: DOLCE+DnS Ultralite (DUL, http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#...), BFO (http://purl.obolibrary.org/obo/BFO_...). Verify the class IRIs you use from an official page or document.
+- Common-sense: ConceptNet is robots-blocked here; use Wikipedia/DBpedia/Wikidata items for common-sense notions (keyhole, slot machine, stack, fluid flow, occlusion, gravity, mechanical equilibrium, principle of least action, conservation law, container, lock and key, shadow, mirror, ...).
+
+## Output
+1. /home/claude/work/s0/taskan/ontology_links.ttl — Turtle. Namespace arcm: <https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#>. Classes: arcm:Operator (effect operators), arcm:Mechanism (subclasses; rdfs:subClassOf their operator), arcm:Prior (prior families, with arcm:domain topology|geometry|combinatorics|optics|mechanics|fluids|action|arithmetic), arcm:Analogy (common-sense concepts), arcm:Principle (physics principles). Links with skos:exactMatch / skos:closeMatch / skos:related / rdfs:seeAlso (choose honestly), plus arcm:groundedIn for Mechanism/Prior -> Principle/Analogy/math concept relations (e.g. mechanism fill.liquid_settle arcm:groundedIn fluid flow + mechanical equilibrium; combine.boolean_panels arcm:groundedIn set1#union/intersect/setdiff). Upper-level alignment: each Operator/Mechanism/Prior class aligned to one DUL/BFO class (e.g. operators are processes/transformations; objects are physical objects/regions; colours are qualities).
+2. /home/claude/work/s0/taskan/ontology_links.json — the same content as JSON for the review page: {"nodes": {id: {label, kind, links: [{iri, relation, source, verified_by}]}}, "grounded_in": [[mechanism_or_prior, concept], ...]}.
+3. Validate the TTL parses (python3 -c "import rdflib; rdflib.Graph().parse('...ttl')" — install rdflib with pip if missing).
+Report: counts of nodes and links per target vocabulary, how many links verified, any concept you could not link.

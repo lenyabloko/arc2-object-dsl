@@ -1,0 +1,53 @@
+[
+ {
+  "build": "V13",
+  "job": "c12-calibration",
+  "T": 258,
+  "EA": 5,
+  "EB": 1,
+  "wrong_first": 11,
+  "timeouts": 0
+ },
+ {
+  "build": "V15",
+  "job": "c13-v15",
+  "T": 398,
+  "EA": 26,
+  "EB": 1,
+  "wrong_first": 8,
+  "timeouts": 0,
+  "lost_T": [],
+  "lost_EA": [],
+  "dT": 140,
+  "dEA": 21,
+  "admit": true
+ },
+ {
+  "build": "V17",
+  "job": "c14-v17",
+  "T": 504,
+  "EA": 35,
+  "EB": 1,
+  "wrong_first": 7,
+  "timeouts": 0,
+  "lost_T": [],
+  "lost_EA": [],
+  "dT": 106,
+  "dEA": 9,
+  "admit": true
+ },
+ {
+  "build": "V18",
+  "job": "c15-v18",
+  "T": 590,
+  "EA": 36,
+  "EB": 1,
+  "wrong_first": 6,
+  "timeouts": 0,
+  "lost_T": [],
+  "lost_EA": [],
+  "dT": 86,
+  "dEA": 1,
+  "admit": true
+ }
+]
