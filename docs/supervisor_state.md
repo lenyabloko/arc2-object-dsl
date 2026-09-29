@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 02:20 UTC (22:20 EDT Sep 28). Updated with every outbox batch._
+_Last updated: 2026-09-29 04:35 UTC (00:35 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -63,6 +63,22 @@ _Last updated: 2026-09-29 02:20 UTC (22:20 EDT Sep 28). Updated with every outbo
 - Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
 - Kill processes only with exact patterns such as `pgrep -f "^python3 eval_gdsl2"`; broad patterns kill the shell.
 - Wall-clock budgets anywhere in the probe break Kaggle parity.
+
+## Update 22:45 EDT Sep 28
+- The cloud machine rebooted at 22:42 EDT. Files survived; detached processes did not (the orphan lift/residual evals were lost).
+- Engine verification moved to WSL: wake jobs `c16-objmap-det`, `c16-lift-det`, `c16-residual-det` (batch-0030; `wake_eval.py` now has engine mode and per-task prediction hashes `ph`).
+- Cloud cross-check: the same engines on the first 120 training tasks (`/tmp/claude-0/xcheck/<engine>/results.jsonl`). Matching `ph` between WSL and cloud = cross-machine determinism.
+
+## Update 00:35 EDT Sep 29
+- All three composition engines are verified deterministic across machines. WSL c16 vs cloud: 111/111 identical prediction hashes each.
+  - objmap: N2 4 exact / 5 fit.
+  - lift: N2 5 / 6.
+  - residual: N2 0 / 1 (left out of V19).
+- V19 = V18d + composition fallback (objmap, then lift) in `gdsl.search` (`compose_fallback`, reentrancy-guarded). Probe `tools/m1b/v19`.
+- WSL queue:
+  - c17-v19 (train/half A, N2, half-B count).
+  - c18-v18d-parity and c19-v19-parity: new `mode: parity`, full probe on the 120 public-eval tasks, single process, PYTHONHASHSEED=0, per-task timing. Held-out tasks: counts and anonymous times only.
+- The cloud machine reboots on every session restart. Long cloud jobs are unreliable; use WSL wake jobs.
 
 ## Next steps
 1. Poll the orphan det evals (lift, residual). Verify determinism: rerun 60 tasks with and without load and compare sha256.
