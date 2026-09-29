@@ -142,6 +142,7 @@ td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabu
 .accrow .name{color:var(--accept)}
 details.legacy{margin-top:12px}
 details.legacy>summary{color:var(--muted);font-size:13px}
+.gsearch{width:100%;box-sizing:border-box;font:13px var(--sans);padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);margin-bottom:6px}
 </style>
 
 <header>
@@ -166,7 +167,7 @@ let pfilter='';
 function setView(v){GVIEW=v;try{localStorage.setItem('gview',v)}catch(e){};G=(v==='v1'&&D.groups_v1)?D.groups_v1:D.groups;for(const k in GI)delete GI[k];G.forEach((g,i)=>GI[g.id]=i);cur=0;memIdx=0;render()}
 const PN=D.prior_names||{};
 function priorChips(list,opts){const w=el('div','chips');(list||[]).forEach(x=>{const c=el('span','chip prior',x[0]+(x[1]!=null?' · '+x[1]:''));if(opts&&opts.title)c.title=opts.title;w.append(c)});return w}
-let tab='groups', cur=0, memIdx=0, curTask=null, filter='all', db=null, dec={}, batches={}, cycle=null, TASKS=null, tasksErr=null, confirming=false;
+let gq='';let tab='cats', cur=0, memIdx=0, curTask=null, filter='all', db=null, dec={}, batches={}, cycle=null, TASKS=null, tasksErr=null, confirming=false;
 const saveTimers={};
 
 // ---------- helpers ----------
@@ -228,7 +229,7 @@ function addSub(g,M,name,tid){const st=splitState(g);const d=dec[g.id]||{};const
   if(tid){patch.split=Object.assign({},d.split||{},{[tid]:key})}
   setDec(g.id,patch);renderGroup(M)}
 function absBox(tid){const a=(D.abs||{})[tid];if(!a)return null;const b=el('div','absr');
-  const h=el('div');h.append(el('b',null,'Mechanism: '));const c=el('code','mono',a.mechanism||'');h.append(c);b.append(h);
+  const h=el('div');h.append(el('b',null,'Mechanism: '));const c=el('code','mono',a.mechanism||'');h.append(c);b.append(h);const OPD=D.op_domains||{};const ops=[...new Set(((a.mechanism||'').match(/\b[A-Z][A-Z_]{2,}\b/g)||[]))].filter(o=>OPD[o]);if(ops.length){const r=el('div','help');r.append(el('b',null,'Operators in the ontology: '));r.append(document.createTextNode(ops.map(o=>o+' ⊑ '+OPD[o].map(d=>PN[d]||d).join(', ')).join(' · ')));b.append(r)}
   if(a.roles&&Object.keys(a.roles).length){const r=el('div','roles');Object.entries(a.roles).forEach(([k,v])=>{const x=el('span','role');x.append(el('b',null,k+' '),document.createTextNode(v));r.append(x)});b.append(r)}
   const line=(k,v)=>{if(v){const r=el('div','help');r.append(el('b',null,k+': '),document.createTextNode(Array.isArray(v)?v.join(', '):v));b.append(r)}};
   line('Varies across pairs',a.varies_across_pairs);line('Invariant',a.invariant);line('Generalises to',a.generalisation_axes);
@@ -240,11 +241,11 @@ function priorBox(tid){const tp=(D.task_priors||{})[tid];if(!tp||!tp.length)retu
 function statusBox(tid){const st=(D.status||{})[tid],a=(D.analysis||{})[tid];const ab=absBox(tid),pb=priorBox(tid);
   if(D.abs){const b=el('div');b.style.cssText='margin-top:8px;padding:8px 10px;border-left:3px solid '+(st?'var(--accept)':(D.composed||[]).includes(tid)?'var(--accent)':'var(--unsure)')+';background:var(--bg);font-size:13px;max-width:110ch';
     if(st){const r=el('div',null,'Solved by the '+st.by+(st.program?': ':'.'));if(st.program){const c=el('code','mono',st.program);c.style.fontSize='12px';r.append(c)}b.append(r)}
-    else if((D.composed||[]).includes(tid))b.append(el('div',null,'Solved by a composition engine (in the next build, not yet in the submitted notebook).'));
+    else if((D.composed||[]).includes(tid))b.append(el('div',null,'Solved in the next build candidate (composition engine or new primitive; not yet in the submitted notebook).'));
     else b.append(el('div',null,'Unsolved in the current build.'));
     if(pb)b.append(pb);if(ab)b.append(ab);else if(a&&a.rule){const r=el('div');r.append(el('b',null,'Literal reading: '),document.createTextNode(a.rule));b.append(r)}
     const g=G[cur];const rr=g&&g.reasons&&g.reasons[tid];if(rr){const r=el('div');r.style.cssText='margin-top:4px;font-size:12.5px';r.append(el('b',null,'Why residual: '),document.createTextNode(rr));b.append(r)}
-    const nd=g&&g.needs&&g.needs[tid];if(nd){const n=el('div');n.style.cssText='margin-top:4px;color:var(--unsure);font-size:12.5px';n.textContent='Needs you: '+nd+'.';b.append(n)}
+    const pl=(D.placement||{})[tid];if(pl){const r=el('div','help');r.style.marginTop='4px';r.append(el('b',null,'Group (computed): '),document.createTextNode('covered by the primitive '+pl.module+(pl.from?'; moved here from '+pl.from+(D.view_meta&&D.view_meta.regroup&&D.view_meta.regroup.dropped.includes(pl.from)?' (that group dissolved)':''):'')));b.append(r)}const nd=g&&g.needs&&g.needs[tid];if(nd){const n=el('div');n.style.cssText='margin-top:4px;color:var(--unsure);font-size:12.5px';n.textContent='Needs you: '+nd+'.';b.append(n)}
     return b}
   if(!st&&!a)return null;
   const b=el('div');b.style.cssText='margin-top:8px;padding:8px 10px;border-left:3px solid '+(st?'var(--accept)':a&&a.needs_you?'var(--unsure)':'var(--accent)')+';background:var(--bg);font-size:13px;max-width:100ch';
@@ -277,7 +278,7 @@ function saveMsg(t){const s=document.getElementById('save');if(s)s.textContent=t
 // ---------- decisions (drafts are retractable until batched) ----------
 function setDec(gid,patch){if(isLocked(gid))return;
   const d=Object.assign({axes:{},misfits:[]},dec[gid]||{},patch,{status:'draft',reviewer:'len'});if(!('proposal' in patch))d.proposal=null;d.updatedAt=new Date().toISOString();
-  const empty=!Object.keys(d.task_labels||{}).some(t=>Object.keys(d.task_labels[t]).length)&&!Object.keys(d.axes).length&&!d.verdict&&!d.note&&!d.new_concept&&!d.merge_into&&!(d.misfits||[]).length&&!Object.keys(d.split||{}).length&&!d.split_status&&!Object.keys(d.subs_extra||{}).length&&!(d.excluded_groups||[]).length&&!(d.excluded_tasks||[]).length;
+  const empty=!Object.keys(d.task_labels||{}).some(t=>Object.keys(d.task_labels[t]).length)&&!Object.keys(d.axes).length&&!d.verdict&&!d.note&&!d.new_concept&&!d.merge_into&&!(d.misfits||[]).length&&!Object.keys(d.split||{}).length&&!d.split_status&&!Object.keys(d.subs_extra||{}).length&&!(d.excluded_groups||[]).length&&!(d.excluded_tasks||[]).length&&!Object.keys(d.move_to||{}).length;
   if(empty){retract(gid);return}
   dec[gid]=d;renderChrome();if(!db){saveMsg('not saved: no database in this view');return}
   saveMsg('saving…');clearTimeout(saveTimers[gid]);
@@ -351,11 +352,11 @@ function renderCycle(V){const S=el('div','solo');V.append(S);
 function renderList(){const L=document.getElementById('list');if(!L)return;L.textContent='';let lastKind=null;
   const KH={mechanism:['Mechanism groups','one primitive should cover each group'],residual:['Residual: no mechanism yet','review most valuable here'],solved:['Already solved','grouped by solving program']};
   G.forEach((g,i)=>{const s=status(g);
-    if(filter==='open'&&s)return;if(filter==='draft'&&s!=='draft')return;if(filter==='init'&&s!=='init')return;if(filter==='axis'&&!g.axes.length)return;if(filter==='multi'&&g.n<2)return;if(filter==='needs'&&!g.n_needs)return;if(filter==='unsolved'&&g.n_solved>=g.n)return;if(filter==='residual'&&g.kind!=='residual')return;if(pfilter&&!((g.cats||[]).some(c=>c.id===pfilter)))return;
+    if(filter==='open'&&s)return;if(filter==='draft'&&s!=='draft')return;if(filter==='init'&&s!=='init')return;if(filter==='axis'&&!g.axes.length)return;if(filter==='multi'&&g.n<2)return;if(filter==='needs'&&!g.n_needs)return;if(filter==='unsolved'&&g.n_solved>=g.n)return;if(filter==='residual'&&g.kind!=='residual')return;if(pfilter&&!((g.cats||[]).some(c=>c.id===pfilter)))return;if(gq){const q=gq.toLowerCase();const hay=(g.id+' '+g.name+' '+(g.key||'')+' '+(g.rule||'')+' '+(g.members||[]).map(m=>m[0]).join(' ')).toLowerCase();if(!q.split(/\s+/).filter(Boolean).every(w=>hay.includes(w)))return}
     if(g.kind&&g.kind!==lastKind&&GVIEW!=='v1'){lastKind=g.kind;const gs=G.filter(x=>x.kind===g.kind);const hd=el('div','lsec');hd.append(el('b',null,KH[g.kind][0]),el('span',null,' · '+gs.length+' groups · '+gs.reduce((a,x)=>a+x.n,0)+' tasks'));hd.title=KH[g.kind][1];L.append(hd)}
     const it=el('div','item'+(i===cur?' cur':'')+(g.kind==='residual'?' resid':''));const a=el('span','gid');a.append(el('span','dot '+s),document.createTextNode(g.id.slice(1)));
     const lb=el('span','lbl',label(g));lb.title=(g.cats||[]).map(c=>(D.cats.categories.find(x=>x.id===c.id)||{}).name).join(' · ');const nn=el('span','n',g.n);if(g.n_solved!=null&&GVIEW!=='v1'){nn.textContent=g.n_solved+'/'+g.n;nn.title=g.n_solved+' of '+g.n+' solved'+(g.n_comp?' (+'+g.n_comp+' by composition, next build)':'')+(g.n_needs?' · '+g.n_needs+' need you':'');if(g.n_solved>=g.n)nn.style.color='var(--accept)'}else if(g.n_needs){nn.textContent=g.n_needs+'/'+g.n;nn.title=g.n_needs+' of '+g.n+' tasks need a human look ('+(g.n_solved||0)+' solved)';nn.style.color='var(--unsure)'}it.append(a,lb,nn);it.onclick=()=>goGroup(i);L.append(it)})}
-function renderFilters(){const F=document.getElementById('filters');F.textContent='';
+function renderFilters(){const F=document.getElementById('filters');F.textContent='';const sq=el('input');sq.type='search';sq.className='gsearch';sq.placeholder='Search groups: name, rule, id or task id';sq.value=gq;sq.oninput=()=>{gq=sq.value;renderList()};F.append(sq);
   if(D.groups_v1){const vs=el('div','seg vtog');[['mech','Mechanism groups'],['v1','Spectral groups (v1)']].forEach(([v,t])=>{const b=el('button',GVIEW===v?'on':'',t);b.onclick=()=>setView(v);vs.append(b)});F.append(vs)}
   [['all','All'],['residual','Residual'+(D.groups.some(g=>g.kind==='residual')?' ('+D.groups.filter(g=>g.kind==='residual').reduce((s,g)=>s+g.n,0)+')':'')],['unsolved','Unsolved'],['needs','Needs you'],['init','In review'],['draft','Proposal submitted'],['open','No review'],['multi','Size ≥ 2']].forEach(([k,t])=>{
     const b=el('button',filter===k?'on':'',t);b.onclick=()=>{filter=k;renderFilters();renderList();if(!document.querySelector('#list .item.cur')){const f=document.querySelector('#list .item');if(f)f.click()}};F.append(b)});
@@ -372,7 +373,7 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
   if(g.mechanism||g.priors){const mc=el('div','mech');
     const st=el('div','row');st.append(el('span','pill '+(g.n_solved>=g.n?'ok':'wait'),g.n_solved+' of '+g.n+' solved'));if(g.n_comp)st.append(el('span','pill',g.n_comp+' more by composition (next build)'));if(g.n_needs){const np=el('button','pill no needbtn',g.n_needs+' need you ▾');np.title='Show which tasks need you';np.onclick=()=>{showNeeds[g.id]=!showNeeds[g.id];renderGroup(M)};st.append(np)}
     if(g.mechanism&&g.mechanism.parent)st.append(el('span','pill','operator '+g.mechanism.parent));
-    if(g.kind==='residual'){const bn=el('div','banner');bn.style.cssText='border-left:3px solid var(--unsure)';bn.textContent='Residual group: these tasks share only the output operator; no single generic mechanism covers them yet. Your review is most valuable here: for each task, say what the rule is (Note) or which mechanism group it belongs to (flag as misfit + note). Each task card shows why it landed here.';mc.append(bn)}if(g.residual)st.append(el('span','pill no','residual: no single mechanism yet'));mc.append(st);if(g.n_needs&&showNeeds[g.id]&&g.needs){const nl=el('div','needlist');nl.append(el('div','help','These tasks need you (click one to step to it). The reason is also shown on the task card.'));const ord=memOrder(g);Object.entries(g.needs).forEach(([t,why])=>{const r=el('div','needrow');const b=el('button','chip',t);b.onclick=()=>{const i=ord.indexOf(t);if(i>=0){memIdx=i;renderGroup(M);const c=document.getElementById('taskcard');if(c)c.scrollIntoView({behavior:'smooth',block:'start'})}};r.append(b,el('span','help',why));nl.append(r)});mc.append(nl)}
+    if(g.kind==='residual'){const bn=el('div','banner');bn.style.cssText='border-left:3px solid var(--unsure)';bn.textContent='Residual group: these tasks share only the output operator; no single generic mechanism covers them yet. Your review is most valuable here: for each task, say what the rule is (Note) or which mechanism group it belongs to (flag as misfit + note). Each task card shows why it landed here.';mc.append(bn)}if(g.residual)st.append(el('span','pill no','residual: no single mechanism yet'));mc.append(st);if(g.same_as&&g.same_as.length){const r=el('div','row');r.append(el('span','help','Same mechanism as:'));g.same_as.forEach(id=>{const x=G.find(y=>y.id===id);if(!x)return;const b=el('button','chip',id+' · '+x.name.replace('solved · ',''));b.onclick=()=>goGroup(GI[id]);r.append(b)});mc.append(r)}if(g.n_needs&&showNeeds[g.id]&&g.needs){const nl=el('div','needlist');nl.append(el('div','help','These tasks need you (click one to step to it). The reason is also shown on the task card.'));const ord=memOrder(g);Object.entries(g.needs).forEach(([t,why])=>{const r=el('div','needrow');const b=el('button','chip',t);b.onclick=()=>{const i=ord.indexOf(t);if(i>=0){memIdx=i;renderGroup(M);const c=document.getElementById('taskcard');if(c)c.scrollIntoView({behavior:'smooth',block:'start'})}};r.append(b,el('span','help',why));nl.append(r)});mc.append(nl)}
     if(g.priors&&g.priors.length){const r=el('div','row');r.append(el('span','help','Solved by priors:'));r.append(priorChips(g.priors));mc.append(r)}
     if(g.grounded&&g.grounded.length){const r=el('div','row');r.append(el('span','help','Grounded in:'));r.append(priorChips(g.grounded.map(d=>[PN[d]||d,null])));mc.append(r)}
     const m=g.mechanism||{};const det=document.createElement('details');const sm=document.createElement('summary');sm.textContent='Mechanism spec: parameters, detector, primitive';det.append(sm);
@@ -389,7 +390,7 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
   const md=el('div','card');md.id='taskcard';const sh=el('div','ghead');const mh=el('h3',null,'Task '+(memIdx+1)+' of '+order.length+' · ');mh.style.margin='0';
   mh.append(Object.assign(el('span','mono',tid)),document.createTextNode(tid===g.medoid?' (medoid)':''));sh.append(mh);
   if(D.solved.includes(tid))sh.append(el('span','pill ok','solved'));else if((g.needs&&g.needs[tid])||((D.analysis||{})[tid]||{}).needs_you){const pn=el('span','pill wait','needs you');pn.title=(g.needs&&g.needs[tid])||((D.analysis||{})[tid]||{}).needs_you;sh.append(pn)}
-  if((d.misfits||[]).includes(tid))sh.append(el('span','pill no','flagged misfit'));
+  if((d.misfits||[]).includes(tid))sh.append(el('span','pill no','flagged misfit'));const pl=(D.placement||{})[tid];if(pl){const pp=el('span','pill','placed by primitive');pp.title='Group membership is computed: this task is covered by the primitive '+pl.module+(pl.from?' (moved here from '+pl.from+')':'');sh.append(pp)}
   const tn=el('div','nav');const tp=el('button','btn','← Prev task'),tx=el('button','btn','Next task →');tp.disabled=memIdx===0;tx.disabled=memIdx>=order.length-1;
   tp.onclick=()=>stepTask(-1);tx.onclick=()=>stepTask(1);tn.append(tp,tx);sh.append(tn);md.append(sh);
   const ps=el('div','pairs');ps.style.marginTop='10px';
@@ -397,9 +398,9 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
   else if(tid===g.medoid){g.med_pairs.forEach(p=>ps.append(pairEl(p[0],p[1],150)));md.append(ps)}
   else{const m=g.members.find(x=>x[0]===tid);if(m)ps.append(pairEl(m[1],m[2],150));md.append(ps);md.append(el('div','help',tasksErr?'Full examples unavailable: '+tasksErr:'Loading all examples…'))}
   const tlr=taskLabelRow(g,tid,M,locked);if(tlr)md.insertBefore(tlr,ps);const sb=statusBox(tid);if(sb)md.insertBefore(sb,tlr||ps);
-  const ss=subSelect(g,tid,M,locked);if(ss){const r0=el('div','row');r0.style.marginTop='8px';r0.append(ss);const why=(g.split_proposal.assign[tid]||{}).why;if(why&&((dec[g.id]||{}).split||{})[tid]===undefined)r0.append(el('span','help','Claude: '+why));md.insertBefore(r0,ps)}
+  const ss=subSelect(g,tid,M,locked);if(ss){const r0=el('div','row');r0.style.marginTop='8px';r0.append(ss);const why=g.split_proposal&&(g.split_proposal.assign[tid]||{}).why;if(why&&((dec[g.id]||{}).split||{})[tid]===undefined)r0.append(el('span','help','Claude: '+why));md.insertBefore(r0,ps)}
   const br=el('div','row');br.style.marginTop='12px';const ob=el('button','btn','Open in task view (neighbourhood graph)');ob.onclick=()=>{backTo={tab:'groups',gi:cur,mi:memIdx,label:'group '+g.id,scroll:window.scrollY};openTask(tid)};br.append(ob);
-  const mis=(d.misfits||[]).includes(tid);const fb=el('button','btn',mis?'Unflag misfit':'Flag as misfit in '+g.id);fb.disabled=locked||!db;
+  const mis=(d.misfits||[]).includes(tid);const fb=el('button','btn',mis?'Unflag misfit':'Flag as misfit in '+g.id);fb.disabled=locked||!db||(tid===g.medoid&&!mis);if(tid===g.medoid&&!mis)fb.title='The medoid defines this group and cannot be excluded';
   fb.onclick=()=>{const m=new Set((dec[g.id]||{}).misfits||[]);mis?m.delete(tid):m.add(tid);setDec(g.id,{misfits:[...m]});renderGroup(M)};br.append(fb);md.append(br);M.append(md);
 
   const mc=el('div','card');mc.append(el('h3',null,'Members · first training pair · click to step to it'));
@@ -416,7 +417,7 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
   const cx=el('div');cx.style.marginTop='16px';cx.append(el('h3',null,'Ontology: rule families, classes and concepts'));
   cx.append(Object.assign(el('div','help','Accept or reject each label per task, next to that task\'s examples (✓ / ✗). Here: totals per label, with shortcuts to set all tasks at once.'),{style:'margin-bottom:8px'}));
   const cl2=el('div','cands');
-  const codexRow=(r,added,pfx)=>{const keys=(r.alias||[r.c]).map(c=>(pfx||'codex:')+c);const key=keys[0];const row=el('div','cand');const l=el('div');const nm=el('div','name');nm.append(el('span','kind',r.kind||'added'),document.createTextNode(pretty(r.show||r.c)));if(r.alias&&r.alias.length>1){const al=el('span','help',' · same concept as '+r.alias.filter(c=>c!==(r.show||r.c)).map(pretty).join(', '));al.title='Detector variants of one concept, merged: a decision here applies to all of them';nm.append(al)}
+  const codexRow=(r,added,pfx)=>{const keys=(r.alias||[r.c]).map(c=>(pfx||'codex:')+c);const key=keys[0];const row=el('div','cand');const l=el('div');const nm=el('div','name');nm.append(el('span','kind',r.kind||'added'),document.createTextNode(pretty(r.show||r.c)));if(pfx==='mech:'&&r.kind==='operator'){const op=r.c.split(':')[1];const ds=(D.op_domains||{})[op]||[];if(ds.length){const al=el('span','help',' ⊑ '+ds.map(d=>PN[d]||d).join(', '));al.title='Mechanism ontology: this operator is an instance of these prior domains';nm.append(al)}}if(r.alias&&r.alias.length>1){const al=el('span','help',' · same concept as '+r.alias.filter(c=>c!==(r.show||r.c)).map(pretty).join(', '));al.title='Detector variants of one concept, merged: a decision here applies to all of them';nm.append(al)}
     const tlab=(g.task_labels||{});const having=Object.keys(tlab).filter(t=>keys.some(k=>tlab[t].includes(k)));
     l.append(nm,el('div','meta',added?'added by you':((having.length||r.k)+'/'+g.n+' tasks · '+r.lift+'× base rate'+(r.chain&&r.chain.length?' · '+r.chain.join(' ⊂ '):''))));const tdec=(d.task_labels||{});
     const dv=t=>{const m=tdec[t]||{};for(const k of keys){if(m[k])return m[k]}return null};const na=having.filter(t=>dv(t)==='accept').length,nr=having.filter(t=>dv(t)==='reject').length;
@@ -621,7 +622,7 @@ function renderCats(V){const bb=backBar();if(bb)V.append(bb);const K=D.cats;cons
   const xbtn=(on,field,id,what)=>{const b=el('button','xbtn'+(on?' on':''),on?'✗ excluded':'✗');b.title=on?'Click to put the '+what+' back into this category':'Not in this category: exclude this '+what;b.disabled=locked;b.onclick=e=>{e.stopPropagation();toggle(field,id)};return b};
   // all mechanism groups carrying this category
   const gs=D.groups.filter(g=>(g.cats||[]).some(x=>x.id===c.id)).map(g=>({g,cc:g.cats.find(x=>x.id===c.id)})).sort((a,b)=>b.cc.score-a.cc.score);
-  R.append(el('h3',null,'Groups in this category ('+gs.length+')'));
+  R.append(el('h3',null,(c.name||c.id)+' · '+gs.length+' group'+(gs.length===1?'':'s')));
   R.append(el('div','help',gs.length?'Every mechanism group whose members carry this category, strongest evidence first. Click a row to see all its tasks below; “open ↗” opens the group tab; ✗ excludes the group from this category (saved with your decision).':'Root category: see its children.'));
   const gl=el('div','glist');gs.forEach(({g,cc})=>{const r=el('div','grow'+(excl.has(g.id)?' off':''));const nm=el('div','gname');nm.append(el('b',null,g.id),document.createTextNode(' '+g.name+' · '+g.n_solved+'/'+g.n+' solved'));
     const ev=el('div','help',cc.evidence||('detectors on '+Math.round(cc.cov*100)+'% of members · '+cc.lift+'× base rate'));const lft=el('div');lft.append(nm,ev);
@@ -645,7 +646,7 @@ function renderCats(V){const bb=backBar();if(bb)V.append(bb);const K=D.cats;cons
   if(dec['CAT_'+c.id]&&!locked){const rb=el('button','btn','Retract');rb.onclick=()=>{retract('CAT_'+c.id);render()};sv.append(rb)}
   dc.append(sv);R.append(dc);cols.append(R);S.append(cols);
   const selG=gs.find(x=>x.g.id===(catSel[c.id]||(gs[0]&&gs[0].g.id)));
-  if(selG){const g=selG.g;const tp=el('div','card');tp.id='cattasks';const th=el('div','ghead');th.append(el('h3',null,'Tasks of '+g.id+' · '+g.name+' ('+g.n+')'));th.style.marginBottom='4px';
+  if(selG){const g=selG.g;const tp=el('div','card');tp.id='cattasks';const th=el('div','ghead');th.append(el('h3',null,(c.name||c.id)+' › '+g.id+' · '+g.name+' · '+g.n+' task'+(g.n===1?'':'s')));th.style.marginBottom='4px';
     const gi=gs.indexOf(selG);const nv2=el('div','nav');const pb2=el('button','btn','← Group'),nb2=el('button','btn','Group →');pb2.disabled=gi<=0;nb2.disabled=gi>=gs.length-1;
     pb2.onclick=()=>{catSel[c.id]=gs[gi-1].g.id;render();document.getElementById('cattasks').scrollIntoView({block:'start'})};nb2.onclick=()=>{catSel[c.id]=gs[gi+1].g.id;render();document.getElementById('cattasks').scrollIntoView({block:'start'})};nv2.append(pb2,nb2);th.append(nv2);tp.append(th);
     tp.append(el('div','help',(g.rule||'')+(dom?' · chips show which prior solves each task; tasks this prior solves come first.':'')));
@@ -692,7 +693,7 @@ function render(){renderTabs();renderStat();const V=document.getElementById('vie
 document.getElementById('search').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('q').value.trim().toLowerCase();if(!q)return;
   if(/^[gc]\d+$/.test(q)){const i=GI[q[0].toUpperCase()+q.slice(1).padStart(3,'0')];if(i!=null){cur=i;tab='groups';render();return}}openTask(q)});
 document.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName)||tab!=='groups')return;if(e.key==='j')stepTask(1);if(e.key==='k')stepTask(-1);if(e.key===']')goGroup(Math.min(G.length-1,cur+1));if(e.key==='[')goGroup(Math.max(0,cur-1))});
-try{const h=location.hash.slice(1);if(h==='cycle')tab='cycle';else if(GI[h]!=null)cur=GI[h];else if(/^[0-9a-f]{8}$/.test(h)){curTask=h;tab='task'}}catch(e){}
+try{const h=location.hash.slice(1);if(h==='cycle')tab='cycle';else if(GI[h]!=null){cur=GI[h];tab='groups'}else if(/^[0-9a-f]{8}$/.test(h)){curTask=h;tab='task'}}catch(e){}
 render();
 (async()=>{try{db=await window.claude.use('db')}catch(e){db=null}
   if(!db){saveMsg('decisions cannot be saved in this view');return}

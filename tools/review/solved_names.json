@@ -1,0 +1,99 @@
+{
+ "names": {
+  "lattice rdr": "lattice/RDR rules (per-object decision lists)",
+  "codex": "Codex grid operations (placement, beams)",
+  "tile": "tile the input (k×k repeat)",
+  "panels": "combine separated panels (boolean / overlay)",
+  "crop": "crop (frame interior, foreground box …)",
+  "connect-same-colour": "connect same-colour cells with lines",
+  "dihedral": "rotate / reflect the whole grid",
+  "outline": "outline objects / distance layers",
+  "stencil": "stamp a fixed stencil around seeds",
+  "recolour-by-size": "recolour objects by size",
+  "topo": "topology: fill or crop by holes / enclosure",
+  "recolour-by-n holes": "recolour objects by number of holes",
+  "symmetrize": "make the whole grid symmetric",
+  "colour-map": "global colour substitution",
+  "fill-enclosed": "fill enclosed background",
+  "upscale": "scale up (k×k blocks)",
+  "downscale-any": "scale down",
+  "fractal": "fractal self-tiling",
+  "gravity-cells": "cells fall under gravity",
+  "move-to-anchor": "move objects to an anchor",
+  "object-gravity": "objects fall under gravity",
+  "rays": "rays from seeds until blocked",
+  "recolour-by-extreme size": "recolour the largest / smallest object",
+  "region-fill": "recolour same-colour regions by size rank",
+  "remove-objects-size<=1": "remove noise (single cells)",
+  "symmetry-patch": "repair a symmetric picture",
+  "colours-by-frequency": "list colours by frequency",
+  "downscale-mode": "scale down by majority colour",
+  "fill-2x2-with": "output a k×k block of the selected colour",
+  "fill-3x3-with": "output a k×k block of the selected colour",
+  "geom-sym-complete": "complete an object's mirror symmetry",
+  "keep-object": "keep only the selected object",
+  "kronecker": "Kronecker self-product",
+  "object-symmetrize": "mirror each object",
+  "optics": "remove an occluder (disocclusion)",
+  "panel-table": "panel truth table",
+  "period-extend": "extend a periodic pattern",
+  "perm-axis": "cyclic shift of rows / columns",
+  "progression": "continue a progression",
+  "recolour-by-adj colours": "recolour objects by adjacent colours",
+  "recolour-by-shape": "recolour objects by shape",
+  "recolour-by-shape count": "recolour objects by shape frequency",
+  "recolour-by-size rank": "recolour objects by size rank",
+  "recolour-objects": "recolour objects by shape (D8)",
+  "remove-objects-size<=2": "remove small objects",
+  "slide": "slide objects until blocked",
+  "symmetry-offset-repair": "repair off-centre symmetry",
+  "symmetry-repair": "repair symmetry (fill masked cells)",
+  "to-position": "move to the lattice centre"
+ },
+ "same_mechanism": [
+  [
+   "recolour-by-size",
+   "recolour-by-extreme size",
+   "region-fill",
+   "recolour-by-size rank"
+  ],
+  [
+   "gravity-cells",
+   "object-gravity",
+   "slide"
+  ],
+  [
+   "symmetrize",
+   "symmetry-patch",
+   "symmetry-repair",
+   "symmetry-offset-repair"
+  ],
+  [
+   "remove-objects-size<=1",
+   "remove-objects-size<=2"
+  ],
+  [
+   "fill-2x2-with",
+   "fill-3x3-with"
+  ],
+  [
+   "recolour-by-shape",
+   "recolour-objects",
+   "recolour-by-shape count"
+  ],
+  [
+   "fractal",
+   "kronecker"
+  ],
+  [
+   "downscale-any",
+   "downscale-mode"
+  ]
+ ],
+ "same_mechanism_groups": [
+  [
+   "M050",
+   "M067"
+  ]
+ ]
+}
