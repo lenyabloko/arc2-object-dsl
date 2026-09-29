@@ -264,3 +264,34 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 - **Review:** all 863 non-held-out tasks now carry a status (196 solved, with the verified program) or a per-task reading (rule, capabilities, feasibility, confidence). A "Needs you" filter narrows human review to 245 tasks.
   - Capability gaps on the unsolved tasks, ranked: grid-partition cells, pattern continuation, context recolour, layered composition, marker stamps, counting.
 - **Assessment:** the estimated chance of a non-zero hidden score by Nov 2 is **about 25–30%** (was 20–25%), because held-out transfer is now non-zero on half B and public eval rose to 9/172. The decision point stays at Oct 12.
+
+
+**12-hour report, 2026-09-28 (check-in due 10:30 EDT, run 22:03 EDT).**
+- **Kaggle:**
+  - v11 (V17) was submitted at 21:05 EDT on Sep 28 (01:05 UTC Sep 29).
+  - Kaggle parity passed: the digest matched (34c35cd5…) and it got 46/172, as expected.
+  - This is the first submitted build that solves a held-out half-B task (1/49); the public score is pending.
+  - The Sep 28 UTC slot went unused because batch-0018 was rejected.
+- **Builds this cycle, all admitted with no regressions.** Training is the lattice and G-DSL results combined. Half A was used for design. Half B and sealed are counts only.
+
+  | Build | Training | Half A | Half B | Sealed | Public eval |
+  |---|---|---|---|---|---|
+  | V13 | 258 | 5 | 1 | 0 | 9 |
+  | V15 | ~396 | 26 | 1 | 0 | 37 |
+  | V17 | ~504 | 34 | 1 | 0 | 46 |
+  | V18 | ~585 | 35 | 1 | 0 | 47 |
+
+  - V18 adds the round-2 priors: optics, mechanics, fluids, least action and arithmetic/sets.
+- **Diagnostic:**
+  - The public-eval gain comes entirely from half A.
+  - On half B and sealed, no program even fits the training pairs of 48/49 and 21/21 tasks.
+  - Monolithic families and priors have reached a fixed point for held-out transfer.
+  - Next capability: composition engines (residual, per-part lifting, object correspondence).
+  - On the N2 validation split (102 ARC-AGI-2-new training tasks, counts only), they give 0, 5 and 4 exact, the first measurable transfer signal.
+  - Engines must use deterministic work budgets for Kaggle parity. Object correspondence has been converted and verified.
+- **Ontology:**
+  - The mechanism ontology has 170 review groups (101 mechanism groups, 20 residual, 49 solved-family).
+  - It has 8 prior-domain categories.
+  - It has semantic links to OpenMath, Wikidata, DBpedia, DOLCE and BFO (635 verified links).
+  - It is published in the review page.
+- **Assessment:** the estimated chance of a non-zero hidden score by Nov 2 is about 30% (was 25–30%). Tonight's v11 is the first submission with a held-out solve. The decision point stays at Oct 12.

@@ -21,6 +21,7 @@ tr = json.load(open(f"{DATA}/arc-agi_training_challenges.json")); trs = json.loa
 ev = json.load(open(f"{DATA}/arc-agi_evaluation_challenges.json")); evs = json.load(open(f"{DATA}/arc-agi_evaluation_solutions.json"))
 rd = lambda f: [x for x in re.split(r"[,\s]+", open(os.path.join(REPO, "tools/m1b", f)).read()) if x]
 A, B = rd("deval_a.txt"), rd("deval_b.txt")
+N2 = set(rd("novel_N2.txt")) if os.path.exists(os.path.join(REPO, "tools/m1b", "novel_N2.txt")) else set()
 TO_S = int(job.get("timeout", 25))
 class TO(Exception): pass
 def one(k):
@@ -42,9 +43,12 @@ if __name__ == "__main__":
         R = p.map(one, keys, chunksize=4)
         RB = p.map(one, B, chunksize=4) if job.get("halfB_count") else []
     with open(os.path.join(out, "results.jsonl"), "w") as f:
-        for r in R: f.write(json.dumps(r) + "\n")
+        for r in R:
+            if r["task"] not in N2: f.write(json.dumps(r) + "\n")   # N2 validation split: counts only
     S = {"job_id": job["job_id"], "workers": n, "seconds": round(time.time() - t0),
-         "train_exact": sum(r["exact"] for r in R if r["task"] in tr), "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
+         "train_exact": sum(r["exact"] for r in R if r["task"] in tr),
+         "N2_exact_count": sum(r["exact"] for r in R if r["task"] in N2), "N2_fit_count": sum(r["occupied"] for r in R if r["task"] in N2), "N2_n": len(N2),
+         "halfB_fit_count": (sum(r["occupied"] for r in RB) if RB else None), "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
          "wrong_first": sum(r["occupied"] and not r["exact"] for r in R), "timeouts": sum(1 for r in R if r.get("timeout")),
          "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None,
          "codex_ops_loaded": bool(__import__("codex_ops").load())}
