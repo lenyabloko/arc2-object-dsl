@@ -138,6 +138,10 @@ td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabu
 .needlist{margin-top:8px;padding:8px 10px;border-left:3px solid var(--unsure);background:var(--bg);display:flex;flex-direction:column;gap:5px}
 .needrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .needmark{color:var(--unsure);font-weight:600}
+.rejrow .name{text-decoration:line-through;opacity:.55}
+.accrow .name{color:var(--accept)}
+details.legacy{margin-top:12px}
+details.legacy>summary{color:var(--muted);font-size:13px}
 </style>
 
 <header>
@@ -151,7 +155,10 @@ td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabu
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const D=JSON.parse(document.getElementById('data').textContent);
-const showNeeds={};
+const showNeeds={},legacyOpen={};
+const aliasNorm=c=>c.replace(/^(rule|codex):/,'').replace(/^feature_/,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const aliasPick=cs=>cs.find(c=>c===c.toLowerCase()&&!c.startsWith('feature_'))||cs[0];
+function aliasGroups(rows){const m=new Map();rows.forEach(r=>{const a=aliasNorm(r.c);if(!m.has(a))m.set(a,Object.assign({},r,{alias:[r.c]}));else{const x=m.get(a);x.alias.push(r.c);x.k=Math.max(x.k||0,r.k||0)}});return[...m.values()].map(x=>Object.assign(x,{show:aliasPick(x.alias)}))}
 const PAL=['#000000','#0074D9','#FF4136','#2ECC40','#FFDC00','#AAAAAA','#F012BE','#FF851B','#7FDBFF','#870C25'];
 let GVIEW=(()=>{try{return localStorage.getItem('gview')||'mech'}catch(e){return 'mech'}})();
 let G=(GVIEW==='v1'&&D.groups_v1)?D.groups_v1:D.groups, GI={}; G.forEach((g,i)=>GI[g.id]=i);
@@ -250,11 +257,12 @@ function statusBox(tid){const st=(D.status||{})[tid],a=(D.analysis||{})[tid];con
   return b}
 function taskLabelRow(g,tid,M,locked){const labs=(g.task_labels||{})[tid]||[];if(!labs.length)return null;const d=dec[g.id]||{};const cur=((d.task_labels||{})[tid])||{};
   const box=el('div');box.style.cssText='display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px';box.append(el('span','help','Ontology labels for this task:'));
-  labs.forEach(k=>{const name=k.replace(/^(rule|codex):/,'');const w=el('span');w.style.cssText='display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden;font-size:12px';
-    const v=cur[k];const A_=(D.analysis||{})[tid]||{};const nkk=name.toLowerCase().replace(/[^a-z0-9]/g,'');const sug=(A_.known_n||[]).includes(nkk)?'accept':(A_.wrong_n||[]).includes(nkk)?'reject':null;if(sug&&!v){w.style.borderStyle='dashed';w.style.borderColor=sug==='accept'?'var(--accept)':'var(--reject)';w.title='Claude suggests '+(sug==='accept'?'✓':'✗')+' for this task (click to confirm)'}if(v==='accept')w.style.borderColor='var(--accept)';if(v==='reject')w.style.borderColor='var(--reject)';
-    const nm=el('span',null,(k.startsWith('rule:')?'rule · ':'')+pretty(name));nm.style.cssText='padding:1px 6px'+(v==='reject'?';text-decoration:line-through;color:var(--muted)':'');
+  const lgrp=new Map();labs.forEach(k=>{const a=(k.startsWith('rule:')?'r:':'c:')+aliasNorm(k);if(!lgrp.has(a))lgrp.set(a,[]);lgrp.get(a).push(k)});
+  [...lgrp.values()].forEach(ks=>{const k=ks.find(x=>{const n=x.replace(/^(rule|codex):/,'');return n===n.toLowerCase()&&!n.startsWith('feature_')})||ks[0];const name=k.replace(/^(rule|codex|mech):/,'');const w=el('span');w.style.cssText='display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden;font-size:12px';
+    const v=ks.map(x=>cur[x]).find(x=>x)||undefined;const A_=(D.analysis||{})[tid]||{};const nkk=name.toLowerCase().replace(/[^a-z0-9]/g,'');const sug=(A_.known_n||[]).includes(nkk)?'accept':(A_.wrong_n||[]).includes(nkk)?'reject':null;if(sug&&!v){w.style.borderStyle='dashed';w.style.borderColor=sug==='accept'?'var(--accept)':'var(--reject)';w.title='Claude suggests '+(sug==='accept'?'✓':'✗')+' for this task (click to confirm)'}if(v==='accept')w.style.borderColor='var(--accept)';if(v==='reject')w.style.borderColor='var(--reject)';
+    const mk_=k.startsWith('mech:');const nm=el('span',null,mk_?({op:'operator',role:'role',prior:'prior'}[name.split(':')[0]]||'')+' · '+name.split(':').slice(1).join(':').replace(/_/g,' '):(k.startsWith('rule:')?'rule · ':'')+pretty(name));if(!mk_)w.style.opacity='.8';if(ks.length>1)nm.title='Also: '+ks.filter(x=>x!==k).map(x=>pretty(x.replace(/^(rule|codex):/,''))).join(', ');nm.style.cssText='padding:1px 6px'+(v==='reject'?';text-decoration:line-through;color:var(--muted)':'');
     const mk=(sym,val,col)=>{const b=el('button',null,sym);b.disabled=locked;b.title=(val==='accept'?'Accept':'Reject')+' for this task';b.style.cssText='border:0;border-left:1px solid var(--line);background:'+(v===val?col:'transparent')+';color:'+(v===val?'#fff':'var(--muted)')+';padding:1px 6px;font:12px var(--sans)';
-      b.onclick=e=>{e.stopPropagation();const all=Object.assign({},(dec[g.id]||{}).task_labels||{});const m=Object.assign({},all[tid]||{});if(m[k]===val)delete m[k];else m[k]=val;all[tid]=m;setDec(g.id,{task_labels:all});renderGroup(M)};return b};
+      b.onclick=e=>{e.stopPropagation();const all=Object.assign({},(dec[g.id]||{}).task_labels||{});const m=Object.assign({},all[tid]||{});const off=v===val;ks.forEach(x=>{if(off)delete m[x];else m[x]=val});all[tid]=m;setDec(g.id,{task_labels:all});renderGroup(M)};return b};
     w.append(nm,mk('✓','accept','var(--accept)'),mk('✗','reject','var(--reject)'));box.append(w)});
   return box}
 function legacyFor(g){if(!D.legacy)return'';for(const k in D.legacy){const ts=D.legacy[k];const inG=ts.filter(x=>(D.members[g.id]||[]).includes(x));const d=dec[k];if(d&&inG.length){return 'Your earlier draft on '+k+' ('+ts.join(', ')+'): '+(d.verdict||'')+'. Kept together as a must-link in the re-clustering.'}}return''}
@@ -408,21 +416,24 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
   const cx=el('div');cx.style.marginTop='16px';cx.append(el('h3',null,'Ontology: rule families, classes and concepts'));
   cx.append(Object.assign(el('div','help','Accept or reject each label per task, next to that task\'s examples (✓ / ✗). Here: totals per label, with shortcuts to set all tasks at once.'),{style:'margin-bottom:8px'}));
   const cl2=el('div','cands');
-  const codexRow=(r,added,pfx)=>{const key=(pfx||'codex:')+r.c;const row=el('div','cand');const l=el('div');const nm=el('div','name');nm.append(el('span','kind',r.kind||'added'),document.createTextNode(pretty(r.c)));
-    const tlab=(g.task_labels||{});const having=Object.keys(tlab).filter(t=>tlab[t].includes(key));
+  const codexRow=(r,added,pfx)=>{const keys=(r.alias||[r.c]).map(c=>(pfx||'codex:')+c);const key=keys[0];const row=el('div','cand');const l=el('div');const nm=el('div','name');nm.append(el('span','kind',r.kind||'added'),document.createTextNode(pretty(r.show||r.c)));if(r.alias&&r.alias.length>1){const al=el('span','help',' · same concept as '+r.alias.filter(c=>c!==(r.show||r.c)).map(pretty).join(', '));al.title='Detector variants of one concept, merged: a decision here applies to all of them';nm.append(al)}
+    const tlab=(g.task_labels||{});const having=Object.keys(tlab).filter(t=>keys.some(k=>tlab[t].includes(k)));
     l.append(nm,el('div','meta',added?'added by you':((having.length||r.k)+'/'+g.n+' tasks · '+r.lift+'× base rate'+(r.chain&&r.chain.length?' · '+r.chain.join(' ⊂ '):''))));const tdec=(d.task_labels||{});
-    const na=having.filter(t=>(tdec[t]||{})[key]==='accept').length,nr=having.filter(t=>(tdec[t]||{})[key]==='reject').length;
+    const dv=t=>{const m=tdec[t]||{};for(const k of keys){if(m[k])return m[k]}return null};const na=having.filter(t=>dv(t)==='accept').length,nr=having.filter(t=>dv(t)==='reject').length;
     const sg=el('div');sg.style.cssText='display:flex;flex-direction:column;align-items:flex-end;gap:3px';
-    if(having.length){const sumt=el('span','help',having.length+' task'+(having.length===1?' has':'s have')+' this label: '+na+' accepted, '+nr+' rejected, '+(having.length-na-nr)+' not decided yet');sumt.title='Decide per task with ✓ / ✗ next to each task\'s examples, or use the shortcuts below for all of them';sg.append(sumt);
-      const bulk=el('div','seg');[['accept','✓ all'],['reject','✗ all'],['','clear']].forEach(([v,tl])=>{const b=el('button',v,tl);b.disabled=locked;b.title=v?('Set for every task in this group that has it; adjust single tasks next to their examples'):'Clear per-task decisions for this label';
-        b.onclick=()=>{const all=Object.assign({},(dec[g.id]||{}).task_labels||{});having.forEach(t=>{const m=Object.assign({},all[t]||{});if(v)m[key]=v;else delete m[key];all[t]=m});setDec(g.id,{task_labels:all});renderGroup(M)};bulk.append(b)});sg.append(bulk)}
+    const allA=having.length>0&&na===having.length,allR=having.length>0&&nr===having.length;if(allR)row.classList.add('rejrow');if(allA)row.classList.add('accrow');if(having.length){const sumt=el('span','help',allR?'✗ Rejected for all '+having.length+' tasks':allA?'✓ Accepted for all '+having.length+' tasks':having.length+' task'+(having.length===1?' has':'s have')+' this label: '+na+' accepted, '+nr+' rejected, '+(having.length-na-nr)+' not decided yet');if(allR)sumt.style.color='var(--reject)';if(allA)sumt.style.color='var(--accept)';sumt.title='Decide per task with ✓ / ✗ next to each task\'s examples, or use the shortcuts below for all of them';sg.append(sumt);
+      const bulk=el('div','seg');[['accept','✓ all'],['reject','✗ all'],['','clear']].forEach(([v,tl])=>{const b=el('button',v+((v==='accept'&&allA)||(v==='reject'&&allR)?' on':''),tl);b.disabled=locked;b.title=v?('Set for every task in this group that has it; adjust single tasks next to their examples'):'Clear per-task decisions for this label';
+        b.onclick=()=>{const all=Object.assign({},(dec[g.id]||{}).task_labels||{});having.forEach(t=>{const m=Object.assign({},all[t]||{});keys.forEach(k=>{if(!tlab[t].includes(k))return;if(v)m[k]=v;else delete m[k]});all[t]=m});setDec(g.id,{task_labels:all});renderGroup(M)};bulk.append(b)});sg.append(bulk)}
     else{const b=el('button','btn',((d.axes||{})[key]==='accept')?'added by you ✓ (remove)':'add to group');b.disabled=locked;b.onclick=()=>{const ax=Object.assign({},(dec[g.id]||{}).axes);if(ax[key])delete ax[key];else ax[key]='accept';setDec(g.id,{axes:ax});renderGroup(M)};sg.append(b)}
     row.append(l,sg);return row};
-  if((g.codex_rules||[]).length){cl2.append(Object.assign(el('div','help','Rule families (from the ontology rule ledger; '+(g.codex_rules_cov||0)+' of '+g.n+' tasks have one)'),{style:'margin:4px 0'}));g.codex_rules.forEach(r=>cl2.append(codexRow(r,false,'rule:')))}
-  cl2.append(Object.assign(el('div','help','Ontology classes and detector concepts'),{style:'margin:10px 0 4px'}));
-  (g.codex_classes||[]).forEach(r=>cl2.append(codexRow(r,false)));
-  Object.keys(d.axes||{}).filter(k=>k.startsWith('codex:')).map(k=>k.slice(6)).filter(c=>!(g.codex_classes||[]).some(r=>r.c===c)).forEach(c=>{const cm=(g.codex_common||[]).find(r=>r.c===c);cl2.append(codexRow(cm?Object.assign({kind:'common'},cm):{c},!cm))});
-  if(!(g.codex_classes||[]).length)cl2.append(el('div','banner','No ontology class is distinctive for this group.'));
+  cl2.append(Object.assign(el('div','help','Mechanism ontology (what the groups and the solver are built on): operators from the abstract reading of each task, the roles its objects play, and the prior domains that solve it.'),{style:'margin:4px 0'}));
+  if((g.mech_rows||[]).length)g.mech_rows.forEach(r=>cl2.append(codexRow(r,false,'mech:')));else cl2.append(el('div','banner','No abstract reading covers this group yet (mostly already-solved tasks).'));
+  const lg=document.createElement('details');lg.className='legacy';const ls=document.createElement('summary');ls.textContent='Legacy Codex detector labels (unverified: these detectors over-fire; reject what is wrong)';lg.append(ls);if(legacyOpen[g.id])lg.open=true;lg.addEventListener('toggle',()=>{legacyOpen[g.id]=lg.open});const L2=el('div','cands');lg.append(L2);cl2.append(lg);
+  if((g.codex_rules||[]).length){L2.append(Object.assign(el('div','help','Rule families (from the Codex rule ledger; '+(g.codex_rules_cov||0)+' of '+g.n+' tasks have one)'),{style:'margin:4px 0'}));aliasGroups(g.codex_rules).forEach(r=>L2.append(codexRow(r,false,'rule:')))}
+  L2.append(Object.assign(el('div','help','Codex classes and detector concepts'),{style:'margin:10px 0 4px'}));
+  aliasGroups(g.codex_classes||[]).forEach(r=>L2.append(codexRow(r,false)));
+  Object.keys(d.axes||{}).filter(k=>k.startsWith('codex:')).map(k=>k.slice(6)).filter(c=>!(g.codex_classes||[]).some(r=>r.c===c)).forEach(c=>{const cm=(g.codex_common||[]).find(r=>r.c===c);L2.append(codexRow(cm?Object.assign({kind:'common'},cm):{c},!cm))});
+  if(!(g.codex_classes||[]).length)L2.append(el('div','banner','No Codex class is distinctive for this group.'));
   cx.append(cl2);
   if((g.codex_common||[]).length){const det=document.createElement('details');det.style.marginTop='10px';const sm=document.createElement('summary');sm.textContent='Common classes in this group ('+g.codex_common.length+'), no more frequent than elsewhere';det.append(sm);
     const ch=el('div','chips');ch.style.marginTop='6px';g.codex_common.forEach(r=>{const b=el('button','chip',pretty(r.c)+' · '+r.k+'/'+g.n+' · '+r.lift+'×');b.title='Click to add as a decision';b.disabled=locked;
@@ -492,7 +503,7 @@ function renderGroup(M){const g=G[cur];M.textContent='';const d=dec[g.id]||{axes
     const used=Object.keys(st.subs).filter(k=>counts[k]);const box=el('div');box.style.cssText='margin-top:8px;font-size:12.5px';
     box.append(el('div','help',used.length+' sub-concepts · '+(counts.unassigned||0)+' unassigned · set each task\'s sub-concept in the dropdown under its examples'));
     const ch=el('div','chips');ch.style.marginTop='4px';used.forEach(k=>ch.append(el('span','chip',st.subs[k]+' · '+counts[k])));box.append(ch);cc.append(box)}
-  const nw=el('div');nw.style.marginTop='14px';nw.append(el('h3',null,'New concepts (optional, comma-separated)'));const ni=el('input');ni.type='text';ni.disabled=locked;ni.placeholder='e.g. outline, gap_flow, fill enclosed cavity with probe colour';ni.value=d.new_concept||'';
+  const nw=el('div');nw.style.marginTop='14px';nw.append(el('h3',null,'New concepts (optional, comma-separated)'));nw.append(Object.assign(el('div','help','To propose a PARENT concept, write the new name, then ">", then the labels or concepts it generalises, e.g.  patch > region, template match, square background patch. Claude adds it to the mechanism ontology as a superclass and uses it to regroup tasks.'),{style:'margin:-2px 0 6px'}));const ni=el('input');ni.type='text';ni.disabled=locked;ni.placeholder='e.g. outline, gap_flow, fill enclosed cavity with probe colour';ni.value=d.new_concept||'';
   const sugg=el('div','chips');sugg.style.marginTop='4px';
   const showS=()=>{sugg.textContent='';const parts=ni.value.split(',');const last=parts[parts.length-1].trim().toLowerCase();if(last.length<2)return;
     const nm0=x=>x.replace(/^(category|solver|Ontology rule|Ontology class): /,'').toLowerCase();const hits=D.known_vocab.filter(x=>nm0(x).includes(last)).sort((a,b)=>(!nm0(a).startsWith(last))-(!nm0(b).startsWith(last))||nm0(a).length-nm0(b).length).slice(0,10);

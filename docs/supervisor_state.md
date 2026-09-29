@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 17:20 UTC (13:20 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 16:55 UTC (12:55 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -98,13 +98,14 @@ _Last updated: 2026-09-29 17:20 UTC (13:20 EDT). Updated with every outbox batch
 - The local shell on Len's machine (device_bash) failed to start this morning; file listing, staging and commits still work. The WSL loop is unaffected.
 - Report appended to `docs/convergence_and_eta_assessment.md` (estimate about 50%).
 
-## Update 13:20 EDT Sep 29: Dream cycle 18 (composition gaps), V20 candidate
+## Update 12:55 EDT Sep 29: Dream cycle 18 (composition gaps), V20 candidate
 - Design set = the 99 tasks V19 fails in N1 (85) and half A (14): `latent/design_unsolved_v19.json`. Quick harness `latent/eval_subset.py` (design + regression sample vs a baseline; no held-out ids).
 - Lane A `latent/compose_objmap2.py` (copy of objmap + shape edits in the object frame, inbb predicates, complete-template creation, template stamping incl. scaled/inner, separator-colour background). Full eval: ARC1 116 exact (+13 vs objmap 103), N1 10 (+3: 52364a65, 9720b24f, e734a0e8), half A 2 (=), **N2 4 exact / 5 fit / 1 wrong (unchanged)**, no LOST. Deterministic (sha256 identical under load), max 6 s/task.
 - Lane B `latent/compose_ctx.py` (new: part_out = OP(part_in, ctx), ctx by role rule: global selector / next / previous / lattice neighbour / mirror; OP = cell tables, recolour, copy/overlay + lift library, progression). Full eval: ARC1 47 exact, N1 3 (5a719d11, c4d1a9ae, e734a0e8), half A 0, **N2 0**, wrong 0. Deterministic, max 1 s/task.
 - Reviewer rule for M050 ("cover the largest square background patch with colour") → `latent/fam_fill_bg_windows.py` (greedy largest all-r squares / windows / square components). Alone: ARC1 6 exact, 0 wrong (new: 31adaf00, 6cf79266), N2 0. The rule fits 2 of M050's 6 tasks exactly; a8d7556c nearly (one pair), the other three are template/plus patterns.
 - **V20** = V19 + fam_fill_bg_windows + COMPOSE_ENGINES (objmap2, lift, ctx). Probe `tools/m1b/v20`. WSL jobs: `c20-v20` (train/half A, N2 + half-B counts) and `c21-v20-parity` (public eval, sealed count, timing). Admit only with no regressions and public eval ≥ 49/172, max task well under 300 s.
 - Finding: design-set gains (+6 N1, +15 ARC1) did not move N2. Held-out transfer remains the bottleneck; the remaining design failures are dominated by creations nobody explains (CA, paths, progressions: 31), different-size outputs (25) and multi-step per-object changes (19).
+- Review page v34 (13:05 EDT): mechanism-ontology rows first (operators from abstract readings, roles, prior domains; `mech:` labels, ✓/✗ per task), Codex detector labels collapsed as legacy with alias variants merged (one decision applies to all variants), fully accepted/rejected rows highlighted. Data patch: `tools/review/patch_review_json.py` (idempotent; reproduces the published JSON from v32). Parent-concept proposals: New concepts field, syntax `patch > region, template match, …` → add as superclass in the mechanism ontology at ingestion.
 - Review page v33: "N need you" pill lists the tasks and reasons; label counts fixed (task labels now carry every class/rule the task has). Do NOT rebuild the review JSON with `build_mview.py` (it renumbers the M groups after status changes); patch it in place.
 
 ## Next steps
