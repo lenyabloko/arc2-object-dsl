@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 04:35 UTC (00:35 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 06:55 UTC (02:55 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -79,6 +79,18 @@ _Last updated: 2026-09-29 04:35 UTC (00:35 EDT). Updated with every outbox batch
   - c17-v19 (train/half A, N2, half-B count).
   - c18-v18d-parity and c19-v19-parity: new `mode: parity`, full probe on the 120 public-eval tasks, single process, PYTHONHASHSEED=0, per-task timing. Held-out tasks: counts and anonymous times only.
 - The cloud machine reboots on every session restart. Long cloud jobs are unreliable; use WSL wake jobs.
+
+## Update 01:45 EDT Sep 29: V19 admitted (cycle 17)
+- c17-v19 (WSL):
+  - visible training 552 → 570 (+18), half A 36 (unchanged), no regressions.
+  - N2 G-exact 37 (unchanged: the engines' N2 solves overlap the library's).
+  - half B 1/49.
+- Parity/timing runs (WSL, single process, same file as Kaggle):
+  - V18d: digest 4c487dd1… (identical to the V18 cloud parity), 47/172, max task 56 s, 0 timeouts.
+  - V19: digest c93d287b…, **49/172** (half A 35, half B 1, **sealed 1**, the first sealed solve), max task 57 s, 0 timeouts, total 21 min.
+- Notebook v12 = V19 (`submission/v12`, EXPECTED c93d287b / 49).
+- **The cloud parity re-run confirmed the digest** c93d287b (max 60 s, 0 timeouts).
+- **LATEST=v12 is staged (batch-0035).** Tonight's submission after 20:00 EDT: WSL runs `bash submission/daily_submit.sh`.
 
 ## Next steps
 1. Poll the orphan det evals (lift, residual). Verify determinism: rerun 60 tasks with and without load and compare sha256.
