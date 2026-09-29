@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 18:50 UTC (14:50 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 20:10 UTC (16:10 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -130,6 +130,18 @@ _Last updated: 2026-09-29 18:50 UTC (14:50 EDT). Updated with every outbox batch
 - V21 = V20 + fam_fill_bg_windows v2 + `gdsl.nearmiss_fallback` (last stage after compose; deterministic, size cap 2400 input cells; names prefixed `nearmiss:`). Probe `tools/m1b/v21`; WSL jobs c22-v21 (N2/half-B counts) and c23-v21-parity (timing vs the 300 s alarm).
 - Review page v43: palette category lists every candidate group ('minority' ranked last), shape-palette-transfer grid check (23 tasks); closure-notes card removed. Slip: the 23 shape-palette ids were printed without filtering N2 — treat that concept's N2 count as possibly contaminated; design any primitive from ARC1/N1/half A members only.
 - Pending design fixes from Len's review: regroup should ADD a task to a second group (overlap) instead of moving a mechanism-group medoid; priors should act as ranking/pruning bias in search, not as more whole-task families; stop adding monolithic families (North Star).
+
+## Update 15:00 EDT Sep 29: ontology roles clarified (Len)
+- **Conceptual lattice** = orthogonal axes with meets and joins (FCA attributes). **Categories** = meta-classes of mechanisms (classes of groups/primitives), not lattice axes; any current overlap between them is accidental. Implemented: a group is in a category when most of its members show evidence (review v44); task-level evidence inside other groups is a regrouping signal, not category membership.
+- Agreed (Len): stop adding monolithic families; effort goes to composition over existing object operations and to hidden-score levers.
+- Near-miss for k = 2 pairs (single-pair induction, other pair ≥ 0.95 cell accuracy): design splits 50 tasks → 3 guesses, 2 exact (17829a00, 9356391f); goes into V22 after V21 is measured.
+
+## Update 16:10 EDT Sep 29: V21 admitted (cycle 19)
+- c22-v21: G train 606 → 617 (+11: 3eda0437, e88171ec by fill v2; 444801d8, 44f52bb0, 4ff4c9da, a3f84088, a8d7556c, ac0c5833, e1d2900e, ef135b50, f18ec8cc by near-miss); LOST none; half A 36 (=); N2 exact 37 (=), fit 39 → 41 (2 wrong near-miss guesses); half B 1 (=, no near-miss guess).
+- c23-v21-parity: digest **c93d287b… again identical** (near-miss fires on no public-eval task), 49/172, max 60.5 s, 0 timeouts; total 1667 s (+300 s).
+- Finding: near-miss helps ARC-1-style tasks only (ARC1 9 of 17 guesses right) — on ARC-AGI-2-style tasks it almost never finds a leave-one-out program (N1 1, N2 0 right, half A/public eval none; the 2400-cell cap is not the reason: `latent/nearmiss_big.py` found 0 candidates on the large N1/half-A tasks). Expected hidden-score gain ≈ 0.
+- Notebook **v14 = V21** staged in `submission/v14` (EXPECTED c93d287b / 49) as the Sep 30 candidate (supersedes v13; identical public-eval output). LATEST stays v12 tonight.
+- Review v45: search matches category/evidence/rule text with spelling tolerance ('pallet'); palette category page lists all 39 grid-evidence tasks by group; stamp groups renamed (stamp = fixed image; decorate/draw/reflect/complete/copy otherwise; `tools/review/group_labels.json`, `apply_group_labels.py`).
 
 ## Next steps
 1. Tonight after 20:00 EDT: WSL runs `bash submission/daily_submit.sh` (v12 = V19, expected c93d287b / 49). Read `submissions/2026-09-30.json` and `scores.txt` at the 22:30 EDT check-in.

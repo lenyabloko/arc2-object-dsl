@@ -1,0 +1,18 @@
+{
+ "note": "Display names for mechanism groups (keys and primitive modules unchanged). Reviewer (Len, 2026-09-29): 'stamp' means a fixed image copied as-is, like a postage stamp; patterns painted around or at objects are 'decorate'.",
+ "by_key": {
+  "stamp.local_stencil": "decorate.around seeds (local stencil)",
+  "stamp.bbox_outline": "decorate.bbox outline",
+  "stamp.grow_ring": "decorate.ring around objects",
+  "stamp.stencil_at_computed_point": "decorate.at computed point",
+  "stamp.count_bar": "draw.count bar",
+  "stamp.reflect_recoloured": "reflect.recoloured copy",
+  "stamp.complete_partial_matches": "complete.partial template copies",
+  "stamp.panel_copy": "copy.panel content",
+  "extend.repeat_stamp": "extend.repeat copies",
+  "stamp.template_at_markers": "stamp.template at markers",
+  "stamp.copy_to_congruent_target": "stamp.onto congruent targets",
+  "stamp.residual": "stamp / decorate — residual"
+ },
+ "solved_family": {"stencil": "decorate seeds with a fixed stencil"}
+}

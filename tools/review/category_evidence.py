@@ -5,9 +5,9 @@ A task carries a category only with verifiable evidence, strongest first:
           input; crop: every output is a sub-grid of its input);
   solver  the task is solved by a primitive whose module implements that kind of mechanism;
   reading the abstract reading's operators / roles / wording name it.
-A group carries a category when at least half of its members (all of them for a singleton) carry it; a group
-where only a minority carries it is still listed (marked 'minority', ranked last) if one of them has exact or solver
-evidence, so the reviewer sees every candidate and can exclude it.
+Categories are meta-classes of mechanisms (groups), not lattice axes: a group carries a category when at least half
+of its members (all of them for a singleton) carry the evidence.  Task-level evidence in a group that is mostly about
+something else does not make the group a member; it is a regrouping signal for the pipeline, not a category member.
 Prior-domain categories (p_*) are left as they are (they are already solver / grounding / operator evidence).
 
 usage: python3 category_evidence.py <review_groups_mview.json> <S0 dir>"""
@@ -167,7 +167,7 @@ for g in D['groups']:
         hit = [t for t in ts if c in EV[t]]
         strong_hits = [t for t in hit if rank(EV[t][c]) < 2]
         major = len(hit) >= (1 if n == 1 else n / 2)
-        if not hit or not (major or strong_hits): continue          # minority groups are listed when a member has exact/solver evidence
+        if not hit or not major: continue                          # categories are meta-classes of mechanisms: majority of members
         kinds = collections.Counter(EV[t][c].split(':')[0].split(' ')[0] for t in hit)
         cov = len(hit) / n; lift = round(cov / base[c], 1) if base[c] else 0
         strong = sum(1 for t in hit if rank(EV[t][c]) < 2)
