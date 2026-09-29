@@ -1,0 +1,2 @@
+{"job_id": "c19-v19-parity", "mode": "parity", "probe": "tools/m1b/v19", "task_seconds": 300,
+ "note": "Full-probe parity + per-task timing of V19 (V18d + composition fallback) on the public eval; source of EXPECTED digest for notebook v12 if stable."}

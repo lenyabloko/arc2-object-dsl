@@ -1,0 +1,2 @@
+{"job_id": "c18-v18d-parity", "mode": "parity", "probe": "tools/m1b/v18d", "task_seconds": 300,
+ "note": "Full-probe parity + per-task timing of V18d on the 120 public-eval tasks, single process, as the Kaggle notebook runs it. Checks that no task approaches the 300 s limit."}

@@ -10,6 +10,11 @@ from multiprocessing import Pool
 DATA = os.environ.get("ARC_DATA", "/kaggle/input/arc-prize-2026-arc-agi-2")
 REPO = os.environ.get("ARC_REPO", os.path.expanduser("~/arc/arc2-object-dsl"))
 job = json.load(open(sys.argv[1])); out = sys.argv[2]; os.makedirs(out, exist_ok=True)
+if job.get("mode") == "parity":           # full-probe parity + timing on the public eval (as the Kaggle notebook)
+    if os.environ.get("PYTHONHASHSEED") != "0":   # same hash seed as the Kaggle notebook, or set order (and the digest) changes
+        os.execvpe(sys.executable, [sys.executable] + sys.argv, dict(os.environ, PYTHONHASHSEED="0", OMP_NUM_THREADS="1"))
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import parity_eval; parity_eval.run(job, out, REPO, DATA); sys.exit(0)
 probe = os.path.join(REPO, job["probe"]); sys.path.insert(0, probe)
 import gdsl, hashlib
 ENGINE = None
