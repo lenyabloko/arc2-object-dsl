@@ -1,0 +1,2 @@
+{"job_id": "c17-v19", "probe": "tools/m1b/v19", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 150,
+ "note": "V19 = V18d + composition fallback (objmap, lift; deterministic budgets). Cycle 17 half-B count; N2 counts in summary. Per-task seconds in results for Kaggle timing."}
