@@ -1,0 +1,2 @@
+{"job_id": "c16-lift-det", "probe": "tools/m1b/v18d", "engine": "latent/compose_lift.py", "sets": ["train", "halfA"], "halfB_count": false, "timeout": 120,
+ "note": "Deterministic composition engine lift alone (work budgets, no clocks). Transfer signal = N2 counts. Cloud cross-check compares per-task prediction hashes (ph) on the first 120 tasks."}

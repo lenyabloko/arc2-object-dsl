@@ -11,7 +11,11 @@ DATA = os.environ.get("ARC_DATA", "/kaggle/input/arc-prize-2026-arc-agi-2")
 REPO = os.environ.get("ARC_REPO", os.path.expanduser("~/arc/arc2-object-dsl"))
 job = json.load(open(sys.argv[1])); out = sys.argv[2]; os.makedirs(out, exist_ok=True)
 probe = os.path.join(REPO, job["probe"]); sys.path.insert(0, probe)
-import gdsl
+import gdsl, hashlib
+ENGINE = None
+if job.get("engine"):          # composition engine module (defines SEARCH(task)) instead of the plain library search
+    spec = importlib.util.spec_from_file_location("engine_mod", os.path.join(REPO, job["engine"]))
+    ENGINE = importlib.util.module_from_spec(spec); spec.loader.exec_module(ENGINE)
 if job.get("families"):
     fams = []
     for m in job["families"]:
@@ -29,14 +33,16 @@ def one(k):
     def h(*a): raise TO()
     signal.signal(signal.SIGALRM, h); signal.alarm(TO_S); t0 = time.time()
     try:
-        res = gdsl.search(ch[k])
+        res = ENGINE.SEARCH(ch[k]) if ENGINE else gdsl.search(ch[k])
         ok = bool(res) and all(any(r["preds"][i] == so[k][i] for r in res[:2]) for i in range(len(so[k])))
-        return {"task": k, "occupied": bool(res), "exact": ok, "progs": [r["program"] for r in res[:3]], "s": round(time.time() - t0, 2)}
+        return {"task": k, "occupied": bool(res), "exact": ok, "progs": [r["program"] for r in res[:3]], "s": round(time.time() - t0, 2),
+                "ph": hashlib.sha256(json.dumps([r["preds"] for r in res[:2]], sort_keys=True).encode()).hexdigest()[:16]}
     except TO: return {"task": k, "occupied": False, "exact": False, "progs": [], "timeout": True, "s": TO_S}
     except BaseException as e: return {"task": k, "occupied": False, "exact": False, "progs": [], "err": repr(e)[:80]}
     finally: signal.alarm(0)
 if __name__ == "__main__":
     keys = (sorted(tr) if "train" in job["sets"] else []) + (A if "halfA" in job["sets"] else [])
+    if job.get("limit"): keys = keys[:int(job["limit"])]
     n = int(os.environ.get("WAKE_WORKERS", os.cpu_count() or 2))
     t0 = time.time()
     with Pool(n, maxtasksperchild=50) as p:
