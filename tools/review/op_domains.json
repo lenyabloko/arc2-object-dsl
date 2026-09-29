@@ -1,0 +1,150 @@
+{
+ "RAY": [
+  "optics",
+  "geometry"
+ ],
+ "PROJECT": [
+  "optics",
+  "geometry"
+ ],
+ "OVERLAY": [
+  "optics"
+ ],
+ "MASK": [
+  "optics"
+ ],
+ "COMPLETE": [
+  "geometry",
+  "optics"
+ ],
+ "PATH": [
+  "action",
+  "geometry"
+ ],
+ "CONNECT": [
+  "action",
+  "geometry"
+ ],
+ "EXTEND": [
+  "geometry"
+ ],
+ "TILE": [
+  "geometry"
+ ],
+ "KRON": [
+  "geometry"
+ ],
+ "KRONECKER": [
+  "geometry"
+ ],
+ "TRANSFORM": [
+  "geometry"
+ ],
+ "ORIENT": [
+  "geometry"
+ ],
+ "ALIGN": [
+  "geometry",
+  "mechanics"
+ ],
+ "BBOX": [
+  "geometry"
+ ],
+ "CROP": [
+  "geometry"
+ ],
+ "MATCH": [
+  "geometry"
+ ],
+ "TEMPLATE_MATCH": [
+  "geometry"
+ ],
+ "TEMPLATE": [
+  "geometry"
+ ],
+ "STAMP": [
+  "geometry"
+ ],
+ "COPY": [
+  "geometry"
+ ],
+ "STACK": [
+  "mechanics",
+  "optics"
+ ],
+ "MOVE": [
+  "mechanics"
+ ],
+ "SHIFT": [
+  "mechanics",
+  "combinatorics"
+ ],
+ "PACK": [
+  "mechanics",
+  "combinatorics"
+ ],
+ "FILL": [
+  "topology",
+  "fluids"
+ ],
+ "DENOISE": [
+  "topology"
+ ],
+ "SEGMENT": [
+  "topology"
+ ],
+ "NEST": [
+  "topology"
+ ],
+ "SPLIT": [
+  "topology"
+ ],
+ "COUNT": [
+  "arithmetic"
+ ],
+ "MEASURE": [
+  "arithmetic",
+  "geometry"
+ ],
+ "RANK": [
+  "combinatorics",
+  "arithmetic"
+ ],
+ "SORT": [
+  "combinatorics",
+  "arithmetic"
+ ],
+ "PERMUTE": [
+  "combinatorics"
+ ],
+ "SWAP": [
+  "combinatorics"
+ ],
+ "COMBINE": [
+  "arithmetic"
+ ],
+ "GENERATE": [
+  "combinatorics"
+ ],
+ "LAYOUT": [
+  "combinatorics"
+ ],
+ "ASSEMBLE": [
+  "combinatorics"
+ ],
+ "FILTER": [
+  "arithmetic"
+ ],
+ "GROUP": [
+  "arithmetic"
+ ],
+ "CLASSIFY": [
+  "arithmetic"
+ ],
+ "LOOKUP": [
+  "combinatorics"
+ ],
+ "LEGEND": [
+  "combinatorics"
+ ]
+}

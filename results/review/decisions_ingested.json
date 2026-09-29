@@ -21,6 +21,15 @@
    "submitted": "2026-09-29T17:00Z",
    "note": "5/6 tasks in M050 all have a simple rule: cover the largest square background patch with colour",
    "effect": "New family latent/fam_fill_bg_windows.py (greedy largest all-r squares, windows, square components). Exact on 31adaf00 and 6cf79266 (both new), 0 wrong over ARC1/N1/half A/N2; a8d7556c fails one pair (union of 2x2 windows over-paints); 7e02026e (plus patches), 14754a24 and 4ff4c9da (marker templates) are different mechanisms. In V20."
+  },
+  {
+   "doc": "chat 2026-09-29 13:00-13:15 EDT",
+   "reviewer": "len",
+   "items": [
+    "M145 name misleading (unrelated to M050) -> solved groups renamed by mechanism; M145 = recolour regions by size rank, same mechanism as M131/M144/M164",
+    "RAY should be Optics and/or Geometry -> operator->prior-domain links (op_domains.json); RAY \u2291 optics, geometry",
+    "parent concept 'patch' (proposal syntax 'patch > \u2026' added); M067 fill.largest empty is the fitting group for M050's square-patch tasks; fam_fill_bg_windows v2 covers both"
+   ]
   }
  ],
  "unchanged": "C001-C130 and G077 decisions are from the v1 spectral groups (ingested in earlier cycles)."

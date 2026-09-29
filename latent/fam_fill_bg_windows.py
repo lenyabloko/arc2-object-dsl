@@ -14,6 +14,11 @@ Everything is induced from the training pairs:
     comprect>=m 4-connected components of r that are solid rectangles with both sides >= m
     greedy>=m   repeatedly the largest all-r square not overlapping earlier picks (ties: reading order of the
                 top-left corner), while its side is >= m
+    maxrect/s   the unique largest-AREA all-r axis rectangle (s = 1: its interior, border ring left unpainted)
+    maxrect2/s  the same among rectangles with both sides >= 2 (a patch, not a line)
+    maxsq/s     the unique largest all-r square (s = 1: interior)
+    maxdiag     the unique longest diagonal run of r cells (either diagonal direction)
+Mechanism group M067 "fill.largest empty" is the same concept (reviewer's parent concept "patch").
 A program is kept only if it reproduces every training output exactly.
 """
 import sys
@@ -102,6 +107,68 @@ SELECT = {'win': _windows, 'maxwin': _maxwin, 'greedy': _greedy,
           'comprect': lambda g, r, m: _comp_rect(g, r, m, False)}
 
 
+def _maxrects(g, r, minside=1):
+    """all maximal-AREA axis rectangles made only of r with both sides >= minside (histogram method); (y0, x0, h, w)."""
+    h, w = H(g), W(g)
+    hist = [0] * w; best = 0; rects = []
+    for y in range(h):
+        for x in range(w):
+            hist[x] = hist[x] + 1 if g[y][x] == r else 0
+        for x0 in range(w):
+            mh = 10 ** 9
+            for x1 in range(x0, w):
+                mh = min(mh, hist[x1])
+                if mh == 0: break
+                if mh < minside or x1 - x0 + 1 < minside: continue
+                a = mh * (x1 - x0 + 1)
+                if a > best: best, rects = a, [(y - mh + 1, x0, mh, x1 - x0 + 1)]
+                elif a == best: rects.append((y - mh + 1, x0, mh, x1 - x0 + 1))
+    return list(dict.fromkeys(rects))
+
+
+def _cells_rect(y0, x0, hh, ww, shrink):
+    return {(y, x) for y in range(y0 + shrink, y0 + hh - shrink) for x in range(x0 + shrink, x0 + ww - shrink)}
+
+
+def _maxrect2(g, r, shrink):
+    rs = _maxrects(g, r, 2)
+    if len(rs) != 1: return set()
+    return _cells_rect(*rs[0], shrink)
+
+
+def _maxrect(g, r, shrink):
+    rs = _maxrects(g, r)
+    if len(rs) != 1: return set()          # the largest patch must be unique
+    return _cells_rect(*rs[0], shrink)
+
+
+def _maxsq(g, r, shrink):
+    S = _sq(g, r); K = max((v for row in S for v in row), default=0)
+    corners = [(y, x) for y in range(H(g)) for x in range(W(g)) if S[y][x] == K]
+    if K < 2 or len(corners) != 1: return set()
+    y, x = corners[0]
+    return _cells_rect(y - K + 1, x - K + 1, K, K, shrink)
+
+
+def _maxdiag(g, r, _):
+    h, w = H(g), W(g); best, runs = 0, []
+    for dy, dx in ((1, 1), (1, -1)):
+        for y in range(h):
+            for x in range(w):
+                if g[y][x] != r: continue
+                py, px = y - dy, x - dx
+                if 0 <= py < h and 0 <= px < w and g[py][px] == r: continue   # not a run start
+                run = []; a, b = y, x
+                while 0 <= a < h and 0 <= b < w and g[a][b] == r: run.append((a, b)); a += dy; b += dx
+                if len(run) > best: best, runs = len(run), [run]
+                elif len(run) == best: runs.append(run)
+    if best < 2 or len(runs) != 1: return set()
+    return set(runs[0])
+
+
+SELECT.update({'maxrect2': _maxrect2, 'maxrect': _maxrect, 'maxsq': _maxsq, 'maxdiag': _maxdiag})
+
+
 def apply(g, rr, p, sel, k):
     r = bg_of(g) if rr == 'bg' else rr
     cells = SELECT[sel](g, r, k)
@@ -131,7 +198,7 @@ def fam_fill_bg_windows(train):
     n = 0
     for rr in roles:
         for sel, ks in (('win', (2, 3, 4, 5, 6)), ('maxwin', (2, 3)), ('compsq', (2, 1)), ('comprect', (2,)),
-                        ('greedy', (2, 3))):
+                        ('greedy', (2, 3)), ('maxrect', (0, 1)), ('maxrect2', (0, 1)), ('maxsq', (0, 1)), ('maxdiag', (0,))):
             for k in ks:
                 ok = True
                 for q in train:
@@ -141,7 +208,8 @@ def fam_fill_bg_windows(train):
                         break
                 if ok:
                     n += 1
-                    yield (f"fill-bg-windows:{sel}{'' if sel == 'win' else '>='}{k}[r{rr},p{p}]", 3,
+                    tag = f"{sel}{k}" if sel == 'win' else f"{sel}:shrink{k}" if sel.startswith('max') and sel != 'maxwin' else f"{sel}>={k}"
+                    yield (f"fill-bg-windows:{tag}[r{rr},p{p}]", 3,
                            lambda g, a=(rr, p, sel, k): apply(g, *a))
                     if n >= 3:
                         return

@@ -206,7 +206,7 @@
 {"task": "3d588dc9", "occ": false, "exact": false, "prog": null}
 {"task": "3de23699", "occ": false, "exact": false, "prog": null}
 {"task": "3e980e27", "occ": false, "exact": false, "prog": null}
-{"task": "3eda0437", "occ": false, "exact": false, "prog": null}
+{"task": "3eda0437", "occ": true, "exact": true, "prog": "fill-bg-windows:maxrect2:shrink0[r0,p6]"}
 {"task": "3ee1011a", "occ": false, "exact": false, "prog": null}
 {"task": "3f23242b", "occ": false, "exact": false, "prog": null}
 {"task": "3f7978a0", "occ": false, "exact": false, "prog": null}
@@ -822,7 +822,7 @@
 {"task": "e7dd8335", "occ": false, "exact": false, "prog": null}
 {"task": "e8593010", "occ": false, "exact": false, "prog": null}
 {"task": "e872b94a", "occ": false, "exact": false, "prog": null}
-{"task": "e88171ec", "occ": false, "exact": false, "prog": null}
+{"task": "e88171ec", "occ": true, "exact": true, "prog": "fill-bg-windows:maxrect:shrink1[r0,p8]"}
 {"task": "e8dc4411", "occ": false, "exact": false, "prog": null}
 {"task": "e9614598", "occ": false, "exact": false, "prog": null}
 {"task": "e98196ab", "occ": false, "exact": false, "prog": null}

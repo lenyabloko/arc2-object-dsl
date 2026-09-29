@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 17:45 UTC (13:45 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 18:05 UTC (14:05 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -61,6 +61,7 @@ _Last updated: 2026-09-29 17:45 UTC (13:45 EDT). Updated with every outbox batch
 ## Operating rules (learned the hard way)
 - Run long jobs detached (`nohup … &`) and poll. Never block a tool call on a job longer than a few minutes; that includes multi-agent batches, so keep agent batches small.
 - Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
+- Never rebuild a batch in the same directory: the outputs folder syncs asynchronously, so a re-run can ship a tar and a MANIFEST from different runs (batch-0039 was rejected for a sha256 mismatch). Rebuild under a new batch number.
 - Kill processes only with exact patterns such as `pgrep -f "^python3 eval_gdsl2"`; broad patterns kill the shell.
 - Wall-clock budgets anywhere in the probe break Kaggle parity.
 
@@ -105,11 +106,17 @@ _Last updated: 2026-09-29 17:45 UTC (13:45 EDT). Updated with every outbox batch
 - Reviewer rule for M050 ("cover the largest square background patch with colour") → `latent/fam_fill_bg_windows.py` (greedy largest all-r squares / windows / square components). Alone: ARC1 6 exact, 0 wrong (new: 31adaf00, 6cf79266), N2 0. The rule fits 2 of M050's 6 tasks exactly; a8d7556c nearly (one pair), the other three are template/plus patterns.
 - **V20** = V19 + fam_fill_bg_windows + COMPOSE_ENGINES (objmap2, lift, ctx). Probe `tools/m1b/v20`. WSL jobs: `c20-v20` (train/half A, N2 + half-B counts) and `c21-v20-parity` (public eval, sealed count, timing). Admit only with no regressions and public eval ≥ 49/172, max task well under 300 s.
 - Finding: design-set gains (+6 N1, +15 ARC1) did not move N2. Held-out transfer remains the bottleneck; the remaining design failures are dominated by creations nobody explains (CA, paths, progressions: 31), different-size outputs (25) and multi-step per-object changes (19).
-- Review page v39 (13:40 EDT): **group membership is algorithmic** (Len: not a review task). `tools/review/regroup_algorithmic.py`: a task solved by a group primitive (module fam_<key>, or BIND e.g. fill_bg_windows → fill.largest_empty) joins that group; solved-family/residual groups dissolve into mechanism groups; multi-group modules never move tasks between mechanism groups; mechanism-group medoids never move. 91 moves, 18 solved-family groups dissolved (ids retired, e.g. M141, M145), 152 groups. Pipeline: regroup → patch_review_json.py → apply_op_domains.py → apply_solved_names.py → render. No membership dropdown (removed); misfit flags stay as evidence. Default tab = Categories.
+- Review page v40 (13:50 EDT): **categories are evidence-based** (`tools/review/category_evidence.py`; Codex detector strengths dropped for non-prior categories). A task carries a category by exact grid check (palette = every output a colour relabelling of its input; crop = sub-grid; scale = size multiple; sparse ≤ 20% cells change; partition = full-length line), solver module, or reading (operators / roles / wording); a group carries it when ≥ half its members do. Palette mapping now = M024, M027, M135, M148, M078, M130, M089, M085 (+12 stray tasks listed on the category page). Pipeline order: regroup → patch_review_json → apply_op_domains → apply_solved_names → category_evidence → render.
+- Project doc `claude/supervisor_state.md`: write at most once per 30 min (Len). The repo copy is updated with every batch.
+- Review page v39 (13:35 EDT): **group membership is algorithmic** (Len: not a review task). `tools/review/regroup_algorithmic.py`: a task solved by a group primitive (module fam_<key>, or BIND e.g. fill_bg_windows → fill.largest_empty) joins that group; solved-family/residual groups dissolve into mechanism groups; multi-group modules never move tasks between mechanism groups; mechanism-group medoids never move. 91 moves, 18 solved-family groups dissolved (ids retired, e.g. M141, M145), 152 groups. Pipeline: regroup → patch_review_json.py → apply_op_domains.py → apply_solved_names.py → render. No membership dropdown (removed); misfit flags stay as evidence. Default tab = Categories.
 - Review page v36 (13:15 EDT): search box (name/rule/id/task id); per-task membership dropdown in mechanism groups (✓ in / ✗ exclude / → move to Mxxx; stored as `misfits` + `move_to` in the group's decision — ingest both); solved groups renamed to plain mechanism names (`tools/review/solved_names.json`, family in brackets, `same_as` links); operator → prior-domain links (`tools/review/op_domains.json`, e.g. RAY ⊑ optics, geometry) shown on operator rows/readings and added 151 group→prior-category links ('via operator').
 - fam_fill_bg_windows v2 (after V20 was queued): + unique largest rectangle / square (optionally interior) and largest rectangle with sides >= 2 — the M067 'fill.largest empty' concept = reviewer's 'patch'. Alone: ARC1 8 exact, 0 wrong (new 31adaf00, 3eda0437, 6cf79266, e88171ec); N2 0. Goes into the next candidate (V21).
 - Review page v34 (13:00 EDT): mechanism-ontology rows first (operators from abstract readings, roles, prior domains; `mech:` labels, ✓/✗ per task), Codex detector labels collapsed as legacy with alias variants merged (one decision applies to all variants), fully accepted/rejected rows highlighted. Data patch: `tools/review/patch_review_json.py` (idempotent; reproduces the published JSON from v32). Parent-concept proposals: New concepts field, syntax `patch > region, template match, …` → add as superclass in the mechanism ontology at ingestion.
 - Review page v33: "N need you" pill lists the tasks and reasons; label counts fixed (task labels now carry every class/rule the task has). Do NOT rebuild the review JSON with `build_mview.py` (it renumbers the M groups after status changes); patch it in place.
+
+## Update 14:05 EDT Sep 29: V20 wake results (c20-v20)
+- G-stratum training exact 594 → 606 (+12: 31adaf00, 44d8ac46, 52364a65, 5a719d11, 6cf79266, 9720b24f, aabf363d, bda2d7a6, c444b776, c4d1a9ae, e734a0e8, e76a88a6); LOST none; half A 36 (=); **N2 37 exact / 39 fit (=)**; half B 1/49 (=); fit-but-wrong 13 → 14; max task 164 s under 4 workers (training). c21-v20-parity pending.
+- batch-0039 rejected (sha mismatch, see rule above); contents resent in batch-0041.
 
 ## Next steps
 1. Tonight after 20:00 EDT: WSL runs `bash submission/daily_submit.sh` (v12 = V19, expected c93d287b / 49). Read `submissions/2026-09-30.json` and `scores.txt` at the 22:30 EDT check-in.
