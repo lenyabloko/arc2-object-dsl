@@ -53,6 +53,11 @@ _Last updated: 2026-09-29 02:20 UTC (22:20 EDT Sep 28). Updated with every outbo
 - **Outbox:** batches carry `files.tar.gz` and `MANIFEST.json`, with `READY` written last. Allowed extensions only (no `.jsonl`; use `.txt`). Always read `RESULT.json` before claiming a batch was pushed.
 - **Review page:** claude.ai artifact `Ty8UPeb21xRCRamtphdZj2` (db capability; decisions keyed by group id; the v1 spectral groups are still reachable through the toggle).
 
+## Liveness (heartbeat)
+- `cloud_outbox/status/heartbeat.json` + `STATUS.txt` on Len's machine: rewritten at every step (what I'm doing, what's next). Stale after 90 min (or the `stale_after_minutes` I set before a known long step).
+- Review page → Cycle tab → "In flight" first row shows the same heartbeat.
+- Optional WSL watchdog: `nohup bash tools/watch/heartbeat_watch.sh >/dev/null 2>&1 &` — one Windows notification per stale episode, log `~/arc/heartbeat_watch.log`.
+
 ## Operating rules (learned the hard way)
 - Run long jobs detached (`nohup … &`) and poll. Never block a tool call on a job longer than a few minutes; that includes multi-agent batches, so keep agent batches small.
 - Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
