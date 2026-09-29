@@ -10,6 +10,7 @@ REPORT_DIR=/mnt/c/Users/lenya/arc_extended_arga/cloud_outbox/submissions
 STATE=~/arc/.submitted_versions
 mkdir -p "$REPORT_DIR"; touch "$STATE"
 cd "$REPO" && git pull -q || { echo "git pull failed"; exit 1; }
+bash submission/record_scores.sh || true          # scores of earlier submissions -> cloud_outbox/submissions/scores.txt
 V=$(cat submission/LATEST)                      # e.g. v2
 DIR=submission/$V
 KID=$(python3 -c "import json;print(json.load(open('$DIR/kernel-metadata.json'))['id'])")
@@ -46,7 +47,7 @@ SUB=$(kaggle competitions submit -c "$COMP" -k "$KID" -f submission.json -v "$KV
 sleep 20
 # Do not trust the CLI's reply text: confirm by finding our unique message in the submissions list.
 if kaggle competitions submissions -c "$COMP" --csv 2>/dev/null | grep -qF "$MSG"; then
-  echo "$TODAY $HASH" >> "$STATE"; out status submitted kernel_version "$KV" message "$MSG" detail "$(echo "$SUB" | tail -1)"
+  echo "$TODAY $HASH" >> "$STATE"; bash submission/record_scores.sh >/dev/null 2>&1; out status submitted kernel_version "$KV" message "$MSG" detail "$(echo "$SUB" | tail -1)"
 else
   out status submit_failed kernel_version "$KV" detail "$(echo "$SUB" | tail -1)"; exit 1
 fi

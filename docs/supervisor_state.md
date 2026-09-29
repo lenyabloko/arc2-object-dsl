@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 06:55 UTC (02:55 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-29 15:55 UTC (11:55 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -92,8 +92,14 @@ _Last updated: 2026-09-29 06:55 UTC (02:55 EDT). Updated with every outbox batch
 - **The cloud parity re-run confirmed the digest** c93d287b (max 60 s, 0 timeouts).
 - **LATEST=v12 is staged (batch-0035).** Tonight's submission after 20:00 EDT: WSL runs `bash submission/daily_submit.sh`.
 
+## Update 11:55 EDT Sep 29 (12-hour check-in)
+- No new WSL jobs since c19. The review page has one new decision: *Layout & lattice* approved with M141 excluded (ingested: `results/review/decisions_ingested.json`).
+- v11 score not recorded yet. New `submission/record_scores.sh` (read-only kaggle CLI) writes `cloud_outbox/submissions/scores.txt`; `daily_submit.sh` calls it.
+- The local shell on Len's machine (device_bash) failed to start this morning; file listing, staging and commits still work. The WSL loop is unaffected.
+- Report appended to `docs/convergence_and_eta_assessment.md` (estimate about 50%).
+
 ## Next steps
-1. Poll the orphan det evals (lift, residual). Verify determinism: rerun 60 tasks with and without load and compare sha256.
-2. Re-time V18d parity on an idle machine. If no task comes close to 300 s, build notebook v12 = V18d, possibly with the verified compose engines as a fallback stage after the library, using a deterministic budget.
-3. Integrate the composition engines as a G stratum fallback. Wake job with N2 and half-B counts. Admit if N2 or half B rises with no regressions.
-4. Check-ins run 12-hourly at 10:30 and 22:30 EDT (scheduled task `trig_01JDWgxUrkaFnHa3baDkown8` fires 2026-09-29 14:30 UTC).
+1. Tonight after 20:00 EDT: WSL runs `bash submission/daily_submit.sh` (v12 = V19, expected c93d287b / 49). Read `submissions/2026-09-30.json` and `scores.txt` at the 22:30 EDT check-in.
+2. Dream cycle 18 (composition lane): context-aware lifting, richer objmap relations, priors as composable operators. Measure on N2 and half-B counts via WSL wake jobs; admit on held-out gain with no regressions; then parity-mode job before any notebook v13.
+3. Keep review ingestion going: category and group decisions from the page db (`decisions` collection).
+4. Check-ins run 12-hourly at 10:30 and 22:30 EDT (next: 2026-09-30 02:30 UTC).

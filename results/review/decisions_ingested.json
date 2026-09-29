@@ -1,0 +1,19 @@
+{
+ "ingested_at": "2026-09-29T15:50Z",
+ "cycle": 18,
+ "decisions": [
+  {
+   "doc": "CAT_layout",
+   "kind": "category",
+   "category": "layout (Layout & lattice)",
+   "verdict": "Approve",
+   "excluded_groups": [
+    "M141"
+   ],
+   "submitted": "2026-09-29T03:58Z",
+   "reviewer": "len",
+   "effect": "Category 'Layout & lattice' approved. M141 (solved \u00b7 move-to-anchor, medoid 05f2a901) is not a layout instance; it stays under p_mechanics (Mechanics & equilibrium), whose sample list already holds its member ae3edfdc. The review page already shows M141 as excluded from Layout (it reads excluded_groups from this decision)."
+  }
+ ],
+ "unchanged": "C001-C130 and G077 decisions are from the v1 spectral groups (ingested in earlier cycles)."
+}

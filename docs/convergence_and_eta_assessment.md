@@ -295,3 +295,27 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - It has semantic links to OpenMath, Wikidata, DBpedia, DOLCE and BFO (635 verified links).
   - It is published in the review page.
 - **Assessment:** the estimated chance of a non-zero hidden score by Nov 2 is about 30% (was 25–30%). Tonight's v11 is the first submission with a held-out solve. The decision point stays at Oct 12.
+
+
+**12-hour report, 2026-09-29 (check-in due 10:30 EDT, run 11:50 EDT).**
+- **Kaggle:**
+  - v11 (V17) submission of Sep 29 01:05 UTC is confirmed in the submissions list; Kaggle parity passed (digest 34c35cd5…, 46/172).
+  - Its public score is not yet in the outbox: `daily_submit.sh` confirmed the submission but never read scores. New `submission/record_scores.sh` (read-only, via the kaggle CLI) writes `cloud_outbox/submissions/scores.txt`; `daily_submit.sh` now calls it before and after each submission, so tonight's run records v11's score.
+  - Tonight after 20:00 EDT: v12 = V19 (`LATEST=v12`, expected digest c93d287b…, 49/172). It needs `bash submission/daily_submit.sh` in WSL.
+- **Cycles 16–17 (admitted):**
+  - All three composition engines now use deterministic work budgets and are verified across machines (WSL vs cloud: 111/111 identical prediction hashes each). N2 exact counts: objmap 4, lift 5, residual 0.
+  - V19 = V18d + composition fallback (objmap, then lift) after the library.
+
+  | Build | Training | Half A | Half B | Sealed | Public eval | Max task |
+  |---|---|---|---|---|---|---|
+  | V18d | 552 | 36 | 1/49 | 0/21 | 47/172 | 56 s |
+  | V19 | 570 | 36 | 1/49 | **1/21** | **49/172** | 57 s (WSL), 60 s (cloud) |
+
+  - V19 has no regressions and the **first sealed solve**. N2 stays at 37: the engines' N2 solves overlap the library's.
+- **Review:** the reviewer approved the category *Layout & lattice*, excluding M141 (move-to-anchor). M141 remains under *Mechanics & equilibrium*. Ingested in `results/review/decisions_ingested.json` and the mechanism ontology.
+- **Diagnostic:** composition is the first lever that moved sealed. Monolithic families stayed at a fixed point on held-out transfer (V13→V18d). The next Dream cycle (18) therefore stays on composition:
+  1. context-aware lifting (pass keys, legends and a reference part into the part-level search);
+  2. richer objmap relations (object ↔ object by shape, colour, position rank and containment);
+  3. priors as composable operators inside the engines rather than whole-task families.
+  Each is measured on N2 and half-B counts; admission requires a held-out gain with no regressions.
+- **Assessment:** held-out public eval is now 2/70 tasks (half B 1, sealed 1). If the hidden set were exchangeable with public eval, that would give P(non-zero) ≈ 0.9 for v12 (Jeffreys prior, 120 tasks) and ≈ 0.8 for v11. The counts are tiny and exchangeability is uncertain, so I put the chance of a non-zero hidden score by Nov 2 at **about 50%** (was 30%). v11's score is the first direct test. The decision point stays at Oct 12.
