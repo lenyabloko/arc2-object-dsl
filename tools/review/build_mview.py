@@ -73,6 +73,19 @@ CS=json.load(open(f'{S0}/cat_strength.json'))
 cat_base={c:sum(1 for t in pop if CS.get(t,{}).get(c,0)>=2)/len(pop) for c in next(iter(CS.values()))}
 def pairs(t,k=3): return [[a,b] for a,b in T[t]['train'][:k]]
 def pretty(s): return s.replace('solved.','solved · ').replace('_',' ')
+def task_labels_for(ts,ccls,crls):
+    """Per-task labels shown next to each task: the inherited v1 labels plus every class / rule row of THIS group
+    that the task actually has, so 'k/n tasks' on a row and the tasks carrying its label always agree."""
+    out={}
+    for t in ts:
+        labs=list(old_labels.get(t,[]))
+        have=set(labs)
+        for r in ccls:
+            if r['c'] in tcc.get(t,[]) and 'codex:'+r['c'] not in have: labs.append('codex:'+r['c']); have.add('codex:'+r['c'])
+        for r in crls:
+            if r['c'] in tcr.get(t,[]) and 'rule:'+r['c'] not in have: labs.append('rule:'+r['c']); have.add('rule:'+r['c'])
+        if labs: out[t]=labs
+    return out
 groups=[]; members={}
 order=sorted(by.items(),key=lambda kv:(-len(kv[1]),kv[0]))
 for i,(key,ts) in enumerate(order):
@@ -107,7 +120,7 @@ for i,(key,ts) in enumerate(order):
     g={'id':gid,'n':n,'n_heldout':0,'coh':None,'medoid':med,'med_split':T[med]['split'],'name':pretty(key),'key':key,
        'med_pairs':pairs(med),'members':[[t]+T[t]['train'][0] for t in ts],'atoms':[],'cats':cats,'cats_other':[],'axes':[],'onto':[],'codex':[],
        'rule':rule,'grid':{},'codex_classes':codex_classes,'codex_common':[],'codex_rules':codex_rules,'codex_rules_cov':sum(1 for t in ts if tcr.get(t)),
-       'tree_counts':{},'task_labels':{t:old_labels[t] for t in ts if t in old_labels},'n_solved':nsol,'n_comp':sum(t in comp for t in ts),
+       'tree_counts':{},'task_labels':task_labels_for(ts,codex_classes,codex_rules),'n_solved':nsol,'n_comp':sum(t in comp for t in ts),
        'mechanism':mech,'residual':key.endswith('.residual'),'v1':collections.Counter(old_of.get(t) for t in ts).most_common(),
        'priors':[[DNAME[d],c] for d,c in dcount.most_common()],'grounded':grounded_domains(key)}
     # needs you: unsolved and (residual group or low-confidence / literal reading)

@@ -1,0 +1,5 @@
+ARC1-train: n=767 exact=47 fit=47 wrong=0 new=['0520fde7', '1b2d62fb', '1c0d0a4b', '2204b7a8', '2dee498d', '5b526a93', '5bd6f4ac', '5d2a5c43', '60b61512', '82819916', '94f9d214', '99b1bc43', '9f27f097', 'a8610ef7', 'c35c1b4c', 'c444b776', 'ce039d91', 'e3497940', 'e76a88a6', 'e9afcf9a', 'fafffa47']
+N1: n=131 exact=3 fit=3 wrong=0 new=['5a719d11', 'c4d1a9ae', 'e734a0e8']
+halfA: n=50 exact=0 fit=0 wrong=0 new=[]
+N2 (counts only): n=102 exact=0 fit=0 wrong=0
+timeouts 0 errors 0

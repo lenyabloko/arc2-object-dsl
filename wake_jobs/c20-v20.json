@@ -1,0 +1,2 @@
+{"job_id": "c20-v20", "probe": "tools/m1b/v20", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 150,
+ "note": "V20 = V19 + fam_fill_bg_windows (reviewer rule M050) + composition fallback objmap2 (shape edits, template stamp, separator bg), lift, ctx (inter-part context). Cycle 18 half-B count; N2 counts in summary."}

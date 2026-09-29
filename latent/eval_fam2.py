@@ -29,7 +29,7 @@ def one(k):
     finally: signal.alarm(0)
 if __name__=='__main__':
     keys=sorted(tr)+A
-    with Pool(2) as p: R=p.map(one,keys,chunksize=8)
+    with Pool(int(os.environ.get('EVAL_WORKERS','2'))) as p: R=p.map(one,keys,chunksize=8)
     if len(sys.argv)>2 and not sys.argv[2].startswith('--'):
         open(sys.argv[2],'w').write('\n'.join(json.dumps(r) for r in R if r['task'] not in N2))
     def S(sel): 

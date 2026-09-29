@@ -1,0 +1,2 @@
+{"job_id": "c21-v20-parity", "mode": "parity", "probe": "tools/m1b/v20", "task_seconds": 300,
+ "note": "Full-probe parity + per-task timing of V20 on the public eval (source of EXPECTED for notebook v13 if admitted)."}
