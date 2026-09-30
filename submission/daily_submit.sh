@@ -26,6 +26,8 @@ PY
 out() { rec date "$TODAY" version "$V" kernel "$KID" "$@" | tee "$REPORT_DIR/$TODAY.json"; }
 if grep -q "^$TODAY " "$STATE"; then out status skipped reason "already submitted today (UTC)"; exit 0; fi
 if grep -q " $HASH$" "$STATE"; then out status skipped reason "this notebook version was already submitted; waiting for a newer one"; exit 0; fi
+NBSIZE=$(stat -c %s "$DIR"/*.ipynb | head -1)       # the Kaggle API refused a 1.43 MB notebook (v14, 2026-09-30)
+if [ "$NBSIZE" -gt 1000000 ]; then out status too_large detail "notebook $NBSIZE bytes > 1000000; rebuild with tools/m1b/build_nb2.py"; exit 1; fi
 PUSH=$(kaggle kernels push -p "$DIR" 2>&1); echo "$PUSH"
 KV=$(echo "$PUSH" | grep -o 'version [0-9]*' | head -1 | cut -d' ' -f2)
 [ -n "$KV" ] || { out status push_failed detail "$(echo "$PUSH" | tail -1)"; exit 1; }

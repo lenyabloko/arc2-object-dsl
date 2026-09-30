@@ -1,0 +1,8 @@
+{
+ "correct_of_172": 49,
+ "eval_digest": "c93d287bfd585cd4c60e39d00ca09a52e09e50c8f745d6a4f4862be4e8569f32",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl",
+ "probe": "V21 = baseline B0 (same probe as v14; compact payload notebook because v14 at 1.43 MB was refused by the Kaggle API)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "note": "Identical probe files to v14 (checked byte-for-byte); notebook 0.5 MB. Expected digest c93d287b, 49/172 (c23-v21-parity)."
+}

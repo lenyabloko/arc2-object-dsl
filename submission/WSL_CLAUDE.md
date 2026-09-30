@@ -17,6 +17,9 @@ the current source of truth and supersedes older instructions (including `submis
 5. Report to Len in one short paragraph: version, kernel version, parity result, submission id/status,
    and the public score once it is COMPLETE (`kaggle competitions submissions -c arc-prize-2026-arc-agi-2`).
 6. If a submission was made earlier today outside the script, do not run it again until after 00:00 UTC.
+7. A failed push (`push_failed`, `too_large`) is not a submission. If the cloud session has since staged a newer
+   `LATEST` (a different notebook), run `daily_submit.sh` once more the same UTC day. Never push the same failed
+   notebook again.
 
 ## Rules (never break these)
 - Never print, copy, move or edit Kaggle credential files (`~/.kaggle/`, `kaggle.json`, tokens).
