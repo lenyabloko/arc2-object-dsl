@@ -1,0 +1,19 @@
+{
+ "job_id": "c34-v30-full",
+ "mode": "full",
+ "workers": 3,
+ "seconds": 4089,
+ "train_exact": 607,
+ "halfA_exact": 49,
+ "N2_gate_n": 47,
+ "N2_salt": "arc2-c21-2026-09-29",
+ "timeouts": 0,
+ "timed_out_design": [],
+ "timed_out_N2_count": 0,
+ "max_s": 228.35,
+ "halfB_exact": null,
+ "halfB_n": null,
+ "decision_set": "sealed: decide_sealed.json (N2-decide; with the 21 sealed tasks = the Nov 1 decision set, OQ7); read only on Nov 1",
+ "WAKE_WORKERS": 3,
+ "PYTHONHASHSEED": "0"
+}

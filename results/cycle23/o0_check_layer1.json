@@ -1,0 +1,585 @@
+{
+ "adjacent_dir{\"d\": \"N\"}": {
+  "phi_grid": 0.799,
+  "density": 0.0084,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "adjacent_dir{\"d\": \"S\"}": {
+  "phi_grid": 0.806,
+  "density": 0.0087,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "adjacent_dir{\"d\": \"E\"}": {
+  "phi_grid": 0.81,
+  "density": 0.0067,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "adjacent_dir{\"d\": \"W\"}": {
+  "phi_grid": 0.796,
+  "density": 0.0064,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "aligned{\"axis\": \"row\"}": {
+  "phi_grid": 0.979,
+  "density": 0.1132,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "aligned{\"axis\": \"col\"}": {
+  "phi_grid": 0.969,
+  "density": 0.1092,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"before\"}": {
+  "phi_grid": 0.858,
+  "density": 0.0573,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"meets\"}": {
+  "phi_grid": 0.851,
+  "density": 0.0214,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"overlaps\"}": {
+  "phi_grid": 0.208,
+  "density": 0.0032,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"during\"}": {
+  "phi_grid": 0.633,
+  "density": 0.0224,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"starts\"}": {
+  "phi_grid": 0.702,
+  "density": 0.011,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"finishes\"}": {
+  "phi_grid": 0.682,
+  "density": 0.0088,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"row\", \"rel\": \"equals\"}": {
+  "phi_grid": 0.72,
+  "density": 0.0295,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"before\"}": {
+  "phi_grid": 0.886,
+  "density": 0.061,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"meets\"}": {
+  "phi_grid": 0.837,
+  "density": 0.0193,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"overlaps\"}": {
+  "phi_grid": 0.228,
+  "density": 0.0019,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"during\"}": {
+  "phi_grid": 0.671,
+  "density": 0.0252,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"starts\"}": {
+  "phi_grid": 0.709,
+  "density": 0.0093,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"finishes\"}": {
+  "phi_grid": 0.73,
+  "density": 0.0094,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "allen{\"axis\": \"col\", \"rel\": \"equals\"}": {
+  "phi_grid": 0.74,
+  "density": 0.0242,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "between{\"axis\": \"row\"}": {
+  "phi_grid": 0.685,
+  "density": 0.0213,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "between{\"axis\": \"col\"}": {
+  "phi_grid": 0.685,
+  "density": 0.0247,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "between{\"axis\": \"diag\"}": {
+  "phi_grid": 0.751,
+  "density": 0.0307,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"N\"}": {
+  "phi_grid": 0.893,
+  "density": 0.0259,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"S\"}": {
+  "phi_grid": 0.9,
+  "density": 0.0264,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"E\"}": {
+  "phi_grid": 0.91,
+  "density": 0.0286,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"W\"}": {
+  "phi_grid": 0.896,
+  "density": 0.0277,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"NE\"}": {
+  "phi_grid": 0.844,
+  "density": 0.0256,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"NW\"}": {
+  "phi_grid": 0.851,
+  "density": 0.0272,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"SE\"}": {
+  "phi_grid": 0.865,
+  "density": 0.0293,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "dir_rel{\"d\": \"SW\"}": {
+  "phi_grid": 0.834,
+  "density": 0.0254,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "line_of_sight{\"axis\": \"row\"}": {
+  "phi_grid": 0.962,
+  "density": 0.0674,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "line_of_sight{\"axis\": \"col\"}": {
+  "phi_grid": 0.965,
+  "density": 0.0697,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "mirror_cell{\"axis\": \"H\"}": {
+  "phi_grid": 0.917,
+  "density": 0.0189,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "mirror_cell{\"axis\": \"V\"}": {
+  "phi_grid": 0.941,
+  "density": 0.0214,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "nearest": {
+  "phi_grid": 0.986,
+  "density": 0.1013,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"N\", \"stop\": \"border\"}": {
+  "phi_grid": 0.955,
+  "density": 0.0692,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"N\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.716,
+  "density": 0.0042,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"S\", \"stop\": \"border\"}": {
+  "phi_grid": 0.958,
+  "density": 0.0697,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"S\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.72,
+  "density": 0.0046,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"E\", \"stop\": \"border\"}": {
+  "phi_grid": 0.976,
+  "density": 0.0752,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"E\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.727,
+  "density": 0.0051,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"W\", \"stop\": \"border\"}": {
+  "phi_grid": 0.962,
+  "density": 0.0744,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"W\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.702,
+  "density": 0.0042,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"NE\", \"stop\": \"border\"}": {
+  "phi_grid": 0.965,
+  "density": 0.0717,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"NE\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.713,
+  "density": 0.0037,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"NW\", \"stop\": \"border\"}": {
+  "phi_grid": 0.965,
+  "density": 0.0714,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"NW\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.696,
+  "density": 0.003,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"SE\", \"stop\": \"border\"}": {
+  "phi_grid": 0.979,
+  "density": 0.0726,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"SE\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.716,
+  "density": 0.0038,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"SW\", \"stop\": \"border\"}": {
+  "phi_grid": 0.972,
+  "density": 0.0714,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "on_ray{\"d\": \"SW\", \"stop\": \"obstacle\"}": {
+  "phi_grid": 0.713,
+  "density": 0.0035,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"row\", \"p\": 2}": {
+  "phi_grid": 0.965,
+  "density": 0.0669,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"row\", \"p\": 3}": {
+  "phi_grid": 0.893,
+  "density": 0.0545,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"row\", \"p\": 4}": {
+  "phi_grid": 0.869,
+  "density": 0.0514,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"col\", \"p\": 2}": {
+  "phi_grid": 0.955,
+  "density": 0.0638,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"col\", \"p\": 3}": {
+  "phi_grid": 0.879,
+  "density": 0.0534,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "period_cell{\"axis\": \"col\", \"p\": 4}": {
+  "phi_grid": 0.848,
+  "density": 0.0498,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_DC": {
+  "phi_grid": 0.969,
+  "density": 0.1936,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_EC": {
+  "phi_grid": 0.969,
+  "density": 0.1149,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_EQ": {
+  "phi_grid": 0.0,
+  "density": 0.0,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_NTPP": {
+  "phi_grid": 0.298,
+  "density": 0.0129,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "rcc8_NTPPi": {
+  "phi_grid": 0.221,
+  "density": 0.0128,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "rcc8_PO": {
+  "phi_grid": 0.0,
+  "density": 0.0,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_PP": {
+  "phi_grid": 0.298,
+  "density": 0.0129,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "rcc8_PPi": {
+  "phi_grid": 0.221,
+  "density": 0.0128,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": true
+ },
+ "rcc8_TPP": {
+  "phi_grid": 0.0,
+  "density": 0.0,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rcc8_TPPi": {
+  "phi_grid": 0.0,
+  "density": 0.0,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "reflection_of{\"axis\": \"H\"}": {
+  "phi_grid": 0.543,
+  "density": 0.0311,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "reflection_of{\"axis\": \"V\"}": {
+  "phi_grid": 0.543,
+  "density": 0.0312,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "reflection_of{\"axis\": \"D\"}": {
+  "phi_grid": 0.509,
+  "density": 0.0297,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "reflection_of{\"axis\": \"A\"}": {
+  "phi_grid": 0.512,
+  "density": 0.0301,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rotation_of{\"k\": 1}": {
+  "phi_grid": 0.519,
+  "density": 0.0301,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rotation_of{\"k\": 2}": {
+  "phi_grid": 0.547,
+  "density": 0.031,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "rotation_of{\"k\": 3}": {
+  "phi_grid": 0.519,
+  "density": 0.0301,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "translate_of": {
+  "phi_grid": 0.543,
+  "density": 0.0308,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 1, \"metric\": \"cheb\"}": {
+  "phi_grid": 0.737,
+  "density": 0.0127,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 1, \"metric\": \"manhattan\"}": {
+  "phi_grid": 0.737,
+  "density": 0.0094,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 2, \"metric\": \"cheb\"}": {
+  "phi_grid": 0.737,
+  "density": 0.0234,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 2, \"metric\": \"manhattan\"}": {
+  "phi_grid": 0.737,
+  "density": 0.017,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 3, \"metric\": \"cheb\"}": {
+  "phi_grid": 0.737,
+  "density": 0.0311,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "within{\"k\": 3, \"metric\": \"manhattan\"}": {
+  "phi_grid": 0.737,
+  "density": 0.0247,
+  "deterministic": true,
+  "errors": 0,
+  "phi_ok": false
+ },
+ "subsumption": {
+  "between \u2291 line_of_sight": true,
+  "line_of_sight \u2291 aligned": true,
+  "rcc8_NTPP \u2291 rcc8_PP": true,
+  "rcc8_NTPPi \u2291 rcc8_PPi": true,
+  "rcc8_TPP \u2291 rcc8_PP": true,
+  "rcc8_TPPi \u2291 rcc8_PPi": true,
+  "within \u2291 nearest": true
+ }
+}

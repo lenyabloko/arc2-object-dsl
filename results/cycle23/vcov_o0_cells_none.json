@@ -1,0 +1,1737 @@
+{
+"summary": {
+"same_size_failed": 249,
+"V_cov_loose": 0.884,
+"V_cov_exact": 0.402,
+"V_cov_exact_proper": 0.229,
+"items": []
+},
+"rows": [
+{
+"task": "03560426",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "05a7bcf2",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "0607ce86",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "06df4c85",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "09629e4f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "09c534e7",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "0a938d79",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "0d87d2a6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "0f63c0b9",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "103eff5b",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"adjColor=8"
+]
+},
+{
+"task": "11e1fe23",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "12422b43",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "135a2760",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "13e47133",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "13f06aa5",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "140c817e",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "142ca369",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "14754a24",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"multicolor"
+]
+},
+{
+"task": "1478ab18",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "150deff5",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "15113be4",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "15663ba9",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=1"
+]
+},
+{
+"task": "16b78196",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "17829a00",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "17b80ad2",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1818057f",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "1acc24af",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1ae2feb7",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1b8318e3",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1bfc4729",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1c02dbbe",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "1e32b0e9",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "1e5d6875",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "1efba499",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "212895b5",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "221dfab4",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "22233c11",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "22806e14",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "252143c9",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=1"
+]
+},
+{
+"task": "256b0a75",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "264363fd",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "2685904e",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "272f95fa",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "27a77e38",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "28e73c20",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "2b01abd0",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "2b83f449",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "2bcee788",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "2bee17df",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "2dd70a9a",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "2f767503",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "2faf500b",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "32597951",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "32e9702f",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "332202d5",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "332f06d7",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "3490cc26",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "34cfa167",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "36fdfd69",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"multicolor"
+]
+},
+{
+"task": "37ce87bb",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "396d80d7",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "3a301edc",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "3bd67248",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "3befdf3e",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "3d588dc9",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "3e6067c3",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=5"
+]
+},
+{
+"task": "3f23242b",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "409aa875",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "41ace6b5",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "42918530",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "456873bc",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "4612dd53",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "465b7d93",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "48634b99",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "4a21e3da",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"alignedColor=2"
+]
+},
+{
+"task": "4acc7107",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "4c3d4a41",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "4c416de3",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"contains_other"
+]
+},
+{
+"task": "4cd1b7b2",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"kind=cell"
+]
+},
+{
+"task": "4e45f183",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "4e469f39",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "50846271",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"has_hole"
+]
+},
+{
+"task": "50f325b5",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "522fdd07",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "52df9849",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=1"
+]
+},
+{
+"task": "52fd389e",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "56dc2b01",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "58743b76",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "58e15b12",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "5a5a2103",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "5adee1b2",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "5c2c9af4",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "626c0bcc",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D4:n_touch=0"
+]
+},
+{
+"task": "639f5a19",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "673ef223",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "67a423a3",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "692cd3b6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "696d4842",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "69889d6e",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "6d0160f0",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "6d58a25d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "6e02f1e3",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "6e453dd6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "6f8cd79b",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "71e489b6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "72207abc",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "73c3b0d8",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "758abdf0",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "762cd429",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "7666fa5d",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=5"
+]
+},
+{
+"task": "770cc55f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "782b5218",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "7b0280bc",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "7d419a02",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "7d7772cc",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"leftmost"
+]
+},
+{
+"task": "7e02026e",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "7ec998c9",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=1"
+]
+},
+{
+"task": "7ed72f31",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "825aa9e9",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "834ec97d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "8403a5d5",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "85fa5666",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "88207623",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "88bcf3b4",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "891232d6",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "896d5239",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "8b9c3697",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "8cb8642d",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "8e5a5113",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"kind=cell"
+]
+},
+{
+"task": "8f215267",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "8fbca751",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "90f3ed37",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "928ad970",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "92e50de0",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9356391f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9385bd28",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "93c31fbe",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "941d9a10",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "94414823",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[
+"inside"
+],
+null
+]
+},
+{
+"task": "95a58926",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D4:n_touch=0"
+]
+},
+{
+"task": "9720b24f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "97239e3d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9772c176",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "97c75046",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "981add89",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"size>12"
+]
+},
+{
+"task": "9841fdad",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "984d8a3e",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "98c475bf",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "98cf29f8",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "992798f6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "99fa7670",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9aaea919",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "9b5080bb",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "9bbf930d",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "9caba7c3",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"multicolor"
+]
+},
+{
+"task": "9d9215db",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9def23fe",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "9f669b64",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "9f8de559",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "a096bf4d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a25697e4",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"color_least_common"
+]
+},
+{
+"task": "a406ac07",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a47bf94d",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a64e4611",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a78176bb",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a79310a0",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "a834deea",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"adjColor=8"
+]
+},
+{
+"task": "aa300dc3",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=0"
+]
+},
+{
+"task": "ac3e2b04",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "ac605cbb",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "af902bf9",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b20f7c8b",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:smallest_of_its_color"
+]
+},
+{
+"task": "b457fec5",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"color=5"
+]
+},
+{
+"task": "b527c5c6",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b548a754",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b5bb5719",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "b5ca7ac4",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b7249182",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b745798f",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "b74ca5d1",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "b7f8a4d8",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b9630600",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "b9e38dc0",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "baf41dbf",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "bc93ec48",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "bcb3040b",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "bd4472b8",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"kind=cell"
+]
+},
+{
+"task": "bf32578f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "c1d99e64",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "c4d067a0",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D12:n_holes=5"
+]
+},
+{
+"task": "c6141b15",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "c6e1b8da",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "c97c0139",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "cb2d8a2c",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"adjColor=2"
+]
+},
+{
+"task": "cbded52d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "cf133acc",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d07ae81c",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "d255d7a7",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d2acf2cb",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d304284e",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d37a1ef5",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"adjColor=2"
+]
+},
+{
+"task": "d59b0160",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d6542281",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "d6ad076f",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d753a70b",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "d931c21c",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "d93c6891",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "d94c3b52",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "da2b0fe3",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "db0c5428",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"color=8"
+]
+},
+{
+"task": "db615bd4",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "db93a21d",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "dc2e9a9d",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "dd2401ed",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "dd6b8c4b",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "de809cff",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "df978a02",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "dfadab01",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e2092e0c",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e26a3af2",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "e376de54",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "e39e9282",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "e4075551",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e45ef808",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=0"
+]
+},
+{
+"task": "e4941b18",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"adjColor=5"
+]
+},
+{
+"task": "e5062a87",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e681b708",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D1:size_rank=1"
+]
+},
+{
+"task": "e760a62e",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e7639916",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e7b06bea",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[
+"touches"
+],
+"D4:n_touch=3"
+]
+},
+{
+"task": "e9614598",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "e9ac8c9e",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"D10:largest_of_its_color"
+]
+},
+{
+"task": "e9c9d9a1",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "ecaa0ec1",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "ecb67b6d",
+"loose": true,
+"exact": true,
+"exact_proper": false
+},
+{
+"task": "ecdecbb3",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f15e1fac",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f1cefba8",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f35d900a",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f3b10344",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f3e62deb",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f8be4b64",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "f8c80d96",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"kind=cell"
+]
+},
+{
+"task": "fc10701f",
+"loose": true,
+"exact": true,
+"exact_proper": true,
+"concept": [
+[],
+"color_least_common"
+]
+},
+{
+"task": "fc754716",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "fcc82909",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "fd4b2b02",
+"loose": false,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "fea12743",
+"loose": true,
+"exact": false,
+"exact_proper": false
+},
+{
+"task": "ff72ca3e",
+"loose": true,
+"exact": false,
+"exact_proper": false
+}
+]
+}

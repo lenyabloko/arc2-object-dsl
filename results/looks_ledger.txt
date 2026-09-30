@@ -1,1 +1,2 @@
 {"time": "2026-09-30T06:50", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "21", "baseline": "c24-b0-v21-full", "candidate": "c32-v29-full", "b": 0, "c": 0, "n_changed": 1, "n_gate": 47, "n_compared": 47}
+{"time": "2026-09-30T16:10", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "22", "baseline": "c32-v29-full", "candidate": "c34-v30-full", "b": 0, "c": 0, "n_changed": 0, "n_gate": 47, "n_compared": 47}

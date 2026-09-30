@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 20:00 UTC (16:00 EDT Sep 30). Updated with every outbox batch._
+_Last updated: 2026-09-30 20:50 UTC (16:50 EDT Sep 30). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -19,7 +19,7 @@ _Last updated: 2026-09-30 20:00 UTC (16:00 EDT Sep 30). Updated with every outbo
 | V17 | `tools/m1b/v17` | notebook v11 | public score 2.50 (Sep 29) |
 | V21 = B0 | `tools/m1b/v21` | frozen baseline | notebook v15 submitted Sep 30 04:13 UTC, public score 2.50; c24 full: train 581, half A 35 |
 | V29 | `tools/m1b/v29` | V21 + MDL ordering + slot fix + 20 abduced families + Fable v3 code lengths | **admitted cycle 21** (gate b=0 c=0 n_changed=1); c32 train 605, half A 38; c33 parity 277d8cef 52/172, max 60.7 s; notebook v16 = LATEST for the Oct 1 UTC slot |
-| V30 | `tools/m1b/v30` | V29 + 60 LLM-proposed concept families (Dream D2) in a last stratum `L_llm` that only fills empty slots; vocab `tools/m1b/V30.txt` | candidate, cycle 22: WSL c34 (full) + c35 (parity) + compare_gate c32 vs c34 (ORDERS seq 3); expected P2 ≈ 0 |
+| V30 | `tools/m1b/v30` | V29 + 60 LLM-proposed concept families (Dream D2) in a last stratum `L_llm` that only fills empty slots; vocab `tools/m1b/V30.txt` | cycle 22 gate: compare_gate c32 vs c34 {b:0, c:0, n_changed:0} → P2 = 0; c34 train 607 (+2 clean: 7e02026e, e26a3af2), half A 49 (+11 source fits); c35 digest 80e7e16c, design slots 135, max 60.9 s, 0 timeouts. Not for the notebook (D26) |
 
 ## Lanes
 - **Group primitives** (`latent/fam_*.py`, 29 modules): done through pass 5.
@@ -230,4 +230,15 @@ _Last updated: 2026-09-30 20:00 UTC (16:00 EDT Sep 30). Updated with every outbo
 - batch-0061 pushed (c5fb74f). Windows runner started c34 → c35 at 15:01 EDT (3 workers; 108/108 V30 checksums OK); WSL will run daily_submit.sh at its first 10-min check after 20:00 EDT (LATEST v16).
 - T42 (12 far68 sub-classes, proposer sees 2–3 members' training pairs, 14 held-out members): Opus proposers — seen 27/29 fit, 25 exact; held-out 1/14 fit (e7639916, exact). Fable-model proposers (Len asked whether to upgrade; A/B run instead) — seen 28/29 fit, 25 exact; held-out 1/14 (same task). Model is not the bottleneck; families fit what they saw. results/cycle23/t42_summary.json.
 - Stop-rule report to Len: P1 ≥ 1.0 not reachable by D2 (per-task 0.03, grouped 7 % held-out fit); asked Len to choose (a) stay symbolic and finish the P1/P2/Nov 1 evidence, or (b) open a neural test-time track (ARC Prize 2025 Kaggle ARC-AGI-2 top: NVARC 24.0 %, ARChitects 16.5 %, MindsAI 12.6 %, all test-time-training systems).
+
+## Update 16:20 EDT Sep 30: Fable v8/v9 adopted; V_cov baseline; round 10 pending
+- Fable v8 (per-task D2 retired; G52 grouped proposer with role pass first; G53/D26 single-task families out of G⁺, P1, notebook; T43 leave-one-member-out with margin and chance-fit sum; T44 cross-group reuse) and v9 (O₀ seed ontology, 3 layers, Layer 1 = 22 QSR roles Oct 1–3, cycle A Oct 5, cycle B Oct 9–10, dated stop rules) adopted. Response: docs/fable_round_8_9_response.md (project claude/fable_round_8_9_response.md).
+- Cycle 23 vs T43: no family passes (held-out fit 1/14) → cycle-23 stop rule triggered; grouped D2 stopped. V30 not for the notebook (D26); c34/c35 run for the P2 record only; next candidate V31 = V29 + admitted O₀ items.
+- V_cov baseline (tools/dream/vcov.py, results/cycle23/vcov_v29.json; 249 failed same-size design tasks): loose 0.45, exact 0.33, exact on a proper subset 0.18 (45 tasks nameable but failing = action gap); uncovered 137 = 71 all-background changes, 55 mixed, 11 on objects → Layer 1 needs cell/background individuals related to objects. Proposed re-based stop rule: Layer 1 must move V_cov_loose by ≥ 0.10 (target ≥ 0.70).
+- Review page facts for round 10 (Fable's capability assessment): 138 decision docs (127 Claude pre-fills Sep 27, 9 Len Sep 27–29, none since Sep 29 21:05 UTC); effect so far design-only (M050 patch → fam_fill_bg_windows).
+
+## Update 16:45 EDT Sep 30: cycle 22 gate closed; review-page audit
+- c34 (V30 full, 68 min, 3 workers, 0 timeouts, max 228 s): train 607 (V29 605; gained 7e02026e, e26a3af2), half A 49 (V29 38; +11 = D2 source tasks), no losses. compare_gate CYCLE=22 c32 vs c34 = {b: 0, c: 0, n_changed: 0} → P2 = 0 (cycle 22). c35 parity: digest 80e7e16c, correct_design_slots 135, half A 49, half B 49 (source fits), max 60.88 s, 0 timeouts. Per D26 V30 is not built into a notebook; LATEST stays v16.
+- Fable review-page audit v1 (project claude/fable_review_page_audit_v1.md): page is good for classification corrections, not for adding priors. Oct 1 set: (1) hide test outputs by default + reveal log + test_seen flag (G56; protocol issue: train-split tasks currently show test outputs), (2) prior card form + priors collection + harness write-back (G57), (3) signal panel (C_t, template, near-miss residuals, LLM tried[]). Then packet queue, freshness (page shows V21 statuses), per-decision feedback, Vocabulary tab, ledger columns.
+- Review page (artifact Ty8UPeb21xRCRamtphdZj2) versions 58–60, audit items done: (1) G56 — test outputs hidden by default on every split; "Reveal test output" writes {task, ts, reviewer} to the `looks` collection and marks the task test_seen (task decision T_<id>.test_seen; pill on the task); (5) freshness — embedded solved/needs-you statuses refreshed to V29 (664 → 682 solved; 8 need-you entries removed as solved; 9720b24f is the V21-only tie case), labels say V29; (2) G57 — new Priors tab: prior cards with the v9 §2 template fields saved to the `priors` collection (complete flag, test_seen check against looks), harness results shown from h_* fields (write-back script not yet wired). Pending: (3) signal panel (C_t, template, near-miss residuals, LLM tried[]), (4) packet queue, (6) per-decision feedback, (7) Vocabulary tab, (8) ledger columns.
 
