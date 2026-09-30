@@ -22,3 +22,7 @@ run every pending job with all local cores and hand back the results. Nothing he
   decide half. Half B and sealed are retired from gating.
 - Full and parity jobs write the decision-set counts (N2-decide, half B, sealed) to `decide_sealed.json`. Do not print,
   quote or summarise that file; the cloud session reads it only at the Oct 12 and Nov 1 looks.
+- (Fable v2 E1–E3) Full and default jobs also write `n2_gate_private.jsonl.txt` (salted hashed ids, exact, prediction
+  hash). `python3 tools/wake/compare_gate.py <baseline_dir> <candidate_dir>` prints only `(b, c, n_changed)` and
+  appends the release to `results/looks_ledger.txt`. Do not open the private file; report only the comparer output.
+  `halfB_count` is false by default in new jobs (the decision set is computed only on the decision days).

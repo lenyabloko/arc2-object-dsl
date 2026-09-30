@@ -73,4 +73,8 @@ if __name__ == "__main__":
     json.dump({"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate), "N2_decide_n": len(N2 - gate),
                "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_fit_count": (sum(r["occupied"] for r in RB) if RB else None),
                "halfB_n": len(B) if RB else None}, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
+    with open(os.path.join(out, "n2_gate_private.jsonl.txt"), "w") as f:   # Fable v2 E1: per-task gate record, salted ids only
+        for r in sorted(R, key=lambda r: _h.sha256((SALT + r["task"]).encode()).hexdigest()):
+            if r["task"] in gate:
+                f.write(json.dumps({"hid": _h.sha256((SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)
