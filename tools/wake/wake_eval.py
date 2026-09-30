@@ -68,7 +68,7 @@ if __name__ == "__main__":
     S = {"job_id": job["job_id"], "workers": n, "seconds": round(time.time() - t0),
          "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
          "N2_gate_n": len(gate), "N2_salt": SALT, "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
-         "wrong_first": sum(r["occupied"] and not r["exact"] for r in R if r["task"] not in N2), "timeouts": sum(1 for r in R if r.get("timeout")),
+         "wrong_first": sum(r["occupied"] and not r["exact"] for r in R if r["task"] not in N2), "timeouts": sum(1 for r in R + RB if r.get("timeout")), "timed_out_design": sorted(r["task"] for r in R + RB if r.get("timeout") and r["task"] not in N2), "timed_out_N2_count": sum(1 for r in R if r.get("timeout") and r["task"] in N2),
          "halfB_exact": (sum(r["exact"] for r in RB) if RB else None), "halfB_fit": (sum(r["occupied"] for r in RB) if RB else None),
          "halfB_n": (len(B) if RB else None),
          "decision_set": "sealed: decide_sealed.json (N2-decide; Nov 1 look, OQ7)", "codex_ops_loaded": bool(__import__("codex_ops").load())}
@@ -79,5 +79,5 @@ if __name__ == "__main__":
     with open(os.path.join(out, "n2_gate_private.jsonl.txt" if HID_SALT else "n2_gate_private_SKIPPED_no_salt.txt"), "w") as f:
         for r in sorted(R, key=lambda r: _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()):
             if HID_SALT and r["task"] in gate:
-                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
+                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph"), "to": bool(r.get("timeout"))}) + "\n")
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

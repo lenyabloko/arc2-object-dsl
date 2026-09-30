@@ -72,7 +72,7 @@ def run(job, out, REPO, DATA):
          "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
          "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
          "N2_gate_n": len(gate), "N2_salt": SALT,
-         "timeouts": sum(1 for r in R + RB if r.get("timeout")), "max_s": max((r["s"] for r in R + RB), default=0),
+         "timeouts": sum(1 for r in R + RB if r.get("timeout")), "timed_out_design": sorted(r["task"] for r in R + RB if r.get("timeout") and r["task"] not in N2), "timed_out_N2_count": sum(1 for r in R if r.get("timeout") and r["task"] in N2), "max_s": max((r["s"] for r in R + RB), default=0),
          "halfB_exact": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": (len(B) if RB else None),
          "decision_set": "sealed: decide_sealed.json (N2-decide; with the 21 sealed tasks = the Nov 1 decision set, OQ7); read only on Nov 1"}
     D = {"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate),
@@ -83,6 +83,6 @@ def run(job, out, REPO, DATA):
     with open(os.path.join(out, "n2_gate_private.jsonl.txt" if HID_SALT else "n2_gate_private_SKIPPED_no_salt.txt"), "w") as f:
         for r in sorted(R, key=lambda r: _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()):
             if HID_SALT and r["task"] in gate:
-                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
+                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph"), "to": bool(r.get("timeout"))}) + "\n")
 
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)
