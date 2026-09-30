@@ -1,0 +1,238 @@
+{
+ "n_same_shape": {
+  "failed": 242,
+  "solved": 395
+ },
+ "stats": {
+  "cavity (enclosed by one shape)": {
+   "S_exact": 5,
+   "S_fit": 1,
+   "S_test": 1,
+   "F_cover": 4,
+   "F_exact": 1
+  },
+  "enclosed (any)": {
+   "S_exact": 9,
+   "S_fit": 2,
+   "S_test": 2,
+   "F_cover": 4,
+   "S_cover": 1,
+   "F_exact": 1,
+   "S_tight": 1,
+   "F_tight": 1
+  },
+  "square hole": {
+   "F_cover": 2,
+   "S_exact": 3,
+   "F_exact": 1
+  },
+  "between same colour (h/v)": {
+   "S_cover": 7,
+   "S_tight": 7,
+   "F_cover": 9,
+   "S_exact": 9,
+   "F_exact": 2,
+   "S_fit": 3,
+   "S_test": 3,
+   "F_tight": 2
+  },
+  "between same colour (h)": {
+   "S_cover": 4,
+   "S_exact": 8,
+   "F_cover": 5,
+   "S_tight": 4,
+   "F_exact": 1,
+   "S_fit": 2,
+   "S_test": 2
+  },
+  "between same colour (v)": {
+   "S_cover": 2,
+   "S_tight": 4,
+   "F_cover": 6,
+   "S_exact": 3,
+   "F_exact": 1
+  },
+  "between any (h/v)": {
+   "S_cover": 10,
+   "S_tight": 9,
+   "F_cover": 11,
+   "S_exact": 11,
+   "F_exact": 1,
+   "S_fit": 4,
+   "F_tight": 4,
+   "S_test": 3
+  },
+  "line of sight of odd colour": {
+   "S_cover": 4,
+   "S_tight": 1,
+   "F_cover": 2,
+   "S_exact": 2
+  },
+  "grid border": {},
+  "rectangle interior": {
+   "S_tight": 2,
+   "S_exact": 4,
+   "S_fit": 3,
+   "S_test": 3,
+   "F_exact": 1
+  },
+  "rectangle edge": {},
+  "rectangle vertex": {},
+  "rectangle boundary": {},
+  "contact between colours": {
+   "F_cover": 2,
+   "S_tight": 1,
+   "S_cover": 1,
+   "F_tight": 1
+  },
+  "panel blanks (marked panels)": {
+   "S_exact": 3,
+   "F_cover": 3,
+   "S_tight": 1
+  },
+  "panel blanks (all panels)": {
+   "F_cover": 5,
+   "S_exact": 4,
+   "S_tight": 1
+  },
+  "cup interior (pour)": {
+   "S_tight": 5,
+   "S_exact": 5,
+   "F_cover": 5,
+   "S_cover": 3,
+   "F_tight": 2
+  },
+  "ray down": {
+   "S_cover": 8,
+   "S_tight": 3,
+   "F_cover": 11,
+   "S_exact": 3
+  },
+  "ray up": {
+   "S_cover": 7,
+   "S_tight": 5,
+   "F_cover": 8,
+   "S_exact": 2,
+   "F_tight": 1
+  },
+  "ray right": {
+   "S_cover": 14,
+   "S_tight": 3,
+   "F_cover": 7,
+   "S_exact": 5,
+   "F_tight": 1
+  },
+  "ray left": {
+   "S_cover": 12,
+   "F_cover": 8,
+   "S_exact": 4,
+   "S_tight": 4,
+   "F_tight": 1
+  },
+  "rays 4-dir": {
+   "F_cover": 8,
+   "S_cover": 12,
+   "S_exact": 8,
+   "S_tight": 3,
+   "F_exact": 1
+  },
+  "rays diagonal": {
+   "F_cover": 8,
+   "S_cover": 8,
+   "S_exact": 7,
+   "F_exact": 1,
+   "S_fit": 1,
+   "S_test": 1,
+   "S_tight": 2
+  },
+  "ring (4-adjacent)": {
+   "F_cover": 2,
+   "S_cover": 6,
+   "F_exact": 1,
+   "S_exact": 2,
+   "S_tight": 1
+  },
+  "ring (8-adjacent)": {
+   "F_cover": 5,
+   "S_cover": 13,
+   "S_exact": 4,
+   "S_fit": 1,
+   "S_test": 1,
+   "F_exact": 1,
+   "S_tight": 2
+  },
+  "bar extension (crosshair)": {
+   "F_cover": 1,
+   "S_exact": 1
+  },
+  "bounding-box blanks": {
+   "S_exact": 14,
+   "F_cover": 6,
+   "S_cover": 5,
+   "S_fit": 3,
+   "S_test": 3,
+   "F_exact": 1,
+   "S_tight": 3,
+   "F_tight": 2
+  },
+  "cells of rarest colour": {
+   "S_exact": 13,
+   "F_exact": 3,
+   "F_cover": 3,
+   "F_tight": 2,
+   "S_fit": 1,
+   "S_cover": 6,
+   "S_tight": 7
+  },
+  "cells of commonest colour": {
+   "S_exact": 17,
+   "F_cover": 12,
+   "F_exact": 5,
+   "S_cover": 9,
+   "S_tight": 8,
+   "S_fit": 1,
+   "F_tight": 1
+  },
+  "single-cell objects": {
+   "S_exact": 4,
+   "S_fit": 2,
+   "S_test": 1
+  },
+  "largest object": {
+   "S_exact": 2,
+   "F_exact": 1,
+   "S_cover": 1,
+   "S_fit": 1
+  },
+  "smallest object": {},
+  "all non-background": {
+   "F_exact": 6,
+   "S_exact": 16,
+   "F_cover": 19,
+   "S_tight": 21,
+   "F_tight": 6,
+   "S_cover": 22,
+   "S_fit": 1
+  }
+ },
+ "source": {
+  "cavity (enclosed by one shape)": "cavity",
+  "square hole": "square hole",
+  "between same colour (h/v)": "innermost interval",
+  "between any (h/v)": "bridge / meet halfway",
+  "line of sight of odd colour": "line of sight",
+  "grid border": "dashed border",
+  "rectangle interior": "boundary roles",
+  "rectangle edge": "boundary roles",
+  "rectangle vertex": "boundary roles",
+  "rectangle boundary": "boundary roles",
+  "contact between colours": "reaction",
+  "panel blanks (marked panels)": "panel dye / mirror panels",
+  "cup interior (pour)": "pour",
+  "bar extension (crosshair)": "crosshair",
+  "ring (8-adjacent)": "rainbow (rings)"
+ },
+ "failed_with_any_gate": 63,
+ "failed_with_exact": 12,
+ "failed_same_shape": 242
+}

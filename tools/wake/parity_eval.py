@@ -1,6 +1,6 @@
 """Parity + timing run of the full probe (lattice + G-DSL) on the 120 public-eval tasks, exactly as the Kaggle notebook does.
 Called by wake_eval.py for jobs with "mode": "parity". Writes summary.json (digest, correct_of_172, split counts, timing)
-and halfA_times.json. Held-out tasks (half B, sealed) are reported as counts and anonymous timings only."""
+and halfA_times.json. Sealed tasks (the 21 never attempted; OQ7) are reported as counts and anonymous timings only; half B is design."""
 import hashlib, json, os, re, signal, sys, time
 def run(job, out, REPO, DATA):
     probe = os.path.join(REPO, job["probe"]); cand = os.path.join(REPO, job.get("candidate", "candidate"))
@@ -33,15 +33,16 @@ def run(job, out, REPO, DATA):
          "digest_match": (digest == job.get("expected_digest")) if job.get("expected_digest") else None,
          "total_s": round(sum(t for t, _ in times.values())), "max_s": max(t for t, _ in times.values()),
          "n_over_120s": sum(1 for t, _ in times.values() if t > 120), "n_over_200s": sum(1 for t, _ in times.values() if t > 200),
-         "timeouts": sum(1 for _, x in times.values() if x), "heldout_times_sorted_desc": sorted((t for k, (t, _) in times.items() if k not in A), reverse=True)[:15]}
+         "timeouts": sum(1 for _, x in times.values() if x), "sealed_times_sorted_desc": sorted((t for k, (t, _) in times.items() if k not in A and k not in B), reverse=True)[:15]}
     if sol:
         full = lambda k: k in sub and all(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for i, t in enumerate(sol[k]))
         S["correct_of_172"] = sum(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for k in sol if k in sub for i, t in enumerate(sol[k]))
         S["halfA_tasks"] = sum(full(k) for k in sol if k in A)
-        # Fable guidance v1 B.4: half B and sealed are the decision set: counts sealed, not printed
-        json.dump({"halfB_tasks_count": sum(full(k) for k in sol if k in B),
-                   "sealed_tasks_count": sum(full(k) for k in sol if k not in A and k not in B)},
+        # decision OQ7 (Len, 2026-09-30): half B is design; only the 21 never-attempted tasks stay sealed (Nov 1)
+        S["halfB_tasks"] = sum(full(k) for k in sol if k in B)
+        json.dump({"sealed_tasks_count": sum(full(k) for k in sol if k not in A and k not in B)},
                   open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
-        S["decision_set"] = "sealed: decide_sealed.json"
+        S["decision_set"] = "sealed: decide_sealed.json (the 21 never-attempted tasks; Nov 1 look, OQ7)"
     json.dump({k: v for k, v in times.items() if k in A}, open(os.path.join(out, "halfA_times.json"), "w"), indent=0)
+    json.dump({k: v for k, v in times.items() if k in B}, open(os.path.join(out, "halfB_times.json"), "w"), indent=0)
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

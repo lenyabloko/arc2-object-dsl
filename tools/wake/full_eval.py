@@ -60,9 +60,10 @@ def run(job, out, REPO, DATA):
     n = int(os.environ.get("WAKE_WORKERS", os.cpu_count() or 2)); t0 = time.time()
     with Pool(n, initializer=_init, initargs=(job, REPO, DATA), maxtasksperchild=50) as p:
         R = p.map(_one, keys, chunksize=2)
-        RB = p.map(_one, B, chunksize=2) if job.get("halfB_count") else []
+        # decision OQ7 (Len, 2026-09-30): half B is DESIGN (the 99 Codex-fitted public tasks = half A + half B)
+        RB = p.map(_one, B, chunksize=2) if ("halfB" in job["sets"] or job.get("halfB_count")) else []
     with open(os.path.join(out, "results.jsonl"), "w") as f:
-        for r in R:
+        for r in R + RB:
             if r["task"] not in N2: f.write(json.dumps(r) + "\n")        # N2: counts only
     import hashlib as _h
     SALT = "arc2-c21-2026-09-29"            # Fable guidance v1, B.4: N2 split once into gate / decide halves
@@ -72,10 +73,10 @@ def run(job, out, REPO, DATA):
          "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
          "N2_gate_n": len(gate), "N2_salt": SALT,
          "timeouts": sum(1 for r in R + RB if r.get("timeout")), "max_s": max((r["s"] for r in R + RB), default=0),
-         "decision_set": "sealed: see decide_sealed.json (N2-decide, half B); read only at the Oct 12 / Nov 1 looks"}
+         "halfB_exact": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": (len(B) if RB else None),
+         "decision_set": "sealed: decide_sealed.json (N2-decide; with the 21 sealed tasks = the Nov 1 decision set, OQ7); read only on Nov 1"}
     D = {"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate),
-         "N2_decide_n": len(N2 - gate),
-         "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None}
+         "N2_decide_n": len(N2 - gate)}
     json.dump(D, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
     HID_SALT = os.environ.get("N2_HID_SALT") or (open(os.path.expanduser("~/arc/.hid_salt")).read().strip() if os.path.exists(os.path.expanduser("~/arc/.hid_salt")) else "")
     # Fable v3 A.2: no record without the secret salt (create ~/arc/.hid_salt once, see tools/wake/WAKE.md)
