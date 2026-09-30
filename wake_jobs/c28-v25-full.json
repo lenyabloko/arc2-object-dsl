@@ -1,0 +1,2 @@
+{"job_id": "c28-v25-full", "mode": "full", "probe": "tools/m1b/v25", "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V25 = V24 + abduced priors (prior_abduced.py: line of sight, nearest neighbour, innermost interval, dashed border, fronts meet halfway, rainbow) + cavity selector in fam_fill_bg_windows. Alone on all 1120 public tasks: 7 exact, 0 wrong."}

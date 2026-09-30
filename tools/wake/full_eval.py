@@ -55,6 +55,7 @@ def run(job, out, REPO, DATA):
     N2 = set(rd("novel_N2.txt")) if os.path.exists(os.path.join(REPO, "tools/m1b", "novel_N2.txt")) else set()
     tr = json.load(open(f"{DATA}/arc-agi_training_challenges.json"))
     keys = (sorted(tr) if "train" in job["sets"] else []) + (A if "halfA" in job["sets"] else [])
+    if job.get("exclude_n2"): keys = [k for k in keys if k not in N2]     # design-only run (no held-out look)
     if job.get("limit"): keys = keys[: int(job["limit"])]
     n = int(os.environ.get("WAKE_WORKERS", os.cpu_count() or 2)); t0 = time.time()
     with Pool(n, initializer=_init, initargs=(job, REPO, DATA), maxtasksperchild=50) as p:
