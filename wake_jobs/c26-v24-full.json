@@ -1,0 +1,2 @@
+{"job_id": "c26-v24-full", "mode": "full", "probe": "tools/m1b/v24", "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V24 = V23 + (a) gdsl.search: a program that refuses a test input no longer uses up one of the 6 candidate slots (memorised lookup tables crowded out general concepts, e.g. 7d1f7ee8) + (b) topology tables cost 0.5 per entry beyond two (shortest table first)."}

@@ -15,6 +15,11 @@ if job.get("mode") == "parity":           # full-probe parity + timing on the pu
         os.execvpe(sys.executable, [sys.executable] + sys.argv, dict(os.environ, PYTHONHASHSEED="0", OMP_NUM_THREADS="1"))
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import parity_eval; parity_eval.run(job, out, REPO, DATA); sys.exit(0)
+if job.get("mode") == "full":             # cycle 21: full probe (lattice + G, Kaggle attempt ordering) on train + half A
+    if os.environ.get("PYTHONHASHSEED") != "0":
+        os.execvpe(sys.executable, [sys.executable] + sys.argv, dict(os.environ, PYTHONHASHSEED="0", OMP_NUM_THREADS="1"))
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import full_eval; full_eval.run(job, out, REPO, DATA); sys.exit(0)
 probe = os.path.join(REPO, job["probe"]); sys.path.insert(0, probe)
 import gdsl, hashlib
 ENGINE = None

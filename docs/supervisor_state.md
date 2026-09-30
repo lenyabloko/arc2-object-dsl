@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-29 23:15 UTC (19:15 EDT). Updated with every outbox batch._
+_Last updated: 2026-09-30 01:05 UTC (21:05 EDT Sep 29). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -173,3 +173,11 @@ _Last updated: 2026-09-29 23:15 UTC (19:15 EDT). Updated with every outbox batch
 - Formal review by Fable (subagent, 21:00 EDT): `docs/meta_learning_problem_statement.md` → `docs/meta_learning_bounds_guards.md` (Q1–Q7, guards G1–G30, 15 contradictions). Key: attempt-1 programs ≤ 3 nodes (root incl.), chance-fit margin ≥ 3 bits; ring code 3/7/11 bits; Wake caps s_max 4, m 8, k_max 2, V_max 96, ≤ 2e5 evals/task; mining d 2, f 5, hub in-degree > 500 excluded; frozen O = radius-2 closure of grounded concepts (≤ 73 nodes each); front-running: Dream only on FAIL/WRONG, ≤ 2 retries per failure signature then quarantine (≤ 3 Dream steps per design task ⇒ finite ontology without KB assumptions); Kaggle rounds R1–R4 with work units, budget 12 h × 0.75 / 1.5; McNemar: 0 lost ⇒ need ≥ 5 gained. Decisions for Len: grounding gate Option A vs B (B recommended), mechanisms as C ⊑ ∃R.D (EL) vs chains, R7 unattainable as stated, N2 gate/decide split.
 - Cycle 20 result: V22 flat-concept lattice REJECTED (603 design tasks: V21 71/31; V22 69/34 +3/−5; V22 single 70/34 +5/−6). Ledger updated.
 - batch-0045 (baseline B0 = frozen V21: tools/wake/BASELINE_B0.md, wake jobs b0-v21-design / b0-v21-parity, v21 checksums, LATEST=v14, problem statement, cavity, V22 probe) written to outputs; RESULT.json to be checked.
+- Fable hand-back protocol (21:25 EDT): Fable writes ONE file fable_guidance_v<N>.md (header doc/version/date/based_on; sections A verdicts on G1–G30, B decisions, C implementation spec W1/D1/scheduler, D convergence, E open questions for the supervisor, F machine-readable JSON of guards/decisions/tests) to the project as claude/fable_guidance_v<N>.md, or Len saves it to C:\Users\lenya\arc_extended_arga\fable_inbox\. Supervisor (cloud Claude) checks both at every check-in, verifies, adopts or rejects each item, and replies in the project as claude/fable_round_<N>_response.md with measurements vs B0 and answers. Fable never instructs WSL/Kaggle/repo.
+
+## Update 21:45 EDT Sep 29: cycle 21 — MDL attempt ordering (V23) and slot-crowding fix (V24)
+- Finding: in 13 design tasks V21's lattice produced two wrong 3+-rule decision lists that took both attempts while the G library had a correct one-concept program (lock-and-key, projection, colour map, size rank, key position, periodic fill…) that never got a slot (G is consulted only when the lattice has < 2 predictions).
+- V23 = V21 + MDL attempt ordering in occupancy2.solve: if every lattice program has 3+ rules, consult G; rank candidates by description class (lattice ≤ 2 rules / G ≤ 2 concepts or decision entries = 0; 3 = 1; longer = 2; near-miss = 3), ties in the old order. Local: 21/22 lattice-wrong tasks right (V21 8/22), 0 losses on the 47 long-correct tasks.
+- V24 = V23 + gdsl.search fix: programs that refuse a test input no longer use up one of the 6 candidate slots (memorised shape→colour tables crowded out topo:recolour on 7d1f7ee8, now solved: "inside → colour of the outermost container") + topology lookup tables cost 0.5 per entry beyond two.
+- Probe copies V23/V24 use sys.path.append (not insert) for latent/widen so local runs are no longer contaminated by edited latent files.
+- New wake mode "full" (tools/wake/full_eval.py): full probe with the Kaggle attempt ordering on training + half A, N2/half B counts. Jobs: c24-b0-v21-full, c25-v23-full, c26-v24-full, c27-v24-parity (batch-0047).

@@ -1,0 +1,2 @@
+{"job_id": "c25-v23-full", "mode": "full", "probe": "tools/m1b/v23", "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V23 = V21 + MDL attempt ordering: when every lattice program has 3+ rules, the G library is consulted and one-concept programs outrank enumerations (occupancy2.solve). Local design check: 21/22 lattice-wrong tasks right (V21: 8), 0 losses on 47 long-correct tasks."}
