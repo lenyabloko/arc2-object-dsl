@@ -70,16 +70,18 @@ def run(job, out, REPO, DATA):
     S = {"job_id": job["job_id"], "mode": "full", "workers": n, "seconds": round(time.time() - t0),
          "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
          "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
-         "N2_gate_exact_count": sum(r["exact"] for r in R if r["task"] in gate), "N2_gate_n": len(gate), "N2_salt": SALT,
+         "N2_gate_n": len(gate), "N2_salt": SALT,
          "timeouts": sum(1 for r in R + RB if r.get("timeout")), "max_s": max((r["s"] for r in R + RB), default=0),
          "decision_set": "sealed: see decide_sealed.json (N2-decide, half B); read only at the Oct 12 / Nov 1 looks"}
     D = {"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate),
          "N2_decide_n": len(N2 - gate),
          "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None}
     json.dump(D, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
-    with open(os.path.join(out, "n2_gate_private.jsonl.txt"), "w") as f:   # Fable v2 E1: per-task gate record, salted ids only
-        for r in sorted(R, key=lambda r: _h.sha256((SALT + r["task"]).encode()).hexdigest()):
-            if r["task"] in gate:
-                f.write(json.dumps({"hid": _h.sha256((SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
+    HID_SALT = os.environ.get("N2_HID_SALT") or (open(os.path.expanduser("~/arc/.hid_salt")).read().strip() if os.path.exists(os.path.expanduser("~/arc/.hid_salt")) else "")
+    # Fable v3 A.2: no record without the secret salt (create ~/arc/.hid_salt once, see tools/wake/WAKE.md)
+    with open(os.path.join(out, "n2_gate_private.jsonl.txt" if HID_SALT else "n2_gate_private_SKIPPED_no_salt.txt"), "w") as f:
+        for r in sorted(R, key=lambda r: _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()):
+            if HID_SALT and r["task"] in gate:
+                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
 
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

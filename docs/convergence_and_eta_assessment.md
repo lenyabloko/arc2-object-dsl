@@ -319,3 +319,20 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   3. priors as composable operators inside the engines rather than whole-task families.
   Each is measured on N2 and half-B counts; admission requires a held-out gain with no regressions.
 - **Assessment:** held-out public eval is now 2/70 tasks (half B 1, sealed 1). If the hidden set were exchangeable with public eval, that would give P(non-zero) ≈ 0.9 for v12 (Jeffreys prior, 120 tasks) and ≈ 0.8 for v11. The counts are tiny and exchangeability is uncertain, so I put the chance of a non-zero hidden score by Nov 2 at **about 50%** (was 30%). v11's score is the first direct test. The decision point stays at Oct 12.
+
+## Check-in 2026-09-29 22:30 EDT (cycle 21)
+- **Score:** v11 (V17) scored **2.50** on the public leaderboard: the non-zero goal is met, and the "about 50%" estimate above is resolved.
+- **Submission tonight:** v14 was refused by the API (1.43 MB). v15 (compact V21 = B0, 0.66 MB) was pushed at 01:50 UTC as kernel v4; its run and score are pending.
+- **Baseline B0 = V21 (WSL b0-v21-design, 55 min):** train 617, half A 36, 24 wrong first attempts, 0 timeouts. The N2 and half-B counts in that summary came from the old tools and are logged as looks. From batch-0052 on, the decision set is sealed.
+- **Cycle 21 builds (design splits only):**
+  - V23: MDL attempt ordering.
+  - V24: slot crowding fixed.
+  - V25–V28: 20 abduced families, including 6 test-blind single checks, all exact.
+  - V29: Fable v3 code-length fixes.
+  - On the 22 tasks where the lattice is wrong and a library program exists, V29 gets 21 (B0 gets 8). It keeps 47 of 47 long-correct tasks and 17 of 17 abduced tasks.
+  - All of these are in-sample. The only evidence will be (b, c) from compare_gate on N2-gate (c24 vs c32).
+- **Convergence (Fable v2/v3):**
+  - Abduced whole-grid families reuse about 1.5 tasks each and fire on 0 held-out tasks. At this level, clearing c ≥ 6 on the decision set would need about 275–650 concepts, which is out of reach by 20–50×.
+  - The lever that scales is the level shift: abduce A-box roles and relations that enter the lattice under the seed rule.
+  - The ontology stays bounded by the per-task retry cap and quarantine.
+- **Oct 12 expectation:** c ≈ 1–3 from the slot fixes and about +0.3 from abductions; P(claim) < 5%. Unless the threshold is met, the report will say "directional evidence, no significant transfer". The Kaggle daily score remains the hidden-set measurement.

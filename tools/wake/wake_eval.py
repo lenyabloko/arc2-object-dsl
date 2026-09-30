@@ -2,7 +2,7 @@
 usage: python3 wake_eval.py <job.json> <out_dir>
 job.json: {"job_id": "...", "probe": "tools/m1b/v13",            # dir holding gdsl.py and fam_*.py
            "families": null | ["fam_x", ...],                     # null = full gdsl; list = only these family modules
-           "sets": ["train", "halfA"], "halfB_count": true, "timeout": 25}
+           "sets": ["train", "halfA"], "halfB_count": false, "timeout": 25}
 Writes out_dir/results.jsonl (train + half A rows only) and out_dir/summary.json.
 Half B is COUNTS ONLY: no half-B task id is ever written anywhere."""
 import json, sys, os, re, signal, time, importlib, importlib.util
@@ -66,15 +66,16 @@ if __name__ == "__main__":
     gate = {k for k in N2 if int(_h.sha256((SALT + k).encode()).hexdigest()[:2], 16) % 2 == 0}
     S = {"job_id": job["job_id"], "workers": n, "seconds": round(time.time() - t0),
          "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
-         "N2_gate_exact_count": sum(r["exact"] for r in R if r["task"] in gate), "N2_gate_fit_count": sum(r["occupied"] for r in R if r["task"] in gate),
          "N2_gate_n": len(gate), "N2_salt": SALT, "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
          "wrong_first": sum(r["occupied"] and not r["exact"] for r in R if r["task"] not in N2), "timeouts": sum(1 for r in R if r.get("timeout")),
          "decision_set": "sealed: decide_sealed.json", "codex_ops_loaded": bool(__import__("codex_ops").load())}
     json.dump({"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate), "N2_decide_n": len(N2 - gate),
                "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_fit_count": (sum(r["occupied"] for r in RB) if RB else None),
                "halfB_n": len(B) if RB else None}, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
-    with open(os.path.join(out, "n2_gate_private.jsonl.txt"), "w") as f:   # Fable v2 E1: per-task gate record, salted ids only
-        for r in sorted(R, key=lambda r: _h.sha256((SALT + r["task"]).encode()).hexdigest()):
-            if r["task"] in gate:
-                f.write(json.dumps({"hid": _h.sha256((SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
+    HID_SALT = os.environ.get("N2_HID_SALT") or (open(os.path.expanduser("~/arc/.hid_salt")).read().strip() if os.path.exists(os.path.expanduser("~/arc/.hid_salt")) else "")
+    # Fable v3 A.2: no record without the secret salt (create ~/arc/.hid_salt once, see tools/wake/WAKE.md)
+    with open(os.path.join(out, "n2_gate_private.jsonl.txt" if HID_SALT else "n2_gate_private_SKIPPED_no_salt.txt"), "w") as f:
+        for r in sorted(R, key=lambda r: _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()):
+            if HID_SALT and r["task"] in gate:
+                f.write(json.dumps({"hid": _h.sha256((HID_SALT + r["task"]).encode()).hexdigest()[:16], "exact": r["exact"], "ph": r.get("ph")}) + "\n")
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

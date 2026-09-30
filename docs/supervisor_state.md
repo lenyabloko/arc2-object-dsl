@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 02:05 UTC (22:05 EDT Sep 29). Updated with every outbox batch._
+_Last updated: 2026-09-30 03:00 UTC (23:00 EDT Sep 29). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -12,16 +12,14 @@ _Last updated: 2026-09-30 02:05 UTC (22:05 EDT Sep 29). Updated with every outbo
 - No task-specific code; no Codex solutions.
 - Never touch Kaggle credentials; no deletions on the user's machine.
 
-## Current builds
+## Current builds (23:00 EDT Sep 29)
 
-| Build | Probe | Training (lattice + G) | Half A | Half B | Sealed | Public eval | Status |
-|---|---|---|---|---|---|---|---|
-| V17 | `tools/m1b/v17` | 504 | 35 | 1/49 | 0/21 | 46/172 | **Submitted** 2026-09-29 01:05 UTC as notebook v11 (kernel v3). Kaggle parity passed; score pending. |
-| V18 | `tools/m1b/v18` | 590 | 36 | 1/49 | — | 47/172 | Admitted (cycle 15). Has 2 wall-clock budgets, so it is not Kaggle-safe. |
-| V18d | `tools/m1b/v18d` | — | — | — | — | digest 087dfbc6 | V18 with those budgets removed. Last parity run was under heavy load: 1 task timed out at 300 s, and 5 took >150 s. **Re-time on an idle machine before building notebook v12.** |
-
-- ADMIT for c13–c15 is done (`results/m1b/perturbations.txt`, cycles 13–15): no regressions, all admitted.
-- **Finding:** held-out half B stays at 1/49 and sealed at 0/21 across V13→V18. Monolithic families and priors are at a fixed point for transfer.
+| Build | Probe | What it is | Status |
+|---|---|---|---|
+| V17 | `tools/m1b/v17` | notebook v11 | **Public score 2.50** (first non-zero, 2026-09-29) |
+| V21 = B0 | `tools/m1b/v21` | frozen baseline | b0-v21-design: train 617, half A 36 (N2/half B counts reported under the old tools, logged as looks). Notebook v15 (compact, 0.66 MB) pushed 01:50 UTC as kernel v4, run in progress |
+| V28 | `tools/m1b/v28` | V23–V27 + 20 abduced families | jobs c30/c31 deferred (superseded by V29) |
+| V29 | `tools/m1b/v29` | V28 + Fable v3 code fixes | jobs c32-v29-full, c33-v29-parity (batch-0057). Design check: 21/22 lattice-wrong, 47/47 long-correct, 17/17 abduced |
 
 ## Lanes
 - **Group primitives** (`latent/fam_*.py`, 29 modules): done through pass 5.
@@ -192,3 +190,11 @@ _Last updated: 2026-09-30 02:05 UTC (22:05 EDT Sep 29). Updated with every outbo
 - Kaggle: v15 pushed as kernel version 4 (01:50 UTC), run in progress (WSL report 22:10 EDT) — the push size was the v14 problem.
 - **Fable guidance v2 (22:20 EDT; docs/fable_guidance_v2.md; my Fable subagent).** Accepted |P| = n_rules → G6′ slot 1 |P| ≤ 2, slot 2 |P| ≤ 3. V23 class-rule defects fixed in V29 (implicit default counted; colour-map tables charged 2.125 units per entry; topology tables e_j/4; key (class, short-lattice-first, bits, order); G consulted whenever ANY attempt is displaceable). Q-B verdict: abduced whole-grid families are ~10× more task-specific than the library average (q 1.8e-4 vs 1.8e-3); ~275–650 would be needed for c ≥ 6 on the decision set → shift abduction to role/relation recognisers entering the lattice under the seed rule (L4). Over-specific / G30(b): turtle (separator column 7), bridge (stride 2). Honest Oct 12 expectation: directional evidence from L1/L2.
 - Tools (E1–E3): private per-task N2-gate record (salted ids) + compare_gate.py emitting only (b, c, n_changed) + looks ledger; halfB_count false in c24/c30 (batch-0056).
+
+## Update 23:00 EDT Sep 29: check-in, V29 tested, Fable rounds closed
+- Check-in (22:30 EDT): batches 0052, 0054, 0055, 0056 all "pushed". Submission record 2026-09-30 = v14 push_failed (01:50 UTC); v15 pushed afterwards as kernel v4, result not yet recorded; scores.txt (01:50 UTC) still shows v11 2.50 as the latest scored. b0-v21-design done (3277 s, 4 workers): train 617, half A 36, wrong-first 24, 0 timeouts. b0-v21-parity running. Device shell (device_bash) unavailable tonight; file tools work.
+- Fable round 3 (closing; `docs/fable_sub_guidance_v3.md`) applied: composite count n_nodes = 1 + steps + post-steps; table bits in the slot class; topology tables charged beyond a 2.6-unit allowance; colour maps 2.125 units per entry beyond the first; gdsl stage ordering (search2 and compose_fallback both run when no single-step program exists, ranked by bits, ties to compose, then near-miss); protocol tools: secret hid salt (`~/arc/.hid_salt`, record skipped without it), no N2-gate counts in summary.json, compare_gate logs salt and CYCLE.
+- One more consistency fix found while testing: composed objmap programs (`objmap A ; objmap B`) were counted as one list; now |P| = |A| + |B| + 1 (`gdsl.dl_size`), and G decision lists are ranked by the same bits as lattice lists (12 + 11(|P| − 2)). Ties keep the B0 order (a displacement needs a strictly shorter description).
+- V29 design check: 22 lattice-wrong tasks 21/22 (60b61512 gained by the stage-ordering fix; 9720b24f now a tie between a 3-rule lattice list and a 3-rule G list, kept for the lattice, as in V23); 47 long-correct tasks 47/47 (f76d97a5 recovered by the composed-list count); 17 abduced-family tasks 17/17.
+- Doc "Abductive Meta-Learning: Dream and Wake" updated with the consolidated Fable guidance (guards, loop to Oct 12, abduction level, Oct 12 rule, risks) and the V23–V29 evidence.
+- WSL: create `~/arc/.hid_salt` once before c24 and c32 finish (secret; never print); run c24, c32, c33 (c30/c31 deferred); after c24 and c32: `CYCLE=21 python3 tools/wake/compare_gate.py <c24 dir> <c32 dir>` once.

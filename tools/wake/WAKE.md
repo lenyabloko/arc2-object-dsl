@@ -26,3 +26,7 @@ run every pending job with all local cores and hand back the results. Nothing he
   hash). `python3 tools/wake/compare_gate.py <baseline_dir> <candidate_dir>` prints only `(b, c, n_changed)` and
   appends the release to `results/looks_ledger.txt`. Do not open the private file; report only the comparer output.
   `halfB_count` is false by default in new jobs (the decision set is computed only on the decision days).
+- (Fable v3 A.2) The private gate record needs a SECRET salt that is not in the repo. Create it once, never print it:
+  `python3 -c "import secrets;print(secrets.token_hex(16))" > ~/arc/.hid_salt && chmod 600 ~/arc/.hid_salt`
+  Jobs refuse to write the record without it. summary.json no longer contains N2-gate counts; the only release is
+  `CYCLE=<n> python3 tools/wake/compare_gate.py <baseline_dir> <candidate_dir>` once per cycle.

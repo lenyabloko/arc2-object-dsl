@@ -1,0 +1,2 @@
+{"job_id": "c33-v29-parity", "mode": "parity", "probe": "tools/m1b/v29", "task_seconds": 300,
+ "note": "V29 parity + timing on the public eval (half A counts and per-task seconds). Half B / sealed counts sealed (B.4). Report max per-task seconds and total."}

@@ -11,7 +11,7 @@ assert set(A) == set(B), "gate sets differ (different salt or task list)"
 b = sum(1 for k in A if A[k]["exact"] and not B[k]["exact"])
 c = sum(1 for k in A if B[k]["exact"] and not A[k]["exact"])
 n = sum(1 for k in A if A[k]["ph"] != B[k]["ph"])
-rec = {"time": time.strftime("%Y-%m-%dT%H:%M"), "split": "N2-gate", "baseline": os.path.basename(a_dir.rstrip("/")),
+rec = {"time": time.strftime("%Y-%m-%dT%H:%M"), "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": os.environ.get("CYCLE", ""), "baseline": os.path.basename(a_dir.rstrip("/")),
        "candidate": os.path.basename(b_dir.rstrip("/")), "b": b, "c": c, "n_changed": n, "n_gate": len(A)}
 os.makedirs(os.path.dirname(ledger), exist_ok=True)
 open(ledger, "a").write(json.dumps(rec) + "\n")
