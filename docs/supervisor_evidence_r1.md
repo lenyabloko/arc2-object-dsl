@@ -55,8 +55,15 @@ training pairs. "Alone" = the family run by itself on all 1000 training + 120 ev
 | Innermost interval (topology: nesting) | same-colour pairs on a line nest like brackets; join the innermost | 5ad8a7c0 (N1) | 1 / 0 | 0 |
 | Dashed border (graphics) | one segment on the border loop is a dash; dash = gap all round | 30f42897 (N1) | 1 / 0 | 0 |
 | Inside → outermost colour (topology) | already in the library; found only after the slot fix (§2) | 7d1f7ee8 | — | — |
+| Square hole (topology: zone shape) | a hole of a shape that is a square is filled (new zone feature is_square) | 44d8ac46 | refactor: lattice 3 rules → 1 concept | — |
+| Boundary roles (topology: vertex/edge/interior) | each solid rectangle recoloured by cell role; actions own / bg / literal | b6afb2da | **4 / 0** (also 4347f46a, 50cb2852, bb43febb) | 0 |
+| Reaction on contact (chemistry: A + B → C) | touching cells of two colours react; product replaces one, the other vanishes | d90796e8 | 1 / 0 | 0 |
+| Panel dyed by its marker (colour arithmetic +k) | each separated panel takes its single marker's colour + k | 54d9e175 | 1 / 0 | 0 |
 
-Observed reuse: **1.2 tasks per abduced concept**, 0 wrong answers, 0 fires on held-out splits. Each abduction took
+Observed reuse: **1.5 tasks per abduced concept** (13 exact over 9 new families), 0 wrong answers, 0 fires on held-out
+splits. One MDL lesson: boundary roles first stored a per-colour table (fired 4 times, 1 wrong: an unseen colour);
+re-parameterised with colour-free actions (keep own colour / background / literal), i.e. a shorter description, it
+fired 4 times with 0 wrong. Generalising the parameterisation raised reuse and removed the error. Each abduction took
 10–30 minutes of supervisor time. Tasks examined and not yet abduced (no concept found quickly): 1acc24af,
 1e5d6875, 7ec998c9, 252143c9, 37ce87bb (a count-difference bar: arithmetic), 1478ab18 (a right triangle on the
 diagonal pair enclosing the loose dot), 984d8a3e, ecb67b6d.

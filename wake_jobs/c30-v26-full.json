@@ -1,0 +1,2 @@
+{"job_id": "c30-v26-full", "mode": "full", "probe": "tools/m1b/v26", "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V26 = V25 + topology zone feature is_square ('square hole', 44d8ac46) + prior_abduced v2 (background = black when present; boundary roles corner/edge/interior with colour-free actions: 4 tasks exact; chemistry reaction on contact A+B->C: d90796e8; panel dyed by its marker (+k): 54d9e175). Abduced families alone on 1120 public tasks: 13 exact, 0 wrong."}
