@@ -1,0 +1,2 @@
+{"job_id": "c31-v27-parity", "mode": "parity", "probe": "tools/m1b/v27", "task_seconds": 300,
+ "note": "V27 full-probe parity + per-task timing on the public eval (B0: digest c93d287b, 49/172, max 60.5 s). Half B and sealed counts sealed (B.4)."}

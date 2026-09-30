@@ -1,0 +1,2 @@
+{"job_id": "c30-v27-full", "mode": "full", "probe": "tools/m1b/v27", "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "V27 = V26 + test-blind abductions (drape over a pole bae5c565; pour db7260a4; bridge the gaps af726779; crosshair 9f5f939b). Contains V23-V26. Abduced families alone on 1120 public tasks: 17 exact, 0 wrong, 0 held-out fires. Decision set sealed (B.4)."}

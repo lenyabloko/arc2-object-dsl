@@ -1,0 +1,3 @@
+{"time": "2026-09-29T21:58", "family": "fam_pour", "version": "75f4f6307e88", "task": "db7260a4", "program": "fluids:pour", "test_exact": true}
+{"time": "2026-09-29T21:59", "family": "fam_bridge", "version": "8598dce18c14", "task": "af726779", "program": "masonry:bridge-gaps[c6,rot0]", "test_exact": true}
+{"time": "2026-09-29T22:00", "family": "fam_crosshair", "version": "da50c530d1e0", "task": "9f5f939b", "program": "geometry:crosshair[c4,gap1]", "test_exact": true}
