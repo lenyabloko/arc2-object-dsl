@@ -1,0 +1,500 @@
+[
+{
+"family": "fam_defect_annealing",
+"source": "135a2760",
+"task": "135a2760",
+"exact": true
+},
+{
+"family": "fam_defect_annealing",
+"source": "135a2760",
+"task": "1d0a4b61",
+"exact": false
+},
+{
+"family": "fam_defect_annealing",
+"source": "135a2760",
+"task": "484b58aa",
+"exact": false
+},
+{
+"family": "fam_defect_annealing",
+"source": "135a2760",
+"task": "e26a3af2",
+"exact": true
+},
+{
+"family": "fam_defect_annealing",
+"source": "135a2760",
+"task": "ea959feb",
+"exact": false
+},
+{
+"family": "fam_distance_transform",
+"source": "13e47133",
+"task": "13e47133",
+"exact": true
+},
+{
+"family": "fam_distance_transform",
+"source": "13e47133",
+"task": "e69241bd",
+"exact": true
+},
+{
+"family": "fam_specular_reflection",
+"source": "142ca369",
+"task": "142ca369",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "16b78196",
+"task": "16b78196",
+"exact": true
+},
+{
+"family": "fam_morphological_opening",
+"source": "1818057f",
+"task": "1818057f",
+"exact": true
+},
+{
+"family": "fam_morphological_opening",
+"source": "1818057f",
+"task": "7e02026e",
+"exact": true
+},
+{
+"family": "fam_morphological_opening",
+"source": "1818057f",
+"task": "b1948b0a",
+"exact": true
+},
+{
+"family": "fam_morphological_opening",
+"source": "1818057f",
+"task": "c8f0f002",
+"exact": true
+},
+{
+"family": "fam_wavelength",
+"source": "1ae2feb7",
+"task": "1ae2feb7",
+"exact": true
+},
+{
+"family": "fam_crop_marks",
+"source": "20a9e565",
+"task": "20a9e565",
+"exact": true
+},
+{
+"family": "fam_flood_fill",
+"source": "21897d95",
+"task": "21897d95",
+"exact": true
+},
+{
+"family": "fam_graduated_scale",
+"source": "221dfab4",
+"task": "221dfab4",
+"exact": true
+},
+{
+"family": "fam_registration",
+"source": "269e22fb",
+"task": "269e22fb",
+"exact": true
+},
+{
+"family": "fam_registration",
+"source": "269e22fb",
+"task": "3979b1a8",
+"exact": true
+},
+{
+"family": "fam_writing_mode",
+"source": "291dc1e1",
+"task": "291dc1e1",
+"exact": true
+},
+{
+"family": "fam_marble_run",
+"source": "2b83f449",
+"task": "2b83f449",
+"exact": true
+},
+{
+"family": "fam_genus_sort",
+"source": "2ba387bc",
+"task": "1cf80156",
+"exact": true
+},
+{
+"family": "fam_genus_sort",
+"source": "2ba387bc",
+"task": "2ba387bc",
+"exact": true
+},
+{
+"family": "fam_schematic_map",
+"source": "2d0172a1",
+"task": "2d0172a1",
+"exact": true
+},
+{
+"family": "fam_pipeline_pig",
+"source": "332f06d7",
+"task": "332f06d7",
+"exact": true
+},
+{
+"family": "fam_outlier",
+"source": "38007db0",
+"task": "38007db0",
+"exact": true
+},
+{
+"family": "fam_texture_mapping",
+"source": "3a25b0d8",
+"task": "3a25b0d8",
+"exact": true
+},
+{
+"family": "fam_graph_walk",
+"source": "3e6067c3",
+"task": "3e6067c3",
+"exact": true
+},
+{
+"family": "fam_fixed_range_fire",
+"source": "409aa875",
+"task": "409aa875",
+"exact": true
+},
+{
+"family": "fam_revolution",
+"source": "45a5af55",
+"task": "45a5af55",
+"exact": true
+},
+{
+"family": "fam_exploded_view",
+"source": "4a21e3da",
+"task": "4a21e3da",
+"exact": true
+},
+{
+"family": "fam_pin_tumbler",
+"source": "4c3d4a41",
+"task": "4c3d4a41",
+"exact": true
+},
+{
+"family": "fam_mirror_stamp",
+"source": "4c416de3",
+"task": "4c416de3",
+"exact": true
+},
+{
+"family": "fam_raven_matrix",
+"source": "4c7dc4dd",
+"task": "4c7dc4dd",
+"exact": true
+},
+{
+"family": "fam_waypoint_following",
+"source": "5545f144",
+"task": "5545f144",
+"exact": true
+},
+{
+"family": "fam_stencil",
+"source": "58f5dbd5",
+"task": "58f5dbd5",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "5dbc8537",
+"task": "5dbc8537",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "5dbc8537",
+"task": "93b4f4b3",
+"exact": true
+},
+{
+"family": "fam_tilemap",
+"source": "65b59efc",
+"task": "65b59efc",
+"exact": true
+},
+{
+"family": "fam_seepage",
+"source": "6e453dd6",
+"task": "6e453dd6",
+"exact": true
+},
+{
+"family": "fam_despeckle",
+"source": "71e489b6",
+"task": "4258a5f9",
+"exact": true
+},
+{
+"family": "fam_despeckle",
+"source": "71e489b6",
+"task": "71e489b6",
+"exact": true
+},
+{
+"family": "fam_capacitor",
+"source": "7666fa5d",
+"task": "7666fa5d",
+"exact": true
+},
+{
+"family": "fam_geodesic",
+"source": "7b0280bc",
+"task": "7b0280bc",
+"exact": true
+},
+{
+"family": "fam_rectification",
+"source": "7b5033c1",
+"task": "7b5033c1",
+"exact": true
+},
+{
+"family": "fam_mirror_reflection",
+"source": "7ed72f31",
+"task": "7ed72f31",
+"exact": true
+},
+{
+"family": "fam_mirror_reflection",
+"source": "7ed72f31",
+"task": "e729b7be",
+"exact": true
+},
+{
+"family": "fam_genus",
+"source": "8698868d",
+"task": "8698868d",
+"exact": true
+},
+{
+"family": "fam_rope_wrap",
+"source": "88bcf3b4",
+"task": "88bcf3b4",
+"exact": true
+},
+{
+"family": "fam_betti_number",
+"source": "89565ca0",
+"task": "89565ca0",
+"exact": false
+},
+{
+"family": "fam_betti_number",
+"source": "89565ca0",
+"task": "b9b7f026",
+"exact": true
+},
+{
+"family": "fam_lock_and_key",
+"source": "8b9c3697",
+"task": "8b9c3697",
+"exact": true
+},
+{
+"family": "fam_abacus",
+"source": "8f215267",
+"task": "8f215267",
+"exact": true
+},
+{
+"family": "fam_crop_marks",
+"source": "9385bd28",
+"task": "9385bd28",
+"exact": true
+},
+{
+"family": "fam_conservation",
+"source": "9aaea919",
+"task": "9aaea919",
+"exact": true
+},
+{
+"family": "fam_ballistic_barrel",
+"source": "9bbf930d",
+"task": "9bbf930d",
+"exact": true
+},
+{
+"family": "fam_mortise_tenon",
+"source": "a25697e4",
+"task": "a25697e4",
+"exact": true
+},
+{
+"family": "fam_connector_gender",
+"source": "a47bf94d",
+"task": "a47bf94d",
+"exact": true
+},
+{
+"family": "fam_stencil_print",
+"source": "b0039139",
+"task": "b0039139",
+"exact": true
+},
+{
+"family": "fam_electrophoresis",
+"source": "b5ca7ac4",
+"task": "b5ca7ac4",
+"exact": true
+},
+{
+"family": "fam_electrophoresis",
+"source": "b5ca7ac4",
+"task": "f3e62deb",
+"exact": false
+},
+{
+"family": "fam_spotlight",
+"source": "b9e38dc0",
+"task": "b9e38dc0",
+"exact": true
+},
+{
+"family": "fam_pantograph",
+"source": "c4d067a0",
+"task": "c4d067a0",
+"exact": true
+},
+{
+"family": "fam_configuration_space",
+"source": "cb2d8a2c",
+"task": "cb2d8a2c",
+"exact": true
+},
+{
+"family": "fam_keyword_filter",
+"source": "d59b0160",
+"task": "d59b0160",
+"exact": true
+},
+{
+"family": "fam_unfold",
+"source": "db0c5428",
+"task": "db0c5428",
+"exact": true
+},
+{
+"family": "fam_catchment",
+"source": "dd6b8c4b",
+"task": "dd6b8c4b",
+"exact": true
+},
+{
+"family": "fam_grommet",
+"source": "de809cff",
+"task": "de809cff",
+"exact": true
+},
+{
+"family": "fam_legend",
+"source": "dfadab01",
+"task": "5582e5ca",
+"exact": true
+},
+{
+"family": "fam_legend",
+"source": "dfadab01",
+"task": "6150a2bd",
+"exact": false
+},
+{
+"family": "fam_legend",
+"source": "dfadab01",
+"task": "aabf363d",
+"exact": false
+},
+{
+"family": "fam_legend",
+"source": "dfadab01",
+"task": "d89b689b",
+"exact": false
+},
+{
+"family": "fam_legend",
+"source": "dfadab01",
+"task": "dfadab01",
+"exact": true
+},
+{
+"family": "fam_justification",
+"source": "e376de54",
+"task": "e376de54",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "e8686506",
+"task": "93b4f4b3",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "e8686506",
+"task": "e8686506",
+"exact": true
+},
+{
+"family": "fam_turtle",
+"source": "e87109e9",
+"task": "e87109e9",
+"exact": true
+},
+{
+"family": "fam_stencil_wallpaper",
+"source": "eee78d87",
+"task": "28bf18c6",
+"exact": true
+},
+{
+"family": "fam_stencil_wallpaper",
+"source": "eee78d87",
+"task": "445eab21",
+"exact": true
+},
+{
+"family": "fam_stencil_wallpaper",
+"source": "eee78d87",
+"task": "5582e5ca",
+"exact": true
+},
+{
+"family": "fam_stencil_wallpaper",
+"source": "eee78d87",
+"task": "eee78d87",
+"exact": true
+},
+{
+"family": "fam_jigsaw",
+"source": "f560132c",
+"task": "f560132c",
+"exact": false
+},
+{
+"family": "fam_kronecker",
+"source": "f931b4a8",
+"task": "f931b4a8",
+"exact": true
+}
+]

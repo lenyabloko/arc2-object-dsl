@@ -1,5 +1,5 @@
 """Parity + timing run of the full probe (lattice + G-DSL) on the 120 public-eval tasks, exactly as the Kaggle notebook does.
-Called by wake_eval.py for jobs with "mode": "parity". Writes summary.json (digest, correct_of_172, split counts, timing)
+Called by wake_eval.py for jobs with "mode": "parity". Writes summary.json (digest, design slot count, split counts, timing)
 and halfA_times.json. Sealed tasks (the 21 never attempted; OQ7) are reported as counts and anonymous timings only; half B is design."""
 import hashlib, json, os, re, signal, sys, time
 def run(job, out, REPO, DATA):
@@ -36,11 +36,15 @@ def run(job, out, REPO, DATA):
          "timeouts": sum(1 for _, x in times.values() if x), "sealed_times_sorted_desc": sorted((t for k, (t, _) in times.items() if k not in A and k not in B), reverse=True)[:15]}
     if sol:
         full = lambda k: k in sub and all(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for i, t in enumerate(sol[k]))
-        S["correct_of_172"] = sum(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for k in sol if k in sub for i, t in enumerate(sol[k]))
+        slot_ok = lambda k: sum(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for i, t in enumerate(sol[k])) if k in sub else 0
+        # G18 fix (cycle 22): the all-120 slot count (sealed included) moves into decide_sealed.json; the summary reports
+        # design slots only, so no design count can be subtracted from it.  The notebook's parity gate compares the digest.
+        S["correct_design_slots"] = sum(slot_ok(k) for k in sol if k in A or k in B)
         S["halfA_tasks"] = sum(full(k) for k in sol if k in A)
         # decision OQ7 (Len, 2026-09-30): half B is design; only the 21 never-attempted tasks stay sealed (Nov 1)
         S["halfB_tasks"] = sum(full(k) for k in sol if k in B)
-        json.dump({"sealed_tasks_count": sum(full(k) for k in sol if k not in A and k not in B)},
+        json.dump({"sealed_tasks_count": sum(full(k) for k in sol if k not in A and k not in B),
+                   "correct_of_172": sum(slot_ok(k) for k in sol)},
                   open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
         S["decision_set"] = "sealed: decide_sealed.json (the 21 never-attempted tasks; Nov 1 look, OQ7)"
     json.dump({k: v for k, v in times.items() if k in A}, open(os.path.join(out, "halfA_times.json"), "w"), indent=0)

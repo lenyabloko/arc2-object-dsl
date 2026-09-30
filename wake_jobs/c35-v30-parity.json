@@ -1,0 +1,2 @@
+{"job_id": "c35-v30-parity", "mode": "parity", "probe": "tools/m1b/v30", "vocab_file": "tools/m1b/V30.txt", "task_seconds": 300,
+ "note": "V30 parity + timing on the public eval. G18 fix: summary.json reports the digest, design slots (the 99) and split counts; the all-120 slot count is in decide_sealed.json (do not open). Report max per-task seconds and total."}

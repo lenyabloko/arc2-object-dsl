@@ -1,0 +1,23 @@
+{
+ "cycle": 22,
+ "pipeline": "Dream D2 (Fable v7): LLM proposer, one family per V29 failure on the 99 design tasks, test-blind, one harness test check per family version",
+ "families": 60,
+ "harness_check_attempt1_exact": 58,
+ "harness_check_n": 60,
+ "harness_misses": [
+  "89565ca0",
+  "f560132c"
+ ],
+ "design_population": "ARC-1 training minus N2 (898) + the 99 ARC-2 design tasks",
+ "non_source_fires": 23,
+ "non_source_exact": 16,
+ "non_source_wrong": 7,
+ "clean_gain_over_V29": [
+  "e26a3af2",
+  "7e02026e"
+ ],
+ "P1_ARC1_row": 0.033,
+ "P1_ARC2_row": 0.0,
+ "arc2_eval120_non_source_fires": 0,
+ "note": "wrong non-source fires: 6 on tasks V29 already answers correctly in slot 1 (V30's last stratum only fills empty slots, so no loss), 1 (f3e62deb) where V29 has no attempt. Cost ~55k-100k subagent tokens per family."
+}

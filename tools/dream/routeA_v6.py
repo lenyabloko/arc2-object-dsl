@@ -95,13 +95,16 @@ def route_a(pairs, tests, phi_ab, k_depth):
         if W[0] > W_FALLBACK: raise Budget()
     if exact: return C, min(exact)[4], len(exact), W[0]
     # G45: two names, exact only jointly -> nested atomic tests (|P| = 3, slot 2)
-    names = [c for c in cands if len(c[0]) <= 1][:40]
+    # G45 over depth-0 names of C_t: extensions precomputed once per name and pair (no role chains), so the pair
+    # search costs set intersections, not instance checks
+    names = [((), n) for n in sorted(C[0])]
+    E = {c: [ext_of(*c, at, R, W) for nodes, at, R, X in pairs] for c in names}
+    Eq = {c: [ext_of(*c, at_q, R_q, W) for at_q, R_q in tests] for c in names}
     joint = []
     for c1, c2 in combinations(names, 2):
-        if all((ext_of(*c1, at, R, W) & ext_of(*c2, at, R, W)) == X for nodes, at, R, X in pairs):
-            gen_ext = sum(len(ext_of(*c1, at_q, R_q, W) & ext_of(*c2, at_q, R_q, W)) for at_q, R_q in tests)
-            joint.append((-gen_ext, len(c1[0]) + len(c2[0]), str(c1[1]) + '&' + str(c2[1]), ("pair", (c1, c2))))
-        if W[0] > W_FALLBACK: raise Budget()
+        if all((E[c1][j] & E[c2][j]) == pairs[j][3] for j in range(len(pairs))):
+            gen_ext = sum(len(a & b) for a, b in zip(Eq[c1], Eq[c2]))
+            joint.append((-gen_ext, -(phi_ab.get(str(c1[1]), 0) + phi_ab.get(str(c2[1]), 0)), str(c1[1]) + '&' + str(c2[1]), ("pair", (c1, c2))))
     if joint: return C, min(joint)[3], len(joint), W[0]
     return C, None, 0, W[0]
 
@@ -125,7 +128,9 @@ def main():
     cache = lattice_pass(tr, ts, keys)
     phi = phi_design(tr, keys, P.ABSTRACTIONS)
     rows = []
+    only = set(os.environ.get("ONLY", "").split(",")) - {""}
     for k in keys:
+        if only and k not in only: continue
         c = cache.get(k)
         if not c or c.get("timeout") or c["extra"] or not c["ok"] or c["n"] > 3: continue
         rb = [(tuple(g), l) for g, l in c["rb"]]

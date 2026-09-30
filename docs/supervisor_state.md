@@ -1,11 +1,11 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 14:45 UTC (10:45 EDT Sep 30). Updated with every outbox batch._
+_Last updated: 2026-09-30 19:20 UTC (15:20 EDT Sep 30). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
 - Symbolic solver only.
-- **Kaggle:** submit only via `submission/daily_submit.sh` after the Kaggle parity check passes (digest match plus `correct_of_172`). One submission per UTC day.
+- **Kaggle:** submit only via `submission/daily_submit.sh` after the Kaggle parity check passes (digest match; from V30 on the notebook no longer computes the all-120 correct count, G18). One submission per UTC day.
 - **Data discipline:**
   - Design uses training, dev-eval half A (burned as a design set) and N1, the design half of the 233 ARC-AGI-2-new training tasks (`tools/m1b/novel_N1.txt`).
   - N2 (`novel_N2.txt`), half B and sealed: counts only; task ids are never inspected.
@@ -19,6 +19,7 @@ _Last updated: 2026-09-30 14:45 UTC (10:45 EDT Sep 30). Updated with every outbo
 | V17 | `tools/m1b/v17` | notebook v11 | public score 2.50 (Sep 29) |
 | V21 = B0 | `tools/m1b/v21` | frozen baseline | notebook v15 submitted Sep 30 04:13 UTC, public score 2.50; c24 full: train 581, half A 35 |
 | V29 | `tools/m1b/v29` | V21 + MDL ordering + slot fix + 20 abduced families + Fable v3 code lengths | **admitted cycle 21** (gate b=0 c=0 n_changed=1); c32 train 605, half A 38; c33 parity 277d8cef 52/172, max 60.7 s; notebook v16 = LATEST for the Oct 1 UTC slot |
+| V30 | `tools/m1b/v30` | V29 + 60 LLM-proposed concept families (Dream D2) in a last stratum `L_llm` that only fills empty slots; vocab `tools/m1b/V30.txt` | candidate, cycle 22: WSL c34 (full) + c35 (parity) + compare_gate c32 vs c34 (ORDERS seq 3); expected P2 ≈ 0 |
 
 ## Lanes
 - **Group primitives** (`latent/fam_*.py`, 29 modules): done through pass 5.
@@ -60,7 +61,7 @@ _Last updated: 2026-09-30 14:45 UTC (10:45 EDT Sep 30). Updated with every outbo
 - Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
 - Never rebuild a batch in the same directory: the outputs folder syncs asynchronously, so a re-run can ship a tar and a MANIFEST from different runs (batch-0039 was rejected for a sha256 mismatch). Rebuild under a new batch number.
 - Kill processes only with exact patterns such as `pgrep -f "^python3 eval_gdsl2"`; broad patterns kill the shell.
-- Wall-clock budgets anywhere in the probe break Kaggle parity.
+- Wall-clock budgets anywhere in the probe break Kaggle parity. (Exception by measurement: V30's L_llm caps are wall-clock but ≥ 10× above the measured max per family/stage, so they fire only on hangs; re-measure with tools/dream/d2/famtime.py whenever a family changes.)
 
 ## Update 22:45 EDT Sep 28
 - The cloud machine rebooted at 22:42 EDT. Files survived; detached processes did not (the orphan lift/residual evals were lost).
@@ -215,3 +216,13 @@ _Last updated: 2026-09-30 14:45 UTC (10:45 EDT Sep 30). Updated with every outbo
 - 68 far-cells tasks by geometry (manual, first training pair, logged as a design look): ray/extension 19, between 14, periodic 11, fill 11 (5 halos), reflection 3, copy 3, other generators 7 (results/cycle21/far68_manual_split.json).
 - T24: Route A recovers 17/19 lattice |P| ≤ 2 programs; misses are 2-name conjunctions (G45 recovers them as nested |P| = 3). v6 Q1/Q2/T35 run (tools/dream/routeA_v6.py) in progress.
 - Protocol issue raised: parity correct_of_172 includes the sealed 21; with design counts it would reveal the sealed count by subtraction (not done). Proposed fix to Fable.
+
+## Update 15:20 EDT Sep 30: cycle 22, the Dream D2 pilot (LLM proposer), V30
+- Stop-rule signal from role grounding (cycle A, on_ray/between): clean coverage 1/27 on the non-source ray/between tasks; reported to Len.
+- D2 pilot (reduced Fable v7 pipeline: concept pass + code + one harness test check; no role pass, G48, RAG or round trip): one family per V29 failure on the 99 (60), written test-blind by subagents. 60/60 fit training; single harness check 58/60 exact (misses 89565ca0 — second program right, f560132c). Ledger: results/cycle21/harness_ledger.jsonl.txt (60 entries). Families: tools/dream/d2/families_v1/; tools in tools/dream/d2/.
+- Reuse (families alone on 898 ARC-1 training minus N2 + the 99): 23 non-source fires, 16 exact, 7 wrong; clean gain over V29 only e26a3af2 and 7e02026e → **P1 = 0.03 (ARC-1) and 0 (ARC-2)**; 0 non-source fires on the 120 ARC-2 public eval tasks. Per-task authoring memorises the task; it does not produce reusable concepts. Hidden-score gain expected ≈ 0. results/cycle22/d2_summary.json.
+- V30 = V29 + the 60 families as the last stratum (prior_llm.py: fills only empty attempt slots, never displaces; own clock 8 s/family, 60 s/stage, 3 s reserve). Seven slow families sped up with semantics-preserving exits/caches (same.py SAME on sources and slow tasks); after that max 0.6 s per family, 1.5 s per stage on eval 120 + design training. Notebook builder build_nb3.py (lzma payload, 0.46 MB; parity gate digest-only, G18).
+- G18 fix: parity_eval.py summary reports correct_design_slots (the 99) + digest; the all-120 count moved to decide_sealed.json.
+- Fable round 7 response (docs/fable_round_7_response.md): proposes cycle 23 = grouped D2 (one family per signature group, must fit every member's training pairs) with leave-one-member-out transfer test T42.
+- ORDERS seq 3: Windows runs c34 → c35 detached (3 workers), compare_gate CYCLE=22 once; WSL runs daily_submit.sh once after 00:00 UTC for v16 (needs Len's "check orders" nudge).
+
