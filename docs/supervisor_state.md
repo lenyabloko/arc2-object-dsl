@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 19:20 UTC (15:20 EDT Sep 30). Updated with every outbox batch._
+_Last updated: 2026-09-30 20:00 UTC (16:00 EDT Sep 30). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -225,4 +225,9 @@ _Last updated: 2026-09-30 19:20 UTC (15:20 EDT Sep 30). Updated with every outbo
 - G18 fix: parity_eval.py summary reports correct_design_slots (the 99) + digest; the all-120 count moved to decide_sealed.json.
 - Fable round 7 response (docs/fable_round_7_response.md): proposes cycle 23 = grouped D2 (one family per signature group, must fit every member's training pairs) with leave-one-member-out transfer test T42.
 - ORDERS seq 3: Windows runs c34 → c35 detached (3 workers), compare_gate CYCLE=22 once; WSL runs daily_submit.sh once after 00:00 UTC for v16 (needs Len's "check orders" nudge).
+
+## Update 16:00 EDT Sep 30: cycle 23, grouped D2 (T42), proposer A/B, stop-rule report
+- batch-0061 pushed (c5fb74f). Windows runner started c34 → c35 at 15:01 EDT (3 workers; 108/108 V30 checksums OK); WSL will run daily_submit.sh at its first 10-min check after 20:00 EDT (LATEST v16).
+- T42 (12 far68 sub-classes, proposer sees 2–3 members' training pairs, 14 held-out members): Opus proposers — seen 27/29 fit, 25 exact; held-out 1/14 fit (e7639916, exact). Fable-model proposers (Len asked whether to upgrade; A/B run instead) — seen 28/29 fit, 25 exact; held-out 1/14 (same task). Model is not the bottleneck; families fit what they saw. results/cycle23/t42_summary.json.
+- Stop-rule report to Len: P1 ≥ 1.0 not reachable by D2 (per-task 0.03, grouped 7 % held-out fit); asked Len to choose (a) stay symbolic and finish the P1/P2/Nov 1 evidence, or (b) open a neural test-time track (ARC Prize 2025 Kaggle ARC-AGI-2 top: NVARC 24.0 %, ARChitects 16.5 %, MindsAI 12.6 %, all test-time-training systems).
 

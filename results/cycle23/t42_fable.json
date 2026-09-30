@@ -1,0 +1,404 @@
+[
+{
+"group": "g01_ray_to_obstacle",
+"task": "212895b5",
+"role": "proposal",
+"family_file": "fable/g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obstacle=5,emitter=block,orth=stair2cw:4,diag=2,corner_block=True,prio=v>h,dirs=11111111]"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "7ddcd7ec",
+"role": "proposal",
+"family_file": "fable/g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obstacle=None,emitter=tips,orth=line:None,diag=core,corner_block=True,prio=v>h,dirs=11111111]"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "f8be4b64",
+"role": "proposal",
+"family_file": "fable/g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obstacle=None,emitter=tips,orth=line:core,diag=None,corner_block=True,prio=v>h,dirs=11111111]"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "13f06aa5",
+"role": "held_out",
+"family_file": "fable/g01_ray_to_obstacle_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "99fa7670",
+"role": "held_out",
+"family_file": "fable/g01_ray_to_obstacle_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g02_line_through_markers",
+"task": "0f63c0b9",
+"role": "proposal",
+"family_file": "fable/g02_line_through_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:voronoi[axis=row,frame=border,tie=first]"
+},
+{
+"group": "g02_line_through_markers",
+"task": "1bfc4729",
+"role": "proposal",
+"family_file": "fable/g02_line_through_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:voronoi[axis=row,frame=border,tie=first]"
+},
+{
+"group": "g02_line_through_markers",
+"task": "2bee17df",
+"role": "held_out",
+"family_file": "fable/g02_line_through_markers_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "90f3ed37",
+"role": "proposal",
+"family_file": "fable/g03_extend_to_template_length_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "cad:extrusion[dir=R,ref=template,align=rear,fill=const:1]"
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "b527c5c6",
+"role": "proposal",
+"family_file": "fable/g03_extend_to_template_length_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "cad:extrusion[dir=marker,ref=self,fill=keep]"
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "cf133acc",
+"role": "held_out",
+"family_file": "fable/g03_extend_to_template_length_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g04_shadow",
+"task": "f15e1fac",
+"role": "proposal",
+"family_file": "fable/g04_shadow_family.py",
+"fits_train": true,
+"n_progs": 4,
+"exact": true,
+"program": "optics:cast_shadow[marker=2,dir=inward,len=edge,colour=same,deflect=away,obstacle=stop]"
+},
+{
+"group": "g04_shadow",
+"task": "fcc82909",
+"role": "proposal",
+"family_file": "fable/g04_shadow_family.py",
+"fits_train": true,
+"n_progs": 2,
+"exact": true,
+"program": "optics:cast_shadow[marker=None,dir=down,len=ncolours,colour=3,deflect=none,obstacle=stop]"
+},
+{
+"group": "g04_shadow",
+"task": "6d58a25d",
+"role": "held_out",
+"family_file": "fable/g04_shadow_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g05_bridge",
+"task": "af726779",
+"role": "proposal",
+"family_file": "fable/g05_bridge_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g05_bridge",
+"task": "d6ad076f",
+"role": "proposal",
+"family_file": "fable/g05_bridge_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "architecture:lintel[piers=any-colour,inset=1,colour=const8]"
+},
+{
+"group": "g05_bridge",
+"task": "f3b10344",
+"role": "proposal",
+"family_file": "fable/g05_bridge_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": false,
+"program": "architecture:lintel[piers=same-colour,inset=1,colour=const8]"
+},
+{
+"group": "g05_bridge",
+"task": "692cd3b6",
+"role": "held_out",
+"family_file": "fable/g05_bridge_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g06_path_between_points",
+"task": "2dd70a9a",
+"role": "proposal",
+"family_file": "fable/g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": false,
+"program": "eda:line_probe_router[moves=4,entry=onto,src=3,tgt=2,path=3]"
+},
+{
+"group": "g06_path_between_points",
+"task": "3490cc26",
+"role": "proposal",
+"family_file": "fable/g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "eda:line_probe_router[moves=4,entry=onto,src=2,tgt=8,path=7]"
+},
+{
+"group": "g06_path_between_points",
+"task": "992798f6",
+"role": "proposal",
+"family_file": "fable/g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "eda:line_probe_router[moves=8,entry=diag,src=1,tgt=2,path=3]"
+},
+{
+"group": "g06_path_between_points",
+"task": "7ec998c9",
+"role": "held_out",
+"family_file": "fable/g06_path_between_points_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g07_row_column_tiling",
+"task": "bd4472b8",
+"role": "proposal",
+"family_file": "fable/g07_row_column_tiling_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:frieze[d=down gap=0 legend]"
+},
+{
+"group": "g07_row_column_tiling",
+"task": "d304284e",
+"role": "proposal",
+"family_file": "fable/g07_row_column_tiling_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:frieze[d=right gap=1 key=S6S prop=1 d2=down gap2=1]"
+},
+{
+"group": "g07_row_column_tiling",
+"task": "12422b43",
+"role": "held_out",
+"family_file": "fable/g07_row_column_tiling_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g08_periodic_rings",
+"task": "f8c80d96",
+"role": "proposal",
+"family_file": "fable/g08_periodic_rings_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": false,
+"program": "physics:wavefront[metric=cheb,fill=5]"
+},
+{
+"group": "g08_periodic_rings",
+"task": "fd4b2b02",
+"role": "proposal",
+"family_file": "fable/g08_periodic_rings_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:parallel_mirrors[axes=DA,mode=chains,odd_colours=3>6,6>3]"
+},
+{
+"group": "g08_periodic_rings",
+"task": "5c2c9af4",
+"role": "held_out",
+"family_file": "fable/g08_periodic_rings_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g09_halo",
+"task": "c97c0139",
+"role": "proposal",
+"family_file": "fable/g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "mechanics:balloon[L1,q1,obj=2,halo=8]"
+},
+{
+"group": "g09_halo",
+"task": "db93a21d",
+"role": "proposal",
+"family_file": "fable/g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "mechanics:balloon[Linf,q2,frame-completed,obj=9,halo=3]+shadow[S,1]"
+},
+{
+"group": "g09_halo",
+"task": "ff72ca3e",
+"role": "proposal",
+"family_file": "fable/g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "mechanics:balloon[Linf,obs,frame-completed,obj=4,halo=2]"
+},
+{
+"group": "g09_halo",
+"task": "3a301edc",
+"role": "held_out",
+"family_file": "fable/g09_halo_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g09_halo",
+"task": "52fd389e",
+"role": "held_out",
+"family_file": "fable/g09_halo_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g10_frame_by_markers",
+"task": "6f8cd79b",
+"role": "proposal",
+"family_file": "fable/g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "prepress:crop_marks[marker=none,inset=1,style=stroke,colour=8]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "928ad970",
+"role": "proposal",
+"family_file": "fable/g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "prepress:crop_marks[marker=5,inset=1,style=stroke,colour=content]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "af902bf9",
+"role": "proposal",
+"family_file": "fable/g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "prepress:crop_marks[marker=4,inset=1,style=fill,colour=2]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "e7639916",
+"role": "held_out",
+"family_file": "fable/g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "prepress:crop_marks[marker=8,inset=0,style=stroke,colour=1]"
+},
+{
+"group": "g11_counting_bars",
+"task": "2685904e",
+"role": "proposal",
+"family_file": "fable/g11_counting_bars_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:histogram[axis=row/5,sel=key,pos=source,len=count,anchor=near]"
+},
+{
+"group": "g11_counting_bars",
+"task": "27a77e38",
+"role": "proposal",
+"family_file": "fable/g11_counting_bars_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:histogram[axis=row/5,sel=max,pos=centre,len=one,anchor=far]"
+},
+{
+"group": "g11_counting_bars",
+"task": "37ce87bb",
+"role": "held_out",
+"family_file": "fable/g11_counting_bars_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g12_reflection_completion",
+"task": "9d9215db",
+"role": "proposal",
+"family_file": "fable/g12_reflection_completion_family.py",
+"fits_train": true,
+"n_progs": 2,
+"exact": true,
+"program": "optics:plane_mirror[grid_hv,same,dash=2]"
+},
+{
+"group": "g12_reflection_completion",
+"task": "dc2e9a9d",
+"role": "proposal",
+"family_file": "fable/g12_reflection_completion_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:plane_mirror[handle:far:g2,by_axis,h->8/v->1,dash=0]"
+},
+{
+"group": "g12_reflection_completion",
+"task": "22233c11",
+"role": "held_out",
+"family_file": "fable/g12_reflection_completion_family.py",
+"fits_train": false,
+"n_progs": 0
+}
+]

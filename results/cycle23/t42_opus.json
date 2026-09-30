@@ -1,0 +1,402 @@
+[
+{
+"group": "g01_ray_to_obstacle",
+"task": "212895b5",
+"role": "proposal",
+"family_file": "g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obj=mono,emit=only-colour8,ports=mid,orth=stair2cw(all)/4,diag=line(all)/2,stop=obstacle,corner=blo"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "7ddcd7ec",
+"role": "proposal",
+"family_file": "g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obj=mono,emit=all,ports=end,orth=none,diag=line(all)/port,stop=obstacle,corner=block,z=D1<D2<H<V]"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "f8be4b64",
+"role": "proposal",
+"family_file": "g01_ray_to_obstacle_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "graphics:ray_casting[obj=mono,emit=all,ports=mid,orth=line(all)/center,diag=none,stop=obstacle,corner=block,z=H<V<D1<D2]"
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "13f06aa5",
+"role": "held_out",
+"family_file": "g01_ray_to_obstacle_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g01_ray_to_obstacle",
+"task": "99fa7670",
+"role": "held_out",
+"family_file": "g01_ray_to_obstacle_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g02_line_through_markers",
+"task": "0f63c0b9",
+"role": "proposal",
+"family_file": "g02_line_through_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:voronoi[dir=row,tie=low,render=frame]"
+},
+{
+"group": "g02_line_through_markers",
+"task": "1bfc4729",
+"role": "proposal",
+"family_file": "g02_line_through_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:voronoi[dir=row,tie=low,render=frame]"
+},
+{
+"group": "g02_line_through_markers",
+"task": "2bee17df",
+"role": "held_out",
+"family_file": "g02_line_through_markers_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "90f3ed37",
+"role": "proposal",
+"family_file": "g03_extend_to_template_length_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "cad:extrusion[conn=8,ref=exemplar,dir=R,period=1,win=inf,colour=1]"
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "b527c5c6",
+"role": "proposal",
+"family_file": "g03_extend_to_template_length_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "cad:extrusion[conn=4,ref=self,dir=marker,period=1,win=depth-1,colour=same]"
+},
+{
+"group": "g03_extend_to_template_length",
+"task": "cf133acc",
+"role": "held_out",
+"family_file": "g03_extend_to_template_length_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g04_shadow",
+"task": "f15e1fac",
+"role": "proposal",
+"family_file": "g04_shadow_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:ray_casting[src=all,marker=2/away,dir=away_border,len=edge,colour=source,obst=pass]"
+},
+{
+"group": "g04_shadow",
+"task": "fcc82909",
+"role": "proposal",
+"family_file": "g04_shadow_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:ray_casting[src=all,marker=None/-,dir=D,len=ncolors,colour=fixed,obst=pass]"
+},
+{
+"group": "g04_shadow",
+"task": "6d58a25d",
+"role": "held_out",
+"family_file": "g04_shadow_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g05_bridge",
+"task": "af726779",
+"role": "proposal",
+"family_file": "g05_bridge_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g05_bridge",
+"task": "d6ad076f",
+"role": "proposal",
+"family_file": "g05_bridge_family.py",
+"fits_train": true,
+"n_progs": 2,
+"exact": true,
+"program": "civil-engineering:beam-bridge[axes=hv,margin=1,pairing=any,colour=induced:8]"
+},
+{
+"group": "g05_bridge",
+"task": "f3b10344",
+"role": "proposal",
+"family_file": "g05_bridge_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": false,
+"program": "civil-engineering:beam-bridge[axes=hv,margin=1,pairing=same,colour=induced:8]"
+},
+{
+"group": "g05_bridge",
+"task": "692cd3b6",
+"role": "held_out",
+"family_file": "g05_bridge_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g06_path_between_points",
+"task": "2dd70a9a",
+"role": "proposal",
+"family_file": "g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": false,
+"program": "robotics:line_of_sight_homing[src=3,goal=2,moves=4,paint=src:3]"
+},
+{
+"group": "g06_path_between_points",
+"task": "3490cc26",
+"role": "proposal",
+"family_file": "g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "robotics:line_of_sight_homing[src=2,goal=8,moves=4,paint=const:7]"
+},
+{
+"group": "g06_path_between_points",
+"task": "992798f6",
+"role": "proposal",
+"family_file": "g06_path_between_points_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "robotics:line_of_sight_homing[src=1,goal=2,moves=8,paint=const:3]"
+},
+{
+"group": "g06_path_between_points",
+"task": "7ec998c9",
+"role": "held_out",
+"family_file": "g06_path_between_points_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g07_row_column_tiling",
+"task": "bd4472b8",
+"role": "proposal",
+"family_file": "g07_row_column_tiling_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "crystallography:superlattice[conn=8,dir=far,gap=0,species=key-fwd,secondary=None,sec_phases=0]"
+},
+{
+"group": "g07_row_column_tiling",
+"task": "d304284e",
+"role": "proposal",
+"family_file": "g07_row_column_tiling_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "crystallography:superlattice[conn=8,dir=far,gap=1,species=seq['src', 6, 'src'],secondary=far,sec_phases=010]"
+},
+{
+"group": "g07_row_column_tiling",
+"task": "12422b43",
+"role": "held_out",
+"family_file": "g07_row_column_tiling_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g08_periodic_rings",
+"task": "f8c80d96",
+"role": "proposal",
+"family_file": "g08_periodic_rings_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "waves:ripple_wavefronts[metric=linf,dir=out,fill=5]"
+},
+{
+"group": "g08_periodic_rings",
+"task": "fd4b2b02",
+"role": "proposal",
+"family_file": "g08_periodic_rings_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g08_periodic_rings",
+"task": "5c2c9af4",
+"role": "held_out",
+"family_file": "g08_periodic_rings_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g09_halo",
+"task": "c97c0139",
+"role": "proposal",
+"family_file": "g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:metric_ball[metric=L1,anchor=ball,r=const0,colour=2>8]"
+},
+{
+"group": "g09_halo",
+"task": "db93a21d",
+"role": "proposal",
+"family_file": "g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:metric_ball[metric=Linf,anchor=shape,r=size2,colour=9>3,shadow=down:1]"
+},
+{
+"group": "g09_halo",
+"task": "ff72ca3e",
+"role": "proposal",
+"family_file": "g09_halo_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:metric_ball[metric=Linf,anchor=shape,r=clear0,colour=4>2]"
+},
+{
+"group": "g09_halo",
+"task": "3a301edc",
+"role": "held_out",
+"family_file": "g09_halo_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g09_halo",
+"task": "52fd389e",
+"role": "held_out",
+"family_file": "g09_halo_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g10_frame_by_markers",
+"task": "6f8cd79b",
+"role": "proposal",
+"family_file": "g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 2,
+"exact": true,
+"program": "geometry:bounding_box[anchor=0,group=rook,inset=0,style=outline,paint=const:8]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "928ad970",
+"role": "proposal",
+"family_file": "g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:bounding_box[anchor=5,group=all,inset=1,style=outline,paint=object]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "af902bf9",
+"role": "proposal",
+"family_file": "g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:bounding_box[anchor=4,group=rook,inset=1,style=fill,paint=const:2]"
+},
+{
+"group": "g10_frame_by_markers",
+"task": "e7639916",
+"role": "held_out",
+"family_file": "g10_frame_by_markers_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "geometry:bounding_box[anchor=8,group=all,inset=0,style=outline,paint=const:1]"
+},
+{
+"group": "g11_counting_bars",
+"task": "2685904e",
+"role": "proposal",
+"family_file": "g11_counting_bars_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "statistics:histogram[sel=key,base=sep,pos=occ,len=count]"
+},
+{
+"group": "g11_counting_bars",
+"task": "27a77e38",
+"role": "proposal",
+"family_file": "g11_counting_bars_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "statistics:histogram[sel=max,base=far,pos=mid,len=unit]"
+},
+{
+"group": "g11_counting_bars",
+"task": "37ce87bb",
+"role": "held_out",
+"family_file": "g11_counting_bars_family.py",
+"fits_train": false,
+"n_progs": 0
+},
+{
+"group": "g12_reflection_completion",
+"task": "9d9215db",
+"role": "proposal",
+"family_file": "g12_reflection_completion_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:plane_mirror[place=grid:VH,ray=2,colour=same,bg=0]"
+},
+{
+"group": "g12_reflection_completion",
+"task": "dc2e9a9d",
+"role": "proposal",
+"family_file": "g12_reflection_completion_family.py",
+"fits_train": true,
+"n_progs": 1,
+"exact": true,
+"program": "optics:plane_mirror[place=object:('flat', 1),ray=None,colour=axis[('h', 8), ('v', 1)],bg=0]"
+},
+{
+"group": "g12_reflection_completion",
+"task": "22233c11",
+"role": "held_out",
+"family_file": "g12_reflection_completion_family.py",
+"fits_train": false,
+"n_progs": 0
+}
+]

@@ -1,0 +1,20 @@
+{
+ "cycle": 23,
+ "test": "T42 leave-members-out: one family per reviewer-labelled sub-class (12 groups from the far68 split, ARC-1 training, design); proposer sees only proposal members' training pairs; held-out members chosen by sha256(id+'c23-lomo')",
+ "opus": {
+  "proposal_fit": "27/29",
+  "proposal_exact": 25,
+  "held_out_fit": "1/14",
+  "held_out_exact": 1
+ },
+ "fable": {
+  "proposal_fit": "28/29",
+  "proposal_exact": 25,
+  "held_out_fit": "1/14",
+  "held_out_exact": 1
+ },
+ "held_out_solved": [
+  "e7639916 (g10 frame by markers, both proposers)"
+ ],
+ "reading": "Both proposers write families that fit and solve the members they saw (86% exact) but almost none fit an unseen member of the same hand-labelled class (7%). Switching the proposer model (opus -> fable) does not change transfer. Families concepts coincide across proposers (ray casting, Voronoi, extrusion, bounding box/crop marks, metric ball/balloon, histogram, plane mirror); the parameters are shaped by the seen members."
+}

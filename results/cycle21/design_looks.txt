@@ -1,3 +1,12 @@
 {"time": "2026-09-30T08:40Z", "split": "design (ARC-1 training + half A)", "what": "supervisor read the first training pair of the 68 far-cells tasks (no test outputs) to classify generating geometry (Fable v5 Q3)", "n_changed": 0, "note": "Fable v6 section 1: design look, logged with n_changed = 0"}
 {"time": "2026-09-30T16:55Z", "split": "design (ARC-1 training)", "what": "role grounding sources declared (G31): on_ray = 99fa7670, 0f63c0b9, 6d58a25d; between = 3490cc26, d6ad076f, e9614598. Only these tasks' training pairs are read while grounding; the other ray/between tasks are scored by the harness once per role version", "n_changed": 0}
 {"time": "2026-09-30T17:05Z", "split": "design", "what": "harness looks at on_ray/between coverage: v2 (turn/inset/mid_cross) and v3 (+ optics colour modes hit/filter/alt/bounce) on the 68 far-cells tasks; aggregate counts only", "n_changed": 0}
+
+## cycle 23 (2026-09-30 ~16:00 EDT): grouped D2, T42 leave-members-out
+- 12 groups from the far68 sub-classes (ARC-1 training, design); held-out members chosen by sha256(id + "c23-lomo") order
+  (1 per group of <= 4, 2 per group of 5): pilot plan in tools/dream/d2/cycle23/plan.json.
+- Proposer subagents saw only the proposal members' training pairs. Two slips reported by the subagents themselves:
+  g10's proposer ran check_group.py on the other group files (saw only NO FIT lines and timings; those files hold
+  proposal members' training pairs only); g08's proposer opened the first ~50 lines of plan.json (group names and
+  ids, no task data) and did not use them. Neither exposes a held-out member's data or any test output.
+- T42 result (v1, opus proposers): proposal members fit 27/29, exact 25; held-out members fit 1/14 (e7639916, exact).

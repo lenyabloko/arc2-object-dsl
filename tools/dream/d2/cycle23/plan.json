@@ -1,0 +1,117 @@
+{
+ "g01_ray_to_obstacle": {
+  "proposal": [
+   "212895b5",
+   "7ddcd7ec",
+   "f8be4b64"
+  ],
+  "held_out": [
+   "13f06aa5",
+   "99fa7670"
+  ]
+ },
+ "g02_line_through_markers": {
+  "proposal": [
+   "0f63c0b9",
+   "1bfc4729"
+  ],
+  "held_out": [
+   "2bee17df"
+  ]
+ },
+ "g03_extend_to_template_length": {
+  "proposal": [
+   "90f3ed37",
+   "b527c5c6"
+  ],
+  "held_out": [
+   "cf133acc"
+  ]
+ },
+ "g04_shadow": {
+  "proposal": [
+   "f15e1fac",
+   "fcc82909"
+  ],
+  "held_out": [
+   "6d58a25d"
+  ]
+ },
+ "g05_bridge": {
+  "proposal": [
+   "af726779",
+   "d6ad076f",
+   "f3b10344"
+  ],
+  "held_out": [
+   "692cd3b6"
+  ]
+ },
+ "g06_path_between_points": {
+  "proposal": [
+   "2dd70a9a",
+   "3490cc26",
+   "992798f6"
+  ],
+  "held_out": [
+   "7ec998c9"
+  ]
+ },
+ "g07_row_column_tiling": {
+  "proposal": [
+   "bd4472b8",
+   "d304284e"
+  ],
+  "held_out": [
+   "12422b43"
+  ]
+ },
+ "g08_periodic_rings": {
+  "proposal": [
+   "f8c80d96",
+   "fd4b2b02"
+  ],
+  "held_out": [
+   "5c2c9af4"
+  ]
+ },
+ "g09_halo": {
+  "proposal": [
+   "c97c0139",
+   "db93a21d",
+   "ff72ca3e"
+  ],
+  "held_out": [
+   "3a301edc",
+   "52fd389e"
+  ]
+ },
+ "g10_frame_by_markers": {
+  "proposal": [
+   "6f8cd79b",
+   "928ad970",
+   "af902bf9"
+  ],
+  "held_out": [
+   "e7639916"
+  ]
+ },
+ "g11_counting_bars": {
+  "proposal": [
+   "2685904e",
+   "27a77e38"
+  ],
+  "held_out": [
+   "37ce87bb"
+  ]
+ },
+ "g12_reflection_completion": {
+  "proposal": [
+   "9d9215db",
+   "dc2e9a9d"
+  ],
+  "held_out": [
+   "22233c11"
+  ]
+ }
+}

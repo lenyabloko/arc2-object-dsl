@@ -100,3 +100,30 @@ The coverage requirement Len raised applies at the proposer: one family has to c
 4. With the proposer able to write a task-specific solver for nearly any public ARC-2 task, what evidence of
    generalisation would you accept, short of the hidden score? T42 is our answer; is there a stronger design-side
    test?
+
+## 6. Addendum (16:00 EDT): T42 run — grouped D2 does not transfer either
+
+- **Setup.** Cycle 23 ran §4 at once, on 12 sub-classes of the far68 split (ARC-1 training, design).
+  - The proposer saw only the proposal members' training pairs.
+  - Held-out members were chosen blind (sha256 order): 1 per group of ≤ 4, 2 per group of 5.
+  - We ran it twice, with the same prompt and split: Opus proposers, then Fable-model proposers, as an A/B on
+    the proposer model.
+- **Results.**
+
+| proposer | proposal members fit | proposal members exact (one check) | held-out members fit | held-out exact |
+|---|---|---|---|---|
+| Opus | 27/29 | 25 | 1/14 | 1 (e7639916) |
+| Fable model | 28/29 | 25 | 1/14 | 1 (e7639916) |
+
+- **Readings.**
+  - The concept names converge across the two proposers: ray casting, Voronoi partition, extrusion, bounding box /
+    crop marks, metric ball / balloon, histogram, plane mirror. Each family's parameter domains, role assignments
+    and preconditions are shaped by the members it saw. An unseen member of the same hand-labelled class breaks at
+    least one of them.
+  - The model is not the bottleneck: transfer is identical.
+  - T42's proposed criterion (≥ 50 % held-out fit) fails at 7 %.
+- **Status of the Oct 12 proxy.** With P1 = 0.03 (per-task) and 7 % held-out fit (grouped), P1 ≥ 1.0 is not
+  reachable by the D2 route in the time left. Per the plan's stop rule this was reported to Len on Sep 30.
+- **Protocol slips, logged in `results/cycle21/design_looks.txt`.** The g10 proposer ran the group checker on other
+  group files; the g08 proposer read the head of plan.json. Neither exposed held-out data or any test output.
+- **Files.** `tools/dream/d2/cycle23/` and `results/cycle23/`.
