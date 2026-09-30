@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 06:20 UTC (02:20 EDT Sep 30). Updated with every outbox batch._
+_Last updated: 2026-09-30 14:45 UTC (10:45 EDT Sep 30). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -12,14 +12,13 @@ _Last updated: 2026-09-30 06:20 UTC (02:20 EDT Sep 30). Updated with every outbo
 - No task-specific code; no Codex solutions.
 - Never touch Kaggle credentials; no deletions on the user's machine.
 
-## Current builds (23:00 EDT Sep 29)
+## Current builds (10:45 EDT Sep 30)
 
 | Build | Probe | What it is | Status |
 |---|---|---|---|
-| V17 | `tools/m1b/v17` | notebook v11 | **Public score 2.50** (first non-zero, 2026-09-29) |
-| V21 = B0 | `tools/m1b/v21` | frozen baseline | b0-v21-design: train 617, half A 36 (N2/half B counts reported under the old tools, logged as looks). Notebook v15 (compact, 0.66 MB) pushed 01:50 UTC as kernel v4, run in progress |
-| V28 | `tools/m1b/v28` | V23–V27 + 20 abduced families | jobs c30/c31 deferred (superseded by V29) |
-| V29 | `tools/m1b/v29` | V28 + Fable v3 code fixes | jobs c32-v29-full, c33-v29-parity (batch-0057). Design check: 21/22 lattice-wrong, 47/47 long-correct, 17/17 abduced |
+| V17 | `tools/m1b/v17` | notebook v11 | public score 2.50 (Sep 29) |
+| V21 = B0 | `tools/m1b/v21` | frozen baseline | notebook v15 submitted Sep 30 04:13 UTC, public score 2.50; c24 full: train 581, half A 35 |
+| V29 | `tools/m1b/v29` | V21 + MDL ordering + slot fix + 20 abduced families + Fable v3 code lengths | **admitted cycle 21** (gate b=0 c=0 n_changed=1); c32 train 605, half A 38; c33 parity 277d8cef 52/172, max 60.7 s; notebook v16 = LATEST for the Oct 1 UTC slot |
 
 ## Lanes
 - **Group primitives** (`latent/fam_*.py`, 29 modules): done through pass 5.
@@ -207,3 +206,12 @@ _Last updated: 2026-09-30 06:20 UTC (02:20 EDT Sep 30). Updated with every outbo
 - Control mailbox: cloud_outbox/control (ORDERS.md from the cloud, reports/windows.md and reports/wsl.md from the sessions); /loop is blocked when a session starts it, so sessions act when Len nudges them.
 - Reuse measurement (tools/dream/role_reuse.py, sig_groups.py): 33 detectors split from the 20 families, on the 332 design tasks B0 fails: 90 change grid size; of 242 same-size, 179 have no covering detector, 51 a covering one, 12 an exact one; exact + simple action fits 0. The largest failure groups add many cells far from existing objects (68 tasks in the top 4 groups, detectors cover 10). Next Dream: anti-unify the largest failure group (design only, test-blind), split or abduce as the result dictates.
 - **Fable guidance v3 (Len's Fable stream, project claude/fable_guidance_v3.md, 01:55 EDT)** adopted. Two streams, credited separately: `fable_guidance_*` = Len's Fable session (formal/protocol role); `fable_sub_guidance_*` = the supervisor's subagent (code-level verification). Decisions by Len (`decision_*.md`) override both. v3 endorses sub-v3 A.1/A.2/B/C.iii (C.iii = G32, abduction at the role/relation level) and makes two corrections: half B is design, sealed untouched until Nov 1 (done in batch-0058); G21 — timed-out tasks excluded from both sides of every comparison and the timed-out set logged per job (done in batch-0059: private gate records carry a timeout flag, compare_gate excludes those tasks and logs n_compared, summaries list timed-out design ids and the N2 timeout count). G31 is not defined beyond OQ7's parenthesis; working definition: source and test_seen tasks excluded from evidence. Nov 1 decision set per v3: N2-decide (51 by Fable's count; the salted split gives 55 of 102) ∪ sealed 21.
+
+## Update 10:45 EDT Sep 30: cycle 21 closed, V29 admitted, plan to Oct 12
+- Gate release #0 (cycle 21): compare_gate c24 vs c32 on N2-gate = {b: 0, c: 0, n_changed: 1} → V29 admitted; P2 = 0 this cycle. c33 parity: digest 277d8cef, 52/172, max 60.7 s, 0 timeouts. Notebook v16 (V29, 0.69 MB) staged, LATEST = v16; WSL submits after 00:00 UTC via daily_submit.sh.
+- v15 (B0) public score 2.50 = v11's.
+- Fable rounds 4–7 (Len's stream): v4 anti-unification + GKAT (Route A/B), v5 guards G38–G44 and six geometry roles, v6 G45 conjunctions + low-evidence slot-1 branch, v7 LLM+RAG Dream proposer (G46–G50), v7a triage (G51: packets to Len only after two LLM retries). Responses: claude/fable_round_4_response.md, claude/fable_round_5_response.md.
+- Plan (Len, claude/plan_oct12_path.md, ≤ 10 reviews/day): Oct 1–3 ground on_ray/extends + between (generalising the lattice's ray/connect effects with measured parameters), generated_from/Novel, T34; Oct 4–5 cycle A + gate release #1; Oct 6–9 period, halo, re-express 9 families; Oct 10 cycle B + release #2; Oct 11–12 P1/P2 report. Stop rule: < 5 exact design solves after cycle A → report Oct 5. Correction adopted: ≤ 3 named source tasks per role; the rest of each class is harness-only so P1 stays clean.
+- 68 far-cells tasks by geometry (manual, first training pair, logged as a design look): ray/extension 19, between 14, periodic 11, fill 11 (5 halos), reflection 3, copy 3, other generators 7 (results/cycle21/far68_manual_split.json).
+- T24: Route A recovers 17/19 lattice |P| ≤ 2 programs; misses are 2-name conjunctions (G45 recovers them as nested |P| = 3). v6 Q1/Q2/T35 run (tools/dream/routeA_v6.py) in progress.
+- Protocol issue raised: parity correct_of_172 includes the sealed 21; with design counts it would reveal the sealed count by subtraction (not done). Proposed fix to Fable.

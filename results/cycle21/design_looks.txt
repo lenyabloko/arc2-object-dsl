@@ -1,0 +1,1 @@
+{"time": "2026-09-30T08:40Z", "split": "design (ARC-1 training + half A)", "what": "supervisor read the first training pair of the 68 far-cells tasks (no test outputs) to classify generating geometry (Fable v5 Q3)", "n_changed": 0, "note": "Fable v6 section 1: design look, logged with n_changed = 0"}

@@ -336,3 +336,26 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - The lever that scales is the level shift: abduce A-box roles and relations that enter the lattice under the seed rule.
   - The ontology stays bounded by the per-task retry cap and quarantine.
 - **Oct 12 expectation:** c ≈ 1–3 from the slot fixes and about +0.3 from abductions; P(claim) < 5%. Unless the threshold is met, the report will say "directional evidence, no significant transfer". The Kaggle daily score remains the hidden-set measurement.
+
+## Check-in 2026-09-30 10:30 EDT (cycle 21 closed)
+- **Kaggle:** v15 (B0 = V21) scored **2.50**, the same as v11 (V17). Two different builds give the same public score.
+- **First gate release (compare_gate, N2-gate, c24 B0 vs c32 V29):** b = 0, c = 0, n_changed = 1.
+  - Admission rule b = 0 holds, so V29 is admitted.
+  - P2 for this cycle is 0: no N2-gate gain.
+- **V29 design results (c32, 3 workers, 58 min, 0 timeouts, max 192 s):**
+
+  | | B0 (c24) | V29 (c32) |
+  |---|---|---|
+  | Training exact | 581 | 605 (+24) |
+  | Half A exact | 35 | 38 (+3) |
+
+- **V29 parity (c33, ran alone):** digest 277d8cef, 52/172 (B0: 49), 0 timeouts, max 60.7 s per task, total 1,629 s.
+  - Staged as notebook v16 (0.69 MB, LATEST = v16) for tonight's slot after 00:00 UTC.
+- **OQ7 cycle report:**
+  - P1 = 0.2 (ARC-1 / N1) and 0 (ARC-2 99) → fails; reading: wrong granularity.
+  - P2 = 0 with b = 0 → fails this cycle.
+  - Coverage on the 99: B0 36, V29 39. With size ≤ 2 and margin' ≥ 4: B0 33, V29 36.
+- **Protocol note (to Fable):** parity's correct_of_172 counts all 120 tasks, sealed included. Combined with the design counts it would reveal the sealed count by subtraction. That subtraction is not done.
+  - Proposed fix: parity summaries report correct slots on the 99 plus the digest; the Kaggle gate matches the digest and a hash of the correct vector, not the sealed-inclusive count.
+- **Plan to Oct 12 (Len, `plan_oct12_path.md`) adopted, with one correction.** P1 counts only clean non-source tasks, so each role names at most 3 source tasks and the rest of its class stays harness-only.
+  - The lattice already has `ray` and `connect` effect generators. The 33 ray/between tasks fail on missing parameters, not on missing roles.

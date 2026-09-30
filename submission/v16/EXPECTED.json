@@ -1,0 +1,9 @@
+{
+ "correct_of_172": 52,
+ "eval_digest": "277d8cef332ac1b8e1114fc98d3c9f32035c2b91befb3ec6f98b377d0157ff12",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl",
+ "probe": "V29 = V21 + MDL answer ordering (V23), slot-crowding fix (V24), 20 abduced families (V25-V28), Fable v3 code lengths and composed decision lists (V29)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 21: compare_gate c24 (B0) vs c32 (V29) on N2-gate b=0 c=0 n_changed=1; design train 581 -> 605, half A 35 -> 38; parity c33 digest 277d8cef, 52/172, max 60.7 s per task, 0 timeouts",
+ "note": "Compact payload notebook (build_nb2.py), 0.69 MB; 47 probe files byte-identical to tools/m1b/v29."
+}
