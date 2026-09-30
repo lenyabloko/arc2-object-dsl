@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 01:05 UTC (21:05 EDT Sep 29). Updated with every outbox batch._
+_Last updated: 2026-09-30 02:05 UTC (22:05 EDT Sep 29). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -188,3 +188,5 @@ _Last updated: 2026-09-30 01:05 UTC (21:05 EDT Sep 29). Updated with every outbo
 - **Fable guidance v1 received (21:29 EDT; project doc claude/fable_guidance_v1.md).** Adopted: F1–F9, Option B grounding gate hardened (b′ fire ratio ≤ 0.5, f E(test) ≥ 10 bits or a second task, test_seen flags), mechanisms as EL existentials + ≤ 10 curated chains, R7′/G7′ slot rule, B.4 look protocol (N2 split with salt arc2-c21-2026-09-29; half B and sealed retired from gating; decision set sealed in decide_sealed.json, looks on Oct 12 and Nov 1), convergence via per-task retry cap + quarantine + monotone admission, early-failure monitor M1–M9. Convention correction sent: lattice n_rules includes the root, so |P| = n_rules (slot-1 cap |P| ≤ 2). Contamination admitted: all 13 abduced families test_seen; viewer now test-blind. Response: claude/fable_round_1_response.md.
 - Tools (batch-0052): wake_eval default + full + parity modes now report N2-gate counts only; N2-decide, half B, sealed → decide_sealed.json (not to be read before Oct 12). WAKE.md updated.
 - V27 (22:05 EDT) = V26 + first TEST-BLIND abductions (viewer hides test outputs; one harness test check per family version, ledger results/cycle21/harness_ledger.jsonl): pour (fluids) db7260a4 ✓, bridge the gaps (masonry) af726779 ✓, crosshair (geometry) 9f5f939b ✓ — all exact on their single test check; drape over a pole bae5c565 (test_seen). Abduced families alone: 17 exact, 0 wrong, 0 held-out fires. WSL: c30/c31 now point to V27 (V26 jobs deferred) — batch-0053.
+- V28 (22:15 EDT) = V27 + test-blind abductions: mirror panels (optics reflection + blank fill, N1 4e7e0eb9 ✓), turtle glyph strokes (program interpretation, half A 136b0064 ✓), sort bars by height (combinatorics, half A 31f7f899 ✓). Harness ledger: 7 test-blind single checks, 7 exact (db7260a4, af726779, 9f5f939b, 4e7e0eb9, 136b0064, 31f7f899 + pour/bridge/crosshair/mirror/turtle/sort). Two half-A (public eval) tasks newly solved → V28 parity digest will differ from B0; expected correct_of_172 ≥ 51. WSL c30/c31 retargeted to V28 (V27 jobs deferred) — batch-0055.
+- Kaggle: v15 pushed as kernel version 4 (01:50 UTC), run in progress (WSL report 22:10 EDT) — the push size was the v14 problem.

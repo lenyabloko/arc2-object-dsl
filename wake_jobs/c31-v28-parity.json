@@ -1,0 +1,2 @@
+{"job_id": "c31-v28-parity", "mode": "parity", "probe": "tools/m1b/v28", "task_seconds": 300,
+ "note": "V28 parity + timing on the public eval. Expected: digest differs from B0 (two half-A tasks newly solved: 136b0064, 31f7f899), correct_of_172 >= 51. Half B / sealed counts sealed (B.4)."}
