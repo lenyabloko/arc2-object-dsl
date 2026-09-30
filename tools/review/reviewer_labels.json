@@ -1,0 +1,20 @@
+{
+ "note": "Task-level category labels given by the reviewer (Len) in chat. They add evidence of kind 'reviewer'; exact checks never override them.",
+ "labels": {
+  "4ff4c9da": {
+   "template": "reviewer: the input explicitly demonstrates the exemplar's shape and colour (Len, 2026-09-29)"
+  },
+  "c4d1a9ae": {
+   "colour_transfer": "reviewer: the colour of each 3-column segment moves to the segment on its left (Len, 2026-09-29)"
+  },
+  "42f83767": {
+   "template": "reviewer: exemplar \u2014 the input explicitly demonstrates the shape and colour to repeat (Len, 2026-09-29)"
+  },
+  "b457fec5": {
+   "palette": "reviewer: a key row supplies an ordered palette that is painted onto the large shape in layers from its leading edge (Len + Claude, 2026-09-29)"
+  },
+  "e73095fd": {
+   "cavity": "reviewer: fill every cavity \u2014 empty space inside one box shape; the grid is a cut through a 3D scene, so a box cut by the frame still has its cavity; space between different shapes is not a cavity (Len, 2026-09-29)"
+  }
+ }
+}

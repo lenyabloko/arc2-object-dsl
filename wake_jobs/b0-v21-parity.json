@@ -1,0 +1,2 @@
+{"job_id": "b0-v21-parity", "mode": "parity", "probe": "tools/m1b/v21", "task_seconds": 300,
+ "note": "Baseline B0 = frozen V21: full-probe parity + per-task timing on the public eval, same file as the Kaggle notebook (expected digest c93d287b, 49/172). Held-out: counts and anonymous times only."}

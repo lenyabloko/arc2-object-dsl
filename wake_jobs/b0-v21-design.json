@@ -1,0 +1,2 @@
+{"job_id": "b0-v21-design", "probe": "tools/m1b/v21", "families": null, "sets": ["train", "halfA"], "halfB_count": true, "timeout": 300,
+ "note": "Baseline B0 = frozen V21 (tools/wake/BASELINE_B0.md). Reference for the abductive meta-learning track: per-task ph on training + half A; N2 and half B counts only. Run with PYTHONHASHSEED=0; record WAKE_WORKERS."}
