@@ -64,10 +64,17 @@ def run(job, out, REPO, DATA):
     with open(os.path.join(out, "results.jsonl"), "w") as f:
         for r in R:
             if r["task"] not in N2: f.write(json.dumps(r) + "\n")        # N2: counts only
+    import hashlib as _h
+    SALT = "arc2-c21-2026-09-29"            # Fable guidance v1, B.4: N2 split once into gate / decide halves
+    gate = {k for k in N2 if int(_h.sha256((SALT + k).encode()).hexdigest()[:2], 16) % 2 == 0}
     S = {"job_id": job["job_id"], "mode": "full", "workers": n, "seconds": round(time.time() - t0),
          "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
          "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
-         "N2_exact_count": sum(r["exact"] for r in R if r["task"] in N2), "N2_n": len(N2),
-         "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None,
-         "timeouts": sum(1 for r in R + RB if r.get("timeout")), "max_s": max((r["s"] for r in R + RB), default=0)}
+         "N2_gate_exact_count": sum(r["exact"] for r in R if r["task"] in gate), "N2_gate_n": len(gate), "N2_salt": SALT,
+         "timeouts": sum(1 for r in R + RB if r.get("timeout")), "max_s": max((r["s"] for r in R + RB), default=0),
+         "decision_set": "sealed: see decide_sealed.json (N2-decide, half B); read only at the Oct 12 / Nov 1 looks"}
+    D = {"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate),
+         "N2_decide_n": len(N2 - gate),
+         "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None}
+    json.dump(D, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

@@ -37,7 +37,11 @@ def run(job, out, REPO, DATA):
     if sol:
         full = lambda k: k in sub and all(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for i, t in enumerate(sol[k]))
         S["correct_of_172"] = sum(any(sub[k][i][a] == t for a in ("attempt_1", "attempt_2")) for k in sol if k in sub for i, t in enumerate(sol[k]))
-        S["halfA_tasks"] = sum(full(k) for k in sol if k in A); S["halfB_tasks_count"] = sum(full(k) for k in sol if k in B)
-        S["sealed_tasks_count"] = sum(full(k) for k in sol if k not in A and k not in B)
+        S["halfA_tasks"] = sum(full(k) for k in sol if k in A)
+        # Fable guidance v1 B.4: half B and sealed are the decision set: counts sealed, not printed
+        json.dump({"halfB_tasks_count": sum(full(k) for k in sol if k in B),
+                   "sealed_tasks_count": sum(full(k) for k in sol if k not in A and k not in B)},
+                  open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
+        S["decision_set"] = "sealed: decide_sealed.json"
     json.dump({k: v for k, v in times.items() if k in A}, open(os.path.join(out, "halfA_times.json"), "w"), indent=0)
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

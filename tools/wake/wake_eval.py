@@ -61,11 +61,16 @@ if __name__ == "__main__":
     with open(os.path.join(out, "results.jsonl"), "w") as f:
         for r in R:
             if r["task"] not in N2: f.write(json.dumps(r) + "\n")   # N2 validation split: counts only
+    import hashlib as _h
+    SALT = "arc2-c21-2026-09-29"            # Fable guidance v1, B.4: N2 gate / decide split; decision set sealed
+    gate = {k for k in N2 if int(_h.sha256((SALT + k).encode()).hexdigest()[:2], 16) % 2 == 0}
     S = {"job_id": job["job_id"], "workers": n, "seconds": round(time.time() - t0),
-         "train_exact": sum(r["exact"] for r in R if r["task"] in tr),
-         "N2_exact_count": sum(r["exact"] for r in R if r["task"] in N2), "N2_fit_count": sum(r["occupied"] for r in R if r["task"] in N2), "N2_n": len(N2),
-         "halfB_fit_count": (sum(r["occupied"] for r in RB) if RB else None), "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
-         "wrong_first": sum(r["occupied"] and not r["exact"] for r in R), "timeouts": sum(1 for r in R if r.get("timeout")),
-         "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_n": len(B) if RB else None,
-         "codex_ops_loaded": bool(__import__("codex_ops").load())}
+         "train_exact": sum(r["exact"] for r in R if r["task"] in tr and r["task"] not in N2),
+         "N2_gate_exact_count": sum(r["exact"] for r in R if r["task"] in gate), "N2_gate_fit_count": sum(r["occupied"] for r in R if r["task"] in gate),
+         "N2_gate_n": len(gate), "N2_salt": SALT, "halfA_exact": sum(r["exact"] for r in R if r["task"] in A),
+         "wrong_first": sum(r["occupied"] and not r["exact"] for r in R if r["task"] not in N2), "timeouts": sum(1 for r in R if r.get("timeout")),
+         "decision_set": "sealed: decide_sealed.json", "codex_ops_loaded": bool(__import__("codex_ops").load())}
+    json.dump({"N2_decide_exact_count": sum(r["exact"] for r in R if r["task"] in N2 and r["task"] not in gate), "N2_decide_n": len(N2 - gate),
+               "halfB_exact_count": (sum(r["exact"] for r in RB) if RB else None), "halfB_fit_count": (sum(r["occupied"] for r in RB) if RB else None),
+               "halfB_n": len(B) if RB else None}, open(os.path.join(out, "decide_sealed.json"), "w"), indent=1)
     json.dump(S, open(os.path.join(out, "summary.json"), "w"), indent=1); print(S)

@@ -16,3 +16,9 @@ run every pending job with all local cores and hand back the results. Nothing he
 - Half B (tools/m1b/deval_b.txt) is counts only: never print, copy or inspect half-B task ids or results. The runner already only writes the count.
 - Sealed tasks are never used. Do not touch ~/.kaggle or credentials. No deletions.
 - This loop is separate from the daily Kaggle submission (submission/WSL_CLAUDE.md), which keeps priority once a day after 00:00 UTC.
+
+## Decision set (from 2026-09-30, Fable guidance v1 B.4)
+- N2 is split once by `sha256("arc2-c21-2026-09-29" + task_id)`: gate half (counts reported in summary.json) and
+  decide half. Half B and sealed are retired from gating.
+- Full and parity jobs write the decision-set counts (N2-decide, half B, sealed) to `decide_sealed.json`. Do not print,
+  quote or summarise that file; the cloud session reads it only at the Oct 12 and Nov 1 looks.
