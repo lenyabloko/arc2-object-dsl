@@ -11,7 +11,7 @@ the current source of truth and supersedes older instructions (including `submis
 4. If no submission has been made today (UTC), run:
    `bash submission/daily_submit.sh`
    It pushes the notebook named in `submission/LATEST`, waits for the Kaggle run, checks the parity
-   gate (`digest_match` true and `correct_of_172` equal to `submission/<version>/EXPECTED.json`),
+   gate (`digest_match` true and `prediction_digest` equal to `eval_digest` in `submission/<version>/EXPECTED.json`; v16 and earlier also check `correct_of_172`),
    submits only if both hold, and writes the outcome to
    `/mnt/c/Users/lenya/arc_extended_arga/cloud_outbox/submissions/<date>.json`.
 5. Report to Len in one short paragraph: version, kernel version, parity result, submission id/status,

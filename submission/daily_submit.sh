@@ -1,7 +1,9 @@
 #!/bin/bash
 # Daily gated Kaggle submission (run in WSL):  bash submission/daily_submit.sh
 # Pulls the repo, pushes the newest submission/<version> kernel, waits for it, checks the parity gate
-# (digest_match true AND correct_of_172 == expected), and only then submits. Never retries a failure.
+# (digest_match true AND prediction_digest == EXPECTED.json eval_digest; plus correct_of_172 == expected only for
+# versions whose EXPECTED.json still carries it, v16 and earlier), and only then submits. Never retries a failure.
+# v17+ notebooks (build_nb3.py) gate on the digest only (G18): equal digests imply equal predictions.
 # Writes a result record into the Windows repo folder so the cloud session can read it.
 set -u
 REPO=~/arc/arc2-object-dsl
@@ -14,7 +16,8 @@ bash submission/record_scores.sh || true          # scores of earlier submission
 V=$(cat submission/LATEST)                      # e.g. v2
 DIR=submission/$V
 KID=$(python3 -c "import json;print(json.load(open('$DIR/kernel-metadata.json'))['id'])")
-EXP=$(python3 -c "import json;print(json.load(open('$DIR/EXPECTED.json'))['correct_of_172'])")
+EXP=$(python3 -c "import json;print(json.load(open('$DIR/EXPECTED.json')).get('correct_of_172','none'))")
+EXPD=$(python3 -c "import json;print(json.load(open('$DIR/EXPECTED.json'))['eval_digest'])")
 HASH=$(sha256sum "$DIR"/*.ipynb | cut -c1-16)
 TODAY=$(date -u +%F)
 rec() { python3 - "$@" <<'PY'
@@ -41,7 +44,7 @@ OUTD=~/arc/out/${V}_$KV; mkdir -p "$OUTD"
 kaggle kernels output "$KID" -p "$OUTD" >/dev/null 2>&1
 P="$OUTD/parity_report.json"
 [ -f "$P" ] || { out status no_parity_report kernel_version "$KV"; exit 1; }
-OK=$(python3 -c "import json;r=json.load(open('$P'));print(int(r.get('digest_match') is True and r.get('correct_of_172')==$EXP))")
+OK=$(python3 -c "import json;r=json.load(open('$P'));e='$EXP';print(int(r.get('digest_match') is True and r.get('prediction_digest')=='$EXPD' and (e=='none' or str(r.get('correct_of_172'))==e)))")
 cp "$P" "$REPORT_DIR/${TODAY}_parity.json"
 [ "$OK" = 1 ] || { out status parity_failed kernel_version "$KV"; exit 1; }
 MSG="$V kernel v$KV parity ok $(date -u +%H%M%S)"

@@ -1,0 +1,9 @@
+{
+ "eval_digest": "a6b358c872131e99e869f5e907f34814236757a77af711228aa76523da85d43e",
+ "gate": "digest only (G18): parity_report.json digest_match true and prediction_digest == eval_digest; no all-120 count",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines",
+ "probe": "V31 = V29 + 13 reviewer task-line families (last stratum L_lines; fills empty answer slots only)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 24: compare_gate c32 (V29) vs c36 (V31) on the N2 gate b=0 c=0 n_changed=0; design train 605 -> 616, half A 38 -> 39, 0 lost; parity c37 digest a6b358c8, correct design slots 51, max 62.45 s per task, 0 timeouts",
+ "note": "lzma payload notebook (build_nb3.py), 0.38 MB; 61 probe files byte-identical to tools/m1b/v31 (v31_SHA256SUMS.txt)"
+}

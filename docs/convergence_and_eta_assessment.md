@@ -359,3 +359,15 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - Proposed fix: parity summaries report correct slots on the 99 plus the digest; the Kaggle gate matches the digest and a hash of the correct vector, not the sealed-inclusive count.
 - **Plan to Oct 12 (Len, `plan_oct12_path.md`) adopted, with one correction.** P1 counts only clean non-source tasks, so each role names at most 3 source tasks and the rest of its class stays harness-only.
   - The lattice already has `ray` and `connect` effect generators. The 33 ray/between tasks fail on missing parameters, not on missing roles.
+
+## Check-in 22:30 EDT Sep 30 (written 23:05)
+- **Submissions.** v16 (V29) submitted 01:53 UTC Oct 1, ref 56740911, parity digest match; score pending. Best public score so far 2.50 (v11, v15).
+- **Oct 12 plan, status of each lever.**
+  - D2 (LLM concepts): stopped (P1 0.03; grouped 1/14 held-out).
+  - O₀ vocabulary: Oct 3 stop rule met early (exact-proper 0.18 → 0.27).
+  - New lever, reviewer task lines (decision REVIEW-INPUT): 22 tested lines, 21 solve their own task (19 of them V29 failures, 4 ARC-2), 28 other design tasks exact, 1 other new over V29. Reuse per line ≈ 1.3–1.5, against 0.03 for D2.
+- **What converges.** Human generator sentences implemented by an LLM transfer; LLM-invented concepts and more relational vocabulary did not.
+- **What V31 must show.** V31 = V29 + 13 transferring line families is at the gate (c36/c37, compare_gate CYCLE=24). P2 needs b = 0 and c ≥ 1 on the N2 gate. That is plausible only if the line mechanisms recur in held-out tasks. The expected hidden-score gain stays small until lines cover ARC-2-like mechanisms; the 56 remaining ARC-2 "needs you" tasks are the direct route.
+- **Risk.**
+  - Hidden ARC-2 transfer is unmeasured: P2 is the only proxy.
+  - Each line costs Len about 1–2 minutes plus about 70k tokens of implementer work.
