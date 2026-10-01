@@ -1,0 +1,2 @@
+{"job_id": "c37-v31-parity", "mode": "parity", "probe": "tools/m1b/v31", "vocab_file": "tools/m1b/V31.txt", "task_seconds": 300,
+ "note": "V31 parity + timing on the public eval (G18: summary.json has the digest, design slots and split counts; the all-120 count is in decide_sealed.json, do not open). Report digest, correct_design_slots, max per-task seconds, total, timeouts."}

@@ -164,3 +164,49 @@ an individual beside the lattice objects. It also ships one sample item, RCC-8 `
   Layer-1 roles.
 - **What we have not measured yet.** Role chains of depth 2 and conjunctions of two names (G45) were not tried
   with O₀. They are next, before the Oct 3 stop rule.
+
+## 8. Addendum (21:00 EDT): the Oct 3 stop rule is met; Len's lines transfer
+
+**Richer concepts over O₀ do not close the gap.**
+
+`harness.py vcov2` (results/cycle23/vcov_o0_depth2.json) ran on the same 249 tasks, with all 24 Layer-1 items:
+
+| concepts allowed | exact | exact, proper subset |
+|---|---|---|
+| names + ∃r.N (depth ≤ 1), as in §7 | 0.414 | 0.257 |
+| + two-name conjunctions N1 ⊓ N2 (G45) | 0.414 | 0.257 |
+| + depth-2 chains ∃r1.∃r2.N | 0.414 | 0.269 (+3 tasks) |
+
+- Depth ≤ 1 reproduces §7 row for row. There were no timeouts.
+- The three newly covered tasks are each matched by 18–203 equivalent chains. That looks like fitting, not a rule.
+- Background cells carry only `kind=cell`, so conjunctions cannot name changed background cells.
+- Since §6: +0.08 from cells as individuals, +0.03 from Layer 1, +0.01 from depth 2. That is below the re-based
+  +0.10 bar. **The Oct 3 stop rule is met: more vocabulary will not raise coverage; the missing piece is the
+  generator.**
+
+**Len's free-text task lines (decision REVIEW-INPUT) transfer where LLM-proposed concepts did not.**
+
+The pipeline per line:
+1. Len writes one line per task.
+2. One subagent implements it from the line and the task's training pairs only (`tools/dream/o0/lines/<task>.py`).
+3. `tools/dream/o0/line_check.py` measures it.
+
+Results so far: 10 lines (M004 ×3, M102 ×7).
+
+| measure | Len's lines (10) | D2 LLM concepts (60, cycle 22) |
+|---|---|---|
+| own task exact (one check) | 9 / 10 | 58 / 60 |
+| non-source exact on the design population | 20 (2.0 per line) | 16 non-source exact, 2 clean (P1 0.03) |
+| non-source wrong | 4 | 7 |
+| new over V29 | 0 | 2 |
+
+- **Where reuse comes from.** It is concentrated in generator lines: "decorate … in accentuated locations" gives 7,
+  "the first example does inverse" (a two-way mapping per marked line) 5, "colour palette transfer to solid shape" 3.
+- **The caveat, corrected at 22:15 EDT.** Len wrote most lines on residual groups, following Fable's audit, so
+  the tasks themselves are mostly V29 failures: 16 of the 18 tasks his lines solve are ones V29 fails. Those are
+  real design gains once the families enter the build. The reuse hits on *other* tasks are almost all tasks V29
+  already solves; one is clean (1bfc4729). The residual groups contain none of the 60 ARC-2 design tasks V29 fails,
+  so these gains are ARC-1 gains. Since 20:40 EDT, "needs you" on the page is those 60 tasks.
+- **Proposal for round 10.** Count P1 over task lines, not over named concepts. Admit a line family when (a) its
+  own task is exact, (b) it has ≥ 1 clean non-source exact on design, and (c) it has no wrong fire on a task V29
+  solves. T43's group threshold (half the group) is a poor fit: Len's groups are mixed, and he split M004 himself.
