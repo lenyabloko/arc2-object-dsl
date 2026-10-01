@@ -1,0 +1,40 @@
+// Acceptance tests T48-T52 (Fable review-page audit §5) against a mock db loaded with the live collections.
+const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
+const DB = '/tmp/claude-0/-home-claude/47726fdd-2a5c-5c69-a676-871abe4e1a48/scratchpad/db/';
+const col = n => { const o = {}; for (const f of fs.readdirSync(DB + n)) { if (!f.endsWith('.json')) continue; const d = JSON.parse(fs.readFileSync(DB + n + '/' + f)); o[f.slice(0, -5)] = d.data || d } return o };
+(async () => {
+  const store0 = { decisions: col('decisions'), priors: col('priors'), feedback: col('feedback'), looks: {} };
+  const CY = JSON.parse(fs.readFileSync(DB + 'cycle/current_new.json', 'utf8'));
+  const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1280, height: 1200 } }); const errs = [];
+  p.on('pageerror', e => errs.push(e.message));
+  await p.addInitScript(([S, CY]) => { const store = S; const subs = []; window.__store = store;
+    const snap = (c) => ({ docs: Object.entries(store[c] || {}).map(([id, d]) => ({ id, data: () => d })) });
+    const fire = () => subs.forEach(([c, f]) => f(snap(c)));
+    const db = { collection: (c) => ({ onSnapshot: (fn) => { subs.push([c, fn]); fn(snap(c)); return () => {} }, doc: (id) => ({ delete: async () => { delete (store[c] || {})[id]; fire() }, set: async (d) => { (store[c] = store[c] || {})[id] = d; fire(); } }) }),
+      doc: (path) => ({ onSnapshot: (fn) => { fn({ exists: true, data: () => CY }); return () => {} } }) };
+    window.claude = { use: async () => db }; }, [store0, CY]);
+  const R = {};
+  // T48: a train-split task: outputs hidden, reveal logs a look, note shows test_seen
+  await p.goto('http://127.0.0.1:8765/review_v25.html?r=48#00576224'); await p.waitForTimeout(3000);
+  const hidden = await p.$$eval('h3', xs => xs.some(x => x.textContent.startsWith('Test inputs (outputs hidden)')));
+  await p.click('button:has-text("Reveal test output")'); await p.waitForTimeout(800);
+  const looks = await p.evaluate(() => Object.values(window.__store.looks || {}).filter(v => v.task === '00576224').length);
+  const seen = await p.evaluate(() => !!(window.__store.decisions['T_00576224'] || {}).test_seen);
+  const banner = await p.$$eval('.banner', xs => xs.some(x => /test_seen/.test(x.textContent)));
+  R.T48 = { hidden_by_default: hidden, looks_row: looks === 1, task_flagged_test_seen: seen && banner };
+  // T49: a card with harness write-back shows status/lint/phi/round trip/solves and appears in Vocabulary
+  await p.goto('http://127.0.0.1:8765/review_v25.html?r=49#priors'); await p.waitForTimeout(2000);
+  await p.click('td:has-text("halo_ring")'); await p.waitForTimeout(400);
+  const kv = await p.$$eval('.kv span', xs => xs.map(x => x.textContent));
+  const val = k => { const i = kv.indexOf(k); return i >= 0 ? kv[i + 1] : null };
+  await p.evaluate(() => { tab = 'vocab'; render() }); await p.waitForTimeout(300);
+  const inVocab = await p.$$eval('td', xs => xs.some(x => x.textContent === 'halo_ring'));
+  R.T49 = { status: val('status'), lint: val('lint'), phi: !!val('preconditions hold on (design tasks)') && val('preconditions hold on (design tasks)') !== '—', roundtrip: val("round trip: reproduces the motivating tasks' training outputs"), in_vocabulary_tab: inVocab };
+  // T50: packets
+  R.T50 = await p.evaluate(() => ({ top_n: PK.packets[0].n, ct_on_every: PK.packets.every(k => k.ct && 'n_top' in k.ct), llm_cleared_absent: PK.excluded.llm_cleared > 0 }));
+  // T51: freshness
+  R.T51 = await p.evaluate(() => { const S = new Set(D.solved); const nm = needMap(); return { needs_you_but_solved: Object.keys(nm).filter(t => S.has(t)).length, build: (cycle || {}).vocab_name } });
+  // T52: every human decision has feedback
+  R.T52 = await p.evaluate(() => { const human = Object.entries(dec).filter(([k, d]) => d && d.reviewer === 'len').map(([k]) => k); return { human: human.length, annotated: human.filter(k => feedback[k]).length, missing: human.filter(k => !feedback[k]) } });
+  console.log(JSON.stringify(R, null, 1)); console.log('errors', errs.slice(0, 3)); await b.close();
+})();

@@ -1,0 +1,2 @@
+{"card": "halo_ring", "n": 997, "fired": 256, "fit": 3, "exact_own": [], "exact_other": ["4258a5f9", "dc1df850", "f0df5ff0"], "wrong": [], "roundtrip": [0, 11], "lint": ["integer literals > 2 in code (check each is a declared domain value): 3"], "time": "2026-09-30T23:48Z"}
+{"card": "halo_ring", "n": 997, "fired": 256, "fit": 3, "exact_own": [], "exact_other": ["4258a5f9", "dc1df850", "f0df5ff0"], "wrong": [], "roundtrip": [0, 11], "lint": [], "time": "2026-09-30T23:49Z"}

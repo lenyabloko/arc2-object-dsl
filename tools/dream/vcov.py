@@ -61,6 +61,7 @@ def task_cov(t, ab):
         for i in sorted(X):
             m = RA.msc(i, at, R, 1); C = m if C is None else RA.lcs(C, m)
     res['loose'] = bool(C and (C[0] or C[1]))
+    if C: res['ct'] = {'names': sorted(map(str, C[0]))[:12], 'roles': sorted(C[1])}
     if not res['loose']: return res
     W = [0]
     try:
@@ -86,7 +87,7 @@ def main():
             except Exception: signal.alarm(0); continue
             share = r['uncovered'] / max(r['changed'], 1)
             if best['bg_share'] is None or share < best['bg_share']: best['bg_share'] = round(share, 3)
-            if r['loose'] and not best['loose']: best['loose'] = True; best['ab_loose'] = ab
+            if r['loose'] and not best['loose']: best['loose'] = True; best['ab_loose'] = ab; best['ct'] = r.get('ct')
             if r['exact'] and not best['exact']: best['exact'] = True; best['ab_exact'] = ab; best['concept'] = r.get('concept')
             if r['exact'] and not r['x_all']: best['exact_proper'] = True
         rows.append(best); print(json.dumps(best), flush=True)

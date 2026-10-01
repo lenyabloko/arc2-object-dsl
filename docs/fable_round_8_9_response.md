@@ -131,3 +131,36 @@ an individual beside the lattice objects. It also ships one sample item, RCC-8 `
   grid, while its pair density is 0.11. v9's 0.01 ≤ φ ≤ 0.5 rejects every basic QSR role if φ is grid-level.
   Proposal: for roles, φ = the density of related pairs; for concepts, φ = the share of individuals. The harness
   reports both.
+
+## 7. Addendum (18:45 EDT): O₀ Layer 1 built and measured
+
+- **What was built.** 24 Layer-1 items were written from definitions by five subagents in `tools/dream/o0/items/`:
+  - RCC-8: DC, EC, PO, EQ, TPP, NTPP and inverses, PP, PPi;
+  - cardinal directions, `aligned`, `adjacent_dir`;
+  - Allen relations on the row and column projections;
+  - `on_ray`, `between`, `line_of_sight`, `nearest`, `within(k)`;
+  - `translate_of`, `reflection_of`, `rotation_of`, `mirror_cell`, `period_cell`.
+- **Checks.** Every item is deterministic, raises no errors, and takes ≤ 17 ms per 30×30 grid. Every declared
+  item-level subsumption holds. Setting-level subsumptions (e.g. on_ray[d, obstacle] ⊑ on_ray[d, border]) were
+  checked by the authors on all design grids. The harness cannot yet express them. Results are in
+  `results/cycle23/o0_check_layer1.json`.
+- **φ.** Every item except `allen[overlaps]` fires on more than half of all grids, so a grid-level φ window would
+  reject nearly the whole layer (§6).
+
+| vocabulary (249 failed same-size design tasks) | loose | exact | exact, proper subset |
+|---|---|---|---|
+| V29 names + base roles, objects only | 0.45 | 0.33 | 0.18 |
+| + background cells as individuals | 0.88 | 0.40 | 0.23 |
+| + all 24 Layer-1 items (role chains of depth ≤ 1) | 0.96 | 0.41 | **0.26** |
+
+**Reading.**
+- **Small effect.** Layer 1 adds 7 tasks (+0.03) to exact, proper-subset coverage. The re-based stop rule asks
+  for ≥ +0.10. The new concepts that name a target set exactly are one each of `period_cell`, `allen[meets]`,
+  `dir_rel[S]`, `on_ray[N]` and `between[col]`.
+- **Vocabulary is not the main gap.** With QSR vocabulary present, most failed tasks still have no concept whose
+  extension equals the set of changed cells. The changed cells are selected by *what is drawn* (a ray until a
+  colour, a halo of the right width, a completed pattern), not by a relation that holds in the input. This points
+  to the generator / action language (v9's Oct 5 alternative), and to Layer-2 schemas with mechanisms, not more
+  Layer-1 roles.
+- **What we have not measured yet.** Role chains of depth 2 and conjunctions of two names (G45) were not tried
+  with O₀. They are next, before the Oct 3 stop rule.

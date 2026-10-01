@@ -34,7 +34,16 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "mcccg"
+"ab_loose": "mcccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "06df4c85",
@@ -42,7 +51,29 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=1",
+"D1:size_rank_asc=0",
+"D4:n_touch=1",
+"alignedColor=0",
+"color=0",
+"color_most_common",
+"filled_rect",
+"inside_other",
+"shape_shared"
+],
+"roles": [
+"aligned",
+"inside",
+"same_shape",
+"touches"
+]
+}
 },
 {
 "task": "09629e4f",
@@ -58,6 +89,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=1",
+"D4:n_touch=1",
+"alignedColor=1",
+"alignedColor=3",
+"color=1",
+"color_most_common",
+"contains_other",
+"has_hole",
+"shape_unique",
+"size>12",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -93,6 +145,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"adjColor=8",
+"alignedColor=2",
+"alignedColor=8",
+"bottommost",
+"color=8",
+"color_most_common",
+"exists_same_holes",
+"leftmost",
+"shape_unique",
+"size_unique"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -125,6 +197,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "mcccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"D1:size_rank_asc=0",
+"D4:n_touch=0",
+"bottommost",
+"filled_rect",
+"isolated",
+"largest",
+"leftmost",
+"multicolor"
+],
+"roles": []
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -138,6 +227,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=1",
+"color_most_common",
+"shape_unique",
+"size>12",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -151,6 +254,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D1:size_rank=0",
+"D1:size_rank_asc=2",
+"bottommost",
+"color_least_common",
+"color_unique",
+"contains_other",
+"has_hole",
+"largest",
+"leftmost",
+"rightmost"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -165,6 +289,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -185,6 +321,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=4",
+"alignedColor=4",
+"alignedColor=5",
+"color=5",
+"color_most_common",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -199,6 +349,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D1:size_rank=0",
+"D1:size_rank_asc=1",
+"D4:n_touch=4",
+"adjColor=5",
+"alignedColor=5",
+"bottommost",
+"color=7",
+"color_least_common",
+"color_unique",
+"contains_other"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -213,6 +384,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D1:size_rank=0",
+"D1:size_rank_asc=0",
+"D4:n_touch=0",
+"color=5",
+"color_least_common",
+"color_most_common",
+"largest",
+"rightmost",
+"shape_unique",
+"smallest"
+],
+"roles": []
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -226,7 +414,21 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "mcccg"
+"ab_loose": "mcccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D4:n_touch=0",
+"alignedColor=1",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "15660dd6",
@@ -239,6 +441,21 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=1",
+"D4:n_touch=0",
+"color_least_common",
+"color_most_common",
+"has_hole",
+"isolated",
+"shape_unique",
+"size_unique"
+],
+"roles": [
+"aligned"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -264,6 +481,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -284,6 +510,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=2",
+"alignedColor=2",
+"alignedColor=4",
+"color=4",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -300,7 +539,23 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"alignedColor=1",
+"alignedColor=5",
+"bottommost",
+"color=5",
+"color_most_common",
+"isolated",
+"shape_unique"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "1ae2feb7",
@@ -330,6 +585,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -350,6 +617,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D1:size_rank=0",
+"D1:size_rank_asc=1",
+"adjColor=2",
+"adjColor=5",
+"alignedColor=2",
+"alignedColor=5",
+"bottommost",
+"color=7",
+"color_least_common",
+"color_unique"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -398,6 +686,17 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=8",
+"shape_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -422,6 +721,21 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=7",
+"alignedColor=7",
+"square_bbox",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -457,6 +771,17 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"inside_other",
+"touches_other"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -485,6 +810,25 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=1",
+"adjColor=8",
+"alignedColor=0",
+"alignedColor=8",
+"color=0",
+"color_most_common",
+"filled_rect",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -528,6 +872,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"alignedColor=8",
+"exists_same_holes",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -553,6 +911,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"D1:size_rank_asc=2",
+"D4:n_touch=2",
+"adjColor=2",
+"adjColor=8",
+"alignedColor=2",
+"alignedColor=8",
+"color=0",
+"color_least_common"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -582,6 +960,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=7",
+"alignedColor=4",
+"alignedColor=5",
+"alignedColor=7",
+"alignedColor=9",
+"color=4",
+"color_most_common",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -624,6 +1019,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"exists_same_holes",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -636,7 +1044,25 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"adjColor=3",
+"alignedColor=3",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"exists_same_holes",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "3490cc26",
@@ -663,6 +1089,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=2",
+"alignedColor=2",
+"color_most_common",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -677,6 +1115,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"adjColor=8",
+"alignedColor=8",
+"bottommost",
+"color=7",
+"color_least_common",
+"color_unique",
+"largest",
+"leftmost"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -695,6 +1153,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D1:size_rank=0",
+"D4:n_touch=4",
+"adjColor=7",
+"alignedColor=7",
+"bottommost",
+"color=7",
+"contains_other",
+"has_hole",
+"largest",
+"leftmost",
+"rightmost"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -733,7 +1212,28 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=2",
+"D1:size_rank_asc=2",
+"D4:n_touch=1",
+"adjColor=7",
+"alignedColor=5",
+"alignedColor=7",
+"color=0",
+"color_most_common",
+"contextColor=7",
+"inside_other"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+}
 },
 {
 "task": "3de23699",
@@ -746,6 +1246,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=5",
+"D1:size_rank=0",
+"D4:n_touch=4",
+"adjColor=1",
+"adjColor=2",
+"adjColor=3",
+"adjColor=4",
+"adjColor=6",
+"adjColor=7",
+"adjColor=9"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -771,6 +1292,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"alignedColor=7",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -785,6 +1318,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=7",
+"alignedColor=1",
+"alignedColor=7",
+"alignedColor=8",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -797,7 +1343,29 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=0",
+"D4:n_touch=1",
+"alignedColor=0",
+"alignedColor=2",
+"color=0",
+"color_most_common",
+"filled_rect",
+"inside_other",
+"shape_shared",
+"size=9",
+"square_bbox"
+],
+"roles": [
+"aligned",
+"inside",
+"same_shape",
+"touches"
+]
+}
 },
 {
 "task": "4522001f",
@@ -809,7 +1377,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"alignedColor=2"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "45a5af55",
@@ -829,6 +1407,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D4:n_touch=1",
+"alignedColor=7",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -855,6 +1447,22 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=7",
+"alignedColor=7",
+"alignedColor=8",
+"exists_same_holes",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -872,6 +1480,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=2",
+"shape_unique",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -903,7 +1523,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"shape_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "4c7dc4dd",
@@ -922,7 +1552,16 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "4e469f39",
@@ -942,6 +1581,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "mcccg",
+"ct": {
+"names": [
+"D4:n_touch=0",
+"adjColor=5",
+"alignedColor=5",
+"has_hole",
+"multicolor",
+"shape_unique",
+"size>12",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -959,7 +1615,24 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "mcccg"
+"ab_loose": "mcccg",
+"ct": {
+"names": [
+"D4:n_touch=0",
+"has_hole",
+"multicolor",
+"shape_unique",
+"size>12",
+"size_unique",
+"topmost",
+"touches_border",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "522fdd07",
@@ -967,7 +1640,22 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "52df9849",
@@ -976,6 +1664,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=1",
+"adjColor=7",
+"alignedColor=7",
+"color_least_common",
+"color_unique",
+"contextColor=7",
+"exists_same_holes",
+"filled_rect",
+"inside_other"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1011,7 +1720,20 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"alignedColor=8",
+"color_most_common",
+"exists_same_holes",
+"sym_lr",
+"sym_ud"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "58e15b12",
@@ -1068,6 +1790,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D4:n_touch=0",
+"color=8",
+"color_least_common",
+"color_most_common",
+"shape_unique",
+"size_unique",
+"topmost",
+"touches_border"
+],
+"roles": []
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1082,6 +1817,25 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"alignedColor=8",
+"color=8",
+"color_least_common",
+"color_most_common",
+"filled_rect",
+"isolated",
+"shape_unique",
+"size>12",
+"size_unique",
+"sym_lr"
+],
+"roles": [
+"aligned"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1145,7 +1899,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"alignedColor=0",
+"alignedColor=5"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "6d58a25d",
@@ -1161,6 +1925,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"shape_unique",
+"touches_border"
+],
+"roles": []
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1217,6 +1994,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=0",
+"alignedColor=8",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1238,6 +2027,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=5",
+"D1:size_rank=0",
+"D4:n_touch=4",
+"bottommost",
+"color=8",
+"color_least_common",
+"contains_other",
+"has_hole",
+"largest",
+"leftmost",
+"rightmost"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1265,7 +2075,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "7b5033c1",
@@ -1281,7 +2101,20 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"alignedColor=8",
+"color=8",
+"color_most_common",
+"exists_same_holes"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "7d7772cc",
@@ -1290,6 +2123,16 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1303,7 +2146,24 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"adjColor=0",
+"adjColor=8",
+"alignedColor=0",
+"alignedColor=8",
+"color=0",
+"shape_unique",
+"size_unique",
+"touches_border",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "7e4d4f7c",
@@ -1316,6 +2176,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=1",
+"D1:size_rank=0",
+"D1:size_rank_asc=1",
+"D4:n_touch=1",
+"bottommost",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"contains_other",
+"has_hole"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1330,6 +2211,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D1:size_rank=0",
+"D4:n_touch=4",
+"adjColor=1",
+"adjColor=2",
+"adjColor=3",
+"adjColor=4",
+"adjColor=8",
+"alignedColor=1",
+"alignedColor=2",
+"alignedColor=3",
+"alignedColor=4"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1344,6 +2246,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1422,7 +2333,21 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"adjColor=0",
+"adjColor=1",
+"alignedColor=0",
+"alignedColor=1",
+"alignedColor=3",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "8a004b2b",
@@ -1443,6 +2368,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1456,6 +2390,24 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=1",
+"D4:n_touch=1",
+"contains_other",
+"has_hole",
+"shape_unique",
+"size>12",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1477,6 +2429,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=1",
+"inside_other",
+"touches_other"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1554,6 +2519,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=1",
+"D1:size_rank_asc=1",
+"D4:n_touch=1",
+"adjColor=5",
+"alignedColor=5",
+"color=0",
+"color_least_common",
+"color_most_common",
+"color_unique"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -1568,6 +2554,14 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=5"
+],
+"roles": [
+"aligned"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1580,7 +2574,18 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "97239e3d",
@@ -1603,6 +2608,25 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D4:n_touch=1",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"shape_unique",
+"size_unique",
+"touches_border",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1616,6 +2640,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"alignedColor=2",
+"size>12",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1630,6 +2666,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"D4:n_touch=1",
+"alignedColor=1",
+"alignedColor=8",
+"color_least_common",
+"color_unique",
+"exists_same_holes",
+"filled_rect",
+"inside_other"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1644,6 +2701,19 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"shape_unique",
+"size_unique",
+"touches_border",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1656,7 +2726,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"alignedColor=0",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "98cf29f8",
@@ -1690,6 +2770,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1711,6 +2800,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"shape_unique",
+"size>12",
+"size_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1728,6 +2829,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"alignedColor=3",
+"alignedColor=9",
+"bottommost",
+"color_least_common",
+"color_unique",
+"shape_unique",
+"size>12",
+"size_unique",
+"topmost",
+"touches_border"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1741,6 +2862,21 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=2",
+"adjColor=5",
+"alignedColor=2",
+"alignedColor=5",
+"color=5",
+"color_most_common",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1769,6 +2905,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"shape_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1782,6 +2930,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D12:n_holes=0",
+"D4:n_touch=3",
+"adjColor=7",
+"alignedColor=2",
+"alignedColor=5",
+"alignedColor=6",
+"alignedColor=7",
+"alignedColor=8",
+"alignedColor=9",
+"shape_unique",
+"size_unique"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1794,7 +2962,22 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"color_most_common",
+"inside_other",
+"shape_shared",
+"touches_other"
+],
+"roles": [
+"aligned",
+"inside",
+"same_shape",
+"touches"
+]
+}
 },
 {
 "task": "a1aa0c1e",
@@ -1807,6 +2990,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"color_least_common",
+"color_unique",
+"shape_unique",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1863,7 +3060,24 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbvcg"
+"ab_loose": "nbvcg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=0",
+"alignedColor=0",
+"color=0",
+"color_least_common",
+"color_most_common",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "a8c38be5",
@@ -1876,6 +3090,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=1",
+"D1:size_rank_asc=0",
+"D4:n_touch=1",
+"adjColor=5",
+"alignedColor=5",
+"color=0",
+"color_least_common",
+"color_most_common",
+"color_unique"
+],
+"roles": [
+"aligned",
+"inside",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -1939,6 +3174,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=1",
+"alignedColor=8"
+],
+"roles": [
+"aligned"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -1953,6 +3197,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"D4:n_touch=0",
+"alignedColor=3",
+"color=5",
+"color_most_common",
+"isolated",
+"shape_unique",
+"size>12",
+"size_unique",
+"square_bbox"
+],
+"roles": [
+"aligned"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -1985,6 +3246,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"bottommost",
+"color=7",
+"color_least_common",
+"color_unique",
+"largest",
+"leftmost",
+"rightmost",
+"shape_unique"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2012,7 +3293,16 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "b74ca5d1",
@@ -2020,7 +3310,16 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "b7f8a4d8",
@@ -2065,6 +3364,15 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2102,7 +3410,24 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbvcg"
+"ab_loose": "nbvcg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=0",
+"alignedColor=0",
+"color=0",
+"color_least_common",
+"color_most_common",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "c4d067a0",
@@ -2111,6 +3436,27 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=5",
+"D1:size_rank=0",
+"D1:size_rank_asc=2",
+"D4:n_touch=4",
+"bottommost",
+"color_least_common",
+"color_unique",
+"contains_other",
+"has_hole",
+"largest"
+],
+"roles": [
+"aligned",
+"contains",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2125,6 +3471,17 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2164,6 +3521,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"adjColor=2",
+"alignedColor=2",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2177,7 +3548,21 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"alignedColor=1",
+"color=1",
+"color_most_common",
+"shape_shared",
+"square_bbox"
+],
+"roles": [
+"aligned",
+"same_shape"
+]
+}
 },
 {
 "task": "ce602527",
@@ -2201,6 +3586,18 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=8",
+"shape_unique",
+"touches_border",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2235,6 +3632,28 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"adjColor=2",
+"adjColor=5",
+"alignedColor=2",
+"alignedColor=5",
+"color=0",
+"color_least_common",
+"color_unique",
+"contains_other",
+"contextColor=2",
+"has_hole"
+],
+"roles": [
+"aligned",
+"contains",
+"inside",
+"touches"
+]
+},
 "ab_exact": "ccgbr",
 "concept": [
 [],
@@ -2264,6 +3683,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"color_least_common",
+"color_unique",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2288,6 +3721,17 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"adjColor=7",
+"alignedColor=7",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2308,6 +3752,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=4",
+"alignedColor=4",
+"alignedColor=5",
+"exists_same_holes",
+"filled_rect",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2320,7 +3781,20 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D4:n_touch=0",
+"alignedColor=1",
+"color=1",
+"color_most_common",
+"shape_shared"
+],
+"roles": [
+"aligned",
+"same_shape"
+]
+}
 },
 {
 "task": "da2b0fe3",
@@ -2336,6 +3810,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=8",
+"color=8",
+"shape_unique",
+"size_unique",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2350,6 +3838,23 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "mcccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"D1:size_rank_asc=0",
+"D4:n_touch=0",
+"bottommost",
+"filled_rect",
+"isolated",
+"largest",
+"leftmost",
+"multicolor"
+],
+"roles": []
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2384,6 +3889,16 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=7",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2407,7 +3922,17 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "ccgbr"
+"ab_loose": "ccgbr",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+}
 },
 {
 "task": "dfadab01",
@@ -2430,6 +3955,16 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"alignedColor=8",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2443,6 +3978,16 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2456,6 +4001,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=8",
+"alignedColor=8",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2476,6 +4035,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank=0",
+"D1:size_rank_asc=1",
+"D4:n_touch=1",
+"adjColor=6",
+"alignedColor=6",
+"color=1",
+"color_least_common",
+"color_most_common",
+"color_unique"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2490,6 +4069,24 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"adjColor=5",
+"alignedColor=5",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2515,6 +4112,26 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D1:size_rank>3",
+"D1:size_rank_asc=0",
+"D4:n_touch=0",
+"alignedColor=1",
+"color=1",
+"color_most_common",
+"shape_shared",
+"single_pixel",
+"size=1",
+"smallest"
+],
+"roles": [
+"aligned",
+"same_shape"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2577,6 +4194,24 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"D12:n_holes=0",
+"D4:n_touch=0",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"square_bbox",
+"sym_lr",
+"sym_ud",
+"touches_other"
+],
+"roles": [
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2609,6 +4244,20 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D12:n_holes=0",
+"adjColor=7",
+"alignedColor=7",
+"color=5",
+"color_most_common",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "mcccg",
 "concept": [
 [],
@@ -2702,6 +4351,21 @@
 "exact": true,
 "bg_share": 0.0,
 "ab_loose": "nbccg",
+"ct": {
+"names": [
+"D10:largest_of_its_color",
+"D10:smallest_of_its_color",
+"color_least_common",
+"color_most_common",
+"color_unique",
+"square_bbox",
+"touches_other"
+],
+"roles": [
+"aligned",
+"touches"
+]
+},
 "ab_exact": "nbccg",
 "concept": [
 [],
@@ -2736,7 +4400,20 @@
 "loose": true,
 "exact": false,
 "bg_share": 0.0,
-"ab_loose": "nbccg"
+"ab_loose": "nbccg",
+"ct": {
+"names": [
+"D4:n_touch=0",
+"alignedColor=2",
+"color=2",
+"color_least_common",
+"color_most_common",
+"isolated"
+],
+"roles": [
+"aligned"
+]
+}
 },
 {
 "task": "ff72ca3e",
