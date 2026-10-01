@@ -1,0 +1,220 @@
+% O0 vocabulary as stratified Datalog (Fable guidance v10a, G62/G63, test T59).
+% One head predicate per item; item parameters are trailing arguments in sorted parameter-name order:
+%   rcc8_<R>(I, J)  allen(I, J, Axis, Rel)  aligned(I, J, Axis)  between(I, J, Axis)  dir_rel(I, J, D)
+%   adjacent_dir(I, J, D)  line_of_sight(I, J, Axis)  on_ray(I, J, D, Stop)  nearest(I, J)  within(I, J, K, Metric)
+%   mirror_cell(I, J, Axis)  period_cell(I, J, Axis, P)  reflection_of(I, J, Axis)  rotation_of(I, J, K)
+%   translate_of(I, J)
+% EDB per grid (primitive facts only, built by t59_parity.edb from the grid and the harness individuals):
+%   size(H, W)        grid height and width
+%   cell(Y, X, C)     every grid position with its colour
+%   bg(C)             background colour
+%   ind(I, K)         individual I (harness index) of kind "object" or "cell" (one per background cell)
+%   pix(I, Y, X)      cell (Y, X) belongs to individual I
+% Constant tables below (direction vectors, parameter domains) are part of this file. No item answer is input.
+% Style: Horn rules, safe heads, positive recursion only (rays, run labels, enclosure flood), stratified negation
+% and head aggregates (min / max / count) only over lower strata.
+
+% ---------------------------------------------------------------- constant tables
+dirvec("N", -1, 0). dirvec("S", 1, 0). dirvec("E", 0, 1). dirvec("W", 0, -1).
+dirvec("NE", -1, 1). dirvec("NW", -1, -1). dirvec("SE", 1, 1). dirvec("SW", 1, -1).
+card("N"). card("S"). card("E"). card("W").
+losax("row"). losax("col").
+btax("row", "row"). btax("col", "col"). btax("d1", "diag"). btax("d2", "diag").
+wk(1). wk(2). wk(3).
+pp(2). pp(3). pp(4).
+stop("border"). stop("obstacle").
+o3(-3). o3(-2). o3(-1). o3(0). o3(1). o3(2). o3(3).
+refl("H"). refl("V"). refl("D"). refl("A").
+rot("R1", 1). rot("R2", 2). rot("R3", 3).
+swaps("D"). swaps("A"). swaps("R1"). swaps("R3").
+keeps("I"). keeps("H"). keeps("V"). keeps("R2").
+
+% ---------------------------------------------------------------- grid geometry
+row(Y) :- cell(Y, _, _).
+col(X) :- cell(_, X, _).
+ystep(D, Y, Y2) :- dirvec(D, DY, _), row(Y), Y2 = Y + DY, row(Y2).
+xstep(D, X, X2) :- dirvec(D, _, DX), col(X), X2 = X + DX, col(X2).
+nxt(D, Y, X, Y2, X2) :- ystep(D, Y, Y2), xstep(D, X, X2), cell(Y2, X2, _).      % one step in direction D
+n4(Y, X, Y2, X2) :- card(D), nxt(D, Y, X, Y2, X2).
+border(Y, X) :- cell(Y, X, _), card(D), !nxt(D, Y, X, _, _).                     % fewer than four 4-neighbours
+offc(DY, DX, D) :- o3(DY), o3(DX), D = max(abs(DY), abs(DX)).                    % offsets with Chebyshev length
+offm(DY, DX, D) :- o3(DY), o3(DX), D = abs(DY) + abs(DX), D <= 3.                 % offsets with Manhattan length
+
+% ---------------------------------------------------------------- individuals
+obj(I) :- ind(I, "object").
+opix(J, Y, X) :- obj(J), pix(J, Y, X).
+cellind(I, Y, X) :- ind(I, "cell"), pix(I, Y, X).         % free cell: the background-cell individual at (Y, X)
+nf(Y, X) :- cell(Y, X, _), !cellind(_, Y, X).             % non-background position
+% harness owner map (last individual covering a cell): a free cell is covered by its background-cell individual
+% only; a covered non-background cell by objects only, the owner being the one with the largest index
+own(Y, X, max(I)) :- opix(I, Y, X).
+lab(Y, X, J) :- own(Y, X, J).                             % label of a non-background position: owning object
+lab(Y, X, -1) :- nf(Y, X), !own(Y, X, _).                 % or -1 (blocker: non-background, no object)
+
+% bounding-box projections on the row / column axis: lo(I, Axis, Min), hi(I, Axis, Max); oiv for objects
+lo(I, "row", min(Y)) :- pix(I, Y, _).
+hi(I, "row", max(Y)) :- pix(I, Y, _).
+lo(I, "col", min(X)) :- pix(I, _, X).
+hi(I, "col", max(X)) :- pix(I, _, X).
+oiv(J, A, L, H) :- obj(J), lo(J, A, L), hi(J, A, H).
+
+% ---------------------------------------------------------------- Allen relations, aligned, dir_rel, adjacent_dir
+allen(I, J, A, "before") :- hi(I, A, H), oiv(J, A, C, _), H + 1 < C.
+allen(I, J, A, "meets") :- hi(I, A, H), C = H + 1, oiv(J, A, C, _).
+allen(I, J, A, "overlaps") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), L < C, C <= H, D > H.
+allen(I, J, A, "during") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), C < L, D > H.
+allen(I, J, A, "starts") :- lo(I, A, L), hi(I, A, H), oiv(J, A, L, D), D > H.
+allen(I, J, A, "finishes") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, H), C < L.
+allen(I, J, A, "equals") :- lo(I, A, L), hi(I, A, H), oiv(J, A, L, H), I != J.
+aligned(I, J, A) :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), L <= D, C <= H, I != J.
+
+dir_rel(I, J, "N") :- aligned(I, J, "col"), hi(I, "row", B), lo(J, "row", C), B < C.
+dir_rel(I, J, "S") :- aligned(I, J, "col"), lo(I, "row", A), hi(J, "row", D), A > D.
+dir_rel(I, J, "E") :- aligned(I, J, "row"), lo(I, "col", A), hi(J, "col", D), A > D.
+dir_rel(I, J, "W") :- aligned(I, J, "row"), hi(I, "col", B), lo(J, "col", C), B < C.
+dir_rel(I, J, "NE") :- hi(I, "row", B), oiv(J, "row", C, _), B < C, lo(I, "col", A), hi(J, "col", D), A > D.
+dir_rel(I, J, "NW") :- hi(I, "row", B), oiv(J, "row", C, _), B < C, hi(I, "col", E), lo(J, "col", F), E < F.
+dir_rel(I, J, "SE") :- lo(I, "row", A), oiv(J, "row", _, D), A > D, lo(I, "col", E), hi(J, "col", F), E > F.
+dir_rel(I, J, "SW") :- lo(I, "row", A), oiv(J, "row", _, D), A > D, hi(I, "col", B), lo(J, "col", C), B < C.
+
+adjacent_dir(I, J, "N") :- hi(I, "row", B), C = B + 1, oiv(J, "row", C, _), aligned(I, J, "col").
+adjacent_dir(I, J, "S") :- lo(I, "row", A), D = A - 1, oiv(J, "row", _, D), aligned(I, J, "col").
+adjacent_dir(I, J, "E") :- lo(I, "col", A), D = A - 1, oiv(J, "col", _, D), aligned(I, J, "row").
+adjacent_dir(I, J, "W") :- hi(I, "col", B), C = B + 1, oiv(J, "col", C, _), aligned(I, J, "row").
+
+% ---------------------------------------------------------------- RCC-8 on filled regions
+% enclosure: bbox cells outside I not 4-connected to the bbox edge through cells outside I (bbox >= 3 x 3)
+bigr(I, A, B) :- lo(I, "row", A), hi(I, "row", B), B >= A + 2.
+bigc(I, C, D) :- lo(I, "col", C), hi(I, "col", D), D >= C + 2.
+brow(I, Y) :- bigr(I, A, B), bigc(I, _, _), row(Y), Y >= A, Y <= B.
+bcol(I, X) :- bigc(I, C, D), bigr(I, _, _), col(X), X >= C, X <= D.
+inside(I, Y, X) :- brow(I, Y), bcol(I, X), !pix(I, Y, X).
+reach(I, Y, X) :- inside(I, Y, X), lo(I, "row", Y).
+reach(I, Y, X) :- inside(I, Y, X), hi(I, "row", Y).
+reach(I, Y, X) :- inside(I, Y, X), lo(I, "col", X).
+reach(I, Y, X) :- inside(I, Y, X), hi(I, "col", X).
+reach(I, Y2, X2) :- reach(I, Y, X), n4(Y, X, Y2, X2), inside(I, Y2, X2).
+hole(I, Y, X) :- inside(I, Y, X), !reach(I, Y, X).
+region(I, Y, X) :- pix(I, Y, X).
+region(I, Y, X) :- hole(I, Y, X).
+
+conn(I, J) :- region(I, Y, X), region(J, Y, X), obj(J).
+conn(I, J) :- region(I, Y, X), n4(Y, X, Y2, X2), region(J, Y2, X2), obj(J).
+rcc8_DC(I, J) :- lo(I, "row", _), obj(J), I != J, !conn(I, J).
+ov(I, J) :- region(I, Y, X), region(J, Y, X), I != J.
+notsub(I, J) :- ov(I, J), region(I, Y, X), !region(J, Y, X).
+sub(I, J) :- ov(I, J), !notsub(I, J).
+inov(J) :- ov(_, J).
+bnd(J, Y, X) :- inov(J), region(J, Y, X), n4(Y, X, Y2, X2), !region(J, Y2, X2).
+bnd(J, Y, X) :- inov(J), region(J, Y, X), border(Y, X).
+tch(I, J) :- ov(I, J), region(I, Y, X), bnd(J, Y, X).
+rcc8_EQ(I, J) :- sub(I, J), obj(J), sub(J, I).
+rcc8_PP(I, J) :- sub(I, J), obj(J), !sub(J, I).
+rcc8_PPi(I, J) :- sub(J, I), obj(J), !sub(I, J).
+rcc8_PO(I, J) :- ov(I, J), obj(J), !sub(I, J), !sub(J, I).
+rcc8_TPP(I, J) :- rcc8_PP(I, J), tch(I, J).
+rcc8_NTPP(I, J) :- rcc8_PP(I, J), !tch(I, J).
+rcc8_TPPi(I, J) :- rcc8_PPi(I, J), tch(J, I).
+rcc8_NTPPi(I, J) :- rcc8_PPi(I, J), !tch(J, I).
+% EC on raw cells (its own grounding): disjoint cell sets with a 4-adjacent pair; J any individual
+share(I, J) :- pix(I, Y, X), pix(J, Y, X), I != J.
+rcc8_EC(I, J) :- pix(I, Y, X), n4(Y, X, Y2, X2), pix(J, Y2, X2), I != J, !share(I, J).
+
+% ---------------------------------------------------------------- lines: (Axis, Line, Position); d1: row - col, d2: row + col
+lnf("row", Y, X) :- nf(Y, X).
+lnf("col", X, Y) :- nf(Y, X).
+lnf("d1", L, Y) :- nf(Y, X), L = Y - X.
+lnf("d2", L, Y) :- nf(Y, X), L = Y + X.
+llab("row", Y, X, J) :- lab(Y, X, J).
+llab("col", X, Y, J) :- lab(Y, X, J).
+llab("d1", L, Y, J) :- lab(Y, X, J), L = Y - X.
+llab("d2", L, Y, J) :- lab(Y, X, J), L = Y + X.
+lfree("row", Y, X, I) :- cellind(I, Y, X).
+lfree("col", X, Y, I) :- cellind(I, Y, X).
+lfree("d1", L, Y, I) :- cellind(I, Y, X), L = Y - X.
+lfree("d2", L, Y, I) :- cellind(I, Y, X), L = Y + X.
+lnext(A, L, T, min(T2)) :- lnf(A, L, T), lnf(A, L, T2), T2 > T.
+fl(A, L, T, max(T2)) :- lfree(A, L, T, _), lnf(A, L, T2), T2 < T.
+fr(A, L, T, min(T2)) :- lfree(A, L, T, _), lnf(A, L, T2), T2 > T.
+
+% line_of_sight: a background cell sees the objects owning the nearest non-background positions on each side;
+% objects owning consecutive non-background positions see each other
+line_of_sight(I, J, A) :- losax(A), lfree(A, L, T, I), fl(A, L, T, T2), llab(A, L, T2, J), J >= 0.
+line_of_sight(I, J, A) :- losax(A), lfree(A, L, T, I), fr(A, L, T, T2), llab(A, L, T2, J), J >= 0.
+line_of_sight(I, J, A) :- losax(A), lnext(A, L, T, T2), llab(A, L, T, I), llab(A, L, T2, J), I >= 0, J >= 0, I != J.
+line_of_sight(J, I, A) :- losax(A), lnext(A, L, T, T2), llab(A, L, T, I), llab(A, L, T2, J), I >= 0, J >= 0, I != J.
+
+% between: background cell flanked by two different objects; object run flanked by two different object runs
+bgap(A, L, T, J, K) :- fl(A, L, T, T1), fr(A, L, T, T2), llab(A, L, T1, J), llab(A, L, T2, K), J >= 0, K >= 0, J != K.
+between(I, J, X) :- bgap(A, L, T, J, _), lfree(A, L, T, I), btax(A, X).
+between(I, K, X) :- bgap(A, L, T, _, K), lfree(A, L, T, I), btax(A, X).
+bl(A, L, T, B) :- lnext(A, L, P, T), llab(A, L, P, B), llab(A, L, T, X), B != X.
+bl(A, L, T, B) :- bl(A, L, P, B), lnext(A, L, P, T), llab(A, L, P, X), llab(A, L, T, X).
+al(A, L, T, B) :- lnext(A, L, T, N), llab(A, L, N, B), llab(A, L, T, X), B != X.
+al(A, L, T, B) :- al(A, L, N, B), lnext(A, L, T, N), llab(A, L, N, X), llab(A, L, T, X).
+brun(A, L, T, B, C) :- bl(A, L, T, B), al(A, L, T, C), B >= 0, C >= 0, B != C.
+between(X, B, Z) :- brun(A, L, T, B, _), llab(A, L, T, X), X >= 0, btax(A, Z).
+between(X, C, Z) :- brun(A, L, T, _, C), llab(A, L, T, X), X >= 0, btax(A, Z).
+
+% ---------------------------------------------------------------- on_ray (positive recursion, one cell per step)
+% The first step leaves J from a start cell (a cell of J whose D-neighbour is not in J); J's cells are transparent.
+% Ray state: a free cell on the ray is its background-cell individual's on_ray fact; other positions are rbn / roj.
+% (roj follows a ray back through J as the item does; the cell where it leaves J is itself a start cell, so the
+% last rule below derives nothing new on its own: it fires on no design grid.)
+on_ray(I, J, D, S) :- opix(J, Y, X), nxt(D, Y, X, Y2, X2), cellind(I, Y2, X2), stop(S).
+on_ray(I, J, D, S) :- on_ray(I0, J, D, S), cellind(I0, Y, X), nxt(D, Y, X, Y2, X2), cellind(I, Y2, X2).
+rbn(J, D, Y2, X2) :- opix(J, Y, X), nxt(D, Y, X, Y2, X2), nf(Y2, X2), !pix(J, Y2, X2).
+rbn(J, D, Y2, X2) :- on_ray(I0, J, D, "border"), cellind(I0, Y, X), nxt(D, Y, X, Y2, X2), nf(Y2, X2).
+rbn(J, D, Y2, X2) :- rbn(J, D, Y, X), nxt(D, Y, X, Y2, X2), nf(Y2, X2).
+on_ray(I, J, D, "border") :- rbn(J, D, Y, X), nxt(D, Y, X, Y2, X2), cellind(I, Y2, X2).
+on_ray(I, J, D, "border") :- rbn(J, D, Y, X), !pix(J, Y, X), own(Y, X, I).
+roj(J, D, Y2, X2) :- on_ray(I0, J, D, "obstacle"), cellind(I0, Y, X), nxt(D, Y, X, Y2, X2), pix(J, Y2, X2).
+roj(J, D, Y2, X2) :- roj(J, D, Y, X), nxt(D, Y, X, Y2, X2), pix(J, Y2, X2).
+on_ray(I, J, D, "obstacle") :- roj(J, D, Y, X), nxt(D, Y, X, Y2, X2), cellind(I, Y2, X2).
+
+% ---------------------------------------------------------------- nearest (Chebyshev set distance, ties kept)
+mind(I, min(D)) :- pix(I, Y, X), opix(J, Y2, X2), J != I, D = max(abs(Y - Y2), abs(X - X2)).
+nearest(I, J) :- mind(I, M), pix(I, Y, X), opix(J, Y2, X2), J != I, M = max(abs(Y - Y2), abs(X - X2)).
+
+% ---------------------------------------------------------------- within (halo of width k <= 3)
+% background cells are never cells of an object, so set distance >= 1 holds and "<= k" is an existential test
+within(I, J, K, "cheb") :- opix(J, Y2, X2), offc(DY, DX, D), Y = Y2 + DY, X = X2 + DX, cellind(I, Y, X), wk(K), D <= K.
+within(I, J, K, "manhattan") :- opix(J, Y2, X2), offm(DY, DX, D), Y = Y2 + DY, X = X2 + DX, cellind(I, Y, X), wk(K), D <= K.
+
+% ---------------------------------------------------------------- mirror_cell (frame mirror), period_cell
+mc(I, J, "H") :- pix(I, Y, X), size(H, _), Y2 = H - 1 - Y, opix(J, Y2, X), I != J.
+mc(I, J, "V") :- pix(I, Y, X), size(_, W), X2 = W - 1 - X, opix(J, Y, X2), I != J.
+mcbad(I, J, "H") :- mc(I, J, "H"), pix(I, Y, X), size(H, _), Y2 = H - 1 - Y, !pix(J, Y2, X).
+mcbad(I, J, "V") :- mc(I, J, "V"), pix(I, Y, X), size(_, W), X2 = W - 1 - X, !pix(J, Y, X2).
+mirror_cell(I, J, A) :- mc(I, J, A), !mcbad(I, J, A).
+
+period_cell(I, J, "row", P) :- opix(J, Y, X), pp(P), X2 = X + P, !pix(J, Y, X2), pix(I, Y, X2), I != J.
+period_cell(I, J, "row", P) :- opix(J, Y, X), pp(P), X2 = X - P, !pix(J, Y, X2), pix(I, Y, X2), I != J.
+period_cell(I, J, "col", P) :- opix(J, Y, X), pp(P), Y2 = Y + P, !pix(J, Y2, X), pix(I, Y2, X), I != J.
+period_cell(I, J, "col", P) :- opix(J, Y, X), pp(P), Y2 = Y - P, !pix(J, Y2, X), pix(I, Y2, X), I != J.
+
+% ---------------------------------------------------------------- D4 shape relations (coloured shapes, any placement)
+% norm(I) = {(row - r0, col - c0, colour)}; tn(J, T) = norm of T applied to J; I rel_T J iff norm(I) = tn(J, T)
+norm(I, A, B, K) :- opix(I, Y, X), lo(I, "row", Y0), lo(I, "col", X0), A = Y - Y0, B = X - X0, cell(Y, X, K).
+hgt(I, H) :- oiv(I, "row", L, U), H = U - L + 1.
+wdt(I, W) :- oiv(I, "col", L, U), W = U - L + 1.
+tn(J, "I", A, B, K) :- norm(J, A, B, K).
+tn(J, "H", A, B, K) :- norm(J, A0, B, K), hgt(J, H), A = H - 1 - A0.
+tn(J, "V", A, B, K) :- norm(J, A, B0, K), wdt(J, W), B = W - 1 - B0.
+tn(J, "D", A, B, K) :- norm(J, B, A, K).
+tn(J, "A", A, B, K) :- norm(J, A0, B0, K), hgt(J, H), wdt(J, W), A = W - 1 - B0, B = H - 1 - A0.
+tn(J, "R1", A, B, K) :- norm(J, A0, B0, K), hgt(J, H), A = B0, B = H - 1 - A0.
+tn(J, "R2", A, B, K) :- norm(J, A0, B0, K), hgt(J, H), wdt(J, W), A = H - 1 - A0, B = W - 1 - B0.
+tn(J, "R3", A, B, K) :- norm(J, A0, B0, K), wdt(J, W), A = W - 1 - B0, B = A0.
+% candidate key: (size, transformed height, transformed width, first-row first column, its colour)
+npx(I, count(A, B)) :- norm(I, A, B, _).
+tdim(J, T, H, W) :- keeps(T), hgt(J, H), wdt(J, W).
+tdim(J, T, W, H) :- swaps(T), hgt(J, H), wdt(J, W).
+tfb(J, T, min(B)) :- tn(J, T, 0, B, _).
+tfk(J, T, B, K) :- tfb(J, T, B), tn(J, T, 0, B, K).
+tkey(J, T, S) :- tfk(J, T, B, K), npx(J, N), tdim(J, T, H, W), S = (((N * 32 + H) * 32 + W) * 32 + B) * 16 + K.
+% equal keys and norm(I) subset of tn(J, T) (equal sizes) <=> norm(I) = tn(J, T)
+bad(I, J, T) :- tkey(I, "I", S), tkey(J, T, S), I != J, tn(I, "I", A, B, K), !tn(J, T, A, B, K).
+translate_of(I, J) :- tkey(I, "I", S), tkey(J, "I", S), I != J, !bad(I, J, "I").
+reflection_of(I, J, T) :- refl(T), tkey(I, "I", S), tkey(J, T, S), I != J, !bad(I, J, T).
+rotation_of(I, J, K) :- rot(T, K), tkey(I, "I", S), tkey(J, T, S), I != J, !bad(I, J, T).

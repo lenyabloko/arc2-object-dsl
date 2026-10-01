@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 19:45 UTC (15:45 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 22:40 UTC (18:40 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -61,6 +61,7 @@ _Last updated: 2026-10-01 19:45 UTC (15:45 EDT Oct 1). Updated with every outbox
 - Check every outbox `RESULT.json`. batch-0018 was rejected over a `.jsonl` file and went unnoticed.
 - Never rebuild a batch in the same directory: the outputs folder syncs asynchronously, so a re-run can ship a tar and a MANIFEST from different runs (batch-0039 was rejected for a sha256 mismatch). Rebuild under a new batch number.
 - Kill processes only with exact patterns such as `pgrep -f "^python3 eval_gdsl2"`; broad patterns kill the shell.
+- Outputs folder lag: a file written with Write and committed with device_commit_files right away can reach Len's machine as the OLD version (ORDERS seq 12 and STATUS.txt, Oct 1 16:10 EDT). After every commit, check the size on the device with device_list_dir and re-commit if it differs.
 - Wall-clock budgets anywhere in the probe break Kaggle parity. (Exception by measurement: V30's L_llm caps are wall-clock but ≥ 10× above the measured max per family/stage, so they fire only on hangs; re-measure with tools/dream/d2/famtime.py whenever a family changes.)
 
 ## Update 22:45 EDT Sep 28
@@ -311,3 +312,11 @@ _Last updated: 2026-10-01 19:45 UTC (15:45 EDT Oct 1). Updated with every outbox
 - Notebook v19 = V33 (0.54 MB; 89 probe files byte-identical), LATEST = v19 (batch-0074): V33 contains V32 and only fills empty slots, so it replaces v18 for tonight. ORDERS seq 11: WSL submits v19 once after 00:00 UTC Oct 2.
 - Fable v10 (description lattice) / v10a (OWL 2 definitions, ELK + Datalog) / v10b (ground on real grids; menus from fitted bindings; cycle-27 frames seed the tops). Response claude/fable_round_10_response.md: T53 pass (90 %, 14 tops), T62 22 single / 38 two-definition, T54 1,521 synthetic nodes grounded (tautological round trip), T55 fail (4/68). T64: 20 frames → 12 schemas, 11 frames composed (two schemas) — results/o0/t64_frame_schema.json.
 - Engines: ELK/HermiT cannot be fetched (egress blocks Maven/PyPI; Java 21 + rdflib present). Fable D35: ELK on WSL (needs a Java install on Len's machine) — waiting for Len's OK. Kaggle-side Datalog evaluator (T59) proceeds independently.
+
+## Update 18:40 EDT Oct 1: cycle 28 (T65 second pass, V34), T55′, T59
+- T65 (Fable v10b): the 19 cycle-27 families specialised over fitted bindings (G68 role-bound values; widened test-blind to unfitted members; tools/dream/o0/priors3, 19 subagents), measured with PRIOR_DIR=priors3 prior_check.py (ledger results/o0/priors3_ledger.jsonl.txt): member fits 166 → 194, non-source fits 229 → 253 (+10 %, needed +50 %: fail), non-source exact 150 → 170, distinct non-source exact tasks 112 → 119, new over V32 +1 (a79310a0). Alone, the role-first order changed the first program on 3 tasks (f0df5ff0 non-source exact lost); as a later stratum nothing is displaced.
+- V34 = V33 + stratum L_priors3 after L_priors2 (prior_priors3.py, 25 s / 40 s clocks). batch-0075 (965bfb4), ORDERS seq 12: c42 full (80 min, 0 timeouts, max 264.6 s), compare_gate CYCLE=28 c40 vs c42 = {b 0, c 0, n_changed 0} → P2 = 0 (sixth concept cycle with P2 = 0); c43 parity digest b6c6bfd8, design slots 74 → 85 (half A 44, half B 13 → 19), total 2181 s, max 103.9 s (V33 66.5 s), 0 timeouts. Not staged as a notebook yet; v19 stays LATEST for tonight.
+- T55′: pile = 921 of 1,521 lattice nodes with a real design fit (pile.py real; results/o0/v10_ground_real_*.json; they cover 81 design tasks) + 19 second-pass families indexed only for non-members. Far-68: 5/68 with a fitting node, top-3 5/68 → fail (needed 20 / 12). results/o0/v10_index2_far68.json.
+- T59 pass: tools/datalog/engine.py (pure-Python stratified semi-naive Datalog, 426 lines) + o0_rules.dl (147 rules for the 24 O0 items) hash-equal to the item code on 4,153/4,153 design input grids (166 skipped on both sides, > 64 objects); rdflib SPARQL CONSTRUCT fixpoint agrees on 140/140 grids. W_mat mean 15 k, max 215,801 (2 grids over the G63 cap; allen, dir_rel, rcc8_DC dominate). G62: 64/147 rules exceed 4 variables. T63 partial: 9.7 KB lzma; materialisation per task mean 0.64 s, max 2.33 s on the 99; not in the notebook (no consumer yet, G64).
+- Round-10 response §7 written (project claude/fable_round_10_response.md) with three questions for Fable (G62 scope, G63 negative relations, ELK via Protégé).
+- WSL: checks blocked by local permissions 12:42–16:21 EDT; acked seq 12 at 16:23 and waits for 20:00 EDT. Its seq 8 nltk download had finished before the cancel (6 zips, ~44 MB, in cloud_outbox/wsl_results/nltk/; left in place, nothing deleted).
