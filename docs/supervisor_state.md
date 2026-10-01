@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 06:00 UTC (02:00 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 14:05 UTC (10:05 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -278,3 +278,8 @@ _Last updated: 2026-10-01 06:00 UTC (02:00 EDT Oct 1). Updated with every outbox
 - decorate speed fix (subagent): same.py SAME on all 997 design tasks; max 8.03 s → 0.53 s.
 - V32 = V31 + stratum L_concepts (prior_concepts.py, after L_lines, fills empty slots only; 10 s per family, 30 s per stage; measured max per family < 1 s). Probe tools/m1b/v32 (69 files, v32_SHA256SUMS.txt), vocab V32.txt. Local: 9aaea919 answered by the concept stratum (exact), dd2401ed wrong (as its line). Expected design gains over V31 are source fits only (7 member tasks kept out of V31 by D26, 3 ARC-2) — not transfer evidence; the transfer test is the N2 gate.
 - Wake jobs c38-v32-full, c39-v32-parity; compare_gate CYCLE=25 c36 vs c38 (batch-0068, ORDERS seq 6).
+
+## Update 10:05 EDT Oct 1: phone view of the review page; line 142ca369
+- Len asked for a phone version with only the Tasks tab and residuals. New artifact "ARC Review Mobile" (claude.ai artifact 4Z1VdvcahWaj7CeZXdNyDJ; source scratchpad/phone/phone_src.html, data file ptasks.json = the 997 design tasks' training pairs + test INPUTS only, no test outputs, no N2): task list (Needs you = ARC-2 design tasks V31 does not solve and no line solves; Unsolved; Mine; All), task view with the line box, status from expansions, each training pair with its change map ("what changes"), test inputs, prev/next, tap to enlarge.
+- It has its OWN database: lines/<tid> {text, ts, gid, from} and expansions/<tid> (mirrored). Seeded with the 24 non-N2 lines and their expansions. **Every line pass must first run tools/review/phone_sync.py** (list main decisions + expansions and phone lines + expansions to out_dir; later ts wins; write main_writes.json to the main page, phone_writes.json to the phone page; add if_version for existing main decision docs). After the pass, mirror new expansions to the phone page.
+- New line (Len, 13:42 UTC, M069 ray.bounce) on 142ca369 (ARC-2 half A, needs-you): "from each outer corner shoot a diagonal laser ray … bounces from every flat surface and acquires the surface color until it reaches the outer edge". Family tools/dream/o0/lines/142ca369.py: own task exact (training 3/3); held-out group 0/2; fires on no other design task. New concept card mech_ray_bounce; expansions written to both pages.

@@ -1,0 +1,209 @@
+<title>ARC Review Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f5f7;--panel:#ffffff;--ink:#1b1f27;--muted:#5d6675;--line:#dde1e7;--soft:#eceff3;
+  --accent:#2f5bd3;--accept:#1f8a4c;--reject:#c23a2b;--unsure:#a3760f;--cell-gap:#c9ced6;--dim:#ffffff;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151b;--panel:#1a1e26;--ink:#e6e9ef;--muted:#98a1b0;--line:#2c323d;--soft:#222834;
+  --accent:#7d9cff;--accept:#4cc27f;--reject:#ef6b5c;--unsure:#e2b33e;--cell-gap:#3a414d;--dim:#1a1e26;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151b;--panel:#1a1e26;--ink:#e6e9ef;--muted:#98a1b0;--line:#2c323d;--soft:#222834;
+  --accent:#7d9cff;--accept:#4cc27f;--reject:#ef6b5c;--unsure:#e2b33e;--cell-gap:#3a414d;--dim:#1a1e26;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--sans);padding-inline:12px;padding-block:0 84px;-webkit-text-size-adjust:100%}
+.app{max-width:640px;margin:0 auto}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px 8px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+h1{font-size:17px;font-weight:600;margin:0}
+.sub{font-size:12.5px;color:var(--muted)}
+.seg{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.seg button{flex:0 0 auto;font:500 13.5px var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:18px;padding:7px 12px;min-height:36px}
+.seg button.on{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.seg button .n{font-family:var(--mono);font-size:12px;opacity:.75;margin-left:4px}
+input[type=search]{width:100%;font:15px var(--mono);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.list{display:flex;flex-direction:column;gap:6px;padding-top:8px}
+.item{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:56px}
+.item:active{background:var(--soft)}
+.item .id{font:500 14px var(--mono)}
+.item .meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.item .ln{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thumb{display:flex;align-items:center;gap:3px}
+.pill{display:inline-block;font:500 11.5px var(--sans);padding:2px 8px;border-radius:10px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--accept);border-color:var(--accept)}
+.pill.wait{color:var(--unsure);border-color:var(--unsure)}
+.pill.line{color:var(--accent);border-color:var(--accent)}
+.pill.no{color:var(--reject);border-color:var(--reject)}
+.badge{font:11px var(--mono);color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px}
+h3{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+.mono{font-family:var(--mono)}
+.btn{font:500 14px var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 12px;min-height:40px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.45}
+textarea{width:100%;font:15px/1.4 var(--sans);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical;min-height:64px}
+.help{font-size:12.5px;color:var(--muted)}
+.pair{display:flex;flex-direction:column;gap:6px;padding-block:8px;border-top:1px solid var(--soft)}
+.pair:first-of-type{border-top:0;padding-top:0}
+.pio{display:flex;align-items:center;gap:6px}
+.arrow{color:var(--muted);font-size:14px;flex:0 0 auto}
+.lab{font:500 12px var(--mono);color:var(--muted)}
+canvas{display:block;touch-action:manipulation}
+.chg{display:flex;flex-direction:column;gap:3px}
+.navbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--panel);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px))}
+.navbar .in{max-width:640px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.navbar .btn{flex:1}
+.navbar .pos{font:12px var(--mono);color:var(--muted);flex:0 0 auto;min-width:56px;text-align:center}
+.zoom{position:fixed;inset:0;z-index:10;background:var(--bg);overflow:auto;padding:calc(12px + env(safe-area-inset-top,0px)) 12px calc(24px + env(safe-area-inset-bottom,0px))}
+.zoom .in{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+details summary{font-size:13px;color:var(--muted)}
+.msg{font-size:12.5px;color:var(--accept);min-height:1em}
+.err{color:var(--reject)}
+.empty{padding:24px 4px;color:var(--muted);text-align:center}
+.toggle{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.toggle input{width:20px;height:20px}
+</style>
+<div class="app">
+  <div class="top" id="top"></div>
+  <div id="view"></div>
+</div>
+<div class="navbar" id="navbar" hidden><div class="in"><button class="btn" id="prev">‹ Prev</button><span class="pos" id="pos"></span><button class="btn" id="next">Next ›</button></div></div>
+<div class="zoom" id="zoom" hidden></div>
+<script id="meta" type="application/json">__META__</script>
+<script>
+const META=JSON.parse(document.getElementById('meta').textContent);
+const PAL=['#000000','#0074D9','#FF4136','#2ECC40','#FFDC00','#AAAAAA','#F012BE','#FF851B','#7FDBFF','#870C25'];
+const SOLVED=new Set(META.solved);const NEED=META.need||{};const BUILD=META.build||'V31';
+let TASKS=null,tasksErr=null,db=null,dbState='connecting',lines={},exps={},filter='need',q='',cur=null,showChg=true,listCache=[];
+const store={get(k,d){try{const v=localStorage.getItem('arcm_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('arcm_'+k,JSON.stringify(v))}catch(e){}}};
+filter=store.get('filter','need');showChg=store.get('chg',true);
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+const css=n=>getComputedStyle(document.body).getPropertyValue(n).trim();
+const SPLIT={train:'ARC-1','eval-A':'ARC-2 A','eval-B':'ARC-2 B'};
+const lineOf=t=>{const l=lines[t];return l&&l.text?l.text:''};
+const lineSolved=t=>{const x=exps[t];return !!(x&&(x.status==='fits'||x.status==='admitted'))};
+function status(t){if(SOLVED.has(t))return{cls:'ok',lab:'solved ('+BUILD+')'};if(lineSolved(t))return{cls:'line',lab:'✓ your line'};if(NEED[t])return{cls:'wait',lab:'needs you'};return{cls:'',lab:'unsolved'}}
+function sizeOf(s){const r=s.split('/');return[r[0].length,r.length]}
+function cellFor(s,maxPx,maxCell){const[w,h]=sizeOf(s);return Math.max(1,Math.min(maxCell||24,Math.floor(maxPx/Math.max(w,h))))}
+function grid(s,maxPx,o){o=o||{};const rows=s.split('/'),h=rows.length,w=rows[0].length;const c=o.cell||cellFor(s,maxPx,o.maxCell);const gap=c>=6?1:0;
+  const cv=document.createElement('canvas');const dpr=window.devicePixelRatio||1;const W=w*c,H=h*c;cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';
+  const x=cv.getContext('2d');x.scale(dpr,dpr);x.fillStyle=css('--cell-gap');x.fillRect(0,0,W,H);
+  const ref=o.ref?o.ref.split('/'):null;const dim=css('--dim')||'#fff',ink=css('--ink')||'#000';
+  for(let r=0;r<h;r++)for(let k=0;k<w;k++){const ch=ref?ref[r][k]!==rows[r][k]:false;
+    x.fillStyle=PAL[+(ref&&!ch?ref[r][k]:rows[r][k])];x.fillRect(k*c,r*c,c-gap,c-gap);
+    if(ref&&!ch){x.globalAlpha=.72;x.fillStyle=dim;x.fillRect(k*c,r*c,c-gap,c-gap);x.globalAlpha=1}
+    else if(ref&&ch&&c>=5){x.strokeStyle=ink;x.lineWidth=1;x.strokeRect(k*c+.5,r*c+.5,c-gap-1,c-gap-1)}}
+  cv.setAttribute('role','img');cv.setAttribute('aria-label',w+' by '+h+' grid');return cv}
+function changes(a,b){const ra=a.split('/'),rb=b.split('/');if(ra.length!==rb.length||ra[0].length!==rb[0].length)return null;
+  const cnt={};ra.forEach(r=>{for(const ch of r)cnt[ch]=(cnt[ch]||0)+1});const bg=Object.keys(cnt).sort((u,v)=>cnt[v]-cnt[u])[0];let n=0,nb=0;
+  for(let r=0;r<ra.length;r++)for(let k=0;k<ra[0].length;k++)if(ra[r][k]!==rb[r][k]){n++;if(ra[r][k]===bg)nb++}return{n,nb}}
+const avail=()=>Math.min(window.innerWidth,640)-24-26;
+
+// ---------- data ----------
+function loadTasks(){return fetch('ptasks.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{TASKS=j}).catch(e=>{tasksErr=String(e)})}
+function order(){if(!TASKS)return[];const ks=Object.keys(TASKS).sort();
+  const sp={'eval-A':0,'eval-B':1,train:2};
+  let L;if(filter==='need')L=ks.filter(t=>NEED[t]&&!lineSolved(t)&&!SOLVED.has(t));
+  else if(filter==='unsolved')L=ks.filter(t=>!SOLVED.has(t));
+  else if(filter==='mine')L=ks.filter(t=>lineOf(t));
+  else L=ks;
+  if(filter==='unsolved'||filter==='all')L.sort((a,b)=>(sp[TASKS[a].s]-sp[TASKS[b].s])||(a<b?-1:1));
+  const ws=q.toLowerCase().split(/\s+/).filter(Boolean);
+  if(ws.length)L=L.filter(t=>{const hay=(t+' '+(TASKS[t].g||'')+' '+(META.gname[t]||'')+' '+lineOf(t)).toLowerCase();return ws.every(w=>hay.includes(w))});
+  return L}
+function counts(){if(!TASKS)return{};const ks=Object.keys(TASKS);return{need:ks.filter(t=>NEED[t]&&!lineSolved(t)&&!SOLVED.has(t)).length,unsolved:ks.filter(t=>!SOLVED.has(t)).length,mine:ks.filter(t=>lineOf(t)).length,all:ks.length}}
+
+// ---------- top bar ----------
+function renderTop(){const T=document.getElementById('top');T.textContent='';
+  const r1=el('div','row');r1.append(el('h1',null,'ARC tasks'));
+  const ds=el('span','sub',dbState==='ok'?'· your lines save here':dbState==='none'?'· read-only here (no database)':'· connecting…');r1.append(ds);T.append(r1);
+  if(cur){const r=el('div','row');const back=el('button','btn','← List');back.onclick=()=>go(null);r.append(back);
+    const id=el('span','mono',cur);id.style.cssText='font-size:16px;font-weight:500';r.append(id);
+    const tg=el('label','toggle');const cb=el('input');cb.type='checkbox';cb.checked=showChg;cb.onchange=()=>{showChg=cb.checked;store.set('chg',showChg);render()};tg.append(cb,document.createTextNode('changes'));tg.style.marginLeft='auto';r.append(tg);T.append(r);return}
+  const c=counts();const seg=el('div','seg');
+  [['need','Needs you'],['unsolved','Unsolved'],['mine','Mine'],['all','All']].forEach(([k,lab])=>{const b=el('button',filter===k?'on':'');b.append(document.createTextNode(lab));if(c[k]!=null)b.append(el('span','n',String(c[k])));b.onclick=()=>{filter=k;store.set('filter',k);render();window.scrollTo(0,0)};seg.append(b)});T.append(seg);
+  const s=el('input');s.type='search';s.placeholder='Search id, group or your line';s.value=q;s.oninput=()=>{q=s.value;drawList()};T.append(s)}
+
+// ---------- list ----------
+function render(){renderTop();const V=document.getElementById('view');V.textContent='';
+  if(!TASKS){V.append(el('div','empty',tasksErr?'Task data failed to load: '+tasksErr:'Loading tasks…'));document.getElementById('navbar').hidden=true;return}
+  if(cur&&TASKS[cur])renderTask(V);else{cur=null;renderList(V)}}
+function renderList(V){document.getElementById('navbar').hidden=true;const L=el('div','list');L.id='list';V.append(L);drawList()}
+let listN=40;
+function drawList(){const L=document.getElementById('list');if(!L)return;L.textContent='';listCache=order();
+  if(filter==='need'){const h=el('div','help','ARC-2 design tasks the current build ('+BUILD+') does not solve, and no line of yours solves yet. A line here moves the hidden score most.');h.style.padding='2px 2px 4px';L.append(h)}
+  if(!listCache.length){L.append(el('div','empty',filter==='mine'?'No lines yet. Open a task and write one.':'Nothing here.'));return}
+  listCache.slice(0,listN).forEach(t=>{const o=TASKS[t];const it=el('div','item');it.setAttribute('role','button');it.tabIndex=0;
+    const th=el('div','thumb');const p=o.tr[0];th.append(grid(p[0],44,{maxCell:6}),grid(p[1],44,{maxCell:6}));it.append(th);
+    const m=el('div','meta');const r=el('div','row');r.style.gap='6px';r.append(el('span','id',t));const st=status(t);r.append(el('span','pill '+st.cls,st.lab));r.append(el('span','badge',SPLIT[o.s]||o.s));m.append(r);
+    const ln=lineOf(t);if(ln)m.append(el('div','ln','“'+ln+'”'));else if(META.gname[t])m.append(el('div','ln',(o.g||'')+' · '+META.gname[t]));it.append(m);
+    it.onclick=()=>go(t);it.onkeydown=e=>{if(e.key==='Enter')go(t)};L.append(it)});
+  if(listCache.length>listN){const more=el('button','btn','Show '+Math.min(40,listCache.length-listN)+' more ('+(listCache.length-listN)+' left)');more.style.marginTop='4px';more.onclick=()=>{listN+=40;drawList()};L.append(more)}}
+
+// ---------- task ----------
+function go(t){if(t&&!listCache.includes(t))listCache=order();cur=t;listN=40;store.set('cur',t);try{history.replaceState(null,'',t?'#'+t:'#')}catch(e){}render();window.scrollTo(0,0)}
+function expChip(t){const ln=lineOf(t);const x=exps[t];const w=el('div');w.style.cssText='margin-top:8px;display:flex;flex-direction:column;gap:4px;font-size:14px';
+  if(!ln&&!x)return null;
+  const nz=v=>String(v).replace(/\s+/g,' ').trim();const stale=x&&ln&&x.text&&nz(x.text)!==nz(ln);
+  if(!x||stale){const p=el('span','pill wait',ln?'waiting for Claude\'s next check':'');w.append(p);w.append(el('div','help','Claude reads new lines at each pass, turns each into a program, checks it on the examples and writes the result here.'));return w}
+  if(x.status==='reserved'){w.append(el('span','pill wait','not tested (reserved task)'));return w}
+  const ok=x.status==='fits'||x.status==='admitted';const others=(x.pop&&x.pop.exact_other)||[];const nw=x.new_over_v29||(x.pop&&x.pop.new_over_v29)||[];
+  const top=el('div','row');top.append(el('span','pill '+(ok?'ok':x.status==='failed'?'no':''),ok?'✓ your line solves this task':x.status==='failed'?'✗ fits the examples, test answer wrong':'checking…'));w.append(top);
+  if(ok)w.append(el('div','help',others.length?'Also solves '+others.length+' other task'+(others.length>1?'s':'')+(nw.length?' ('+nw.length+' new)':'')+'.':'No other task yet.'));
+  if(x.status==='failed')w.append(el('div','help','The machine had to guess part of the rule (see its reading). A line that settles that part gets a new check.'));
+  if(x.reading&&x.reading.generator){const d=document.createElement('details');const s=document.createElement('summary');s.textContent='machine reading';d.append(s);const r=el('div','help',x.reading.generator+(x.reading.stop?' Stops: '+x.reading.stop:''));r.style.marginTop='4px';d.append(r);w.append(d)}
+  return w}
+function lineCard(t){const o=TASKS[t];const c=el('div','card');c.append(el('h3',null,'Your line'));
+  const ta=el('textarea');ta.rows=2;ta.placeholder='What is drawn, and when does it stop?';ta.value=lineOf(t);ta.disabled=dbState!=='ok';
+  const row=el('div','row');row.style.marginTop='6px';const sv=el('button','btn primary','Save line');sv.disabled=true;const msg=el('span','msg');row.append(sv,msg);
+  ta.oninput=()=>{sv.disabled=dbState!=='ok'||ta.value.trim()===lineOf(t)};
+  const save=async()=>{const v=ta.value.trim();if(v===lineOf(t))return;sv.disabled=true;msg.className='msg';msg.textContent='saving…';
+    const doc={text:v,ts:new Date().toISOString(),gid:o.g||('T_'+t),from:'phone'};
+    try{await db.collection('lines').doc(t).set(doc);lines[t]=doc;msg.textContent=v?'Saved.':'Cleared.';const ch=c.querySelector('.chipwrap');if(ch){ch.textContent='';const e=expChip(t);if(e)ch.append(e)}}
+    catch(e){msg.className='msg err';msg.textContent='Not saved: '+(e&&(e.code||e.message)||e);sv.disabled=false}};
+  sv.onclick=save;ta.onblur=()=>{if(ta.value.trim()!==lineOf(t))save()};
+  c.append(ta,row);if(dbState!=='ok')c.append(el('div','help',dbState==='none'?'Lines cannot be saved in this view.':'Connecting to the database…'));
+  const cw=el('div','chipwrap');const e=expChip(t);if(e)cw.append(e);c.append(cw);return c}
+function pairBlock(p,k,A){const b=el('div','pair');const hd=el('div','row');hd.append(el('span','lab','pair '+(k+1)));
+  const [wi,hi]=sizeOf(p[0]),[wo,ho]=sizeOf(p[1]);hd.append(el('span','badge',wi+'×'+hi+' → '+wo+'×'+ho));b.append(hd);
+  const half=Math.floor((A-34)/2);const io=el('div','pio');const gi=grid(p[0],half),go_=grid(p[1],half);io.append(gi,el('span','arrow','→'),go_);b.append(io);
+  [gi,go_].forEach(g=>g.onclick=()=>zoom(p,k));
+  if(showChg){const ch=changes(p[0],p[1]);const box=el('div','chg');
+    if(ch){const g=grid(p[1],half,{ref:p[0]});g.onclick=()=>zoom(p,k);box.append(g);box.append(el('span','help','what changes: '+ch.n+' cell'+(ch.n===1?'':'s')+(ch.n?' · '+Math.round(100*ch.nb/ch.n)+'% on background':'')))}
+    else box.append(el('span','help','output size differs, so there is no change map'));b.append(box)}
+  return b}
+function renderTask(V){const t=cur,o=TASKS[t];const st=status(t);
+  const h=el('div','card');const r=el('div','row');r.append(el('span','pill '+st.cls,st.lab),el('span','badge',(SPLIT[o.s]||o.s)+' · '+o.tr.length+' train / '+o.te.length+' test'));h.append(r);
+  if(o.g)h.append(el('div','help',o.g+(META.gname[t]?' · '+META.gname[t]:'')));V.append(h);
+  V.append(lineCard(t));
+  const A=avail();const ex=el('div','card');ex.append(el('h3',null,'Training pairs'));
+  if(showChg)ex.append(Object.assign(el('div','help','Under each pair: the input with what stays the same faded; bright outlined cells are the ones the output changes, in their new colour. Tap a grid to enlarge.'),{style:'margin-bottom:6px'}));
+  o.tr.forEach((p,k)=>ex.append(pairBlock(p,k,A)));V.append(ex);
+  const te=el('div','card');te.append(el('h3',null,'Test input'+(o.te.length>1?'s':'')+' (answers hidden)'));const tw=el('div','row');tw.style.gap='12px';
+  o.te.forEach(s=>{const g=grid(s,Math.floor((A-12)/Math.min(o.te.length,2)));g.onclick=()=>zoomOne(s);tw.append(g)});te.append(tw);V.append(te);
+  const nb=document.getElementById('navbar');nb.hidden=false;const i=listCache.indexOf(t);
+  document.getElementById('pos').textContent=i>=0?(i+1)+' / '+listCache.length:'';
+  const pv=document.getElementById('prev'),nx=document.getElementById('next');pv.disabled=i<=0;nx.disabled=i<0||i>=listCache.length-1;
+  pv.onclick=()=>{if(i>0)go(listCache[i-1])};nx.onclick=()=>{if(i>=0&&i<listCache.length-1)go(listCache[i+1])}}
+function zoomShell(title){const Z=document.getElementById('zoom');Z.textContent='';const inn=el('div','in');const r=el('div','row');r.append(el('span','lab',title));const cl=el('button','btn','Close');cl.style.marginLeft='auto';cl.onclick=()=>{Z.hidden=true};r.append(cl);inn.append(r);Z.append(inn);Z.hidden=false;Z.scrollTop=0;return inn}
+function zoom(p,k){const inn=zoomShell(cur+' · pair '+(k+1));const A=Math.min(window.innerWidth,640)-24;
+  inn.append(el('span','help','input'),grid(p[0],A,{maxCell:40}),el('span','help','output'),grid(p[1],A,{maxCell:40}));
+  const ch=changes(p[0],p[1]);if(ch)inn.append(el('span','help','what changes ('+ch.n+' cells)'),grid(p[1],A,{ref:p[0],maxCell:40}))}
+function zoomOne(s){const inn=zoomShell(cur+' · test input');inn.append(grid(s,Math.min(window.innerWidth,640)-24,{maxCell:40}))}
+
+// ---------- start ----------
+const busy=()=>{const a=document.activeElement;return !!(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT'))};
+window.addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(()=>{if(cur)render()},200)});
+window.addEventListener('hashchange',()=>{const h=(location.hash||'').replace('#','');const t=/^[0-9a-f]{8}$/.test(h)?h:null;if(t!==cur&&(!t||(TASKS&&TASKS[t]))){cur=t;render();window.scrollTo(0,0)}});
+document.addEventListener('keydown',e=>{if(document.getElementById('zoom').hidden===false&&e.key==='Escape')document.getElementById('zoom').hidden=true});
+(function(){const h=(location.hash||'').replace('#','');cur=/^[0-9a-f]{8}$/.test(h)?h:null})();
+render();
+loadTasks().then(()=>{if(cur&&!TASKS[cur])cur=null;listCache=order();render()});
+(async()=>{try{db=window.claude&&window.claude.use?await window.claude.use('db'):null}catch(e){db=null}
+  if(!db){dbState='none';render();return}dbState='ok';render();
+  db.collection('lines').onSnapshot(s=>{const n={};s.docs.forEach(d=>{n[d.id]=d.data()});lines=n;if(!busy())render()},()=>{});
+  db.collection('expansions').onSnapshot(s=>{const n={};s.docs.forEach(d=>{n[d.id]=d.data()});exps=n;if(!busy())render()},()=>{})})();
+</script>
