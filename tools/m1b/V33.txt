@@ -1,0 +1,1 @@
+fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines,L_concepts,L_priors2

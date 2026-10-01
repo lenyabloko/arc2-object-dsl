@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 16:15 UTC (12:15 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 18:20 UTC (14:20 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -296,3 +296,12 @@ _Last updated: 2026-10-01 16:15 UTC (12:15 EDT Oct 1). Updated with every outbox
 - Evidence: ARC-2 design (60 V29 failures): Claude's D2 one-offs solved 58 (89565ca0 only on the second guess; f560132c wrong). ARC-1 design (278 tasks V32 fails): 26 tried earlier (24 solved), 250 tried now by 50 subagents (5 tasks each, test-blind, training pairs only; tools/dream/o0/oneoff/<task>.py; tools/dream/o0/oneoff_check.py = first two distinct fitting predictions, one harness check per task; ledger results/o0/oneoff_ledger.jsonl.txt): 236 of 250 exact.
 - Len's list (18): 89565ca0, f560132c (ARC-2); 0d87d2a6, 17829a00, 1b8318e3, 22425bda, 2dd70a9a, 3d588dc9, 50f325b5, 5ecac7f7, b74ca5d1, ba1aa698, d6542281, d753a70b, d931c21c, df978a02, e5062a87, f3b10344 (ARC-1).
 - The one-off programs stay out of the build (D26: single-task programs fit no other task); they answer only "can Claude solve it alone".
+
+## Update 14:20 EDT Oct 1: cycle 27 — prior concepts mined from solution texts; V33 to the gate
+- Len: find common prior concepts spanning several solution lines with WordNet/VerbNet synonyms; prior enrichment is the most promising approach. (WordNet/VerbNet downloads are blocked here; Len: the model already knows them, so no download — WSL item cancelled, ORDERS seq 9.)
+- Corpus: 314 one-off readings + Len's lines (results/o0/prior_concepts_v1.json; interim lexicon tools/dream/lex/concept_lexicon.py). A clustering subagent normalised readings into VerbNet/WordNet-style action frames: 20 concepts covering 271 of 314 one-off tasks (45 ARC-2).
+- One family per concept (20 subagents, anti-unifying the members' one-off programs; tools/dream/o0/priors2/<concept>.py), measured by tools/dream/o0/prior_check.py (ledger results/o0/prior_ledger.jsonl.txt): members exact 164 of 315; non-member exact 150 (112 distinct tasks), wrong 79; new over V32 5 (32597951, 6f8cd79b, 8fbca751, c92b942c, f5b8619d). Strongest: select_odd_or_extremal 8/8 members + 13 other, stamp_stencil 9/15 + 18, kronecker 12/22 + 17, rectangle_from_delimiters 15/25 + 11. continue_progression 4/23 and 0 other → left out (D26).
+- Speed fixes (same.py SAME on all 997 design tasks): mirror 2.75 → 0.42 s, kronecker 2.2 → 0.26 s, template_cover 1.5 → 0.58 s.
+- V33 = V32 + 19 families, stratum L_priors2 (prior_priors2.py; 25 s per family, 40 s per stage; measured max 2.46 / 2.55 s). Local: c92b942c, f5b8619d, 6f8cd79b, 32597951, 2bee17df answered by the stratum (exact). Wake jobs c40-v33-full, c41-v33-parity; compare_gate CYCLE=27 c38 vs c40 (batch-0072, ORDERS seq 10).
+- Phone page: one-off tasks now marked "one-off" with Claude's reading (db needs/readings); tasks a prior concept now covers are marked "prior: <concept>" (db needs/current.covered, 150 tasks).
+- Len (14:05 EDT) proposed expanding each description into nearby hypothetical descriptions (generalise, expand top-down, recurse); he has asked Fable — keep going until further notice.
