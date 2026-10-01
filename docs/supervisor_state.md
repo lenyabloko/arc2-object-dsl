@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 14:45 UTC (10:45 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 16:15 UTC (12:15 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -290,3 +290,9 @@ _Last updated: 2026-10-01 14:45 UTC (10:45 EDT Oct 1). Updated with every outbox
 - Notebook v18 = V32 (build_nb3; 0.42 MB; 69 probe files byte-identical), LATEST = v18 (batch-0070), ORDERS seq 7: WSL submits v18 once after 00:00 UTC Oct 2; v17 superseded.
 - OQ7 proxy: P2 = 0 in cycles 24 and 25; clean P1 ≈ 0 → both arms failing as of today (decision Oct 12). Convergence doc entry corrects the Sep 30 claim that lines transfer better than LLM concepts (confounded by task choice); blind A/B offered to Len.
 - No new task lines (main or phone) since 13:42 UTC; no Fable round 10. WSL checks were blocked by local permissions overnight — tonight's submission may need Len's nudge.
+
+## Update 12:15 EDT Oct 1: Len's list = tasks Claude cannot solve (cycle 26)
+- Len (10:35 EDT): his time goes first to tasks Claude could not solve. The phone page's "Needs you" now reads the db doc needs/current (tasks Claude failed, with reasons; claude_solved list), updated live.
+- Evidence: ARC-2 design (60 V29 failures): Claude's D2 one-offs solved 58 (89565ca0 only on the second guess; f560132c wrong). ARC-1 design (278 tasks V32 fails): 26 tried earlier (24 solved), 250 tried now by 50 subagents (5 tasks each, test-blind, training pairs only; tools/dream/o0/oneoff/<task>.py; tools/dream/o0/oneoff_check.py = first two distinct fitting predictions, one harness check per task; ledger results/o0/oneoff_ledger.jsonl.txt): 236 of 250 exact.
+- Len's list (18): 89565ca0, f560132c (ARC-2); 0d87d2a6, 17829a00, 1b8318e3, 22425bda, 2dd70a9a, 3d588dc9, 50f325b5, 5ecac7f7, b74ca5d1, ba1aa698, d6542281, d753a70b, d931c21c, df978a02, e5062a87, f3b10344 (ARC-1).
+- The one-off programs stay out of the build (D26: single-task programs fit no other task); they answer only "can Claude solve it alone".
