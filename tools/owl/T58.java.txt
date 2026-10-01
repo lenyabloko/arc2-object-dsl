@@ -1,0 +1,179 @@
+// T58 (Fable guidance v10a): classify the T58 TBox with ELK and write its taxonomy.
+//
+// Targets OWL API 4.5.x (the version bundled with Protege 5.5 / 5.6) with ELK 0.4.3 or 0.5.x
+// (org.semanticweb.elk.owlapi.ElkReasonerFactory). Only methods present in both OWL API 4.5 and 5.1 are used
+// (Node / NodeSet are iterated rather than calling the deprecated getEntities()), and the source level is Java 8,
+// so the same file also builds against OWL API 5.1 + ELK 0.5.
+//
+//   build:  javac -cp "<jars>" T58.java
+//   run:    java -cp "<jars>;." T58 results/o0/t58_tbox.ofn results/o0/t58_taxonomy.tsv
+//
+// Prints (between "=== T58 RESULT ===" and "=== END ==="): number of named classes, number of distinct classes after
+// classification (satisfiable named classes up to equivalence), every equivalence set of size >= 2, the unsatisfiable
+// classes, consistency, and seconds. The TSV has one row per named class: class, direct superclasses (" | " between
+// nodes, " = " inside a node), equivalent classes.
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.semanticweb.elk.owlapi.ElkReasonerFactory;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.reasoner.InferenceType;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+
+public class T58 {
+    // same prefixes as tools/owl/t58_export.py, used only to print compact names
+    static final String[][] PREFIXES = {
+        {"owl", "http://www.w3.org/2002/07/owl#"},
+        {"t58", "https://github.com/lenyabloko/arc2-object-dsl/ontology/t58#"},
+        {"arga", "https://arc-arga.example/arga#"},
+        {"arcm", "https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#"},
+        {"dul", "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"},
+        {"qsr", "https://github.com/lenyabloko/arc2-object-dsl/ontology/qsr#"},
+        {"allen", "https://github.com/lenyabloko/arc2-object-dsl/ontology/allen#"},
+        {"lat", "https://github.com/lenyabloko/arc2-object-dsl/ontology/lattice#"},
+    };
+
+    static String name(OWLClass c) {
+        String s = c.getIRI().toString();
+        for (String[] p : PREFIXES) {
+            if (s.startsWith(p[1])) {
+                String loc = s.substring(p[1].length());
+                if (loc.matches("[A-Za-z_][A-Za-z0-9_]*")) return p[0] + ":" + loc;
+            }
+        }
+        return "<" + s + ">";
+    }
+
+    static String join(List<String> xs, String sep) {
+        StringBuilder b = new StringBuilder();
+        for (String x : xs) {
+            if (b.length() > 0) b.append(sep);
+            b.append(x);
+        }
+        return b.toString();
+    }
+
+    /** Lower the console log level of logback (Protege's slf4j binding) and log4j 1.x (ELK 0.4) if present. */
+    static void quietLogging() {
+        try {
+            Object root = Class.forName("org.slf4j.LoggerFactory").getMethod("getLogger", String.class).invoke(null, "ROOT");
+            Class<?> level = Class.forName("ch.qos.logback.classic.Level");
+            root.getClass().getMethod("setLevel", level).invoke(root, level.getField("WARN").get(null));
+        } catch (Throwable t) {
+            // no logback: keep defaults
+        }
+        try {
+            Class<?> logger = Class.forName("org.apache.log4j.Logger");
+            Object root = logger.getMethod("getRootLogger").invoke(null);
+            Class<?> level = Class.forName("org.apache.log4j.Level");
+            logger.getMethod("setLevel", level).invoke(root, level.getField("WARN").get(null));
+        } catch (Throwable t) {
+            // no log4j 1.x: keep defaults
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.err.println("usage: java -cp \"<jars>;.\" T58 <tbox.ofn> <taxonomy.tsv>");
+            System.exit(2);
+        }
+        quietLogging();
+        long t0 = System.nanoTime();
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        OWLOntology ont = manager.loadOntologyFromOntologyDocument(new File(args[0]));
+        long t1 = System.nanoTime();
+        OWLReasoner reasoner = new ElkReasonerFactory().createReasoner(ont);
+        reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+        boolean consistent = reasoner.isConsistent();
+        long t2 = System.nanoTime();
+
+        Comparator<OWLClass> byName = new Comparator<OWLClass>() {
+            public int compare(OWLClass a, OWLClass b) { return name(a).compareTo(name(b)); }
+        };
+        List<OWLClass> classes = new ArrayList<OWLClass>();
+        for (OWLClass c : ont.getClassesInSignature()) {
+            if (!c.isOWLThing() && !c.isOWLNothing()) classes.add(c);
+        }
+        Collections.sort(classes, byName);
+
+        Set<OWLClass> unsat = new TreeSet<OWLClass>(byName);
+        if (consistent) {
+            for (OWLClass c : reasoner.getUnsatisfiableClasses()) {
+                if (!c.isOWLNothing()) unsat.add(c);
+            }
+        }
+
+        List<List<String>> eqSets = new ArrayList<List<String>>();
+        Set<String> grouped = new HashSet<String>();
+        int distinct = 0;
+        File out = new File(args[1]);
+        if (out.getAbsoluteFile().getParentFile() != null) out.getAbsoluteFile().getParentFile().mkdirs();
+        PrintWriter tsv = new PrintWriter(new OutputStreamWriter(new FileOutputStream(out), "UTF-8"));
+        tsv.println("class\tdirect_superclasses\tequivalent_classes");
+        for (OWLClass c : classes) {
+            String n = name(c);
+            if (!consistent || unsat.contains(c)) {
+                tsv.println(n + "\towl:Nothing (unsatisfiable)\t");
+                continue;
+            }
+            List<String> eq = new ArrayList<String>();
+            for (OWLClass e : reasoner.getEquivalentClasses(c)) {
+                if (!e.equals(c)) eq.add(name(e));          // owl:Thing is kept: a class equivalent to Thing is reported
+            }
+            Collections.sort(eq);
+            if (!grouped.contains(n)) {
+                distinct++;
+                grouped.add(n);
+                grouped.addAll(eq);
+                if (!eq.isEmpty()) {
+                    List<String> set = new ArrayList<String>(eq);
+                    set.add(n);
+                    Collections.sort(set);
+                    eqSets.add(set);
+                }
+            }
+            List<String> sup = new ArrayList<String>();
+            for (Node<OWLClass> node : reasoner.getSuperClasses(c, true)) {
+                List<String> members = new ArrayList<String>();
+                for (OWLClass s : node) members.add(name(s));
+                Collections.sort(members);
+                sup.add(join(members, " = "));
+            }
+            Collections.sort(sup);
+            tsv.println(n + "\t" + join(sup, " | ") + "\t" + join(eq, " | "));
+        }
+        tsv.close();
+        long t3 = System.nanoTime();
+
+        System.out.println("=== T58 RESULT ===");
+        System.out.println("ontology: " + args[0]);
+        System.out.println("reasoner: " + reasoner.getReasonerName());
+        System.out.println("logical axioms loaded: " + ont.getLogicalAxiomCount());
+        System.out.println("classes (named, excluding owl:Thing/owl:Nothing): " + classes.size());
+        System.out.println("distinct classes after classification (satisfiable, up to equivalence): " + distinct);
+        System.out.println("equivalence sets (size >= 2): " + eqSets.size());
+        for (List<String> set : eqSets) System.out.println("  " + join(set, " == "));
+        System.out.println("unsatisfiable classes: " + unsat.size());
+        for (OWLClass c : unsat) System.out.println("  " + name(c));
+        System.out.println("consistent: " + consistent);
+        System.out.println(String.format(Locale.ROOT, "seconds: load %.2f, classify %.2f, taxonomy %.2f, total %.2f",
+            (t1 - t0) / 1e9, (t2 - t1) / 1e9, (t3 - t2) / 1e9, (t3 - t0) / 1e9));
+        System.out.println("taxonomy written: " + args[1]);
+        System.out.println("=== END ===");
+        reasoner.dispose();
+    }
+}

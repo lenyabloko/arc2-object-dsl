@@ -1,0 +1,227 @@
+{
+ "test": "T58",
+ "guidance": "Fable guidance v10a",
+ "ontology_iri": "https://github.com/lenyabloko/arc2-object-dsl/ontology/t58",
+ "files": {
+  "ofn": "results/o0/t58_tbox.ofn",
+  "ttl": "results/o0/t58_tbox.ttl",
+  "summary": "results/o0/t58_export_summary.json"
+ },
+ "counts": {
+  "classes": 525,
+  "object_properties": 130,
+  "SubClassOf": 759,
+  "EquivalentClasses": 28,
+  "DisjointClasses": 16,
+  "SubObjectPropertyOf": 118,
+  "property_chains": 115,
+  "AnnotationAssertion": 244,
+  "logical_axioms": 1036
+ },
+ "axioms_by_source": {
+  "concept_hierarchy": {
+   "SubClassOf": 214,
+   "SubObjectPropertyOf": 4,
+   "Chain": 11
+  },
+  "ontology_links": {
+   "SubClassOf": 507
+  },
+  "o0": {
+   "SubObjectPropertyOf": 114,
+   "Chain": 104
+  },
+  "lattice": {
+   "EquivalentClasses": 3,
+   "SubClassOf": 38,
+   "DisjointClasses": 16
+  },
+  "pairs": {
+   "EquivalentClasses": 25
+  }
+ },
+ "sources": {
+  "concept_hierarchy": {
+   "path": "/home/claude/work/codex/ontology/concept_hierarchy.ttl",
+   "classes": 195,
+   "subclassof": 214,
+   "nonatomic_subclassof": 0,
+   "object_properties": 35,
+   "subpropertyof": 4,
+   "chains": 11,
+   "chains_using_rdfs_subClassOf": 4,
+   "datatype_properties_not_exported": 66,
+   "concept_feature_assertions_not_exported": 34
+  },
+  "ontology_links": {
+   "path": "/home/claude/work/public_repo/results/ontology/ontology_links.ttl",
+   "classes": 206,
+   "subclassof": 507,
+   "nonatomic_subclassof": 0
+  },
+  "o0_items": {
+   "items": 24,
+   "roles": 24,
+   "concepts": 0,
+   "setting_properties": 70,
+   "subsumptions": 44,
+   "chains_rcc": 28,
+   "chains_allen": 76,
+   "not_exported": [
+    "between <= line_of_sight at item level (ITEM['subsumes'], checked by the harness at the default setting only): false for settings not covered, so only the per-setting axioms are exported",
+    "reflection_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+    "rotation_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+    "translate_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+    "within <= nearest at item level (ITEM['subsumes'], checked by the harness at the default setting only): false for settings not covered, so only the per-setting axioms are exported",
+    "RCC-8 entries involving EC: rcc8_EC is grounded on raw cells (not filled regions), so the region composition table does not apply to it",
+    "EQ o EQ <= EQ and allen equals o equals <= equals: unsound for irreflexive relations (x != y)",
+    "multi-relation table entries (disjunctive results, not EL) and derived PP o NTPP <= NTPP style entries (non-regular together with NTPP <= PP)"
+   ],
+   "item_level_from_settings": [
+    "adjacent_dir <= aligned",
+    "adjacent_dir <= dir_rel",
+    "line_of_sight <= aligned"
+   ]
+  },
+  "lattice": {
+   "attribute_vocabulary": 80,
+   "names_from_rules_added": 17,
+   "extra_names": [
+    "D1:size_rank=0",
+    "D1:size_rank_asc=0"
+   ],
+   "lattice_classes": 99,
+   "subclassof": 38,
+   "equivalentclasses": 3,
+   "disjointclasses": 16,
+   "runs": [
+    "results/m1b/c2_train.jsonl.txt",
+    "results/m1b/c2_deval.jsonl.txt"
+   ],
+   "tasks_with_rules_used": 74,
+   "tasks_skipped_n2": 5,
+   "two_attribute_rule_occurrences": 26,
+   "distinct_pairs": 25,
+   "unverified_names": [],
+   "pairs": [
+    "D12:n_holes=0 & adjColor=4",
+    "D1:size_rank=1 & square_bbox",
+    "D1:size_rank=1 & topmost",
+    "D4:n_touch=0 & shape_shared",
+    "D4:n_touch=1 & color=2",
+    "adjColor=1 & size=4",
+    "adjColor=2 & alignedColor=2",
+    "adjColor=2 & touches_border",
+    "alignedColor=0 & color=0",
+    "alignedColor=1 & inside_other",
+    "alignedColor=2 & square_bbox",
+    "alignedColor=3 & inside_other",
+    "alignedColor=3 & isolated",
+    "alignedColor=4 & isolated",
+    "color=5 & color_most_common",
+    "color=5 & exists_same_holes",
+    "color_most_common & isolated",
+    "exists_same_holes & shape_unique",
+    "filled_rect & rightmost",
+    "isolated & square_bbox",
+    "leftmost & touches_border",
+    "rightmost & topmost",
+    "square_bbox & sym_lr",
+    "square_bbox & touches_other",
+    "topmost & touches_border"
+   ]
+  }
+ },
+ "el_profile": {
+  "profile": "OWL 2 EL",
+  "violations": [],
+  "checked": "every constructor of every axiom in the written .ofn against the OWL 2 EL grammar (whitelist); flags inverse properties, universal restrictions, negation, disjunction, cardinality, functional/symmetric/asymmetric/irreflexive properties and enumerations of more than one element"
+ },
+ "rbox_regularity": {
+  "regular": true,
+  "violations": [],
+  "chain_axioms": 115,
+  "order_constraints": 183,
+  "properties_in_order": 109,
+  "longest_strict_path": 4,
+  "inverse_or_symmetric_axioms": [],
+  "note": "OWL 2 spec section 11.2; no inverse property expressions occur, so INV(X) is ordered like X"
+ },
+ "ofn_structural_check": {
+  "file": "results/o0/t58_tbox.ofn",
+  "balanced_parentheses": true,
+  "errors": [],
+  "prefixes": 11,
+  "ontology_iri": "https://github.com/lenyabloko/arc2-object-dsl/ontology/t58",
+  "declarations": 655,
+  "declared_classes": 525,
+  "declared_object_properties": 130,
+  "axioms": 1280,
+  "undeclared_iris": [],
+  "n_undeclared": 0,
+  "unused_declarations": 25,
+  "constructs": {
+   "Annotation": 315,
+   "AnnotationAssertion": 244,
+   "Declaration": 655,
+   "DisjointClasses": 16,
+   "EquivalentClasses": 28,
+   "ObjectIntersectionOf": 25,
+   "ObjectPropertyChain": 115,
+   "SubClassOf": 759,
+   "SubObjectPropertyOf": 233
+  },
+  "ok": true
+ },
+ "ttl_roundtrip_check": {
+  "file": "results/o0/t58_tbox.ttl",
+  "triples": 4191,
+  "counts": {
+   "classes": 525,
+   "object_properties": 130,
+   "SubClassOf": 759,
+   "SubObjectPropertyOf": 118,
+   "property_chains": 115,
+   "EquivalentClasses": 28,
+   "DisjointClasses": 16
+  },
+  "mismatches_vs_ofn": {},
+  "non_el_vocabulary": [],
+  "ok": true
+ },
+ "expected_classification": {
+  "named_classes": 525,
+  "satisfiable": 525,
+  "distinct_after_classification": 522,
+  "equivalence_sets": [
+   [
+    "lat:D1_size_rank_asc_eq_0",
+    "lat:smallest"
+   ],
+   [
+    "lat:D1_size_rank_eq_0",
+    "lat:largest"
+   ],
+   [
+    "lat:single_pixel",
+    "lat:size_eq_1"
+   ]
+  ],
+  "unsatisfiable": [],
+  "equivalence_sets_with_pairs": 0
+ },
+ "left_out": [
+  "concept_hierarchy.ttl: datatype properties, rdfs:domain/rdfs:range, and the punned concept->feature/constraint assertions (requiresFeature etc. between classes-as-individuals: ABox metamodelling, not TBox)",
+  "concept_hierarchy.ttl: rdfs:subClassOf inside 4 chains replaced by the object property t58:subClassOfRel",
+  "ontology_links.ttl: annotation properties (groundedIn, skos mappings, labels)",
+  "between <= line_of_sight at item level (ITEM['subsumes'], checked by the harness at the default setting only): false for settings not covered, so only the per-setting axioms are exported",
+  "reflection_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+  "rotation_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+  "translate_of ITEM['chains'] (transformation compositions): they hold only under x != z, which an OWL property chain cannot state",
+  "within <= nearest at item level (ITEM['subsumes'], checked by the harness at the default setting only): false for settings not covered, so only the per-setting axioms are exported",
+  "RCC-8 entries involving EC: rcc8_EC is grounded on raw cells (not filled regions), so the region composition table does not apply to it",
+  "EQ o EQ <= EQ and allen equals o equals <= equals: unsound for irreflexive relations (x != y)",
+  "multi-relation table entries (disjunctive results, not EL) and derived PP o NTPP <= NTPP style entries (non-regular together with NTPP <= PP)",
+  "lattice: subsumptions that need disjunction or negation (e.g. D14:dense_full == filled_rect or single_pixel) and links between lattice attributes and O0 roles (not definitional in the code)"
+ ]
+}
