@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-09-30 23:00 UTC (19:00 EDT Sep 30). Updated with every outbox batch._
+_Last updated: 2026-10-01 06:00 UTC (02:00 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -265,3 +265,16 @@ _Last updated: 2026-09-30 23:00 UTC (19:00 EDT Sep 30). Updated with every outbo
 - Len's lines now include ARC-2 "needs you" tasks: 22 tested lines, 21 solve their own task (19 of them V29 failures; 4 ARC-2 half-A tasks: 409aa875, de809cff, 2b83f449, 4c416de3 — note: the D2 LLM proposer also wrote one-off programs for these four in cycle 22, excluded from the notebook by D26); 28 other design tasks exact, 4 wrong; 1 other new over V29 (1bfc4729).
 - Ontology from lines (Len asked whether his lines enrich the priors ontology): every checked line is now a Layer-2 mechanism card in `priors` (line_<task>, machine-filled from its reading, with its checks), grouped under 9 parent concepts (stamp_replicate ⊒ decorate, extract_marked_region, denoise, recolour_by_mapping, complete_shape, rearrange, transform_object, layer_order); Vocabulary tab shows the tree (page v87). Next: one merged family per concept, measured for transfer against the separate families.
 - V31 = V29 + 13 line families that transferred (exact on ≥ 1 other design task; D26 keeps single-task families out), new last stratum L_lines (prior_lines.py; fills empty slots only; 15 s per family, 60 s per stage). 409aa875 family speed-fixed (same.py SAME on 13 tasks; worst 38.6 s → 0.02 s). Timing on the 997 design tasks: max per family 2.18 s, max stage 3.52 s, no caps. Local check on 13 lined tasks: 12 answered exactly by the line stratum (52df9849 not reached: V29 fills both slots). ORDERS seq 4: Windows runs c36-v31-full and c37-v31-parity, then compare_gate CYCLE=24 (batch-0066).
+
+## Update 01:00 EDT Oct 1: V31 admitted (cycle 24); v17 staged
+- Gate (Windows wake runner, 3 workers): compare_gate CYCLE=24 c32 (V29) vs c36 (V31) = {b: 0, c: 0, n_changed: 0} → P2 = 0 (cycle 24). c36: design training 605 → 616, half A 38 → 39, 0 lost, 0 timeouts, max 209 s. Gained 12 design tasks: 0607ce86, 0f63c0b9, 103eff5b, 1bfc4729, 3de23699, 409aa875, 5ad4f10b, b0f4d537, b190f7f5, ca8de6ea, d2acf2cb, e26a3af2. c37 parity: digest a6b358c8…, correct_design_slots 51, half A 39, half B 1, total 1712 s, max 62.45 s, 0 timeouts.
+- Notebook v17 = V31 (build_nb3.py; 0.38 MB; 61 probe files byte-identical to tools/m1b/v31; digest-only parity gate). EXPECTED.json carries eval_digest and no all-120 count. daily_submit.sh now gates on digest_match + prediction_digest == eval_digest, plus correct_of_172 only where EXPECTED still has it (v16 and earlier). LATEST = v17 (batch-0067). ORDERS seq 5: WSL runs daily_submit.sh once after 00:00 UTC Oct 2; never retry.
+- Note: prior_fluids/mechanics/optics.py (unchanged since V29, shipped in v16) mention 5 N2 ids in comments; counts only checked, not printed. Comments do not affect predictions; left as is to keep the probe set identical to the gated one.
+- Review page cycle/current v18: V31 admitted, ledger row 24b admitted (dT 11, dEA 1, P2 b 0 · c 0), Kaggle row v17 staged.
+- Line count check: 23 lines, 22 own-task exact, 20 of those V29 failures (line ledger + c32/e99, N2 rows skipped).
+
+## Update 02:00 EDT Oct 1: cycle 25 — one merged family per mechanism concept; V32 to the gate
+- 7 concepts with ≥ 2 lines (stamp_replicate, decorate, denoise, extract_marked_region, recolour_by_mapping, complete_shape, rearrange): one family each, anti-unified test-blind by one subagent per concept from the member lines' code and member training pairs (tools/dream/o0/concepts/<concept>.py). Measured by tools/dream/o0/concept_check.py (design population, N2 never read) against the union of the separate line families: members fitted 21/21, exact 20/21 (dd2401ed as before); non-member exact 37 vs 26 (gained 19, lost 8); wrong 10 vs 4; code 2497 vs 4451 lines. Biggest: decorate 14 other tasks vs 7, extract_marked_region 7 vs 3. Non-member new over V29: only 1bfc4729 (already in V31). Ledger results/o0/concept_ledger.jsonl.txt; written onto the concept cards (priors mech_*).
+- decorate speed fix (subagent): same.py SAME on all 997 design tasks; max 8.03 s → 0.53 s.
+- V32 = V31 + stratum L_concepts (prior_concepts.py, after L_lines, fills empty slots only; 10 s per family, 30 s per stage; measured max per family < 1 s). Probe tools/m1b/v32 (69 files, v32_SHA256SUMS.txt), vocab V32.txt. Local: 9aaea919 answered by the concept stratum (exact), dd2401ed wrong (as its line). Expected design gains over V31 are source fits only (7 member tasks kept out of V31 by D26, 3 ARC-2) — not transfer evidence; the transfer test is the N2 gate.
+- Wake jobs c38-v32-full, c39-v32-parity; compare_gate CYCLE=25 c36 vs c38 (batch-0068, ORDERS seq 6).
