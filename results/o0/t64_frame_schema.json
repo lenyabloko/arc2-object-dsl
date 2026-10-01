@@ -1,0 +1,142 @@
+[
+ {
+  "frame": "bridge_aligned_pairs",
+  "schema": "LINK",
+  "schema2": null,
+  "verb": "connect",
+  "stop": "other:partner_item"
+ },
+ {
+  "frame": "colour_from_nearest_seed",
+  "schema": "NEAR-FAR",
+  "schema2": "CONTAINMENT",
+  "verb": "recolour",
+  "stop": "none"
+ },
+ {
+  "frame": "conditional_line_fill",
+  "schema": "PATH",
+  "schema2": null,
+  "verb": "fill",
+  "stop": "other:scope_edge"
+ },
+ {
+  "frame": "continue_progression",
+  "schema": "CYCLE",
+  "schema2": null,
+  "verb": "extrapolate",
+  "stop": "border"
+ },
+ {
+  "frame": "count_bar_chart",
+  "schema": "COUNTING",
+  "schema2": null,
+  "verb": "count",
+  "stop": "count"
+ },
+ {
+  "frame": "distance_rings_halo",
+  "schema": "CENTER-PERIPHERY",
+  "schema2": "CYCLE",
+  "verb": "surround",
+  "stop": "other:thickness_k"
+ },
+ {
+  "frame": "dock_piece_by_matching",
+  "schema": "CONTACT",
+  "schema2": "MATCHING",
+  "verb": "fit",
+  "stop": "other:exact_fit"
+ },
+ {
+  "frame": "kronecker_tiling",
+  "schema": "SCALE",
+  "schema2": "CYCLE",
+  "verb": "tile",
+  "stop": "none"
+ },
+ {
+  "frame": "learned_key_table",
+  "schema": "MATCHING",
+  "schema2": null,
+  "verb": "lookup",
+  "stop": "none"
+ },
+ {
+  "frame": "legend_lookup_substitution",
+  "schema": "MATCHING",
+  "schema2": null,
+  "verb": "substitute",
+  "stop": "none"
+ },
+ {
+  "frame": "mirror_symmetry_completion",
+  "schema": "SYMMETRY",
+  "schema2": null,
+  "verb": "reflect",
+  "stop": "none"
+ },
+ {
+  "frame": "pack_objects_in_order",
+  "schema": "PART-WHOLE",
+  "schema2": "COUNTING",
+  "verb": "arrange",
+  "stop": "none"
+ },
+ {
+  "frame": "propagate_panel_template",
+  "schema": "MATCHING",
+  "schema2": "PART-WHOLE",
+  "verb": "copy",
+  "stop": "none"
+ },
+ {
+  "frame": "ray_cast_to_stop",
+  "schema": "PATH",
+  "schema2": null,
+  "verb": "cast",
+  "stop": "obstacle"
+ },
+ {
+  "frame": "rectangle_from_delimiters",
+  "schema": "CONTAINMENT",
+  "schema2": "PART-WHOLE",
+  "verb": "locate",
+  "stop": "other:delimiters"
+ },
+ {
+  "frame": "select_odd_or_extremal",
+  "schema": "PART-WHOLE",
+  "schema2": "COUNTING",
+  "verb": "select",
+  "stop": "none"
+ },
+ {
+  "frame": "stamp_stencil_at_anchors",
+  "schema": "CENTER-PERIPHERY",
+  "schema2": "MATCHING",
+  "verb": "stamp",
+  "stop": "none"
+ },
+ {
+  "frame": "template_cover_completion",
+  "schema": "PART-WHOLE",
+  "schema2": "MATCHING",
+  "verb": "cover",
+  "stop": "other:evidence_explained"
+ },
+ {
+  "frame": "translate_object",
+  "schema": "CONTACT",
+  "schema2": "SUPPORT",
+  "verb": "move",
+  "stop": "obstacle"
+ },
+ {
+  "frame": "turtle_path_walk",
+  "schema": "PATH",
+  "schema2": null,
+  "verb": "walk",
+  "stop": "other:exits_grid_goal_or_boxed_in"
+ }
+]

@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 18:20 UTC (14:20 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 19:45 UTC (15:45 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -305,3 +305,9 @@ _Last updated: 2026-10-01 18:20 UTC (14:20 EDT Oct 1). Updated with every outbox
 - V33 = V32 + 19 families, stratum L_priors2 (prior_priors2.py; 25 s per family, 40 s per stage; measured max 2.46 / 2.55 s). Local: c92b942c, f5b8619d, 6f8cd79b, 32597951, 2bee17df answered by the stratum (exact). Wake jobs c40-v33-full, c41-v33-parity; compare_gate CYCLE=27 c38 vs c40 (batch-0072, ORDERS seq 10).
 - Phone page: one-off tasks now marked "one-off" with Claude's reading (db needs/readings); tasks a prior concept now covers are marked "prior: <concept>" (db needs/current.covered, 150 tasks).
 - Len (14:05 EDT) proposed expanding each description into nearby hypothetical descriptions (generalise, expand top-down, recurse); he has asked Fable — keep going until further notice.
+
+## Update 15:45 EDT Oct 1: V33 gate; v19 staged; Fable 10/10a/10b
+- Cycle 27 gate: compare_gate CYCLE=27 c38 vs c40 = {b 0, c 0, n_changed 1} → P2 = 0 (fourth concept cycle with P2 = 0). c40: train 620 → 754, half A 42 → 44, 0 lost; all 136 design gains are member (source) tasks of the 19 families; 0 non-member gains in the full solver. c41 parity: digest de2bd55e, correct design slots 74 (half A 44, half B 13), max 66.45 s, 0 timeouts.
+- Notebook v19 = V33 (0.54 MB; 89 probe files byte-identical), LATEST = v19 (batch-0074): V33 contains V32 and only fills empty slots, so it replaces v18 for tonight. ORDERS seq 11: WSL submits v19 once after 00:00 UTC Oct 2.
+- Fable v10 (description lattice) / v10a (OWL 2 definitions, ELK + Datalog) / v10b (ground on real grids; menus from fitted bindings; cycle-27 frames seed the tops). Response claude/fable_round_10_response.md: T53 pass (90 %, 14 tops), T62 22 single / 38 two-definition, T54 1,521 synthetic nodes grounded (tautological round trip), T55 fail (4/68). T64: 20 frames → 12 schemas, 11 frames composed (two schemas) — results/o0/t64_frame_schema.json.
+- Engines: ELK/HermiT cannot be fetched (egress blocks Maven/PyPI; Java 21 + rdflib present). Fable D35: ELK on WSL (needs a Java install on Len's machine) — waiting for Len's OK. Kaggle-side Datalog evaluator (T59) proceeds independently.

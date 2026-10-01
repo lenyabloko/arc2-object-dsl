@@ -1,0 +1,9 @@
+{
+ "eval_digest": "de2bd55e07b483bcbf3f28e7c456ca8b877f317b43576e79152aca6a5a6835a7",
+ "gate": "digest only (G18): parity_report.json digest_match true and prediction_digest == eval_digest; no all-120 count",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines,L_concepts,L_priors2",
+ "probe": "V33 = V32 + 19 prior-concept families mined from solution texts (stratum L_priors2; fills empty answer slots only)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 27: compare_gate c38 (V32) vs c40 (V33) on the N2 gate b=0 c=0 n_changed=1; design train 620 -> 754, half A 42 -> 44, 0 lost (all 136 gains are member tasks of the families); parity c41 digest de2bd55e, correct design slots 74, max 66.45 s per task, 0 timeouts",
+ "note": "lzma payload notebook (build_nb3.py), 0.54 MB; 89 probe files byte-identical to tools/m1b/v33 (v33_SHA256SUMS.txt)"
+}
