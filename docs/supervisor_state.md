@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 14:05 UTC (10:05 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-01 14:45 UTC (10:45 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -283,3 +283,10 @@ _Last updated: 2026-10-01 14:05 UTC (10:05 EDT Oct 1). Updated with every outbox
 - Len asked for a phone version with only the Tasks tab and residuals. New artifact "ARC Review Mobile" (claude.ai artifact 4Z1VdvcahWaj7CeZXdNyDJ; source scratchpad/phone/phone_src.html, data file ptasks.json = the 997 design tasks' training pairs + test INPUTS only, no test outputs, no N2): task list (Needs you = ARC-2 design tasks V31 does not solve and no line solves; Unsolved; Mine; All), task view with the line box, status from expansions, each training pair with its change map ("what changes"), test inputs, prev/next, tap to enlarge.
 - It has its OWN database: lines/<tid> {text, ts, gid, from} and expansions/<tid> (mirrored). Seeded with the 24 non-N2 lines and their expansions. **Every line pass must first run tools/review/phone_sync.py** (list main decisions + expansions and phone lines + expansions to out_dir; later ts wins; write main_writes.json to the main page, phone_writes.json to the phone page; add if_version for existing main decision docs). After the pass, mirror new expansions to the phone page.
 - New line (Len, 13:42 UTC, M069 ray.bounce) on 142ca369 (ARC-2 half A, needs-you): "from each outer corner shoot a diagonal laser ray … bounces from every flat surface and acquires the surface color until it reaches the outer edge". Family tools/dream/o0/lines/142ca369.py: own task exact (training 3/3); held-out group 0/2; fires on no other design task. New concept card mech_ray_bounce; expansions written to both pages.
+
+## Update 10:45 EDT Oct 1: check-in; V32 gate; v16 score; v18 staged
+- v16 (V29) public score 2.50 (= v11, v15).
+- Cycle 25 gate: compare_gate c36 vs c38 = {b 0, c 0, n_changed 0} → P2 = 0. c38: train 620, half A 42, 0 lost, 0 timeouts, max 210.6 s; gains = the 7 member tasks. c39: digest 4825db4b, correct design slots 54, max 64.7 s, 0 timeouts.
+- Notebook v18 = V32 (build_nb3; 0.42 MB; 69 probe files byte-identical), LATEST = v18 (batch-0070), ORDERS seq 7: WSL submits v18 once after 00:00 UTC Oct 2; v17 superseded.
+- OQ7 proxy: P2 = 0 in cycles 24 and 25; clean P1 ≈ 0 → both arms failing as of today (decision Oct 12). Convergence doc entry corrects the Sep 30 claim that lines transfer better than LLM concepts (confounded by task choice); blind A/B offered to Len.
+- No new task lines (main or phone) since 13:42 UTC; no Fable round 10. WSL checks were blocked by local permissions overnight — tonight's submission may need Len's nudge.

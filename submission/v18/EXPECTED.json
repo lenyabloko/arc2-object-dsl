@@ -1,0 +1,9 @@
+{
+ "eval_digest": "4825db4b777ecdab45a376ff20120848194899e7eb2fa2fd50835b35576c5956",
+ "gate": "digest only (G18): parity_report.json digest_match true and prediction_digest == eval_digest; no all-120 count",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines,L_concepts",
+ "probe": "V32 = V31 + 7 merged mechanism-concept families from the reviewer's lines (stratum L_concepts; fills empty answer slots only)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 25: compare_gate c36 (V31) vs c38 (V32) on the N2 gate b=0 c=0 n_changed=0; design train 616 -> 620, half A 39 -> 42, 0 lost (gains are the concepts' member tasks); parity c39 digest 4825db4b, correct design slots 54, max 64.66 s per task, 0 timeouts",
+ "note": "lzma payload notebook (build_nb3.py), 0.42 MB; 69 probe files byte-identical to tools/m1b/v32 (v32_SHA256SUMS.txt)"
+}

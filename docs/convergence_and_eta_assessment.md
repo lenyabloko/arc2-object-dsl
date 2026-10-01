@@ -371,3 +371,12 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 - **Risk.**
   - Hidden ARC-2 transfer is unmeasured: P2 is the only proxy.
   - Each line costs Len about 1–2 minutes plus about 70k tokens of implementer work.
+
+## Check-in 10:30 EDT Oct 1 (written 10:40)
+- **Submissions.** v16 (V29) public score **2.50**, the same as v11 (V17) and v15 (V21). V29's +24 training and +3 half-A design tasks did not move the hidden score.
+- **Cycle 24 (V31 = V29 + 13 line families).** compare_gate c32 vs c36 = {b 0, c 0, n_changed 0} → P2 = 0. Design +12, 0 lost; c37 digest a6b358c8, 0 timeouts. Notebook v17 staged.
+- **Cycle 25 (V32 = V31 + 7 merged concept families).** compare_gate c36 vs c38 = {b 0, c 0, n_changed 0} → P2 = 0. Design train 616 → 620, half A 39 → 42, 0 lost; the 7 gains are exactly the concepts' member tasks (source fits), as predicted. c39 digest 4825db4b, correct design slots 54, max 64.7 s, 0 timeouts. Notebook v18 (V32, 0.42 MB) staged as LATEST for tonight's slot: V32 contains V31 and adds answers only where V31 leaves a slot empty, so it replaces v17.
+- **OQ7 proxy after two concept cycles (24, 25).** P2 = 0 in both → the P2 arm fails as of today. P1 on the clean definition (non-source tasks V29 fails): lines 1/23, merged concepts 0/7, D2 2/60 → P1 fails. Reading under OQ7, if this holds on Oct 12: both fail → stop Dream; the decision is Oct 12.
+- **Correction to the Sep 30 22:30 entry.** "Human lines transfer, LLM concepts did not" is not supported. On the 6 ARC-2 tasks with both a D2 one-off and a line of Len's, both solve all 6; reuse 0 (D2) vs 1 already-solved task (lines). The higher reuse of lines (1.2 vs 0.27 per item) comes from lines on ARC-1 residual tasks, which have many look-alikes in the ARC-1-heavy design set. Proposed control (offered to Len, not run): blind A/B on the 17 ARC-1 lined tasks — Claude's own line vs Len's, same implementer pipeline.
+- **What the evidence says.** Design-set gains (V21 → V29 → V31 → V32: +24, +12, +7) have not reached the N2 gate or the public score. The missing ingredient is transfer to unseen tasks, and none of the levers tried so far (abduced families, LLM concepts, O₀ roles, reviewer lines, merged concepts) has produced it.
+- **Operations.** WSL's 10-min checks were blocked by the local permission system 21:32 EDT Sep 30 – 06:24 EDT Oct 1; the v17/v18 run after 20:00 EDT may need Len's nudge. The Windows session reports it never saw ORDERS seq 5 (a rolled-back seq 3 copy at 00:52 EDT); seq 5 had no Windows work, so nothing is lost.
