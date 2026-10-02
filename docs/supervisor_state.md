@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-02 15:40 UTC (11:40 EDT Oct 2). Updated with every outbox batch._
+_Last updated: 2026-10-02 18:05 UTC (14:05 EDT Oct 2). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -377,3 +377,26 @@ _Last updated: 2026-10-02 15:40 UTC (11:40 EDT Oct 2). Updated with every outbox
   - No new lines since 08:11 UTC.
 - **Oct 5 draft:** filled with the T73 lead item and the known rows (claude/oct5_stop_rule_report_draft.md).
 - Next check-in: 22:30 EDT Oct 2 (scheduled).
+
+## Update 14:05 EDT Oct 2: Fable v15/v16/v17; T80 premise checked; v21 staged
+- **New project docs:**
+  - fable_guidance_v15_oct5_memo (option a/b);
+  - decision_no_neural_track (Len, 12:19);
+  - fable_guidance_v16_synthesis (situations, PSI weighting, G77–G79);
+  - ideas_priors_as_situations;
+  - fable_guidance_v17_oct12 (Oct 3–12, short-term gain only: P1 parser, P2 aligner, P3 open-slot filler, four situations, T80/T83/T84, V36 at CYCLE=30, scheduler + second attempt).
+- **P1:** closed six-slot vocabulary (tools/dream/o0/template_vocab.json). Each of Len's 38 lines was parsed from its own text only (4 parser agents). 37/38 parse; d2acf2cb fails (G81).
+- **P2 v1 (template_align.py):** T83 all-four-slot agreement 0/38 strict and lenient, 3/38 with the parsed value among the kept values. WHAT and WHO are mostly OPEN.
+- **P3 v1 (invariants.py: acts, size rule, palette, keeps-ink/bg, symmetry, colours kept):**
+  - Density (1,330 variants): pass@1 676 → 677, pass@2 713 → 713. Abstaining on forced simulation would lose 10 of 56 correct.
+  - Design tasks the build fails (153): the prior pool has candidates for 8 tasks and holds the right answer for 0, so the upper bound is 0.
+- **T80 premise:**
+  - 18 of the 28 "size" cases are empty predictions, which the build skips.
+  - The 60 cases come from 36 tasks, of which 33 the build already solves, so at most 3 design tasks could flip.
+  - The T72 table describes the families in isolation, not the build.
+- **Four situations on the 153 build-failing tasks** (training pairs only): 20 tasks; stamping 10, projection 6, tiling 5, symmetry 1; 2 ARC-2.
+- Response: claude/fable_round_17_response.md. Decision needed from Len/Fable: new situation generators (against v17 §0) or protect-only.
+- **v21 staged** (not LATEST) = v20 + round scheduler in the driver for the test run only (tools/m1b/predict_m1_guarded.py: deadline NB_T0 + 11 h, 10 rounds, 25 % overrun skip, per-task commit).
+  - Parity cell and probe payload byte-identical to v20.
+  - Unguarded and guarded drivers give identical digests on 12 eval tasks; a short-deadline test skipped 3 of 12 cleanly; a notebook plumbing test matches.
+  - LATEST switches to v21 only after tonight's v20 submission.

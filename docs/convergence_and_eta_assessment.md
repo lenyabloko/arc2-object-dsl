@@ -407,3 +407,11 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - Measured with the slot-augmented binder: 83 → 81 wrong, +2 exact, 0 new (targets ≤ 50, +20, ≥ 3). The density check agrees (−2 % wrong).
 - **Engine.** T58 passed (ELK = exporter); T71 is unchanged under ELK.
 - **Reading.** Descriptions, recognisers and now generator slots have all been expanded and measured; none moved the held-out gate or the public score. The residual table points at the families' output construction (size, what goes where), not at their stop or acceptance rules. The Oct 5 report leads with this. Under v14 the programme skips O6/O7 and goes to O8/O9, and V36 would contain nothing new. ETA to a higher public score: still no evidence of one; the standing notebook keeps 2.50.
+
+## 14:05 EDT Oct 2: the T80 premise
+- The residual cases that v15–v17 target (T72: 60 size/mixed design cases) mostly do not occupy build slots:
+  - 18 are empty predictions, which the build skips;
+  - 33 of their 36 tasks the build already solves.
+- On the 153 design tasks the build fails, the 38 prior families hold the right answer for 0, so open-slot selection over existing families is bounded at 0.
+- 20 of the 153 instantiate one of the four situations on their training pairs. That is the most new situation generators could reach on design.
+- ETA unchanged: no evidence of a path to a higher public score inside v17's scope; v21 (V34 + time guard) protects the 2.50.

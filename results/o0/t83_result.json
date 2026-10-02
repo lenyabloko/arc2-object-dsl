@@ -1,0 +1,1784 @@
+{
+ "summary": {
+  "lines": 38,
+  "parsed": 37,
+  "agree_all4_strict": 0,
+  "agree_per_slot_strict": {
+   "WHO": 5,
+   "WHAT": 9,
+   "WHERE": 6,
+   "UNTIL": 0
+  },
+  "agree_all4_lenient": 0,
+  "agree_per_slot_lenient": {
+   "WHO": 6,
+   "WHAT": 9,
+   "WHERE": 19,
+   "UNTIL": 26
+  },
+  "agree_all4_contained": 3,
+  "agree_per_slot_contained": {
+   "WHO": 9,
+   "WHAT": 12,
+   "WHERE": 22,
+   "UNTIL": 26
+  }
+ },
+ "rows": [
+  {
+   "card": "0607ce86",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "whole_grid",
+    "aligned": "same_colour_pair",
+    "kept": [
+     "same_colour_pair"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "0ca9ddb6",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "aligned": "marker",
+    "kept": [
+     "marker"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "decorate",
+    "aligned": "complete_shape",
+    "kept": [
+     "complete_shape",
+     "decorate"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "at_marker",
+    "kept": [
+     "adjacent",
+     "at_marker"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": true
+  },
+  {
+   "card": "0d87d2a6",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "same_colour_pair",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "0f63c0b9",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects",
+     "marker"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "aligned": "mirror_complete",
+    "kept": [
+     "mirror_complete"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "on_line_of_sight",
+    "aligned": "mirror_position",
+    "kept": [
+     "mirror_position"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "border",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "103eff5b",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "odd_object",
+    "kept": [
+     "largest_object",
+     "odd_object"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "aligned": "recolour",
+    "kept": [
+     "recolour"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "aligned": "in_place",
+    "kept": [
+     "in_place"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "142ca369",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "unspecified",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "corner",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "border",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "17829a00",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "colour_class",
+    "aligned": "same_colour_pair",
+    "kept": [
+     "all_objects",
+     "same_colour_pair",
+     "separator"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "move",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "toward",
+    "aligned": "between",
+    "kept": [
+     "across_separator",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "20fb2937",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "separator",
+    "aligned": "separator",
+    "kept": [
+     "all_objects",
+     "separator"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "across_separator",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "2b83f449",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "aligned": "same_colour_pair",
+    "kept": [
+     "same_colour_pair"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "transform",
+    "aligned": "copy_stamp",
+    "kept": [
+     "complete_shape",
+     "copy_stamp",
+     "decorate",
+     "move"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "contact",
+    "kept": [
+     "contact"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "2dd70a9a",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "obstacle",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "3de23699",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "region",
+    "kept": [
+     "region"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "extract",
+    "kept": [
+     "extract"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "inside",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "409aa875",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "4c416de3",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "aligned": "complete_shape",
+    "kept": [
+     "complete_shape",
+     "decorate"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "4c7dc4dd",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "frame_or_container",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "inside",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "50f325b5",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "aligned": "recolour",
+    "kept": [
+     "recolour"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "aligned": "in_place",
+    "kept": [
+     "in_place"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "5117e062",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "odd_object",
+    "aligned": "region",
+    "kept": [
+     "region"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "extract",
+    "kept": [
+     "extract"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "centre",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "52df9849",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "rearrange",
+    "aligned": "recolour",
+    "kept": [
+     "recolour"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "aligned": "in_place",
+    "kept": [
+     "in_place"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "5ad4f10b",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "7d18a6fb",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "7d419a02",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "mirror_position",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "obstacle",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "7ed72f31",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "mirror_complete",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "mirror_position",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "995c5fa3",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "separator",
+    "kept": [
+     "all_objects",
+     "separator"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "summarise",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": true
+  },
+  {
+   "card": "9aaea919",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "aligned": "copy_stamp",
+    "kept": [
+     "copy_stamp",
+     "move"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "on_line_of_sight",
+    "kept": [
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "count",
+    "aligned": "contact",
+    "kept": [
+     "contact"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "9b5080bb",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "aligned": "frame_or_container",
+    "kept": [
+     "frame_or_container"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "fill",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "aligned": "inside",
+    "kept": [
+     "inside"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "a644e277",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "aligned": "separator",
+    "kept": [
+     "region",
+     "separator"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "aligned": "extract",
+    "kept": [
+     "extract"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": true
+  },
+  {
+   "card": "b0f4d537",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "aligned": "separator",
+    "kept": [
+     "all_objects",
+     "separator"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "transform",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "length_of_template",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "b190f7f5",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "ca8de6ea",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "whole_grid",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "rearrange",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "d017b73f",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "move",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "d2acf2cb",
+   "parse_failure": true,
+   "WHO": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "d6542281",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "aligned": "complete_shape",
+    "kept": [
+     "complete_shape",
+     "decorate"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "dd2401ed",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "aligned": "separator",
+    "kept": [
+     "separator"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "move",
+    "aligned": "draw_line",
+    "kept": [
+     "copy_stamp",
+     "draw_line",
+     "move"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "toward",
+    "aligned": "on_line_of_sight",
+    "kept": [
+     "across_separator",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "once",
+    "aligned": "border",
+    "kept": [
+     "border",
+     "contact",
+     "obstacle"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "de809cff",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "aligned": "same_colour_pair",
+    "kept": [
+     "all_objects",
+     "same_colour_pair"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "aligned": "move",
+    "kept": [
+     "complete_shape",
+     "decorate",
+     "move"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "contact",
+    "kept": [
+     "contact"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "e2092e0c",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "decorate",
+    "aligned": "complete_shape",
+    "kept": [
+     "complete_shape",
+     "decorate"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "WHERE": {
+    "parsed": "adjacent",
+    "aligned": "at_marker",
+    "kept": [
+     "adjacent",
+     "at_marker"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "e26a3af2",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "separator",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "aligned": "copy_stamp",
+    "kept": [
+     "complete_shape",
+     "copy_stamp",
+     "decorate",
+     "mirror_complete"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "between",
+     "mirror_position",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "e5062a87",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "fixpoint",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "f3b10344",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "same_colour_pair",
+    "aligned": "same_colour_pair",
+    "kept": [
+     "all_objects",
+     "same_colour_pair"
+    ],
+    "strict": true,
+    "lenient": true,
+    "contained": true
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "aligned": "OPEN",
+    "kept": [],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "aligned": "adjacent",
+    "kept": [
+     "adjacent",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": true
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  },
+  {
+   "card": "f560132c",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "frame_or_container",
+    "aligned": "all_objects",
+    "kept": [
+     "all_objects"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "aligned": "summarise",
+    "kept": [
+     "summarise"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "WHERE": {
+    "parsed": "adjacent",
+    "aligned": "whole_output",
+    "kept": [
+     "whole_output"
+    ],
+    "strict": false,
+    "lenient": false,
+    "contained": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "aligned": "once",
+    "kept": [
+     "once"
+    ],
+    "strict": false,
+    "lenient": true,
+    "contained": true
+   },
+   "strict": false,
+   "lenient": false,
+   "contained": false
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "doc": "Fable v17 P1/P2 (G81): closed vocabulary of the six-slot situation template <WHO, WHAT, WHERE, HOW, UNTIL, WHY>, drawn from the existing vocabulary (O0 roles, the action binder of the prior families, the stop set, the colour roles). WHY is free prose. 'unspecified' = the line (or the pairs) do not fix the slot.",
+ "WHO": {
+  "all_objects": "every foreground object",
+  "marker": "lone cells / small marker objects",
+  "largest_object": "the biggest object",
+  "smallest_object": "the smallest object",
+  "odd_object": "the one object that differs from the others (odd one out)",
+  "exemplar": "a template / multicolour exemplar / legend shape whose pattern is reused",
+  "same_colour_pair": "pairs or groups of objects sharing a colour",
+  "colour_class": "the objects of one colour role (most / least frequent, new colour, marker colour)",
+  "frame_or_container": "a frame, box or container object and its interior",
+  "separator": "separator lines and the panels they cut",
+  "line_segment": "line segments / sticks / bars",
+  "region": "a marked or framed area of the grid",
+  "background_cells": "the background cells themselves",
+  "whole_grid": "the grid as a whole",
+  "unspecified": ""
+ },
+ "WHAT": {
+  "draw_line": "draw rays / beams / lines (incl. connecting lines)",
+  "fill": "fill a region / cavity / interior",
+  "recolour": "change the colour of existing cells or objects",
+  "copy_stamp": "copy, stamp or replicate a shape or pattern",
+  "move": "translate / slide / attract objects",
+  "mirror_complete": "complete or extend by symmetry / reflection",
+  "transform": "rotate, flip, reorient or stretch shapes",
+  "extract": "crop / extract a part of the grid as the output",
+  "tile_scale": "tile, scale or repeat the grid or a unit",
+  "delete": "remove objects or noise",
+  "summarise": "output a small grid that summarises counts / properties",
+  "complete_shape": "complete partial shapes from an exemplar or a pattern",
+  "decorate": "add decoration (outline, halo, markers) around objects",
+  "rearrange": "sort / pack / reorder objects",
+  "unspecified": ""
+ },
+ "WHERE": {
+  "at_marker": "at each marker / anchor",
+  "inside": "inside the object / frame / region",
+  "adjacent": "next to / around / on the sides of the object",
+  "between": "between two objects or markers",
+  "on_line_of_sight": "along the row / column / diagonal from the object",
+  "aligned": "on the row or column shared with another object",
+  "mirror_position": "at the mirror image position across an axis",
+  "toward": "in the direction of another object or edge",
+  "in_place": "at the object's own position",
+  "corner": "at the corners",
+  "centre": "at the centre",
+  "across_separator": "in the corresponding place across a separator / in another panel",
+  "whole_output": "the output grid itself",
+  "unspecified": ""
+ },
+ "HOW": {
+  "own_colour": "in the object's own colour",
+  "other_object_colour": "in the colour of a marker / exemplar / other participant",
+  "mapped_colour": "by a colour mapping / legend / table",
+  "new_colour": "in a colour that is new (not in the input)",
+  "background": "with the background colour (erase)",
+  "same_shape": "keeping the shape / pattern",
+  "transformed_shape": "rotated / flipped / scaled shape",
+  "unspecified": ""
+ },
+ "UNTIL": {
+  "border": "until the grid border",
+  "obstacle": "until it meets another object / colour",
+  "contact": "until it touches / attaches",
+  "length_of_template": "as long as a reference length / template",
+  "fixpoint": "repeatedly until nothing changes / as much as possible",
+  "count": "a fixed or counted number of times",
+  "once": "single application, no stopping condition",
+  "unspecified": ""
+ }
+}

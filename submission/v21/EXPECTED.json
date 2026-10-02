@@ -1,0 +1,9 @@
+{
+ "eval_digest": "b6c6bfd8fd763162973b4c730ba82cfc1aaa3728f83fec7bffb060b3638b4b49",
+ "gate": "digest only (G18): parity_report.json digest_match true and prediction_digest == eval_digest; no all-120 count",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines,L_concepts,L_priors2,L_priors3",
+ "probe": "V34 = V33 + 19 second-pass prior-concept families (Fable v10b T65; stratum L_priors3 after L_priors2; fills empty answer slots only)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 28: compare_gate c40 (V33) vs c42 (V34) on the N2 gate b=0 c=0 n_changed=0; parity c43 digest b6c6bfd8, correct design slots 85 (V33 74), max 103.9 s per task, 0 timeouts",
+ "note": "v21 = v20 (same 109 probe files, same parity cell) + round scheduler in the driver for the test run only (deadline NB_T0 + 11 h, 10 rounds, 25 % overrun skip, per-task commit; Fable v17 \u00a74 / G27-G29). Parity run unchanged, so the digest is unchanged. Staged as a candidate; not LATEST."
+}
