@@ -6,7 +6,9 @@ Encoding: fact p(v0..vk) = IRI <urn:f:p/v0/../vk> with properties ex:p_0 v0 ... 
 rdf:type triple, so rdflib's pattern ordering joins on shared variables instead of scanning a predicate's facts).
 Translation of a body literal (in the engine's join order): positive atom -> triple patterns; negated atom ->
 FILTER NOT EXISTS { ... }; comparison -> FILTER(...); 'V = e' with V unbound -> BIND(e AS ?V); abs -> ABS,
-min/max -> IF. Head -> CONSTRUCT template with the fact IRI from BIND(IRI(CONCAT(...))). Rules with a head aggregate
+min/max -> IF. Head -> CONSTRUCT template with the fact IRI from BIND(IRI(CONCAT(...))). A lazy view (head ?- body, e.g. rcc8_DC)
+-> SELECT DISTINCT over the same body translation, run once on the fixpoint graph and compared with
+engine.Program.query. The EDB includes the change set delta (t59_parity.design_grids); per-relation cap as in T59. Rules with a head aggregate
 are translated to a sub-SELECT with GROUP BY (MIN / MAX / COUNT(DISTINCT ...)) unless --agg-from-engine, in which
 case aggregate relations are copied from engine.py and only the aggregate-free rules are checked.
 Join order: rdflib's evalPart sorts a BGP's triples by the number of unbound terms (patterns holding a constant go
@@ -101,6 +103,11 @@ class Tr:
         return "PREFIX ex: <urn:p:>\nCONSTRUCT { ?h %s . } WHERE {\n  %s\n  %s }" % (" ; ".join(tmpl), where, iri)
 
 
+def view_query(tr, head, body):
+    vs = [a[1] for a in head[1] if a[0] == "v"]
+    return "PREFIX ex: <urn:p:>\nSELECT DISTINCT %s WHERE {\n  %s }" % (" ".join("?" + v for v in vs), tr.body(body)), vs
+
+
 def add_fact(g, p, t):
     f = URIRef("urn:f:%s/%s" % (p, "/".join(str(v) for v in t)))
     for i, v in enumerate(t): g.add((f, EX["%s_%d" % (p, i)], Literal(v)))
@@ -113,8 +120,8 @@ def read_rel(g, p, arity):
     return out
 
 
-def check(prog, queries, edbf, agg_from_engine):
-    res = prog.run(edbf)
+def check(prog, queries, edbf, agg_from_engine, vqueries=None):
+    res = prog.run(edbf, rel_cap=T.REL_CAP)
     g = Graph()
     for p, ts in list(prog.facts.items()) + list(edbf.items()):
         for t in ts: add_fact(g, p, tuple(t))
@@ -132,9 +139,18 @@ def check(prog, queries, edbf, agg_from_engine):
             if not rec or len(g) == n0: break
     diff = {}
     for p in prog.idb:
+        if p in res.skipped: continue
         a = read_rel(g, p, prog.arity[p]); b = set(res.relations[p])
         if a != b: diff[p] = [len(a - b), len(b - a)]
-    return diff, len(g), {r for r, c in res.by_rule.items() if c}
+    for v, (q, vs) in (vqueries or {}).items():
+        head = prog.views[v][0]; b = prog.query(res, v)
+        if b is None: continue
+        a = set()
+        for row in g.query(q):
+            d = dict(zip(vs, (x.toPython() for x in row)))
+            a.add(tuple(d[x[1]] if x[0] == "v" else x[1] for x in head[1]))
+        if a != set(b): diff[v] = [len(a - set(b)), len(set(b) - a)]
+    return diff, len(g), {r for r, c in res.by_rule.items() if c}, sorted(res.skipped)
 
 
 if __name__ == "__main__":
@@ -150,6 +166,7 @@ if __name__ == "__main__":
     prog = engine.Program(open(os.path.join(HERE, "o0_rules.dl.txt")).read())
     tr = Tr()
     texts = [None if (a.agg_from_engine and any(x[0] == "agg" for x in h[1])) else tr.rule(h, b) for h, b in prog.rules]
+    vtexts = {v: view_query(tr, h, b) for v, (h, b) in prog.views.items()}
     out = os.path.join(T.OUT, a.out)
     if a.merge:
         parts = [json.load(open(out.replace(".json", ".part%d.json" % k))) for k in range(a.merge)]
@@ -157,22 +174,23 @@ if __name__ == "__main__":
         sec = sum(q["sec"] for q in parts)
     else:
         queries = [None if t is None else prepareQuery(t) for t in texts]
+        vqueries = {v: (prepareQuery(q), vs) for v, (q, vs) in vtexts.items()}
         P = T.Hn.setup(os.path.join(T.M1B, "v34"))
         grids, n2 = T.design_grids()
         grids.sort(key=lambda kg: (len(kg[1]) * len(kg[1][0]), kg[0]))
         ok = []
-        for key, gr in grids:
+        for key, gr, delta, dsrc in grids:
             if len(gr) * len(gr[0]) > a.max_cells: break
-            try: ok.append((key, gr, T.Hn.individuals(P, gr, "nbccg")))
+            try: ok.append((key, gr, delta, T.Hn.individuals(P, gr, "nbccg")))
             except Exception: continue
         pick = ok[:a.n]; big = ok[a.n:]
         if a.extra and big: pick += [big[(k * len(big)) // a.extra] for k in range(min(a.extra, len(big)))]
         rows, fired, t0 = [], set(), time.time()
-        for key, gr, (inds, names, bg) in pick[a.part::a.parts]:
+        for key, gr, delta, (inds, names, bg) in pick[a.part::a.parts]:
             t1 = time.time()
-            diff, ntrip, fr = check(prog, queries, T.edb(gr, inds, bg), a.agg_from_engine); fired |= fr
-            rows.append({"key": key, "cells": len(gr) * len(gr[0]), "n_ind": len(inds), "agree": not diff, "diff": diff,
-                         "triples": ntrip, "sec": round(time.time() - t1, 2)})
+            diff, ntrip, fr, sk = check(prog, queries, T.edb(gr, inds, bg, delta), a.agg_from_engine, vqueries); fired |= fr
+            rows.append({"key": key, "cells": len(gr) * len(gr[0]), "n_ind": len(inds), "n_delta": len(delta),
+                         "agree": not diff, "diff": diff, "skipped": sk, "triples": ntrip, "sec": round(time.time() - t1, 2)})
             print(json.dumps(rows[-1]), file=sys.stderr, flush=True)
         sec = time.time() - t0
         if a.parts > 1:
@@ -180,7 +198,9 @@ if __name__ == "__main__":
             json.dump({"rows": rows, "fired": sorted(fired), "sec": sec}, open(out.replace(".json", ".part%d.json" % a.part), "w"))
             sys.exit(0)
     S = {"grids": len(rows), "agree": sum(r["agree"] for r in rows), "rules_translated": sum(t is not None for t in texts),
-         "rules_total": len(prog.rules), "rules_exercised": len(fired),
+         "rules_total": len(prog.rules), "rules_exercised": len(fired), "views_checked": sorted(prog.views),
+         "grids_with_delta": sum(r.get("n_delta", 0) > 0 for r in rows),
+         "grids_with_skipped_relation": sum(bool(r.get("skipped")) for r in rows),
          "rules_not_exercised": sorted(set(engine.fmt_rule(h, b) for h, b in prog.rules) - fired),
          "aggregates": "engine" if a.agg_from_engine else "SPARQL GROUP BY",
          "bgp_order": "rdflib" if a.rdflib_order else "greedy (CUSTOM_EVALS)",
@@ -188,6 +208,7 @@ if __name__ == "__main__":
          "grids_over_9_cells": sum(r["cells"] > 9 for r in rows), "sec_total": round(sec, 1),
          "disagree_preds": sorted({p for r in rows for p in r["diff"]})}
     os.makedirs(T.OUT, exist_ok=True)
-    json.dump({"summary": S, "rows": rows, "example_query": texts[[h[0] for h, b in prog.rules].index("allen")]},
+    json.dump({"summary": S, "rows": rows, "example_query": texts[[h[0] for h, b in prog.rules].index("allen")],
+               "view_queries": {v: q for v, (q, vs) in vtexts.items()}},
               open(out, "w"), indent=0)
     print(json.dumps(S, indent=1))

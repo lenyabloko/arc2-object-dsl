@@ -19,24 +19,34 @@ positive atom or an assignment) is checked at load time. Each rule body is compi
 nested loops over hash indices (built lazily, maintained incrementally).
 Work W_mat = number of distinct derived facts (EDB and constant facts excluded); counts are kept per rule (the rule
 that first derived the fact) and per predicate.
+Lazy views (G63): 'dc(I, J) ?- lo(I, "row", _), obj(J), I != J, !connected(I, J).' is never materialised and costs no
+W_mat; Program.query(res, "dc", args) answers it from the materialised facts (args: tuple with None for free
+positions). Its body may negate any materialised predicate (the fixpoint is complete when it is asked).
+Per-relation cap: with rel_cap, a predicate whose stored facts exceed rel_cap is skipped for this run together with
+its whole component (evaluation of that component stops, its facts are discarded and not counted in W_mat), and so
+is every component or view that uses a skipped predicate. res.skipped logs predicate -> {size, reason}.
 
 Usage:
     from engine import Program
     prog = Program(open("o0_rules.dl.txt").read())
-    res = prog.run({"cell": [(0, 0, 3), ...], "pix": [...]}, cap=None)   # cap: raise WorkCap if W_mat > cap
+    res = prog.run({"cell": [(0, 0, 3), ...], "pix": [...]}, cap=None, rel_cap=50000)   # cap: WorkCap if W_mat > cap
     res.relations["rcc8_EC"]   -> sorted list of tuples;  res.wmat;  res.by_rule (rule text -> facts);  res.by_pred
+    prog.query(res, "rcc8_DC") -> sorted tuples (None if a predicate it uses was skipped)
 """
 import re
 
 AGG = ("min", "max", "count")
 FUN = ("abs", "min", "max")
 CMP = ("=", "!=", "<", "<=", ">", ">=")
-_TOK = re.compile(r'\s+|%[^\n]*|//[^\n]*|(:-|!=|<=|>=|[(),.!=<>+*-])|(\d+)|("[^"]*")|([A-Za-z_][A-Za-z0-9_]*)|(\S)')
+_TOK = re.compile(r'\s+|%[^\n]*|//[^\n]*|(:-|\?-|!=|<=|>=|[(),.!=<>+*-])|(\d+)|("[^"]*")|([A-Za-z_][A-Za-z0-9_]*)|(\S)')
 
 
 class DatalogError(Exception): pass
 class StratificationError(DatalogError): pass
 class WorkCap(DatalogError): pass
+
+
+class _Skip(Exception): pass
 
 
 # ------------------------------------------------------------------------------------------------ parser
@@ -54,7 +64,7 @@ def tokenize(text):
 
 
 class Parser:
-    """clause := atom [':-' literal {',' literal}] '.'; terms: ('v', name) | ('c', value) | ('w',)."""
+    """clause := atom [(':-' | '?-') literal {',' literal}] '.'; terms: ('v', name) | ('c', value) | ('w',)."""
     def __init__(self, text):
         self.t = tokenize(text); self.i = 0; self.anon = 0
 
@@ -68,11 +78,11 @@ class Parser:
     def clauses(self):
         out = []
         while self.peek()[0] != "eof":
-            head = self.atom(head=True); body = []
-            if self.peek()[1] == ":-":
-                self.next(); body.append(self.literal())
+            head = self.atom(head=True); body = []; kind = ":-"
+            if self.peek()[1] in (":-", "?-"):
+                kind = self.next()[1]; body.append(self.literal())
                 while self.peek()[1] == ",": self.next(); body.append(self.literal())
-            self.expect("."); out.append((head, body))
+            self.expect("."); out.append((head, body, kind))
         return out
 
     def term(self):
@@ -273,14 +283,29 @@ def compile_rule(head, body, first=None):
 
 # ------------------------------------------------------------------------------------------------ program
 class Result:
-    def __init__(self, relations, wmat, by_rule, by_pred):
+    def __init__(self, relations, wmat, by_rule, by_pred, skipped, R, IX):
         self.relations, self.wmat, self.by_rule, self.by_pred = relations, wmat, by_rule, by_pred
+        self.skipped, self._R, self._IX = skipped, R, IX
+
+
+def subst(t, env):
+    """replace variables bound in env (name -> value) by constants, in a term, expression or literal"""
+    if t[0] == "v": return ("c", env[t[1]]) if t[1] in env else t
+    if t[0] in ("c", "w"): return t
+    if t[0] == "op": return ("op", t[1], subst(t[2], env), subst(t[3], env))
+    if t[0] == "neg": return ("neg", subst(t[1], env))
+    if t[0] == "f": return ("f", t[1], [subst(a, env) for a in t[2]])
+    if t[0] == "atom": return ("atom", t[1], [subst(a, env) for a in t[2]], t[3])
+    return ("cmp", t[1], subst(t[2], env), subst(t[3], env))
 
 
 class Program:
     def __init__(self, text):
-        self.facts, self.rules = {}, []
-        for head, body in Parser(text).clauses():
+        self.facts, self.rules, self.views = {}, [], {}
+        for head, body, kind in Parser(text).clauses():
+            if kind == "?-":
+                if any(a[0] == "agg" for a in head[1]) or head[0] in self.views: raise DatalogError("bad view " + head[0])
+                self.views[head[0]] = (head, body); continue
             if not body:
                 if any(a[0] != "c" for a in head[1]): raise DatalogError("non-ground fact " + fmt_rule(head, body))
                 self.facts.setdefault(head[0], set()).add(tuple(a[1] for a in head[1]))
@@ -292,6 +317,12 @@ class Program:
             for p, n in [(head[0], len(head[1]))] + [(l[1], len(l[2])) for l in body if l[0] == "atom"]:
                 if self.arity.setdefault(p, n) != n: raise DatalogError("arity clash for %s" % p)
         self.idb = sorted({h[0] for h, b in self.rules})
+        for v, (head, body) in self.views.items():
+            if v in self.arity or v in self.facts: raise DatalogError("view %s is also stored" % v)
+            for l in body:
+                if l[0] == "atom" and l[1] in self.views: raise DatalogError("view %s uses view %s" % (v, l[1]))
+            compile_rule(head, body)                     # safety check
+        self._vcache = {}
         self.strata = self.stratify()
         self.compiled = []                       # per stratum: [(rule index, recursive?, [(first, fn)])]
         for comp in self.strata:
@@ -347,7 +378,30 @@ class Program:
             if comp_of[a] == comp_of[b]: raise StratificationError("negation/aggregation through recursion: " + r)
         return [c for c in comps if any(p in self.idb for p in c)]
 
-    def run(self, edb, cap=None):
+    def query(self, res, view, args=None):
+        """answer a lazy view from res's materialised facts; None if the view uses a skipped predicate"""
+        head, body = self.views[view]
+        if any(l[0] == "atom" and l[1] in res.skipped for l in body): return None
+        env = {}
+        if args is not None:
+            for a, v in zip(head[1], args):
+                if v is None: continue
+                if a[0] == "c" and a[1] != v: return []
+                if a[0] == "v":
+                    if a[1] in env and env[a[1]] != v: return []
+                    env[a[1]] = v
+        key = (view, tuple(sorted(env.items())))
+        fn = self._vcache.get(key)
+        if fn is None:
+            h = (head[0], [subst(a, env) for a in head[1]])
+            fn = self._vcache[key] = self._fn(h, [subst(l, env) for l in body], None)
+            if len(self._vcache) > 4096: self._vcache.clear()
+        R = res._R
+        for l in body:
+            if l[0] == "atom": R.setdefault(l[1], set())
+        return sorted(set(fn(R, res._IX, None)))
+
+    def run(self, edb, cap=None, rel_cap=None):
         R = {p: set() for p in self.arity}
         for p, ts in self.facts.items(): R.setdefault(p, set()).update(ts)
         for p, ts in edb.items(): R.setdefault(p, set()).update(tuple(t) for t in ts)
@@ -379,10 +433,12 @@ class Program:
                     for t in new: d.setdefault(tuple(t[i] for i in poss), []).append(t)
             return new
 
-        by_rule, wmat = [0] * len(self.rules), [0]
+        by_rule, wmat, skipped = [0] * len(self.rules), [0], {}
 
         def credit(ri, n):
             by_rule[ri] += n; wmat[0] += n
+            p = self.rules[ri][0][0]
+            if rel_cap is not None and len(R[p]) > rel_cap: raise _Skip(p)
             if cap is not None and wmat[0] > cap: raise WorkCap("W_mat > %d" % cap)
 
         def fire(ri, out):
@@ -398,29 +454,42 @@ class Program:
             return out
 
         for comp, rs in self.compiled:
-            delta = {p: [] for p in comp}
-            for ri, rec, variants in rs:                     # non-recursive rules: once
-                if rec: continue
-                new = add(self.rules[ri][0][0], fire(ri, variants[0][1](R, IX, None)))
-                credit(ri, len(new)); delta[self.rules[ri][0][0]].extend(new)
-            if not any(rec for _, rec, _ in rs): continue
-            delta = {p: list(R[p]) for p in comp}            # first recursive round reads everything derived so far
-            while any(delta.values()):
-                found = []
-                for ri, rec, variants in rs:
-                    if not rec: continue
-                    body = self.rules[ri][1]
-                    for k, fn in variants:
-                        d = delta[body[k][1]]
-                        if d: found.append((ri, fire(ri, fn(R, IX, d))))
-                nxt = {p: [] for p in comp}
-                for ri, out in found:
-                    p = self.rules[ri][0][0]; new = add(p, out); credit(ri, len(new)); nxt[p].extend(new)
-                delta = nxt
+            uses = {l[1] for ri, _, _ in rs for l in self.rules[ri][1] if l[0] == "atom"} - set(comp)
+            bad = sorted(uses & set(skipped))
+            if bad:
+                for p in comp: skipped[p] = {"size": 0, "reason": "uses skipped " + ",".join(bad)}
+                continue
+            try:
+                for ri, rec, variants in rs:                 # non-recursive rules: once
+                    if rec: continue
+                    new = add(self.rules[ri][0][0], fire(ri, variants[0][1](R, IX, None)))
+                    credit(ri, len(new))
+                if not any(rec for _, rec, _ in rs): continue
+                delta = {p: list(R[p]) for p in comp}        # first recursive round reads everything derived so far
+                while any(delta.values()):
+                    found = []
+                    for ri, rec, variants in rs:
+                        if not rec: continue
+                        body = self.rules[ri][1]
+                        for k, fn in variants:
+                            d = delta[body[k][1]]
+                            if d: found.append((ri, fire(ri, fn(R, IX, d))))
+                    nxt = {p: [] for p in comp}
+                    for ri, out in found:
+                        p = self.rules[ri][0][0]; new = add(p, out); credit(ri, len(new)); nxt[p].extend(new)
+                    delta = nxt
+            except _Skip as e:                               # per-relation cap: drop the whole component
+                for p in comp:
+                    skipped[p] = {"size": len(R[p]), "reason": "cap" if p == e.args[0] else "same component as " + e.args[0]}
+                    R[p] = set()
+                    for k in [k for k in idx if k[0] == p]: del idx[k]
+                for ri, _, _ in rs: wmat[0] -= by_rule[ri]; by_rule[ri] = 0
         rel = {}
         for p in self.idb:
+            if p in skipped: continue
             try: rel[p] = sorted(R[p])
             except TypeError: rel[p] = sorted(R[p], key=repr)
         by_pred = {}
         for ri, c in enumerate(by_rule): by_pred[self.rules[ri][0][0]] = by_pred.get(self.rules[ri][0][0], 0) + c
-        return Result(rel, wmat[0], {fmt_rule(*self.rules[ri]): c for ri, c in enumerate(by_rule)}, by_pred)
+        return Result(rel, wmat[0], {fmt_rule(*self.rules[ri]): c for ri, c in enumerate(by_rule)}, by_pred,
+                      skipped, R, IX)

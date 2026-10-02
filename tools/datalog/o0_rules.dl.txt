@@ -1,4 +1,4 @@
-% O0 vocabulary as stratified Datalog (Fable guidance v10a, G62/G63, test T59).
+% O0 vocabulary as stratified Datalog (Fable guidance v10a / v11, G62/G63, test T59).
 % One head predicate per item; item parameters are trailing arguments in sorted parameter-name order:
 %   rcc8_<R>(I, J)  allen(I, J, Axis, Rel)  aligned(I, J, Axis)  between(I, J, Axis)  dir_rel(I, J, D)
 %   adjacent_dir(I, J, D)  line_of_sight(I, J, Axis)  on_ray(I, J, D, Stop)  nearest(I, J)  within(I, J, K, Metric)
@@ -10,6 +10,9 @@
 %   bg(C)             background colour
 %   ind(I, K)         individual I (harness index) of kind "object" or "cell" (one per background cell)
 %   pix(I, Y, X)      cell (Y, X) belongs to individual I
+%   delta(Y, X)       cell (Y, X) is in the task's change set (Wake supplies it before materialisation; may be empty)
+% G63 (v11): rcc8_DC is a lazy view ('?-'): never stored, answered at query time as not connected(I, J);
+% dir_rel and allen are stored for object-object pairs and for cell-object pairs whose cell is in delta only.
 % Constant tables below (direction vectors, parameter domains) are part of this file. No item answer is input.
 % Style: Horn rules, safe heads, positive recursion only (rays, run labels, enclosure flood), stratified negation
 % and head aggregates (min / max / count) only over lower strata.
@@ -57,25 +60,30 @@ hi(I, "row", max(Y)) :- pix(I, Y, _).
 lo(I, "col", min(X)) :- pix(I, _, X).
 hi(I, "col", max(X)) :- pix(I, _, X).
 oiv(J, A, L, H) :- obj(J), lo(J, A, L), hi(J, A, H).
+% first arguments of the stored dir_rel / allen: objects, and background cells in the change set
+sel(I) :- obj(I).
+sel(I) :- cellind(I, Y, X), delta(Y, X).
+slo(I, A, L) :- sel(I), lo(I, A, L).
+shi(I, A, H) :- sel(I), hi(I, A, H).
 
 % ---------------------------------------------------------------- Allen relations, aligned, dir_rel, adjacent_dir
-allen(I, J, A, "before") :- hi(I, A, H), oiv(J, A, C, _), H + 1 < C.
-allen(I, J, A, "meets") :- hi(I, A, H), C = H + 1, oiv(J, A, C, _).
-allen(I, J, A, "overlaps") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), L < C, C <= H, D > H.
-allen(I, J, A, "during") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), C < L, D > H.
-allen(I, J, A, "starts") :- lo(I, A, L), hi(I, A, H), oiv(J, A, L, D), D > H.
-allen(I, J, A, "finishes") :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, H), C < L.
-allen(I, J, A, "equals") :- lo(I, A, L), hi(I, A, H), oiv(J, A, L, H), I != J.
+allen(I, J, A, "before") :- shi(I, A, H), oiv(J, A, C, _), H + 1 < C.
+allen(I, J, A, "meets") :- shi(I, A, H), C = H + 1, oiv(J, A, C, _).
+allen(I, J, A, "overlaps") :- slo(I, A, L), shi(I, A, H), oiv(J, A, C, D), L < C, C <= H, D > H.
+allen(I, J, A, "during") :- slo(I, A, L), shi(I, A, H), oiv(J, A, C, D), C < L, D > H.
+allen(I, J, A, "starts") :- slo(I, A, L), shi(I, A, H), oiv(J, A, L, D), D > H.
+allen(I, J, A, "finishes") :- slo(I, A, L), shi(I, A, H), oiv(J, A, C, H), C < L.
+allen(I, J, A, "equals") :- slo(I, A, L), shi(I, A, H), oiv(J, A, L, H), I != J.
 aligned(I, J, A) :- lo(I, A, L), hi(I, A, H), oiv(J, A, C, D), L <= D, C <= H, I != J.
 
-dir_rel(I, J, "N") :- aligned(I, J, "col"), hi(I, "row", B), lo(J, "row", C), B < C.
-dir_rel(I, J, "S") :- aligned(I, J, "col"), lo(I, "row", A), hi(J, "row", D), A > D.
-dir_rel(I, J, "E") :- aligned(I, J, "row"), lo(I, "col", A), hi(J, "col", D), A > D.
-dir_rel(I, J, "W") :- aligned(I, J, "row"), hi(I, "col", B), lo(J, "col", C), B < C.
-dir_rel(I, J, "NE") :- hi(I, "row", B), oiv(J, "row", C, _), B < C, lo(I, "col", A), hi(J, "col", D), A > D.
-dir_rel(I, J, "NW") :- hi(I, "row", B), oiv(J, "row", C, _), B < C, hi(I, "col", E), lo(J, "col", F), E < F.
-dir_rel(I, J, "SE") :- lo(I, "row", A), oiv(J, "row", _, D), A > D, lo(I, "col", E), hi(J, "col", F), E > F.
-dir_rel(I, J, "SW") :- lo(I, "row", A), oiv(J, "row", _, D), A > D, hi(I, "col", B), lo(J, "col", C), B < C.
+dir_rel(I, J, "N") :- shi(I, "row", B), aligned(I, J, "col"), lo(J, "row", C), B < C.
+dir_rel(I, J, "S") :- slo(I, "row", A), aligned(I, J, "col"), hi(J, "row", D), A > D.
+dir_rel(I, J, "E") :- slo(I, "col", A), aligned(I, J, "row"), hi(J, "col", D), A > D.
+dir_rel(I, J, "W") :- shi(I, "col", B), aligned(I, J, "row"), lo(J, "col", C), B < C.
+dir_rel(I, J, "NE") :- shi(I, "row", B), oiv(J, "row", C, _), B < C, slo(I, "col", A), hi(J, "col", D), A > D.
+dir_rel(I, J, "NW") :- shi(I, "row", B), oiv(J, "row", C, _), B < C, shi(I, "col", E), lo(J, "col", F), E < F.
+dir_rel(I, J, "SE") :- slo(I, "row", A), oiv(J, "row", _, D), A > D, slo(I, "col", E), hi(J, "col", F), E > F.
+dir_rel(I, J, "SW") :- slo(I, "row", A), oiv(J, "row", _, D), A > D, shi(I, "col", B), lo(J, "col", C), B < C.
 
 adjacent_dir(I, J, "N") :- hi(I, "row", B), C = B + 1, oiv(J, "row", C, _), aligned(I, J, "col").
 adjacent_dir(I, J, "S") :- lo(I, "row", A), D = A - 1, oiv(J, "row", _, D), aligned(I, J, "col").
@@ -98,9 +106,9 @@ hole(I, Y, X) :- inside(I, Y, X), !reach(I, Y, X).
 region(I, Y, X) :- pix(I, Y, X).
 region(I, Y, X) :- hole(I, Y, X).
 
-conn(I, J) :- region(I, Y, X), region(J, Y, X), obj(J).
-conn(I, J) :- region(I, Y, X), n4(Y, X, Y2, X2), region(J, Y2, X2), obj(J).
-rcc8_DC(I, J) :- lo(I, "row", _), obj(J), I != J, !conn(I, J).
+connected(I, J) :- region(I, Y, X), region(J, Y, X), obj(J).
+connected(I, J) :- region(I, Y, X), n4(Y, X, Y2, X2), region(J, Y2, X2), obj(J).
+rcc8_DC(I, J) ?- lo(I, "row", _), obj(J), I != J, !connected(I, J).      % lazy view, never materialised
 ov(I, J) :- region(I, Y, X), region(J, Y, X), I != J.
 notsub(I, J) :- ov(I, J), region(I, Y, X), !region(J, Y, X).
 sub(I, J) :- ov(I, J), !notsub(I, J).

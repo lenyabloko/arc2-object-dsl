@@ -1,11 +1,18 @@
-"""T59 (Fable v10a): engine parity between the Datalog fixpoint (o0_rules.dl.txt via engine.py) and the Dream-side
-O0 materialisation (tools/dream/o0/items/*.py through harness.py), per design grid.
+"""T59 (Fable v10a, re-run under v11 G63): engine parity between the Datalog fixpoint (o0_rules.dl.txt via engine.py)
+and the Dream-side O0 materialisation (tools/dream/o0/items/*.py through harness.py), per design grid.
 
 Design grids: inputs (train and test) of the design tasks = training challenges minus novel_N2, plus the evaluation
 tasks in deval_a / deval_b. Individuals: harness.individuals(P, grid, 'nbccg') with probe tools/m1b/v34. For every
 grid, both sides produce {item + json(params): sorted [[i, j], ...]} for every item and parameter setting; canonical
-JSON -> sha256; equal / not, W_mat, seconds per side. No outputs, no solutions files are read.
-usage: python3 t59_parity.py [--limit N] [--part K --parts P]      one part -> results/o0/t59_parity.partK.json
+JSON -> sha256; equal / not, W_mat, seconds per side.
+v11 G63: (1) rcc8_DC is the lazy view of the rule file, answered by engine.Program.query (not stored, no W_mat);
+(2) dir_rel and allen are stored for object-object pairs and for cell-object pairs whose cell is in the change set
+delta; delta of a training input = cells whose colour differs from its training output (same shape), empty for a
+test input and for a size-changing training pair; the Python extension is filtered the same way; (3) a relation
+whose stored facts exceed REL_CAP on a grid is skipped there (with everything that uses it) on both sides and logged.
+Training outputs are read for delta only; test outputs and *_solutions.json are never read.
+usage: python3 t59_parity.py [--part K --parts P]                  one part -> results/o0/t59_parity.partK.json
+       python3 t59_parity.py --limit N [--part K --parts P]        smoke run -> results/o0/t59_parity.limit.json
        python3 t59_parity.py --merge P                             parts -> results/o0/t59_parity.json + summary
 """
 import argparse, hashlib, json, os, re, sys, time
@@ -20,6 +27,8 @@ import engine  # noqa: E402
 import harness as Hn  # noqa: E402
 
 CAP = 200000                                               # G63 cap on derived facts per grid
+REL_CAP = 50000                                            # G63 (v11) cap on stored facts per relation and grid
+RESTRICTED = ("allen", "dir_rel")                          # first argument: objects and change-set cells only
 
 
 def design_grids():
@@ -32,36 +41,54 @@ def design_grids():
     tasks = [(k, tr[k]) for k in sorted(tr) if k not in n2] + [(k, ev[k]) for k in sorted(set(dv)) if k not in n2]
     out = []
     for k, t in tasks:
-        for i, g in enumerate([p['input'] for p in t['train']] + [p['input'] for p in t['test']]):
-            out.append(("%s:%d" % (k, i), g))
+        for i, p in enumerate(t['train']):
+            a, b = p['input'], p['output']
+            if (len(a), len(a[0])) == (len(b), len(b[0])):
+                d = [(y, x) for y in range(len(a)) for x in range(len(a[0])) if a[y][x] != b[y][x]]
+                out.append(("%s:%d" % (k, i), a, d, "train"))
+            else: out.append(("%s:%d" % (k, i), a, [], "train_size_change"))
+        for i, p in enumerate(t['test']):
+            out.append(("%s:%d" % (k, len(t['train']) + i), p['input'], [], "test"))
     return out, n2
 
 
-def edb(grid, inds, bg):
-    """primitive facts only: grid size, cells with colour, background colour, individuals' kind and cells"""
+def edb(grid, inds, bg, delta=()):
+    """primitive facts only: grid size, cells with colour, background colour, individuals' kind and cells, change set"""
     H, W = len(grid), len(grid[0])
     return {"size": [(H, W)], "cell": [(y, x, grid[y][x]) for y in range(H) for x in range(W)], "bg": [(bg,)],
             "ind": [(i, x["kind"]) for i, x in enumerate(inds)],
-            "pix": [(i, y, x) for i, ind in enumerate(inds) for (y, x) in ind["pix"]]}
+            "pix": [(i, y, x) for i, ind in enumerate(inds) for (y, x) in ind["pix"]],
+            "delta": [tuple(c) for c in delta]}
 
 
 def skey(it, prm):
     return it["name"] + (json.dumps(prm, sort_keys=True) if prm else "")
 
 
-def py_side(items, grid, inds, bg):
+def py_side(items, grid, inds, bg, delta=()):
+    """Python items; allen / dir_rel filtered to first arguments that are objects or change-set cells"""
+    ds = set(map(tuple, delta))
+    keep = {i for i, x in enumerate(inds) if x["kind"] == "object" or (x["kind"] == "cell" and x["pix"] <= ds)}
     ext, err = {}, {}
     for it in items:
         for prm in Hn.settings(it):
-            try: ext[skey(it, prm)] = sorted([int(i), int(j)] for i, j in Hn.extension(it, grid, inds, bg, prm))
+            try:
+                e = Hn.extension(it, grid, inds, bg, prm)
+                if it["name"] in RESTRICTED: e = {(i, j) for i, j in e if i in keep}
+                ext[skey(it, prm)] = sorted([int(i), int(j)] for i, j in e)
             except Exception as e: err[skey(it, prm)] = repr(e)[:200]
     return ext, err
 
 
-def dl_side(items, res):
+def dl_side(items, res, prog=None):
+    """stored relations; lazy views (rcc8_DC) answered by prog.query; skipped relations are left out"""
     ext = {}
     for it in items:
-        rel = res.relations.get(it["name"], [])
+        if it["name"] in res.skipped: continue
+        if prog is not None and it["name"] in prog.views:
+            rel = prog.query(res, it["name"])
+            if rel is None: continue
+        else: rel = res.relations.get(it["name"], [])
         keys = sorted(it.get("params") or {})
         by = {}
         for t in rel: by.setdefault(tuple(t[2:]), []).append([t[0], t[1]])
@@ -81,20 +108,25 @@ def run(part, parts, limit):
     grids, n2 = design_grids()
     grids = grids[part::parts][:limit] if limit else grids[part::parts]
     rows = []
-    for n, (key, g) in enumerate(grids):
+    for n, (key, g, delta, dsrc) in enumerate(grids):
         assert key.split(":")[0] not in n2
-        row = {"key": key, "H": len(g), "W": len(g[0])}
+        row = {"key": key, "H": len(g), "W": len(g[0]), "delta_src": dsrc, "n_delta": len(delta)}
         try: inds, names, bg = Hn.individuals(P, g, 'nbccg')
         except Exception as e:
             row["skip"] = repr(e)[:80]; rows.append(row); continue
         row["n_ind"] = len(inds); row["n_obj"] = sum(x["kind"] == "object" for x in inds)
-        t0 = time.time(); pe, perr = py_side(items, g, inds, bg); t1 = time.time()
+        t0 = time.time(); pe, perr = py_side(items, g, inds, bg, delta); t1 = time.time()
         try:
-            res = prog.run(edb(g, inds, bg)); de = dl_side(items, res); derr = None
+            res = prog.run(edb(g, inds, bg, delta), rel_cap=REL_CAP); t2 = time.time()
+            de = dl_side(items, res, prog); derr = None
         except Exception as e:
-            res, de, derr = None, {}, repr(e)[:200]
-        t2 = time.time()
-        row.update(py_s=round(t1 - t0, 4), dl_s=round(t2 - t1, 4), n_ext=sum(len(v) for v in pe.values()))
+            res, de, derr, t2 = None, {}, repr(e)[:200], time.time()
+        t3 = time.time()
+        if res is not None and res.skipped:             # skipped on the Datalog side -> skipped on both sides
+            row["skipped"] = res.skipped
+            for k in [k for k in pe if k.split("{")[0] in res.skipped or k not in de]: del pe[k]
+        row.update(py_s=round(t1 - t0, 4), dl_s=round(t2 - t1, 4), dc_s=round(t3 - t2, 4),
+                   n_ext=sum(len(v) for v in pe.values()))
         if perr: row["py_err"] = perr
         if derr: row["dl_err"] = derr
         row["eq"] = (not perr and not derr and digest(pe) == digest(de))
@@ -107,6 +139,7 @@ def run(part, parts, limit):
             row["wmat"] = res.wmat
             row["top_rule"] = max(res.by_rule.items(), key=lambda kv: kv[1])
             row["top_pred"] = sorted(res.by_pred.items(), key=lambda kv: -kv[1])[:5]
+            row["rel_max"] = row["top_pred"][0] if row["top_pred"] else None
         rows.append(row)
         if n % 50 == 0:
             print(json.dumps({q: row.get(q) for q in ("key", "eq", "wmat", "py_s", "dl_s", "mismatch")}), file=sys.stderr, flush=True)
@@ -121,7 +154,7 @@ def rule_stats():
         vs = {a[1] for a in h[1] if a[0] == "v"} | {v for a in h[1] if a[0] == "agg" for v in a[2]}
         for l in b: vs |= engine.lvars(l)
         st.append((sum(l[0] == "atom" for l in b), len(vs)))
-    return {"rules": len(st), "facts": sum(len(v) for v in prog.facts.values()), "strata": len(prog.strata),
+    return {"rules": len(st), "views": sorted(prog.views), "facts": sum(len(v) for v in prog.facts.values()), "strata": len(prog.strata),
             "recursive_strata": sum(any(r for _, r, _ in rs) for _, rs in prog.compiled),
             "atoms_le4": sum(a <= 4 for a, v in st), "vars_le4": sum(v <= 4 for a, v in st),
             "both_le4": sum(a <= 4 and v <= 4 for a, v in st), "max_atoms": max(a for a, v in st),
@@ -137,7 +170,11 @@ def summarise(rows, n2):
             per_item[it] = per_item.get(it, 0) + 1
             if len(ex.setdefault(it, [])) < 5 and r["key"].split(":")[0] not in n2: ex[it].append(r["key"])
     w = [r["wmat"] for r in done if "wmat" in r]
-    dl = [r["dl_s"] for r in done]; py = [r["py_s"] for r in done]
+    dl = [r["dl_s"] for r in done]; py = [r["py_s"] for r in done]; dc = [r.get("dc_s", 0) for r in done]
+    sk = {}
+    for r in done:
+        for p, v in r.get("skipped", {}).items(): sk.setdefault(p, []).append([r["key"], v["size"], v["reason"]])
+    from collections import Counter
     wmax = max(done, key=lambda r: r.get("wmat", 0)) if done else {}
     rule_tot = {}
     for r in done:
@@ -147,7 +184,14 @@ def summarise(rows, n2):
             "items_with_mismatch": per_item, "mismatch_examples": ex,
             "wmat_max": max(w) if w else 0, "wmat_mean": round(sum(w) / max(1, len(w)), 1),
             "wmat_max_grid": wmax.get("key"), "wmat_max_top_rule": wmax.get("top_rule"), "wmat_max_top_preds": wmax.get("top_pred"),
-            "grids_over_cap": sum(x > CAP for x in w), "cap": CAP,
+            "grids_over_cap": sum(x > CAP for x in w), "cap": CAP, "rel_cap": REL_CAP,
+            "grids_with_skipped_relation": sum(bool(r.get("skipped")) for r in done),
+            "skipped_over_rel_cap": {p: {"grids": len(v), "log": [x for x in v if x[2] == "cap"][:20]}
+                                     for p, v in sorted(sk.items()) if any(x[2] == "cap" for x in v)},
+            "skipped_dependent": {p: len(v) for p, v in sorted(sk.items()) if not any(x[2] == "cap" for x in v)},
+            "rel_max": max((r["rel_max"] for r in done if r.get("rel_max")), key=lambda pc: pc[1], default=None),
+            "delta_src": dict(Counter(r["delta_src"] for r in done)),
+            "dc_lazy_s_max": max(dc, default=0), "dc_lazy_s_mean": round(sum(dc) / max(1, len(dc)), 4),
             "ext_max": max((r["n_ext"] for r in done), default=0),
             "ext_mean": round(sum(r["n_ext"] for r in done) / max(1, len(done)), 1),
             "dl_s_max": max(dl, default=0), "dl_s_mean": round(sum(dl) / max(1, len(dl)), 4),
@@ -169,7 +213,7 @@ if __name__ == "__main__":
         for k in range(a.merge): rows += json.load(open(os.path.join(OUT, "t59_parity.part%d.json" % k)))["rows"]
     else:
         rows = run(a.part, a.parts, a.limit)
-        if a.parts > 1:
+        if a.parts > 1 and not a.limit:
             json.dump({"rows": rows}, open(os.path.join(OUT, "t59_parity.part%d.json" % a.part), "w"))
             print(json.dumps(summarise(rows, n2), indent=1)); sys.exit(0)
     S = summarise(rows, n2)
