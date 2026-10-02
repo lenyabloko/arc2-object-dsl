@@ -1,0 +1,543 @@
+{
+ "test": "Fable v11 B2: Route A (T24) seeding from the Datalog A-box; T60 prepared",
+ "probe": "tools/m1b/v29 (V29 vocabulary, routeA_t24 M1B_VOCAB)",
+ "lattice_pass": {
+  "source": "results/o0/b2_lattice_cache/lattice_cache.json (routeA_v6 lattice pass, 898 design training tasks, Sep 30)",
+  "verify_cache": {
+   "programs": 19,
+   "cache_equals_fresh_solve_once": 19
+  }
+ },
+ "t24_earlier": {
+  "source": "docs/fable_round_5_response.md \u00a73 (routeA_t24.py run of Sep 30)",
+  "programs": 19,
+  "recovered": 17,
+  "recovered_margin_ge_4": 11,
+  "by_generator": {
+   "single": [
+    13,
+    13
+   ],
+   "pair": [
+    3,
+    1
+   ],
+   "default-only": [
+    3,
+    3
+   ]
+  }
+ },
+ "t24_python_mode": {
+  "file": "results/o0/b2_t24_python.jsonl.txt",
+  "sha256": "6204908b9d0cb5964c0bb0f5db8477d4f2e5005c14479deda7927d42183ac0f6",
+  "byte_identical_to_sep30_routeA_t24_output": true
+ },
+ "t24_datalog_mode": {
+  "file": "results/o0/b2_t24_datalog.jsonl.txt",
+  "sha256": "d7cabdd800e53c19b4f12aa1ef1b2adf8ad310f9d36074ce3e864a5eb2db9147",
+  "lines_identical": 17,
+  "lines": 19,
+  "differences": [
+   {
+    "task": "7ee1c6ea",
+    "field": "W_sub",
+    "python": 46735,
+    "datalog": 46744
+   },
+   {
+    "task": "e0fb7511",
+    "field": "W_sub",
+    "python": 16802,
+    "datalog": 16803
+   }
+  ],
+  "explanation": "only W_sub differs, on 2 tasks (+9, +1 instance checks); picks, n_exact, tried, test_ok, margin, C_t identical. routeA_t24.holds short-circuits any() over a Python set of successors, whose iteration order depends on insertion order: roles_of inserts touches successors in pixel order, the Datalog reader in sorted order; the sets are equal (hash-equal on every grid). Diagnostic: python mode with roles_of's sets re-inserted in sorted order reproduces the datalog output byte for byte."
+ },
+ "summary_both_modes": {
+  "programs": 19,
+  "recovered": 17,
+  "recovered_margin_ge_4": 11,
+  "by_generator": {
+   "single": [
+    13,
+    13
+   ],
+   "pair": [
+    3,
+    1
+   ],
+   "default-only": [
+    3,
+    3
+   ]
+  }
+ },
+ "g64": {
+  "engine_calls": 69,
+  "grids": 69,
+  "engine_calls_in_search": 0
+ },
+ "parity_routeA_grids": {
+  "grids": 69,
+  "roles_equal": 69,
+  "at_equal": 69,
+  "inherited_new_total": 0,
+  "role_mismatch": {
+   "touches": 0,
+   "inside": 0,
+   "contains": 0,
+   "aligned": 0,
+   "same_shape": 0
+  },
+  "engine_s_mean": 0.0013,
+  "engine_s_max": 0.0066,
+  "roles_of_s_mean": 0.0002,
+  "roles_of_s_max": 0.0008,
+  "wmat_mean": 641.2,
+  "wmat_max": 3199,
+  "grids_with_skipped_relation": 0
+ },
+ "parity_all_design_grids": {
+  "grids": 18360,
+  "roles_hash_equal": 18360,
+  "memberships_hash_equal": 18360,
+  "inherited_new_total": 0,
+  "segmentation_skipped": 1095,
+  "engine_s_mean": 0.0027,
+  "engine_s_median": 0.0012,
+  "engine_s_p99": 0.0154,
+  "engine_s_max": 0.1857,
+  "wmat_max": 11640
+ },
+ "t60_asserted": {
+  "file": "results/o0/b2_t60_asserted.jsonl.txt",
+  "hierarchy": "lattice section of results/o0/t58_tbox.ofn.txt (38 SubClassOf, 3 EquivalentClasses among recogniser names)",
+  "pick_rule": "exact concept names -> walk up while exact -> last exact ancestors -> min (depth, IRI); no exact name -> T24 order over role chains",
+  "depth0_test_checks": {
+   "t24": [
+    11,
+    12
+   ],
+   "t60": [
+    12,
+    13
+   ]
+  },
+  "predicted_elk": "results/o0/t60_predicted_lattice_taxonomy.tsv.txt (EL saturation of the lattice section incl. Pair classes, T58.java TSV format; not ELK output): identical T60 picks"
+ },
+ "per_task": [
+  {
+   "task": "00d62c1b",
+   "lattice_rule": [
+    "color_least_common"
+   ],
+   "t24_pick": [
+    "color=0"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 2,
+   "W_sub_python": 3353,
+   "W_sub_datalog": 3353,
+   "line_identical": true,
+   "t60_pick": [
+    "color=0"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 3353,
+   "t60_last_exact": [
+    "color=0",
+    "color_least_common"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "25ff71a9",
+   "gen": "default-only",
+   "note": "default-only, no concept"
+  },
+  {
+   "task": "2a5f8217",
+   "lattice_rule": [
+    "color=1"
+   ],
+   "t24_pick": [
+    "color=1"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 2,
+   "W_sub_python": 330,
+   "W_sub_datalog": 330,
+   "line_identical": true,
+   "t60_pick": [
+    "color=1"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 330,
+   "t60_last_exact": [
+    "color=1"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "3906de3d",
+   "lattice_rule": [
+    "color_least_common"
+   ],
+   "t24_pick": [
+    "bottommost"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 3,
+   "W_sub_python": 2623,
+   "W_sub_datalog": 2623,
+   "line_identical": true,
+   "t60_pick": [
+    "bottommost"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 2623,
+   "t60_last_exact": [
+    "bottommost",
+    "color=2",
+    "color_least_common"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "42a50994",
+   "lattice_rule": [
+    "isolated",
+    "square_bbox"
+   ],
+   "t24_pick": null,
+   "t24_test_ok": null,
+   "n_exact": 0,
+   "W_sub_python": 8971,
+   "W_sub_datalog": 8971,
+   "line_identical": true,
+   "t60_pick": null,
+   "t60_test_ok": null,
+   "t60_W_sub": 8971,
+   "t60_last_exact": null,
+   "t60_tie_by_iri": null,
+   "t60_fallback": null
+  },
+  {
+   "task": "5582e5ca",
+   "gen": "default-only",
+   "note": "default-only, no concept"
+  },
+  {
+   "task": "63613498",
+   "lattice_rule": [
+    "D4:n_touch=0",
+    "shape_shared"
+   ],
+   "t24_pick": [
+    "same_shape",
+    "adjColor=0"
+   ],
+   "t24_test_ok": null,
+   "n_exact": 23,
+   "W_sub_python": 2885,
+   "W_sub_datalog": 2885,
+   "line_identical": true,
+   "t60_pick": [
+    "same_shape",
+    "adjColor=0"
+   ],
+   "t60_test_ok": null,
+   "t60_W_sub": 2885,
+   "t60_last_exact": null,
+   "t60_tie_by_iri": null,
+   "t60_fallback": "no exact concept name: T24 order over role chains"
+  },
+  {
+   "task": "67385a82",
+   "lattice_rule": [
+    "smallest"
+   ],
+   "t24_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 5,
+   "W_sub_python": 137,
+   "W_sub_datalog": 137,
+   "line_identical": true,
+   "t60_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 164,
+   "t60_last_exact": [
+    "D10:smallest_of_its_color",
+    "D1:size_rank_asc=0",
+    "smallest"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "7ee1c6ea",
+   "lattice_rule": [
+    "inside_other"
+   ],
+   "t24_pick": [
+    "contextColor=5"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 91,
+   "W_sub_python": 46735,
+   "W_sub_datalog": 46744,
+   "line_identical": false,
+   "t60_pick": [
+    "inside_other"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 46744,
+   "t60_last_exact": [
+    "inside_other"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "810b9b61",
+   "lattice_rule": [
+    "hollow_rect"
+   ],
+   "t24_pick": [
+    "D12:n_holes=1"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 3,
+   "W_sub_python": 515,
+   "W_sub_datalog": 515,
+   "line_identical": true,
+   "t60_pick": [
+    "has_hole"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 515,
+   "t60_last_exact": [
+    "has_hole"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "9565186b",
+   "gen": "default-only",
+   "note": "default-only, no concept"
+  },
+  {
+   "task": "a5313dff",
+   "lattice_rule": [
+    "contextColor=2"
+   ],
+   "t24_pick": [
+    "contextColor=2"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 1,
+   "W_sub_python": 5607,
+   "W_sub_datalog": 5607,
+   "line_identical": true,
+   "t60_pick": [
+    "contextColor=2"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 5611,
+   "t60_last_exact": [
+    "contextColor=2"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "aabf363d",
+   "lattice_rule": [
+    "touches_border"
+   ],
+   "t24_pick": [
+    "square_bbox"
+   ],
+   "t24_test_ok": false,
+   "n_exact": 12,
+   "W_sub_python": 92,
+   "W_sub_datalog": 92,
+   "line_identical": true,
+   "t60_pick": [
+    "D1:size_rank_asc=0"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 92,
+   "t60_last_exact": [
+    "D1:size_rank_asc=0",
+    "D1:size_rank=1",
+    "bottommost",
+    "exists_same_holes",
+    "leftmost",
+    "smallest",
+    "square_bbox",
+    "sym_lr",
+    "sym_ud",
+    "touches_border"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "aedd82e4",
+   "lattice_rule": [
+    "smallest"
+   ],
+   "t24_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 5,
+   "W_sub_python": 113,
+   "W_sub_datalog": 113,
+   "line_identical": true,
+   "t60_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 128,
+   "t60_last_exact": [
+    "D10:smallest_of_its_color",
+    "D1:size_rank_asc=0",
+    "smallest"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "b1948b0a",
+   "lattice_rule": [
+    "color_most_common"
+   ],
+   "t24_pick": [
+    "color=6"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 2,
+   "W_sub_python": 3230,
+   "W_sub_datalog": 3230,
+   "line_identical": true,
+   "t60_pick": [
+    "color=6"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 3230,
+   "t60_last_exact": [
+    "color=6",
+    "color_most_common"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "b230c067",
+   "lattice_rule": [
+    "shape_shared"
+   ],
+   "t24_pick": [
+    "aligned",
+    "shape_unique"
+   ],
+   "t24_test_ok": null,
+   "n_exact": 49,
+   "W_sub_python": 1832,
+   "W_sub_datalog": 1832,
+   "line_identical": true,
+   "t60_pick": [
+    "D10:largest_of_its_color"
+   ],
+   "t60_test_ok": false,
+   "t60_W_sub": 1832,
+   "t60_last_exact": [
+    "D10:largest_of_its_color",
+    "D1:size_rank_asc=1",
+    "D1:size_rank=0",
+    "largest",
+    "shape_shared"
+   ],
+   "t60_tie_by_iri": true,
+   "t60_fallback": null
+  },
+  {
+   "task": "c8f0f002",
+   "lattice_rule": [
+    "color=7"
+   ],
+   "t24_pick": [
+    "color=7"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 1,
+   "W_sub_python": 2981,
+   "W_sub_datalog": 2981,
+   "line_identical": true,
+   "t60_pick": [
+    "color=7"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 2981,
+   "t60_last_exact": [
+    "color=7"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "d5d6de2d",
+   "lattice_rule": [
+    "color=2"
+   ],
+   "t24_pick": [
+    "color=2"
+   ],
+   "t24_test_ok": true,
+   "n_exact": 1,
+   "W_sub_python": 37,
+   "W_sub_datalog": 37,
+   "line_identical": true,
+   "t60_pick": [
+    "color=2"
+   ],
+   "t60_test_ok": true,
+   "t60_W_sub": 37,
+   "t60_last_exact": [
+    "color=2"
+   ],
+   "t60_tie_by_iri": false,
+   "t60_fallback": null
+  },
+  {
+   "task": "e0fb7511",
+   "lattice_rule": [
+    "D10:smallest_of_its_color",
+    "D4:n_touch=0"
+   ],
+   "t24_pick": null,
+   "t24_test_ok": null,
+   "n_exact": 0,
+   "W_sub_python": 16802,
+   "W_sub_datalog": 16803,
+   "line_identical": false,
+   "t60_pick": null,
+   "t60_test_ok": null,
+   "t60_W_sub": 16803,
+   "t60_last_exact": null,
+   "t60_tie_by_iri": null,
+   "t60_fallback": null
+  }
+ ]
+}

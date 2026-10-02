@@ -1,0 +1,125 @@
+class	direct_superclasses	equivalent_classes
+lat:D12_n_holes_eq_0	owl:Thing	
+lat:D12_n_holes_eq_1	lat:has_hole	
+lat:D12_n_holes_eq_2	lat:has_hole	
+lat:D12_n_holes_eq_3	lat:has_hole	
+lat:D12_n_holes_eq_4	lat:has_hole	
+lat:D1_size_rank_asc_eq_0	owl:Thing	lat:smallest
+lat:D1_size_rank_asc_eq_2	owl:Thing	
+lat:D1_size_rank_asc_eq_3	owl:Thing	
+lat:D1_size_rank_asc_eq_4	owl:Thing	
+lat:D1_size_rank_eq_0	owl:Thing	lat:largest
+lat:D1_size_rank_eq_1	owl:Thing	
+lat:D1_size_rank_eq_2	owl:Thing	
+lat:D1_size_rank_gt_3	owl:Thing	
+lat:D4_n_touch_eq_0	owl:Thing	
+lat:D4_n_touch_eq_1	lat:touches_other	
+lat:D4_n_touch_eq_3	lat:touches_other	
+lat:D4_n_touch_eq_4	lat:touches_other	
+lat:Pair_D12_n_holes_eq_0_adjColor_eq_4	lat:D12_n_holes_eq_0 | lat:adjColor_eq_4	
+lat:Pair_D1_size_rank_eq_1_square_bbox	lat:D1_size_rank_eq_1 | lat:square_bbox	
+lat:Pair_D1_size_rank_eq_1_topmost	lat:D1_size_rank_eq_1 | lat:topmost	
+lat:Pair_D4_n_touch_eq_0_shape_shared	lat:D4_n_touch_eq_0 | lat:shape_shared	
+lat:Pair_D4_n_touch_eq_1_color_eq_2	lat:D4_n_touch_eq_1 | lat:color_eq_2	
+lat:Pair_adjColor_eq_1_size_eq_4	lat:adjColor_eq_1 | lat:size_eq_4	
+lat:Pair_adjColor_eq_2_alignedColor_eq_2	lat:adjColor_eq_2 | lat:alignedColor_eq_2	
+lat:Pair_adjColor_eq_2_touches_border	lat:adjColor_eq_2 | lat:touches_border	
+lat:Pair_alignedColor_eq_0_color_eq_0	lat:alignedColor_eq_0 | lat:color_eq_0	
+lat:Pair_alignedColor_eq_1_inside_other	lat:alignedColor_eq_1 | lat:inside_other	
+lat:Pair_alignedColor_eq_2_square_bbox	lat:alignedColor_eq_2 | lat:square_bbox	
+lat:Pair_alignedColor_eq_3_inside_other	lat:alignedColor_eq_3 | lat:inside_other	
+lat:Pair_alignedColor_eq_3_isolated	lat:alignedColor_eq_3 | lat:isolated	
+lat:Pair_alignedColor_eq_4_isolated	lat:alignedColor_eq_4 | lat:isolated	
+lat:Pair_color_eq_5_color_most_common	lat:color_eq_5 | lat:color_most_common	
+lat:Pair_color_eq_5_exists_same_holes	lat:color_eq_5 | lat:exists_same_holes	
+lat:Pair_color_most_common_isolated	lat:color_most_common | lat:isolated	
+lat:Pair_exists_same_holes_shape_unique	lat:exists_same_holes | lat:shape_unique	
+lat:Pair_filled_rect_rightmost	lat:filled_rect | lat:rightmost	
+lat:Pair_isolated_square_bbox	lat:isolated | lat:square_bbox	
+lat:Pair_leftmost_touches_border	lat:leftmost | lat:touches_border	
+lat:Pair_rightmost_topmost	lat:rightmost | lat:topmost	
+lat:Pair_square_bbox_sym_lr	lat:square_bbox | lat:sym_lr	
+lat:Pair_square_bbox_touches_other	lat:square_bbox | lat:touches_other	
+lat:Pair_topmost_touches_border	lat:topmost | lat:touches_border	
+lat:adjColor_eq_0	lat:touches_other	
+lat:adjColor_eq_1	lat:touches_other	
+lat:adjColor_eq_2	lat:touches_other	
+lat:adjColor_eq_3	lat:touches_other	
+lat:adjColor_eq_4	lat:touches_other	
+lat:adjColor_eq_5	lat:touches_other	
+lat:adjColor_eq_6	lat:touches_other	
+lat:adjColor_eq_7	lat:touches_other	
+lat:adjColor_eq_8	lat:touches_other	
+lat:adjColor_eq_9	lat:touches_other	
+lat:alignedColor_eq_0	owl:Thing	
+lat:alignedColor_eq_1	owl:Thing	
+lat:alignedColor_eq_2	owl:Thing	
+lat:alignedColor_eq_3	owl:Thing	
+lat:alignedColor_eq_4	owl:Thing	
+lat:alignedColor_eq_5	owl:Thing	
+lat:alignedColor_eq_6	owl:Thing	
+lat:alignedColor_eq_7	owl:Thing	
+lat:alignedColor_eq_8	owl:Thing	
+lat:alignedColor_eq_9	owl:Thing	
+lat:bottommost	owl:Thing	
+lat:color_eq_0	owl:Thing	
+lat:color_eq_1	owl:Thing	
+lat:color_eq_2	owl:Thing	
+lat:color_eq_3	owl:Thing	
+lat:color_eq_4	owl:Thing	
+lat:color_eq_5	owl:Thing	
+lat:color_eq_6	owl:Thing	
+lat:color_eq_7	owl:Thing	
+lat:color_eq_8	owl:Thing	
+lat:color_eq_9	owl:Thing	
+lat:color_least_common	owl:Thing	
+lat:color_most_common	owl:Thing	
+lat:color_unique	lat:color_least_common	
+lat:contains_other	lat:has_hole	
+lat:contextColor_eq_0	lat:inside_other	
+lat:contextColor_eq_1	lat:inside_other	
+lat:contextColor_eq_2	lat:inside_other	
+lat:contextColor_eq_3	lat:inside_other	
+lat:contextColor_eq_4	lat:inside_other	
+lat:contextColor_eq_5	lat:inside_other	
+lat:contextColor_eq_6	lat:inside_other	
+lat:contextColor_eq_7	lat:inside_other	
+lat:contextColor_eq_8	lat:inside_other	
+lat:contextColor_eq_9	lat:inside_other	
+lat:exists_same_holes	owl:Thing	
+lat:exists_same_size	owl:Thing	
+lat:filled_rect	lat:sym_lr | lat:sym_ud	
+lat:has_hole	owl:Thing	
+lat:hline	lat:sym_ud	
+lat:hollow_rect	lat:has_hole	
+lat:inside_other	owl:Thing	
+lat:isolated	owl:Thing	
+lat:largest	owl:Thing	lat:D1_size_rank_eq_0
+lat:leftmost	owl:Thing	
+lat:multicolor	owl:Thing	
+lat:rightmost	owl:Thing	
+lat:shape_shared	owl:Thing	
+lat:shape_unique	owl:Thing	
+lat:single_pixel	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:size_eq_1
+lat:size_eq_1	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:single_pixel
+lat:size_eq_10	owl:Thing	
+lat:size_eq_11	owl:Thing	
+lat:size_eq_12	owl:Thing	
+lat:size_eq_2	owl:Thing	
+lat:size_eq_3	owl:Thing	
+lat:size_eq_4	owl:Thing	
+lat:size_eq_5	owl:Thing	
+lat:size_eq_6	owl:Thing	
+lat:size_eq_7	owl:Thing	
+lat:size_eq_8	owl:Thing	
+lat:size_eq_9	owl:Thing	
+lat:size_gt_12	owl:Thing	
+lat:size_unique	owl:Thing	
+lat:smallest	owl:Thing	lat:D1_size_rank_asc_eq_0
+lat:square_bbox	owl:Thing	
+lat:sym_lr	owl:Thing	
+lat:sym_ud	owl:Thing	
+lat:topmost	owl:Thing	
+lat:touches_border	owl:Thing	
+lat:touches_other	owl:Thing	
+lat:vline	lat:sym_lr	

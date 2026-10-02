@@ -1,0 +1,123 @@
+% Route A A-box as stratified Datalog (Fable guidance v11 B2, v10a §4; guard G64; first consumer of tools/datalog/engine.py).
+% Route A (tools/dream/routeA_dl.py --abox datalog) runs this file once per grid, before its candidate search, and
+% then reads role successor sets and concept memberships from the fixpoint; the search itself is propositional.
+%
+% EDB per grid (primitive facts only, built by routeA_dl.edb from the grid and occupancy2.prepare's individuals):
+%   size(H, W)        grid height and width
+%   cell(Y, X, C)     every grid position with its colour
+%   pix(I, Y, X)      cell (Y, X) belongs to lattice individual I (index in the node list of occupancy2.prepare)
+%   name0(I, N)       lattice recogniser output: individual I carries concept name N (attributes(), extra_attrs(),
+%                     exists_same_* of occupancy2.prepare); the names are the lattice's own, no role is input
+% IDB read by Route A:
+%   touches(I, J)     8-neighbour contact (a cell of I has a cell owned by J in its 3 x 3 neighbourhood, J != I)
+%   inside(I, J)      every cell of I is enclosed by J (in J's interior), J != I
+%   contains(J, I)    inverse of inside
+%   aligned(I, J)     bounding boxes share a row or a column (projections overlap on one axis), J != I
+%   same_shape(I, J)  equal normalised (translation-free, colour-free) cell sets, J != I
+%   has(I, N)         concept memberships closed under the lattice subsumptions of the T58 T-box
+% Definitions follow tools/dream/routeA_t24.roles_of and occupancy2.interior / bbox / norm_shape (probe v29).
+% Ownership as in roles_of: a cell covered by several individuals is owned by the one with the largest index.
+
+% ---------------------------------------------------------------- constant tables
+d8(-1, -1). d8(-1, 0). d8(-1, 1). d8(0, -1). d8(0, 0). d8(0, 1). d8(1, -1). d8(1, 0). d8(1, 1).
+d4(-1, 0). d4(1, 0). d4(0, -1). d4(0, 1).
+
+% ---------------------------------------------------------------- grid and individuals
+row(Y) :- cell(Y, _, _).
+col(X) :- cell(_, X, _).
+ind(I) :- pix(I, _, _).
+own(Y, X, max(I)) :- pix(I, Y, X).
+lo(I, "row", min(Y)) :- pix(I, Y, _).
+hi(I, "row", max(Y)) :- pix(I, Y, _).
+lo(I, "col", min(X)) :- pix(I, _, X).
+hi(I, "col", max(X)) :- pix(I, _, X).
+
+% ---------------------------------------------------------------- touches (8-neighbourhood, the cell itself included)
+touches(I, J) :- pix(I, Y, X), d8(DY, DX), Y2 = Y + DY, X2 = X + DX, own(Y2, X2, J), I != J.
+
+% ---------------------------------------------------------------- aligned (bbox row projections or column projections overlap)
+aligned(I, J) :- lo(I, "row", A), hi(I, "row", B), lo(J, "row", C), hi(J, "row", D), I != J, C <= B, D >= A.
+aligned(I, J) :- lo(I, "col", A), hi(I, "col", B), lo(J, "col", C), hi(J, "col", D), I != J, C <= B, D >= A.
+
+% ---------------------------------------------------------------- interior: bbox cells outside J not 4-connected to the
+% bbox edge through cells outside J (= occupancy2.interior, whose flood starts on the one-cell margin around the bbox);
+% a bbox thinner than 3 has every free cell on its edge, so only bboxes of at least 3 x 3 are expanded
+bigr(J, A, B) :- lo(J, "row", A), hi(J, "row", B), B >= A + 2.
+bigc(J, C, D) :- lo(J, "col", C), hi(J, "col", D), D >= C + 2.
+brow(J, Y) :- bigr(J, A, B), bigc(J, _, _), row(Y), Y >= A, Y <= B.
+bcol(J, X) :- bigc(J, C, D), bigr(J, _, _), col(X), X >= C, X <= D.
+free(J, Y, X) :- brow(J, Y), bcol(J, X), !pix(J, Y, X).
+reach(J, Y, X) :- free(J, Y, X), lo(J, "row", Y).
+reach(J, Y, X) :- free(J, Y, X), hi(J, "row", Y).
+reach(J, Y, X) :- free(J, Y, X), lo(J, "col", X).
+reach(J, Y, X) :- free(J, Y, X), hi(J, "col", X).
+reach(J, Y2, X2) :- reach(J, Y, X), d4(DY, DX), Y2 = Y + DY, X2 = X + DX, free(J, Y2, X2).
+hole(J, Y, X) :- free(J, Y, X), !reach(J, Y, X).
+holed(J) :- hole(J, _, _).
+
+% ---------------------------------------------------------------- inside / contains (cell-set inclusion in the interior)
+outside(I, J) :- holed(J), pix(I, Y, X), I != J, !hole(J, Y, X).
+inside(I, J) :- holed(J), ind(I), I != J, !outside(I, J).
+contains(J, I) :- inside(I, J).
+
+% ---------------------------------------------------------------- same_shape (normalised cell sets equal)
+nrm(I, A, B) :- pix(I, Y, X), lo(I, "row", Y0), lo(I, "col", X0), A = Y - Y0, B = X - X0.
+npx(I, count(A, B)) :- nrm(I, A, B).
+skey(I, N, H, W) :- npx(I, N), lo(I, "row", R0), hi(I, "row", R1), lo(I, "col", C0), hi(I, "col", C1), H = R1 - R0, W = C1 - C0.
+scand(I, J) :- skey(I, N, H, W), skey(J, N, H, W), I != J.
+% equal size and norm(I) a subset of norm(J) <=> norm(I) = norm(J)
+sbad(I, J) :- scand(I, J), nrm(I, A, B), !nrm(J, A, B).
+same_shape(I, J) :- scand(I, J), !sbad(I, J).
+
+% ---------------------------------------------------------------- concept memberships (v10a §4.1 exact seeding)
+has(I, N) :- name0(I, N).
+% D(x) :- C(x) for every subsumption C <= D between named lattice classes of results/o0/t58_tbox.ofn.txt (lattice
+% section: SubClassOf, and both directions of EquivalentClasses), written with the classes' rdfs:label (the
+% recogniser's own name). Pair_<a>_<b> classes (a and b conjunctions) are not recogniser names and are left out.
+% The block is generated and checked against the T-box by routeA_dl.py (--write-rules regenerates it).
+% BEGIN tbox-subsumptions
+has(I, "size=1") :- has(I, "single_pixel").
+has(I, "single_pixel") :- has(I, "size=1").
+has(I, "largest") :- has(I, "D1:size_rank=0").
+has(I, "D1:size_rank=0") :- has(I, "largest").
+has(I, "smallest") :- has(I, "D1:size_rank_asc=0").
+has(I, "D1:size_rank_asc=0") :- has(I, "smallest").
+has(I, "has_hole") :- has(I, "hollow_rect").
+has(I, "has_hole") :- has(I, "contains_other").
+has(I, "inside_other") :- has(I, "contextColor=0").
+has(I, "touches_other") :- has(I, "adjColor=0").
+has(I, "inside_other") :- has(I, "contextColor=1").
+has(I, "touches_other") :- has(I, "adjColor=1").
+has(I, "inside_other") :- has(I, "contextColor=2").
+has(I, "touches_other") :- has(I, "adjColor=2").
+has(I, "inside_other") :- has(I, "contextColor=3").
+has(I, "touches_other") :- has(I, "adjColor=3").
+has(I, "inside_other") :- has(I, "contextColor=4").
+has(I, "touches_other") :- has(I, "adjColor=4").
+has(I, "inside_other") :- has(I, "contextColor=5").
+has(I, "touches_other") :- has(I, "adjColor=5").
+has(I, "inside_other") :- has(I, "contextColor=6").
+has(I, "touches_other") :- has(I, "adjColor=6").
+has(I, "inside_other") :- has(I, "contextColor=7").
+has(I, "touches_other") :- has(I, "adjColor=7").
+has(I, "inside_other") :- has(I, "contextColor=8").
+has(I, "touches_other") :- has(I, "adjColor=8").
+has(I, "inside_other") :- has(I, "contextColor=9").
+has(I, "touches_other") :- has(I, "adjColor=9").
+has(I, "color_least_common") :- has(I, "color_unique").
+has(I, "smallest") :- has(I, "single_pixel").
+has(I, "square_bbox") :- has(I, "single_pixel").
+has(I, "sym_lr") :- has(I, "single_pixel").
+has(I, "sym_ud") :- has(I, "single_pixel").
+has(I, "sym_ud") :- has(I, "hline").
+has(I, "sym_lr") :- has(I, "vline").
+has(I, "sym_lr") :- has(I, "filled_rect").
+has(I, "sym_ud") :- has(I, "filled_rect").
+has(I, "has_hole") :- has(I, "D12:n_holes=1").
+has(I, "has_hole") :- has(I, "D12:n_holes=2").
+has(I, "has_hole") :- has(I, "D12:n_holes=3").
+has(I, "has_hole") :- has(I, "D12:n_holes=4").
+has(I, "touches_other") :- has(I, "D4:n_touch=1").
+has(I, "touches_other") :- has(I, "D4:n_touch=3").
+has(I, "touches_other") :- has(I, "D4:n_touch=4").
+% END tbox-subsumptions

@@ -1,0 +1,2120 @@
+{
+"summary": {
+"mode": "datalog",
+"pick": "t24",
+"grids": 69,
+"engine_calls": 69,
+"engine_calls_in_search": 0,
+"engine_s_mean": 0.0013,
+"engine_s_max": 0.0066,
+"engine_s_total": 0.089,
+"wmat_max": 3199,
+"wmat_mean": 641.2,
+"grids_with_skipped_relation": 0,
+"run_s": 6.8,
+"t24_summary": {
+"programs": 19,
+"recovered": 17,
+"recovered_margin_ge_4": 11,
+"by_generator": {
+"single": [
+13,
+13
+],
+"pair": [
+3,
+1
+],
+"default-only": [
+3,
+3
+]
+}
+},
+"roles_equal": 69,
+"at_equal": 69,
+"inherited_new_total": 0,
+"role_mismatch": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 0
+},
+"roles_of_s_mean": 0.0002,
+"roles_of_s_max": 0.0008,
+"mismatch_grids": []
+},
+"rows": [
+{
+"grid": "00d62c1b:train0:ccgbr",
+"n_ind": 8,
+"cells": 100,
+"wmat": 518,
+"engine_s": 0.0013,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "b1f651ac1dc988a1",
+"roles_dl": "b1f651ac1dc988a1",
+"roles_eq": true,
+"at_py": "1e58d593d6230492",
+"at_dl": "1e58d593d6230492",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 26,
+"inside": 1,
+"contains": 1,
+"aligned": 30,
+"same_shape": 30
+}
+},
+{
+"grid": "00d62c1b:train1:ccgbr",
+"n_ind": 10,
+"cells": 100,
+"wmat": 503,
+"engine_s": 0.0011,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "7c8b435112c0e772",
+"roles_dl": "7c8b435112c0e772",
+"roles_eq": true,
+"at_py": "c92fc8ce04d01def",
+"at_dl": "c92fc8ce04d01def",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 24,
+"inside": 0,
+"contains": 0,
+"aligned": 30,
+"same_shape": 56
+}
+},
+{
+"grid": "00d62c1b:train2:ccgbr",
+"n_ind": 13,
+"cells": 100,
+"wmat": 616,
+"engine_s": 0.0013,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "6c404a453b1f9775",
+"roles_dl": "6c404a453b1f9775",
+"roles_eq": true,
+"at_py": "4c59b4b5a7b7bb10",
+"at_dl": "4c59b4b5a7b7bb10",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 38,
+"inside": 0,
+"contains": 0,
+"aligned": 62,
+"same_shape": 44
+}
+},
+{
+"grid": "00d62c1b:train3:ccgbr",
+"n_ind": 19,
+"cells": 400,
+"wmat": 1518,
+"engine_s": 0.0029,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "11d03044ecc5dbba",
+"roles_dl": "11d03044ecc5dbba",
+"roles_eq": true,
+"at_py": "a1f8138000675580",
+"at_dl": "a1f8138000675580",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 30,
+"inside": 4,
+"contains": 4,
+"aligned": 90,
+"same_shape": 182
+}
+},
+{
+"grid": "00d62c1b:train4:ccgbr",
+"n_ind": 8,
+"cells": 36,
+"wmat": 438,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "c10d2d0964232904",
+"roles_dl": "c10d2d0964232904",
+"roles_eq": true,
+"at_py": "bfe62584c2c3342d",
+"at_dl": "bfe62584c2c3342d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 32,
+"inside": 0,
+"contains": 0,
+"aligned": 24,
+"same_shape": 56
+}
+},
+{
+"grid": "00d62c1b:test0:ccgbr",
+"n_ind": 23,
+"cells": 400,
+"wmat": 1618,
+"engine_s": 0.0031,
+"skipped": [],
+"roles_of_s": 0.0006,
+"roles_py": "52c04d0d6033a607",
+"roles_dl": "52c04d0d6033a607",
+"roles_eq": true,
+"at_py": "75caa1684a98ddd1",
+"at_dl": "75caa1684a98ddd1",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 66,
+"inside": 3,
+"contains": 3,
+"aligned": 164,
+"same_shape": 138
+}
+},
+{
+"grid": "2a5f8217:train0:nbccg",
+"n_ind": 6,
+"cells": 81,
+"wmat": 264,
+"engine_s": 0.001,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "cea02c4506ef147d",
+"roles_dl": "cea02c4506ef147d",
+"roles_eq": true,
+"at_py": "0b47b098c304d257",
+"at_dl": "0b47b098c304d257",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 0,
+"contains": 0,
+"aligned": 18,
+"same_shape": 6
+}
+},
+{
+"grid": "2a5f8217:train1:nbccg",
+"n_ind": 2,
+"cells": 36,
+"wmat": 124,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "e1c63633492c06ea",
+"roles_dl": "e1c63633492c06ea",
+"roles_eq": true,
+"at_py": "de026f95838a6092",
+"at_dl": "de026f95838a6092",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 2
+}
+},
+{
+"grid": "2a5f8217:train2:nbccg",
+"n_ind": 8,
+"cells": 121,
+"wmat": 364,
+"engine_s": 0.001,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "5a40506102dbc82e",
+"roles_dl": "5a40506102dbc82e",
+"roles_eq": true,
+"at_py": "a0ec619faf7f4d63",
+"at_dl": "a0ec619faf7f4d63",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 26,
+"same_shape": 8
+}
+},
+{
+"grid": "2a5f8217:test0:nbccg",
+"n_ind": 10,
+"cells": 169,
+"wmat": 486,
+"engine_s": 0.0011,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "9380cf12bc57316d",
+"roles_dl": "9380cf12bc57316d",
+"roles_eq": true,
+"at_py": "16b809bf1ef8e2ec",
+"at_dl": "16b809bf1ef8e2ec",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 0,
+"contains": 0,
+"aligned": 40,
+"same_shape": 10
+}
+},
+{
+"grid": "3906de3d:train0:nbvcg",
+"n_ind": 9,
+"cells": 100,
+"wmat": 408,
+"engine_s": 0.0011,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "ce59a0ecca774a09",
+"roles_dl": "ce59a0ecca774a09",
+"roles_eq": true,
+"at_py": "d748f43b4212c838",
+"at_dl": "d748f43b4212c838",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 12,
+"inside": 0,
+"contains": 0,
+"aligned": 48,
+"same_shape": 16
+}
+},
+{
+"grid": "3906de3d:train1:nbvcg",
+"n_ind": 6,
+"cells": 100,
+"wmat": 282,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "8396baf8d2fcf3a6",
+"roles_dl": "8396baf8d2fcf3a6",
+"roles_eq": true,
+"at_py": "a8abd761d0b96f88",
+"at_dl": "a8abd761d0b96f88",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 8,
+"inside": 0,
+"contains": 0,
+"aligned": 22,
+"same_shape": 12
+}
+},
+{
+"grid": "3906de3d:train2:nbvcg",
+"n_ind": 13,
+"cells": 100,
+"wmat": 646,
+"engine_s": 0.0012,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "5a0ace877aaadbf7",
+"roles_dl": "5a0ace877aaadbf7",
+"roles_eq": true,
+"at_py": "b8c3ad57dfb81b1d",
+"at_dl": "b8c3ad57dfb81b1d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 18,
+"inside": 0,
+"contains": 0,
+"aligned": 92,
+"same_shape": 44
+}
+},
+{
+"grid": "3906de3d:test0:nbvcg",
+"n_ind": 14,
+"cells": 100,
+"wmat": 650,
+"engine_s": 0.0013,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "3a3f2468c1cb5644",
+"roles_dl": "3a3f2468c1cb5644",
+"roles_eq": true,
+"at_py": "2cea88eb14c32418",
+"at_dl": "2cea88eb14c32418",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 24,
+"inside": 0,
+"contains": 0,
+"aligned": 106,
+"same_shape": 22
+}
+},
+{
+"grid": "42a50994:train0:nbccg",
+"n_ind": 28,
+"cells": 209,
+"wmat": 1659,
+"engine_s": 0.0066,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "466664e2159055a4",
+"roles_dl": "466664e2159055a4",
+"roles_eq": true,
+"at_py": "a1b00bb6cbb8f738",
+"at_dl": "a1b00bb6cbb8f738",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 22,
+"inside": 0,
+"contains": 0,
+"aligned": 122,
+"same_shape": 360
+}
+},
+{
+"grid": "42a50994:train1:nbccg",
+"n_ind": 24,
+"cells": 216,
+"wmat": 1544,
+"engine_s": 0.0027,
+"skipped": [],
+"roles_of_s": 0.0004,
+"roles_py": "41d81995fd11a98f",
+"roles_dl": "41d81995fd11a98f",
+"roles_eq": true,
+"at_py": "187e8cc461958548",
+"at_dl": "187e8cc461958548",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 8,
+"inside": 0,
+"contains": 0,
+"aligned": 94,
+"same_shape": 382
+}
+},
+{
+"grid": "42a50994:train2:nbccg",
+"n_ind": 24,
+"cells": 153,
+"wmat": 1324,
+"engine_s": 0.002,
+"skipped": [],
+"roles_of_s": 0.0004,
+"roles_py": "fa2ac1827ff4f1a7",
+"roles_dl": "fa2ac1827ff4f1a7",
+"roles_eq": true,
+"at_py": "f981835e37068afd",
+"at_dl": "f981835e37068afd",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 18,
+"inside": 0,
+"contains": 0,
+"aligned": 114,
+"same_shape": 252
+}
+},
+{
+"grid": "42a50994:train3:nbccg",
+"n_ind": 18,
+"cells": 176,
+"wmat": 984,
+"engine_s": 0.0017,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "776df8312dbc82c9",
+"roles_dl": "776df8312dbc82c9",
+"roles_eq": true,
+"at_py": "21503a4d3362caee",
+"at_dl": "21503a4d3362caee",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 8,
+"inside": 0,
+"contains": 0,
+"aligned": 40,
+"same_shape": 210
+}
+},
+{
+"grid": "42a50994:test0:nbccg",
+"n_ind": 34,
+"cells": 238,
+"wmat": 2176,
+"engine_s": 0.0029,
+"skipped": [],
+"roles_of_s": 0.0008,
+"roles_py": "255e2bec07a478d1",
+"roles_dl": "255e2bec07a478d1",
+"roles_eq": true,
+"at_py": "9e3b439f0943ce60",
+"at_dl": "9e3b439f0943ce60",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 18,
+"inside": 0,
+"contains": 0,
+"aligned": 192,
+"same_shape": 488
+}
+},
+{
+"grid": "63613498:train0:ccgbr",
+"n_ind": 7,
+"cells": 100,
+"wmat": 363,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "ba6747f9e606f437",
+"roles_dl": "ba6747f9e606f437",
+"roles_eq": true,
+"at_py": "d0c8ae0f88986528",
+"at_dl": "d0c8ae0f88986528",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 0,
+"contains": 0,
+"aligned": 24,
+"same_shape": 2
+}
+},
+{
+"grid": "63613498:train1:ccgbr",
+"n_ind": 8,
+"cells": 100,
+"wmat": 449,
+"engine_s": 0.0012,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "f61a592678f0090b",
+"roles_dl": "f61a592678f0090b",
+"roles_eq": true,
+"at_py": "6ca41baffec7500d",
+"at_dl": "6ca41baffec7500d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 10,
+"inside": 0,
+"contains": 0,
+"aligned": 36,
+"same_shape": 2
+}
+},
+{
+"grid": "63613498:train2:ccgbr",
+"n_ind": 7,
+"cells": 100,
+"wmat": 355,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "c583d30fba326c83",
+"roles_dl": "c583d30fba326c83",
+"roles_eq": true,
+"at_py": "c63381a883458c4c",
+"at_dl": "c63381a883458c4c",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 10,
+"inside": 0,
+"contains": 0,
+"aligned": 28,
+"same_shape": 2
+}
+},
+{
+"grid": "63613498:test0:ccgbr",
+"n_ind": 8,
+"cells": 100,
+"wmat": 404,
+"engine_s": 0.001,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "333dac300900534a",
+"roles_dl": "333dac300900534a",
+"roles_eq": true,
+"at_py": "f9254cef52b43906",
+"at_dl": "f9254cef52b43906",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 6,
+"inside": 0,
+"contains": 0,
+"aligned": 28,
+"same_shape": 2
+}
+},
+{
+"grid": "67385a82:train0:nbccg",
+"n_ind": 3,
+"cells": 16,
+"wmat": 108,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "6f017cb3206a49dc",
+"roles_dl": "6f017cb3206a49dc",
+"roles_eq": true,
+"at_py": "ac8ac34375121f2c",
+"at_dl": "ac8ac34375121f2c",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 0
+}
+},
+{
+"grid": "67385a82:train1:nbccg",
+"n_ind": 4,
+"cells": 24,
+"wmat": 146,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "f373e09adeb234cb",
+"roles_dl": "f373e09adeb234cb",
+"roles_eq": true,
+"at_py": "2641e4f63e74ee8d",
+"at_dl": "2641e4f63e74ee8d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 0,
+"contains": 0,
+"aligned": 4,
+"same_shape": 6
+}
+},
+{
+"grid": "67385a82:train2:nbccg",
+"n_ind": 5,
+"cells": 30,
+"wmat": 185,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "f4476dadb5af0335",
+"roles_dl": "f4476dadb5af0335",
+"roles_eq": true,
+"at_py": "32ed7b1b4485e3e9",
+"at_dl": "32ed7b1b4485e3e9",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 0,
+"contains": 0,
+"aligned": 8,
+"same_shape": 6
+}
+},
+{
+"grid": "67385a82:train3:nbccg",
+"n_ind": 3,
+"cells": 9,
+"wmat": 110,
+"engine_s": 0.0006,
+"skipped": [],
+"roles_of_s": 0.0,
+"roles_py": "21dfb6f30b72ac5c",
+"roles_dl": "21dfb6f30b72ac5c",
+"roles_eq": true,
+"at_py": "74dcf9756d110725",
+"at_dl": "74dcf9756d110725",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 0,
+"contains": 0,
+"aligned": 4,
+"same_shape": 2
+}
+},
+{
+"grid": "67385a82:test0:nbccg",
+"n_ind": 4,
+"cells": 25,
+"wmat": 146,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "a283edd362113231",
+"roles_dl": "a283edd362113231",
+"roles_eq": true,
+"at_py": "c2bc6d0519052318",
+"at_dl": "c2bc6d0519052318",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 2
+}
+},
+{
+"grid": "7ee1c6ea:train0:nbccg",
+"n_ind": 26,
+"cells": 100,
+"wmat": 1737,
+"engine_s": 0.0023,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "8655db672495fed0",
+"roles_dl": "8655db672495fed0",
+"roles_eq": true,
+"at_py": "f19c098b8acf3f21",
+"at_dl": "f19c098b8acf3f21",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 96,
+"inside": 12,
+"contains": 12,
+"aligned": 278,
+"same_shape": 136
+}
+},
+{
+"grid": "7ee1c6ea:train1:nbccg",
+"n_ind": 29,
+"cells": 100,
+"wmat": 2172,
+"engine_s": 0.0028,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "0989ea45555315a9",
+"roles_dl": "0989ea45555315a9",
+"roles_eq": true,
+"at_py": "4155491bd4de5f60",
+"at_dl": "4155491bd4de5f60",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 94,
+"inside": 7,
+"contains": 7,
+"aligned": 278,
+"same_shape": 350
+}
+},
+{
+"grid": "7ee1c6ea:train2:nbccg",
+"n_ind": 26,
+"cells": 100,
+"wmat": 1943,
+"engine_s": 0.0024,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "e41c1f9353866918",
+"roles_dl": "e41c1f9353866918",
+"roles_eq": true,
+"at_py": "12b87bfaf473dce0",
+"at_dl": "12b87bfaf473dce0",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 96,
+"inside": 9,
+"contains": 9,
+"aligned": 262,
+"same_shape": 230
+}
+},
+{
+"grid": "7ee1c6ea:test0:nbccg",
+"n_ind": 29,
+"cells": 100,
+"wmat": 2135,
+"engine_s": 0.0037,
+"skipped": [],
+"roles_of_s": 0.0007,
+"roles_py": "a39dd6db4466a28b",
+"roles_dl": "a39dd6db4466a28b",
+"roles_eq": true,
+"at_py": "5c7589b0314c11c9",
+"at_dl": "5c7589b0314c11c9",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 108,
+"inside": 14,
+"contains": 14,
+"aligned": 314,
+"same_shape": 256
+}
+},
+{
+"grid": "810b9b61:train0:nbccg",
+"n_ind": 4,
+"cells": 225,
+"wmat": 206,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "6813c389e40b759d",
+"roles_dl": "6813c389e40b759d",
+"roles_eq": true,
+"at_py": "34189ffe842b67c1",
+"at_dl": "34189ffe842b67c1",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 8,
+"same_shape": 0
+}
+},
+{
+"grid": "810b9b61:train1:nbccg",
+"n_ind": 8,
+"cells": 225,
+"wmat": 463,
+"engine_s": 0.0013,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "c9e193cd45b37b08",
+"roles_dl": "c9e193cd45b37b08",
+"roles_eq": true,
+"at_py": "80b5fcbd336d8684",
+"at_dl": "80b5fcbd336d8684",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 30,
+"same_shape": 2
+}
+},
+{
+"grid": "810b9b61:train2:nbccg",
+"n_ind": 3,
+"cells": 81,
+"wmat": 155,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "6f017cb3206a49dc",
+"roles_dl": "6f017cb3206a49dc",
+"roles_eq": true,
+"at_py": "10f9d1b0e88ee905",
+"at_dl": "10f9d1b0e88ee905",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 0
+}
+},
+{
+"grid": "810b9b61:test0:nbccg",
+"n_ind": 6,
+"cells": 144,
+"wmat": 363,
+"engine_s": 0.0012,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "cff1cffcd27cbcae",
+"roles_dl": "cff1cffcd27cbcae",
+"roles_eq": true,
+"at_py": "84ed061c4a362eba",
+"at_dl": "84ed061c4a362eba",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 20,
+"same_shape": 2
+}
+},
+{
+"grid": "a5313dff:train0:ccgbr",
+"n_ind": 4,
+"cells": 64,
+"wmat": 312,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "2627e45a9aff8a2b",
+"roles_dl": "2627e45a9aff8a2b",
+"roles_eq": true,
+"at_py": "41441959d4685d4c",
+"at_dl": "41441959d4685d4c",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 3,
+"contains": 3,
+"aligned": 8,
+"same_shape": 2
+}
+},
+{
+"grid": "a5313dff:train1:ccgbr",
+"n_ind": 3,
+"cells": 64,
+"wmat": 217,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "2899db02ad61cced",
+"roles_dl": "2899db02ad61cced",
+"roles_eq": true,
+"at_py": "780445c709b30ff3",
+"at_dl": "780445c709b30ff3",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 3,
+"contains": 3,
+"aligned": 6,
+"same_shape": 0
+}
+},
+{
+"grid": "a5313dff:train2:ccgbr",
+"n_ind": 8,
+"cells": 144,
+"wmat": 670,
+"engine_s": 0.0017,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "3fb0c37313402518",
+"roles_dl": "3fb0c37313402518",
+"roles_eq": true,
+"at_py": "18e8a78ab98dbd6e",
+"at_dl": "18e8a78ab98dbd6e",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 14,
+"inside": 7,
+"contains": 7,
+"aligned": 36,
+"same_shape": 8
+}
+},
+{
+"grid": "a5313dff:test0:ccgbr",
+"n_ind": 4,
+"cells": 81,
+"wmat": 389,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "d3f847a4b28f22d9",
+"roles_dl": "d3f847a4b28f22d9",
+"roles_eq": true,
+"at_py": "9246399fa2828f11",
+"at_dl": "9246399fa2828f11",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 6,
+"inside": 4,
+"contains": 4,
+"aligned": 10,
+"same_shape": 0
+}
+},
+{
+"grid": "aabf363d:train0:nbccg",
+"n_ind": 2,
+"cells": 49,
+"wmat": 121,
+"engine_s": 0.0006,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "211517cebabbf522",
+"roles_dl": "211517cebabbf522",
+"roles_eq": true,
+"at_py": "1017a5f5d324b2d7",
+"at_dl": "1017a5f5d324b2d7",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 0
+}
+},
+{
+"grid": "aabf363d:train1:nbccg",
+"n_ind": 2,
+"cells": 49,
+"wmat": 121,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "211517cebabbf522",
+"roles_dl": "211517cebabbf522",
+"roles_eq": true,
+"at_py": "afe93500cd795cf4",
+"at_dl": "afe93500cd795cf4",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 0
+}
+},
+{
+"grid": "aabf363d:test0:nbccg",
+"n_ind": 2,
+"cells": 49,
+"wmat": 133,
+"engine_s": 0.0006,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "211517cebabbf522",
+"roles_dl": "211517cebabbf522",
+"roles_eq": true,
+"at_py": "85f1920e2b35c3d2",
+"at_dl": "85f1920e2b35c3d2",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 0
+}
+},
+{
+"grid": "aedd82e4:train0:nbccg",
+"n_ind": 3,
+"cells": 20,
+"wmat": 113,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "6f017cb3206a49dc",
+"roles_dl": "6f017cb3206a49dc",
+"roles_eq": true,
+"at_py": "7ec3b8fbc4e5410e",
+"at_dl": "7ec3b8fbc4e5410e",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 0
+}
+},
+{
+"grid": "aedd82e4:train1:nbccg",
+"n_ind": 3,
+"cells": 16,
+"wmat": 103,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0,
+"roles_py": "f81403271b3c3296",
+"roles_dl": "f81403271b3c3296",
+"roles_eq": true,
+"at_py": "dcb515c1d740e29e",
+"at_dl": "dcb515c1d740e29e",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 2,
+"same_shape": 2
+}
+},
+{
+"grid": "aedd82e4:train2:nbccg",
+"n_ind": 3,
+"cells": 9,
+"wmat": 110,
+"engine_s": 0.0005,
+"skipped": [],
+"roles_of_s": 0.0,
+"roles_py": "52059bb530e9e01b",
+"roles_dl": "52059bb530e9e01b",
+"roles_eq": true,
+"at_py": "1becf4526fe184f4",
+"at_dl": "1becf4526fe184f4",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 6,
+"inside": 0,
+"contains": 0,
+"aligned": 4,
+"same_shape": 2
+}
+},
+{
+"grid": "aedd82e4:train3:nbccg",
+"n_ind": 2,
+"cells": 9,
+"wmat": 74,
+"engine_s": 0.0004,
+"skipped": [],
+"roles_of_s": 0.0,
+"roles_py": "b883e73f4d641fe7",
+"roles_dl": "b883e73f4d641fe7",
+"roles_eq": true,
+"at_py": "4b8f805863e280f9",
+"at_dl": "4b8f805863e280f9",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 0,
+"contains": 0,
+"aligned": 0,
+"same_shape": 0
+}
+},
+{
+"grid": "aedd82e4:test0:nbccg",
+"n_ind": 5,
+"cells": 20,
+"wmat": 177,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "15411535c455163f",
+"roles_dl": "15411535c455163f",
+"roles_eq": true,
+"at_py": "484b08b99c8aaf21",
+"at_dl": "484b08b99c8aaf21",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 0,
+"contains": 0,
+"aligned": 8,
+"same_shape": 6
+}
+},
+{
+"grid": "b1948b0a:train0:nbccg",
+"n_ind": 9,
+"cells": 24,
+"wmat": 420,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "f1772b4fdc16e6d2",
+"roles_dl": "f1772b4fdc16e6d2",
+"roles_eq": true,
+"at_py": "9b3ec2e7526ceed6",
+"at_dl": "9b3ec2e7526ceed6",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 40,
+"inside": 0,
+"contains": 0,
+"aligned": 48,
+"same_shape": 6
+}
+},
+{
+"grid": "b1948b0a:train1:nbccg",
+"n_ind": 5,
+"cells": 12,
+"wmat": 203,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "296167308bdea7b1",
+"roles_dl": "296167308bdea7b1",
+"roles_eq": true,
+"at_py": "cc22f495ccb7ac6c",
+"at_dl": "cc22f495ccb7ac6c",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 14,
+"inside": 0,
+"contains": 0,
+"aligned": 14,
+"same_shape": 2
+}
+},
+{
+"grid": "b1948b0a:train2:nbccg",
+"n_ind": 7,
+"cells": 18,
+"wmat": 315,
+"engine_s": 0.001,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "df3eee8e3f5eb39c",
+"roles_dl": "df3eee8e3f5eb39c",
+"roles_eq": true,
+"at_py": "3c7825b1bdfe904c",
+"at_dl": "3c7825b1bdfe904c",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 24,
+"inside": 0,
+"contains": 0,
+"aligned": 32,
+"same_shape": 12
+}
+},
+{
+"grid": "b1948b0a:test0:nbccg",
+"n_ind": 7,
+"cells": 16,
+"wmat": 330,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "61b3d1f4ed51e85c",
+"roles_dl": "61b3d1f4ed51e85c",
+"roles_eq": true,
+"at_py": "0396e58819af7822",
+"at_dl": "0396e58819af7822",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 22,
+"inside": 0,
+"contains": 0,
+"aligned": 28,
+"same_shape": 14
+}
+},
+{
+"grid": "b230c067:train0:nbccg",
+"n_ind": 3,
+"cells": 100,
+"wmat": 209,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "f356bc9d6f29b31f",
+"roles_dl": "f356bc9d6f29b31f",
+"roles_eq": true,
+"at_py": "d6e6f968d7c54788",
+"at_dl": "d6e6f968d7c54788",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 2
+}
+},
+{
+"grid": "b230c067:train1:nbccg",
+"n_ind": 3,
+"cells": 100,
+"wmat": 209,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "9ab27536ed5205f9",
+"roles_dl": "9ab27536ed5205f9",
+"roles_eq": true,
+"at_py": "ed71413460438eb1",
+"at_dl": "ed71413460438eb1",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 4,
+"same_shape": 2
+}
+},
+{
+"grid": "b230c067:train2:nbccg",
+"n_ind": 3,
+"cells": 100,
+"wmat": 132,
+"engine_s": 0.0006,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "f356bc9d6f29b31f",
+"roles_dl": "f356bc9d6f29b31f",
+"roles_eq": true,
+"at_py": "f90e5bf98f55224b",
+"at_dl": "f90e5bf98f55224b",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 0,
+"inside": 0,
+"contains": 0,
+"aligned": 6,
+"same_shape": 2
+}
+},
+{
+"grid": "b230c067:test0:nbccg",
+"n_ind": 6,
+"cells": 100,
+"wmat": 245,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "1021ca412d96891b",
+"roles_dl": "1021ca412d96891b",
+"roles_eq": true,
+"at_py": "d9e1cc143164e68d",
+"at_dl": "d9e1cc143164e68d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 6,
+"inside": 0,
+"contains": 0,
+"aligned": 18,
+"same_shape": 4
+}
+},
+{
+"grid": "c8f0f002:train0:nbccg",
+"n_ind": 7,
+"cells": 12,
+"wmat": 325,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "fa75361938c7365f",
+"roles_dl": "fa75361938c7365f",
+"roles_eq": true,
+"at_py": "510c3556780fa213",
+"at_dl": "510c3556780fa213",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 28,
+"inside": 0,
+"contains": 0,
+"aligned": 30,
+"same_shape": 12
+}
+},
+{
+"grid": "c8f0f002:train1:nbccg",
+"n_ind": 6,
+"cells": 18,
+"wmat": 302,
+"engine_s": 0.0007,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "87564c06d1a0b20f",
+"roles_dl": "87564c06d1a0b20f",
+"roles_eq": true,
+"at_py": "d92c7915f3f79c2d",
+"at_dl": "d92c7915f3f79c2d",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 14,
+"inside": 0,
+"contains": 0,
+"aligned": 24,
+"same_shape": 2
+}
+},
+{
+"grid": "c8f0f002:train2:nbccg",
+"n_ind": 8,
+"cells": 15,
+"wmat": 388,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "192b2c4758bdc586",
+"roles_dl": "192b2c4758bdc586",
+"roles_eq": true,
+"at_py": "fa19e1284da1cc95",
+"at_dl": "fa19e1284da1cc95",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 26,
+"inside": 0,
+"contains": 0,
+"aligned": 38,
+"same_shape": 20
+}
+},
+{
+"grid": "c8f0f002:test0:nbccg",
+"n_ind": 8,
+"cells": 15,
+"wmat": 420,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "303cd20c4c4bd456",
+"roles_dl": "303cd20c4c4bd456",
+"roles_eq": true,
+"at_py": "31a6be112078a61f",
+"at_dl": "31a6be112078a61f",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 28,
+"inside": 0,
+"contains": 0,
+"aligned": 34,
+"same_shape": 30
+}
+},
+{
+"grid": "d5d6de2d:train0:ccgbr",
+"n_ind": 3,
+"cells": 225,
+"wmat": 218,
+"engine_s": 0.0008,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "d6415aac3dd5a584",
+"roles_dl": "d6415aac3dd5a584",
+"roles_eq": true,
+"at_py": "69d0fcd247136036",
+"at_dl": "69d0fcd247136036",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 1,
+"contains": 1,
+"aligned": 2,
+"same_shape": 0
+}
+},
+{
+"grid": "d5d6de2d:train1:ccgbr",
+"n_ind": 2,
+"cells": 100,
+"wmat": 127,
+"engine_s": 0.0006,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "d6415aac3dd5a584",
+"roles_dl": "d6415aac3dd5a584",
+"roles_eq": true,
+"at_py": "3268b0c709bc4cae",
+"at_dl": "3268b0c709bc4cae",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 2,
+"inside": 1,
+"contains": 1,
+"aligned": 2,
+"same_shape": 0
+}
+},
+{
+"grid": "d5d6de2d:train2:ccgbr",
+"n_ind": 4,
+"cells": 100,
+"wmat": 243,
+"engine_s": 0.0009,
+"skipped": [],
+"roles_of_s": 0.0001,
+"roles_py": "ec2acb8d448c01d7",
+"roles_dl": "ec2acb8d448c01d7",
+"roles_eq": true,
+"at_py": "0b2526021bc31ec1",
+"at_dl": "0b2526021bc31ec1",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 2,
+"contains": 2,
+"aligned": 4,
+"same_shape": 0
+}
+},
+{
+"grid": "d5d6de2d:test0:ccgbr",
+"n_ind": 7,
+"cells": 625,
+"wmat": 584,
+"engine_s": 0.0017,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "be2514ffc59f538e",
+"roles_dl": "be2514ffc59f538e",
+"roles_eq": true,
+"at_py": "151da1bf7348572b",
+"at_dl": "151da1bf7348572b",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 6,
+"inside": 3,
+"contains": 3,
+"aligned": 22,
+"same_shape": 0
+}
+},
+{
+"grid": "d5d6de2d:test1:ccgbr",
+"n_ind": 4,
+"cells": 100,
+"wmat": 360,
+"engine_s": 0.0012,
+"skipped": [],
+"roles_of_s": 0.0002,
+"roles_py": "e43da12d25bb5e7f",
+"roles_dl": "e43da12d25bb5e7f",
+"roles_eq": true,
+"at_py": "5503922a275b3029",
+"at_dl": "5503922a275b3029",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 4,
+"inside": 2,
+"contains": 2,
+"aligned": 10,
+"same_shape": 0
+}
+},
+{
+"grid": "e0fb7511:train0:nbvcg",
+"n_ind": 37,
+"cells": 169,
+"wmat": 3199,
+"engine_s": 0.0031,
+"skipped": [],
+"roles_of_s": 0.0006,
+"roles_py": "e079accf614528a2",
+"roles_dl": "e079accf614528a2",
+"roles_eq": true,
+"at_py": "3740df8438c66187",
+"at_dl": "3740df8438c66187",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 50,
+"inside": 0,
+"contains": 0,
+"aligned": 202,
+"same_shape": 950
+}
+},
+{
+"grid": "e0fb7511:train1:nbvcg",
+"n_ind": 23,
+"cells": 169,
+"wmat": 1461,
+"engine_s": 0.0017,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "4a2220e5645fa0ce",
+"roles_dl": "4a2220e5645fa0ce",
+"roles_eq": true,
+"at_py": "0476603c3bfb6e90",
+"at_dl": "0476603c3bfb6e90",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 16,
+"inside": 0,
+"contains": 0,
+"aligned": 76,
+"same_shape": 354
+}
+},
+{
+"grid": "e0fb7511:train2:nbvcg",
+"n_ind": 26,
+"cells": 169,
+"wmat": 1678,
+"engine_s": 0.0018,
+"skipped": [],
+"roles_of_s": 0.0003,
+"roles_py": "7ea25777331a8040",
+"roles_dl": "7ea25777331a8040",
+"roles_eq": true,
+"at_py": "ce0668c2b697c9c5",
+"at_dl": "ce0668c2b697c9c5",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 20,
+"inside": 0,
+"contains": 0,
+"aligned": 116,
+"same_shape": 400
+}
+},
+{
+"grid": "e0fb7511:test0:nbvcg",
+"n_ind": 36,
+"cells": 169,
+"wmat": 2772,
+"engine_s": 0.0027,
+"skipped": [],
+"roles_of_s": 0.0005,
+"roles_py": "d8f3975fb97a4d72",
+"roles_dl": "d8f3975fb97a4d72",
+"roles_eq": true,
+"at_py": "2aa83055cd785a30",
+"at_dl": "2aa83055cd785a30",
+"at_eq": true,
+"inherited_new": 0,
+"per_role_eq": {
+"touches": true,
+"inside": true,
+"contains": true,
+"aligned": true,
+"same_shape": true
+},
+"n_role_facts": {
+"touches": 44,
+"inside": 0,
+"contains": 0,
+"aligned": 246,
+"same_shape": 724
+}
+}
+]
+}

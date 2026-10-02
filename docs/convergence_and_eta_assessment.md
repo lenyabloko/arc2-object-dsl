@@ -384,3 +384,15 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 ## 12:15 EDT Oct 1: what Claude can solve alone
 - Of the 338 design tasks the build (V32) fails (60 ARC-2, 278 ARC-1), Claude solves 320 alone with one-off programs written test-blind from the training pairs (pass@2, one check each): 58/60 ARC-2, 262/278 ARC-1. 18 remain; Len's time now goes to those.
 - Implication: the gap between "Claude can solve the design task" (95 %) and "the frozen symbolic build solves it" (V32: 662 of 948 train + half A = 70 %; Kaggle public score 2.50) is the whole problem. One-off programs do not transfer (D2: 2 clean gains in 60), so solving more design tasks, by Claude or by Len, does not move the hidden score by itself.
+
+## Check-in 22:30 EDT Oct 1 (written 23:00)
+- **Submissions.** v19 (V33) submitted 01:48 UTC Oct 2, ref 56763295, Kaggle parity digest match (de2bd55e); score pending. v20 (V34) is LATEST for the Oct 3 UTC slot (batch-0078, ORDERS seq 15).
+- **Cycles 27–28.** Prior families mined from solution texts (V33) and their second pass (V34): P2 = 0 both times, now six concept cycles in a row. Design training 620 → 754, design slots on the 99: 54 → 85; every gain is a source task.
+- **Fable v10b / v11 tests.**
+  - T65 second pass: +10 % non-source fits (pass +50 %).
+  - T55′ and T69: 5 of 68 hard tasks (pass 20).
+  - T68 colour roles only: non-source fits −21 % but wrong fits −51 % (79 % of non-source fits exact, was 67 %).
+  - T59 / B1: the Kaggle-side Datalog engine is exact on every design grid and within all fact caps.
+  - B2: Route A now reads the materialised facts, giving identical T24 results.
+  - T60: the two tie cases cannot be ordered by the current hierarchy (unrelated root names), even with ELK.
+- **Reading.** The engine track is sound as machinery. The vocabulary track keeps raising design coverage without held-out transfer. The OQ7 proxy fails on both arms, and the Oct 5 report is pre-written with that reading (claude/oct5_stop_rule_report_draft.md). ETA to a higher public score: no evidence of one yet; the standing notebook (V34) keeps 2.50 at worst.

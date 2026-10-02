@@ -1,0 +1,137 @@
+{
+ "test": "B2 parity on all design grids (Fable v11 B2)",
+ "scope": "every input grid (train + test inputs) of the 898 design training tasks (ARC training minus N2), each of occupancy2's 5 abstractions (probe v29)",
+ "rule_file": "tools/datalog/routeA_rules.dl.txt",
+ "command": "python3 tools/dream/routeA_dl.py tools/m1b/v29 --parity-all <out> --part K --parts 2",
+ "grids": 18360,
+ "roles_hash_equal": 18360,
+ "memberships_hash_equal": 18360,
+ "inherited_new_total": 0,
+ "segmentation_skipped": 1095,
+ "role_mismatch": {
+  "touches": 0,
+  "inside": 0,
+  "contains": 0,
+  "aligned": 0,
+  "same_shape": 0
+ },
+ "by_abstraction": {
+  "ccgbr": {
+   "grids": 3704,
+   "roles_equal": 3704,
+   "memberships_equal": 3704
+  },
+  "mcccg": {
+   "grids": 3869,
+   "roles_equal": 3869,
+   "memberships_equal": 3869
+  },
+  "nbccg": {
+   "grids": 3750,
+   "roles_equal": 3750,
+   "memberships_equal": 3750
+  },
+  "nbhcg": {
+   "grids": 3531,
+   "roles_equal": 3531,
+   "memberships_equal": 3531
+  },
+  "nbvcg": {
+   "grids": 3506,
+   "roles_equal": 3506,
+   "memberships_equal": 3506
+  }
+ },
+ "engine_s_mean": 0.0027,
+ "engine_s_median": 0.0012,
+ "engine_s_p99": 0.0154,
+ "engine_s_max": 0.1857,
+ "roles_of_s_mean": 0.0006,
+ "roles_of_s_max": 0.2027,
+ "wmat_mean": 854.1,
+ "wmat_max": 11640,
+ "grids_with_skipped_relation": 0,
+ "engine_calls": 18360,
+ "slowest_grids": [
+  {
+   "grid": "85c4e7cd:2:nbvcg",
+   "n_ind": 32,
+   "cells": 100,
+   "wmat": 2804,
+   "engine_s": 0.1857,
+   "roles_of_s": 0.0006
+  },
+  {
+   "grid": "b7f8a4d8:2:nbccg",
+   "n_ind": 45,
+   "cells": 754,
+   "wmat": 5164,
+   "engine_s": 0.1502,
+   "roles_of_s": 0.0011
+  },
+  {
+   "grid": "d968ffd4:1:mcccg",
+   "n_ind": 1,
+   "cells": 68,
+   "wmat": 208,
+   "engine_s": 0.1493,
+   "roles_of_s": 0.0001
+  },
+  {
+   "grid": "de493100:1:mcccg",
+   "n_ind": 1,
+   "cells": 900,
+   "wmat": 1951,
+   "engine_s": 0.1357,
+   "roles_of_s": 0.0052
+  },
+  {
+   "grid": "bd283c4a:0:ccgbr",
+   "n_ind": 25,
+   "cells": 100,
+   "wmat": 1714,
+   "engine_s": 0.1346,
+   "roles_of_s": 0.0007
+  },
+  {
+   "grid": "228f6490:0:nbhcg",
+   "n_ind": 21,
+   "cells": 100,
+   "wmat": 1116,
+   "engine_s": 0.1342,
+   "roles_of_s": 0.0004
+  },
+  {
+   "grid": "e50d258f:0:nbvcg",
+   "n_ind": 46,
+   "cells": 100,
+   "wmat": 4367,
+   "engine_s": 0.1278,
+   "roles_of_s": 0.0009
+  },
+  {
+   "grid": "9d9215db:0:ccgbr",
+   "n_ind": 4,
+   "cells": 361,
+   "wmat": 179,
+   "engine_s": 0.1275,
+   "roles_of_s": 0.0001
+  },
+  {
+   "grid": "db3e9e38:2:mcccg",
+   "n_ind": 1,
+   "cells": 81,
+   "wmat": 65,
+   "engine_s": 0.0469,
+   "roles_of_s": 0.0001
+  },
+  {
+   "grid": "06df4c85:2:ccgbr",
+   "n_ind": 61,
+   "cells": 529,
+   "wmat": 11613,
+   "engine_s": 0.0386,
+   "roles_of_s": 0.0079
+  }
+ ]
+}

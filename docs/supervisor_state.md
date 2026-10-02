@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-01 22:40 UTC (18:40 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-02 03:00 UTC (23:00 EDT Oct 1). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -320,3 +320,17 @@ _Last updated: 2026-10-01 22:40 UTC (18:40 EDT Oct 1). Updated with every outbox
 - T59 pass: tools/datalog/engine.py (pure-Python stratified semi-naive Datalog, 426 lines) + o0_rules.dl (147 rules for the 24 O0 items) hash-equal to the item code on 4,153/4,153 design input grids (166 skipped on both sides, > 64 objects); rdflib SPARQL CONSTRUCT fixpoint agrees on 140/140 grids. W_mat mean 15 k, max 215,801 (2 grids over the G63 cap; allen, dir_rel, rcc8_DC dominate). G62: 64/147 rules exceed 4 variables. T63 partial: 9.7 KB lzma; materialisation per task mean 0.64 s, max 2.33 s on the 99; not in the notebook (no consumer yet, G64).
 - Round-10 response §7 written (project claude/fable_round_10_response.md) with three questions for Fable (G62 scope, G63 negative relations, ELK via Protégé).
 - WSL: checks blocked by local permissions 12:42–16:21 EDT; acked seq 12 at 16:23 and waits for 20:00 EDT. Its seq 8 nltk download had finished before the cancel (6 zips, ~44 MB, in cloud_outbox/wsl_results/nltk/; left in place, nothing deleted).
+
+## Update 23:00 EDT Oct 1: Fable v11; v19 submitted; v20 staged
+- v19 (V33) submitted 01:48 UTC Oct 2 (ref 56763295, kernel v6, parity digest de2bd55e match); score pending. v20 = V34 (0.61 MB, 109 files byte-identical to tools/m1b/v34, EXPECTED b6c6bfd8) is LATEST for the Oct 3 UTC slot (batch-0078, ORDERS seq 15). The priors2/priors3 wall-clock budgets fit ≥ 5x before their cut-off on every design task that fits (checked; v19's Kaggle parity matched).
+- Fable v11 (claude/fable_guidance_v11.md; response claude/fable_round_11_response.md):
+  - G62 restated, G63 changed, G68 changed, G69 new; D36–D38.
+  - B1: T59 re-run, 4,153/4,153, W_mat max 128 k, 0 grids over cap. Open point: Δ is empty on test inputs.
+  - T68: priors4 (roles only): non-source fits 253 → 199, wrong 83 → 41. Amendment proposed: add vanishing/inert/common roles; keep learned constants last, with their cost.
+  - B2: Route A reads the materialised A-box (tools/datalog/routeA_rules.dl.txt, tools/dream/routeA_dl.py): parity 18,360/18,360, T24 unchanged.
+  - T60 (asserted hierarchy): ties not resolved.
+  - T69: 5/68.
+  - A2: Oct 5 report draft (claude/oct5_stop_rule_report_draft.md).
+- T58 (ELK): Len approved (21:15 EDT), ORDERS seq 14. The Windows session found Protégé 5.6.1 (Protege-5.6.1\Protege-5.6.1), elk-protege-0.5.0.jar, the OWL API and javac (Java 11.0.19), but its local auto-mode safety check refused to compile code that came through the outbox. It needs Len's approval inside that session.
+- T66 blind A/B proposed to Len (needs 10 of his lines); waiting for his yes.
+- Next check-in: 10:30 EDT Oct 2 (scheduled).
