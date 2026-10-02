@@ -1,0 +1,89 @@
+{
+ "paired_same_task": {
+  "7ed72f31": {
+   "len": {
+    "own_exact": true,
+    "other_exact": 1
+   },
+   "llm": {
+    "own_exact": true,
+    "other_exact": 1
+   }
+  },
+  "4c7dc4dd": {
+   "len": {
+    "own_exact": false,
+    "other_exact": 0
+   },
+   "llm": {
+    "own_exact": false,
+    "other_exact": 0
+   }
+  },
+  "e2092e0c": {
+   "len": {
+    "own_exact": true,
+    "other_exact": 0
+   },
+   "llm": {
+    "own_exact": true,
+    "other_exact": 0
+   }
+  },
+  "a644e277": {
+   "len": {
+    "own_exact": true,
+    "other_exact": 0
+   },
+   "llm": {
+    "own_exact": true,
+    "other_exact": 0
+   }
+  }
+ },
+ "hash_assigned": {
+  "len_tasks": [
+   "7ed72f31",
+   "4c7dc4dd",
+   "e2092e0c",
+   "a644e277"
+  ],
+  "len_other_exact_mean": 0.25,
+  "llm_tasks": [
+   "291dc1e1",
+   "8698868d",
+   "fcc82909",
+   "8abad3cf",
+   "dc2e9a9d",
+   "2faf500b",
+   "a78176bb",
+   "264363fd",
+   "4e45f183",
+   "a406ac07"
+  ],
+  "llm_other_exact_mean": 0.2,
+  "diff_95ci": [
+   -0.55,
+   0.55
+  ]
+ },
+ "all_len_lines": {
+  "n": 10,
+  "other_exact_mean": 1.3,
+  "diff_vs_llm_half_95ci": [
+   0.0,
+   2.4
+  ],
+  "note": "6 of the 10 are from the 18 tasks Claude cannot solve (Len chose them), so task choice confounds this row"
+ },
+ "new_over_v32": {
+  "len": 0,
+  "llm": 0
+ },
+ "own_exact": {
+  "len": 4,
+  "len_n": 10,
+  "llm": 13,
+  "llm_n": 14
+ }
+}

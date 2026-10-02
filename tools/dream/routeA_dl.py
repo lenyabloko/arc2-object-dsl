@@ -17,12 +17,18 @@ search code is literally the reference's). New:
                    tie-break by depth (longest chain of direct superclasses to a root; smaller = more general), then
                    IRI. No exact name -> the T24 order over the exact role chains. --hierarchy asserted (lattice
                    axioms of results/o0/t58_tbox.ofn.txt) or elk (results/o0/t58_taxonomy.tsv[.txt], tools/owl/T58.java).
+  --pick t71       G71 / T71 (Fable v12): the T60 walk over the hierarchy that now includes the G71 parents
+                   (tools/owl/lattice_parents.json: name <= ShapeProperty | PositionProperty | ColourRole | ScaleProperty |
+                   Relation <= image-schema tops); depth counts up to the tops; among the last exact ancestors of minimal
+                   depth: most other exact names under the same G71 class, then higher phi_design (results/o0/
+                   t71_phi_design.json, --phi), then IRI. An ELK taxonomy classified before G71 gets the mapping added.
+  --vocab F        emitted lattice names and phi_design on the design inputs (inputs only); --part K --parts P.
   --lattice-cache DIR   reuse the lattice pass of routeA_v6.py (lattice_cache*.json: abstraction, first-stage rules,
                    extra stages, |P|, test agreement of attempt 1 = routeA_t24's own filter); without it the lattice
                    runs fresh as in routeA_t24. --verify-cache re-solves the selected programs and compares.
 Training pairs only for learning; the test check is routeA_t24's (one per program, depth-0 picks); N2 excluded.
-Per-program JSON lines on stdout (routeA_t24's schema; --pick t60 adds a "t60" field); summary on stderr.
-usage: python3 routeA_dl.py <probe_dir> [--abox python|datalog] [--parity F] [--pick t24|t60] [--hierarchy asserted|elk]
+Per-program JSON lines on stdout (routeA_t24's schema; --pick t60 / t71 add a "t60" / "t71" field); summary on stderr.
+usage: python3 routeA_dl.py <probe_dir> [--abox python|datalog] [--parity F] [--pick t24|t60|t71] [--hierarchy asserted|elk]
                             [--lattice-cache DIR] [--verify-cache] [--keys k1,k2] [--limit N]
        python3 routeA_dl.py <probe_dir> --write-rules      regenerate the T-box block of routeA_rules.dl.txt
 """
@@ -33,20 +39,23 @@ ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 DL = os.path.join(ROOT, 'tools', 'datalog')
 RULES = os.path.join(DL, 'routeA_rules.dl.txt')
 TBOX = os.path.join(ROOT, 'results', 'o0', 't58_tbox.ofn.txt')
+PARENTS = os.path.join(ROOT, 'tools', 'owl', 'lattice_parents.json')
+PHI = os.path.join(ROOT, 'results', 'o0', 't71_phi_design.json')
 TAXONOMY = [os.path.join(ROOT, 'results', 'o0', 't58_taxonomy.tsv'), os.path.join(ROOT, 'results', 'o0', 't58_taxonomy.tsv.txt')]
 LAT_NS = "https://github.com/lenyabloko/arc2-object-dsl/ontology/lattice#"
 CAP, REL_CAP = 200000, 50000                               # G63
 
 ap = argparse.ArgumentParser()
 ap.add_argument("probe"); ap.add_argument("--abox", choices=("python", "datalog"), default="python")
-ap.add_argument("--parity"); ap.add_argument("--pick", choices=("t24", "t60"), default="t24")
+ap.add_argument("--parity"); ap.add_argument("--pick", choices=("t24", "t60", "t71"), default="t24")
 ap.add_argument("--hierarchy", choices=("asserted", "elk"), default="asserted"); ap.add_argument("--taxonomy")
 ap.add_argument("--lattice-cache"); ap.add_argument("--verify-cache", action="store_true")
 ap.add_argument("--keys"); ap.add_argument("--limit", type=int, default=0); ap.add_argument("--write-rules", action="store_true")
 ap.add_argument("--parity-all"); ap.add_argument("--part", type=int, default=0); ap.add_argument("--parts", type=int, default=1)
+ap.add_argument("--vocab"); ap.add_argument("--phi")
 A = ap.parse_args()
 if A.parity_all: A.abox, A.parity = "datalog", A.parity_all
-for k in ("parity", "lattice_cache", "taxonomy"):
+for k in ("parity", "lattice_cache", "taxonomy", "vocab", "phi"):
     if getattr(A, k): setattr(A, k, os.path.abspath(getattr(A, k)))
 
 sys.argv = [sys.argv[0], A.probe]                          # routeA_t24 reads its probe from argv[1] at import
@@ -167,8 +176,8 @@ def abox(grid, nodes, at0, key):
 # ------------------------------------------------------------------------------------------------ class hierarchy (T60)
 class Hierarchy:
     """class graph over compact class names ("lat:square_bbox"): direct superclasses, equivalents merged (union-find).
-    asserted: the lattice section of the T58 T-box (SubClassOf, named EquivalentClasses; Pair_* classes are leaves
-    there and are omitted). elk: every row of the ELK taxonomy (tools/owl/T58.java TSV: class, direct superclasses
+    asserted: every atomic SubClassOf / named EquivalentClasses of the T58 T-box (lattice section, G71 parents and
+    tops, and the rest; Pair_* classes have only conjunctive definitions there and stay out). elk: every row of the ELK taxonomy (tools/owl/T58.java TSV: class, direct superclasses
     " | " between nodes and " = " inside a node, equivalents), all classes kept so chains through Pair_* (or any other)
     classes stay intact; owl:Thing is the top and is not a node. A recogniser name absent from the T-box is its own
     root. depth = longest chain of direct superclasses up to a root (a root has depth 0)."""
@@ -177,11 +186,16 @@ class Hierarchy:
         self.kind, self.parent, self.uf, self.unsat = kind, {}, {}, []
         self.cls = {v: "lat:" + k for k, v in lab.items()}             # recogniser name -> class
         self.name = {"lat:" + k: v for k, v in lab.items() if not k.startswith("Pair_")}   # class -> recogniser name
+        M = json.load(open(PARENTS)) if os.path.exists(PARENTS) else {"classes": {}, "names": {}, "schema_tops": {}}
+        self.g71 = {"t58:" + c for c in M["classes"]}                 # G71 parent classes
         if kind == "asserted":
             self.source = os.path.relpath(TBOX, ROOT)
-            for k, c, d in ax:
-                if k == "eq": self.union(self.cls[c], self.cls[d])
-                else: self.parent.setdefault(self.cls[c], set()).add(self.cls[d])
+            ann = re.compile(r'Annotation\(rdfs:comment "(?:[^"\\]|\\.)*"\)\s*')
+            for line in open(TBOX):                                   # every atomic SubClassOf / EquivalentClasses
+                m = re.fullmatch(r'(SubClassOf|EquivalentClasses)\(([^\s()]+) ([^\s()]+)\)', ann.sub('', line.strip()))
+                if not m: continue
+                if m[1] == "EquivalentClasses": self.union(m[2], m[3])
+                else: self.parent.setdefault(m[2], set()).add(m[3])
         else:
             path = path or next((p for p in TAXONOMY if os.path.exists(p)), None)
             if not path or not os.path.exists(path):
@@ -198,6 +212,11 @@ class Hierarchy:
                     for m in ms[1:]: self.union(ms[0], m)
                 for e in filter(None, (cols[2] if len(cols) > 2 else "").split(" | ")):
                     if e != "owl:Thing": self.union(c, e)
+            if self.g71 and not (self.g71 & set(self.parent)):         # taxonomy classified before G71: add the mapping
+                self.source += " + tools/owl/lattice_parents.json (taxonomy predates G71)"
+                for nm, c in M["names"].items(): self.parent.setdefault(self.node(nm), set()).add("t58:" + c)
+                for c, d in M["classes"].items():
+                    for t in d["tops"]: self.parent.setdefault("t58:" + c, set()).add(M["schema_tops"][t])
         self._depth, self._anc, self._mem = {}, {}, None
 
     def node(self, name):
@@ -271,6 +290,35 @@ def t60_pick(exact, pairs, H, W):
                           "tie": len(top) > 1 and key(top[0])[0] == key(top[1])[0]}
 
 
+def t71_pick(exact, pairs, H, W, phi):
+    """G71 / T71: the T60 walk, then among the last exact ancestors of minimal depth: the one whose G71 parent class
+    holds the most OTHER exact concept names of the task (distinct classes up to equivalence, all exact names of the
+    walk, any depth below the parent class); then higher phi_design (design fire ratio, this abstraction); then IRI."""
+    p, info = t60_pick(exact, pairs, H, W)
+    if p is None: return p, info
+    top = info["last_exact"]; dmin = min(H.depth(n) for n in top)
+    D = [n for n in top if H.depth(n) == dmin]
+    exn = {}
+    for m in info["exact_after_walk"]: exn.setdefault(H.find(H.node(m)), m)
+    g71 = {H.find(c) for c in H.g71}
+
+    def sib(n):
+        me = H.find(H.node(n)); best = (0, None)
+        for c in sorted(g71 & H.ancestors(n)):
+            k = sum(1 for r, m in exn.items() if r != me and c in H.ancestors(m))
+            if k > best[0] or best[1] is None: best = (k, c)
+        return best
+    sc = {n: sib(n) for n in D}
+    key = lambda n: (-sc[n][0], -phi.get(n, 0.0), H.iri(n))
+    D.sort(key=key)
+    why = "depth" if len(D) == 1 else ("sibling" if sc[D[0]][0] > sc[D[1]][0] else
+                                      ("phi_design" if phi.get(D[0], 0.0) > phi.get(D[1], 0.0) else "IRI"))
+    info.update(t60_pick_iri=info["pick"], pick=D[0], min_depth=dmin, decided_by=why,
+                sibling_split=len({sc[n][0] for n in D}) > 1,
+                sibling={n: [sc[n][0], sc[n][1]] for n in D}, phi_design={n: phi.get(n, 0.0) for n in D})
+    return ((), D[0]), info
+
+
 # ------------------------------------------------------------------------------------------------ lattice pass
 def load_cache(d):
     c = {}
@@ -319,6 +367,28 @@ def parity_summary(rows):
             "mismatch_grids": [r["grid"] for r in rows if not (r["roles_eq"] and r["at_eq"])][:50]}
 
 
+def vocab(tr, keys):
+    """G71 / T71 inputs (design inputs only): every concept name occupancy2.prepare emits on any input grid (train and
+    test inputs) of the design training tasks under each abstraction, with counts; and phi_design = per abstraction,
+    the fraction of design training-input grids on which the name fires on some individual (routeA_v6's statistic,
+    over all design tasks instead of a 150-task sample)."""
+    emitted, grids, fire, skip = {}, {}, {}, 0
+    for k in keys[A.part::A.parts]:
+        ins = [(p["input"], True) for p in tr[k]["train"]] + [(q["input"], False) for q in tr[k]["test"]]
+        for g, is_train in ins:
+            for ab in P.ABSTRACTIONS:
+                try:
+                    signal.alarm(30); nodes, bg, at0, _, _, _ = P.prepare(g, ab); signal.alarm(0)
+                except RA.TO: skip += 1; continue
+                except Exception: signal.alarm(0); skip += 1; continue
+                names = set().union(*at0) if at0 else set()
+                for n in names: emitted[n] = emitted.get(n, 0) + 1
+                if is_train:
+                    grids[ab] = grids.get(ab, 0) + 1
+                    for n in names: fire.setdefault(ab, {})[n] = fire.setdefault(ab, {}).get(n, 0) + 1
+    json.dump({"part": A.part, "parts": A.parts, "grids": grids, "fire": fire, "emitted": emitted, "skipped": skip}, open(A.vocab, "w"))
+
+
 def parity_all(tr, keys):
     """inputs only (no outputs, no solutions); grids occupancy2 cannot segment (> 64 nodes, errors, 30 s) are counted"""
     seg_skip = 0
@@ -346,7 +416,9 @@ def main():
     cache = load_cache(A.lattice_cache) if A.lattice_cache else None
     if A.verify_cache: return verify_cache(tr, ts, keys, cache)
     if A.parity_all: return parity_all(tr, keys)
-    H = Hierarchy(A.hierarchy, A.taxonomy) if A.pick == "t60" else None
+    if A.vocab: return vocab(tr, keys)
+    H = Hierarchy(A.hierarchy, A.taxonomy) if A.pick in ("t60", "t71") else None
+    PHI_D = json.load(open(A.phi or PHI))["phi_design"] if A.pick == "t71" else None
     n_prog = n_rec = n_margin = 0; by_gen = {"single": [0, 0], "pair": [0, 0], "default-only": [0, 0]}
     t_start = time.time()
     for k in keys:
@@ -387,9 +459,10 @@ def main():
         except RA.Budget:
             exact = exact or "BUDGET"
         pick = "BUDGET" if exact == "BUDGET" else (min(exact)[4:] if exact else None)
-        if A.pick == "t60" and isinstance(exact, list) and exact:
+        if A.pick in ("t60", "t71") and isinstance(exact, list) and exact:
             try:
-                p60, t60 = t60_pick([e[4:] for e in exact], pairs, H, W)
+                p60, t60 = (t60_pick([e[4:] for e in exact], pairs, H, W) if A.pick == "t60" else
+                            t71_pick([e[4:] for e in exact], pairs, H, W, PHI_D.get(ab, {})))
             except RA.Budget:
                 p60, t60 = None, {"fallback": "BUDGET during the walk: T24 order"}
             t60["t24_pick"] = list(pick[0]) + [pick[1]]
@@ -413,7 +486,7 @@ def main():
         line = {"task": k, "gen": gen, "lattice_rule": [list(g), str(lab)], "recovered": rec,
                 "pick": (list(pick[0]) + [pick[1]]) if rec else pick, "n_exact": (len(exact) if isinstance(exact, list) else None), "test_ok": test_ok, "margin": round(mg, 1),
                 "W_sub": W[0], "tried": tried, "C_t_names": sorted(C[0])[:12], "C_t_roles": sorted(C[1])}
-        if A.pick == "t60": line["t60"] = t60
+        if A.pick in ("t60", "t71"): line[A.pick] = t60
         print(json.dumps(line), flush=True)
     summ = {"programs": n_prog, "recovered": n_rec, "recovered_margin_ge_4": n_margin, "by_generator": by_gen}
     print(json.dumps(summ), file=sys.stderr)

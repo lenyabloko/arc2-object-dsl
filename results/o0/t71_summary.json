@@ -1,0 +1,743 @@
+{
+ "test": "T71 (Fable v12 G71): T60 generality pick with G71 parents + sibling rule, asserted hierarchy",
+ "mapping": {
+  "file": "tools/owl/lattice_parents.json",
+  "names_mapped": 117,
+  "per_class": {
+   "ShapeProperty": 10,
+   "PositionProperty": 15,
+   "ColourRole": 14,
+   "ScaleProperty": 47,
+   "Relation": 31
+  },
+  "not_placed": [
+   "px:* and obj:*",
+   "at:<detector>",
+   "cx:<selector>.<key>",
+   "D11:n_cells_of_color_in_bbox=True|False"
+  ]
+ },
+ "tbox": {
+  "files": [
+   "results/o0/t58_tbox.ofn",
+   "results/o0/t58_tbox.ofn.txt",
+   "results/o0/t58_tbox.ttl",
+   "results/o0/t58_export_summary.json"
+  ],
+  "counts": {
+   "classes": 554,
+   "object_properties": 130,
+   "SubClassOf": 885,
+   "EquivalentClasses": 28,
+   "DisjointClasses": 16,
+   "SubObjectPropertyOf": 118,
+   "property_chains": 115,
+   "AnnotationAssertion": 284,
+   "logical_axioms": 1162
+  },
+  "el_profile_violations": 0,
+  "rbox_regular": true,
+  "ofn_structural_ok": true,
+  "ttl_roundtrip_ok": true,
+  "expected_classification": {
+   "named_classes": 554,
+   "distinct_after_classification": 551,
+   "unsatisfiable": []
+  }
+ },
+ "routeA_rules": "tools/datalog/routeA_rules.dl.txt T-box block regenerated (46 membership rules, +2: D12:n_holes=5 <= has_hole, D4:n_touch=2 <= touches_other); parity on all 18,360 design grid x abstraction: roles 18,360 / memberships 18,360 hash-equal, closure adds 0 names; T24 datalog output unchanged",
+ "phi_design": "results/o0/t71_phi_design.json",
+ "rule": "last exact ancestors of minimal depth (depth counted up to the image-schema tops) -> most other exact names under the same G71 class -> higher phi_design -> IRI",
+ "summary": {
+  "programs": 19,
+  "recovered": 17,
+  "depth0_test_checks": [
+   12,
+   13
+  ],
+  "picks_equal_lattice_concept": 8,
+  "decided_by": {
+   "depth": 6,
+   "sibling": 0,
+   "phi_design": 4,
+   "IRI": 3
+  },
+  "sibling_rule_split_the_tie": [
+   "3906de3d",
+   "aabf363d",
+   "b230c067"
+  ]
+ },
+ "ties": {
+  "aabf363d": {
+   "task": "aabf363d",
+   "lattice_rule": [
+    "touches_border"
+   ],
+   "t24_pick": [
+    "square_bbox"
+   ],
+   "t60_iri_pick": "D1:size_rank_asc=0",
+   "t71_pick": [
+    "sym_lr"
+   ],
+   "test_ok": true,
+   "decided_by": "phi_design",
+   "min_depth": 2,
+   "sibling": {
+    "sym_lr": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "sym_ud": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "square_bbox": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "D1:size_rank_asc=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "bottommost": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "leftmost": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "smallest": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "touches_border": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "D1:size_rank=1": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "exists_same_holes": [
+     0,
+     "t58:Relation"
+    ]
+   },
+   "phi_design": {
+    "sym_lr": 0.93399,
+    "sym_ud": 0.93187,
+    "square_bbox": 0.87646,
+    "D1:size_rank_asc=0": 1.0,
+    "bottommost": 1.0,
+    "leftmost": 1.0,
+    "smallest": 1.0,
+    "touches_border": 0.78009,
+    "D1:size_rank=1": 0.75468,
+    "exists_same_holes": 0.46382
+   },
+   "W_sub": 92,
+   "fallback": null,
+   "sibling_split": true
+  },
+  "b230c067": {
+   "task": "b230c067",
+   "lattice_rule": [
+    "shape_shared"
+   ],
+   "t24_pick": [
+    "aligned",
+    "shape_unique"
+   ],
+   "t60_iri_pick": "D10:largest_of_its_color",
+   "t71_pick": [
+    "D10:largest_of_its_color"
+   ],
+   "test_ok": false,
+   "decided_by": "IRI",
+   "min_depth": 2,
+   "sibling": {
+    "D10:largest_of_its_color": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "largest": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank_asc=1": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "shape_shared": [
+     0,
+     "t58:ShapeProperty"
+    ]
+   },
+   "phi_design": {
+    "D10:largest_of_its_color": 1.0,
+    "D1:size_rank=0": 1.0,
+    "largest": 1.0,
+    "D1:size_rank_asc=1": 0.75468,
+    "shape_shared": 0.68655
+   },
+   "W_sub": 1832,
+   "fallback": null,
+   "sibling_split": true
+  }
+ },
+ "elk_path": "--hierarchy elk reads results/o0/t58_taxonomy.tsv[.txt]; a taxonomy classified before G71 gets the mapping added. Predicted taxonomy (EL saturation, results/o0/t71_predicted_taxonomy.tsv.txt) and the pre-G71 predicted taxonomy + mapping both give the asserted picks.",
+ "per_task": [
+  {
+   "task": "00d62c1b",
+   "lattice_rule": [
+    "color_least_common"
+   ],
+   "t24_pick": [
+    "color=0"
+   ],
+   "t60_iri_pick": "color=0",
+   "t71_pick": [
+    "color_least_common"
+   ],
+   "test_ok": true,
+   "decided_by": "phi_design",
+   "min_depth": 2,
+   "sibling": {
+    "color_least_common": [
+     1,
+     "t58:ColourRole"
+    ],
+    "color=0": [
+     1,
+     "t58:ColourRole"
+    ]
+   },
+   "phi_design": {
+    "color_least_common": 1.0,
+    "color=0": 0.34927
+   },
+   "W_sub": 3353,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "25ff71a9",
+   "gen": "default-only",
+   "note": "default-only"
+  },
+  {
+   "task": "2a5f8217",
+   "lattice_rule": [
+    "color=1"
+   ],
+   "t24_pick": [
+    "color=1"
+   ],
+   "t60_iri_pick": "color=1",
+   "t71_pick": [
+    "color=1"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 2,
+   "sibling": {
+    "color=1": [
+     0,
+     "t58:ColourRole"
+    ]
+   },
+   "phi_design": {
+    "color=1": 0.39922
+   },
+   "W_sub": 330,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "3906de3d",
+   "lattice_rule": [
+    "color_least_common"
+   ],
+   "t24_pick": [
+    "bottommost"
+   ],
+   "t60_iri_pick": "bottommost",
+   "t71_pick": [
+    "color_least_common"
+   ],
+   "test_ok": true,
+   "decided_by": "phi_design",
+   "min_depth": 2,
+   "sibling": {
+    "color_least_common": [
+     1,
+     "t58:ColourRole"
+    ],
+    "color=2": [
+     1,
+     "t58:ColourRole"
+    ],
+    "bottommost": [
+     0,
+     "t58:PositionProperty"
+    ]
+   },
+   "phi_design": {
+    "color_least_common": 1.0,
+    "color=2": 0.46654,
+    "bottommost": 1.0
+   },
+   "W_sub": 2623,
+   "fallback": null,
+   "sibling_split": true
+  },
+  {
+   "task": "42a50994",
+   "lattice_rule": [
+    "isolated",
+    "square_bbox"
+   ],
+   "t24_pick": null,
+   "t60_iri_pick": null,
+   "t71_pick": null,
+   "test_ok": null,
+   "decided_by": null,
+   "min_depth": null,
+   "sibling": null,
+   "phi_design": null,
+   "W_sub": 8971,
+   "fallback": null,
+   "sibling_split": null
+  },
+  {
+   "task": "5582e5ca",
+   "gen": "default-only",
+   "note": "default-only"
+  },
+  {
+   "task": "63613498",
+   "lattice_rule": [
+    "D4:n_touch=0",
+    "shape_shared"
+   ],
+   "t24_pick": [
+    "same_shape",
+    "adjColor=0"
+   ],
+   "t60_iri_pick": null,
+   "t71_pick": [
+    "same_shape",
+    "adjColor=0"
+   ],
+   "test_ok": null,
+   "decided_by": null,
+   "min_depth": null,
+   "sibling": null,
+   "phi_design": null,
+   "W_sub": 2885,
+   "fallback": "no exact concept name: T24 order over role chains",
+   "sibling_split": null
+  },
+  {
+   "task": "67385a82",
+   "lattice_rule": [
+    "smallest"
+   ],
+   "t24_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t60_iri_pick": "D10:smallest_of_its_color",
+   "t71_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "test_ok": true,
+   "decided_by": "IRI",
+   "min_depth": 2,
+   "sibling": {
+    "D10:smallest_of_its_color": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank_asc=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "smallest": [
+     2,
+     "t58:ScaleProperty"
+    ]
+   },
+   "phi_design": {
+    "D10:smallest_of_its_color": 1.0,
+    "D1:size_rank_asc=0": 1.0,
+    "smallest": 1.0
+   },
+   "W_sub": 164,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "7ee1c6ea",
+   "lattice_rule": [
+    "inside_other"
+   ],
+   "t24_pick": [
+    "contextColor=5"
+   ],
+   "t60_iri_pick": "inside_other",
+   "t71_pick": [
+    "inside_other"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 2,
+   "sibling": {
+    "inside_other": [
+     1,
+     "t58:Relation"
+    ]
+   },
+   "phi_design": {
+    "inside_other": 0.19308
+   },
+   "W_sub": 46744,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "810b9b61",
+   "lattice_rule": [
+    "hollow_rect"
+   ],
+   "t24_pick": [
+    "D12:n_holes=1"
+   ],
+   "t60_iri_pick": "has_hole",
+   "t71_pick": [
+    "has_hole"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 2,
+   "sibling": {
+    "has_hole": [
+     2,
+     "t58:ShapeProperty"
+    ]
+   },
+   "phi_design": {
+    "has_hole": 0.30109
+   },
+   "W_sub": 515,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "9565186b",
+   "gen": "default-only",
+   "note": "default-only"
+  },
+  {
+   "task": "a5313dff",
+   "lattice_rule": [
+    "contextColor=2"
+   ],
+   "t24_pick": [
+    "contextColor=2"
+   ],
+   "t60_iri_pick": "contextColor=2",
+   "t71_pick": [
+    "contextColor=2"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 3,
+   "sibling": {
+    "contextColor=2": [
+     0,
+     "t58:Relation"
+    ]
+   },
+   "phi_design": {
+    "contextColor=2": 0.05672
+   },
+   "W_sub": 5611,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "aabf363d",
+   "lattice_rule": [
+    "touches_border"
+   ],
+   "t24_pick": [
+    "square_bbox"
+   ],
+   "t60_iri_pick": "D1:size_rank_asc=0",
+   "t71_pick": [
+    "sym_lr"
+   ],
+   "test_ok": true,
+   "decided_by": "phi_design",
+   "min_depth": 2,
+   "sibling": {
+    "sym_lr": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "sym_ud": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "square_bbox": [
+     3,
+     "t58:ShapeProperty"
+    ],
+    "D1:size_rank_asc=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "bottommost": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "leftmost": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "smallest": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "touches_border": [
+     2,
+     "t58:PositionProperty"
+    ],
+    "D1:size_rank=1": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "exists_same_holes": [
+     0,
+     "t58:Relation"
+    ]
+   },
+   "phi_design": {
+    "sym_lr": 0.93399,
+    "sym_ud": 0.93187,
+    "square_bbox": 0.87646,
+    "D1:size_rank_asc=0": 1.0,
+    "bottommost": 1.0,
+    "leftmost": 1.0,
+    "smallest": 1.0,
+    "touches_border": 0.78009,
+    "D1:size_rank=1": 0.75468,
+    "exists_same_holes": 0.46382
+   },
+   "W_sub": 92,
+   "fallback": null,
+   "sibling_split": true
+  },
+  {
+   "task": "aedd82e4",
+   "lattice_rule": [
+    "smallest"
+   ],
+   "t24_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "t60_iri_pick": "D10:smallest_of_its_color",
+   "t71_pick": [
+    "D10:smallest_of_its_color"
+   ],
+   "test_ok": true,
+   "decided_by": "IRI",
+   "min_depth": 2,
+   "sibling": {
+    "D10:smallest_of_its_color": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank_asc=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "smallest": [
+     2,
+     "t58:ScaleProperty"
+    ]
+   },
+   "phi_design": {
+    "D10:smallest_of_its_color": 1.0,
+    "D1:size_rank_asc=0": 1.0,
+    "smallest": 1.0
+   },
+   "W_sub": 128,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "b1948b0a",
+   "lattice_rule": [
+    "color_most_common"
+   ],
+   "t24_pick": [
+    "color=6"
+   ],
+   "t60_iri_pick": "color=6",
+   "t71_pick": [
+    "color_most_common"
+   ],
+   "test_ok": true,
+   "decided_by": "phi_design",
+   "min_depth": 2,
+   "sibling": {
+    "color_most_common": [
+     1,
+     "t58:ColourRole"
+    ],
+    "color=6": [
+     1,
+     "t58:ColourRole"
+    ]
+   },
+   "phi_design": {
+    "color_most_common": 1.0,
+    "color=6": 0.21779
+   },
+   "W_sub": 3230,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "b230c067",
+   "lattice_rule": [
+    "shape_shared"
+   ],
+   "t24_pick": [
+    "aligned",
+    "shape_unique"
+   ],
+   "t60_iri_pick": "D10:largest_of_its_color",
+   "t71_pick": [
+    "D10:largest_of_its_color"
+   ],
+   "test_ok": false,
+   "decided_by": "IRI",
+   "min_depth": 2,
+   "sibling": {
+    "D10:largest_of_its_color": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank=0": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "largest": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "D1:size_rank_asc=1": [
+     2,
+     "t58:ScaleProperty"
+    ],
+    "shape_shared": [
+     0,
+     "t58:ShapeProperty"
+    ]
+   },
+   "phi_design": {
+    "D10:largest_of_its_color": 1.0,
+    "D1:size_rank=0": 1.0,
+    "largest": 1.0,
+    "D1:size_rank_asc=1": 0.75468,
+    "shape_shared": 0.68655
+   },
+   "W_sub": 1832,
+   "fallback": null,
+   "sibling_split": true
+  },
+  {
+   "task": "c8f0f002",
+   "lattice_rule": [
+    "color=7"
+   ],
+   "t24_pick": [
+    "color=7"
+   ],
+   "t60_iri_pick": "color=7",
+   "t71_pick": [
+    "color=7"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 2,
+   "sibling": {
+    "color=7": [
+     0,
+     "t58:ColourRole"
+    ]
+   },
+   "phi_design": {
+    "color=7": 0.19944
+   },
+   "W_sub": 2981,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "d5d6de2d",
+   "lattice_rule": [
+    "color=2"
+   ],
+   "t24_pick": [
+    "color=2"
+   ],
+   "t60_iri_pick": "color=2",
+   "t71_pick": [
+    "color=2"
+   ],
+   "test_ok": true,
+   "decided_by": "depth",
+   "min_depth": 2,
+   "sibling": {
+    "color=2": [
+     0,
+     "t58:ColourRole"
+    ]
+   },
+   "phi_design": {
+    "color=2": 0.50517
+   },
+   "W_sub": 37,
+   "fallback": null,
+   "sibling_split": false
+  },
+  {
+   "task": "e0fb7511",
+   "lattice_rule": [
+    "D10:smallest_of_its_color",
+    "D4:n_touch=0"
+   ],
+   "t24_pick": null,
+   "t60_iri_pick": null,
+   "t71_pick": null,
+   "test_ok": null,
+   "decided_by": null,
+   "min_depth": null,
+   "sibling": null,
+   "phi_design": null,
+   "W_sub": 16803,
+   "fallback": null,
+   "sibling_split": null
+  }
+ ]
+}

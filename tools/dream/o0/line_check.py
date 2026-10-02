@@ -10,7 +10,7 @@ This script measures, on design data only (N2 members and the 21 sealed tasks ar
     population optional (--population): ARC-1 training minus N2 plus the 99; fires, fit, exact, wrong, new over V29
 Output: one JSON row per line (stdout and results/o0/line_ledger.jsonl.txt) with the fields the review page's
 `expansions` collection shows next to the line.
-usage: python3 line_check.py <groups.json> <task id>... [--population] [--v29 <c32 results.jsonl> <e99_v29.jsonl>]"""
+usage: [LINES_DIR=lines_llm] python3 line_check.py <groups.json> <task id>... [--population] [--v29 <c32 results.jsonl> <e99_v29.jsonl>] [--fail <base_fail.json>]"""
 import importlib.util, json, math, os, re, signal, sys, time
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
@@ -78,9 +78,11 @@ def main():
         for l in open(sys.argv[i + 2]):
             d = json.loads(l); f = d.get('final')
             if not (isinstance(f, list) and any(f)): v29_fail.add(d['task'])
+    base_fail = set(json.load(open(sys.argv[sys.argv.index('--fail') + 1]))) if '--fail' in sys.argv else None   # e.g. V32 failures
+    ledger = 'results/o0/line_ledger.jsonl.txt' if os.environ.get('LINES_DIR', 'lines') == 'lines' else 'results/o0/%s_ledger.jsonl.txt' % os.environ['LINES_DIR']
     os.makedirs(os.path.join(REPO, 'results/o0'), exist_ok=True)
     for k in args:
-        modf = os.path.join(REPO, 'tools/dream/o0/lines', k + '.py')
+        modf = os.path.join(REPO, 'tools/dream/o0', os.environ.get('LINES_DIR', 'lines'), k + '.py')   # T66: LINES_DIR=lines_llm
         spec = importlib.util.spec_from_file_location('L' + k, modf); M = importlib.util.module_from_spec(spec); spec.loader.exec_module(M)
         gid = next((g for g, ms in groups.items() if k in ms), None)
         t0 = time.time()
@@ -102,11 +104,13 @@ def main():
                 if r.get('fit'): (exact if r.get('exact') else wrong).append(x)
             row.update(pop_n=len(keys), pop_fired=fired, pop_fit=fit, pop_exact=len(exact), pop_wrong=len(wrong),
                        pop_exact_other=[x for x in exact if x != k],
-                       pop_new_over_v29=[x for x in exact if v29_fail is not None and x in v29_fail and x != k])
+                       pop_new_over_v29=[x for x in exact if v29_fail is not None and x in v29_fail and x != k],
+                       pop_wrong_tasks=wrong,
+                       pop_new_over_base=[x for x in exact if base_fail is not None and x in base_fail and x != k])
         row['seconds'] = round(time.time() - t0, 1)
         row['T43_pass'] = row['held_fit'] >= max(2, math.ceil(row['held_n'] / 2)) if row['held_n'] else False
         row['time'] = time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime())
-        with open(os.path.join(REPO, 'results/o0/line_ledger.jsonl.txt'), 'a') as f: f.write(json.dumps(row) + '\n')
+        with open(os.path.join(REPO, ledger), 'a') as f: f.write(json.dumps(row) + '\n')
         print(json.dumps(row), flush=True)
 
 

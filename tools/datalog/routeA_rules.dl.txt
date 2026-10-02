@@ -117,7 +117,9 @@ has(I, "has_hole") :- has(I, "D12:n_holes=1").
 has(I, "has_hole") :- has(I, "D12:n_holes=2").
 has(I, "has_hole") :- has(I, "D12:n_holes=3").
 has(I, "has_hole") :- has(I, "D12:n_holes=4").
+has(I, "has_hole") :- has(I, "D12:n_holes=5").
 has(I, "touches_other") :- has(I, "D4:n_touch=1").
+has(I, "touches_other") :- has(I, "D4:n_touch=2").
 has(I, "touches_other") :- has(I, "D4:n_touch=3").
 has(I, "touches_other") :- has(I, "D4:n_touch=4").
 % END tbox-subsumptions

@@ -1,0 +1,29 @@
+{
+ "salt": "T66-2026-10-02",
+ "population": 312,
+ "len": [
+  "7ed72f31",
+  "4c7dc4dd",
+  "995c5fa3",
+  "7d419a02",
+  "a8c38be5",
+  "e681b708",
+  "9f8de559",
+  "e2092e0c",
+  "f3e62deb",
+  "a644e277"
+ ],
+ "llm": [
+  "291dc1e1",
+  "8698868d",
+  "fcc82909",
+  "8abad3cf",
+  "dc2e9a9d",
+  "2faf500b",
+  "a78176bb",
+  "264363fd",
+  "4e45f183",
+  "a406ac07"
+ ],
+ "rule": "design tasks V32 fails, Claude one-off exists, no existing line, not N2; strata ARC-2 4 / ARC-1 16 by sha256(salt+id); alternate within stratum"
+}

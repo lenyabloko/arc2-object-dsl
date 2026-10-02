@@ -1,0 +1,302 @@
+{
+ "doc": "G71 (Fable guidance v12): every lattice concept name the lattice emits gets one parent class from a fixed 5-class mapping, and each class sits under its image-schema top(s). Authored once by meaning (not per pair). Read by tools/owl/t58_export.py (axioms SubClassOf(lat:<name> t58:<Class>) and SubClassOf(t58:<Class> t58:<TOP>), classes declared in the t58 namespace so no recogniser name is added) and by tools/dream/routeA_dl.py (--pick t71: sibling rule over these classes).",
+ "emitted_vocabulary": "every name occupancy2.prepare emits on any input grid of the 898 design training tasks under its 5 abstractions, probe v29 / V34 vocabulary (identical attributes / extra_attrs / prepare code): 117 names; counts = grid x abstraction occurrences (results/o0/t71_phi_design.json)",
+ "schema_tops": {
+  "PART-WHOLE": "t58:PART_WHOLE",
+  "NEAR-FAR": "t58:NEAR_FAR",
+  "CONTAINMENT": "t58:CONTAINMENT",
+  "MATCHING": "t58:MATCHING",
+  "SCALE": "t58:SCALE",
+  "CONTACT": "t58:CONTACT"
+ },
+ "classes": {
+  "ShapeProperty": {
+   "tops": [
+    "PART-WHOLE"
+   ],
+   "comment": "shape properties of an object's cell set"
+  },
+  "PositionProperty": {
+   "tops": [
+    "NEAR-FAR",
+    "CONTAINMENT"
+   ],
+   "comment": "position in the grid, extremes, alignment"
+  },
+  "ColourRole": {
+   "tops": [
+    "MATCHING"
+   ],
+   "comment": "own colour and colour frequency roles"
+  },
+  "ScaleProperty": {
+   "tops": [
+    "SCALE"
+   ],
+   "comment": "size, size rank, hole count"
+  },
+  "Relation": {
+   "tops": [
+    "CONTACT",
+    "CONTAINMENT"
+   ],
+   "comment": "contact / containment / existential relation to another object"
+  }
+ },
+ "names": {
+  "D10:largest_of_its_color": "ScaleProperty",
+  "D10:smallest_of_its_color": "ScaleProperty",
+  "D12:n_holes=0": "ScaleProperty",
+  "D12:n_holes=1": "ScaleProperty",
+  "D12:n_holes=2": "ScaleProperty",
+  "D12:n_holes=3": "ScaleProperty",
+  "D12:n_holes=4": "ScaleProperty",
+  "D12:n_holes=5": "ScaleProperty",
+  "D1:size_rank=0": "ScaleProperty",
+  "D1:size_rank=1": "ScaleProperty",
+  "D1:size_rank=2": "ScaleProperty",
+  "D1:size_rank=3": "ScaleProperty",
+  "D1:size_rank>3": "ScaleProperty",
+  "D1:size_rank_asc=0": "ScaleProperty",
+  "D1:size_rank_asc=1": "ScaleProperty",
+  "D1:size_rank_asc=10": "ScaleProperty",
+  "D1:size_rank_asc=11": "ScaleProperty",
+  "D1:size_rank_asc=12": "ScaleProperty",
+  "D1:size_rank_asc=13": "ScaleProperty",
+  "D1:size_rank_asc=14": "ScaleProperty",
+  "D1:size_rank_asc=15": "ScaleProperty",
+  "D1:size_rank_asc=16": "ScaleProperty",
+  "D1:size_rank_asc=2": "ScaleProperty",
+  "D1:size_rank_asc=3": "ScaleProperty",
+  "D1:size_rank_asc=4": "ScaleProperty",
+  "D1:size_rank_asc=5": "ScaleProperty",
+  "D1:size_rank_asc=6": "ScaleProperty",
+  "D1:size_rank_asc=7": "ScaleProperty",
+  "D1:size_rank_asc=8": "ScaleProperty",
+  "D1:size_rank_asc=9": "ScaleProperty",
+  "D4:n_touch=0": "Relation",
+  "D4:n_touch=1": "Relation",
+  "D4:n_touch=2": "Relation",
+  "D4:n_touch=3": "Relation",
+  "D4:n_touch=4": "Relation",
+  "adjColor=0": "Relation",
+  "adjColor=1": "Relation",
+  "adjColor=2": "Relation",
+  "adjColor=3": "Relation",
+  "adjColor=4": "Relation",
+  "adjColor=5": "Relation",
+  "adjColor=6": "Relation",
+  "adjColor=7": "Relation",
+  "adjColor=8": "Relation",
+  "adjColor=9": "Relation",
+  "alignedColor=0": "PositionProperty",
+  "alignedColor=1": "PositionProperty",
+  "alignedColor=2": "PositionProperty",
+  "alignedColor=3": "PositionProperty",
+  "alignedColor=4": "PositionProperty",
+  "alignedColor=5": "PositionProperty",
+  "alignedColor=6": "PositionProperty",
+  "alignedColor=7": "PositionProperty",
+  "alignedColor=8": "PositionProperty",
+  "alignedColor=9": "PositionProperty",
+  "bottommost": "PositionProperty",
+  "color=0": "ColourRole",
+  "color=1": "ColourRole",
+  "color=2": "ColourRole",
+  "color=3": "ColourRole",
+  "color=4": "ColourRole",
+  "color=5": "ColourRole",
+  "color=6": "ColourRole",
+  "color=7": "ColourRole",
+  "color=8": "ColourRole",
+  "color=9": "ColourRole",
+  "color_least_common": "ColourRole",
+  "color_most_common": "ColourRole",
+  "color_unique": "ColourRole",
+  "contains_other": "Relation",
+  "contextColor=0": "Relation",
+  "contextColor=1": "Relation",
+  "contextColor=2": "Relation",
+  "contextColor=3": "Relation",
+  "contextColor=4": "Relation",
+  "contextColor=5": "Relation",
+  "contextColor=6": "Relation",
+  "contextColor=7": "Relation",
+  "contextColor=8": "Relation",
+  "contextColor=9": "Relation",
+  "exists_same_holes": "Relation",
+  "exists_same_size": "Relation",
+  "filled_rect": "ShapeProperty",
+  "has_hole": "ShapeProperty",
+  "hline": "ShapeProperty",
+  "hollow_rect": "ShapeProperty",
+  "inside_other": "Relation",
+  "isolated": "Relation",
+  "largest": "ScaleProperty",
+  "leftmost": "PositionProperty",
+  "multicolor": "ColourRole",
+  "rightmost": "PositionProperty",
+  "shape_shared": "ShapeProperty",
+  "shape_unique": "ShapeProperty",
+  "single_pixel": "ScaleProperty",
+  "size=1": "ScaleProperty",
+  "size=10": "ScaleProperty",
+  "size=11": "ScaleProperty",
+  "size=12": "ScaleProperty",
+  "size=2": "ScaleProperty",
+  "size=3": "ScaleProperty",
+  "size=4": "ScaleProperty",
+  "size=5": "ScaleProperty",
+  "size=6": "ScaleProperty",
+  "size=7": "ScaleProperty",
+  "size=8": "ScaleProperty",
+  "size=9": "ScaleProperty",
+  "size>12": "ScaleProperty",
+  "size_unique": "ScaleProperty",
+  "smallest": "ScaleProperty",
+  "square_bbox": "ShapeProperty",
+  "sym_lr": "ShapeProperty",
+  "sym_ud": "ShapeProperty",
+  "topmost": "PositionProperty",
+  "touches_border": "PositionProperty",
+  "touches_other": "Relation",
+  "vline": "ShapeProperty"
+ },
+ "families": [
+  {
+   "regex": "^(square_bbox|hollow_rect|hline|vline|sym_lr|sym_ud|filled_rect|has_hole)$",
+   "class": "ShapeProperty",
+   "why": "shape of the object's own cell set (G71 list)"
+  },
+  {
+   "regex": "^shape_(unique|shared)$",
+   "class": "ShapeProperty",
+   "why": "multiplicity of the object's normalised shape among the objects: a property computed from its shape"
+  },
+  {
+   "regex": "^D14:dense_(full|high|low)$",
+   "class": "ShapeProperty",
+   "why": "fill density of the bbox: shape (not emitted under V29/V34)"
+  },
+  {
+   "regex": "^(touches_border|topmost|bottommost|leftmost|rightmost)$",
+   "class": "PositionProperty",
+   "why": "position in the grid / extreme position (G71: touches_border, extreme_*)"
+  },
+  {
+   "regex": "^alignedColor=\\d$",
+   "class": "PositionProperty",
+   "why": "bbox row or column overlap with an object of colour c (G71: aligned_*)"
+  },
+  {
+   "regex": "^D5:(top|bottom|left|right)_half$",
+   "class": "PositionProperty",
+   "why": "half-plane position (G71: half_plane_*; not emitted under V29/V34)"
+  },
+  {
+   "regex": "^D9:(row|col)_with_color=\\d$",
+   "class": "PositionProperty",
+   "why": "row / column alignment with colour c (aligned_* per axis; not emitted under V29/V34)"
+  },
+  {
+   "regex": "^(color=\\d|multicolor|color_most_common|color_least_common|color_unique)$",
+   "class": "ColourRole",
+   "why": "own colour and its frequency rank among objects (G71 colour properties)"
+  },
+  {
+   "regex": "^D2:n_same_color=\\d+$",
+   "class": "ColourRole",
+   "why": "number of objects of the same colour (not emitted under V29/V34)"
+  },
+  {
+   "regex": "^(largest|smallest|size_unique|single_pixel|size=\\d+|size>12)$",
+   "class": "ScaleProperty",
+   "why": "size and size rank (G71 size/rank; single_pixel == size=1)"
+  },
+  {
+   "regex": "^D1:size_rank(_asc)?(=\\d+|>3)$",
+   "class": "ScaleProperty",
+   "why": "size rank, descending / ascending (G71 size_rank_*)"
+  },
+  {
+   "regex": "^D10:(largest|smallest)_of_its_color$",
+   "class": "ScaleProperty",
+   "why": "size extreme within its colour class"
+  },
+  {
+   "regex": "^D12:n_holes=\\d+$",
+   "class": "ScaleProperty",
+   "why": "hole count (G71 lists n_holes under size/rank)"
+  },
+  {
+   "regex": "^D8:(height|width)=\\d+$",
+   "class": "ScaleProperty",
+   "why": "bbox dimensions (not emitted under V29/V34)"
+  },
+  {
+   "regex": "^(inside_other|touches_other|isolated|contains_other)$",
+   "class": "Relation",
+   "why": "contact / containment with another object (G71 relational; isolated = no contact)"
+  },
+  {
+   "regex": "^adjColor=\\d$",
+   "class": "Relation",
+   "why": "colour of a touching object (already <= touches_other in the T-box)"
+  },
+  {
+   "regex": "^contextColor=\\d$",
+   "class": "Relation",
+   "why": "colour of the smallest container (already <= inside_other in the T-box)"
+  },
+  {
+   "regex": "^D4:n_touch=\\d+$",
+   "class": "Relation",
+   "why": "number of 4-touching objects (contact count)"
+  },
+  {
+   "regex": "^exists_same_(holes|size)$",
+   "class": "Relation",
+   "why": "another (non-border, other-coloured) object with the same hole count / size: existential relation to another object"
+  },
+  {
+   "regex": "^D3:shape_as_color=\\d$",
+   "class": "Relation",
+   "why": "an object of colour c has the same shape (not emitted under V29/V34)"
+  },
+  {
+   "regex": "^D7:contains_color=\\d$",
+   "class": "Relation",
+   "why": "contains an object of colour c (not emitted under V29/V34)"
+  },
+  {
+   "regex": "^D13:(above|below|level_with|left_of|right_of|centered_on|row_overlaps|col_overlaps)_largest$",
+   "class": "Relation",
+   "why": "position relative to the largest object (G71: *_of_largest; not emitted under V29/V34)"
+  }
+ ],
+ "not_placed": [
+  {
+   "family": "px:* and obj:*",
+   "why": "pixel-level names of the P_pixel refinement stratum: their individuals are the cells of one object, not lattice objects (obj:<name> repeats the object's own names)"
+  },
+  {
+   "family": "at:<detector>",
+   "why": "S_atoms fallback stratum (solve() only, never solve_once): 420 grid-level Codex detector evidence sets used as cell markers; no per-name meaning in the lattice"
+  },
+  {
+   "family": "cx:<selector>.<key>",
+   "why": "S_codex selector outputs; not in the V29 / V34 vocabulary"
+  },
+  {
+   "family": "D11:n_cells_of_color_in_bbox=True|False",
+   "why": "no other cell of its colour inside its bbox: mixes colour and containment, neither class fits; not emitted under V29 / V34"
+  }
+ ],
+ "counts": {
+  "ShapeProperty": 10,
+  "PositionProperty": 15,
+  "ColourRole": 14,
+  "ScaleProperty": 47,
+  "Relation": 31
+ }
+}

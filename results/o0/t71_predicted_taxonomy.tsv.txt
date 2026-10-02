@@ -1,0 +1,154 @@
+class	direct_superclasses	equivalent_classes
+lat:D10_largest_of_its_color	t58:ScaleProperty	
+lat:D10_smallest_of_its_color	t58:ScaleProperty	
+lat:D12_n_holes_eq_0	t58:ScaleProperty	
+lat:D12_n_holes_eq_1	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_2	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_3	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_4	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_5	lat:has_hole | t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_0	t58:ScaleProperty	lat:smallest
+lat:D1_size_rank_asc_eq_1	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_10	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_11	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_12	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_13	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_14	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_15	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_16	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_2	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_3	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_4	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_5	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_6	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_7	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_8	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_9	t58:ScaleProperty	
+lat:D1_size_rank_eq_0	t58:ScaleProperty	lat:largest
+lat:D1_size_rank_eq_1	t58:ScaleProperty	
+lat:D1_size_rank_eq_2	t58:ScaleProperty	
+lat:D1_size_rank_eq_3	t58:ScaleProperty	
+lat:D1_size_rank_gt_3	t58:ScaleProperty	
+lat:D4_n_touch_eq_0	t58:Relation	
+lat:D4_n_touch_eq_1	lat:touches_other	
+lat:D4_n_touch_eq_2	lat:touches_other	
+lat:D4_n_touch_eq_3	lat:touches_other	
+lat:D4_n_touch_eq_4	lat:touches_other	
+lat:Pair_D12_n_holes_eq_0_adjColor_eq_4	lat:D12_n_holes_eq_0 | lat:adjColor_eq_4	
+lat:Pair_D1_size_rank_eq_1_square_bbox	lat:D1_size_rank_eq_1 | lat:square_bbox	
+lat:Pair_D1_size_rank_eq_1_topmost	lat:D1_size_rank_eq_1 | lat:topmost	
+lat:Pair_D4_n_touch_eq_0_shape_shared	lat:D4_n_touch_eq_0 | lat:shape_shared	
+lat:Pair_D4_n_touch_eq_1_color_eq_2	lat:D4_n_touch_eq_1 | lat:color_eq_2	
+lat:Pair_adjColor_eq_1_size_eq_4	lat:adjColor_eq_1 | lat:size_eq_4	
+lat:Pair_adjColor_eq_2_alignedColor_eq_2	lat:adjColor_eq_2 | lat:alignedColor_eq_2	
+lat:Pair_adjColor_eq_2_touches_border	lat:adjColor_eq_2 | lat:touches_border	
+lat:Pair_alignedColor_eq_0_color_eq_0	lat:alignedColor_eq_0 | lat:color_eq_0	
+lat:Pair_alignedColor_eq_1_inside_other	lat:alignedColor_eq_1 | lat:inside_other	
+lat:Pair_alignedColor_eq_2_square_bbox	lat:alignedColor_eq_2 | lat:square_bbox	
+lat:Pair_alignedColor_eq_3_inside_other	lat:alignedColor_eq_3 | lat:inside_other	
+lat:Pair_alignedColor_eq_3_isolated	lat:alignedColor_eq_3 | lat:isolated	
+lat:Pair_alignedColor_eq_4_isolated	lat:alignedColor_eq_4 | lat:isolated	
+lat:Pair_color_eq_5_color_most_common	lat:color_eq_5 | lat:color_most_common	
+lat:Pair_color_eq_5_exists_same_holes	lat:color_eq_5 | lat:exists_same_holes	
+lat:Pair_color_most_common_isolated	lat:color_most_common | lat:isolated	
+lat:Pair_exists_same_holes_shape_unique	lat:exists_same_holes | lat:shape_unique	
+lat:Pair_filled_rect_rightmost	lat:filled_rect | lat:rightmost	
+lat:Pair_isolated_square_bbox	lat:isolated | lat:square_bbox	
+lat:Pair_leftmost_touches_border	lat:leftmost | lat:touches_border	
+lat:Pair_rightmost_topmost	lat:rightmost | lat:topmost	
+lat:Pair_square_bbox_sym_lr	lat:square_bbox | lat:sym_lr	
+lat:Pair_square_bbox_touches_other	lat:square_bbox | lat:touches_other	
+lat:Pair_topmost_touches_border	lat:topmost | lat:touches_border	
+lat:adjColor_eq_0	lat:touches_other	
+lat:adjColor_eq_1	lat:touches_other	
+lat:adjColor_eq_2	lat:touches_other	
+lat:adjColor_eq_3	lat:touches_other	
+lat:adjColor_eq_4	lat:touches_other	
+lat:adjColor_eq_5	lat:touches_other	
+lat:adjColor_eq_6	lat:touches_other	
+lat:adjColor_eq_7	lat:touches_other	
+lat:adjColor_eq_8	lat:touches_other	
+lat:adjColor_eq_9	lat:touches_other	
+lat:alignedColor_eq_0	t58:PositionProperty	
+lat:alignedColor_eq_1	t58:PositionProperty	
+lat:alignedColor_eq_2	t58:PositionProperty	
+lat:alignedColor_eq_3	t58:PositionProperty	
+lat:alignedColor_eq_4	t58:PositionProperty	
+lat:alignedColor_eq_5	t58:PositionProperty	
+lat:alignedColor_eq_6	t58:PositionProperty	
+lat:alignedColor_eq_7	t58:PositionProperty	
+lat:alignedColor_eq_8	t58:PositionProperty	
+lat:alignedColor_eq_9	t58:PositionProperty	
+lat:bottommost	t58:PositionProperty	
+lat:color_eq_0	t58:ColourRole	
+lat:color_eq_1	t58:ColourRole	
+lat:color_eq_2	t58:ColourRole	
+lat:color_eq_3	t58:ColourRole	
+lat:color_eq_4	t58:ColourRole	
+lat:color_eq_5	t58:ColourRole	
+lat:color_eq_6	t58:ColourRole	
+lat:color_eq_7	t58:ColourRole	
+lat:color_eq_8	t58:ColourRole	
+lat:color_eq_9	t58:ColourRole	
+lat:color_least_common	t58:ColourRole	
+lat:color_most_common	t58:ColourRole	
+lat:color_unique	lat:color_least_common	
+lat:contains_other	lat:has_hole | t58:Relation	
+lat:contextColor_eq_0	lat:inside_other	
+lat:contextColor_eq_1	lat:inside_other	
+lat:contextColor_eq_2	lat:inside_other	
+lat:contextColor_eq_3	lat:inside_other	
+lat:contextColor_eq_4	lat:inside_other	
+lat:contextColor_eq_5	lat:inside_other	
+lat:contextColor_eq_6	lat:inside_other	
+lat:contextColor_eq_7	lat:inside_other	
+lat:contextColor_eq_8	lat:inside_other	
+lat:contextColor_eq_9	lat:inside_other	
+lat:exists_same_holes	t58:Relation	
+lat:exists_same_size	t58:Relation	
+lat:filled_rect	lat:sym_lr | lat:sym_ud	
+lat:has_hole	t58:ShapeProperty	
+lat:hline	lat:sym_ud	
+lat:hollow_rect	lat:has_hole	
+lat:inside_other	t58:Relation	
+lat:isolated	t58:Relation	
+lat:largest	t58:ScaleProperty	lat:D1_size_rank_eq_0
+lat:leftmost	t58:PositionProperty	
+lat:multicolor	t58:ColourRole	
+lat:rightmost	t58:PositionProperty	
+lat:shape_shared	t58:ShapeProperty	
+lat:shape_unique	t58:ShapeProperty	
+lat:single_pixel	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:size_eq_1
+lat:size_eq_1	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:single_pixel
+lat:size_eq_10	t58:ScaleProperty	
+lat:size_eq_11	t58:ScaleProperty	
+lat:size_eq_12	t58:ScaleProperty	
+lat:size_eq_2	t58:ScaleProperty	
+lat:size_eq_3	t58:ScaleProperty	
+lat:size_eq_4	t58:ScaleProperty	
+lat:size_eq_5	t58:ScaleProperty	
+lat:size_eq_6	t58:ScaleProperty	
+lat:size_eq_7	t58:ScaleProperty	
+lat:size_eq_8	t58:ScaleProperty	
+lat:size_eq_9	t58:ScaleProperty	
+lat:size_gt_12	t58:ScaleProperty	
+lat:size_unique	t58:ScaleProperty	
+lat:smallest	t58:ScaleProperty	lat:D1_size_rank_asc_eq_0
+lat:square_bbox	t58:ShapeProperty	
+lat:sym_lr	t58:ShapeProperty	
+lat:sym_ud	t58:ShapeProperty	
+lat:topmost	t58:PositionProperty	
+lat:touches_border	t58:PositionProperty	
+lat:touches_other	t58:Relation	
+lat:vline	lat:sym_lr	
+t58:CONTACT	owl:Thing	
+t58:CONTAINMENT	owl:Thing	
+t58:ColourRole	t58:MATCHING	
+t58:MATCHING	owl:Thing	
+t58:NEAR_FAR	owl:Thing	
+t58:PART_WHOLE	owl:Thing	
+t58:PositionProperty	t58:CONTAINMENT | t58:NEAR_FAR	
+t58:Relation	t58:CONTACT | t58:CONTAINMENT	
+t58:SCALE	owl:Thing	
+t58:ScaleProperty	t58:SCALE	
+t58:ShapeProperty	t58:PART_WHOLE	

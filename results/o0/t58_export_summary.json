@@ -8,15 +8,15 @@
   "summary": "results/o0/t58_export_summary.json"
  },
  "counts": {
-  "classes": 525,
+  "classes": 554,
   "object_properties": 130,
-  "SubClassOf": 759,
+  "SubClassOf": 885,
   "EquivalentClasses": 28,
   "DisjointClasses": 16,
   "SubObjectPropertyOf": 118,
   "property_chains": 115,
-  "AnnotationAssertion": 244,
-  "logical_axioms": 1036
+  "AnnotationAssertion": 284,
+  "logical_axioms": 1162
  },
  "axioms_by_source": {
   "concept_hierarchy": {
@@ -33,11 +33,14 @@
   },
   "lattice": {
    "EquivalentClasses": 3,
-   "SubClassOf": 38,
+   "SubClassOf": 40,
    "DisjointClasses": 16
   },
   "pairs": {
    "EquivalentClasses": 25
+  },
+  "lattice_parents": {
+   "SubClassOf": 124
   }
  },
  "sources": {
@@ -90,8 +93,9 @@
     "D1:size_rank=0",
     "D1:size_rank_asc=0"
    ],
-   "lattice_classes": 99,
-   "subclassof": 38,
+   "names_from_g71_mapping_added": 18,
+   "lattice_classes": 117,
+   "subclassof": 40,
    "equivalentclasses": 3,
    "disjointclasses": 16,
    "runs": [
@@ -130,6 +134,24 @@
     "square_bbox & touches_other",
     "topmost & touches_border"
    ]
+  },
+  "lattice_parents": {
+   "names": 117,
+   "classes": 5,
+   "tops": 6,
+   "counts": {
+    "ShapeProperty": 10,
+    "PositionProperty": 15,
+    "ColourRole": 14,
+    "ScaleProperty": 47,
+    "Relation": 31
+   },
+   "not_placed": [
+    "px:* and obj:*",
+    "at:<detector>",
+    "cx:<selector>.<key>",
+    "D11:n_cells_of_color_in_bbox=True|False"
+   ]
   }
  },
  "el_profile": {
@@ -153,33 +175,33 @@
   "errors": [],
   "prefixes": 11,
   "ontology_iri": "https://github.com/lenyabloko/arc2-object-dsl/ontology/t58",
-  "declarations": 655,
-  "declared_classes": 525,
+  "declarations": 684,
+  "declared_classes": 554,
   "declared_object_properties": 130,
-  "axioms": 1280,
+  "axioms": 1446,
   "undeclared_iris": [],
   "n_undeclared": 0,
   "unused_declarations": 25,
   "constructs": {
-   "Annotation": 315,
-   "AnnotationAssertion": 244,
-   "Declaration": 655,
+   "Annotation": 441,
+   "AnnotationAssertion": 284,
+   "Declaration": 684,
    "DisjointClasses": 16,
    "EquivalentClasses": 28,
    "ObjectIntersectionOf": 25,
    "ObjectPropertyChain": 115,
-   "SubClassOf": 759,
+   "SubClassOf": 885,
    "SubObjectPropertyOf": 233
   },
   "ok": true
  },
  "ttl_roundtrip_check": {
   "file": "results/o0/t58_tbox.ttl",
-  "triples": 4191,
+  "triples": 5048,
   "counts": {
-   "classes": 525,
+   "classes": 554,
    "object_properties": 130,
-   "SubClassOf": 759,
+   "SubClassOf": 885,
    "SubObjectPropertyOf": 118,
    "property_chains": 115,
    "EquivalentClasses": 28,
@@ -190,9 +212,9 @@
   "ok": true
  },
  "expected_classification": {
-  "named_classes": 525,
-  "satisfiable": 525,
-  "distinct_after_classification": 522,
+  "named_classes": 554,
+  "satisfiable": 554,
+  "distinct_after_classification": 551,
   "equivalence_sets": [
    [
     "lat:D1_size_rank_asc_eq_0",
