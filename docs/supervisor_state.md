@@ -400,3 +400,21 @@ _Last updated: 2026-10-02 18:05 UTC (14:05 EDT Oct 2). Updated with every outbox
   - Parity cell and probe payload byte-identical to v20.
   - Unguarded and guarded drivers give identical digests on 12 eval tasks; a short-deadline test skipped 3 of 12 cleanly; a notebook plumbing test matches.
   - LATEST switches to v21 only after tonight's v20 submission.
+
+## Update 14:50 EDT Oct 2: Fable v17a/v18; formal T80; categories are situations; aligner v2
+- **Formal T80** (before v18 arrived): 4 of 60 flips, 0 new wrong. priors3 non-source exact 170 → 175, priors4 158 → 161, all on tasks the build already solves. **No-go.** Fable v18 then withdrew T80 (A.1).
+- **v18:**
+  - accepts the round-17 corrections and the P3 bound of 0;
+  - T83 becomes diagnostic;
+  - approves the v21 guard (runner-up only if the digest is unchanged, so not included);
+  - two situation generators (stamping, projection) are in scope, written ONLY from Len's six-slot definitions (claude/situations_len_v1.md blank template, or the Categories tab), due Oct 4;
+  - T86 on the 14 distinct build-failing tasks (stamping 10, projection 6), then T87 at the N2 gate, then V36.
+- **Aligner v2** (lcs over pairs in a declared parent lattice): WHO OPEN 15 → 10, WHAT 15 → 15. T83 agreement unchanged (0 / 3 of 38).
+- **OQ-18.2:** none of the 38 prior families fits any of the 14. In c42, 12 of 13 have both slots empty; dd2401ed has one wrong answer.
+- **Review page v88** (Categories tab):
+  - situations first: template, open role, WHY required, P2 membership, ✓/✗ labels as situation_label decisions;
+  - "Declare a situation" form;
+  - grid checks relabelled as evidence;
+  - tools/review/situations_page_patch.py patches the live page.
+  - R(S), aligned on design: tiling 16, stamping 12, projection 24, symmetry 19.
+- **v21 parity verified** (15:03 EDT): a full local run (120 eval tasks, guarded driver from the v21 notebook) gives digest b6c6bfd8. LATEST switches to v21 after tonight's v20 submission.

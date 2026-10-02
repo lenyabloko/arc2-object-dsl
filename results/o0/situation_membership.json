@@ -1,0 +1,519 @@
+{
+ "situations": [
+  {
+   "id": "S_tiling",
+   "name": "tiling / output size",
+   "template": {
+    "WHO": "whole_grid",
+    "WHAT": "tile_scale",
+    "WHERE": "whole_output",
+    "HOW": "same_shape",
+    "UNTIL": "count",
+    "WHY": "the unit repeats exactly: every block of the output is the unit, a recoloured unit, or empty"
+   },
+   "open": "output size (= unit x count, the count read from the test input)",
+   "invariant": "tile_blocks"
+  },
+  {
+   "id": "S_stamping",
+   "name": "stamping / anchor",
+   "template": {
+    "WHO": "marker",
+    "WHAT": "copy_stamp",
+    "WHERE": "at_marker",
+    "HOW": "same_shape",
+    "UNTIL": "once",
+    "WHY": "one stamp per marker, at the same offset from each marker"
+   },
+   "open": "anchor (every marker of the test input, with the learned offset)",
+   "invariant": "one_per_marker"
+  },
+  {
+   "id": "S_projection",
+   "name": "projection / extent",
+   "template": {
+    "WHO": "marker",
+    "WHAT": "draw_line",
+    "WHERE": "on_line_of_sight",
+    "HOW": "own_colour",
+    "UNTIL": "obstacle",
+    "WHY": "the line continues until it meets something: an object or the border"
+   },
+   "open": "extent (to the test input's obstacle, not the training length)",
+   "invariant": "ends_at_stop"
+  },
+  {
+   "id": "S_symmetry",
+   "name": "symmetry / fill",
+   "template": {
+    "WHO": "all_objects",
+    "WHAT": "mirror_complete",
+    "WHERE": "mirror_position",
+    "HOW": "own_colour",
+    "UNTIL": "once",
+    "WHY": "distance to the axis is preserved: the output is symmetric about the detected axis"
+   },
+   "open": "fill (the reflection across the axis detected on the test input)",
+   "invariant": "output_symmetric"
+  }
+ ],
+ "membership": {
+  "00576224": {
+   "S_tiling": "invariant failed"
+  },
+  "007bbfb7": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "05f2a901": {
+   "S_stamping": "invariant failed"
+  },
+  "0692e18c": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "0a938d79": {
+   "S_projection": "aligned: roles bound 5 of 5",
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "0b17323b": {
+   "S_stamping": "invariant failed"
+  },
+  "0c786b71": {
+   "S_tiling": "invariant failed"
+  },
+  "0d3d703e": {
+   "S_stamping": "invariant failed",
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "0f63c0b9": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "10fcaaa3": {
+   "S_tiling": "invariant failed"
+  },
+  "11852cab": {
+   "S_stamping": "invariant failed"
+  },
+  "15696249": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "17cae0c1": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "1a07d186": {
+   "S_stamping": "invariant failed"
+  },
+  "1bfc4729": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "1efba499": {
+   "S_stamping": "invariant failed"
+  },
+  "2072aba6": {
+   "S_tiling": "invariant failed"
+  },
+  "21f83797": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "228f6490": {
+   "S_stamping": "aligned: roles bound 4 of 5"
+  },
+  "252143c9": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "25d487eb": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "25ff71a9": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "27f8ce4f": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "29c11459": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "2faf500b": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "310f3251": {
+   "S_tiling": "invariant failed"
+  },
+  "342dd610": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "3979b1a8": {
+   "S_tiling": "invariant failed"
+  },
+  "39e1d7f9": {
+   "S_stamping": "invariant failed"
+  },
+  "3af2c5a8": {
+   "S_tiling": "invariant failed"
+  },
+  "42a15761": {
+   "S_stamping": "invariant failed"
+  },
+  "4522001f": {
+   "S_tiling": "invariant failed"
+  },
+  "46442a0e": {
+   "S_tiling": "invariant failed"
+  },
+  "469497ad": {
+   "S_tiling": "invariant failed"
+  },
+  "46f33fce": {
+   "S_tiling": "invariant failed"
+  },
+  "48131b3c": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "48f8583b": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "496994bd": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "4c4377d9": {
+   "S_tiling": "invariant failed"
+  },
+  "4e45f183": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "50c07299": {
+   "S_projection": "aligned: roles bound 3 of 5"
+  },
+  "539a4f51": {
+   "S_tiling": "invariant failed"
+  },
+  "55059096": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "5521c0d9": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "5582e5ca": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "59341089": {
+   "S_tiling": "invariant failed"
+  },
+  "5b526a93": {
+   "S_stamping": "invariant failed"
+  },
+  "5b6cbef5": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "5c0a986e": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "60c09cac": {
+   "S_tiling": "invariant failed"
+  },
+  "623ea044": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "62c24649": {
+   "S_tiling": "invariant failed"
+  },
+  "642248e4": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "64a7c07e": {
+   "S_stamping": "aligned: roles bound 4 of 5"
+  },
+  "66e6c45b": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "67e8384a": {
+   "S_tiling": "invariant failed"
+  },
+  "696d4842": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "6d0aefbc": {
+   "S_tiling": "invariant failed"
+  },
+  "6e19193c": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "6f473927": {
+   "S_tiling": "invariant failed"
+  },
+  "6fa7a44f": {
+   "S_tiling": "invariant failed"
+  },
+  "72207abc": {
+   "S_stamping": "invariant failed"
+  },
+  "72322fa7": {
+   "S_stamping": "invariant failed"
+  },
+  "72a961c9": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "758abdf0": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "7953d61e": {
+   "S_tiling": "invariant failed"
+  },
+  "7d7772cc": {
+   "S_stamping": "invariant failed"
+  },
+  "7fe24cdd": {
+   "S_tiling": "invariant failed"
+  },
+  "82819916": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "833dafe3": {
+   "S_tiling": "invariant failed"
+  },
+  "85b81ff1": {
+   "S_stamping": "invariant failed"
+  },
+  "8719f442": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "8886d717": {
+   "S_stamping": "invariant failed"
+  },
+  "8b28cd80": {
+   "S_tiling": "invariant failed"
+  },
+  "8be77c9e": {
+   "S_tiling": "invariant failed"
+  },
+  "8d5021e8": {
+   "S_tiling": "invariant failed"
+  },
+  "8e2edd66": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "91413438": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "9172f3a0": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "952a094c": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "963e52fc": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "973e499e": {
+   "S_tiling": "invariant failed"
+  },
+  "97c75046": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "981add89": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "9b2a60aa": {
+   "S_stamping": "invariant failed"
+  },
+  "9d9215db": {
+   "S_stamping": "invariant failed",
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "9ddd00f0": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "a416b8f3": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "a59b95c0": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "a699fb00": {
+   "S_stamping": "invariant failed"
+  },
+  "a78176bb": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "a85d4709": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "a9f96cdd": {
+   "S_stamping": "invariant failed"
+  },
+  "ac0a08a4": {
+   "S_tiling": "invariant failed"
+  },
+  "ac0c2ac3": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "ad7e01d0": {
+   "S_tiling": "invariant failed"
+  },
+  "af726779": {
+   "S_stamping": "invariant failed"
+  },
+  "b8825c91": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "b91ae062": {
+   "S_tiling": "invariant failed"
+  },
+  "ba26e723": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "bb52a14b": {
+   "S_stamping": "invariant failed"
+  },
+  "bbc9ae5d": {
+   "S_tiling": "invariant failed"
+  },
+  "bc4146bd": {
+   "S_tiling": "invariant failed"
+  },
+  "bf32578f": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "c1990cce": {
+   "S_tiling": "invariant failed"
+  },
+  "c3e719e8": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "c48954c1": {
+   "S_tiling": "invariant failed"
+  },
+  "c59eb873": {
+   "S_tiling": "invariant failed"
+  },
+  "c92b942c": {
+   "S_tiling": "invariant failed"
+  },
+  "c9e6f938": {
+   "S_tiling": "invariant failed"
+  },
+  "cad67732": {
+   "S_tiling": "invariant failed"
+  },
+  "cbded52d": {
+   "S_stamping": "invariant failed"
+  },
+  "ccd554ac": {
+   "S_tiling": "aligned: roles bound 4 of 5"
+  },
+  "cce03e0d": {
+   "S_tiling": "invariant failed"
+  },
+  "cf133acc": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "cf5fd0ad": {
+   "S_tiling": "invariant failed"
+  },
+  "d13f3404": {
+   "S_tiling": "invariant failed"
+  },
+  "d23f8c26": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "d255d7a7": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "d492a647": {
+   "S_stamping": "invariant failed"
+  },
+  "da2b0fe3": {
+   "S_projection": "aligned: roles bound 4 of 5"
+  },
+  "dc433765": {
+   "S_stamping": "invariant failed"
+  },
+  "dd2401ed": {
+   "S_stamping": "invariant failed",
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "df978a02": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "e26a3af2": {
+   "S_stamping": "invariant failed",
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "e45ef808": {
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "e4941b18": {
+   "S_stamping": "invariant failed"
+  },
+  "e734a0e8": {
+   "S_stamping": "invariant failed"
+  },
+  "e7b06bea": {
+   "S_stamping": "invariant failed",
+   "S_projection": "aligned: roles bound 5 of 5"
+  },
+  "ecaa0ec1": {
+   "S_stamping": "invariant failed"
+  },
+  "ed98d772": {
+   "S_tiling": "invariant failed"
+  },
+  "f0afb749": {
+   "S_tiling": "invariant failed"
+  },
+  "f25ffba3": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "f3e62deb": {
+   "S_stamping": "aligned: roles bound 4 of 5"
+  },
+  "f5b8619d": {
+   "S_tiling": "invariant failed"
+  },
+  "f823c43c": {
+   "S_symmetry": "aligned: roles bound 5 of 5"
+  },
+  "fb791726": {
+   "S_tiling": "invariant failed"
+  },
+  "fc10701f": {
+   "S_stamping": "invariant failed"
+  },
+  "fe45cba4": {
+   "S_stamping": "aligned: roles bound 5 of 5"
+  },
+  "feca6190": {
+   "S_tiling": "invariant failed"
+  },
+  "135a2760": {
+   "S_stamping": "invariant failed"
+  },
+  "2b83f449": {
+   "S_stamping": "invariant failed"
+  },
+  "981571dc": {
+   "S_symmetry": "aligned: roles bound 4 of 5"
+  },
+  "9aaea919": {
+   "S_stamping": "invariant failed"
+  },
+  "c4d067a0": {
+   "S_stamping": "invariant failed"
+  }
+ },
+ "counts": {
+  "S_tiling": {
+   "invariant failed": 46,
+   "aligned": 16
+  },
+  "S_stamping": {
+   "invariant failed": 34,
+   "aligned": 12
+  },
+  "S_projection": {
+   "aligned": 24
+  },
+  "S_symmetry": {
+   "aligned": 19
+  }
+ }
+}

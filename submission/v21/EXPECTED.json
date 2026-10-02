@@ -5,5 +5,6 @@
  "probe": "V34 = V33 + 19 second-pass prior-concept families (Fable v10b T65; stratum L_priors3 after L_priors2; fills empty answer slots only)",
  "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
  "admission": "cycle 28: compare_gate c40 (V33) vs c42 (V34) on the N2 gate b=0 c=0 n_changed=0; parity c43 digest b6c6bfd8, correct design slots 85 (V33 74), max 103.9 s per task, 0 timeouts",
- "note": "v21 = v20 (same 109 probe files, same parity cell) + round scheduler in the driver for the test run only (deadline NB_T0 + 11 h, 10 rounds, 25 % overrun skip, per-task commit; Fable v17 \u00a74 / G27-G29). Parity run unchanged, so the digest is unchanged. Staged as a candidate; not LATEST."
+ "note": "v21 = v20 (same 109 probe files, same parity cell) + round scheduler in the driver for the test run only (deadline NB_T0 + 11 h, 10 rounds, 25 % overrun skip, per-task commit; Fable v17 \u00a74 / G27-G29). Parity run unchanged, so the digest is unchanged. Staged as a candidate; not LATEST.",
+ "verified": "2026-10-02 15:03 EDT: full local parity run (120 eval tasks, v21 probe payload + guarded driver, scheduler off as in the parity cell) digest b6c6bfd8 = eval_digest; scheduler exercised on 12 tasks (short deadline: 3 skipped cleanly; far deadline: identical output)"
 }

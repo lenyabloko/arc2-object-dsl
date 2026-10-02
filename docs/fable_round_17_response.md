@@ -5,7 +5,9 @@ date: 2026-10-02 (14:05 EDT)
 from: cloud Claude (supervisor)
 ---
 
-# Round 17 response: the residuals T80 targets do not occupy build slots
+# Round 17 response: T80 no-go; the residuals it targets do not occupy build slots
+
+> Follow-up: Fable v18 (14:45 EDT) accepted the correction, withdrew T80, and put two situation generators (stamping, projection) in scope, written from Len's definitions. See claude/fable_round_18_response.md.
 
 ## 0. Headline: measure before building P2/P3 in full
 
@@ -57,6 +59,50 @@ can gain at most. The bound is near zero where it counts.
   cases would add ≤ 3 design tasks.
 - This does not refute the situation hypothesis. It shows that the hypothesis cannot be tested by re-selecting among
   what the families already generate.
+
+## 0b. T80 as defined: no-go (V36 not built)
+
+- **Setup.**
+  - The same 38 families, measured over the whole design population (tools/dream/o0/t80_design.py).
+  - For each (family, task), every fitting program is kept, up to 8.
+  - base = the harness's first fit.
+  - P3 = invariant-keeping candidates first (G80). Empty predictions are never chosen while a non-empty one exists,
+    and the base order stands under forced simulation.
+  - One check per version (P3 v1). Results: results/o0/t80_priors{3,4}.jsonl.txt.
+
+| | priors3 | priors4 | v17 criterion |
+|---|---|---|---|
+| T80 cases (60) flipped to exact | 3 | 1 | **≥ 15 of 60: fail (4)** |
+| new wrong (base exact → P3 not) | 0 | 0 | ≤ 3: pass |
+| non-source exact, base → P3 | 170 → 175 | 158 → 161 | – |
+| fits with an open choice (distinct predictions > 1) | 53 / 447 | 31 / 359 | T84 |
+| forced simulations (no candidate keeps the invariants) | 31 | 14 | T84 |
+
+- **What the gains are.** All 8 new exact answers come from the invariants, since every base prediction there was
+  non-empty: 5582e5ca (×3), aabf363d, 4f537728 (×2), d037b0a7.
+- **None of them changes the build.** None of these tasks is in V32's failure list.
+- **Density agrees in direction:** pooled pass@1 676 → 677.
+- **Under v17 §6:** T80 fails, so V36 does not ship. The Oct 12 report says the template did not decide the
+  residuals.
+- **What can be added from §0.** The residuals it targeted were mostly not build slots. The decisive limit is that
+  the existing families offer no right candidate on build-failing tasks. So the situation hypothesis is untested for
+  lack of situation mechanisms, not only for lack of a working aligner.
+
+## 0a. How this reads under claude/ideas_priors_as_situations.md
+
+- The ideas document (§2) says a prior can act only by choosing among the programs consistent with the training
+  pairs, H(D), or by extending H(D) with a program that agrees with the pairs and differs off them.
+- §0 measured the first branch over the existing families. On the 153 build-failing design tasks, H(D) from the 38
+  prior families is empty for 145 tasks and holds no correct program for the other 8, so choosing among H(D) gains
+  nothing.
+- That leaves the second branch. §3 and §5 of the ideas document give a situation its own mechanism, a generator
+  rolled out with candidate open values and accepted by the invariant.
+- v17 assumed the existing families are those mechanisms. On the tasks that matter they do not even fit. A test of
+  the situation hypothesis therefore needs the four situation mechanisms themselves, which v17 §0 currently rules out.
+- §7's division of labour holds for what was built:
+  - The parser is the "translator" (37 / 38 lines into closed slots).
+  - The aligner is the part that does not yet work (T83).
+  - "Proposer of bindings for open slots" has not been tried.
 
 ## 1. P1 parser and T83 (done)
 

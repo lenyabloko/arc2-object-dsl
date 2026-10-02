@@ -246,5 +246,76 @@ def main():
     print(json.dumps(summ, indent=1))
 
 
+
+
+# --- aligner v2 (Fable v18 C.3, Oct 2 2026): the only aligner change permitted. Across pairs the slot value is the
+# --- least common subsumer of the per-pair values in a declared slot lattice (task-free parent links below), not the
+# --- value that holds identically on every pair; the relational 2 : object 1 weight is kept.
+PARENTS = {
+    'WHO': {'marker': ['smallest_object'], 'largest_object': ['odd_object'], 'smallest_object': ['odd_object'],
+            'odd_object': ['all_objects'], 'exemplar': ['all_objects'], 'same_colour_pair': ['colour_class'],
+            'colour_class': ['all_objects'], 'line_segment': ['all_objects'], 'frame_or_container': ['all_objects', 'region'],
+            'separator': ['region'], 'region': ['whole_grid'], 'all_objects': ['whole_grid'], 'background_cells': ['whole_grid']},
+    'WHAT': {'mirror_complete': ['complete_shape'], 'fill': ['complete_shape'], 'copy_stamp': ['complete_shape'],
+             'draw_line': ['decorate'], 'move': ['transform'], 'rearrange': ['transform']},
+    'WHERE': {'corner': ['adjacent'], 'aligned': ['on_line_of_sight'], 'between': ['on_line_of_sight'], 'toward': ['on_line_of_sight'],
+              'centre': ['inside']},
+    'HOW': {'mapped_colour': ['other_object_colour']},
+    'UNTIL': {'contact': ['obstacle'], 'count': ['fixpoint']},
+}
+
+
+def _up(slot, vals):
+    out = set(vals); st = list(vals)
+    while st:
+        v = st.pop()
+        for p in PARENTS.get(slot, {}).get(v, []):
+            if p not in out: out.add(p); st.append(p)
+    return out
+
+
+def align_v2(train):
+    per = [pair_candidates(p) for p in train]
+    out = {}
+    for slot in ('WHO', 'WHAT', 'WHERE', 'HOW', 'UNTIL'):
+        if not per or any(not c[slot] for c in per): out[slot] = 'OPEN'; continue
+        common = set.intersection(*[_up(slot, c[slot]) for c in per])
+        if not common: out[slot] = 'OPEN'; continue
+        minimal = [v for v in common if not any(w != v and v in _up(slot, {w}) for w in common)]   # most specific
+        order = list(VOC[slot])
+        out[slot] = max(minimal, key=lambda v: (2 if v in REL else 1, -order.index(v) if v in order else -99))
+        out[slot + '_all'] = sorted(common)
+    out['WHY'] = ''
+    return out
+
+
+def main_v2():
+    sys.path.insert(0, HERE)
+    import line_check as LC
+    parsed = json.load(open(os.path.join(REPO, 'results/o0/t83_parsed.json')))
+    rows = []
+    for p in parsed:
+        t = LC.task(p['card'])
+        if t is None: continue
+        a1, a2 = align(t[0]['train']), align_v2(t[0]['train'])          # training pairs only
+        r = {'card': p['card'], 'parse_failure': p['parse_failure']}
+        for s in ('WHO', 'WHAT', 'WHERE', 'UNTIL'):
+            pv = p[s]
+            r[s] = {'parsed': pv, 'v1': a1[s], 'v2': a2[s], 'v2_common': a2.get(s + '_all', []),
+                    'lenient_v2': pv == 'unspecified' or pv == a2[s],
+                    'subsumed_v2': pv == 'unspecified' or pv in a2.get(s + '_all', []) or a2[s] in _up(s, {pv})}
+        for mode in ('lenient_v2', 'subsumed_v2'):
+            r[mode] = (not p['parse_failure']) and all(r[s][mode] for s in ('WHO', 'WHAT', 'WHERE', 'UNTIL'))
+        rows.append(r)
+    summ = {'lines': len(rows),
+            'open_v1': {s: sum(r[s]['v1'] == 'OPEN' for r in rows) for s in ('WHO', 'WHAT', 'WHERE', 'UNTIL')},
+            'open_v2': {s: sum(r[s]['v2'] == 'OPEN' for r in rows) for s in ('WHO', 'WHAT', 'WHERE', 'UNTIL')}}
+    for mode in ('lenient_v2', 'subsumed_v2'):
+        summ['agree_all4_' + mode] = sum(r[mode] for r in rows)
+        summ['agree_per_slot_' + mode] = {s: sum(r[s][mode] for r in rows if not r['parse_failure']) for s in ('WHO', 'WHAT', 'WHERE', 'UNTIL')}
+    json.dump({'summary': summ, 'rows': rows}, open(os.path.join(REPO, 'results/o0/t83_v2_result.json'), 'w'), indent=1)
+    print(json.dumps(summ, indent=1))
+
+
 if __name__ == '__main__':
-    main()
+    main_v2() if '--v2' in sys.argv else main()

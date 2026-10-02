@@ -1,0 +1,1817 @@
+{
+ "summary": {
+  "lines": 38,
+  "open_v1": {
+   "WHO": 15,
+   "WHAT": 15,
+   "WHERE": 7,
+   "UNTIL": 4
+  },
+  "open_v2": {
+   "WHO": 10,
+   "WHAT": 15,
+   "WHERE": 7,
+   "UNTIL": 4
+  },
+  "agree_all4_lenient_v2": 0,
+  "agree_per_slot_lenient_v2": {
+   "WHO": 6,
+   "WHAT": 9,
+   "WHERE": 19,
+   "UNTIL": 26
+  },
+  "agree_all4_subsumed_v2": 3,
+  "agree_per_slot_subsumed_v2": {
+   "WHO": 18,
+   "WHAT": 14,
+   "WHERE": 22,
+   "UNTIL": 26
+  }
+ },
+ "rows": [
+  {
+   "card": "0607ce86",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "whole_grid",
+    "v1": "same_colour_pair",
+    "v2": "same_colour_pair",
+    "v2_common": [
+     "all_objects",
+     "colour_class",
+     "same_colour_pair",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "0ca9ddb6",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "v1": "marker",
+    "v2": "marker",
+    "v2_common": [
+     "all_objects",
+     "marker",
+     "odd_object",
+     "smallest_object",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "decorate",
+    "v1": "complete_shape",
+    "v2": "complete_shape",
+    "v2_common": [
+     "complete_shape",
+     "decorate"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "at_marker",
+    "v2": "at_marker",
+    "v2_common": [
+     "adjacent",
+     "at_marker"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": true
+  },
+  {
+   "card": "0d87d2a6",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "same_colour_pair",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "0f63c0b9",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "v1": "all_objects",
+    "v2": "marker",
+    "v2_common": [
+     "all_objects",
+     "marker",
+     "odd_object",
+     "smallest_object",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "v1": "mirror_complete",
+    "v2": "mirror_complete",
+    "v2_common": [
+     "complete_shape",
+     "mirror_complete"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "on_line_of_sight",
+    "v1": "mirror_position",
+    "v2": "mirror_position",
+    "v2_common": [
+     "mirror_position"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "border",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "103eff5b",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "odd_object",
+    "v2": "largest_object",
+    "v2_common": [
+     "all_objects",
+     "largest_object",
+     "odd_object",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "v1": "recolour",
+    "v2": "recolour",
+    "v2_common": [
+     "recolour"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "v1": "in_place",
+    "v2": "in_place",
+    "v2_common": [
+     "in_place"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "142ca369",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "unspecified",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "corner",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "border",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "17829a00",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "colour_class",
+    "v1": "same_colour_pair",
+    "v2": "same_colour_pair",
+    "v2_common": [
+     "all_objects",
+     "colour_class",
+     "region",
+     "same_colour_pair",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "move",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "toward",
+    "v1": "between",
+    "v2": "between",
+    "v2_common": [
+     "across_separator",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "20fb2937",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "separator",
+    "v1": "separator",
+    "v2": "separator",
+    "v2_common": [
+     "all_objects",
+     "region",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "across_separator",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "2b83f449",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "v1": "same_colour_pair",
+    "v2": "same_colour_pair",
+    "v2_common": [
+     "all_objects",
+     "colour_class",
+     "same_colour_pair",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "transform",
+    "v1": "copy_stamp",
+    "v2": "copy_stamp",
+    "v2_common": [
+     "complete_shape",
+     "copy_stamp",
+     "decorate",
+     "move",
+     "transform"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "contact",
+    "v2": "contact",
+    "v2_common": [
+     "contact",
+     "obstacle"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "2dd70a9a",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "obstacle",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "3de23699",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "region",
+    "v2": "region",
+    "v2_common": [
+     "region",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "extract",
+    "v2": "extract",
+    "v2_common": [
+     "extract"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "inside",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "409aa875",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "4c416de3",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "v1": "complete_shape",
+    "v2": "complete_shape",
+    "v2_common": [
+     "complete_shape",
+     "decorate"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "4c7dc4dd",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "frame_or_container",
+    "v1": "OPEN",
+    "v2": "whole_grid",
+    "v2_common": [
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "inside",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "50f325b5",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "v1": "recolour",
+    "v2": "recolour",
+    "v2_common": [
+     "recolour"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "v1": "in_place",
+    "v2": "in_place",
+    "v2_common": [
+     "in_place"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "5117e062",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "odd_object",
+    "v1": "region",
+    "v2": "region",
+    "v2_common": [
+     "region",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "extract",
+    "v2": "extract",
+    "v2_common": [
+     "extract"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "centre",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "52df9849",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "rearrange",
+    "v1": "recolour",
+    "v2": "recolour",
+    "v2_common": [
+     "recolour"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "in_place",
+    "v1": "in_place",
+    "v2": "in_place",
+    "v2_common": [
+     "in_place"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "5ad4f10b",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "v1": "OPEN",
+    "v2": "whole_grid",
+    "v2_common": [
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "7d18a6fb",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "7d419a02",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "v1": "OPEN",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "recolour",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "mirror_position",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "obstacle",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "7ed72f31",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "mirror_complete",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "mirror_position",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "995c5fa3",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "separator",
+    "v2": "separator",
+    "v2_common": [
+     "all_objects",
+     "region",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "summarise",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": true
+  },
+  {
+   "card": "9aaea919",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "v1": "copy_stamp",
+    "v2": "copy_stamp",
+    "v2_common": [
+     "complete_shape",
+     "copy_stamp",
+     "move",
+     "transform"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "on_line_of_sight",
+    "v2": "aligned",
+    "v2_common": [
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "count",
+    "v1": "contact",
+    "v2": "contact",
+    "v2_common": [
+     "contact",
+     "obstacle"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "9b5080bb",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "marker",
+    "v1": "frame_or_container",
+    "v2": "frame_or_container",
+    "v2_common": [
+     "all_objects",
+     "frame_or_container",
+     "region",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "fill",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "at_marker",
+    "v1": "inside",
+    "v2": "inside",
+    "v2_common": [
+     "inside"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "a644e277",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "v1": "separator",
+    "v2": "separator",
+    "v2_common": [
+     "region",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "extract",
+    "v1": "extract",
+    "v2": "extract",
+    "v2_common": [
+     "extract"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": true
+  },
+  {
+   "card": "b0f4d537",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "region",
+    "v1": "separator",
+    "v2": "separator",
+    "v2_common": [
+     "all_objects",
+     "region",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "transform",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "length_of_template",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "b190f7f5",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "ca8de6ea",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "whole_grid",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "rearrange",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "whole_output",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "d017b73f",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "move",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "d2acf2cb",
+   "parse_failure": true,
+   "WHO": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "d6542281",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "v1": "complete_shape",
+    "v2": "complete_shape",
+    "v2_common": [
+     "complete_shape",
+     "decorate"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "dd2401ed",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "line_segment",
+    "v1": "separator",
+    "v2": "separator",
+    "v2_common": [
+     "region",
+     "separator",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "move",
+    "v1": "draw_line",
+    "v2": "draw_line",
+    "v2_common": [
+     "complete_shape",
+     "copy_stamp",
+     "decorate",
+     "draw_line",
+     "move",
+     "transform"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "toward",
+    "v1": "on_line_of_sight",
+    "v2": "aligned",
+    "v2_common": [
+     "across_separator",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "once",
+    "v1": "border",
+    "v2": "border",
+    "v2_common": [
+     "border",
+     "contact",
+     "obstacle"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "de809cff",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "all_objects",
+    "v1": "same_colour_pair",
+    "v2": "same_colour_pair",
+    "v2_common": [
+     "all_objects",
+     "colour_class",
+     "same_colour_pair",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "v1": "move",
+    "v2": "move",
+    "v2_common": [
+     "complete_shape",
+     "decorate",
+     "move",
+     "transform"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "contact",
+    "v2": "contact",
+    "v2_common": [
+     "contact",
+     "obstacle"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "e2092e0c",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "decorate",
+    "v1": "complete_shape",
+    "v2": "complete_shape",
+    "v2_common": [
+     "complete_shape",
+     "decorate"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHERE": {
+    "parsed": "adjacent",
+    "v1": "at_marker",
+    "v2": "at_marker",
+    "v2_common": [
+     "adjacent",
+     "at_marker"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "e26a3af2",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "separator",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHAT": {
+    "parsed": "delete",
+    "v1": "copy_stamp",
+    "v2": "copy_stamp",
+    "v2_common": [
+     "complete_shape",
+     "copy_stamp",
+     "decorate",
+     "mirror_complete"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "between",
+     "mirror_position",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "e5062a87",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "exemplar",
+    "v1": "OPEN",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "copy_stamp",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "unspecified",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "fixpoint",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "f3b10344",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "same_colour_pair",
+    "v1": "same_colour_pair",
+    "v2": "same_colour_pair",
+    "v2_common": [
+     "all_objects",
+     "colour_class",
+     "same_colour_pair",
+     "whole_grid"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "draw_line",
+    "v1": "OPEN",
+    "v2": "OPEN",
+    "v2_common": [],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "between",
+    "v1": "adjacent",
+    "v2": "adjacent",
+    "v2_common": [
+     "adjacent",
+     "aligned",
+     "between",
+     "on_line_of_sight"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "UNTIL": {
+    "parsed": "contact",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  },
+  {
+   "card": "f560132c",
+   "parse_failure": false,
+   "WHO": {
+    "parsed": "frame_or_container",
+    "v1": "all_objects",
+    "v2": "all_objects",
+    "v2_common": [
+     "all_objects",
+     "whole_grid"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": true
+   },
+   "WHAT": {
+    "parsed": "complete_shape",
+    "v1": "summarise",
+    "v2": "summarise",
+    "v2_common": [
+     "summarise"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "WHERE": {
+    "parsed": "adjacent",
+    "v1": "whole_output",
+    "v2": "whole_output",
+    "v2_common": [
+     "whole_output"
+    ],
+    "lenient_v2": false,
+    "subsumed_v2": false
+   },
+   "UNTIL": {
+    "parsed": "unspecified",
+    "v1": "once",
+    "v2": "once",
+    "v2_common": [
+     "once"
+    ],
+    "lenient_v2": true,
+    "subsumed_v2": true
+   },
+   "lenient_v2": false,
+   "subsumed_v2": false
+  }
+ ]
+}
