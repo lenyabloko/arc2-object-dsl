@@ -4,3 +4,4 @@
 {"time": "2026-10-01T03:00", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "25", "baseline": "c36-v31-full", "candidate": "c38-v32-full", "b": 0, "c": 0, "n_changed": 0, "n_gate": 47, "n_compared": 47}
 {"time": "2026-10-01T15:10", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "27", "baseline": "c38-v32-full", "candidate": "c40-v33-full", "b": 0, "c": 0, "n_changed": 1, "n_gate": 47, "n_compared": 47}
 {"time": "2026-10-01T17:40", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "28", "baseline": "c40-v33-full", "candidate": "c42-v34-full", "b": 0, "c": 0, "n_changed": 0, "n_gate": 47, "n_compared": 47}
+{"time": "2026-10-02T04:00", "split": "N2-gate", "salt": "arc2-c21-2026-09-29", "cycle": "29", "baseline": "c42-v34-full", "candidate": "c44-v35-full", "b": 0, "c": 0, "n_changed": 0, "n_gate": 47, "n_compared": 47}

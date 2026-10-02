@@ -39,6 +39,16 @@
     "own_exact": true,
     "other_exact": 0
    }
+  },
+  "995c5fa3": {
+   "len": {
+    "own_exact": true,
+    "other_exact": 1
+   },
+   "llm": {
+    "own_exact": true,
+    "other_exact": 0
+   }
   }
  },
  "hash_assigned": {
@@ -46,9 +56,10 @@
    "7ed72f31",
    "4c7dc4dd",
    "e2092e0c",
-   "a644e277"
+   "a644e277",
+   "995c5fa3"
   ],
-  "len_other_exact_mean": 0.25,
+  "len_other_exact_mean": 0.4,
   "llm_tasks": [
    "291dc1e1",
    "8698868d",
@@ -63,8 +74,8 @@
   ],
   "llm_other_exact_mean": 0.2,
   "diff_95ci": [
-   -0.55,
-   0.55
+   -0.4,
+   0.8
   ]
  },
  "all_len_lines": {
@@ -85,5 +96,6 @@
   "len_n": 10,
   "llm": 13,
   "llm_n": 14
- }
+ },
+ "note_995c5fa3": "added Oct 2 03:40 EDT: Len line exact + reuses 27a28665 (already solved by learned_key_table sources); LLM reading exact, no reuse"
 }
