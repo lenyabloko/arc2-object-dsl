@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-02 03:00 UTC (23:00 EDT Oct 1). Updated with every outbox batch._
+_Last updated: 2026-10-02 15:40 UTC (11:40 EDT Oct 2). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -334,3 +334,46 @@ _Last updated: 2026-10-02 03:00 UTC (23:00 EDT Oct 1). Updated with every outbox
 - T58 (ELK): Len approved (21:15 EDT), ORDERS seq 14. The Windows session found Protégé 5.6.1 (Protege-5.6.1\Protege-5.6.1), elk-protege-0.5.0.jar, the OWL API and javac (Java 11.0.19), but its local auto-mode safety check refused to compile code that came through the outbox. It needs Len's approval inside that session.
 - T66 blind A/B proposed to Len (needs 10 of his lines); waiting for his yes.
 - Next check-in: 10:30 EDT Oct 2 (scheduled).
+
+## Update 03:05 EDT Oct 2: Fable v12; T66 A/B; V35 to the gate
+- Fable v12 (claude/fable_guidance_v12.md; response claude/fable_round_12_response.md): G68 restated (extended colour roles, learned constants last), G70 (Δ on test inputs), G71 (lattice parents + sibling rule), D39 (roles-only family first), D40 (no more far-68 index variants).
+- T66 blind A/B:
+  - Len wrote 10 lines (4 on his hash-assigned tasks, 6 on tasks from the 18 Claude cannot solve). Claude's readings were implemented the same way for the 10 LLM-half tasks and the 4 paired tasks.
+  - Paired on the same 4 tasks: identical outcomes. Hash halves: 0.25 vs 0.20 other-exact per description, CI [−0.55, 0.55]. All 10 of Len's lines: 1.3 (task-choice confound).
+  - New over V32: 0 on both sides. Len's line solves 2dd70a9a, which Claude could not.
+  - Expansions written to both pages. The 6 unwritten A/B tasks are still in "Needs you".
+- T67: 12 of the 45 nameable-but-failing tasks remain. Gaps:
+  - on-stop clause for ray/slide 3;
+  - virtual anchor 3;
+  - legend sequence/table 2;
+  - split-and-explode, cellular automaton, docking 1 each;
+  - colour-only 1.
+- T70: role-pattern Δ leaks targets (slot 1 changes on 35/621 tasks); bbox ∪ border everywhere gives 3/621. Proposed to Fable.
+- T71: asserted parents + sibling rule. aabf363d is resolved; b230c067 is still wrong (size vs shape not separable). 17/19.
+- V35 = V34 + L_priors4 (roles-only families before L_priors2/3; colour_roles.py in the probe; held-out ids removed from three docstrings, code identical). batch-0080, ORDERS seq 16: Windows runs c44/c45 + compare_gate CYCLE=29 before 19:30 EDT. Tonight: v20 (V34).
+- line_check.py now takes LINES_DIR (lines_llm) and --fail <base list> (new over the given build).
+
+## Update 11:40 EDT Oct 2: Fable v13/v14; T58 pass; T73 no-go
+- Fable v13 (generator slots: G72/G73, D41, T72–T74) and v14 (transfer at scale: D42, O1–O9, G74–G76, T75–T78) adopted. Response: claude/fable_round_13_14_response.md.
+- **O1:** ARC-GEN a15cbdb44c, re-arc e5b7f1d063, arc-dsl 635de4902a, stitch 350804b7b3, Popper 5c608d3ec8 (/home/claude/work/corpora).
+- **T75 (O2):** tools/dream/density/t75_density.py.
+  - Setup: ARC-GEN V1 only; N2 guard; 20 variants × 4 pairs, seed sha256(task:v:k); the 38 prior families, not the full V35; resume support.
+  - 1,896 wrong non-source fits, 111 member misses.
+- **T72/T72′:** tools/dream/density/t72p_classify.py. Mechanical residual labels; about half of all cases have no slot shape.
+- **T73:** tools/dream/o0/slots.py v1.1 (iterate, accept no_overlap, on_stop paint/turn; policy default / mdl), prior_check SLOTS=default, t73_compare.py.
+  - priors3: wrong 83 → 81, exact +2; priors4: net 0; 0 new.
+  - Density check: −2.2 % wrong.
+  - **No-go**, so O6/O7 are skipped.
+- **T74:** 9/38 of Len's lines have slot words.
+- **T76:**
+  - The Python-AST corpus run on WSL gave 25 syntactic abstractions.
+  - Two more corpora are ready: drawing procedures (402 programs from 102 families) and arc-dsl (400 solvers).
+  - Blocked: the cloud cannot build Stitch (crates.io/PyPI refused), and WSL's permission system refused copying the binary to the outbox.
+- **T58:** PASS on Windows. T71 under ELK: 0 pick differences.
+- **Cycle 29:** P2 = 0; c45 digest b6c6bfd8 = V34. v19 scored 2.50. v20 (V34) runs tonight after 20:00 EDT (WSL).
+- **Len's lines** (since 03:05):
+  - 50f325b5 (v3) and e5062a87 (max packing) are still unsolved (training pairs show unrecoloured exact copies).
+  - 995c5fa3 and 7d419a02 were measured (T66 update).
+  - No new lines since 08:11 UTC.
+- **Oct 5 draft:** filled with the T73 lead item and the known rows (claude/oct5_stop_rule_report_draft.md).
+- Next check-in: 22:30 EDT Oct 2 (scheduled).

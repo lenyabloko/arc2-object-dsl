@@ -12,6 +12,9 @@ import line_check as LC
 HERE = os.path.dirname(os.path.abspath(__file__))
 PDIR = os.environ.get('PRIOR_DIR', 'priors2')          # T65 (Fable v10b): PRIOR_DIR=priors3 measures the second pass
 LEDGER = 'results/o0/prior_ledger.jsonl.txt' if PDIR == 'priors2' else 'results/o0/%s_ledger.jsonl.txt' % PDIR
+SLOTS = os.environ.get('SLOTS')                        # T73 (Fable v14 O5): mdl | default -> slot-augmented binder (slots.py)
+if SLOTS:
+    LEDGER = 'results/o0/%s_slots_%s_ledger.jsonl.txt' % (PDIR, SLOTS)
 
 
 def main():
@@ -21,6 +24,8 @@ def main():
         t0 = time.time()
         p = os.path.join(HERE, PDIR, c + '.py')
         spec = importlib.util.spec_from_file_location('P_%s_%s' % (PDIR, c), p); M = importlib.util.module_from_spec(spec); spec.loader.exec_module(M)
+        if SLOTS:
+            import slots; M = slots.Augmented(M, SLOTS)
         mem = list(getattr(M, 'MEMBERS', []))
         fired = fit = 0; exact, wrong = [], []; slow = 0.0
         for x in keys:

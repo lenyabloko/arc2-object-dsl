@@ -1,0 +1,73 @@
+{
+ "mode": "design",
+ "cases": 124,
+ "non_source": {
+  "cases": 124,
+  "distinct_tasks": 66,
+  "by_label": {
+   "mixed": {
+    "cases": 32,
+    "tasks": 20,
+    "families": 9
+   },
+   "size": {
+    "cases": 28,
+    "tasks": 19,
+    "families": 6
+   },
+   "colour_only": {
+    "cases": 13,
+    "tasks": 11,
+    "families": 6
+   },
+   "accept_extra": {
+    "cases": 13,
+    "tasks": 5,
+    "families": 5
+   },
+   "anchor_other": {
+    "cases": 11,
+    "tasks": 7,
+    "families": 5
+   },
+   "on_stop_turn": {
+    "cases": 10,
+    "tasks": 5,
+    "families": 4
+   },
+   "anchor_inter": {
+    "cases": 8,
+    "tasks": 5,
+    "families": 2
+   },
+   "iterate": {
+    "cases": 3,
+    "tasks": 2,
+    "families": 2
+   },
+   "on_stop_paint": {
+    "cases": 2,
+    "tasks": 1,
+    "families": 1
+   },
+   "anchor_midpoint": {
+    "cases": 2,
+    "tasks": 1,
+    "families": 1
+   },
+   "accept_overlap": {
+    "cases": 2,
+    "tasks": 2,
+    "families": 1
+   }
+  },
+  "by_slot": {
+   "-": 60,
+   "anchor": 21,
+   "accept": 15,
+   "colour": 13,
+   "on_stop": 12,
+   "iterate": 3
+  }
+ }
+}

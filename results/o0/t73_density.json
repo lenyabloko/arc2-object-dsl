@@ -1,0 +1,73 @@
+{
+ "tasks": 266,
+ "priors3_non_source": {
+  "before": {
+   "exact": 1403,
+   "wrong": 581
+  },
+  "after": {
+   "exact": 1416,
+   "wrong": 568
+  },
+  "transitions": {
+   "wrong->exact": 17,
+   "exact->wrong": 4
+  },
+  "changed_by_slot": {
+   "iterate=fixpoint,accept=no_overlap": 8,
+   "iterate=fixpoint": 13
+  }
+ },
+ "priors3_member": {
+  "before": {
+   "exact": 519,
+   "wrong": 39
+  },
+  "after": {
+   "exact": 518,
+   "wrong": 40
+  },
+  "transitions": {
+   "exact->wrong": 2,
+   "wrong->exact": 1
+  },
+  "changed_by_slot": {
+   "iterate=fixpoint,accept=no_overlap": 3
+  }
+ },
+ "priors4_non_source": {
+  "before": {
+   "wrong": 356,
+   "exact": 1282
+  },
+  "after": {
+   "wrong": 356,
+   "exact": 1282
+  },
+  "transitions": {
+   "wrong->exact": 7,
+   "exact->wrong": 7
+  },
+  "changed_by_slot": {
+   "iterate=fixpoint,accept=no_overlap": 9,
+   "iterate=fixpoint": 5
+  }
+ },
+ "priors4_member": {
+  "before": {
+   "exact": 444,
+   "wrong": 24
+  },
+  "after": {
+   "exact": 444,
+   "wrong": 24
+  },
+  "transitions": {
+   "wrong->exact": 1,
+   "exact->wrong": 1
+  },
+  "changed_by_slot": {
+   "iterate=fixpoint,accept=no_overlap": 2
+  }
+ }
+}

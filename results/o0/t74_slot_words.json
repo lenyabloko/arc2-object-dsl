@@ -1,0 +1,212 @@
+{
+ "lines": 38,
+ "with_any_slot_word": 9,
+ "per_slot": {
+  "on_stop": 3,
+  "anchor": 7,
+  "iterate": 0,
+  "accept": 2
+ },
+ "rows": [
+  {
+   "card": "0607ce86",
+   "slots": {}
+  },
+  {
+   "card": "0ca9ddb6",
+   "slots": {}
+  },
+  {
+   "card": "0d87d2a6",
+   "slots": {
+    "anchor": [
+     "between"
+    ]
+   }
+  },
+  {
+   "card": "0f63c0b9",
+   "slots": {
+    "anchor": [
+     "middle"
+    ]
+   }
+  },
+  {
+   "card": "103eff5b",
+   "slots": {}
+  },
+  {
+   "card": "142ca369",
+   "slots": {
+    "on_stop": [
+     "bounces",
+     "reaches",
+     "until"
+    ],
+    "anchor": [
+     "corner"
+    ]
+   }
+  },
+  {
+   "card": "17829a00",
+   "slots": {
+    "on_stop": [
+     "until"
+    ]
+   }
+  },
+  {
+   "card": "20fb2937",
+   "slots": {}
+  },
+  {
+   "card": "2b83f449",
+   "slots": {}
+  },
+  {
+   "card": "2dd70a9a",
+   "slots": {
+    "on_stop": [
+     "until"
+    ],
+    "anchor": [
+     "corners",
+     "meets"
+    ]
+   }
+  },
+  {
+   "card": "3de23699",
+   "slots": {}
+  },
+  {
+   "card": "409aa875",
+   "slots": {}
+  },
+  {
+   "card": "4c416de3",
+   "slots": {}
+  },
+  {
+   "card": "4c7dc4dd",
+   "slots": {}
+  },
+  {
+   "card": "50f325b5",
+   "slots": {}
+  },
+  {
+   "card": "5117e062",
+   "slots": {
+    "anchor": [
+     "center"
+    ]
+   }
+  },
+  {
+   "card": "52df9849",
+   "slots": {}
+  },
+  {
+   "card": "5ad4f10b",
+   "slots": {}
+  },
+  {
+   "card": "7d18a6fb",
+   "slots": {}
+  },
+  {
+   "card": "7d419a02",
+   "slots": {}
+  },
+  {
+   "card": "7ed72f31",
+   "slots": {}
+  },
+  {
+   "card": "995c5fa3",
+   "slots": {}
+  },
+  {
+   "card": "9aaea919",
+   "slots": {}
+  },
+  {
+   "card": "9b5080bb",
+   "slots": {}
+  },
+  {
+   "card": "a644e277",
+   "slots": {}
+  },
+  {
+   "card": "b0f4d537",
+   "slots": {}
+  },
+  {
+   "card": "b190f7f5",
+   "slots": {}
+  },
+  {
+   "card": "ca8de6ea",
+   "slots": {}
+  },
+  {
+   "card": "d017b73f",
+   "slots": {
+    "anchor": [
+     "corners"
+    ],
+    "accept": [
+     "without touching"
+    ]
+   }
+  },
+  {
+   "card": "d2acf2cb",
+   "slots": {}
+  },
+  {
+   "card": "d6542281",
+   "slots": {}
+  },
+  {
+   "card": "dd2401ed",
+   "slots": {
+    "anchor": [
+     "middle"
+    ]
+   }
+  },
+  {
+   "card": "de809cff",
+   "slots": {}
+  },
+  {
+   "card": "e2092e0c",
+   "slots": {}
+  },
+  {
+   "card": "e26a3af2",
+   "slots": {}
+  },
+  {
+   "card": "e5062a87",
+   "slots": {}
+  },
+  {
+   "card": "f3b10344",
+   "slots": {}
+  },
+  {
+   "card": "f560132c",
+   "slots": {
+    "accept": [
+     "fitting"
+    ]
+   }
+  }
+ ]
+}

@@ -9,7 +9,7 @@ collapsed by type (s, f). One program per top-level function or method; function
 skipped. Output: results/o0/stitch_corpus.json (list of strings) and results/o0/stitch_corpus_index.json (module,
 function per program) for mapping abstractions back to modules (T76 counts modules per abstraction).
 usage: python3 stitch_corpus.py"""
-import ast, glob, json, os
+import ast, glob, json, os, re
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 
 
@@ -87,5 +87,58 @@ def main():
     print(json.dumps({'modules': mods, 'files': len(files), 'programs': len(progs), 'nodes': sum(x['nodes'] for x in index)}))
 
 
+# --- T76 second corpus (Oct 2): drawing procedures only, one version per family -----------------------------------
+# Fable v14 O3 asks for each module's *drawing procedure*. Kept: every function (top-level, method or nested; nested
+# defs inside an exported function become the token nested_def) that writes a grid cell (an assignment target of the
+# form x[i][j]) or returns a nested list comprehension. Families: fam_*, concept_*, compose_*, the domain prior_*
+# modules (the prior_priors* dispatchers excluded), the 19 second-pass families once (prior3_* only; prior2_/prior4_
+# are versions of the same 19), and tools/dream/o0/lines/*.py. Module counts in T76 are counted per family.
+
+class ConvD(Conv):
+    def go(self, node):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)) and getattr(self, 'top', None) is not node:
+            return 'nested_def'
+        return Conv.go(self, node)
+
+
+def draws(fn):
+    for n in ast.walk(fn):
+        if isinstance(n, (ast.Assign, ast.AugAssign)):
+            ts = n.targets if isinstance(n, ast.Assign) else [n.target]
+            for t in ts:
+                if isinstance(t, ast.Subscript) and isinstance(t.value, ast.Subscript): return True
+        if isinstance(n, ast.Return) and isinstance(n.value, ast.ListComp) and isinstance(n.value.elt, ast.ListComp): return True
+    return False
+
+
+def family_of(path):
+    b = os.path.basename(path)[:-3]
+    return re.sub(r'^prior[234]_', 'P_', b) if 'tools/m1b' in path else 'line_' + b
+
+
+def drawing_main():
+    import re as _re
+    globals()['re'] = _re
+    probe = os.path.join(REPO, 'tools/m1b/v35')
+    files = []
+    for p in ['fam_*.py', 'concept_*.py', 'compose_*.py', 'prior_*.py', 'prior3_*.py']:
+        files += [f for f in sorted(glob.glob(os.path.join(probe, p))) if not os.path.basename(f).startswith('prior_priors')]
+    files += sorted(glob.glob(os.path.join(REPO, 'tools/dream/o0/lines/*.py')))
+    progs, index = [], []
+    for f in files:
+        try: tree = ast.parse(open(f).read())
+        except SyntaxError: continue
+        for d in ast.walk(tree):
+            if not isinstance(d, (ast.FunctionDef, ast.AsyncFunctionDef)) or size(d) < 12 or not draws(d): continue
+            c = ConvD(); c.top = d
+            for a in d.args.args + d.args.kwonlyargs: c.local(a.arg)
+            progs.append(c.go(d.body)); index.append({'module': os.path.relpath(f, REPO), 'family': family_of(f), 'function': d.name, 'nodes': size(d)})
+    json.dump(progs, open(os.path.join(REPO, 'results/o0/stitch_draw_corpus.json'), 'w'))
+    json.dump(index, open(os.path.join(REPO, 'results/o0/stitch_draw_index.json'), 'w'))
+    print(json.dumps({'families': len(set(x['family'] for x in index)), 'files': len(files), 'programs': len(progs),
+                      'nodes': sum(x['nodes'] for x in index)}))
+
+
 if __name__ == '__main__':
-    main()
+    import sys
+    drawing_main() if '--drawing' in sys.argv else main()

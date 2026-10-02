@@ -1,0 +1,555 @@
+class	direct_superclasses	equivalent_classes
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ca.local_rule>	arcm:CA | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ca.row_recurrence>	arcm:CA | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#combine.boolean_panels>	arcm:COMBINE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#combine.fold_overlay>	arcm:COMBINE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#combine.priority_overlay>	arcm:COMBINE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#combine.residual>	arcm:COMBINE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.crop_occluded>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.period>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.prefix_by_template>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.rectangle>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.residual>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.symmetry_global>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#complete.symmetry_per_object>	arcm:COMPLETE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#connect.aligned_pair>	arcm:CONNECT | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#connect.lattice_between>	arcm:CONNECT | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#connect.residual>	arcm:CONNECT | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#count.residual>	arcm:COUNT | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.by_score>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.canonical_window>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.extract_and_concat>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.fit_by_anchor>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.fit_by_shape>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.odd_one_out>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.overlay_windows>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#crop.residual>	arcm:CROP | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.periodic_fill>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.periodic_lines>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.repeat_stamp>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.residual>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.sequence_positions>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.smear>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.staircase>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#extend.stretch_to_marker>	arcm:EXTEND | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#fill.bbox_bg>	arcm:FILL | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#fill.between_pair_on_line>	arcm:FILL | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#fill.largest_empty>	arcm:FILL | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#fill.region_by_property>	arcm:FILL | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#fill.residual>	arcm:FILL | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.by_vector>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.fit_into_hole>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.residual>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.slide_until_contact>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.to_position>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.toward_anchor>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#move.translate_recolour>	arcm:MOVE | arcm:Mechanism	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#path.elbow_route>	arcm:Mechanism | arcm:PATH	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#path.residual>	arcm:Mechanism | arcm:PATH	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#path.shortest_route>	arcm:Mechanism | arcm:PATH	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#path.walker_detour>	arcm:Mechanism | arcm:PATH	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.action.conserve>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.action.geodesic>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.action>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.complement>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.congruence>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.count_scale>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.prime>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.progression>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.residue>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.shift>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.union>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic.window>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.arithmetic>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.attr_permute>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.axis_permute>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.class_swap>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.lattice_permute>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.legend_perm>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.panel_chain>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.sort_pack>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics.sorted_stack>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.combinatorics>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.fluids.gravity>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.fluids.jet>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.fluids.spreading>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.fluids.trickle>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.fluids>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.fold>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.fold_dominant>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.frieze>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.fundamental_domain>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.orbit_recolour>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.product_sites>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.select_by_symmetry>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.similarity_complete>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.sym_complete>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.sym_repair>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.symmetrize_colour>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry.twisted_quadrants>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.geometry>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.mechanics.gravity>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.mechanics.lever>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.mechanics.lockkey>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.mechanics.slot_machine>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.mechanics>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.optics.light>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.optics.overlay>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.optics.project>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.optics.scene>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.optics>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.cellmap>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.fill>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.hole_vote>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.recolour>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.seed_region>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology.select>	arcm:Prior | dul:Method	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#prior.topology>	arcm:Prior | dul:Theory	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#project.and_intersection>	arcm:Mechanism | arcm:PROJECT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#project.marker_onto_target>	arcm:Mechanism | arcm:PROJECT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#project.residual>	arcm:Mechanism | arcm:PROJECT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.bounce>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.container_leak>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.diagonal_from_object>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.full_line>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.orthogonal_directed>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.periodic_motif>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.residual>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#ray.walker_turn_split>	arcm:Mechanism | arcm:RAY	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.along_ray>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_colour_map>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_distance_layers>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_key_position>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_ordinal_index>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_region_position>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_shape_match>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_tiling>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.by_touching_marker>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.cyclic_shift>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.object_by_property>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.residual>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#recolour.template_sites>	arcm:Mechanism | arcm:RECOLOUR	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#segment.filter_objects>	arcm:Mechanism | arcm:SEGMENT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#segment.pack_pieces>	arcm:Mechanism | arcm:SEGMENT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#segment.residual>	arcm:Mechanism | arcm:SEGMENT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#select.empty_lines_paint>	arcm:Mechanism | arcm:SELECT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#select.residual>	arcm:Mechanism | arcm:SELECT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#sort.by_property>	arcm:Mechanism | arcm:SORT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#sort.permute_attribute_sequence>	arcm:Mechanism | arcm:SORT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#sort.rank_and_pack>	arcm:Mechanism | arcm:SORT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#sort.residual>	arcm:Mechanism | arcm:SORT	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.bbox_outline>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.complete_partial_matches>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.copy_to_congruent_target>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.count_bar>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.grow_ring>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.local_stencil>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.panel_copy>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.reflect_recoloured>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.residual>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.stencil_at_computed_point>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#stamp.template_at_markers>	arcm:Mechanism | arcm:STAMP	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.class_to_constant>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.concentric_rings>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.count_to_glyph>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.lookup_by_feature>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.panel_to_pixel>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.ranked_bars>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.residual>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#summarise.select_colour>	arcm:Mechanism | arcm:SUMMARISE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#tile.arrangement>	arcm:Mechanism | arcm:TILE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#tile.block_placement>	arcm:Mechanism | arcm:TILE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#tile.residual>	arcm:Mechanism | arcm:TILE	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.dihedral>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.kronecker>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.reflect_object>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.residual>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.rotate_about_pivot>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.row_shift>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.scale>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#transform.tile_dihedral>	arcm:Mechanism | arcm:TRANSFORM	
+<https://github.com/lenyabloko/arc2-object-dsl/ontology/mechanism#unknown.residual>	arcm:Mechanism | arcm:UNKNOWN	
+arcm:Analogy	dul:Concept	
+arcm:CA	arcm:Operator	
+arcm:COMBINE	arcm:Operator	
+arcm:COMPLETE	arcm:Operator	
+arcm:CONNECT	arcm:Operator	
+arcm:COUNT	arcm:Operator	
+arcm:CROP	arcm:Operator	
+arcm:Category	dul:Concept	
+arcm:EXTEND	arcm:Operator	
+arcm:FILL	arcm:Operator	
+arcm:MOVE	arcm:Operator	
+arcm:MathConcept	dul:FormalEntity	
+arcm:Mechanism	arcm:Operator	
+arcm:OTHER	arcm:Operator	
+arcm:Operator	dul:Process	
+arcm:PATH	arcm:Operator	
+arcm:PROJECT	arcm:Operator	
+arcm:Principle	dul:Theory	
+arcm:Prior	dul:Description	
+arcm:RAY	arcm:Operator	
+arcm:RECOLOUR	arcm:Operator	
+arcm:SEGMENT	arcm:Operator	
+arcm:SELECT	arcm:Operator	
+arcm:SORT	arcm:Operator	
+arcm:STAMP	arcm:Operator	
+arcm:SUMMARISE	arcm:Operator	
+arcm:TILE	arcm:Operator	
+arcm:TRANSFORM	arcm:Operator	
+arcm:UNKNOWN	arcm:Operator	
+arcm:reassigned_out	arcm:Mechanism | arcm:OTHER	
+arga:ARCGraph	owl:Thing	
+arga:Action	arga:ParameterizedNode	
+arga:ActionParameter	owl:Thing	
+arga:AntiDiagonal	arga:Feature	
+arga:AxisValue	arga:ParameterValue	
+arga:BboxBorderOnly	arga:Feature	
+arga:BooleanValue	arga:ParameterValue	
+arga:BottomBar	arga:Feature	
+arga:BottomEdgeWide	arga:Feature	
+arga:CenterNodeTemplate	arga:Feature	
+arga:CenterPoint	arga:Feature	
+arga:ClassifierRule	arga:HornRule	
+arga:Color	arga:DiscreteValue | arga:Feature	
+arga:CompactWakeOperation	arga:OperationExpression	
+arga:ComponentColorSpectrumValue	arga:StructuredValue	
+arga:ComponentShapeSpectrumValue	arga:StructuredValue	
+arga:ComposedOperation	arga:OperationExpression	
+arga:Concept	owl:Thing	
+arga:Constraint	owl:Thing	
+arga:CountValue	arga:IntegerValue	
+arga:CrossDiagonalBar	arga:Feature	
+arga:DenyRule	owl:Thing	
+arga:Diagonal	arga:Feature	
+arga:DirectionValue	arga:ParameterValue	
+arga:DiscreteValue	arga:ParameterValue	
+arga:DistanceValue	arga:IntegerValue	
+arga:EnclosedByUnchangedColor	arga:Feature	
+arga:ExplicitDimensions	arga:Feature	
+arga:Extent	arga:Feature	
+arga:ExtraLPathPixels	arga:Feature	
+arga:Feature	owl:Thing	
+arga:FilterAction	arga:Action	
+arga:FullCol	arga:Feature	
+arga:FullRow	arga:Feature	
+arga:GlyphClassifierRule	arga:ClassifierRule	
+arga:HollowFrame	arga:Feature	
+arga:HorizontalLine	arga:Feature	
+arga:HornRule	owl:Thing	
+arga:InputColor	arga:Color	
+arga:IntegerValue	arga:DiscreteValue | arga:NumericValue	
+arga:InteriorPixels	arga:Feature	
+arga:Irregular	arga:Feature	
+arga:LComponent	arga:Feature	
+arga:LeftEdgeTall	arga:Feature	
+arga:Line	arga:Feature	
+arga:LineTemplate	arga:Feature	
+arga:LocalAlmostFullEdges	arga:Feature	
+arga:LocalFullEdges	arga:Feature	
+arga:MaximumConstraint	arga:Constraint	
+arga:MinimalSquareMarker	arga:Feature	
+arga:MinimumConstraint	arga:Constraint	
+arga:Node	owl:Thing	
+arga:NumericValue	arga:ParameterValue	
+arga:OperationBinding	arga:ParameterizedNode	
+arga:OperationEquivalence	owl:Thing	
+arga:OperationExpression	owl:Thing	
+arga:OperationGuard	arga:Constraint	
+arga:ParameterValue	owl:Thing	
+arga:ParameterizedNode	owl:Thing	
+arga:PeriodicLineOrbit	arga:Feature	
+arga:PrimitiveOperation	arga:OperationExpression	
+arga:RealizedWakeRuleAction	arga:TransformationAction	
+arga:Rectangular	arga:Feature	
+arga:RegionCanvasAreaRatio	arga:NumericValue	
+arga:RegionCanvasAreaRatioMap	arga:StructuredValue	
+arga:RelativePositionValue	arga:ParameterValue	
+arga:RightEdgeTall	arga:Feature	
+arga:Ring	arga:Feature	
+arga:RotationCountValue	arga:IntegerValue	
+arga:SelectorBinding	arga:OperationBinding	
+arga:SemanticNameValue	arga:ParameterValue	
+arga:ShapeValue	arga:ParameterValue	
+arga:SinglePixel	arga:Feature	
+arga:SizeValue	arga:IntegerValue	
+arga:Solidity	arga:Feature	
+arga:Square	arga:Feature	
+arga:StructuredValue	arga:ParameterValue	
+arga:Tall	arga:Feature	
+arga:ThinCornerPath	arga:Feature	
+arga:TileNode	arga:Feature	
+arga:TopBar	arga:Feature	
+arga:TopEdgeWide	arga:Feature	
+arga:TouchCorner	arga:Feature	
+arga:TransformationAction	arga:Action	
+arga:UnchangedAdjacentSides	arga:Feature	
+arga:UnchangedColor	arga:Feature	
+arga:UnchangedOppositeSides	arga:Feature	
+arga:VerticalLine	arga:Feature	
+arga:Wide	arga:Feature	
+arga:adjacent_support	arga:two_sided_support	
+arga:anchor_shape	arga:shape	
+arga:anti_diagonal_glyph	arga:anti_diagonal_shape | arga:glyph_shape	
+arga:anti_diagonal_shape	arga:line_shape	
+arga:background_region	arga:blank_region	
+arga:bar_shape	arga:horizontal_line_shape	
+arga:blank_region	arga:region	
+arga:border_target	arga:region	
+arga:bottom_bar_glyph	arga:bottom_bar_shape | arga:glyph_shape	
+arga:bottom_bar_shape	arga:horizontal_line_shape	
+arga:canvas_case	arga:region	
+arga:canvas_edit_profile	arga:canvas_case	
+arga:canvas_repair	arga:canvas_case	
+arga:canvas_symmetry_occlusion	arga:invariant_canvas | arga:symmetric_color_mask	
+arga:center_line_marker	arga:marker_shape	
+arga:center_node_template_shape	arga:shape	
+arga:center_point_glyph	arga:center_point_shape | arga:glyph_shape	
+arga:center_point_shape	arga:point	
+arga:checkerboard_slot_pattern	arga:region	
+arga:component_bbox_topology	arga:shape	
+arga:component_count_summary	arga:region	
+arga:component_dense_canvas	arga:canvas_case	
+arga:component_size_rank	arga:shape	
+arga:container_gap	arga:region	
+arga:corner_marker	arga:marker_shape	
+arga:diagonal_canvas_repair	arga:canvas_repair | arga:canvas_symmetry_occlusion | arga:symmetry_grid_canvas	
+arga:diagonal_glyph	arga:diagonal_shape | arga:glyph_shape	
+arga:diagonal_neighbor_relation	arga:region	
+arga:diagonal_shape	arga:line_shape	
+arga:enclosed	arga:opposite_support | arga:three_sided_support	
+arga:exemplar	arga:shape	
+arga:extreme_rank	arga:region	
+arga:glyph_shape	arga:tile_shape	
+arga:glyph_tile_shape	arga:glyph_shape	
+arga:halo_target	arga:region	
+arga:hole	arga:blank_region | arga:enclosed	
+arga:hollow_frame_shape	arga:ring_shape	
+arga:horizontal_glyph_row	arga:tile_shape	
+arga:horizontal_line_shape	arga:line_shape	
+arga:identity_preserved_substrate	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:invariant_arbitrary_canvas	arga:background_region | arga:invariant_canvas	
+arga:invariant_canvas	arga:canvas_case	
+arga:invariant_canvas_region_fill	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:l_component_shape	arga:shape	
+arga:line_shape	arga:rectangle	
+arga:line_template_shape	arga:line_shape	
+arga:marker_block	arga:marker_shape	
+arga:marker_column	arga:region	
+arga:marker_shape	arga:minimal_square_marker_shape	
+arga:minimal_square_marker_shape	arga:square_shape	
+arga:missing_corner_role	arga:l_component_shape	
+arga:mixed_sparse_edit	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:monochrome_shape_palette_recolor	arga:palette_transfer | arga:shape_support_mapping | arga:sparse_foreground_recolor	
+arga:non_horizontal_line_shape	arga:line_shape	
+arga:odd_cell	arga:sparse_lattice_cell	
+arga:opposite_corner_projection_source	arga:shape	
+arga:opposite_support	arga:two_sided_support	
+arga:ordered_palette_shape_correspondence	arga:monochrome_shape_palette_recolor | arga:shape_palette_projection	
+arga:outer_corner_label_target	arga:region	
+arga:palette_color_mapping	arga:palette_transfer	
+arga:palette_projection_mapping	arga:palette_transfer	
+arga:palette_transfer	arga:canvas_edit_profile	
+arga:periodic_canvas_repair	arga:canvas_repair | arga:symmetry_grid_canvas	
+arga:periodic_line_orbit_shape	arga:line_template_shape	
+arga:periodic_pattern_canvas_synthesis	arga:regular_lattice | arga:symmetry_grid_canvas	
+arga:plus_shape	arga:shape	
+arga:point	arga:line_shape | arga:square_shape	
+arga:rare_singleton	arga:point	
+arga:rectangle	arga:shape	
+arga:rectangular_hole	arga:hole | arga:rectangle	
+arga:reflection_axis_marker	arga:marker_shape	
+arga:region	owl:Thing	
+arga:regular_lattice	arga:canvas_case | arga:sparse_lattice_cell	
+arga:residual_topology	arga:shape	
+arga:ring_glyph	arga:glyph_shape | arga:ring_shape	
+arga:ring_shape	arga:shape	
+arga:row_role	arga:region	
+arga:self_mask_lattice_tiling	arga:periodic_pattern_canvas_synthesis	
+arga:separator_cross_region	arga:region	
+arga:shape	arga:region	
+arga:shape_correspondence_mapping	arga:shape_fit_relation	
+arga:shape_fit_relation	owl:Thing	
+arga:shape_multiplicity	arga:shape	
+arga:shape_palette_projection	arga:palette_projection_mapping | arga:shape_correspondence_mapping	
+arga:shape_support_mapping	arga:shape_fit_relation	
+arga:shape_symbol	arga:shape	
+arga:single_color_label_marker	arga:marker_shape	
+arga:sparse_background_overlay	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:sparse_foreground_erase	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:sparse_foreground_recolor	arga:canvas_edit_profile | arga:invariant_arbitrary_canvas	
+arga:sparse_lattice_cell	arga:tile_shape	
+arga:square	arga:shape	
+arga:square_hole	arga:hole | arga:square_shape	
+arga:square_packing_region	arga:square_shape	
+arga:square_shape	arga:rectangle | arga:square	
+arga:supported	arga:region	
+arga:symmetric_color_mask	arga:canvas_case	
+arga:symmetry_grid_canvas	arga:canvas_case	
+arga:three_sided_support	arga:two_sided_support	
+arga:tile_shape	arga:shape	
+arga:top_bar_glyph	arga:glyph_shape | arga:top_bar_shape	
+arga:top_bar_shape	arga:horizontal_line_shape	
+arga:two_sided_support	arga:supported	
+arga:vertical_gap	arga:container_gap	
+arga:vertical_line_shape	arga:non_horizontal_line_shape	
+arga:zig_zag_anchor_shape	arga:anchor_shape	
+dul:Concept	owl:Thing	
+dul:Description	owl:Thing	
+dul:FormalEntity	owl:Thing	
+dul:Method	owl:Thing	
+dul:Process	owl:Thing	
+dul:Theory	owl:Thing	
+lat:D10_largest_of_its_color	t58:ScaleProperty	
+lat:D10_smallest_of_its_color	t58:ScaleProperty	
+lat:D12_n_holes_eq_0	t58:ScaleProperty	
+lat:D12_n_holes_eq_1	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_2	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_3	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_4	lat:has_hole | t58:ScaleProperty	
+lat:D12_n_holes_eq_5	lat:has_hole | t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_0	t58:ScaleProperty	lat:smallest
+lat:D1_size_rank_asc_eq_1	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_10	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_11	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_12	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_13	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_14	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_15	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_16	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_2	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_3	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_4	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_5	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_6	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_7	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_8	t58:ScaleProperty	
+lat:D1_size_rank_asc_eq_9	t58:ScaleProperty	
+lat:D1_size_rank_eq_0	t58:ScaleProperty	lat:largest
+lat:D1_size_rank_eq_1	t58:ScaleProperty	
+lat:D1_size_rank_eq_2	t58:ScaleProperty	
+lat:D1_size_rank_eq_3	t58:ScaleProperty	
+lat:D1_size_rank_gt_3	t58:ScaleProperty	
+lat:D4_n_touch_eq_0	t58:Relation	
+lat:D4_n_touch_eq_1	lat:touches_other	
+lat:D4_n_touch_eq_2	lat:touches_other	
+lat:D4_n_touch_eq_3	lat:touches_other	
+lat:D4_n_touch_eq_4	lat:touches_other	
+lat:Pair_D12_n_holes_eq_0_adjColor_eq_4	lat:D12_n_holes_eq_0 | lat:adjColor_eq_4	
+lat:Pair_D1_size_rank_eq_1_square_bbox	lat:D1_size_rank_eq_1 | lat:square_bbox	
+lat:Pair_D1_size_rank_eq_1_topmost	lat:D1_size_rank_eq_1 | lat:topmost	
+lat:Pair_D4_n_touch_eq_0_shape_shared	lat:D4_n_touch_eq_0 | lat:shape_shared	
+lat:Pair_D4_n_touch_eq_1_color_eq_2	lat:D4_n_touch_eq_1 | lat:color_eq_2	
+lat:Pair_adjColor_eq_1_size_eq_4	lat:adjColor_eq_1 | lat:size_eq_4	
+lat:Pair_adjColor_eq_2_alignedColor_eq_2	lat:adjColor_eq_2 | lat:alignedColor_eq_2	
+lat:Pair_adjColor_eq_2_touches_border	lat:adjColor_eq_2 | lat:touches_border	
+lat:Pair_alignedColor_eq_0_color_eq_0	lat:alignedColor_eq_0 | lat:color_eq_0	
+lat:Pair_alignedColor_eq_1_inside_other	lat:alignedColor_eq_1 | lat:inside_other	
+lat:Pair_alignedColor_eq_2_square_bbox	lat:alignedColor_eq_2 | lat:square_bbox	
+lat:Pair_alignedColor_eq_3_inside_other	lat:alignedColor_eq_3 | lat:inside_other	
+lat:Pair_alignedColor_eq_3_isolated	lat:alignedColor_eq_3 | lat:isolated	
+lat:Pair_alignedColor_eq_4_isolated	lat:alignedColor_eq_4 | lat:isolated	
+lat:Pair_color_eq_5_color_most_common	lat:color_eq_5 | lat:color_most_common	
+lat:Pair_color_eq_5_exists_same_holes	lat:color_eq_5 | lat:exists_same_holes	
+lat:Pair_color_most_common_isolated	lat:color_most_common | lat:isolated	
+lat:Pair_exists_same_holes_shape_unique	lat:exists_same_holes | lat:shape_unique	
+lat:Pair_filled_rect_rightmost	lat:filled_rect | lat:rightmost	
+lat:Pair_isolated_square_bbox	lat:isolated | lat:square_bbox	
+lat:Pair_leftmost_touches_border	lat:leftmost | lat:touches_border	
+lat:Pair_rightmost_topmost	lat:rightmost | lat:topmost	
+lat:Pair_square_bbox_sym_lr	lat:square_bbox | lat:sym_lr	
+lat:Pair_square_bbox_touches_other	lat:square_bbox | lat:touches_other	
+lat:Pair_topmost_touches_border	lat:topmost | lat:touches_border	
+lat:adjColor_eq_0	lat:touches_other	
+lat:adjColor_eq_1	lat:touches_other	
+lat:adjColor_eq_2	lat:touches_other	
+lat:adjColor_eq_3	lat:touches_other	
+lat:adjColor_eq_4	lat:touches_other	
+lat:adjColor_eq_5	lat:touches_other	
+lat:adjColor_eq_6	lat:touches_other	
+lat:adjColor_eq_7	lat:touches_other	
+lat:adjColor_eq_8	lat:touches_other	
+lat:adjColor_eq_9	lat:touches_other	
+lat:alignedColor_eq_0	t58:PositionProperty	
+lat:alignedColor_eq_1	t58:PositionProperty	
+lat:alignedColor_eq_2	t58:PositionProperty	
+lat:alignedColor_eq_3	t58:PositionProperty	
+lat:alignedColor_eq_4	t58:PositionProperty	
+lat:alignedColor_eq_5	t58:PositionProperty	
+lat:alignedColor_eq_6	t58:PositionProperty	
+lat:alignedColor_eq_7	t58:PositionProperty	
+lat:alignedColor_eq_8	t58:PositionProperty	
+lat:alignedColor_eq_9	t58:PositionProperty	
+lat:bottommost	t58:PositionProperty	
+lat:color_eq_0	t58:ColourRole	
+lat:color_eq_1	t58:ColourRole	
+lat:color_eq_2	t58:ColourRole	
+lat:color_eq_3	t58:ColourRole	
+lat:color_eq_4	t58:ColourRole	
+lat:color_eq_5	t58:ColourRole	
+lat:color_eq_6	t58:ColourRole	
+lat:color_eq_7	t58:ColourRole	
+lat:color_eq_8	t58:ColourRole	
+lat:color_eq_9	t58:ColourRole	
+lat:color_least_common	t58:ColourRole	
+lat:color_most_common	t58:ColourRole	
+lat:color_unique	lat:color_least_common	
+lat:contains_other	lat:has_hole | t58:Relation	
+lat:contextColor_eq_0	lat:inside_other	
+lat:contextColor_eq_1	lat:inside_other	
+lat:contextColor_eq_2	lat:inside_other	
+lat:contextColor_eq_3	lat:inside_other	
+lat:contextColor_eq_4	lat:inside_other	
+lat:contextColor_eq_5	lat:inside_other	
+lat:contextColor_eq_6	lat:inside_other	
+lat:contextColor_eq_7	lat:inside_other	
+lat:contextColor_eq_8	lat:inside_other	
+lat:contextColor_eq_9	lat:inside_other	
+lat:exists_same_holes	t58:Relation	
+lat:exists_same_size	t58:Relation	
+lat:filled_rect	lat:sym_lr | lat:sym_ud	
+lat:has_hole	t58:ShapeProperty	
+lat:hline	lat:sym_ud	
+lat:hollow_rect	lat:has_hole	
+lat:inside_other	t58:Relation	
+lat:isolated	t58:Relation	
+lat:largest	t58:ScaleProperty	lat:D1_size_rank_eq_0
+lat:leftmost	t58:PositionProperty	
+lat:multicolor	t58:ColourRole	
+lat:rightmost	t58:PositionProperty	
+lat:shape_shared	t58:ShapeProperty	
+lat:shape_unique	t58:ShapeProperty	
+lat:single_pixel	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:size_eq_1
+lat:size_eq_1	lat:D1_size_rank_asc_eq_0 = lat:smallest | lat:Pair_square_bbox_sym_lr | lat:sym_ud	lat:single_pixel
+lat:size_eq_10	t58:ScaleProperty	
+lat:size_eq_11	t58:ScaleProperty	
+lat:size_eq_12	t58:ScaleProperty	
+lat:size_eq_2	t58:ScaleProperty	
+lat:size_eq_3	t58:ScaleProperty	
+lat:size_eq_4	t58:ScaleProperty	
+lat:size_eq_5	t58:ScaleProperty	
+lat:size_eq_6	t58:ScaleProperty	
+lat:size_eq_7	t58:ScaleProperty	
+lat:size_eq_8	t58:ScaleProperty	
+lat:size_eq_9	t58:ScaleProperty	
+lat:size_gt_12	t58:ScaleProperty	
+lat:size_unique	t58:ScaleProperty	
+lat:smallest	t58:ScaleProperty	lat:D1_size_rank_asc_eq_0
+lat:square_bbox	t58:ShapeProperty	
+lat:sym_lr	t58:ShapeProperty	
+lat:sym_ud	t58:ShapeProperty	
+lat:topmost	t58:PositionProperty	
+lat:touches_border	t58:PositionProperty	
+lat:touches_other	t58:Relation	
+lat:vline	lat:sym_lr	
+t58:CONTACT	owl:Thing	
+t58:CONTAINMENT	owl:Thing	
+t58:ColourRole	t58:MATCHING	
+t58:MATCHING	owl:Thing	
+t58:NEAR_FAR	owl:Thing	
+t58:PART_WHOLE	owl:Thing	
+t58:PositionProperty	t58:CONTAINMENT | t58:NEAR_FAR	
+t58:Relation	t58:CONTACT | t58:CONTAINMENT	
+t58:SCALE	owl:Thing	
+t58:ScaleProperty	t58:SCALE	
+t58:ShapeProperty	t58:PART_WHOLE	

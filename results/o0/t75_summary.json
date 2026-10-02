@@ -1,0 +1,29 @@
+{
+ "test": "T75",
+ "corpus": "google/ARC-GEN a15cbdb44c776610aeeb9f487a06af875d3d0878 (V1 generators only; N2 guard)",
+ "variants_per_task": 20,
+ "pairs_per_variant": 4,
+ "seed": "sha256(task:v:k)[:12]",
+ "families": "tools/dream/o0/priors3 (19) + priors4 (19)",
+ "note": "not the full V35 solver (about 100 s per task x ~8,000 variants)",
+ "fitted_tasks": 266,
+ "fitted_variants": 3447,
+ "priors3": {
+  "non_source_fits": 4006,
+  "non_source_exact": 2829,
+  "non_source_wrong": 1177,
+  "non_source_wrong_tasks": 183,
+  "member_fits": 1111,
+  "member_exact": 1046,
+  "member_train_fit_test_miss": 65
+ },
+ "priors4": {
+  "non_source_fits": 3321,
+  "non_source_exact": 2602,
+  "non_source_wrong": 719,
+  "non_source_wrong_tasks": 159,
+  "member_fits": 947,
+  "member_exact": 901,
+  "member_train_fit_test_miss": 46
+ }
+}

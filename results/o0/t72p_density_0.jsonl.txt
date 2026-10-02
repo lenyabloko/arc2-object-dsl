@@ -1,0 +1,989 @@
+{"task": "007bbfb7", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "007bbfb7", "v": 6, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 7, "extra": 7, "recolour": 0, "same_size": false}
+{"task": "007bbfb7", "v": 8, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 8, "extra": 16, "recolour": 0, "same_size": false}
+{"task": "007bbfb7", "v": 10, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "007bbfb7", "v": 14, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 40, "missing": 40, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "007bbfb7", "v": 14, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 40, "missing": 40, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "007bbfb7", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 8, "extra": 8, "recolour": 0, "same_size": false}
+{"task": "0520fde7", "v": 15, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "0520fde7", "v": 15, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "05269061", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 49, "missing": 0, "extra": 14, "recolour": 35, "same_size": true}
+{"task": "05269061", "v": 15, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 33, "missing": 0, "extra": 7, "recolour": 26, "same_size": true}
+{"task": "05f2a901", "v": 4, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "05f2a901", "v": 4, "dir": "priors4", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "0b148d64", "v": 10, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "0b148d64", "v": 10, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "0ca9ddb6", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 1, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "0d3d703e", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "0d3d703e", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "0d3d703e", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 5, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 5, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "0d3d703e", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 9, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 12, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 14, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 14, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "0d3d703e", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "0d3d703e", "v": 18, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "0dfd9992", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "11852cab", "v": 9, "dir": "priors4", "family": "bridge_aligned_pairs", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "11852cab", "v": 9, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "11852cab", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 0, "extra": 2, "recolour": 3, "same_size": true}
+{"task": "1bfc4729", "v": 0, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 0, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 0, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 0, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 12, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 12, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 12, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 19, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1c786137", "v": 19, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1cf80156", "v": 15, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "size", "slot": "-"}
+{"task": "1e0a9b12", "v": 2, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 7, "extra": 7, "recolour": 2, "same_size": true}
+{"task": "1e0a9b12", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 0, "extra": 5, "recolour": 2, "same_size": true}
+{"task": "1e0a9b12", "v": 7, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "1e0a9b12", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 1, "extra": 11, "recolour": 3, "same_size": true}
+{"task": "1e32b0e9", "v": 11, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "1f85a75f", "v": 7, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1f85a75f", "v": 7, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "1f876c06", "v": 0, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 0, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 2, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "1f876c06", "v": 2, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "1f876c06", "v": 6, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 6, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 10, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 10, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 8, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "1f876c06", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 8, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "1fad071e", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "1fad071e", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "1fad071e", "v": 12, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "1fad071e", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "2204b7a8", "v": 4, "dir": "priors4", "family": "colour_from_nearest_seed", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 10, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 13, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22168020", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "2281f1f4", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2281f1f4", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2281f1f4", "v": 9, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2281f1f4", "v": 9, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 0, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 8, "missing": 0, "extra": 8, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 0, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 16, "missing": 0, "extra": 16, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 0, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 16, "missing": 0, "extra": 16, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 3, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 3, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 3, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 13, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "22eb0ac0", "v": 13, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "22eb0ac0", "v": 17, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "22eb0ac0", "v": 17, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "23581191", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 0, "extra": 3, "recolour": 4, "same_size": true}
+{"task": "23581191", "v": 10, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 0, "extra": 3, "recolour": 4, "same_size": true}
+{"task": "239be575", "v": 5, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": true, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 8, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 8, "dir": "priors4", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 12, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 12, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 12, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "239be575", "v": 12, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "23b5c85d", "v": 15, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "23b5c85d", "v": 15, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "253bf280", "v": 2, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 2, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors4", "family": "conditional_line_fill", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 6, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 11, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 16, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 16, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 18, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "253bf280", "v": 18, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 0, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 5, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 0, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 5, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 8, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 8, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 8, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 3, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 8, "dir": "priors4", "family": "conditional_line_fill", "member": false, "label": "accept_extra", "slot": "accept", "residual": 24, "missing": 0, "extra": 24, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 8, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 3, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 12, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 12, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 14, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 1, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 14, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 1, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 9, "extra": 7, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 9, "extra": 7, "recolour": 0, "same_size": true}
+{"task": "25d8a9c8", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "25d8a9c8", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "25d8a9c8", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "25d8a9c8", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 4, "missing": 0, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "25d8a9c8", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "25d8a9c8", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "25d8a9c8", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "25ff71a9", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 1, "dir": "priors3", "family": "turtle_path_walk", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 1, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 8, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "25ff71a9", "v": 8, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "25ff71a9", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 15, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "25ff71a9", "v": 19, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 19, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 19, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "25ff71a9", "v": 19, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "27a28665", "v": 0, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "27a28665", "v": 0, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "27a28665", "v": 2, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "27a28665", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "27a28665", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "27a28665", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "27a28665", "v": 12, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "27a28665", "v": 12, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "27a28665", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "27a28665", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "27a28665", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "28bf18c6", "v": 11, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "28e73c20", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "28e73c20", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "29c11459", "v": 6, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "29ec7d0e", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "29ec7d0e", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "2bee17df", "v": 10, "dir": "priors3", "family": "conditional_line_fill", "member": true, "label": "mixed", "slot": "-", "residual": 27, "missing": 8, "extra": 19, "recolour": 0, "same_size": true}
+{"task": "2bee17df", "v": 10, "dir": "priors4", "family": "conditional_line_fill", "member": true, "label": "mixed", "slot": "-", "residual": 27, "missing": 8, "extra": 19, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 4, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 6, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 10, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 10, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 10, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 18, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 18, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "v": 18, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "32597951", "v": 4, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 46, "missing": 35, "extra": 11, "recolour": 0, "same_size": true}
+{"task": "32597951", "v": 19, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "32597951", "v": 19, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "3618c87e", "v": 3, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "3618c87e", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "3618c87e", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "3618c87e", "v": 3, "dir": "priors4", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "3618c87e", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "3618c87e", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "36fdfd69", "v": 10, "dir": "priors3", "family": "rectangle_from_delimiters", "member": true, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 11}
+{"task": "36fdfd69", "v": 10, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 11}
+{"task": "3906de3d", "v": 19, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3906de3d", "v": 19, "dir": "priors4", "family": "translate_object", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "39a8645d", "v": 11, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 2, "recolour": 3, "same_size": false}
+{"task": "39a8645d", "v": 11, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "39a8645d", "v": 11, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 2, "recolour": 3, "same_size": false}
+{"task": "39a8645d", "v": 15, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 2, "recolour": 3, "same_size": false}
+{"task": "39a8645d", "v": 15, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 2, "recolour": 3, "same_size": false}
+{"task": "3aa6fb7a", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "3aa6fb7a", "v": 2, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "3aa6fb7a", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3aa6fb7a", "v": 16, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3aa6fb7a", "v": 19, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3aa6fb7a", "v": 19, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3af2c5a8", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 20, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "3af2c5a8", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "3befdf3e", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "3befdf3e", "v": 1, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 21, "missing": 12, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "3befdf3e", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 32, "missing": 20, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "3befdf3e", "v": 8, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 45, "missing": 5, "extra": 12, "recolour": 28, "same_size": true}
+{"task": "3befdf3e", "v": 13, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 12, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "3befdf3e", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 32, "missing": 28, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "3c9b0459", "v": 1, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 5, "extra": 1, "recolour": 1, "same_size": true}
+{"task": "3c9b0459", "v": 4, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "3c9b0459", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 3, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "3c9b0459", "v": 8, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 0, "extra": 6, "recolour": 2, "same_size": true}
+{"task": "3c9b0459", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 1, "extra": 3, "recolour": 5, "same_size": true}
+{"task": "3c9b0459", "v": 12, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "3c9b0459", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 5, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "3c9b0459", "v": 14, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 2, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "3c9b0459", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 4, "missing": 0, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "3c9b0459", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 1, "recolour": 2, "same_size": true}
+{"task": "3c9b0459", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3c9b0459", "v": 18, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "40853293", "v": 0, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "40853293", "v": 0, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "40853293", "v": 7, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 25, "missing": 24, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "40853293", "v": 7, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 25, "missing": 24, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "40853293", "v": 12, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 13, "missing": 13, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "40853293", "v": 12, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 13, "missing": 13, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "40853293", "v": 16, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 22, "missing": 22, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "40853293", "v": 16, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 22, "missing": 22, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "4093f84a", "v": 0, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 1, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "4093f84a", "v": 4, "dir": "priors3", "family": "translate_object", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "4093f84a", "v": 9, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 0, "recolour": 5, "same_size": true}
+{"task": "4093f84a", "v": 11, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 2, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "4093f84a", "v": 13, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 3, "extra": 1, "recolour": 10, "same_size": true}
+{"task": "4093f84a", "v": 13, "dir": "priors4", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "4093f84a", "v": 15, "dir": "priors3", "family": "translate_object", "member": false, "label": "colour_only", "slot": "colour", "residual": 7, "missing": 0, "extra": 0, "recolour": 7, "same_size": true}
+{"task": "4093f84a", "v": 19, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 10, "missing": 2, "extra": 0, "recolour": 8, "same_size": true}
+{"task": "4258a5f9", "v": 4, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "4258a5f9", "v": 4, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 19, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 7, "missing": 0, "extra": 7, "recolour": 0, "same_size": true}
+{"task": "42a50994", "v": 19, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 7, "missing": 0, "extra": 7, "recolour": 0, "same_size": true}
+{"task": "444801d8", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true, "tips": 9}
+{"task": "444801d8", "v": 6, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 0, "extra": 11, "recolour": 7, "same_size": true}
+{"task": "444801d8", "v": 6, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true, "tips": 9}
+{"task": "444801d8", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "444801d8", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 29, "missing": 0, "extra": 18, "recolour": 11, "same_size": true}
+{"task": "445eab21", "v": 7, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "445eab21", "v": 15, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "445eab21", "v": 15, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "44d8ac46", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "44d8ac46", "v": 2, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "44f52bb0", "v": 1, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "44f52bb0", "v": 1, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "44f52bb0", "v": 7, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "44f52bb0", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "44f52bb0", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "44f52bb0", "v": 19, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "4522001f", "v": 12, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "4522001f", "v": 12, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "4522001f", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "4522001f", "v": 16, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "4522001f", "v": 18, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "4522001f", "v": 18, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 56, "missing": 28, "extra": 28, "recolour": 0, "same_size": false}
+{"task": "46442a0e", "v": 7, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "48d8fb45", "v": 1, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 4, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "48d8fb45", "v": 1, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "48d8fb45", "v": 1, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 4, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "48d8fb45", "v": 1, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "48d8fb45", "v": 4, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "48d8fb45", "v": 4, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "48d8fb45", "v": 9, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "48d8fb45", "v": 9, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "4938f0c2", "v": 13, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 33, "missing": 33, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "4938f0c2", "v": 13, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 33, "missing": 33, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "4938f0c2", "v": 13, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 33, "missing": 33, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "4938f0c2", "v": 13, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 33, "missing": 33, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "496994bd", "v": 10, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 0, "extra": 10, "recolour": 10, "same_size": true}
+{"task": "4c4377d9", "v": 2, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "4c4377d9", "v": 2, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "4c4377d9", "v": 14, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 6, "extra": 6, "recolour": 0, "same_size": false}
+{"task": "4c4377d9", "v": 14, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 6, "extra": 6, "recolour": 0, "same_size": false}
+{"task": "50846271", "v": 2, "dir": "priors3", "family": "template_cover_completion", "member": true, "label": "mixed", "slot": "-", "residual": 8, "missing": 6, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "50846271", "v": 2, "dir": "priors4", "family": "template_cover_completion", "member": true, "label": "mixed", "slot": "-", "residual": 8, "missing": 6, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "5168d44c", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 7, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "539a4f51", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 0, "extra": 16, "recolour": 0, "same_size": false}
+{"task": "539a4f51", "v": 11, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "539a4f51", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 27, "missing": 27, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "539a4f51", "v": 16, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 27, "missing": 27, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "54d9e175", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 18, "missing": 18, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 1, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 2, "extra": 3, "recolour": 4, "same_size": true}
+{"task": "5582e5ca", "v": 1, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 1, "extra": 3, "recolour": 5, "same_size": true}
+{"task": "5582e5ca", "v": 1, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 1, "dir": "priors4", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 0, "extra": 3, "recolour": 6, "same_size": true}
+{"task": "5582e5ca", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 5, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 5, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 5, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 5, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 5, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 7, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5582e5ca", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 7, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5582e5ca", "v": 9, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 9, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5582e5ca", "v": 11, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5582e5ca", "v": 11, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 1, "recolour": 1, "same_size": true}
+{"task": "5582e5ca", "v": 11, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 11, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 13, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 1, "extra": 3, "recolour": 5, "same_size": true}
+{"task": "5582e5ca", "v": 13, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 13, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 13, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 13, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 15, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 15, "dir": "priors4", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "5582e5ca", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5582e5ca", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 3, "extra": 3, "recolour": 3, "same_size": true}
+{"task": "5582e5ca", "v": 17, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 19, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "v": 19, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5582e5ca", "v": 19, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "5614dbcf", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "5614dbcf", "v": 3, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "5614dbcf", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5614dbcf", "v": 7, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "5614dbcf", "v": 11, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5614dbcf", "v": 14, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "5614dbcf", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "5614dbcf", "v": 19, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "56ff96f3", "v": 17, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "size", "slot": "-"}
+{"task": "56ff96f3", "v": 17, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "56ff96f3", "v": 17, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "size", "slot": "-"}
+{"task": "56ff96f3", "v": 17, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "60b61512", "v": 7, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "60b61512", "v": 15, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "60b61512", "v": 15, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "60b61512", "v": 15, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "60b61512", "v": 15, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "6150a2bd", "v": 0, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 0, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 0, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 2, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 5, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "6150a2bd", "v": 2, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "6150a2bd", "v": 2, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 3, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "6150a2bd", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 4, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 2, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 4, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "6150a2bd", "v": 6, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 8, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 3, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 8, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 0, "extra": 2, "recolour": 3, "same_size": true}
+{"task": "6150a2bd", "v": 10, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 12, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 14, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 14, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 14, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 14, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6150a2bd", "v": 16, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 0, "extra": 1, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6150a2bd", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 1, "recolour": 4, "same_size": true}
+{"task": "6150a2bd", "v": 18, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 2, "extra": 1, "recolour": 2, "same_size": true}
+{"task": "62c24649", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 4, "extra": 8, "recolour": 8, "same_size": false}
+{"task": "62c24649", "v": 11, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 0, "extra": 4, "recolour": 8, "same_size": false}
+{"task": "62c24649", "v": 11, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 16, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "62c24649", "v": 19, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 16, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "colour_from_nearest_seed", "member": false, "label": "size", "slot": "-"}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 1, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 4, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 10, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 4, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "63613498", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "662c240a", "v": 4, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 0, "extra": 7, "recolour": 2, "same_size": false}
+{"task": "67385a82", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 29, "missing": 14, "extra": 15, "recolour": 0, "same_size": true}
+{"task": "67e8384a", "v": 0, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 20, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "67e8384a", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 24, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "681b3aeb", "v": 1, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 9, "missing": 0, "extra": 0, "recolour": 9, "same_size": false}
+{"task": "681b3aeb", "v": 4, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 9, "missing": 0, "extra": 0, "recolour": 9, "same_size": false}
+{"task": "681b3aeb", "v": 8, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 7, "missing": 0, "extra": 0, "recolour": 7, "same_size": false}
+{"task": "681b3aeb", "v": 11, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 9, "missing": 0, "extra": 0, "recolour": 9, "same_size": false}
+{"task": "681b3aeb", "v": 13, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 7, "missing": 0, "extra": 0, "recolour": 7, "same_size": false}
+{"task": "681b3aeb", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": false}
+{"task": "681b3aeb", "v": 18, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 5, "missing": 0, "extra": 0, "recolour": 5, "same_size": false}
+{"task": "6c434453", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 8, "missing": 0, "extra": 8, "recolour": 0, "same_size": true}
+{"task": "6c434453", "v": 16, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "6d0aefbc", "v": 0, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 6, "extra": 6, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 0, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 6, "extra": 6, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 4, "extra": 8, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 9, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 9, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 19, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "6d0aefbc", "v": 19, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "6d58a25d", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": true, "label": "accept_extra", "slot": "accept", "residual": 37, "missing": 0, "extra": 37, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 8, "dir": "priors3", "family": "ray_cast_to_stop", "member": true, "label": "anchor_midpoint", "slot": "anchor", "residual": 54, "missing": 54, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 8, "dir": "priors4", "family": "ray_cast_to_stop", "member": true, "label": "anchor_midpoint", "slot": "anchor", "residual": 54, "missing": 54, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": true, "label": "anchor_midpoint", "slot": "anchor", "residual": 56, "missing": 56, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": true, "label": "anchor_midpoint", "slot": "anchor", "residual": 56, "missing": 56, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": true, "label": "anchor_inter", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d58a25d", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": true, "label": "anchor_inter", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d75e8bb", "v": 0, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "6d75e8bb", "v": 0, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "6d75e8bb", "v": 10, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 23, "missing": 23, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6d75e8bb", "v": 10, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 23, "missing": 23, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6e02f1e3", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6e02f1e3", "v": 3, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "6e02f1e3", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "6e82a1ae", "v": 3, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 10}
+{"task": "6e82a1ae", "v": 5, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 9, "missing": 9, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6e82a1ae", "v": 8, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "colour_only", "slot": "colour", "residual": 8, "missing": 0, "extra": 0, "recolour": 8, "same_size": true}
+{"task": "6e82a1ae", "v": 10, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6e82a1ae", "v": 12, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 6}
+{"task": "6e82a1ae", "v": 14, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 10, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6e82a1ae", "v": 17, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 10, "missing": 6, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "6e82a1ae", "v": 19, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6fa7a44f", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 0, "extra": 4, "recolour": 12, "same_size": false}
+{"task": "6fa7a44f", "v": 8, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "6fa7a44f", "v": 8, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 2, "extra": 2, "recolour": 8, "same_size": false}
+{"task": "6fa7a44f", "v": 8, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 2, "extra": 2, "recolour": 8, "same_size": false}
+{"task": "6fa7a44f", "v": 14, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 0, "extra": 8, "recolour": 6, "same_size": false}
+{"task": "6fa7a44f", "v": 14, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 10, "missing": 2, "extra": 4, "recolour": 4, "same_size": false}
+{"task": "6fa7a44f", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 0, "extra": 8, "recolour": 8, "same_size": false}
+{"task": "72ca375d", "v": 0, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "72ca375d", "v": 0, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "72ca375d", "v": 14, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 0, "recolour": 3, "same_size": false}
+{"task": "72ca375d", "v": 14, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 0, "recolour": 3, "same_size": false}
+{"task": "72ca375d", "v": 14, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 0, "recolour": 3, "same_size": false}
+{"task": "72ca375d", "v": 14, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 0, "recolour": 3, "same_size": false}
+{"task": "73251a56", "v": 15, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "7447852a", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "7447852a", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "7447852a", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "7447852a", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "74dd1130", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 1, "extra": 3, "recolour": 3, "same_size": true}
+{"task": "74dd1130", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "74dd1130", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "74dd1130", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "74dd1130", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 2, "extra": 3, "recolour": 1, "same_size": true}
+{"task": "74dd1130", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 2, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "74dd1130", "v": 13, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "74dd1130", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 1, "extra": 5, "recolour": 1, "same_size": true}
+{"task": "74dd1130", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 1, "recolour": 2, "same_size": true}
+{"task": "74dd1130", "v": 19, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 1, "recolour": 2, "same_size": true}
+{"task": "776ffc46", "v": 15, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 17, "missing": 3, "extra": 14, "recolour": 0, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors4", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "794b24be", "v": 3, "dir": "priors4", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "794b24be", "v": 9, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "794b24be", "v": 9, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "794b24be", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "794b24be", "v": 16, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "794b24be", "v": 16, "dir": "priors4", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "794b24be", "v": 16, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "7b6016b9", "v": 2, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 473, "missing": 473, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 5, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 432, "missing": 432, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 7, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 521, "missing": 521, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 9, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 389, "missing": 389, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 12, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 402, "missing": 402, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 15, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 459, "missing": 459, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 17, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 406, "missing": 406, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "v": 19, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 359, "missing": 359, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7ddcd7ec", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 5, "missing": 5, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "7fe24cdd", "v": 0, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 4, "extra": 12, "recolour": 8, "same_size": false}
+{"task": "7fe24cdd", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 24, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "7fe24cdd", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "7fe24cdd", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 0, "extra": 12, "recolour": 12, "same_size": false}
+{"task": "810b9b61", "v": 3, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 25, "missing": 12, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "810b9b61", "v": 3, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 25, "missing": 12, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "810b9b61", "v": 7, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "810b9b61", "v": 7, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "810b9b61", "v": 14, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 9, "missing": 0, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "810b9b61", "v": 14, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 9, "missing": 0, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "834ec97d", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "8403a5d5", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 72, "missing": 49, "extra": 19, "recolour": 4, "same_size": true}
+{"task": "8403a5d5", "v": 18, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 80, "missing": 35, "extra": 38, "recolour": 7, "same_size": true}
+{"task": "846bdb03", "v": 6, "dir": "priors3", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 16, "missing": 6, "extra": 6, "recolour": 4, "same_size": false}
+{"task": "846bdb03", "v": 6, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 16, "missing": 6, "extra": 6, "recolour": 4, "same_size": false}
+{"task": "846bdb03", "v": 19, "dir": "priors3", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 10, "missing": 2, "extra": 2, "recolour": 6, "same_size": false}
+{"task": "846bdb03", "v": 19, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 10, "missing": 2, "extra": 2, "recolour": 6, "same_size": false}
+{"task": "868de0fa", "v": 18, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 25, "missing": 25, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "88a62173", "v": 0, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 6, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 6, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 6, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 12, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 12, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 12, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 12, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 12, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "88a62173", "v": 12, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 15, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 15, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "88a62173", "v": 19, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "8a004b2b", "v": 10, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "size", "slot": "-"}
+{"task": "8a004b2b", "v": 18, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "size", "slot": "-"}
+{"task": "8be77c9e", "v": 7, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "8be77c9e", "v": 7, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "8be77c9e", "v": 12, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "8be77c9e", "v": 12, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": false}
+{"task": "8eb1be9a", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "8eb1be9a", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "8eb1be9a", "v": 18, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 40, "missing": 0, "extra": 40, "recolour": 0, "same_size": true}
+{"task": "913fb3ed", "v": 11, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "913fb3ed", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "91413438", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": true, "label": "size", "slot": "-"}
+{"task": "91413438", "v": 5, "dir": "priors4", "family": "kronecker_tiling", "member": true, "label": "size", "slot": "-"}
+{"task": "91714a58", "v": 9, "dir": "priors3", "family": "translate_object", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "91714a58", "v": 9, "dir": "priors4", "family": "translate_object", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 6, "missing": 0, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "91714a58", "v": 12, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 22, "missing": 12, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "91714a58", "v": 12, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 50}
+{"task": "91714a58", "v": 12, "dir": "priors4", "family": "translate_object", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 50}
+{"task": "93b581b8", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 5, "extra": 5, "recolour": 6, "same_size": true}
+{"task": "93b581b8", "v": 2, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 0, "extra": 4, "recolour": 10, "same_size": true}
+{"task": "93b581b8", "v": 5, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 1, "extra": 8, "recolour": 7, "same_size": true}
+{"task": "93b581b8", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 3, "extra": 12, "recolour": 3, "same_size": true}
+{"task": "93b581b8", "v": 5, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 11, "missing": 0, "extra": 8, "recolour": 3, "same_size": true}
+{"task": "93b581b8", "v": 8, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 10, "missing": 3, "extra": 4, "recolour": 3, "same_size": true}
+{"task": "93b581b8", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 3, "extra": 6, "recolour": 9, "same_size": true}
+{"task": "93b581b8", "v": 13, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 17, "missing": 1, "extra": 6, "recolour": 10, "same_size": true}
+{"task": "93b581b8", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 11, "missing": 8, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "941d9a10", "v": 0, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "accept_overlap", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "9565186b", "v": 1, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 0, "extra": 1, "recolour": 1, "same_size": true}
+{"task": "9565186b", "v": 1, "dir": "priors4", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 0, "extra": 1, "recolour": 1, "same_size": true}
+{"task": "9565186b", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 5, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "9565186b", "v": 5, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "9565186b", "v": 5, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 5, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "9565186b", "v": 7, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 7, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "9565186b", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 9, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "9565186b", "v": 14, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9565186b", "v": 17, "dir": "priors3", "family": "translate_object", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "963e52fc", "v": 8, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 10, "missing": 0, "extra": 0, "recolour": 10, "same_size": false}
+{"task": "963e52fc", "v": 8, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 10, "missing": 0, "extra": 0, "recolour": 10, "same_size": false}
+{"task": "963e52fc", "v": 13, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "colour_only", "slot": "colour", "residual": 12, "missing": 0, "extra": 0, "recolour": 12, "same_size": false}
+{"task": "963e52fc", "v": 17, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 20, "missing": 0, "extra": 20, "recolour": 0, "same_size": false}
+{"task": "98cf29f8", "v": 12, "dir": "priors3", "family": "translate_object", "member": true, "label": "anchor_other", "slot": "anchor", "residual": 34, "missing": 34, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "98cf29f8", "v": 12, "dir": "priors4", "family": "translate_object", "member": true, "label": "anchor_other", "slot": "anchor", "residual": 34, "missing": 34, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "98cf29f8", "v": 19, "dir": "priors3", "family": "translate_object", "member": true, "label": "anchor_other", "slot": "anchor", "residual": 28, "missing": 28, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "98cf29f8", "v": 19, "dir": "priors4", "family": "translate_object", "member": true, "label": "anchor_other", "slot": "anchor", "residual": 28, "missing": 28, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "995c5fa3", "v": 7, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": false}
+{"task": "995c5fa3", "v": 10, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": false}
+{"task": "9af7a82c", "v": 18, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9af7a82c", "v": 18, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "9f236235", "v": 18, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "size", "slot": "-"}
+{"task": "a3325580", "v": 16, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a3df8b1e", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a3df8b1e", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a3df8b1e", "v": 15, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a3df8b1e", "v": 15, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a5f85a15", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "a65b410d", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "a65b410d", "v": 6, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 13, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "a65b410d", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 2}
+{"task": "a65b410d", "v": 12, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 17, "missing": 15, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "a65b410d", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "a699fb00", "v": 19, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "a699fb00", "v": 19, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "a740d043", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 0, "recolour": 4, "same_size": false}
+{"task": "a740d043", "v": 9, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 0, "recolour": 4, "same_size": false}
+{"task": "a78176bb", "v": 13, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 5, "missing": 5, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "a85d4709", "v": 6, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "a85d4709", "v": 11, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "a85d4709", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "a87f7484", "v": 0, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 0, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 2, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 2, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 7, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 7, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 10, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 1, "recolour": 4, "same_size": false}
+{"task": "a87f7484", "v": 10, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 1, "recolour": 4, "same_size": false}
+{"task": "a87f7484", "v": 12, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 12, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 12, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 12, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 14, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 14, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 14, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "a87f7484", "v": 14, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "a9f96cdd", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 4, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "a9f96cdd", "v": 10, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 2, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "a9f96cdd", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "aabf363d", "v": 2, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 6, "extra": 9, "recolour": 9, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 15, "missing": 0, "extra": 0, "recolour": 15, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "aabf363d", "v": 4, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "aabf363d", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 16, "missing": 0, "extra": 0, "recolour": 16, "same_size": true}
+{"task": "aabf363d", "v": 10, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 14, "missing": 0, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 10, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "aabf363d", "v": 10, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 1, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 22, "missing": 8, "extra": 7, "recolour": 7, "same_size": true}
+{"task": "aabf363d", "v": 10, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 1, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 13, "missing": 0, "extra": 0, "recolour": 13, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 13, "missing": 1, "extra": 0, "recolour": 12, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 14, "missing": 0, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "colour_only", "slot": "colour", "residual": 14, "missing": 0, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 14, "missing": 0, "extra": 0, "recolour": 14, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 0, "extra": 1, "recolour": 13, "same_size": true}
+{"task": "aabf363d", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "ae3edfdc", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "aedd82e4", "v": 4, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "aedd82e4", "v": 12, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "aedd82e4", "v": 12, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "aedd82e4", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "aedd82e4", "v": 19, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "af902bf9", "v": 13, "dir": "priors3", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 20, "missing": 3, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "af902bf9", "v": 13, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "mixed", "slot": "-", "residual": 20, "missing": 3, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "af902bf9", "v": 16, "dir": "priors3", "family": "rectangle_from_delimiters", "member": true, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "af902bf9", "v": 16, "dir": "priors4", "family": "rectangle_from_delimiters", "member": true, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "b0c4d837", "v": 13, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "b1948b0a", "v": 2, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "b1948b0a", "v": 2, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "b1948b0a", "v": 5, "dir": "priors4", "family": "distance_rings_halo", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "b1948b0a", "v": 5, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "b1948b0a", "v": 5, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "b1948b0a", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 11, "missing": 3, "extra": 8, "recolour": 0, "same_size": true}
+{"task": "b27ca6d3", "v": 5, "dir": "priors3", "family": "distance_rings_halo", "member": false, "label": "accept_extra", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "b27ca6d3", "v": 5, "dir": "priors4", "family": "distance_rings_halo", "member": false, "label": "accept_extra", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "b8cdaf2b", "v": 4, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b8cdaf2b", "v": 4, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 17, "missing": 0, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "b8cdaf2b", "v": 7, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b8cdaf2b", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b8cdaf2b", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 5, "recolour": 0, "same_size": true}
+{"task": "b8cdaf2b", "v": 19, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b8cdaf2b", "v": 19, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "b94a9452", "v": 0, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "size", "slot": "-"}
+{"task": "b94a9452", "v": 0, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b9b7f026", "v": 5, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "b9b7f026", "v": 5, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "b9b7f026", "v": 10, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "size", "slot": "-"}
+{"task": "b9b7f026", "v": 10, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "b9b7f026", "v": 12, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "size", "slot": "-"}
+{"task": "ba26e723", "v": 5, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ba26e723", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ba26e723", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ba26e723", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ba97ae07", "v": 0, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ba97ae07", "v": 0, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ba97ae07", "v": 3, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors4", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 6, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 9, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ba97ae07", "v": 9, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ba97ae07", "v": 11, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 15, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 15, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 19, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 19, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 100, "missing": 4, "extra": 96, "recolour": 0, "same_size": true}
+{"task": "ba97ae07", "v": 19, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 100, "missing": 4, "extra": 96, "recolour": 0, "same_size": true}
+{"task": "bb43febb", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bb43febb", "v": 17, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bbc9ae5d", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "size", "slot": "-"}
+{"task": "bbc9ae5d", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bbc9ae5d", "v": 3, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "size", "slot": "-"}
+{"task": "bbc9ae5d", "v": 12, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bda2d7a6", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "bda2d7a6", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bda2d7a6", "v": 13, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 52, "missing": 17, "extra": 0, "recolour": 35, "same_size": true}
+{"task": "bda2d7a6", "v": 13, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 26, "missing": 13, "extra": 0, "recolour": 13, "same_size": true}
+{"task": "bda2d7a6", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 64, "missing": 32, "extra": 0, "recolour": 32, "same_size": true}
+{"task": "bda2d7a6", "v": 19, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "bda2d7a6", "v": 19, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 26, "missing": 13, "extra": 0, "recolour": 13, "same_size": true}
+{"task": "bdad9b1f", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 3, "extra": 7, "recolour": 2, "same_size": true}
+{"task": "bdad9b1f", "v": 2, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 3, "extra": 7, "recolour": 2, "same_size": true}
+{"task": "bdad9b1f", "v": 13, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 3, "extra": 7, "recolour": 2, "same_size": true}
+{"task": "bdad9b1f", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 12, "missing": 3, "extra": 7, "recolour": 2, "same_size": true}
+{"task": "be94b721", "v": 7, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "beb8660c", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 46, "missing": 20, "extra": 7, "recolour": 19, "same_size": true}
+{"task": "beb8660c", "v": 17, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 33, "missing": 13, "extra": 5, "recolour": 15, "same_size": true}
+{"task": "c0f76784", "v": 7, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "c3e719e8", "v": 2, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "c3e719e8", "v": 11, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 65, "missing": 65, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "c3f564a4", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "c3f564a4", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "c3f564a4", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "c3f564a4", "v": 19, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "c8cbb738", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "c8f0f002", "v": 1, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 0, "extra": 4, "recolour": 2, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "colour_from_nearest_seed", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 13, "missing": 4, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 4, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 17, "missing": 4, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "colour_from_nearest_seed", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "conditional_line_fill", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 13, "missing": 4, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 4, "extra": 12, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 17, "missing": 4, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 3, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 4, "extra": 11, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 5, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 13, "missing": 4, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 8, "dir": "priors3", "family": "translate_object", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 0, "extra": 3, "recolour": 1, "same_size": true}
+{"task": "c8f0f002", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 10, "missing": 0, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 12, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 12, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "c8f0f002", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "c8f0f002", "v": 17, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "c8f0f002", "v": 17, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "c8f0f002", "v": 19, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "c909285e", "v": 18, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "c909285e", "v": 18, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "size", "slot": "-"}
+{"task": "c9e6f938", "v": 3, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "c9e6f938", "v": 3, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 4, "recolour": 0, "same_size": false}
+{"task": "caa06a1f", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 270, "missing": 131, "extra": 0, "recolour": 139, "same_size": true}
+{"task": "cbded52d", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 4, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 1, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 8, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 8, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 8, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 11, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 11, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 11, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 14, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 2, "extra": 6, "recolour": 0, "same_size": true}
+{"task": "cbded52d", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "cce03e0d", "v": 5, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 0, "extra": 16, "recolour": 8, "same_size": false}
+{"task": "cce03e0d", "v": 5, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 24, "missing": 0, "extra": 16, "recolour": 8, "same_size": false}
+{"task": "cce03e0d", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 30, "missing": 12, "extra": 12, "recolour": 6, "same_size": false}
+{"task": "ce602527", "v": 12, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ce602527", "v": 12, "dir": "priors3", "family": "select_odd_or_extremal", "member": true, "label": "size", "slot": "-"}
+{"task": "ce602527", "v": 12, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "ce602527", "v": 12, "dir": "priors4", "family": "select_odd_or_extremal", "member": true, "label": "size", "slot": "-"}
+{"task": "d037b0a7", "v": 1, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 1, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 5, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 0, "extra": 1, "recolour": 1, "same_size": true}
+{"task": "d037b0a7", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "d037b0a7", "v": 7, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "d037b0a7", "v": 10, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "d037b0a7", "v": 10, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 13, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 13, "dir": "priors3", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "d037b0a7", "v": 13, "dir": "priors3", "family": "turtle_path_walk", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d037b0a7", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 13, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 13, "dir": "priors4", "family": "translate_object", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "d037b0a7", "v": 13, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d037b0a7", "v": 15, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 2, "missing": 0, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "d037b0a7", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 2, "missing": 1, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "d037b0a7", "v": 17, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "d037b0a7", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "v": 19, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d0f5fe59", "v": 10, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "d0f5fe59", "v": 10, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "d13f3404", "v": 10, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 13, "missing": 13, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "d23f8c26", "v": 3, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d23f8c26", "v": 3, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d23f8c26", "v": 3, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d23f8c26", "v": 9, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "v": 9, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "v": 13, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "v": 13, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "v": 16, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "d43fd935", "v": 0, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 0, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 4, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 0, "recolour": 5, "same_size": true}
+{"task": "d43fd935", "v": 4, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 0, "extra": 8, "recolour": 1, "same_size": true}
+{"task": "d43fd935", "v": 4, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 0, "extra": 8, "recolour": 1, "same_size": true}
+{"task": "d43fd935", "v": 7, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 5, "missing": 0, "extra": 5, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 7, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 5, "missing": 0, "extra": 5, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 12, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 12, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 14, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 14, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 17, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 6, "missing": 6, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d43fd935", "v": 17, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "mixed", "slot": "-", "residual": 8, "missing": 6, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "d4469b4b", "v": 2, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "d4469b4b", "v": 2, "dir": "priors4", "family": "learned_key_table", "member": true, "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": false}
+{"task": "d4469b4b", "v": 7, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "d4469b4b", "v": 9, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "d4469b4b", "v": 14, "dir": "priors3", "family": "learned_key_table", "member": true, "label": "size", "slot": "-"}
+{"task": "d4469b4b", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": true, "label": "mixed", "slot": "-", "residual": 6, "missing": 4, "extra": 0, "recolour": 2, "same_size": false}
+{"task": "d4a91cb9", "v": 9, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d4a91cb9", "v": 9, "dir": "priors4", "family": "conditional_line_fill", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 7, "missing": 7, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d4f3cd78", "v": 4, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 44, "missing": 7, "extra": 33, "recolour": 4, "same_size": true}
+{"task": "d4f3cd78", "v": 4, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 44, "missing": 7, "extra": 33, "recolour": 4, "same_size": true}
+{"task": "d511f180", "v": 1, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "d511f180", "v": 3, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "d511f180", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 10, "missing": 6, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 9, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "d511f180", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 15, "missing": 6, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 12, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "d511f180", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 4, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 15, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "d511f180", "v": 15, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 15, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 15, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 15, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 9, "missing": 1, "extra": 6, "recolour": 2, "same_size": true}
+{"task": "d511f180", "v": 17, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "d511f180", "v": 17, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 11, "missing": 4, "extra": 7, "recolour": 0, "same_size": true}
+{"task": "d511f180", "v": 19, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 17, "missing": 17, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d631b094", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "d631b094", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "d89b689b", "v": 5, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 4, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "d90796e8", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d90796e8", "v": 0, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 2, "recolour": 2, "same_size": true}
+{"task": "d90796e8", "v": 3, "dir": "priors3", "family": "template_cover_completion", "member": false, "label": "colour_only", "slot": "colour", "residual": 2, "missing": 0, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "d90796e8", "v": 9, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d90796e8", "v": 16, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "accept_overlap", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "d9fac9be", "v": 3, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 3, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 6, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "d9fac9be", "v": 6, "dir": "priors3", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "d9fac9be", "v": 6, "dir": "priors4", "family": "select_odd_or_extremal", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "d9fac9be", "v": 9, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 9, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 11, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 11, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 17, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "d9fac9be", "v": 17, "dir": "priors3", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d9fac9be", "v": 17, "dir": "priors4", "family": "pack_objects_in_order", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "db3e9e38", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "db3e9e38", "v": 0, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "db3e9e38", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "db3e9e38", "v": 9, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "on_stop_turn", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "db93a21d", "v": 0, "dir": "priors3", "family": "distance_rings_halo", "member": true, "label": "mixed", "slot": "-", "residual": 34, "missing": 22, "extra": 0, "recolour": 12, "same_size": true}
+{"task": "dc1df850", "v": 1, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "dc1df850", "v": 1, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "size", "slot": "-"}
+{"task": "dc1df850", "v": 6, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "dc1df850", "v": 6, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "dc1df850", "v": 13, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 6, "extra": 10, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 2, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 2, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 9, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 9, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "dc433765", "v": 9, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 2, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 9, "dir": "priors4", "family": "bridge_aligned_pairs", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 9, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "dc433765", "v": 9, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 2, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors3", "family": "bridge_aligned_pairs", "member": false, "label": "accept_extra", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 2, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors4", "family": "bridge_aligned_pairs", "member": false, "label": "accept_extra", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "accept_extra", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 12, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 2, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "dc433765", "v": 15, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "dc433765", "v": 15, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "dc433765", "v": 18, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "dc433765", "v": 18, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 1}
+{"task": "ddf7fa4f", "v": 5, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 16, "missing": 0, "extra": 0, "recolour": 16, "same_size": true}
+{"task": "de1cd16c", "v": 0, "dir": "priors3", "family": "select_odd_or_extremal", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 0, "dir": "priors4", "family": "select_odd_or_extremal", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 3, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 3, "dir": "priors3", "family": "select_odd_or_extremal", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 3, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 3, "dir": "priors4", "family": "select_odd_or_extremal", "member": true, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 6, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 6, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 8, "dir": "priors3", "family": "select_odd_or_extremal", "member": true, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "de1cd16c", "v": 8, "dir": "priors4", "family": "select_odd_or_extremal", "member": true, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "de1cd16c", "v": 10, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 10, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 16, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "de1cd16c", "v": 16, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "ded97339", "v": 6, "dir": "priors3", "family": "conditional_line_fill", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 6, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 5, "missing": 5, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 6, "dir": "priors4", "family": "conditional_line_fill", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 6, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 5, "missing": 5, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 10, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 10, "dir": "priors3", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 10, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 10, "dir": "priors4", "family": "mirror_symmetry_completion", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 18, "dir": "priors3", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "ded97339", "v": 18, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_midpoint", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "e179c5f4", "v": 0, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "e179c5f4", "v": 0, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "e179c5f4", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "e179c5f4", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "e48d4e1a", "v": 0, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 34, "missing": 17, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "e48d4e1a", "v": 4, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 19, "missing": 17, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "e48d4e1a", "v": 7, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 34, "missing": 17, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "e48d4e1a", "v": 11, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 34, "missing": 17, "extra": 17, "recolour": 0, "same_size": true}
+{"task": "e48d4e1a", "v": 13, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 19, "missing": 17, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "e48d4e1a", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 19, "missing": 17, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "e50d258f", "v": 18, "dir": "priors3", "family": "dock_piece_by_matching", "member": false, "label": "size", "slot": "-"}
+{"task": "e50d258f", "v": 18, "dir": "priors4", "family": "dock_piece_by_matching", "member": false, "label": "size", "slot": "-"}
+{"task": "e73095fd", "v": 15, "dir": "priors3", "family": "rectangle_from_delimiters", "member": false, "label": "accept_extra", "slot": "accept", "residual": 28, "missing": 0, "extra": 28, "recolour": 0, "same_size": true}
+{"task": "e73095fd", "v": 15, "dir": "priors4", "family": "rectangle_from_delimiters", "member": false, "label": "accept_extra", "slot": "accept", "residual": 28, "missing": 0, "extra": 28, "recolour": 0, "same_size": true}
+{"task": "e76a88a6", "v": 1, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 32, "missing": 0, "extra": 8, "recolour": 24, "same_size": true}
+{"task": "e76a88a6", "v": 1, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 0, "extra": 4, "recolour": 12, "same_size": true}
+{"task": "e76a88a6", "v": 7, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 0, "extra": 6, "recolour": 12, "same_size": true}
+{"task": "e76a88a6", "v": 7, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 0, "extra": 6, "recolour": 12, "same_size": true}
+{"task": "e76a88a6", "v": 18, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "colour_only", "slot": "colour", "residual": 27, "missing": 0, "extra": 0, "recolour": 27, "same_size": true}
+{"task": "e76a88a6", "v": 18, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 16, "missing": 0, "extra": 4, "recolour": 12, "same_size": true}
+{"task": "e98196ab", "v": 0, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 19, "missing": 13, "extra": 5, "recolour": 1, "same_size": false}
+{"task": "e98196ab", "v": 13, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 18, "missing": 11, "extra": 6, "recolour": 1, "same_size": false}
+{"task": "e9afcf9a", "v": 3, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "e9afcf9a", "v": 3, "dir": "priors4", "family": "kronecker_tiling", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "e9afcf9a", "v": 12, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "shift", "slot": "anchor", "residual": 12, "missing": 6, "extra": 6, "recolour": 0, "same_size": true, "shift": [0, 1]}
+{"task": "e9afcf9a", "v": 15, "dir": "priors3", "family": "kronecker_tiling", "member": false, "label": "size", "slot": "-"}
+{"task": "e9afcf9a", "v": 15, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ea786f4a", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ea786f4a", "v": 19, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ea786f4a", "v": 19, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb281b96", "v": 4, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb281b96", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb281b96", "v": 19, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb281b96", "v": 19, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb5a1d5d", "v": 14, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "eb5a1d5d", "v": 18, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "ec883f72", "v": 6, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "accept_extra", "slot": "accept", "residual": 2, "missing": 0, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "ed36ccf7", "v": 2, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 6, "missing": 4, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "ed36ccf7", "v": 14, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 5, "missing": 2, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "ed36ccf7", "v": 17, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "f2829549", "v": 11, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "f5b8619d", "v": 7, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "f5b8619d", "v": 16, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 32, "missing": 32, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "f5b8619d", "v": 16, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 32, "missing": 32, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "f76d97a5", "v": 2, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 2, "missing": 0, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "f76d97a5", "v": 2, "dir": "priors4", "family": "turtle_path_walk", "member": false, "label": "size", "slot": "-"}
+{"task": "f76d97a5", "v": 10, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "f76d97a5", "v": 15, "dir": "priors4", "family": "ray_cast_to_stop", "member": false, "label": "anchor_inter", "slot": "anchor", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "f76d97a5", "v": 17, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "colour_only", "slot": "colour", "residual": 5, "missing": 0, "extra": 0, "recolour": 5, "same_size": true}
+{"task": "f8c80d96", "v": 8, "dir": "priors3", "family": "distance_rings_halo", "member": true, "label": "colour_only", "slot": "colour", "residual": 20, "missing": 0, "extra": 0, "recolour": 20, "same_size": true}
+{"task": "f8c80d96", "v": 8, "dir": "priors4", "family": "distance_rings_halo", "member": true, "label": "colour_only", "slot": "colour", "residual": 20, "missing": 0, "extra": 0, "recolour": 20, "same_size": true}
+{"task": "f8c80d96", "v": 18, "dir": "priors3", "family": "distance_rings_halo", "member": true, "label": "colour_only", "slot": "colour", "residual": 27, "missing": 0, "extra": 0, "recolour": 27, "same_size": true}
+{"task": "f8c80d96", "v": 18, "dir": "priors4", "family": "distance_rings_halo", "member": true, "label": "colour_only", "slot": "colour", "residual": 27, "missing": 0, "extra": 0, "recolour": 27, "same_size": true}
+{"task": "f8ff0b80", "v": 1, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "f8ff0b80", "v": 8, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 3, "missing": 1, "extra": 0, "recolour": 2, "same_size": false}
+{"task": "f8ff0b80", "v": 14, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 2, "missing": 0, "extra": 0, "recolour": 2, "same_size": false}
+{"task": "f8ff0b80", "v": 16, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": false}
+{"task": "f9012d9b", "v": 8, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "f9012d9b", "v": 8, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "size", "slot": "-"}
+{"task": "f9012d9b", "v": 16, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "f9012d9b", "v": 16, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": false}
+{"task": "fcc82909", "v": 0, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "fcc82909", "v": 0, "dir": "priors3", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "fcc82909", "v": 0, "dir": "priors4", "family": "stamp_stencil_at_anchors", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "fcc82909", "v": 0, "dir": "priors4", "family": "translate_object", "member": false, "label": "anchor_other", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "fcc82909", "v": 12, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "fcc82909", "v": 18, "dir": "priors3", "family": "stamp_stencil_at_anchors", "member": false, "label": "mixed", "slot": "-", "residual": 14, "missing": 1, "extra": 13, "recolour": 0, "same_size": true}
+{"task": "ff28f65a", "v": 13, "dir": "priors3", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "ff28f65a", "v": 13, "dir": "priors3", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "ff28f65a", "v": 13, "dir": "priors4", "family": "count_bar_chart", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}
+{"task": "ff28f65a", "v": 13, "dir": "priors4", "family": "learned_key_table", "member": false, "label": "mixed", "slot": "-", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": false}

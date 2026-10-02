@@ -1,0 +1,677 @@
+[
+ {
+  "name": "fn_0",
+  "arity": 2,
+  "uses": 8431,
+  "programs": 1745,
+  "modules": 149,
+  "cum_compression": 1.067,
+  "body": "(Call #1 (/seq #0) nil)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    56
+   ],
+   [
+    "compose_objmap2.py",
+    36
+   ],
+   [
+    "compose_objmap.py",
+    35
+   ],
+   [
+    "prior_arithmetic.py",
+    34
+   ]
+  ]
+ },
+ {
+  "name": "fn_1",
+  "arity": 3,
+  "uses": 6113,
+  "programs": 1304,
+  "modules": 147,
+  "cum_compression": 1.122,
+  "body": "(Compare #2 (/seq #1) (/seq #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    38
+   ],
+   [
+    "compose_objmap2.py",
+    34
+   ],
+   [
+    "compose_objmap.py",
+    33
+   ],
+   [
+    "prior_arithmetic.py",
+    27
+   ]
+  ]
+ },
+ {
+  "name": "fn_2",
+  "arity": 1,
+  "uses": 7172,
+  "programs": 1368,
+  "modules": 149,
+  "cum_compression": 1.156,
+  "body": "(Assign (/seq #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    41
+   ],
+   [
+    "compose_objmap2.py",
+    34
+   ],
+   [
+    "compose_objmap.py",
+    32
+   ],
+   [
+    "prior_arithmetic.py",
+    31
+   ]
+  ]
+ },
+ {
+  "name": "fn_3",
+  "arity": 2,
+  "uses": 3145,
+  "programs": 772,
+  "modules": 144,
+  "cum_compression": 1.189,
+  "body": "(If #1 (/seq #0) nil)",
+  "top_modules": [
+   [
+    "compose_objmap2.py",
+    19
+   ],
+   [
+    "compose_objmap.py",
+    18
+   ],
+   [
+    "prior4_bridge_aligned_pairs.py",
+    14
+   ],
+   [
+    "compose_lift.py",
+    13
+   ]
+  ]
+ },
+ {
+  "name": "fn_4",
+  "arity": 2,
+  "uses": 6248,
+  "programs": 1463,
+  "modules": 149,
+  "cum_compression": 1.223,
+  "body": "(Tuple (/seq #1 #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    37
+   ],
+   [
+    "compose_objmap2.py",
+    33
+   ],
+   [
+    "compose_objmap.py",
+    30
+   ],
+   [
+    "prior_arithmetic.py",
+    29
+   ]
+  ]
+ },
+ {
+  "name": "fn_5",
+  "arity": 2,
+  "uses": 2389,
+  "programs": 937,
+  "modules": 144,
+  "cum_compression": 1.25,
+  "body": "(/seq (comprehension #1 #0 nil))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    30
+   ],
+   [
+    "prior3_pack_objects_in_order.py",
+    15
+   ],
+   [
+    "prior3_learned_key_table.py",
+    14
+   ],
+   [
+    "prior4_learned_key_table.py",
+    14
+   ]
+  ]
+ },
+ {
+  "name": "fn_6",
+  "arity": 2,
+  "uses": 3331,
+  "programs": 963,
+  "modules": 148,
+  "cum_compression": 1.27,
+  "body": "(Call #1 #0 nil)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    29
+   ],
+   [
+    "prior4_distance_rings_halo.py",
+    19
+   ],
+   [
+    "prior_geometry.py",
+    19
+   ],
+   [
+    "prior4_mirror_symmetry_completion.py",
+    18
+   ]
+  ]
+ },
+ {
+  "name": "fn_7",
+  "arity": 2,
+  "uses": 2819,
+  "programs": 1493,
+  "modules": 149,
+  "cum_compression": 1.287,
+  "body": "(/seq (fn_2 #1 #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    47
+   ],
+   [
+    "compose_objmap2.py",
+    28
+   ],
+   [
+    "compose_objmap.py",
+    27
+   ],
+   [
+    "compose_ctx.py",
+    22
+   ]
+  ]
+ },
+ {
+  "name": "fn_8",
+  "arity": 1,
+  "uses": 447,
+  "programs": 351,
+  "modules": 133,
+  "cum_compression": 1.304,
+  "body": "(arguments nil #0 None nil nil None nil)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    10
+   ],
+   [
+    "prior3_pack_objects_in_order.py",
+    9
+   ],
+   [
+    "prior2_pack_objects_in_order.py",
+    8
+   ],
+   [
+    "prior2_template_cover_completion.py",
+    8
+   ]
+  ]
+ },
+ {
+  "name": "fn_9",
+  "arity": 1,
+  "uses": 2433,
+  "programs": 728,
+  "modules": 142,
+  "cum_compression": 1.319,
+  "body": "(fn_1 #0 Eq)",
+  "top_modules": [
+   [
+    "prior_arithmetic.py",
+    21
+   ],
+   [
+    "prior_abduced.py",
+    18
+   ],
+   [
+    "compose_objmap2.py",
+    17
+   ],
+   [
+    "compose_objmap.py",
+    15
+   ]
+  ]
+ },
+ {
+  "name": "fn_10",
+  "arity": 3,
+  "uses": 2152,
+  "programs": 1033,
+  "modules": 149,
+  "cum_compression": 1.333,
+  "body": "(For #2 #1 #0 nil)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    27
+   ],
+   [
+    "prior_abduced.py",
+    20
+   ],
+   [
+    "compose_objmap.py",
+    19
+   ],
+   [
+    "compose_objmap2.py",
+    19
+   ]
+  ]
+ },
+ {
+  "name": "fn_11",
+  "arity": 2,
+  "uses": 694,
+  "programs": 417,
+  "modules": 131,
+  "cum_compression": 1.347,
+  "body": "(Expr (fn_0 #1 (Attribute #0 a_append)))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    13
+   ],
+   [
+    "prior4_learned_key_table.py",
+    12
+   ],
+   [
+    "fam_recolour_objects.py",
+    9
+   ],
+   [
+    "prior2_template_cover_completion.py",
+    9
+   ]
+  ]
+ },
+ {
+  "name": "fn_12",
+  "arity": 1,
+  "uses": 1936,
+  "programs": 711,
+  "modules": 145,
+  "cum_compression": 1.361,
+  "body": "(BinOp #0 Add)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    26
+   ],
+   [
+    "compose_objmap2.py",
+    25
+   ],
+   [
+    "compose_objmap.py",
+    24
+   ],
+   [
+    "prior3_pack_objects_in_order.py",
+    18
+   ]
+  ]
+ },
+ {
+  "name": "fn_13",
+  "arity": 1,
+  "uses": 1911,
+  "programs": 982,
+  "modules": 141,
+  "cum_compression": 1.374,
+  "body": "(fn_3 (Return #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    31
+   ],
+   [
+    "prior_arithmetic.py",
+    26
+   ],
+   [
+    "compose_objmap2.py",
+    22
+   ],
+   [
+    "prior_geometry.py",
+    22
+   ]
+  ]
+ },
+ {
+  "name": "fn_14",
+  "arity": 3,
+  "uses": 172,
+  "programs": 158,
+  "modules": 88,
+  "cum_compression": 1.387,
+  "body": "(/seq (Compare i0 (/seq LtE Lt) #2) (Compare i0 (/seq LtE Lt) (/seq #1 #0)))",
+  "top_modules": [
+   [
+    "prior_topology.py",
+    6
+   ],
+   [
+    "concept_decorate.py",
+    4
+   ],
+   [
+    "compose_objmap.py",
+    3
+   ],
+   [
+    "compose_objmap2.py",
+    3
+   ]
+  ]
+ },
+ {
+  "name": "fn_15",
+  "arity": 1,
+  "uses": 1858,
+  "programs": 936,
+  "modules": 146,
+  "cum_compression": 1.401,
+  "body": "(Subscript #0 i0)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    25
+   ],
+   [
+    "compose_objmap2.py",
+    22
+   ],
+   [
+    "compose_objmap.py",
+    21
+   ],
+   [
+    "prior_arithmetic.py",
+    18
+   ]
+  ]
+ },
+ {
+  "name": "fn_16",
+  "arity": 3,
+  "uses": 805,
+  "programs": 465,
+  "modules": 129,
+  "cum_compression": 1.413,
+  "body": "(fn_0 (GeneratorExp #2 (fn_5 #1 #0)))",
+  "top_modules": [
+   [
+    "prior_abduced.py",
+    17
+   ],
+   [
+    "compose_lift.py",
+    15
+   ],
+   [
+    "compose_objmap2.py",
+    11
+   ],
+   [
+    "prior4_learned_key_table.py",
+    11
+   ]
+  ]
+ },
+ {
+  "name": "fn_17",
+  "arity": 1,
+  "uses": 1588,
+  "programs": 814,
+  "modules": 146,
+  "cum_compression": 1.425,
+  "body": "(fn_0 #0 g_len)",
+  "top_modules": [
+   [
+    "compose_ctx.py",
+    19
+   ],
+   [
+    "compose_objmap2.py",
+    19
+   ],
+   [
+    "compose_objmap.py",
+    18
+   ],
+   [
+    "prior4_kronecker_tiling.py",
+    14
+   ]
+  ]
+ },
+ {
+  "name": "fn_18",
+  "arity": 2,
+  "uses": 1571,
+  "programs": 886,
+  "modules": 144,
+  "cum_compression": 1.437,
+  "body": "(fn_6 (/seq #1 #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    31
+   ],
+   [
+    "prior_optics.py",
+    20
+   ],
+   [
+    "compose_objmap2.py",
+    19
+   ],
+   [
+    "compose_objmap.py",
+    18
+   ]
+  ]
+ },
+ {
+  "name": "fn_19",
+  "arity": 2,
+  "uses": 518,
+  "programs": 518,
+  "modules": 131,
+  "cum_compression": 1.449,
+  "body": "(/seq (Expr s) (fn_2 #1 #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    20
+   ],
+   [
+    "prior_arithmetic.py",
+    16
+   ],
+   [
+    "compose_objmap2.py",
+    15
+   ],
+   [
+    "compose_objmap.py",
+    14
+   ]
+  ]
+ },
+ {
+  "name": "fn_20",
+  "arity": 1,
+  "uses": 1403,
+  "programs": 523,
+  "modules": 133,
+  "cum_compression": 1.46,
+  "body": "(BinOp #0 Sub)",
+  "top_modules": [
+   [
+    "prior_arithmetic.py",
+    16
+   ],
+   [
+    "compose_lift.py",
+    14
+   ],
+   [
+    "fam_transform_objects.py",
+    13
+   ],
+   [
+    "compose_objmap.py",
+    12
+   ]
+  ]
+ },
+ {
+  "name": "fn_21",
+  "arity": 2,
+  "uses": 1360,
+  "programs": 638,
+  "modules": 134,
+  "cum_compression": 1.471,
+  "body": "(Subscript (Subscript #1 #0))",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    12
+   ],
+   [
+    "prior2_mirror_symmetry_completion.py",
+    12
+   ],
+   [
+    "prior3_mirror_symmetry_completion.py",
+    12
+   ],
+   [
+    "prior4_mirror_symmetry_completion.py",
+    12
+   ]
+  ]
+ },
+ {
+  "name": "fn_22",
+  "arity": 0,
+  "uses": 647,
+  "programs": 477,
+  "modules": 132,
+  "cum_compression": 1.481,
+  "body": "(fn_1 None Is)",
+  "top_modules": [
+   [
+    "compose_lift.py",
+    18
+   ],
+   [
+    "prior4_template_cover_completion.py",
+    16
+   ],
+   [
+    "prior2_template_cover_completion.py",
+    15
+   ],
+   [
+    "prior3_template_cover_completion.py",
+    15
+   ]
+  ]
+ },
+ {
+  "name": "fn_23",
+  "arity": 1,
+  "uses": 1194,
+  "programs": 403,
+  "modules": 115,
+  "cum_compression": 1.491,
+  "body": "(Subscript #0 s)",
+  "top_modules": [
+   [
+    "prior_abduced.py",
+    14
+   ],
+   [
+    "prior3_pack_objects_in_order.py",
+    12
+   ],
+   [
+    "prior4_pack_objects_in_order.py",
+    12
+   ],
+   [
+    "prior4_distance_rings_halo.py",
+    9
+   ]
+  ]
+ },
+ {
+  "name": "fn_24",
+  "arity": 0,
+  "uses": 1146,
+  "programs": 525,
+  "modules": 130,
+  "cum_compression": 1.501,
+  "body": "(fn_9 s)",
+  "top_modules": [
+   [
+    "prior_arithmetic.py",
+    18
+   ],
+   [
+    "compose_objmap2.py",
+    14
+   ],
+   [
+    "compose_objmap.py",
+    13
+   ],
+   [
+    "prior4_pack_objects_in_order.py",
+    11
+   ]
+  ]
+ }
+]

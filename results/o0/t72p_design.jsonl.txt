@@ -1,0 +1,124 @@
+{"task": "070dd51e", "dir": "priors3", "family": "bridge_aligned_pairs", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "60a26a3e", "dir": "priors3", "family": "bridge_aligned_pairs", "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "7d1f7ee8", "dir": "priors3", "family": "bridge_aligned_pairs", "label": "mixed", "slot": "-", "residual": 23, "missing": 4, "extra": 12, "recolour": 7, "same_size": true}
+{"task": "1a2e2828", "dir": "priors3", "family": "count_bar_chart", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "342dd610", "dir": "priors3", "family": "count_bar_chart", "label": "size", "slot": "-"}
+{"task": "681b3aeb", "dir": "priors3", "family": "count_bar_chart", "label": "colour_only", "slot": "colour", "residual": 9, "missing": 0, "extra": 0, "recolour": 9, "same_size": false}
+{"task": "aabf363d", "dir": "priors3", "family": "count_bar_chart", "label": "colour_only", "slot": "colour", "residual": 15, "missing": 0, "extra": 0, "recolour": 15, "same_size": true}
+{"task": "b9b7f026", "dir": "priors3", "family": "count_bar_chart", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "d631b094", "dir": "priors3", "family": "count_bar_chart", "label": "size", "slot": "-"}
+{"task": "e48d4e1a", "dir": "priors3", "family": "count_bar_chart", "label": "mixed", "slot": "-", "residual": 19, "missing": 17, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "7b6016b9", "dir": "priors3", "family": "distance_rings_halo", "label": "anchor_other", "slot": "anchor", "residual": 433, "missing": 433, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "b27ca6d3", "dir": "priors3", "family": "distance_rings_halo", "label": "accept_extra", "slot": "accept", "residual": 32, "missing": 0, "extra": 32, "recolour": 0, "same_size": true}
+{"task": "00576224", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "0692e18c", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "29c11459", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "3979b1a8", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "44f52bb0", "dir": "priors3", "family": "kronecker_tiling", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "5582e5ca", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "5614dbcf", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "6150a2bd", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "66e6c45b", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "aabf363d", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "ca8de6ea", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "d631b094", "dir": "priors3", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "e633a9e5", "dir": "priors3", "family": "kronecker_tiling", "label": "mixed", "slot": "-", "residual": 17, "missing": 0, "extra": 4, "recolour": 13, "same_size": false}
+{"task": "e9afcf9a", "dir": "priors3", "family": "kronecker_tiling", "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "12eac192", "dir": "priors3", "family": "learned_key_table", "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 13}
+{"task": "3aa6fb7a", "dir": "priors3", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "60b61512", "dir": "priors3", "family": "learned_key_table", "label": "on_stop_turn", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "63613498", "dir": "priors3", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "9f27f097", "dir": "priors3", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "aabf363d", "dir": "priors3", "family": "learned_key_table", "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "bb43febb", "dir": "priors3", "family": "learned_key_table", "label": "size", "slot": "-"}
+{"task": "d9fac9be", "dir": "priors3", "family": "learned_key_table", "label": "size", "slot": "-"}
+{"task": "e76a88a6", "dir": "priors3", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 36, "missing": 36, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "52df9849", "dir": "priors3", "family": "pack_objects_in_order", "label": "size", "slot": "-"}
+{"task": "d9fac9be", "dir": "priors3", "family": "pack_objects_in_order", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "1f876c06", "dir": "priors3", "family": "ray_cast_to_stop", "label": "mixed", "slot": "-", "residual": 6, "missing": 5, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "22168020", "dir": "priors3", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "dir": "priors3", "family": "ray_cast_to_stop", "label": "anchor_other", "slot": "anchor", "residual": 11, "missing": 11, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "dir": "priors3", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 26, "missing": 0, "extra": 26, "recolour": 0, "same_size": true}
+{"task": "4f537728", "dir": "priors3", "family": "ray_cast_to_stop", "label": "anchor_inter", "slot": "anchor", "residual": 46, "missing": 46, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "dir": "priors3", "family": "ray_cast_to_stop", "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "dir": "priors3", "family": "ray_cast_to_stop", "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d511f180", "dir": "priors3", "family": "ray_cast_to_stop", "label": "mixed", "slot": "-", "residual": 4, "missing": 2, "extra": 2, "recolour": 0, "same_size": true}
+{"task": "d5d6de2d", "dir": "priors3", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 112, "missing": 0, "extra": 112, "recolour": 0, "same_size": true}
+{"task": "52df9849", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "anchor_other", "slot": "anchor", "residual": 24, "missing": 24, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "60b61512", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "7ee1c6ea", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "anchor_other", "slot": "anchor", "residual": 28, "missing": 28, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "a5313dff", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "anchor_other", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "aabf363d", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "c8f0f002", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 3}
+{"task": "da6e95e5", "dir": "priors3", "family": "rectangle_from_delimiters", "label": "size", "slot": "-"}
+{"task": "39a8645d", "dir": "priors3", "family": "select_odd_or_extremal", "label": "mixed", "slot": "-", "residual": 6, "missing": 2, "extra": 0, "recolour": 4, "same_size": false}
+{"task": "48d8fb45", "dir": "priors3", "family": "select_odd_or_extremal", "label": "size", "slot": "-"}
+{"task": "73ccf9c2", "dir": "priors3", "family": "select_odd_or_extremal", "label": "size", "slot": "-"}
+{"task": "da2b0fe3", "dir": "priors3", "family": "select_odd_or_extremal", "label": "mixed", "slot": "-", "residual": 18, "missing": 9, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "0d3d703e", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "colour_only", "slot": "colour", "residual": 6, "missing": 0, "extra": 0, "recolour": 6, "same_size": true}
+{"task": "1e0a9b12", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 13, "missing": 4, "extra": 8, "recolour": 1, "same_size": true}
+{"task": "3befdf3e", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "anchor_other", "slot": "anchor", "residual": 64, "missing": 64, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "3c9b0459", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 7, "missing": 2, "extra": 2, "recolour": 3, "same_size": true}
+{"task": "4cd1b7b2", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "colour_only", "slot": "colour", "residual": 3, "missing": 0, "extra": 0, "recolour": 3, "same_size": true}
+{"task": "6150a2bd", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 6, "missing": 5, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "66e6c45b", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 5, "missing": 4, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "93b581b8", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 18, "missing": 1, "extra": 7, "recolour": 10, "same_size": true}
+{"task": "95a58926", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "accept_overlap", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "9dfd6313", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 8, "missing": 4, "extra": 2, "recolour": 2, "same_size": true}
+{"task": "a65b410d", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "aabf363d", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 0, "recolour": 1, "same_size": true}
+{"task": "d037b0a7", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "d23f8c26", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 5, "missing": 1, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d511f180", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d5d6de2d", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "accept_extra", "slot": "accept", "residual": 66, "missing": 0, "extra": 66, "recolour": 0, "same_size": true}
+{"task": "ea786f4a", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "on_stop_turn", "slot": "on_stop", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true, "tips": 12}
+{"task": "fc754716", "dir": "priors3", "family": "stamp_stencil_at_anchors", "label": "anchor_other", "slot": "anchor", "residual": 29, "missing": 29, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "6e82a1ae", "dir": "priors3", "family": "template_cover_completion", "label": "colour_only", "slot": "colour", "residual": 8, "missing": 0, "extra": 0, "recolour": 8, "same_size": true}
+{"task": "9565186b", "dir": "priors3", "family": "template_cover_completion", "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "a699fb00", "dir": "priors3", "family": "template_cover_completion", "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "4093f84a", "dir": "priors3", "family": "translate_object", "label": "mixed", "slot": "-", "residual": 10, "missing": 2, "extra": 0, "recolour": 8, "same_size": true}
+{"task": "5582e5ca", "dir": "priors3", "family": "translate_object", "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "7ee1c6ea", "dir": "priors3", "family": "translate_object", "label": "anchor_other", "slot": "anchor", "residual": 28, "missing": 28, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "9565186b", "dir": "priors3", "family": "translate_object", "label": "mixed", "slot": "-", "residual": 4, "missing": 0, "extra": 2, "recolour": 2, "same_size": true}
+{"task": "aabf363d", "dir": "priors3", "family": "translate_object", "label": "mixed", "slot": "-", "residual": 16, "missing": 15, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "dir": "priors4", "family": "bridge_aligned_pairs", "label": "accept_extra", "slot": "accept", "residual": 26, "missing": 0, "extra": 26, "recolour": 0, "same_size": true}
+{"task": "60a26a3e", "dir": "priors4", "family": "bridge_aligned_pairs", "label": "on_stop_paint", "slot": "on_stop", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true, "tips": 4}
+{"task": "d631b094", "dir": "priors4", "family": "count_bar_chart", "label": "size", "slot": "-"}
+{"task": "b27ca6d3", "dir": "priors4", "family": "distance_rings_halo", "label": "accept_extra", "slot": "accept", "residual": 32, "missing": 0, "extra": 32, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "dir": "priors4", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "66e6c45b", "dir": "priors4", "family": "kronecker_tiling", "label": "colour_only", "slot": "colour", "residual": 2, "missing": 0, "extra": 0, "recolour": 2, "same_size": true}
+{"task": "d631b094", "dir": "priors4", "family": "kronecker_tiling", "label": "size", "slot": "-"}
+{"task": "e9afcf9a", "dir": "priors4", "family": "kronecker_tiling", "label": "mixed", "slot": "-", "residual": 6, "missing": 3, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "3aa6fb7a", "dir": "priors4", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 1, "missing": 1, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "60b61512", "dir": "priors4", "family": "learned_key_table", "label": "on_stop_turn", "slot": "on_stop", "residual": 3, "missing": 3, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "9f27f097", "dir": "priors4", "family": "learned_key_table", "label": "anchor_inter", "slot": "anchor", "residual": 12, "missing": 12, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "bb43febb", "dir": "priors4", "family": "learned_key_table", "label": "size", "slot": "-"}
+{"task": "bda2d7a6", "dir": "priors4", "family": "learned_key_table", "label": "size", "slot": "-"}
+{"task": "e76a88a6", "dir": "priors4", "family": "learned_key_table", "label": "mixed", "slot": "-", "residual": 40, "missing": 36, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "52df9849", "dir": "priors4", "family": "pack_objects_in_order", "label": "size", "slot": "-"}
+{"task": "d9fac9be", "dir": "priors4", "family": "pack_objects_in_order", "label": "colour_only", "slot": "colour", "residual": 1, "missing": 0, "extra": 0, "recolour": 1, "same_size": false}
+{"task": "1f876c06", "dir": "priors4", "family": "ray_cast_to_stop", "label": "mixed", "slot": "-", "residual": 6, "missing": 5, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "22168020", "dir": "priors4", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 3, "missing": 0, "extra": 3, "recolour": 0, "same_size": true}
+{"task": "25d487eb", "dir": "priors4", "family": "ray_cast_to_stop", "label": "anchor_other", "slot": "anchor", "residual": 11, "missing": 11, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "2c608aff", "dir": "priors4", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 26, "missing": 0, "extra": 26, "recolour": 0, "same_size": true}
+{"task": "4f537728", "dir": "priors4", "family": "ray_cast_to_stop", "label": "anchor_inter", "slot": "anchor", "residual": 46, "missing": 46, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d037b0a7", "dir": "priors4", "family": "ray_cast_to_stop", "label": "anchor_midpoint", "slot": "anchor", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "d23f8c26", "dir": "priors4", "family": "ray_cast_to_stop", "label": "mixed", "slot": "-", "residual": 7, "missing": 3, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d5d6de2d", "dir": "priors4", "family": "ray_cast_to_stop", "label": "accept_extra", "slot": "accept", "residual": 112, "missing": 0, "extra": 112, "recolour": 0, "same_size": true}
+{"task": "52df9849", "dir": "priors4", "family": "rectangle_from_delimiters", "label": "anchor_other", "slot": "anchor", "residual": 24, "missing": 24, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "60b61512", "dir": "priors4", "family": "rectangle_from_delimiters", "label": "on_stop_turn", "slot": "on_stop", "residual": 4, "missing": 4, "extra": 0, "recolour": 0, "same_size": true, "tips": 5}
+{"task": "a5313dff", "dir": "priors4", "family": "rectangle_from_delimiters", "label": "anchor_other", "slot": "anchor", "residual": 10, "missing": 10, "extra": 0, "recolour": 0, "same_size": true}
+{"task": "da6e95e5", "dir": "priors4", "family": "rectangle_from_delimiters", "label": "size", "slot": "-"}
+{"task": "39a8645d", "dir": "priors4", "family": "select_odd_or_extremal", "label": "mixed", "slot": "-", "residual": 6, "missing": 2, "extra": 0, "recolour": 4, "same_size": false}
+{"task": "48d8fb45", "dir": "priors4", "family": "select_odd_or_extremal", "label": "size", "slot": "-"}
+{"task": "73ccf9c2", "dir": "priors4", "family": "select_odd_or_extremal", "label": "size", "slot": "-"}
+{"task": "da2b0fe3", "dir": "priors4", "family": "select_odd_or_extremal", "label": "mixed", "slot": "-", "residual": 18, "missing": 9, "extra": 9, "recolour": 0, "same_size": true}
+{"task": "4cd1b7b2", "dir": "priors4", "family": "stamp_stencil_at_anchors", "label": "colour_only", "slot": "colour", "residual": 4, "missing": 0, "extra": 0, "recolour": 4, "same_size": true}
+{"task": "66e6c45b", "dir": "priors4", "family": "stamp_stencil_at_anchors", "label": "mixed", "slot": "-", "residual": 4, "missing": 1, "extra": 2, "recolour": 1, "same_size": true}
+{"task": "d23f8c26", "dir": "priors4", "family": "stamp_stencil_at_anchors", "label": "accept_overlap", "slot": "accept", "residual": 4, "missing": 0, "extra": 4, "recolour": 0, "same_size": true}
+{"task": "d5d6de2d", "dir": "priors4", "family": "stamp_stencil_at_anchors", "label": "accept_extra", "slot": "accept", "residual": 66, "missing": 0, "extra": 66, "recolour": 0, "same_size": true}
+{"task": "ea786f4a", "dir": "priors4", "family": "stamp_stencil_at_anchors", "label": "on_stop_turn", "slot": "on_stop", "residual": 8, "missing": 8, "extra": 0, "recolour": 0, "same_size": true, "tips": 12}
+{"task": "9565186b", "dir": "priors4", "family": "template_cover_completion", "label": "on_stop_turn", "slot": "on_stop", "residual": 2, "missing": 2, "extra": 0, "recolour": 0, "same_size": true, "tips": 2}
+{"task": "a699fb00", "dir": "priors4", "family": "template_cover_completion", "label": "accept_extra", "slot": "accept", "residual": 1, "missing": 0, "extra": 1, "recolour": 0, "same_size": true}
+{"task": "5582e5ca", "dir": "priors4", "family": "translate_object", "label": "iterate", "slot": "iterate", "iterate_k": 1}
+{"task": "9565186b", "dir": "priors4", "family": "translate_object", "label": "mixed", "slot": "-", "residual": 4, "missing": 0, "extra": 2, "recolour": 2, "same_size": true}

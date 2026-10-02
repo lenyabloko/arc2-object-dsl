@@ -1,0 +1,147 @@
+{
+ "mode": "density",
+ "cases": 2007,
+ "non_source": {
+  "cases": 1896,
+  "distinct_tasks": 204,
+  "by_label": {
+   "mixed": {
+    "cases": 685,
+    "tasks": 122,
+    "families": 15
+   },
+   "size": {
+    "cases": 353,
+    "tasks": 89,
+    "families": 10
+   },
+   "anchor_other": {
+    "cases": 178,
+    "tasks": 43,
+    "families": 11
+   },
+   "colour_only": {
+    "cases": 169,
+    "tasks": 36,
+    "families": 15
+   },
+   "accept_extra": {
+    "cases": 116,
+    "tasks": 30,
+    "families": 10
+   },
+   "anchor_midpoint": {
+    "cases": 81,
+    "tasks": 13,
+    "families": 8
+   },
+   "anchor_inter": {
+    "cases": 74,
+    "tasks": 26,
+    "families": 11
+   },
+   "accept_overlap": {
+    "cases": 64,
+    "tasks": 16,
+    "families": 6
+   },
+   "on_stop_turn": {
+    "cases": 60,
+    "tasks": 25,
+    "families": 8
+   },
+   "on_stop_paint": {
+    "cases": 58,
+    "tasks": 20,
+    "families": 12
+   },
+   "iterate": {
+    "cases": 52,
+    "tasks": 9,
+    "families": 7
+   },
+   "shift": {
+    "cases": 6,
+    "tasks": 3,
+    "families": 2
+   }
+  },
+  "by_slot": {
+   "-": 1038,
+   "anchor": 339,
+   "accept": 180,
+   "colour": 169,
+   "on_stop": 118,
+   "iterate": 52
+  }
+ },
+ "member": {
+  "cases": 111,
+  "distinct_tasks": 22,
+  "by_label": {
+   "colour_only": {
+    "cases": 26,
+    "tasks": 5,
+    "families": 3
+   },
+   "size": {
+    "cases": 24,
+    "tasks": 7,
+    "families": 4
+   },
+   "mixed": {
+    "cases": 19,
+    "tasks": 10,
+    "families": 7
+   },
+   "anchor_midpoint": {
+    "cases": 11,
+    "tasks": 2,
+    "families": 2
+   },
+   "anchor_other": {
+    "cases": 8,
+    "tasks": 1,
+    "families": 1
+   },
+   "iterate": {
+    "cases": 6,
+    "tasks": 1,
+    "families": 1
+   },
+   "accept_extra": {
+    "cases": 5,
+    "tasks": 2,
+    "families": 2
+   },
+   "anchor_inter": {
+    "cases": 4,
+    "tasks": 2,
+    "families": 2
+   },
+   "on_stop_turn": {
+    "cases": 4,
+    "tasks": 2,
+    "families": 2
+   },
+   "on_stop_paint": {
+    "cases": 2,
+    "tasks": 1,
+    "families": 1
+   },
+   "accept_overlap": {
+    "cases": 2,
+    "tasks": 1,
+    "families": 1
+   }
+  },
+  "by_slot": {
+   "-": 43,
+   "colour": 26,
+   "anchor": 23,
+   "accept": 7,
+   "on_stop": 6,
+   "iterate": 6
+  }
+ }
+}

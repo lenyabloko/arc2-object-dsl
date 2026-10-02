@@ -396,3 +396,14 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - B2: Route A now reads the materialised facts, giving identical T24 results.
   - T60: the two tie cases cannot be ordered by the current hierarchy (unrelated root names), even with ELK.
 - **Reading.** The engine track is sound as machinery. The vocabulary track keeps raising design coverage without held-out transfer. The OQ7 proxy fails on both arms, and the Oct 5 report is pre-written with that reading (claude/oct5_stop_rule_report_draft.md). ETA to a higher public score: no evidence of one yet; the standing notebook (V34) keeps 2.50 at worst.
+
+## Check-in 10:30 EDT Oct 2 (written 11:40)
+- **Submissions.** v19 (V33) public score **2.50**, the same as v11, v15 and v16. v20 (V34) runs after 20:00 EDT tonight (WSL).
+- **Cycle 29 (V35 = V34 + roles-only families first).** compare_gate c42 vs c44 = {b 0, c 0, n_changed 0} → P2 = 0. That is seven concept cycles in a row. The c45 digest b6c6bfd8 equals V34's, so V35 changes nothing on public eval.
+- **Fable v13/v14 generator-tier test (T72/T73/T75), a no-go.**
+  - ARC-GEN density run: 1,896 wrong non-source fits + 111 member misses on about 8,000 variants.
+  - Residuals classified mechanically: about half have the wrong output size or mixed missing-and-extra ink, which no generator slot reaches.
+  - The four slots (iterate, accept, on_stop, anchor) could at best take priors3's 83 wrong fits to 53.
+  - Measured with the slot-augmented binder: 83 → 81 wrong, +2 exact, 0 new (targets ≤ 50, +20, ≥ 3). The density check agrees (−2 % wrong).
+- **Engine.** T58 passed (ELK = exporter); T71 is unchanged under ELK.
+- **Reading.** Descriptions, recognisers and now generator slots have all been expanded and measured; none moved the held-out gate or the public score. The residual table points at the families' output construction (size, what goes where), not at their stop or acceptance rules. The Oct 5 report leads with this. Under v14 the programme skips O6/O7 and goes to O8/O9, and V36 would contain nothing new. ETA to a higher public score: still no evidence of one; the standing notebook keeps 2.50.

@@ -32,6 +32,8 @@ def families():
             if not f.endswith('.py'): continue
             s = importlib.util.spec_from_file_location('%s_%s' % (d, f[:-3]), os.path.join(REPO, 'tools/dream/o0', d, f))
             M = importlib.util.module_from_spec(s); s.loader.exec_module(M)
+            if os.environ.get('SLOTS'):                       # T73 density check: slot-augmented binder
+                import slots; M = slots.Augmented(M, os.environ['SLOTS'])
             out.append((d, f[:-3], M, set(getattr(M, 'MEMBERS', []))))
     return out
 
@@ -77,10 +79,27 @@ def first_fit(M, T, budget=8):
 def main():
     V, part, parts = int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
     n2 = set(x for x in re.split(r'[,\s]+', open(os.path.join(REPO, 'tools/m1b/novel_N2.txt')).read()) if x)
-    ids = [t for t in v1_ids() if t not in n2][part::parts]
+    ids = [t for t in v1_ids() if t not in n2]
+    if os.environ.get('DENSITY_TASKS'):                   # T73 density check: a subset (json list of ARC-1 ids)
+        keep = set(json.load(open(os.environ['DENSITY_TASKS']))); ids = [t for t in ids if t in keep]
+    ids = ids[part::parts]
     fams = families()
     commit = os.popen('git -C %s rev-parse HEAD' % GEN).read().strip()
-    out = open(os.path.join(REPO, 'results/o0/t75_density_%d.jsonl.txt' % part), 'w')
+    tag = ('slots_%s_' % os.environ['SLOTS']) if os.environ.get('SLOTS') else ''
+    path = os.path.join(REPO, 'results/o0/t75_density_%s%d.jsonl.txt' % (tag, part))
+    done = []                                   # resume: keep rows of fully finished tasks, redo the last one
+    if os.path.exists(path):
+        rows = [json.loads(l) for l in open(path) if l.strip()]
+        order = []
+        for r in rows:
+            if r['task'] not in order: order.append(r['task'])
+        if order:
+            keep = set(order[:-1]); done = [t for t in ids if t in keep or ids.index(t) < ids.index(order[-1])]
+            with open(path, 'w') as f:
+                for r in rows:
+                    if r['task'] in done: f.write(json.dumps(r) + '\n')
+    ids = [t for t in ids if t not in set(done)]
+    out = open(path, 'a')
     t0 = time.time(); nvar = nfit = 0
     for i, t in enumerate(ids):
         mod = importlib.import_module('tasks.task_' + t)
