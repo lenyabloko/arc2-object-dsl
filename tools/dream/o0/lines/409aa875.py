@@ -9,7 +9,7 @@ cell reached by several glyphs gets a second alternative colour.
 """
 
 CARD = "409aa875"
-LINE = "replicate glyph/pixel pattern using alternative pixel/glyph"
+LINE = "replicate glyph/pixel pattern using alternative pixel/glyph, and superimpose"   # revised by the reviewer Oct 2 22:3x EDT; families unchanged
 READING = {
     "generator": "Each arrowhead glyph is replicated as one pixel of an alternative colour placed d "
                  "steps from its apex in the direction it points; a glyph that such a pixel lands on "

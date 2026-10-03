@@ -415,3 +415,18 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 - On the 153 design tasks the build fails, the 38 prior families hold the right answer for 0, so open-slot selection over existing families is bounded at 0.
 - 20 of the 153 instantiate one of the four situations on their training pairs. That is the most new situation generators could reach on design.
 - ETA unchanged: no evidence of a path to a higher public score inside v17's scope; v21 (V34 + time guard) protects the 2.50.
+
+## Check-in 22:30 EDT Oct 2 (written 22:50)
+- **Submissions.**
+  - v20 (V34) was submitted at 01:57 UTC Oct 3 (9:57 pm EDT), ref 56787078, with a Kaggle parity digest match (b6c6bfd8). Score pending.
+  - v21 (V34 + time guard, same digest) becomes LATEST for the Oct 3 slot (batch-0085, ORDERS seq 21).
+  - The public score has been 2.50 on every submission since Sep 28.
+- **T86 closed.** No-go at placement under engines v1 and v2 (0 / 13), and T86′ was also a no-go (1 exact, 3 wrong, 2 empty).
+- **Len's four cell definitions,** checked on training pairs, with one harness check where they fit a build-unsolved task:
+  - markers × stamp, with his 22:47 correction (legend marks give no stamp unless at the exemplar's top-left corner): dfadab01 (ARC-2) **exact**;
+  - key × tile: 15696249 (ARC-1) **exact**;
+  - fg × disperse: fits 66e6c45b (already build-solved);
+  - markers × extend: 1 / 8 under engine v2 (all 8 are already solved by the build or by his line).
+  - Each definition fits only its own task (reuse 0 on design).
+- **Reading.** Reviewer definitions are accurate where they are specific: two build-unsolved tasks were solved on the first harness check. Nothing transfers, and the score only moves with rules that recur across hidden tasks. ETA to a higher public score: still no evidence of one; the standing notebook keeps 2.50.
+- **Addendum (23:03).** Len's correction now lives in the schema (engine v3: marks / place / rest), at design fits 158 → 160 (dfadab01, 1c02dbbe). The one transfer check (1c02dbbe) was empty. Len's scale-free schema proposal (recursive slots, depth ≤ 2) went to Fable in the round 20b report, with the T89 evidence that a second situation closes 6 of 13.

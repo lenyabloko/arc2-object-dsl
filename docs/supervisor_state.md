@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-02 18:05 UTC (14:05 EDT Oct 2). Updated with every outbox batch._
+_Last updated: 2026-10-03 (Oct 2, 23:03 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -295,7 +295,7 @@ _Last updated: 2026-10-02 18:05 UTC (14:05 EDT Oct 2). Updated with every outbox
 ## Update 12:15 EDT Oct 1: Len's list = tasks Claude cannot solve (cycle 26)
 - Len (10:35 EDT): his time goes first to tasks Claude could not solve. The phone page's "Needs you" now reads the db doc needs/current (tasks Claude failed, with reasons; claude_solved list), updated live.
 - Evidence: ARC-2 design (60 V29 failures): Claude's D2 one-offs solved 58 (89565ca0 only on the second guess; f560132c wrong). ARC-1 design (278 tasks V32 fails): 26 tried earlier (24 solved), 250 tried now by 50 subagents (5 tasks each, test-blind, training pairs only; tools/dream/o0/oneoff/<task>.py; tools/dream/o0/oneoff_check.py = first two distinct fitting predictions, one harness check per task; ledger results/o0/oneoff_ledger.jsonl.txt): 236 of 250 exact.
-- Len's list (18): 89565ca0, f560132c (ARC-2); 0d87d2a6, 17829a00, 1b8318e3, 22425bda, 2dd70a9a, 3d588dc9, 50f325b5, 5ecac7f7, b74ca5d1, ba1aa698, d6542281, d753a70b, d931c21c, df978a02, e5062a87, f3b10344 (ARC-1).
+- Len's list (18): 89565ca0, f560132c (ARC-2); 0d87d2a6, 17829a00, 1b8318e3, 22425bda, 2dd70a9a, 3d588dc9, 50f325b5, 5ecac7f7, b74ca5d1, ba1aa698, d6542281, d753a70b, d931c21c, (one T86 held-out task), e5062a87, f3b10344 (ARC-1).
 - The one-off programs stay out of the build (D26: single-task programs fit no other task); they answer only "can Claude solve it alone".
 
 ## Update 14:20 EDT Oct 1: cycle 27 — prior concepts mined from solution texts; V33 to the gate
@@ -418,3 +418,92 @@ _Last updated: 2026-10-02 18:05 UTC (14:05 EDT Oct 2). Updated with every outbox
   - tools/review/situations_page_patch.py patches the live page.
   - R(S), aligned on design: tiling 16, stamping 12, projection 24, symmetry 19.
 - **v21 parity verified** (15:03 EDT): a full local run (120 eval tasks, guarded driver from the v21 notebook) gives digest b6c6bfd8. LATEST switches to v21 after tonight's v20 submission.
+
+## Update 18:05 EDT Oct 2: v18a, Situations grid, Fable v19, situation engine; 0 / 14 at placement
+- **WHAT × HOW.**
+  - Len proposed it as the category unit (claude/proposal_two_question_template.md).
+  - Fable answered twice:
+    - v18a, via the Fable agent: key = row × column, plus WHY; the body comes from the aligner;
+    - v19: accepted, with an arity correction: S = HOW(arg₁..arg_k) + WHY, each argument a row or "from training".
+- **Review page versions 110–111.**
+  - The Categories tab is now the **Situations** grid, rebuilt by Len's instruction "it should be rebuilt now", which
+    overrides v19 B.4's "minimal now".
+  - Each cell panel holds the v19 declaration form (one select per argument plus WHY), pre-filled with Fable's B.2
+    drafts for stamping and projection.
+  - Storage: `CELL_<row>__<col>` (form v19, with the six-slot record), `PLACE_<task>`, `AXIS_*`.
+  - Script: tools/review/situations_grid_patch.py.
+- **Engine v1** (B.3 / C.2): tools/dream/o0/situation_engine.py, frozen at sha f14127b651fe.
+  - 8 columns, 16 rows; constants are bound on training, and WHY is checked on every result.
+  - C.2 fit results (results/o0/c2_column_fit.json):
+
+    | population | fitted |
+    |---|---|
+    | T83 lines | 2 / 38 (OQ-19.2) |
+    | design | 119 / 983 |
+    | build-failing | 6 / 139 |
+    | **the 14 T86 tasks** | **0 / 14** |
+
+  - Under the drafts, T86 fails at placement. It can change only if Len's declarations name rows or constants the engine
+    lacks.
+- **dd2401ed** (one of the 14) is a T83 card, so Len has seen it. I proposed reporting T86 on the other 13
+  (OQ-19.4).
+- **Round 19 response:** claude/fable_round_19_response.md. OQ-19.3 asks whether Len's minutes are worth spending if
+  his declarations would match the drafts.
+- **Unchanged:**
+  - ORDERS seq 20: WSL submits v20 after 20:00 EDT.
+  - Scheduled check-in at 22:30 EDT: switch LATEST to v21.
+
+## Update 18:35 EDT Oct 2: Fable v20; T86′ no-go; engine v2 from Len's ticks; T86 no-go at placement
+- **T86′** (engine v1 on the 6 build-failing tasks it fits; empty slots per c42; one check each): 1 exact (8403a5d5),
+  3 wrong, 2 empty. **No-go.** Results: results/o0/t86prime.json.
+- **B.2 vocabulary.** Len ticked: line segments, a region, panels ("wide stripes across / along the entire grid"),
+  between two objects, corners or centre, across a separator, toward a target ("the object that is changed or only
+  present in output"), "until output is complete", and another object's colour.
+  - Engine v2 implements them, frozen at sha 4b4a22370d20.
+  - Re-placement of the 13 (dd2401ed excluded): **0 / 13, so T86 is no-go at placement.**
+  - v2 on the other populations: design 158 / 983, build-failing 13 / 139, T83 lines 4 / 38.
+- **T89** (residual after best fit, the 13), v1 → v2:
+  - missing 5 → 4, extra 4 → 6, colour 4 → 3, placement 0;
+  - a second column closes 2 → 6;
+  - the v2 gains are mostly grid-corner stamps, which come close to memorising positions.
+- **Review page version 112:**
+  - opening a cell shows every task;
+  - all 14 T86 tasks are stripped from every tab (they were visible on Groups / Task, and one of them was on the need-you list).
+- **Round 20 response:** claude/fable_round_20_response.md.
+  - OQ-20.3: a T86″ on v2's 13 build-failing fits?
+  - OQ-20.4: close T86, or build v3?
+- **Unchanged:** v21 standing (digest b6c6bfd8); ORDERS seq 20; check-in at 22:30 EDT.
+
+## Update 22:50 EDT Oct 2: check-in; v20 submitted; Len's 4 cell definitions checked; mobile page held-out strip
+- **Kaggle.** v20 (V34) submitted 9:57 pm EDT, ref 56787078, parity b6c6bfd8 match, score pending. v21 is LATEST for Oct 3 (batch-0085, ORDERS seq 21: WSL submits once after 20:00 EDT, never retries).
+- **Cell checks** (cellchecks collection on the review page; scripts tools/dream/o0/cellchecks/; results results/o0/cellchecks_oct3.json, cellcheck_markers_stamp_v2_*.json):
+  - markers × stamp v2, read from Len's 22:47 correction: dfadab01 trains 4/4, **harness exact**. This is the first ARC-2 task solved by a cell definition. The green "solved with your help" pill now counts cell solves too (page v147).
+  - key × tile: 15696249 trains 4/4, **harness exact** (ARC-1, build-unsolved).
+  - disperse: fits 66e6c45b (build-solved).
+  - markers × extend: 1/8 under engine v2.
+  - Reuse on design: 0 for every definition.
+- **Mobile page (ARC Review Mobile, 4Z1VdvcahWaj7CeZXdNyDJ).**
+  - Hygiene breach: it still carried all 14 T86 held-out tasks in ptasks.json. Its One-off tab had shown Claude's readings for 12 of them since Oct 1.
+  - Fixed: all 14 were removed from the page metadata, ptasks.json and the needs/current and needs/readings docs (0 left, verified on the live version).
+  - Also removed the "your lines save here" tagline (Len).
+  - T86 had already closed with no test output read, so no result changes. The breach is recorded for Fable.
+- **Desktop page v145–147:**
+  - the pill reads "in cell / not in cell" (Len);
+  - passing checks show a green bar;
+  - cell solves count toward "solved with your help".
+- **Told Len plainly:** the Kaggle score scores hidden tasks, so public solves that fit one task do not move it.
+
+## Update 23:03 EDT Oct 2: Len's stamp correction into the schema (engine v3); scale-free proposal; round 20b report
+- **The correction** (22:47): legend marks give no stamp; only a mark at the exemplar's top-left corner marks a stamp place.
+  - It first lived only in a check program. Len: a correction outside the profile matrix's schema can never transfer, so the schema must be enhanced as an inductive prior.
+- **Engine v3** (situation_engine.py, sha 2c8f226e1fe3; v1 and v2 frozen):
+  - row `marks`;
+  - stamp `place` (nearest / topleft) and `rest` (kept / cleared);
+  - topleft only with markers / marks / fg / objects (the grid-corner memorising fits are excluded).
+- **v3 on design:** 160 / 983 (v2 158; new dfadab01 and 1c02dbbe; none lost); build-failing 14 / 139 (v2 13). On dfadab01 the v3 prediction equals the check program's (no second harness check).
+- **Transfer check, 1c02dbbe:** empty (no prediction on its test input; no comparison made).
+- **Review page v148:**
+  - stamp cells have "where the copy sits on the mark", "the rest of the input" and the marks choice;
+  - Len's cell definition holds his correction as slots (entered_by Claude from chat; previous version kept);
+  - "grid" → "matrix" in the labels.
+- **Len's idea:** "a scale free schema that repeats for each sub-node". Written up with the T89 evidence in docs/proposal_scale_free_schema.md and the round 20b report (claude/fable_round_20b_report.md: OQ-20b.1–3). Len will consult Fable.

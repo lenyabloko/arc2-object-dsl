@@ -1,0 +1,1091 @@
+{
+ "t83": {
+  "n": 38,
+  "with_fitted_column": 4,
+  "parsed_col_among_fitted": 2,
+  "parsed_has_col": 32,
+  "rows": [
+   {
+    "card": "0607ce86",
+    "parsed_WHAT": "delete",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "0ca9ddb6",
+    "parsed_WHAT": "decorate",
+    "parsed_col": "stamp",
+    "fitted_cols": [
+     "stamp"
+    ],
+    "fits": [
+     "stamp(anchors:=markers, unit:=train)",
+     "stamp(anchors:=fg, unit:=train)",
+     "stamp(anchors:=objects, unit:=train)"
+    ],
+    "agree": true,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "0d87d2a6",
+    "parsed_WHAT": "draw_line",
+    "parsed_col": "extend",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "0f63c0b9",
+    "parsed_WHAT": "complete_shape",
+    "parsed_col": "fill",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "103eff5b",
+    "parsed_WHAT": "recolour",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "142ca369",
+    "parsed_WHAT": "draw_line",
+    "parsed_col": "extend",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "17829a00",
+    "parsed_WHAT": "move",
+    "parsed_col": "move",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "20fb2937",
+    "parsed_WHAT": "recolour",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "2b83f449",
+    "parsed_WHAT": "transform",
+    "parsed_col": null,
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "2dd70a9a",
+    "parsed_WHAT": "draw_line",
+    "parsed_col": "extend",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "3de23699",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "409aa875",
+    "parsed_WHAT": "copy_stamp",
+    "parsed_col": "stamp",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "4c416de3",
+    "parsed_WHAT": "complete_shape",
+    "parsed_col": "fill",
+    "fitted_cols": [
+     "stamp"
+    ],
+    "fits": [
+     "stamp(anchors:=grid_corners, unit:=train)"
+    ],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "4c7dc4dd",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "50f325b5",
+    "parsed_WHAT": "recolour",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "5117e062",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "52df9849",
+    "parsed_WHAT": "rearrange",
+    "parsed_col": null,
+    "fitted_cols": [
+     "stamp"
+    ],
+    "fits": [
+     "stamp(anchors:=objects, unit:=train)",
+     "stamp(anchors:=centre, unit:=train)"
+    ],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "5ad4f10b",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "7d18a6fb",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "7d419a02",
+    "parsed_WHAT": "recolour",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "7ed72f31",
+    "parsed_WHAT": "mirror_complete",
+    "parsed_col": "mirror",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "995c5fa3",
+    "parsed_WHAT": "summarise",
+    "parsed_col": null,
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "9aaea919",
+    "parsed_WHAT": "copy_stamp",
+    "parsed_col": "stamp",
+    "fitted_cols": [
+     "stamp"
+    ],
+    "fits": [
+     "stamp(anchors:=grid_corners, unit:=train)"
+    ],
+    "agree": true,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "9b5080bb",
+    "parsed_WHAT": "fill",
+    "parsed_col": "fill",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "a644e277",
+    "parsed_WHAT": "extract",
+    "parsed_col": "extract",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "b0f4d537",
+    "parsed_WHAT": "transform",
+    "parsed_col": null,
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "b190f7f5",
+    "parsed_WHAT": "copy_stamp",
+    "parsed_col": "stamp",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "ca8de6ea",
+    "parsed_WHAT": "rearrange",
+    "parsed_col": null,
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "d017b73f",
+    "parsed_WHAT": "move",
+    "parsed_col": "move",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "d2acf2cb",
+    "parsed_WHAT": "unspecified",
+    "parsed_col": null,
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "d6542281",
+    "parsed_WHAT": "complete_shape",
+    "parsed_col": "fill",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "dd2401ed",
+    "parsed_WHAT": "move",
+    "parsed_col": "move",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "de809cff",
+    "parsed_WHAT": "delete",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "e2092e0c",
+    "parsed_WHAT": "decorate",
+    "parsed_col": "stamp",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "e26a3af2",
+    "parsed_WHAT": "delete",
+    "parsed_col": "recolour",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "e5062a87",
+    "parsed_WHAT": "copy_stamp",
+    "parsed_col": "stamp",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "f3b10344",
+    "parsed_WHAT": "draw_line",
+    "parsed_col": "extend",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   },
+   {
+    "card": "f560132c",
+    "parsed_WHAT": "complete_shape",
+    "parsed_col": "fill",
+    "fitted_cols": [],
+    "fits": [],
+    "agree": false,
+    "timeout": false,
+    "readable": true
+   }
+  ]
+ },
+ "time": "2026-10-02T22:29Z",
+ "design": {
+  "all": {
+   "n": 983,
+   "with_fit": 158,
+   "timeouts": 0,
+   "per_column": {
+    "stamp": 116,
+    "tile": 14,
+    "extend": 13,
+    "extract": 10,
+    "recolour": 8,
+    "fill": 4,
+    "move": 3,
+    "mirror": 3
+   }
+  },
+  "build_failing": {
+   "n": 139,
+   "with_fit": 13,
+   "timeouts": 0,
+   "per_column": {
+    "stamp": 13
+   }
+  },
+  "fits": {
+   "007bbfb7": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "00d62c1b": [
+    "fill(region:=bg, colour:=train)"
+   ],
+   "025d127b": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "05f2a901": [
+    "move(subject:=largest, target:=obstacle)",
+    "move(subject:=train, target:=obstacle)"
+   ],
+   "0962bcdd": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "0ca9ddb6": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "0d3d703e": [
+    "stamp(anchors:=fg, unit:=train)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "11852cab": [
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "13713586": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "1a6449f1": [
+    "extract(region:=region)"
+   ],
+   "1bfc4729": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "1c56ad9f": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "1c786137": [
+    "extract(region:=frame)"
+   ],
+   "1cf80156": [
+    "extract(region:=fg)"
+   ],
+   "1d0a4b61": [
+    "tile(extent:=border, unit:=input)"
+   ],
+   "1da012fc": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "1e81d6f9": [
+    "stamp(anchors:=markers, unit:=train)"
+   ],
+   "1f85a75f": [
+    "extract(region:=largest)",
+    "extract(region:=odd)"
+   ],
+   "1f876c06": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)"
+   ],
+   "2204b7a8": [
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "recolour(key:=nearest, subject:=markers)",
+    "recolour(key:=nearest, subject:=train)"
+   ],
+   "22168020": [
+    "stamp(anchors:=objects, unit:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=hit)"
+   ],
+   "228f6490": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "22eb0ac0": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)"
+   ],
+   "23b5c85d": [
+    "extract(region:=smallest)"
+   ],
+   "25094a63": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "253bf280": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)"
+   ],
+   "2546ccf6": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "25ff71a9": [
+    "move(subject:=fg, target:=train)"
+   ],
+   "29700607": [
+    "stamp(anchors:=markers, unit:=train)"
+   ],
+   "29c11459": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "2c608aff": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)"
+   ],
+   "30f42897": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "332efdb3": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "3345333e": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "342dd610": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "3618c87e": [
+    "move(subject:=train, target:=train)"
+   ],
+   "396d80d7": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "3aa6fb7a": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "3ac3eb23": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "3af2c5a8": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "3bd67248": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "3bdb4ada": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "3befdf3e": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "3d588dc9": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "4258a5f9": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "42a50994": [
+    "recolour(key:=train, subject:=markers)"
+   ],
+   "4347f46a": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "484b58aa": [
+    "tile(extent:=border, unit:=input)",
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "496994bd": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)",
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "4c5c2cf0": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "5034a0b5": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "508bd3b6": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "52364a65": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "52df9849": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "54d9e175": [
+    "stamp(anchors:=markers, unit:=train)"
+   ],
+   "54dc2872": [
+    "stamp(anchors:=markers, unit:=train)"
+   ],
+   "56dc2b01": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "58743b76": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "5b526a93": [
+    "stamp(anchors:=across, unit:=train)"
+   ],
+   "5b6cbef5": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "60b61512": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "6150a2bd": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "623ea044": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=border, source:=markers, colour:=own)"
+   ],
+   "62c24649": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "639f5a19": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "67a423a3": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "67e8384a": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "6aa20dc0": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "6d0aefbc": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "6ea4a07e": [
+    "stamp(anchors:=fg, unit:=train)"
+   ],
+   "6f8cd79b": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "6fa7a44f": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "7447852a": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "7b6016b9": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "7d7772cc": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "7ddcd7ec": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "7ec998c9": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "834ec97d": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "8403a5d5": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "85c4e7cd": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "88207623": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "88a10436": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "88a62173": [
+    "extract(region:=odd)"
+   ],
+   "8be77c9e": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "8eb1be9a": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "913fb3ed": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "9356391f": [
+    "stamp(anchors:=markers, unit:=train)"
+   ],
+   "94414823": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "9565186b": [
+    "recolour(key:=train, subject:=fg)"
+   ],
+   "95990924": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "981add89": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "9841fdad": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "98c475bf": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "98cf29f8": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "9edfc990": [
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=own)"
+   ],
+   "9f27f097": [
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "a416b8f3": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "a5313dff": [
+    "fill(region:=bg, colour:=train)"
+   ],
+   "a5f85a15": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "a65b410d": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "a699fb00": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)"
+   ],
+   "a87f7484": [
+    "extract(region:=largest)",
+    "extract(region:=odd)"
+   ],
+   "a9f96cdd": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "aa18de87": [
+    "stamp(anchors:=objects, unit:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)"
+   ],
+   "aabf363d": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)",
+    "recolour(key:=train, subject:=fg)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "aaef0977": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "aba27056": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "b1948b0a": [
+    "stamp(anchors:=fg, unit:=train)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "b60334d2": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "b74ca5d1": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "bc4146bd": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "bda2d7a6": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "bdad9b1f": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "be94b721": [
+    "extract(region:=largest)"
+   ],
+   "bf32578f": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "bf89d739": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)"
+   ],
+   "c4d1a9ae": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "c7d4e6ad": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "c8f0f002": [
+    "recolour(key:=train, subject:=input)"
+   ],
+   "c909285e": [
+    "extract(region:=odd)"
+   ],
+   "c9e6f938": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "cd3c21df": [
+    "extract(region:=odd)"
+   ],
+   "ce22a75a": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "d06dbe63": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "d304284e": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "d364b489": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "d43fd935": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=hit)"
+   ],
+   "d492a647": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "d511f180": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "d6ad076f": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "d89b689b": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "d968ffd4": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "dbc1a6ce": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)",
+    "fill(region:=between, colour:=train)"
+   ],
+   "dc1df850": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "ded97339": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "fill(region:=between, colour:=train)",
+    "fill(region:=between, colour:=own)"
+   ],
+   "e40b9e2f": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "e48d4e1a": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "e76a88a6": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "e8dc4411": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "e9afcf9a": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "ea786f4a": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "ea959feb": [
+    "tile(extent:=border, unit:=input)"
+   ],
+   "f0df5ff0": [
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=obj_corners, unit:=train)"
+   ],
+   "f25ffba3": [
+    "stamp(anchors:=centre, unit:=train)",
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "f823c43c": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "fafd9572": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "fc754716": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "fe9372f3": [
+    "stamp(anchors:=objects, unit:=train)",
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "135a2760": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "221dfab4": [
+    "stamp(anchors:=centre, unit:=train)"
+   ],
+   "4c416de3": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "7491f3cf": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "7c66cb00": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "8e5c0c38": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "8f215267": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "981571dc": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "9aaea919": [
+    "stamp(anchors:=grid_corners, unit:=train)"
+   ],
+   "e376de54": [
+    "stamp(anchors:=centre, unit:=train)"
+   ]
+  }
+ },
+ "heldout": {
+  "1efba499": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "252143c9": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "696d4842": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "758abdf0": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "97c75046": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "a78176bb": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "c4d067a0": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "cf133acc": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "dd2401ed": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "df978a02": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "e4941b18": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "e7b06bea": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "ecaa0ec1": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  },
+  "fc10701f": {
+   "fits": [],
+   "situations": [],
+   "timeout": false
+  }
+ }
+}

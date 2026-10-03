@@ -9,6 +9,8 @@ import json, re, sys, os
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 N2 = set(x for x in re.split(r'[,\s]+', open(os.path.join(REPO, 'tools/m1b/novel_N2.txt')).read()) if x)
+if os.environ.get('HELDOUT_JSON'):                    # e.g. results/o0/t86_heldout.json (the 14 T86 tasks, Oct 2)
+    N2 = set(json.load(open(os.path.join(REPO, os.environ['HELDOUT_JSON']))))
 pat = re.compile(r'\b(' + '|'.join(sorted(N2)) + r')\b')
 removed = {'keys': 0, 'items': 0, 'text': 0}
 
@@ -64,6 +66,25 @@ def main():
     if 'view_meta' in D2 and isinstance(D2['view_meta'], dict) and 'n_solved' in D2['view_meta']: D2['view_meta']['n_solved'] = len(solved)
     blob = json.dumps(D2, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
     s2 = s[:i] + blob + s[j:]
+    # the need-you block: drop held-out keys (Oct 2: one T86 task was on the need-you list)
+    t2 = '<script id="need2" type="application/json">'
+    if t2 in s2:
+        i2 = s2.find(t2) + len(t2); j2 = s2.find('</script>', i2)
+        try:
+            N = json.loads(s2[i2:j2]); n0 = len(N.get('need', {}))
+            N['need'] = {k: v for k, v in N.get('need', {}).items() if k not in N2}
+            N['solved_b'] = [t for t in N.get('solved_b', []) if t not in N2]
+            removed['need'] = n0 - len(N['need'])
+            s2 = s2[:i2] + json.dumps(N, separators=(',', ':')).replace('</', '<\\/') + s2[j2:]
+        except ValueError: pass
+    # every other inline JSON block (packets, ...): the same strip
+    for m in list(re.finditer(r'<script id="([\w-]+)" type="application/json">', s2)):
+        if m.group(1) in ('data', 'need2'): continue
+        i3 = s2.find(m.group(0)) + len(m.group(0)); j3 = s2.find('</script>', i3)
+        try: B = json.loads(s2[i3:j3])
+        except ValueError: continue
+        if not pat.search(s2[i3:j3]): continue
+        s2 = s2[:i3] + json.dumps(strip(B), separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/') + s2[j3:]
     # any other inline JSON blocks (packets, need2) and the script itself: only scrub text, never N2-bearing structures
     left_page = len(pat.findall(s2)); left_tasks = len(pat.findall(json.dumps(T2)))
     open(page_out, 'w').write(s2); json.dump(T2, open(tasks_out, 'w'), separators=(',', ':'))

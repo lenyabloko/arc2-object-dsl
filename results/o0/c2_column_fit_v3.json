@@ -1,0 +1,707 @@
+{
+ "design": {
+  "all": {
+   "n": 983,
+   "with_fit": 160,
+   "timeouts": 0,
+   "per_column": {
+    "stamp": 118,
+    "tile": 14,
+    "extend": 13,
+    "extract": 10,
+    "recolour": 8,
+    "fill": 4,
+    "move": 3,
+    "mirror": 3
+   }
+  },
+  "build_failing": {
+   "n": 139,
+   "with_fit": 14,
+   "timeouts": 0,
+   "per_column": {
+    "stamp": 14
+   }
+  },
+  "fits": {
+   "007bbfb7": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "00d62c1b": [
+    "fill(region:=bg, colour:=train)"
+   ],
+   "025d127b": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "05f2a901": [
+    "move(subject:=largest, target:=obstacle)",
+    "move(subject:=train, target:=obstacle)"
+   ],
+   "0962bcdd": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "0ca9ddb6": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "0d3d703e": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "11852cab": [
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "13713586": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "1a6449f1": [
+    "extract(region:=region)"
+   ],
+   "1bfc4729": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "1c02dbbe": [
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=topleft)"
+   ],
+   "1c56ad9f": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "1c786137": [
+    "extract(region:=frame)"
+   ],
+   "1cf80156": [
+    "extract(region:=fg)"
+   ],
+   "1d0a4b61": [
+    "tile(extent:=border, unit:=input)"
+   ],
+   "1da012fc": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=obj_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "1e81d6f9": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "1f85a75f": [
+    "extract(region:=largest)",
+    "extract(region:=odd)"
+   ],
+   "1f876c06": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)"
+   ],
+   "2204b7a8": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)",
+    "recolour(key:=nearest, subject:=markers)",
+    "recolour(key:=nearest, subject:=train)"
+   ],
+   "22168020": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=hit)"
+   ],
+   "228f6490": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "22eb0ac0": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)"
+   ],
+   "23b5c85d": [
+    "extract(region:=smallest)"
+   ],
+   "25094a63": [
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "253bf280": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)"
+   ],
+   "2546ccf6": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "25ff71a9": [
+    "move(subject:=fg, target:=train)"
+   ],
+   "29700607": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "29c11459": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "2c608aff": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)"
+   ],
+   "30f42897": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "332efdb3": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3345333e": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "342dd610": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "3618c87e": [
+    "move(subject:=train, target:=train)"
+   ],
+   "396d80d7": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3aa6fb7a": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3ac3eb23": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "3af2c5a8": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "3bd67248": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3bdb4ada": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3befdf3e": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "3d588dc9": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "4258a5f9": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "42a50994": [
+    "recolour(key:=train, subject:=markers)"
+   ],
+   "4347f46a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "484b58aa": [
+    "tile(extent:=border, unit:=input)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "496994bd": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=fg, unit:=train, rest:=cleared, place:=nearest)",
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "4c5c2cf0": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "5034a0b5": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "508bd3b6": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "52364a65": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "52df9849": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "54d9e175": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "54dc2872": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "56dc2b01": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "58743b76": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=obj_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "5b526a93": [
+    "stamp(anchors:=across, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "5b6cbef5": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "60b61512": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "6150a2bd": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "623ea044": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=border, source:=markers, colour:=own)"
+   ],
+   "62c24649": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "639f5a19": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "67a423a3": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "67e8384a": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "6aa20dc0": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "6d0aefbc": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "6ea4a07e": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "6f8cd79b": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "6fa7a44f": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "7447852a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "7b6016b9": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "7d7772cc": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "7ddcd7ec": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "7ec998c9": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "834ec97d": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "8403a5d5": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "85c4e7cd": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "88207623": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "88a10436": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "88a62173": [
+    "extract(region:=odd)"
+   ],
+   "8be77c9e": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "8eb1be9a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "913fb3ed": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "9356391f": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "94414823": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "9565186b": [
+    "recolour(key:=train, subject:=fg)"
+   ],
+   "95990924": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "981add89": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "9841fdad": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "98c475bf": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "98cf29f8": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "9edfc990": [
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=own)"
+   ],
+   "9f27f097": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "a416b8f3": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "a5313dff": [
+    "fill(region:=bg, colour:=train)"
+   ],
+   "a5f85a15": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "a65b410d": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "a699fb00": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)"
+   ],
+   "a87f7484": [
+    "extract(region:=largest)",
+    "extract(region:=odd)"
+   ],
+   "a9f96cdd": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "aa18de87": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)"
+   ],
+   "aabf363d": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "recolour(key:=train, subject:=fg)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "aaef0977": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "aba27056": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "b1948b0a": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "b60334d2": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "b74ca5d1": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "bc4146bd": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "bda2d7a6": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "bdad9b1f": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "be94b721": [
+    "extract(region:=largest)"
+   ],
+   "bf32578f": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "bf89d739": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)"
+   ],
+   "c4d1a9ae": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "c7d4e6ad": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "c8f0f002": [
+    "recolour(key:=train, subject:=input)"
+   ],
+   "c909285e": [
+    "extract(region:=odd)"
+   ],
+   "c9e6f938": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "cd3c21df": [
+    "extract(region:=odd)"
+   ],
+   "ce22a75a": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "d06dbe63": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "d304284e": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "d364b489": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "d43fd935": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=own)",
+    "extend(stop:=obstacle, source:=fg, colour:=hit)"
+   ],
+   "d492a647": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "d511f180": [
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "recolour(key:=train, subject:=input)"
+   ],
+   "d6ad076f": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "d89b689b": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "d968ffd4": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "dbc1a6ce": [
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=fg, colour:=train)",
+    "extend(stop:=obstacle, source:=train, colour:=train)",
+    "fill(region:=between, colour:=train)"
+   ],
+   "dc1df850": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "ded97339": [
+    "extend(stop:=obstacle, source:=markers, colour:=own)",
+    "extend(stop:=obstacle, source:=markers, colour:=train)",
+    "extend(stop:=obstacle, source:=markers, colour:=hit)",
+    "fill(region:=between, colour:=train)",
+    "fill(region:=between, colour:=own)"
+   ],
+   "e40b9e2f": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "e48d4e1a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "e76a88a6": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "e8dc4411": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "e9afcf9a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "ea786f4a": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=topleft)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "ea959feb": [
+    "tile(extent:=border, unit:=input)"
+   ],
+   "f0df5ff0": [
+    "stamp(anchors:=fg, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=obj_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "f25ffba3": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)",
+    "mirror(axis:=axis, subject:=fg)"
+   ],
+   "f823c43c": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "fafd9572": [
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "fc754716": [
+    "stamp(anchors:=markers, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=markers, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "fe9372f3": [
+    "stamp(anchors:=objects, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=objects, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "135a2760": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "221dfab4": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "4c416de3": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "7491f3cf": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "7c66cb00": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "8e5c0c38": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "8f215267": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "981571dc": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "9aaea919": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "dfadab01": [
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=topleft)"
+   ],
+   "e376de54": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ]
+  }
+ },
+ "time": "2026-10-03T02:59Z",
+ "engine": {
+  "version": "v3",
+  "sha12": "2c8f226e1fe3",
+  "change": "Len's stamp prior (marks row; place nearest/topleft; rest kept/cleared), topleft limited to markers/marks/fg/objects"
+ }
+}

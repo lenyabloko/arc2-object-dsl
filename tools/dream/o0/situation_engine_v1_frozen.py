@@ -1,0 +1,647 @@
+"""Situation engine (Fable v19, Oct 2 2026): a situation is S = <HOW; arg_1..arg_k; WHY>.
+
+  HOW    a column: tile, stamp, extend, mirror, recolour, fill, move, extract (closed set, C.1/B.1)
+  arg_i  a ROW (a picked-out property of the input: its definition is fixed here, its value is computed on whichever
+         grid the situation is applied to) or 'train' (a constant bound from the training pairs)
+  WHY    the column's invariant, checked on every result; a result that breaks it is not a prediction (C.3)
+
+C.2 column induction by fit: for each column and each admissible row assignment, bind the constants on the training
+pairs and keep the assignment only if the column reproduces every training output from the rows evaluated on the
+input. fit(train) returns every fitted situation; apply(S, grid) evaluates the rows on grid, applies the column with
+the bound constants and checks WHY (C.3). Rows are deterministic, task-free detectors (G83): no task ids, no
+per-task parameters. Training pairs only: nothing here reads a test output.
+
+usage: python3 situation_engine.py fit <task id>...      fitted situations per task (training pairs only)"""
+import itertools, json, os, sys
+from collections import Counter
+
+N4 = ((1, 0), (-1, 0), (0, 1), (0, -1))
+N8 = tuple((a, b) for a in (-1, 0, 1) for b in (-1, 0, 1) if (a, b) != (0, 0))
+DIRS = {'N': (-1, 0), 'S': (1, 0), 'W': (0, -1), 'E': (0, 1), 'NW': (-1, -1), 'NE': (-1, 1), 'SW': (1, -1), 'SE': (1, 1)}
+MAX_FITS_PER_COLUMN = 3
+
+
+# ------------------------------------------------------------------ grid helpers
+def bgc(g):
+    """background: black (0) when the grid has it, else the most common colour"""
+    vs = Counter(v for r in g for v in r)
+    return 0 if 0 in vs else vs.most_common(1)[0][0]
+def dims(g): return len(g), len(g[0])
+def copy(g): return [list(r) for r in g]
+def inb(g, y, x): return 0 <= y < len(g) and 0 <= x < len(g[0])
+
+
+def comps(cells, nb=N8):
+    cells = set(cells); out = []
+    while cells:
+        s = min(cells); cells.discard(s); st = [s]; c = {s}
+        while st:
+            y, x = st.pop()
+            for dy, dx in nb:
+                n = (y + dy, x + dx)
+                if n in cells: cells.discard(n); c.add(n); st.append(n)
+        out.append(c)
+    return out
+
+
+def objects(g, b):
+    """8-connected single-colour components on the background, in reading order of their first cell."""
+    H, W = dims(g); out = []
+    for col in sorted({v for r in g for v in r} - {b}):
+        for c in comps({(y, x) for y in range(H) for x in range(W) if g[y][x] == col}):
+            out.append({'colour': col, 'cells': c})
+    return sorted(out, key=lambda o: min(o['cells']))
+
+
+def multis(g, b):
+    """8-connected components of non-background cells, colours ignored."""
+    H, W = dims(g)
+    return sorted(comps({(y, x) for y in range(H) for x in range(W) if g[y][x] != b}), key=min)
+
+
+def bbox(cells):
+    ys = [y for y, _ in cells]; xs = [x for _, x in cells]
+    return min(ys), min(xs), max(ys), max(xs)
+
+
+def crop(g, box):
+    y0, x0, y1, x1 = box
+    return [row[x0:x1 + 1] for row in g[y0:y1 + 1]]
+
+
+def unique_by(objs, key):
+    """the one object whose key value is unique and extreme / odd; None unless exactly one qualifies"""
+    return objs[0] if len(objs) == 1 else None
+
+
+# ------------------------------------------------------------------ ROWS: picked-out properties (C.1)
+# each row(g, b) -> value; None means "not present in this grid" (then the situation does not apply)
+def r_fg(g, b): return {(y, x) for y in range(len(g)) for x in range(len(g[0])) if g[y][x] != b} or None
+def r_bg(g, b): return {(y, x) for y in range(len(g)) for x in range(len(g[0])) if g[y][x] == b} or None
+
+
+def r_markers(g, b):
+    """isolated cells: a non-background cell whose 8 neighbours are all background"""
+    H, W = dims(g)
+    m = {(y, x) for y in range(H) for x in range(W) if g[y][x] != b and
+         all(not inb(g, y + dy, x + dx) or g[y + dy][x + dx] == b for dy, dx in N8)}
+    return m or None
+
+
+def r_input(g, b): return g
+
+
+def r_exemplar(g, b):
+    """the largest multi-coloured component (at least 2 colours); None if absent or tied"""
+    ms = [c for c in multis(g, b) if len({g[y][x] for y, x in c}) > 1]
+    if not ms: return None
+    n = max(len(c) for c in ms)
+    big = [c for c in ms if len(c) == n]
+    return big[0] if len(big) == 1 else None
+
+
+def _objs_by_size(g, b, pick):
+    obs = objects(g, b)
+    if len(obs) < 2: return None
+    sz = [len(o['cells']) for o in obs]; s = pick(sz)
+    return obs[sz.index(s)] if sz.count(s) == 1 else None
+
+
+def r_largest(g, b): return _objs_by_size(g, b, max)
+def r_smallest(g, b): return _objs_by_size(g, b, min)
+
+
+def r_odd(g, b):
+    """the one object whose colour no other object has, or else whose shape no other object has"""
+    obs = objects(g, b)
+    if len(obs) < 3: return None
+    cc = Counter(o['colour'] for o in obs)
+    one = [o for o in obs if cc[o['colour']] == 1]
+    if len(one) == 1: return one[0]
+    sh = lambda o: frozenset((y - min(a for a, _ in o['cells']), x - min(c for _, c in o['cells'])) for y, x in o['cells'])
+    sc = Counter(sh(o) for o in obs)
+    one = [o for o in obs if sc[sh(o)] == 1]
+    return one[0] if len(one) == 1 else None
+
+
+def r_pixel_count(g, b): return sum(v != b for r in g for v in r) or None
+def r_object_count(g, b): return len(objects(g, b)) or None
+def r_border(g, b): return dims(g)
+def r_obstacle(g, b): return r_fg(g, b)          # the stop set: any non-background cell (the first one met stops)
+
+
+def r_separators(g, b):
+    """full rows / columns of one non-background colour"""
+    H, W = dims(g)
+    rows = [y for y in range(H) if len(set(g[y])) == 1 and g[y][0] != b]
+    cols = [x for x in range(W) if len({g[y][x] for y in range(H)}) == 1 and g[0][x] != b]
+    return (rows, cols) if rows or cols else None
+
+
+def r_frame(g, b):
+    """interior box of the one rectangular outline object (a single-colour component equal to its bbox border)"""
+    out = []
+    for o in objects(g, b):
+        y0, x0, y1, x1 = bbox(o['cells'])
+        if y1 - y0 < 2 or x1 - x0 < 2: continue
+        ring = {(y, x) for y in range(y0, y1 + 1) for x in range(x0, x1 + 1) if y in (y0, y1) or x in (x0, x1)}
+        if o['cells'] == ring: out.append((y0 + 1, x0 + 1, y1 - 1, x1 - 1))
+    return out[0] if len(out) == 1 else None
+
+
+def r_key(g, b):
+    """colour key: every 2-cell component made of two different colours is a pair a -> b (left/top first)"""
+    m = {}
+    for c in multis(g, b):
+        if len(c) != 2: continue
+        p, q = sorted(c)
+        a, z = g[p[0]][p[1]], g[q[0]][q[1]]
+        if a == z or m.get(a, z) != z: continue
+        m[a] = z
+    return m or None
+
+
+def r_axis(g, b):
+    """candidate axes: grid centre lines, foreground bbox centre lines, full separator lines (as doubled coordinates)"""
+    H, W = dims(g); out = {'grid': (H - 1, W - 1)}
+    f = r_fg(g, b)
+    if f: y0, x0, y1, x1 = bbox(f); out['bbox'] = (y0 + y1, x0 + x1)
+    s = r_separators(g, b)
+    if s and len(s[0]) + len(s[1]) == 1: out['line'] = (2 * s[0][0] if s[0] else None, 2 * s[1][0] if s[1] else None)
+    return out
+
+
+ROWS = {'fg': r_fg, 'bg': r_bg, 'markers': r_markers, 'input': r_input, 'exemplar': r_exemplar, 'largest': r_largest,
+        'smallest': r_smallest, 'odd': r_odd, 'pixel_count': r_pixel_count, 'object_count': r_object_count,
+        'border': r_border, 'obstacle': r_obstacle, 'separator': r_separators, 'frame': r_frame, 'key': r_key, 'axis': r_axis}
+# the review page's row names for these (the grid shows C.1's coarser rows)
+PAGE_ROW = {'fg': 'fg', 'bg': 'bg', 'markers': 'markers', 'input': 'input', 'exemplar': 'exemplar', 'largest': 'odd',
+            'smallest': 'odd', 'odd': 'odd', 'pixel_count': 'count', 'object_count': 'count', 'border': 'border',
+            'obstacle': 'obstacle', 'objects': 'fg', 'separator': 'separator', 'frame': 'frame', 'key': 'key', 'axis': 'axis', 'train': 'train'}
+
+
+def rv(name, g, b): return ROWS[name](g, b)
+
+
+def cells_of(v):
+    """a row value as a set of cells: a cell set as is, an object by its cells, a component as is"""
+    if v is None: return None
+    if isinstance(v, dict) and 'cells' in v: return set(v['cells'])
+    if isinstance(v, (set, frozenset)): return set(v)
+    if isinstance(v, list) and v and isinstance(v[0], list): return {(y, x) for y in range(len(v)) for x in range(len(v[0]))}
+    return None
+
+
+def same_dims(train): return all(dims(p['input']) == dims(p['output']) for p in train)
+
+
+# ------------------------------------------------------------------ COLUMNS (HOW) with their arguments
+# each column: args = [(name, admissible values)], bind(train, A) -> candidate constant dicts (derived from the
+# training pairs, few), apply(g, A, K) -> output grid or None. apply returns None whenever the column's WHY fails on
+# the result (C.3), so a fit on the training pairs also means WHY held on every training pair.
+
+# --- stamp(anchors, unit) WHY: one copy of the unit at every anchor, copies identical (no two copies disagree)
+# anchors: markers / fg cells (the cell itself) or objects (each object's bbox top-left, with the object's colour).
+# unit 'train': the copy pattern bound on the training pairs (offsets from the anchor; each colour fixed or the anchor's
+# own); with byc=1 one pattern per anchor colour (a colour-indexed constant), and an anchor colour never seen in
+# training gives no prediction. unit 'exemplar': the input's multi-coloured shape, placed with its cell of the anchor's
+# colour on the anchor.
+def stamp_anchors(g, b, A, K):
+    if A['anchors'] == 'objects':
+        a = [(min(y for y, _ in o['cells']), min(x for _, x in o['cells']), o['colour'], frozenset(o['cells'])) for o in objects(g, b)]
+    else:
+        c = cells_of(rv(A['anchors'], g, b))
+        if not c: return None
+        a = [(y, x, g[y][x], frozenset([(y, x)])) for y, x in c]
+    if K.get('ac') is not None: a = [t for t in a if t[2] == K['ac']]
+    return sorted(a) or None
+
+
+def stamp_bind(train, A):
+    if not same_dims(train): return []
+    out = []
+    an0 = [stamp_anchors(p['input'], bgc(p['input']), A, {}) or [] for p in train]
+    cols = set.intersection(*[{t[2] for t in an} for an in an0])
+    for ac in [None] + sorted(cols):
+        if A['unit'] == 'exemplar':
+            out += [{'ac': ac, 'mode': m} for m in ('bg', 'all')]; continue
+        for byc in ((0, 1) if ac is None else (0,)):
+            pat = {}; ok = True; seen = set()
+            for p in train:
+                g, o = p['input'], p['output']; b = bgc(g)
+                an = stamp_anchors(g, b, A, {'ac': ac}) or []
+                seen |= {t[2] for t in an}
+                delta = [(y, x) for y in range(len(g)) for x in range(len(g[0])) if g[y][x] != o[y][x]]
+                if delta and not an: ok = False; break
+                for y, x in delta:
+                    ds = [min(max(abs(y - cy), abs(x - cx)) for cy, cx in cl) for _, _, _, cl in an]; m = min(ds)
+                    for (ay, ax, ca, _), d in zip(an, ds):
+                        if d != m: continue
+                        opt = {('k', o[y][x])} | ({('a', 0)} if o[y][x] == ca else set())
+                        key = (ca if byc else None, y - ay, x - ax)
+                        pat[key] = pat.get(key, opt) & opt
+                        if not pat[key]: ok = False; break
+                    if not ok: break
+                if not ok: break
+            if not ok or not pat or all(k[1:] == (0, 0) for k in pat): continue    # a unit is more than the anchor itself
+            unit = sorted([k[0], k[1], k[2], 'a' if ('a', 0) in v else 'k', 0 if ('a', 0) in v else next(x for t, x in v if t == 'k')]
+                          for k, v in pat.items())
+            out += [{'ac': ac, 'byc': byc, 'seen': sorted(seen), 'mode': m, 'unit': unit} for m in ('bg', 'all')]
+    return out
+
+
+def stamp_apply(g, A, K):
+    b = bgc(g); an = stamp_anchors(g, b, A, K)
+    if not an: return None
+    if A['unit'] == 'exemplar':
+        E = cells_of(rv('exemplar', g, b))
+        if not E: return None
+        an = [t for t in an if not (t[3] & E)]
+        if not an: return None
+    out = copy(g); painted = {}
+    for ay, ax, ca, _ in an:
+        if A['unit'] == 'exemplar':
+            ref = [e for e in E if g[e[0]][e[1]] == ca]
+            if len(ref) != 1: return None                          # WHY: the unit has exactly one cell like the anchor
+            ry, rx = ref[0]; unit = [(y - ry, x - rx, g[y][x]) for y, x in E]
+        else:
+            if K.get('byc') and ca not in K['seen']: return None   # an anchor colour training never showed
+            unit = [(dy, dx, ca if t == 'a' else v) for c0, dy, dx, t, v in K['unit'] if not K.get('byc') or c0 == ca]
+        for dy, dx, v in unit:
+            y, x = ay + dy, ax + dx
+            if not inb(g, y, x): continue
+            if K['mode'] == 'bg' and g[y][x] != b and (dy, dx) != (0, 0): continue
+            if painted.setdefault((y, x), v) != v: return None     # WHY: two copies disagree
+            out[y][x] = v
+    return out
+
+
+# --- extend(stop, source, colour) WHY: every line reaches exactly the first stop cell and never crosses it
+# stop 'obstacle': the first non-background cell met ends the line (hit_only: only lines that do meet one, optionally
+# one of a given colour or of the source's own colour); stop 'border': lines run to the grid edge, passing behind ink.
+# Directions are bound on the training pairs, for all sources or (byc=1) per source colour.
+def ext_sources(g, b, A, K):
+    if A['source'] == 'train': s = {(y, x) for y in range(len(g)) for x in range(len(g[0])) if g[y][x] == K['sc']}
+    else:
+        s = cells_of(rv(A['source'], g, b)) or set()
+        if K.get('sc') is not None: s = {p for p in s if g[p[0]][p[1]] == K['sc']}
+    return sorted(s)
+
+
+def ext_bind(train, A):
+    if not same_dims(train): return []
+    pal = set.intersection(*[{v for r in p['input'] for v in r} - {bgc(p['input'])} for p in train])
+    scs = sorted(pal) if A['source'] == 'train' else [None] + sorted(pal)
+    out = []
+    for sc in scs:
+        dirs = {}; lc = set()
+        for p in train:
+            g, o = p['input'], p['output']; b = bgc(g)
+            for y, x in ext_sources(g, b, A, {'sc': sc}):
+                dirs.setdefault(g[y][x], set())
+                for n, (dy, dx) in DIRS.items():
+                    yy, xx = y + dy, x + dx
+                    if inb(g, yy, xx) and g[yy][xx] == b and o[yy][xx] != b: dirs[g[y][x]].add(n)
+            lc |= {o[y][x] for y in range(len(g)) for x in range(len(g[0])) if g[y][x] != o[y][x]}
+        alld = set().union(*dirs.values()) if dirs else set()
+        if not alld: continue
+        if A['colour'] == 'train' and len(lc) != 1: continue
+        ORTH, DIAG = {'N', 'S', 'W', 'E'}, {'NW', 'NE', 'SW', 'SE'}
+        cand = []
+        for d in (alld, alld & ORTH, alld & DIAG):                    # the learned set, or only its straight / diagonal part
+            if d and sorted(d) not in cand: cand.append(sorted(d))
+        dsets = [(0, d) for d in cand] + ([(1, sorted([c, sorted(d)] for c, d in dirs.items()))] if len(dirs) > 1 and sc is None else [])
+        for byc, ds in dsets:
+            for hit in ((False, True) if A['stop'] == 'obstacle' else (False,)):
+                for stc in ([None, 'own'] + sorted(pal) if hit else [None]):
+                    out.append({'sc': sc, 'byc': byc, 'dirs': ds, 'lc': min(lc) if A['colour'] == 'train' else None, 'hit_only': hit, 'stopc': stc})
+    return out
+
+
+def ext_apply(g, A, K):
+    b = bgc(g); src = ext_sources(g, b, A, K)
+    if not src: return None
+    out = copy(g); painted = {}
+    bydir = dict((c, d) for c, d in K['dirs']) if K.get('byc') else None
+    for y, x in src:
+        col = g[y][x] if A['colour'] == 'own' else K['lc']
+        if bydir is not None:
+            if g[y][x] not in bydir: return None                   # a source colour training never showed
+            dl = bydir[g[y][x]]
+        else: dl = K['dirs']
+        for n in dl:
+            dy, dx = DIRS[n]; yy, xx = y + dy, x + dx; seg = []; hit = False
+            while inb(g, yy, xx):
+                if g[yy][xx] != b:
+                    if A['stop'] == 'obstacle':
+                        st = K.get('stopc'); hit = st is None or g[yy][xx] == (g[y][x] if st == 'own' else st); break
+                else: seg.append((yy, xx))
+                yy += dy; xx += dx
+            if A['stop'] == 'obstacle' and K['hit_only'] and not hit: continue
+            for c in seg:
+                if painted.setdefault(c, col) != col: return None   # WHY: two lines cross with different colours
+                out[c[0]][c[1]] = col
+    return out
+
+
+# --- tile(extent, unit) WHY: every block of the output is the unit or empty
+def tile_bind(train, A):
+    if A['extent'] == 'train':
+        k = {(len(p['output']) // len(p['input']), len(p['output'][0]) // len(p['input'][0])) for p in train
+             if len(p['output']) % len(p['input']) == 0 and len(p['output'][0]) % len(p['input'][0]) == 0}
+        kk = list(next(iter(k))) if len(k) == 1 else None
+        return [{'k': kk, 'flip': f} for f in (0, 1)] if len(k) == 1 and len(train) == sum(1 for p in train if len(p['output']) % len(p['input']) == 0 and len(p['output'][0]) % len(p['input'][0]) == 0) else []
+    if A['extent'] in ('pixel_count', 'object_count'): return [{'lay': l} for l in ('h', 'v', 'sq')]
+    if A['extent'] == 'border': return [{}] if same_dims(train) else []
+    return [{}]
+
+
+def period(g, b):
+    H, W = dims(g); ink = [(y, x, g[y][x]) for y in range(H) for x in range(W) if g[y][x] != b]
+    if not ink: return None
+    for area in range(1, H * W):
+        for pr in range(1, H + 1):
+            if area % pr or area // pr > W: continue
+            pc = area // pr; pat = {}; ok = True
+            for y, x, v in ink:
+                if pat.setdefault((y % pr, x % pc), v) != v: ok = False; break
+            if ok: return pr, pc, pat
+    return None
+
+
+def tile_apply(g, A, K):
+    b = bgc(g); H, W = dims(g); e = A['extent']
+    if e == 'train':
+        kr, kc = K['k']
+        if kr * kc <= 1 or kr * H > 30 or kc * W > 30: return None
+        if K.get('flip'):                                             # odd blocks mirrored (the unit reflected)
+            return [[g[(y % H) if (y // H) % 2 == 0 else H - 1 - y % H][(x % W) if (x // W) % 2 == 0 else W - 1 - x % W]
+                     for x in range(kc * W)] for y in range(kr * H)]
+        return [[g[y % H][x % W] for x in range(kc * W)] for y in range(kr * H)]
+    if e in ('pixel_count', 'object_count'):
+        n = rv(e, g, b)
+        if not n or n < 2: return None
+        kr, kc = {'h': (1, n), 'v': (n, 1), 'sq': (n, n)}[K['lay']]
+        if kr * H > 30 or kc * W > 30: return None
+        return [[g[y % H][x % W] for x in range(kc * W)] for y in range(kr * H)]
+    if e in ('fg', 'bg'):
+        if H * H > 30 or W * W > 30: return None
+        on = lambda i, j: (g[i][j] != b) == (e == 'fg')
+        return [[g[y % H][x % W] if on(y // H, x // W) else b for x in range(W * W)] for y in range(H * H)]
+    if e == 'border':
+        pp = period(g, b)
+        if not pp: return None
+        pr, pc, pat = pp
+        if pr == H and pc == W: return None
+        out = [[pat.get((y % pr, x % pc), b) for x in range(W)] for y in range(H)]
+        return out
+    return None
+
+
+# --- mirror(axis, subject) WHY: the output is symmetric about the axis detected on the input
+def mir_bind(train, A):
+    if not same_dims(train): return []
+    return [{'which': w, 'orient': o} for w in ('grid', 'bbox', 'line') for o in ('v', 'h', 'both', 'd')]
+
+
+def mir_apply(g, A, K):
+    b = bgc(g); ax = r_axis(g, b).get(K['which'])
+    if not ax: return None
+    Y2, X2 = ax; o = K['orient']
+    if (o in ('v', 'both') and X2 is None) or (o in ('h', 'both') and Y2 is None) or (o == 'd' and (X2 is None or Y2 is None)): return None
+    S = cells_of(rv(A['subject'], g, b))
+    if not S: return None
+    out = copy(g)
+    def images(y, x):
+        if o == 'v': return [(y, X2 - x)]
+        if o == 'h': return [(Y2 - y, x)]
+        if o == 'both': return [(y, X2 - x), (Y2 - y, x), (Y2 - y, X2 - x)]
+        if (Y2 - X2) % 2: return []
+        return [((Y2 - X2) // 2 + x, (X2 - Y2) // 2 + y)]
+    for y, x in sorted(S):
+        for yy, xx in images(y, x):
+            if not inb(g, yy, xx): continue
+            if g[yy][xx] == b and out[yy][xx] in (b, g[y][x]): out[yy][xx] = g[y][x]
+            elif out[yy][xx] != g[y][x]: return None                 # WHY: the two sides disagree
+    return out
+
+
+# --- recolour(key, subject) WHY: every subject cell of colour a becomes key(a); nothing else changes
+def subj_cells(g, b, name, K=None):
+    if name == 'train':
+        return {(y, x) for y in range(len(g)) for x in range(len(g[0])) if g[y][x] == (K or {}).get('sc')} or None
+    return cells_of(rv(name, g, b))
+
+
+def subj_colours(train):
+    return sorted(set.intersection(*[{v for r in p['input'] for v in r} - {bgc(p['input'])} for p in train]))
+
+
+def rec_bind(train, A):
+    if not same_dims(train): return []
+    scs = subj_colours(train) if A['subject'] == 'train' else [None]
+    if A['key'] == 'key': return [{'sc': sc} for sc in scs]
+    out = []
+    for sc in scs:
+        m = {}; ok = True
+        for p in train:
+            g, o = p['input'], p['output']; b = bgc(g); S = subj_cells(g, b, A['subject'], {'sc': sc})
+            if not S: ok = False; break
+            for y, x in S:
+                if m.setdefault(g[y][x], o[y][x]) != o[y][x]: ok = False; break
+            if not ok: break
+        if ok and not all(k == v for k, v in m.items()): out.append({'sc': sc, 'map': sorted([k, v] for k, v in m.items())})
+    return out
+
+
+def rec_apply(g, A, K):
+    b = bgc(g); S = subj_cells(g, b, A['subject'], K)
+    if not S: return None
+    if A['key'] == 'key':
+        m = r_key(g, b)
+        if not m: return None
+        legend = {c for comp in multis(g, b) if len(comp) == 2 for c in comp}
+        S = S - legend
+    else: m = dict((k, v) for k, v in K['map'])
+    out = copy(g)
+    for y, x in S:
+        c = g[y][x]
+        if c in m: out[y][x] = m[c]
+        elif A['key'] == 'train': return None                       # WHY: a subject colour the key does not cover
+    return out
+
+
+# --- fill(region, colour) WHY: every cell of the region is filled, nothing outside it changes
+def enclosed(g, b):
+    H, W = dims(g); seen = set(); st = [(y, x) for y in range(H) for x in range(W) if (y in (0, H - 1) or x in (0, W - 1)) and g[y][x] == b]
+    seen |= set(st)
+    while st:
+        y, x = st.pop()
+        for dy, dx in N4:
+            n = (y + dy, x + dx)
+            if inb(g, *n) and n not in seen and g[n[0]][n[1]] == b: seen.add(n); st.append(n)
+    return {(y, x) for y in range(H) for x in range(W) if g[y][x] == b and (y, x) not in seen}
+
+
+def fill_region(g, b, name):
+    if name == 'bg': return enclosed(g, b) or None
+    if name == 'frame':
+        f = r_frame(g, b)
+        if not f: return None
+        return {(y, x) for y in range(f[0], f[2] + 1) for x in range(f[1], f[3] + 1) if g[y][x] == b} or None
+    return None
+
+
+def fill_bind(train, A):
+    if not same_dims(train): return []
+    if A['colour'] == 'own': return [{}]
+    cs = set()
+    for p in train:
+        g, o = p['input'], p['output']; R = fill_region(g, bgc(g), A['region'])
+        if not R: return []
+        cs |= {o[y][x] for y, x in R}
+    return [{'c': cs.pop()}] if len(cs) == 1 else []
+
+
+def fill_apply(g, A, K):
+    b = bgc(g); R = fill_region(g, b, A['region'])
+    if not R: return None
+    out = copy(g)
+    for comp in comps(R, N4):
+        if A['colour'] == 'own':
+            nb = {g[y + dy][x + dx] for y, x in comp for dy, dx in N4 if inb(g, y + dy, x + dx)} - {b}
+            if len(nb) != 1: return None                              # WHY: the enclosing colour is not unique
+            c = nb.pop()
+        else: c = K['c']
+        for y, x in comp: out[y][x] = c
+    return out
+
+
+# --- move(subject, target) WHY: the subject keeps its shape; with target 'obstacle' it ends in contact
+def mov_bind(train, A):
+    if not same_dims(train): return []
+    scs = subj_colours(train) if A['subject'] == 'train' else [None]
+    if A['target'] != 'train':
+        return [{'sc': sc, 'd': n} for sc in scs for n in (('toward', 'N', 'S', 'W', 'E') if A['target'] == 'obstacle' else ('N', 'S', 'W', 'E'))]
+    out = []
+    for sc in scs:
+        g, o = train[0]['input'], train[0]['output']; b = bgc(g); S = subj_cells(g, b, A['subject'], {'sc': sc})
+        if not S: continue
+        H, W = dims(g)
+        for dy in range(-H + 1, H):
+            for dx in range(-W + 1, W):
+                if (dy, dx) != (0, 0) and all(inb(o, y + dy, x + dx) and o[y + dy][x + dx] == g[y][x] for y, x in S): out.append({'sc': sc, 'v': [dy, dx]})
+    return out[:8]
+
+
+def mov_apply(g, A, K):
+    b = bgc(g); S = subj_cells(g, b, A['subject'], K)
+    if not S: return None
+    rest = copy(g)
+    for y, x in S: rest[y][x] = b
+    if A['target'] == 'train': dy, dx = K['v']
+    elif K['d'] == 'toward':                                          # the one direction in which the subject meets ink
+        hits = [n for n in ('N', 'S', 'W', 'E') if mov_apply(g, A, dict(K, d=n)) is not None]
+        if len(hits) != 1: return None
+        return mov_apply(g, A, dict(K, d=hits[0]))
+    else:
+        sy, sx = DIRS[K['d']]; k = 0
+        while True:
+            nxt = [(y + (k + 1) * sy, x + (k + 1) * sx) for y, x in S]
+            if not all(inb(g, *c) for c in nxt): break
+            if any(rest[c[0]][c[1]] != b for c in nxt): break
+            k += 1
+        nxt = [(y + (k + 1) * sy, x + (k + 1) * sx) for y, x in S]
+        touched = all(inb(g, *c) for c in nxt)                        # stopped by ink, not by the border
+        if A['target'] == 'obstacle' and not touched: return None      # WHY: no contact
+        if A['target'] == 'border' and touched: return None
+        if k == 0: return None
+        dy, dx = k * sy, k * sx
+    out = rest
+    for y, x in S:
+        if not inb(g, y + dy, x + dx): return None
+        out[y + dy][x + dx] = g[y][x]
+    return out
+
+
+# --- extract(region) WHY: the output is exactly the region's box of the input
+def ext_region_box(g, b, name):
+    if name == 'frame': return r_frame(g, b)
+    S = cells_of(rv(name, g, b))
+    return bbox(S) if S else None
+
+
+def xtr_bind(train, A):
+    return [{}] if all(len(p['output']) <= len(p['input']) and len(p['output'][0]) <= len(p['input'][0]) for p in train) else []
+
+
+def xtr_apply(g, A, K):
+    box = ext_region_box(g, bgc(g), A['region'])
+    if not box or box[0] > box[2] or box[1] > box[3]: return None
+    out = crop(g, box)
+    return out
+
+
+OBJ_ROWS = ['fg', 'markers', 'largest', 'smallest', 'odd', 'train']
+COLUMNS = {
+    'tile':     {'args': [('extent', ['train', 'pixel_count', 'object_count', 'fg', 'bg', 'border']), ('unit', ['input'])],
+                 'bind': tile_bind, 'apply': tile_apply, 'why': 'every block of the output is the unit or empty'},
+    'stamp':    {'args': [('anchors', ['markers', 'fg', 'objects']), ('unit', ['train', 'exemplar'])],
+                 'bind': stamp_bind, 'apply': stamp_apply, 'why': 'one copy of the unit at every anchor, copies identical'},
+    'extend':   {'args': [('stop', ['obstacle', 'border']), ('source', ['markers', 'fg', 'train']), ('colour', ['own', 'train'])],
+                 'bind': ext_bind, 'apply': ext_apply, 'why': 'every line reaches exactly the first stop cell and never crosses it'},
+    'mirror':   {'args': [('axis', ['axis']), ('subject', ['fg'])],
+                 'bind': mir_bind, 'apply': mir_apply, 'why': 'the output is symmetric about the axis detected on the input'},
+    'recolour': {'args': [('key', ['train', 'key']), ('subject', OBJ_ROWS + ['input'])],
+                 'bind': rec_bind, 'apply': rec_apply, 'why': 'every subject cell of colour a becomes key(a); nothing else changes'},
+    'fill':     {'args': [('region', ['bg', 'frame']), ('colour', ['train', 'own'])],
+                 'bind': fill_bind, 'apply': fill_apply, 'why': 'every cell of the region is filled; nothing outside it changes'},
+    'move':     {'args': [('subject', OBJ_ROWS), ('target', ['train', 'border', 'obstacle'])],
+                 'bind': mov_bind, 'apply': mov_apply, 'why': 'the subject keeps its shape (and ends in contact for obstacle)'},
+    'extract':  {'args': [('region', ['largest', 'smallest', 'odd', 'frame', 'fg', 'exemplar'])],
+                 'bind': xtr_bind, 'apply': xtr_apply, 'why': 'the output is exactly the region box of the input'},
+}
+
+
+def apply_raw(S, g):
+    """the column's result on g (possibly g itself); None when WHY fails or a row is absent"""
+    try: return COLUMNS[S['how']]['apply'](g, S['args'], S['consts'])
+    except (KeyError, IndexError, TypeError, ValueError, ZeroDivisionError): return None
+
+
+def apply(S, g):
+    """C.3: evaluate the rows on g, apply the column with the bound constants; None when WHY fails or nothing changes"""
+    out = apply_raw(S, g)
+    return out if out is not None and out != g else None
+
+
+def fit(train, columns=None):
+    """C.2: every (column, row assignment, constants) that reproduces every training pair; training pairs only"""
+    out = []
+    for how, C in COLUMNS.items():
+        if columns and how not in columns: continue
+        names = [a for a, _ in C['args']]; nfit = 0
+        for vals in itertools.product(*[d for _, d in C['args']]):
+            A = dict(zip(names, vals))
+            try: Ks = C['bind'](train, A)
+            except (KeyError, IndexError, TypeError, ValueError, ZeroDivisionError): Ks = []
+            for K in Ks:
+                S = {'how': how, 'args': A, 'consts': K}
+                if all(apply_raw(S, p['input']) == p['output'] for p in train) and any(p['input'] != p['output'] for p in train):
+                    out.append(S); nfit += 1; break
+            if nfit >= MAX_FITS_PER_COLUMN: break
+    return out
+
+
+def situation_key(S, page=False):
+    return S['how'] + '(' + ', '.join('%s:=%s' % (k, PAGE_ROW.get(v, v) if page else v) for k, v in S['args'].items()) + ')'
+
+
+if __name__ == '__main__':
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import line_check as LC
+    if sys.argv[1] == 'fit':
+        for k in sys.argv[2:]:
+            t = LC.task(k)
+            if t is None: print(k, 'not readable'); continue
+            print(k, [situation_key(S) for S in fit(t[0]['train'])])

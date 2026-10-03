@@ -1,0 +1,64 @@
+{
+ "time": "2026-10-03T02:45Z",
+ "training_pair_checks": {
+  "markers|extend 0f63c0b9": {
+   "pairs_reproduced": "0/4",
+   "stop": "obstacle"
+  },
+  "markers|extend 142ca369": {
+   "pairs_reproduced": "0/3",
+   "stop": "obstacle"
+  },
+  "markers|extend 1bfc4729": {
+   "pairs_reproduced": "0/2",
+   "stop": "obstacle"
+  },
+  "markers|extend 21f83797": {
+   "pairs_reproduced": "0/2",
+   "stop": "obstacle"
+  },
+  "markers|extend 29c11459": {
+   "pairs_reproduced": "0/2",
+   "stop": "obstacle"
+  },
+  "markers|extend 5c0a986e": {
+   "pairs_reproduced": "0/3 (nothing to bind)",
+   "stop": null
+  },
+  "markers|extend 623ea044": {
+   "pairs_reproduced": "3/3",
+   "stop": "obstacle"
+  },
+  "markers|extend 6e19193c": {
+   "pairs_reproduced": "0/2 (nothing to bind)",
+   "stop": null
+  },
+  "key|tile 15696249": {
+   "pairs_reproduced": "4/4",
+   "reading": "direct reading of the definition"
+  },
+  "fg|disperse 66e6c45b": {
+   "pairs_reproduced": "2/2",
+   "reading": "direct reading: each cell moves outward, diagonally, to the edge"
+  }
+ },
+ "reuse_and_harness": {
+  "key|tile": {
+   "fits": [
+    "15696249"
+   ],
+   "arc2": [],
+   "not_build_solved": [
+    "15696249"
+   ]
+  },
+  "fg|disperse": {
+   "fits": [
+    "66e6c45b"
+   ],
+   "arc2": [],
+   "not_build_solved": []
+  },
+  "harness_15696249_key_tile": "exact"
+ }
+}

@@ -1,0 +1,110 @@
+{
+ "engine_sha": "f14127b651fe",
+ "population": 6,
+ "exact": 1,
+ "wrong": 3,
+ "empty": 2,
+ "go": false,
+ "rule": "v20 B.1: >= 3 of 6 exact and 0 wrong",
+ "rows": [
+  {
+   "task": "3bd67248",
+   "situations": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "3befdf3e",
+   "situations": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 2,
+   "free_slots": 0,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "3d588dc9",
+   "situations": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 1,
+   "distinct_predictions": 1,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "R_of_placed": [
+    64
+   ],
+   "result": "wrong"
+  },
+  {
+   "task": "56dc2b01",
+   "situations": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 1,
+   "distinct_predictions": 1,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "R_of_placed": [
+    64
+   ],
+   "result": "wrong"
+  },
+  {
+   "task": "834ec97d",
+   "situations": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 3,
+   "distinct_predictions": 1,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "R_of_placed": [
+    64
+   ],
+   "result": "wrong"
+  },
+  {
+   "task": "8403a5d5",
+   "situations": [
+    "stamp(anchors:=markers, unit:=train)",
+    "stamp(anchors:=fg, unit:=train)",
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "with_prediction": 3,
+   "distinct_predictions": 1,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [
+    "stamp(anchors:=objects, unit:=train)"
+   ],
+   "R_of_placed": [
+    64
+   ],
+   "result": "exact"
+  }
+ ],
+ "slots_source": "c42 (V34 full run) results.jsonl"
+}
