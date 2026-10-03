@@ -533,9 +533,6 @@ def tile_bind(train, A):
         return [{'k': kk, 'flip': f} for f in (0, 1)] if len(k) == 1 and len(train) == sum(1 for p in train if len(p['output']) % len(p['input']) == 0 and len(p['output'][0]) % len(p['input'][0]) == 0) else []
     if A['extent'] in ('pixel_count', 'object_count'): return [{'lay': l} for l in ('h', 'v', 'sq')]
     if A['extent'] == 'border': return [{}] if same_dims(train) else []
-    if A['extent'] in DEF_ROWS:                                   # v4: blocks at the cells a definition row picks out;
-        cols = set.intersection(*[{v for r in p['output'] for v in r} for p in train])   # empty blocks: one colour,
-        return [{'fill': c} for c in sorted(cols)]                # the same in all examples
     return [{}]
 
 
@@ -571,10 +568,6 @@ def tile_apply(g, A, K):
         if H * H > 30 or W * W > 30: return None
         on = lambda i, j: (g[i][j] != b) == (e == 'fg')
         return [[g[y % H][x % W] if on(y // H, x // W) else b for x in range(W * W)] for y in range(H * H)]
-    if e in DEF_ROWS:                                             # v4 (Len, key x tile): the unit goes into the blocks
-        on = cells_of(rv(e, g, b))                                # whose index cell the row picks out (Kronecker layout)
-        if not on or H * H > 30 or W * W > 30: return None
-        return [[g[y % H][x % W] if (y // H, x // W) in on else K['fill'] for x in range(W * W)] for y in range(H * H)]
     if e == 'border':
         pp = period(g, b)
         if not pp: return None
@@ -829,7 +822,7 @@ def xtr_apply(g, A, K):
 OBJ_ROWS = ['fg', 'markers', 'largest', 'smallest', 'odd', 'train', 'segments']
 REPEATABLE = {'extend', 'stamp', 'fill'}
 COLUMNS = {
-    'tile':     {'args': [('extent', ['train', 'pixel_count', 'object_count', 'fg', 'bg', 'border'] + sorted(DEF_ROWS)), ('unit', ['input'])],
+    'tile':     {'args': [('extent', ['train', 'pixel_count', 'object_count', 'fg', 'bg', 'border']), ('unit', ['input'])],
                  'bind': tile_bind, 'apply': tile_apply, 'why': 'every block of the output is the unit or empty'},
     'stamp':    {'args': [('anchors', ['markers', 'marks', 'fg', 'objects', 'grid_corners', 'obj_corners', 'centre', 'across']), ('unit', ['train', 'exemplar']),
                           ('rest', ['kept', 'cleared']), ('place', ['nearest', 'topleft'])],

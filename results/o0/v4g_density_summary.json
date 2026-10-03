@@ -1,0 +1,16 @@
+{
+ "variants": 1330,
+ "d1": {
+  "answered": 327,
+  "pass@1": 262,
+  "wrong": 65
+ },
+ "d2": {
+  "answered": 435,
+  "pass@1": 305,
+  "wrong": 130
+ },
+ "depth2_answers_from_depth2_programs": 111,
+ "depth2_exact_from_depth2_programs": 46,
+ "go_C3": false
+}

@@ -430,3 +430,12 @@ The two half-A solves read as a person would state them. One is e3721c99: object
   - Each definition fits only its own task (reuse 0 on design).
 - **Reading.** Reviewer definitions are accurate where they are specific: two build-unsolved tasks were solved on the first harness check. Nothing transfers, and the score only moves with rules that recur across hidden tasks. ETA to a higher public score: still no evidence of one; the standing notebook keeps 2.50.
 - **Addendum (23:03).** Len's correction now lives in the schema (engine v3: marks / place / rest), at design fits 158 → 160 (dfadab01, 1c02dbbe). The one transfer check (1c02dbbe) was empty. Len's scale-free schema proposal (recursive slots, depth ≤ 2) went to Fable in the round 20b report, with the T89 evidence that a second situation closes 6 of 13.
+
+## Overnight Oct 2–3 (written 00:39)
+- **Fable v21 / v21a.** The scale-free schema was adopted as the one bounded step before Oct 12. It is built as engine v4: depth ≤ 2, one recursion, inner and outer WHY, refinements as Datalog definitions.
+- **T86″: no-go** (0 / 1 / 7).
+- **H.** Strict |H| = 0: every build-failing task was on the phone page. Sealed fallbacks: 72 / 518.
+- **Dev fits:** depth 1 55, depth ≤ 2 83.
+- **C.3 fails** for v4, for v4 + G5, and for map-only on fresh seeds. Depth 2 buys about as many wrong answers as right ones. **T90 no-go before placement.**
+- **Reading.** The second level of the schema, as an automatic search, fits by chance in the related-but-wrong sense. The reviewer's sentences, as definitions, are exact where they apply (2 tasks) but are needed on few other tasks (marks 4, rest-cleared 3).
+- **Oct 12.** B.5's position stands: the OQ7 proxy fails on both arms. The memo is v15 option (a) with the two positive findings. ETA to a higher public score: no evidence of one; v21 keeps 2.50.

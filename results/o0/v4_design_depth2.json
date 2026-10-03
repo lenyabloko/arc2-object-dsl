@@ -1,0 +1,4186 @@
+{
+ "summary": {
+  "population": "dev = design - T86 14 - sealed draws (590 sealed tasks not touched)",
+  "n": 393,
+  "timeouts": 0,
+  "minutes": 4.6,
+  "fit_depth1": 55,
+  "build_failing_n": 67,
+  "build_failing_fit_depth1": 7,
+  "fit_depth_le2": 83,
+  "build_failing_fit_depth_le2": 8,
+  "only_depth2": 28,
+  "build_failing_only_depth2": 1,
+  "R_part": {
+   "column:stamp": 74,
+   "const:stamp.unit": 74,
+   "arg:place=nearest": 73,
+   "arg:rest=kept": 73,
+   "arg:rest=cleared": 58,
+   "scale:grid": 55,
+   "arg:anchors=objects": 42,
+   "row:fg": 30,
+   "row:markers": 28,
+   "arg:place=topleft": 24,
+   "row:centre": 23,
+   "row:marks": 21,
+   "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)": 20,
+   "arg:repeat": 16,
+   "row:obj_corners": 13,
+   "column:recolour": 11,
+   "scale:object": 11,
+   "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)": 11,
+   "column:extend": 9,
+   "row:input": 8,
+   "arg:colour=own": 8,
+   "row:obstacle": 8,
+   "scale:part": 8,
+   "column:tile": 7,
+   "const:recolour.key": 7,
+   "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)": 6,
+   "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)": 5,
+   "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)": 5,
+   "arg:key=nearest": 4,
+   "column:move": 4,
+   "const:move.target": 4,
+   "row:smallest": 4,
+   "sub:stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)": 4,
+   "sub:extend(colour:=own, source:=fg, stop:=obstacle)": 3,
+   "sub:extend(colour:=own, source:=markers, stop:=obstacle)": 3,
+   "const:recolour.subject": 3,
+   "column:fill": 3,
+   "const:fill.colour": 3,
+   "sub:stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)": 3,
+   "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)": 3,
+   "row:grid_corners": 3,
+   "row:border": 3,
+   "row:segments": 2,
+   "sub:recolour(key:=train, subject:=fg)": 2,
+   "sub:recolour(key:=nearest, subject:=train)": 2,
+   "row:bg": 2,
+   "column:mirror": 2,
+   "row:axis": 2,
+   "sub:stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)": 2,
+   "column:extract": 2,
+   "row:exemplar": 2,
+   "sub:extract(region:=exemplar)": 2,
+   "const:extend.source": 2,
+   "sub:stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)": 2,
+   "sub:move(subject:=fg, target:=train)": 2,
+   "const:tile.extent": 2,
+   "sub:tile(extent:=fg, unit:=input)": 1,
+   "sub:stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)": 1,
+   "row:uniform_line": 1,
+   "row:region": 1,
+   "sub:recolour(key:=nearest, subject:=smallest)": 1,
+   "const:move.subject": 1,
+   "sub:move(subject:=train, target:=train)": 1,
+   "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=cleared, unit:=train)": 1,
+   "sub:extend(colour:=own, source:=train, stop:=obstacle)": 1,
+   "sub:fill(colour:=train, region:=bg)": 1,
+   "sub:tile(extent:=train, unit:=input)": 1,
+   "sub:extend(colour:=own, source:=markers, stop:=border)": 1,
+   "sub:stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)": 1,
+   "sub:stamp(anchors:=fg, place:=topleft, rest:=cleared, unit:=train)": 1,
+   "const:extend.colour": 1,
+   "row:between": 1,
+   "sub:recolour(key:=train, subject:=markers)": 1
+  },
+  "len_parts": {
+   "row:marks": 21,
+   "arg:place=topleft": 24,
+   "arg:rest=cleared": 58,
+   "row:uniform_line": 0
+  },
+  "len_parts_necessary": {
+   "row:marks": 4,
+   "arg:place=topleft": 0,
+   "arg:rest=cleared": 3,
+   "row:uniform_line": 0
+  },
+  "len_parts_first_ranked": {
+   "row:marks": 4,
+   "arg:place=topleft": 0,
+   "arg:rest=cleared": 24,
+   "row:uniform_line": 0
+  }
+ },
+ "tasks": {
+  "007bbfb7": {
+   "fits": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:tile",
+    "row:fg",
+    "row:input"
+   ],
+   "s": 0.4
+  },
+  "017c7c7b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "03560426": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "045e512c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "0607ce86": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.7
+  },
+  "0692e18c": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=tile(extent:=fg, unit:=input)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=tile(extent:=fg, unit:=input)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=tile(extent:=fg, unit:=input)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "column:tile",
+    "const:stamp.unit",
+    "row:fg",
+    "row:input",
+    "scale:grid",
+    "sub:tile(extent:=fg, unit:=input)"
+   ],
+   "s": 0.0
+  },
+  "06df4c85": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.5
+  },
+  "09629e4f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.3
+  },
+  "0962bcdd": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre"
+   ],
+   "s": 0.1
+  },
+  "09c534e7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.1
+  },
+  "0a938d79": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "0ca9ddb6": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "s": 0.6
+  },
+  "0d3d703e": {
+   "fits": [
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "recolour(key:=train, subject:=input)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=train, subject:=fg)@grid]",
+    "recolour(key:=train, subject:=segments)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=train, subject:=fg)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:fg",
+    "row:input",
+    "row:segments",
+    "scale:grid",
+    "sub:recolour(key:=train, subject:=fg)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.1
+  },
+  "0d87d2a6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.9
+  },
+  "0f63c0b9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "103eff5b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "10fcaaa3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "11e1fe23": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "12eac192": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "13713586": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obstacle",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=fg, stop:=obstacle)"
+   ],
+   "s": 2.1
+  },
+  "140c817e": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "row:obstacle",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=markers, stop:=obstacle)"
+   ],
+   "s": 1.1
+  },
+  "14754a24": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.1
+  },
+  "14b8e18c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "150deff5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "15113be4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 5.1
+  },
+  "15663ba9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "15696249": {
+   "fits": [
+    "tile(extent:=uniform_line, unit:=input)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:tile",
+    "row:input",
+    "row:uniform_line"
+   ],
+   "s": 0.3
+  },
+  "17829a00": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "17b80ad2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "17cae0c1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "1990f7a8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "1acc24af": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "1b8318e3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "1bfc4729": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.1
+  },
+  "1d398264": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "1e32b0e9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "1e5d6875": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "1f0c79e5": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=nearest, subject:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=recolour(key:=nearest, subject:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:key=nearest",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.subject",
+    "const:stamp.unit",
+    "scale:grid",
+    "sub:recolour(key:=nearest, subject:=train)"
+   ],
+   "s": 0.2
+  },
+  "2072aba6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "20fb2937": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "21f83797": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]",
+    "fill(colour:=train, region:=bg)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]",
+    "fill(colour:=train, region:=region)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:extend",
+    "column:fill",
+    "column:stamp",
+    "const:fill.colour",
+    "const:stamp.unit",
+    "row:bg",
+    "row:centre",
+    "row:markers",
+    "row:obstacle",
+    "row:region",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=markers, stop:=obstacle)"
+   ],
+   "s": 0.8
+  },
+  "22233c11": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "22425bda": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "22806e14": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "2281f1f4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "228f6490": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "234bbc79": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "239be575": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "25d487eb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "25ff71a9": {
+   "fits": [
+    "move(subject:=fg, target:=train)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:move",
+    "const:move.target",
+    "row:fg"
+   ],
+   "s": 0.2
+  },
+  "264363fd": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "2685904e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "2697da3f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "272f95fa": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "27a28665": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "27a77e38": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "27f8ce4f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "28e73c20": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "29c11459": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers"
+   ],
+   "s": 0.1
+  },
+  "2b01abd0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "2bcee788": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=nearest, subject:=smallest)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=recolour(key:=nearest, subject:=smallest)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:key=nearest",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:smallest",
+    "scale:grid",
+    "sub:recolour(key:=nearest, subject:=smallest)"
+   ],
+   "s": 0.4
+  },
+  "2bee17df": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.2
+  },
+  "2dd70a9a": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.1
+  },
+  "2de01db2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "2faf500b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "310f3251": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "31aa019c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "31adaf00": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "320afe60": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.7
+  },
+  "32597951": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.2
+  },
+  "32e9702f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "332202d5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.2
+  },
+  "3391f8c0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "342dd610": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks"
+   ],
+   "s": 0.4
+  },
+  "3618c87e": {
+   "fits": [
+    "move(subject:=train, target:=train)",
+    "paste(input:=move(subject:=train, target:=train)@object)"
+   ],
+   "depths": [
+    1,
+    2
+   ],
+   "parts": [
+    "column:move",
+    "const:move.subject",
+    "const:move.target",
+    "scale:object",
+    "sub:move(subject:=train, target:=train)"
+   ],
+   "s": 0.4
+  },
+  "36fdfd69": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.6
+  },
+  "37ce87bb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "396d80d7": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit"
+   ],
+   "s": 0.2
+  },
+  "3a301edc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "3aa6fb7a": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "paste(input:=stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=cleared, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=cleared, unit:=train)@part)"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:fg",
+    "row:obj_corners",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "3bd67248": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "3d588dc9": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@object)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:obj_corners",
+    "scale:grid",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 5.9
+  },
+  "3de23699": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "3f23242b": {
+   "fits": [
+    "stamp(anchors:=grid_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "recolour(key:=train, subject:=segments)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:grid_corners",
+    "row:markers",
+    "row:segments",
+    "scale:grid",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.5
+  },
+  "3f7978a0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "4093f84a": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "4258a5f9": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "42918530": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.5
+  },
+  "444801d8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "4612dd53": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.1
+  },
+  "465b7d93": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "469497ad": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "46f33fce": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.6
+  },
+  "47c1f68c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "48131b3c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "4852f2fa": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "48634b99": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "48f8583b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "496994bd": {
+   "fits": [
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "mirror(axis:=axis, subject:=fg)",
+    "stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=fg, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:mirror",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:axis",
+    "row:fg"
+   ],
+   "s": 0.1
+  },
+  "4a1cacc2": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "scale:grid",
+    "sub:stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.4
+  },
+  "4acc7107": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "4e45f183": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "4e7e0eb9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "4ff4c9da": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 5.7
+  },
+  "505fff84": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "50846271": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.2
+  },
+  "50aad11f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "50c07299": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "s": 0.5
+  },
+  "50f325b5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.8
+  },
+  "5117e062": {
+   "fits": [
+    "recolour(key:=nearest, subject:=smallest)[input:=extract(region:=exemplar)@grid]",
+    "recolour(key:=nearest, subject:=train)[input:=extract(region:=exemplar)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:key=nearest",
+    "column:extract",
+    "column:recolour",
+    "const:recolour.subject",
+    "row:exemplar",
+    "row:smallest",
+    "scale:grid",
+    "sub:extract(region:=exemplar)"
+   ],
+   "s": 0.0
+  },
+  "522fdd07": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "52364a65": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@object)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "scale:grid",
+    "scale:object",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 1.6
+  },
+  "52df9849": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "recolour(key:=train, subject:=smallest)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@object)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:centre",
+    "row:smallest",
+    "scale:grid",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 0.4
+  },
+  "52fd389e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "55059096": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "5521c0d9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "5582e5ca": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "5623160b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "56dc2b01": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "58743b76": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.9
+  },
+  "5a5a2103": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=train, stop:=obstacle)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:extend.source",
+    "const:stamp.unit",
+    "row:centre",
+    "row:fg",
+    "row:obstacle",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=fg, stop:=obstacle)",
+    "sub:extend(colour:=own, source:=train, stop:=obstacle)"
+   ],
+   "s": 6.8
+  },
+  "5a719d11": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.4
+  },
+  "5ad4f10b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "5adee1b2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "5b6cbef5": {
+   "fits": [
+    "tile(extent:=fg, unit:=input)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:tile",
+    "row:fg",
+    "row:input"
+   ],
+   "s": 1.5
+  },
+  "5c0a986e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "5c2c9af4": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 1.8
+  },
+  "5ecac7f7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "623ea044": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "extend(colour:=own, source:=fg, stop:=obstacle)",
+    "extend(colour:=own, source:=markers, stop:=border)",
+    "extend(colour:=own, source:=markers, stop:=obstacle)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:border",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "row:obstacle",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "626c0bcc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "62b74c02": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "639f5a19": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 1.2
+  },
+  "642248e4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "64a7c07e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "652646ff": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "66e6c45b": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "67385a82": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "67a423a3": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@object)"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:object",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.4
+  },
+  "692cd3b6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.1
+  },
+  "69889d6e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "6a1e5592": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "6b9890af": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "6c434453": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=fill(colour:=train, region:=bg)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=fill(colour:=train, region:=bg)@grid]",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)@part)",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=fill(colour:=train, region:=bg)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:fill",
+    "column:stamp",
+    "const:fill.colour",
+    "const:stamp.unit",
+    "row:bg",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "scale:object",
+    "scale:part",
+    "sub:fill(colour:=train, region:=bg)",
+    "sub:stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 1.1
+  },
+  "6ca952ad": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "6cf79266": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 9.9
+  },
+  "6d0160f0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.3
+  },
+  "6d58a25d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "6e02f1e3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "6e19193c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "6f473927": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "6f8cd79b": {
+   "fits": [
+    "stamp(anchors:=grid_corners, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=grid_corners, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:grid_corners"
+   ],
+   "s": 0.0
+  },
+  "72207abc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "72a961c9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "73c3b0d8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "770cc55f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "782b5218": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "7acdf6d3": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "scale:grid",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.6
+  },
+  "7d18a6fb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "7d419a02": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "7d7772cc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.0
+  },
+  "7e02026e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.4
+  },
+  "7ec998c9": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.4
+  },
+  "825aa9e9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "82819916": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.0
+  },
+  "834ec97d": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=move(subject:=fg, target:=train)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=move(subject:=fg, target:=train)@grid]",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=move(subject:=fg, target:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:move",
+    "column:stamp",
+    "const:move.target",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:move(subject:=fg, target:=train)"
+   ],
+   "s": 0.2
+  },
+  "83eb0a57": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "846bdb03": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "84f2aca1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "8597cfd7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "85fa5666": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "8719f442": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.0
+  },
+  "88207623": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "row:marks",
+    "row:obstacle",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=markers, stop:=obstacle)"
+   ],
+   "s": 1.1
+  },
+  "8886d717": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "891232d6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.6
+  },
+  "8a004b2b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "8abad3cf": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "8cb8642d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "8e2edd66": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=tile(extent:=train, unit:=input)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=tile(extent:=train, unit:=input)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=tile(extent:=train, unit:=input)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "column:tile",
+    "const:stamp.unit",
+    "const:tile.extent",
+    "row:input",
+    "scale:grid",
+    "sub:tile(extent:=train, unit:=input)"
+   ],
+   "s": 0.2
+  },
+  "8e5a5113": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "8fbca751": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "9110e3c5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "913fb3ed": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks"
+   ],
+   "s": 0.1
+  },
+  "91413438": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "9172f3a0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "928ad970": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "92e50de0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.5
+  },
+  "9356391f": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=grid_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=recolour(key:=train, subject:=fg)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=train, subject:=fg)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:fg",
+    "row:grid_corners",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:recolour(key:=train, subject:=fg)",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.7
+  },
+  "93b581b8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "93c31fbe": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "941d9a10": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "94414823": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@object)"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:object",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.5
+  },
+  "94be5b80": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "952a094c": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "9565186b": {
+   "fits": [
+    "recolour(key:=train, subject:=fg)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:recolour",
+    "const:recolour.key",
+    "row:fg"
+   ],
+   "s": 0.2
+  },
+  "95990924": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit"
+   ],
+   "s": 0.2
+  },
+  "95a58926": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "963e52fc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "97239e3d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "981add89": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=border)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=border)@grid]",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=markers, stop:=border)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:border",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=markers, stop:=border)"
+   ],
+   "s": 3.1
+  },
+  "9841fdad": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@part)"
+   ],
+   "depths": [
+    1,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 2.1
+  },
+  "984d8a3e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "98cf29f8": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@part)"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:grid",
+    "scale:part",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 0.9
+  },
+  "995c5fa3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "99fa7670": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "scale:grid",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 0.4
+  },
+  "9aec4887": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "9af7a82c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "9b4c17c4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "9b5080bb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.4
+  },
+  "9c56f360": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "9caba7c3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.4
+  },
+  "9d9215db": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "9ddd00f0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "9def23fe": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 7.2
+  },
+  "9f5f939b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "9f8de559": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.3
+  },
+  "a04b2602": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.8
+  },
+  "a096bf4d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.3
+  },
+  "a406ac07": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "a416b8f3": {
+   "fits": [
+    "tile(extent:=train, unit:=input)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "column:tile",
+    "const:tile.extent",
+    "row:input"
+   ],
+   "s": 0.1
+  },
+  "a59b95c0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "a644e277": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "a79310a0": {
+   "fits": [
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=topleft, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=fg, place:=topleft, rest:=cleared, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "a834deea": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.6
+  },
+  "a85d4709": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "a8c38be5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "a8d7556c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 9.7
+  },
+  "a9f96cdd": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks"
+   ],
+   "s": 0.1
+  },
+  "aa300dc3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.5
+  },
+  "aab50785": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "aaecdb9a": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "ac0c2ac3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "ac2e8ecf": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "aedd82e4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "aee291af": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "af902bf9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "b0f4d537": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "b190f7f5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "b20f7c8b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.1
+  },
+  "b27ca6d3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "b457fec5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "b4a43f3b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "b60334d2": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=markers, place:=topleft, rest:=kept, unit:=train)[input:=move(subject:=fg, target:=train)@grid]",
+    "stamp(anchors:=markers, place:=topleft, rest:=cleared, unit:=train)[input:=move(subject:=fg, target:=train)@grid]",
+    "stamp(anchors:=marks, place:=topleft, rest:=kept, unit:=train)[input:=move(subject:=fg, target:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:move",
+    "column:stamp",
+    "const:move.target",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:move(subject:=fg, target:=train)"
+   ],
+   "s": 1.0
+  },
+  "b74ca5d1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 18.0
+  },
+  "b7f8a4d8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 3.6
+  },
+  "b8825c91": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.5
+  },
+  "b8cdaf2b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "ba1aa698": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "ba26e723": {
+   "fits": [
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.7
+  },
+  "bbb1b8b6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "bcb3040b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "bf32578f": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "c074846d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "c0f76784": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "c1990cce": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "c1d99e64": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.2
+  },
+  "c3e719e8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "c4d1a9ae": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit"
+   ],
+   "s": 0.2
+  },
+  "c62e2108": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "c6e1b8da": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.2
+  },
+  "c92b942c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "c97c0139": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "ca8de6ea": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "cbded52d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "ccd554ac": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "ce602527": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "cf98881b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "cfb2ce5a": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.4
+  },
+  "d017b73f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "d037b0a7": {
+   "fits": [
+    "recolour(key:=train, subject:=smallest)[input:=stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:marks",
+    "row:smallest",
+    "scale:grid",
+    "sub:stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "d06dbe63": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "d07ae81c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "d13f3404": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "d23f8c26": {
+   "fits": [
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=marks, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "d255d7a7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.4
+  },
+  "d2acf2cb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "d364b489": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks"
+   ],
+   "s": 0.2
+  },
+  "d37a1ef5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.2
+  },
+  "d4469b4b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "d5c634a2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "d6542281": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "d6ad076f": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit"
+   ],
+   "s": 0.7
+  },
+  "d753a70b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "d931c21c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "d94c3b52": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "d968ffd4": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "tile(extent:=border, unit:=input)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:stamp",
+    "column:tile",
+    "const:stamp.unit",
+    "row:border",
+    "row:fg",
+    "row:input",
+    "scale:grid",
+    "sub:stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.7
+  },
+  "da2b0fe3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "db615bd4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.3
+  },
+  "db7260a4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.5
+  },
+  "db93a21d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.0
+  },
+  "dbc1a6ce": {
+   "fits": [
+    "extend(colour:=train, source:=fg, stop:=obstacle)",
+    "extend(colour:=train, source:=markers, stop:=obstacle)",
+    "extend(colour:=train, source:=train, stop:=obstacle)",
+    "fill(colour:=train, region:=between)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "column:extend",
+    "column:fill",
+    "const:extend.colour",
+    "const:extend.source",
+    "const:fill.colour",
+    "row:between",
+    "row:fg",
+    "row:markers",
+    "row:obstacle"
+   ],
+   "s": 1.8
+  },
+  "dc2e9a9d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "de1cd16c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "df8cc377": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "e179c5f4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "e2092e0c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 11.4
+  },
+  "e26a3af2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.7
+  },
+  "e3497940": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "e45ef808": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "e5062a87": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.8
+  },
+  "e619ca6e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.2
+  },
+  "e681b708": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "e760a62e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 14.9
+  },
+  "e7639916": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.6
+  },
+  "e7a25a18": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "e8dc4411": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@part)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@part)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:grid",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 1.6
+  },
+  "e9614598": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "e9ac8c9e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "e9c9d9a1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "e9fc42f2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "ea786f4a": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@part)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@object)",
+    "paste(input:=stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)@part)"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "scale:grid",
+    "scale:object",
+    "scale:part",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "sub:stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)"
+   ],
+   "s": 0.2
+  },
+  "ec883f72": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "ecdecbb3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.0
+  },
+  "ed74f2f2": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "f0afb749": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "f0df5ff0": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners"
+   ],
+   "s": 6.5
+  },
+  "f18ec8cc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "f25ffba3": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "mirror(axis:=axis, subject:=fg)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:mirror",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:axis",
+    "row:centre",
+    "row:fg",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "s": 0.3
+  },
+  "f35d900a": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "f3b10344": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.4
+  },
+  "f3e62deb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "f5b8619d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "f823c43c": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=nearest, subject:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:key=nearest",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.subject",
+    "const:stamp.unit",
+    "row:markers",
+    "scale:grid",
+    "sub:recolour(key:=nearest, subject:=train)",
+    "sub:stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.7
+  },
+  "f8c80d96": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=extend(colour:=own, source:=fg, stop:=obstacle)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:colour=own",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extend",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obstacle",
+    "scale:grid",
+    "sub:extend(colour:=own, source:=fg, stop:=obstacle)"
+   ],
+   "s": 0.5
+  },
+  "fb791726": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "fc754716": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=objects, place:=topleft, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:place=topleft",
+    "arg:repeat",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.1
+  },
+  "fd4b2b02": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "fe45cba4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.4
+  },
+  "fe9372f3": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1,
+    1
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre"
+   ],
+   "s": 0.1
+  },
+  "fea12743": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "feca6190": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "ff72ca3e": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "135a2760": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.7
+  },
+  "13e47133": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "142ca369": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "16b78196": {
+   "fits": [
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=fg, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]",
+    "stamp(anchors:=obj_corners, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:fg",
+    "row:obj_corners",
+    "scale:grid",
+    "sub:stamp(anchors:=objects, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "s": 5.0
+  },
+  "1818057f": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "1ae2feb7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.3
+  },
+  "20a9e565": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "21897d95": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "221dfab4": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)"
+   ],
+   "depths": [
+    1,
+    1
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre"
+   ],
+   "s": 1.3
+  },
+  "269e22fb": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "291dc1e1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "2b83f449": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "2ba387bc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "2d0172a1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "332f06d7": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 7.1
+  },
+  "38007db0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "3a25b0d8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "3e6067c3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.4
+  },
+  "409aa875": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "45a5af55": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "4a21e3da": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.5
+  },
+  "4c3d4a41": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.7
+  },
+  "4c416de3": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.8
+  },
+  "4c7dc4dd": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "53fb4810": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.7
+  },
+  "5545f144": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "58f5dbd5": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "5dbc8537": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "65b59efc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "6e453dd6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 6.3
+  },
+  "71e489b6": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.9
+  },
+  "7666fa5d": {
+   "fits": [
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]",
+    "stamp(anchors:=marks, place:=nearest, rest:=cleared, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "row:marks",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 2.1
+  },
+  "7b0280bc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.1
+  },
+  "7b5033c1": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "7ed72f31": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "80a900e0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 2.0
+  },
+  "8698868d": {
+   "fits": [
+    "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)[input:=extract(region:=exemplar)@grid]",
+    "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)[input:=extract(region:=exemplar)@grid]",
+    "stamp(anchors:=marks, place:=nearest, rest:=kept, unit:=train)[input:=extract(region:=exemplar)@grid]"
+   ],
+   "depths": [
+    2,
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:extract",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:exemplar",
+    "row:markers",
+    "row:marks",
+    "scale:grid",
+    "sub:extract(region:=exemplar)"
+   ],
+   "s": 0.1
+  },
+  "88bcf3b4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.2
+  },
+  "89565ca0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.1
+  },
+  "8b9c3697": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.7
+  },
+  "8f215267": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.4
+  },
+  "9385bd28": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.8
+  },
+  "981571dc": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 54.7
+  },
+  "9aaea919": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 32.1
+  },
+  "9bbf930d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.0
+  },
+  "a25697e4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "a47bf94d": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.5
+  },
+  "b0039139": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "b5ca7ac4": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 4.0
+  },
+  "b9e38dc0": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.9
+  },
+  "cb2d8a2c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.3
+  },
+  "d59b0160": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 12.8
+  },
+  "db0c5428": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.5
+  },
+  "dd6b8c4b": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.1
+  },
+  "de809cff": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)[input:=recolour(key:=train, subject:=markers)@grid]",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)[input:=recolour(key:=train, subject:=markers)@grid]"
+   ],
+   "depths": [
+    2,
+    2
+   ],
+   "parts": [
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:recolour",
+    "column:stamp",
+    "const:recolour.key",
+    "const:stamp.unit",
+    "row:centre",
+    "row:markers",
+    "scale:grid",
+    "sub:recolour(key:=train, subject:=markers)"
+   ],
+   "s": 2.4
+  },
+  "dfadab01": {
+   "fits": [
+    "stamp(anchors:=marks, place:=topleft, rest:=cleared, unit:=train)"
+   ],
+   "depths": [
+    1
+   ],
+   "parts": [
+    "arg:place=topleft",
+    "arg:rest=cleared",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:marks"
+   ],
+   "s": 0.9
+  },
+  "e376de54": {
+   "fits": [
+    "stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)",
+    "stamp(anchors:=centre, place:=nearest, rest:=cleared, unit:=train)",
+    "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)[input:=stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)@grid]"
+   ],
+   "depths": [
+    1,
+    1,
+    2
+   ],
+   "parts": [
+    "arg:anchors=objects",
+    "arg:place=nearest",
+    "arg:rest=cleared",
+    "arg:rest=kept",
+    "column:stamp",
+    "const:stamp.unit",
+    "row:centre",
+    "scale:grid",
+    "sub:stamp(anchors:=centre, place:=nearest, rest:=kept, unit:=train)"
+   ],
+   "s": 0.5
+  },
+  "e8686506": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "e87109e9": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 1.2
+  },
+  "eee78d87": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "f560132c": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  },
+  "f931b4a8": {
+   "fits": [],
+   "depths": [],
+   "parts": [],
+   "s": 0.0
+  }
+ }
+}

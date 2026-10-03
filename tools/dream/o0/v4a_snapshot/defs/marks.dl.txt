@@ -1,0 +1,19 @@
+% row: marks
+% output: marks(Y, X)
+% source: Len, 22:47 EDT Oct 2 (markers x stamp, dfadab01): "some markers got no stamp because they are used by
+%   exemplar to map the mark color to the stamp. Only the marks at left top corner of the exemplar indicate place for
+%   stamp"
+% rendered back: "the marks are the single cells, except those touching a shape, unless the mark is at that shape's
+%   top-left corner"
+% base relations (EDB, tools/dream/o0/defrows.py): cell(Y, X, C) non-background cells; obj(O, Y, X) cell (Y, X)
+%   belongs to the single-colour 8-connected component O; off(DY, DX) the 8 neighbour offsets
+osize(O, count(Y, X)) :- obj(O, Y, X).
+single(O) :- osize(O, N), N = 1.
+shape(O) :- osize(O, N), N > 1.
+otop(O, min(Y)) :- obj(O, Y, _).
+oleft(O, min(X)) :- obj(O, _, X).
+touches(M, S) :- obj(M, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(S, Y2, X2), M != S.
+touches_shape(M, S) :- single(M), shape(S), touches(M, S).
+top_left_of(M, S) :- touches_shape(M, S), obj(M, Y, X), otop(S, Y), oleft(S, X).
+legend_mark(M) :- touches_shape(M, S), !top_left_of(M, S).
+marks(Y, X) :- single(M), obj(M, Y, X), !legend_mark(M).

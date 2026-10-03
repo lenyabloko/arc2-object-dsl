@@ -1,6 +1,6 @@
 # Supervisor state (read this first when taking over)
 
-_Last updated: 2026-10-03 (Oct 2, 23:03 EDT). Updated with every outbox batch._
+_Last updated: 2026-10-03 (00:39 EDT). Updated with every outbox batch._
 
 ## Goal and rules (unchanged)
 - Non-zero Kaggle score in ARC Prize 2026 (ARC-AGI-2). Deadline Nov 2; decision point Oct 12.
@@ -507,3 +507,55 @@ _Last updated: 2026-10-03 (Oct 2, 23:03 EDT). Updated with every outbox batch._
   - Len's cell definition holds his correction as slots (entered_by Claude from chat; previous version kept);
   - "grid" → "matrix" in the labels.
 - **Len's idea:** "a scale free schema that repeats for each sub-node". Written up with the T89 evidence in docs/proposal_scale_free_schema.md and the round 20b report (claude/fable_round_20b_report.md: OQ-20b.1–3). Len will consult Fable.
+
+## Update 23:44 EDT Oct 2: Fable v21 / v21a; T86″ no-go; H drawn (strict 0); marks as a definition; engine v4 (scale-free) built
+- **Fable v21 / v21a** (claude/fable_guidance_v21.md, v21a_lattice.md):
+  - T86 / T86′ closed;
+  - the 13 retired as a Len-blind set;
+  - scale-free schema adopted (depth ≤ 2, one recursion per slot);
+  - refinements are Datalog definitions, never Python rows;
+  - R counted on parts (G85); G86 inheritance;
+  - v4 frozen by Oct 8 18:00 EDT, placed once on H Oct 9, T90 go/no-go with the chance-fit control C.3.
+- **T86″** (v3 frozen 2c8f226e1fe3; the 8 build-failing v3 fits not in T86′; one check each): 0 exact, 1 wrong, 7 empty → **no-go**. results/o0/t86pp.json.
+- **H (C.4)** (tools/dream/o0/t90_draw.py; seen-list results/o0/len_seen_list.json; counts results/o0/t90_H_counts.json):
+  - Strict: every build-failing design task is on some surface, mostly the phone page's one-off list with Claude's readings, so **|H| = 0**.
+  - Looser reading (one-off list not counted): 72 build-failing, all ARC-1.
+  - Fallback H2 (design tasks never seen): 518, all build-solved, 36 ARC-2.
+  - Ids sealed cloud-only (/home/claude/work/sealed/t90_H.json, sha256 in the counts file) and excluded from all v4 development runs.
+- **C.2:** `marks` is now defs/marks.dl.txt (two rules over cell / obj / off, evaluated by tools/datalog/engine.py through defrows.py).
+  - Parity with the retired Python row: hash-equal on dfadab01's training inputs; 0 mismatches over 3,184 design training inputs.
+  - The page shows the rendered definition under the cell check (v149).
+- **Engine v4** (situation_engine.py + scale_free.py):
+  - seq: HOW(input := S′@grid);
+  - map: paste(input := S′@panel/object/part);
+  - inner and outer WHY both checked;
+  - top-down order by R (results/o0/v4_R_depth1.json);
+  - canonical keys with sorted arguments;
+  - grid-corner stamp WHY tightened: each unit cell must land inside the grid from ≥ 2 corners. This was set before the control ran, and it removed 10 dev depth-1 fits.
+- **Dev results** (design − T86 14 − sealed 590 = 393 tasks; results/o0/v4_design_depth2.json):
+  - depth 1: 54; depth ≤ 2: 82 (+28, all seq);
+  - build-failing: 7 → 8;
+  - R(part) for Len's parts: marks 21, place=topleft 24, rest=cleared 58.
+- **C.3 control** (v4_density.py, 1,330 variants) running since 23:44.
+
+## Update 00:39 EDT Oct 3: C.3 chance-fit control fails for v4 (both forms); T90 no-go before placement; round 21 response
+- **C.3** (tools/dream/density/v4_density.py, 1,330 ARC-GEN variants):
+
+  | run | depth 1 pass@1 / wrong | depth ≤ 2 pass@1 / wrong | result |
+  |---|---|---|---|
+  | v4 | 265 / 65 | 318 / 134 | fail |
+  | v4 + G5 (B.4: margin′ ≥ μ₁ = 4, implemented before this rerun) | 262 / 65 | 305 / 130 | fail |
+  | v4′ map only + G5, pre-registered, fresh seeds 5..9 | 251 / 72 | 262 / 80 | fail |
+
+  - Most of the damage: seq with an outer stamp (24 exact / 61 wrong).
+  - Results: results/o0/v4_density_summary.json, v4g_…, v4p_….
+- **T90 is no-go before placement** (C.3: "v4 does not ship whatever H says"). Nothing was placed on H; H stays sealed.
+- **The engine the controls measured:** tools/dream/o0/v4a_snapshot/ (situation_engine.py ba7c0843ed33, scale_free.py 1830772abd1d).
+- **After the controls:** Len's key × tile refinement became defs/uniform_line.dl.txt, and tile's extent accepts definition rows (15696249 fits; same prediction as the checked reading).
+  - Dev depth 1: 54 → 55; depth ≤ 2: 83.
+- **Len's parts, R / needed:** marks 21 / 4; place=topleft 24 / 0; rest=cleared 58 / 3; uniform_line 0 / 0.
+- **Review page v151:**
+  - machine-profile panel with honest reuse;
+  - definitions rendered under the key × tile and markers × stamp checks;
+  - cycle/current v29.
+- **Round 21 response:** claude/fable_round_21_response.md (OQ-21.4 H stratum, OQ-21.5 v4′, OQ-21.6 dates).

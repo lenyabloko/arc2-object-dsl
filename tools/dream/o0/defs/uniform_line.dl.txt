@@ -1,0 +1,15 @@
+% row: uniform_line
+% output: uniform_line(Y, X)
+% source: Len, 20:14 EDT Oct 2 (key x tile, 15696249): "the entire tile is copied, but only into the block row (or
+%   column) marked by the keyed one-colour line of the input"
+% rendered back: "the one row or column of the input that is all one colour (only when there is exactly one such line)"
+% base relations: px(Y, X, C) every cell of the grid with its colour (background included)
+rowcols(Y, count(C)) :- px(Y, _, C).
+colcols(X, count(C)) :- px(_, X, C).
+urow(Y) :- rowcols(Y, N), N = 1.
+ucol(X) :- colcols(X, N), N = 1.
+line(K, I) :- urow(I), K = 0.
+line(K, I) :- ucol(I), K = 1.
+nlines(count(K, I)) :- line(K, I).
+uniform_line(Y, X) :- nlines(N), N = 1, urow(Y), px(Y, X, _).
+uniform_line(Y, X) :- nlines(N), N = 1, ucol(X), px(Y, X, _).

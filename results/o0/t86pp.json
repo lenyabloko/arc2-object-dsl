@@ -1,0 +1,130 @@
+{
+ "engine_sha": "2c8f226e1fe3",
+ "population": 8,
+ "exact": 0,
+ "wrong": 1,
+ "empty": 7,
+ "go": false,
+ "rule": "v21 A.5: >= half exact and 0 wrong",
+ "rows": [
+  {
+   "task": "1c02dbbe",
+   "situations": [
+    "stamp(anchors:=marks, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=nearest)",
+    "stamp(anchors:=marks, unit:=train, rest:=cleared, place:=topleft)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "221dfab4",
+   "situations": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": null,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "981571dc",
+   "situations": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": null,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "98c475bf",
+   "situations": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "98cf29f8",
+   "situations": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 1,
+   "free_slots": 1,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "b74ca5d1",
+   "situations": [
+    "stamp(anchors:=grid_corners, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=grid_corners, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  },
+  {
+   "task": "d304284e",
+   "situations": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 2,
+   "distinct_predictions": 2,
+   "build_occupied_slots": 0,
+   "free_slots": 2,
+   "placed": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "R_of_placed": [
+    19,
+    13
+   ],
+   "result": "wrong"
+  },
+  {
+   "task": "e376de54",
+   "situations": [
+    "stamp(anchors:=centre, unit:=train, rest:=kept, place:=nearest)",
+    "stamp(anchors:=centre, unit:=train, rest:=cleared, place:=nearest)"
+   ],
+   "with_prediction": 0,
+   "distinct_predictions": 0,
+   "build_occupied_slots": null,
+   "free_slots": 2,
+   "placed": [],
+   "R_of_placed": [],
+   "result": "empty"
+  }
+ ],
+ "slots_source": "c42 (V34 full run) results.jsonl"
+}

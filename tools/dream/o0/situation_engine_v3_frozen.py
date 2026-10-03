@@ -31,13 +31,8 @@ Engine v3 (Oct 2 22:47 EDT, Len's correction of his markers x stamp cell, entere
              at that shape's top-left corner)
   stamp      new arguments: rest (the rest of the input is kept / cleared) and place (each unit cell belongs to the
              nearest anchor / to the nearest anchor above-left of it: the stamp's top-left corner on the mark)
-Engine v4 (Fable v21 B.1 / C.1-C.2, v21a B): rows may be Datalog definitions (defs/*.dl.txt, defrows.py; 'marks' is
-the first), and situations nest one scale down (scale_free.py: S ::= HOW(arg*); arg ::= row | const | S@scale).
-Stamp WHY tightened for grid-corner anchors (round 20 §5, set before any v4 measurement on the control): every unit
-cell must land inside the grid from at least two of the corners, otherwise "one copy at every corner" only pins a fixed
-pattern to fixed positions.
 v1 is kept unchanged as situation_engine_v1_frozen.py (sha f14127b651fe); v2 as situation_engine_v2_frozen.py
-(sha 4b4a22370d20); v3 as situation_engine_v3_frozen.py (sha 2c8f226e1fe3).
+(sha 4b4a22370d20).
 usage: python3 situation_engine.py fit <task id>...      fitted situations per task (training pairs only)"""
 import itertools, json, os, sys
 from collections import Counter
@@ -282,18 +277,26 @@ def r_centre(g, b):
     return out or None
 
 
-# v4 (Fable v21 A.7 / C.2): 'marks' is no longer a Python row; it is the Datalog definition defs/marks.dl.txt (Len's words,
-# rendered back in its header), evaluated by tools/datalog/engine.py through defrows.py. Parity with the retired Python
-# row: hash-equal on dfadab01's training inputs and 0 mismatches on all 3,184 design training inputs (Oct 2 23:45 EDT).
-# Every definition in defs/ becomes a row of the same name.
-from defrows import DEF_ROWS
+def r_marks(g, b):
+    """v3 (Len 22:47 EDT Oct 2): single-cell marks, without the legend's marks. A one-cell object touching a larger
+    object (8-neighbour) is a legend mark and is left out, unless it sits at that object's top-left box corner."""
+    obs = objects(g, b); big = [o['cells'] for o in obs if len(o['cells']) > 1]
+    out = set()
+    for o in obs:
+        if len(o['cells']) != 1: continue
+        (y, x), = o['cells']; keep = True
+        for c in big:
+            if any(abs(y - a) <= 1 and abs(x - z) <= 1 for a, z in c):
+                if (y, x) != (min(a for a, _ in c), min(z for _, z in c)): keep = False
+        if keep: out.add((y, x))
+    return out or None
 
-ROWS = {'fg': r_fg, 'bg': r_bg, 'markers': r_markers, 'input': r_input, 'exemplar': r_exemplar, 'largest': r_largest,
+
+ROWS = {'marks': r_marks, 'fg': r_fg, 'bg': r_bg, 'markers': r_markers, 'input': r_input, 'exemplar': r_exemplar, 'largest': r_largest,
         'smallest': r_smallest, 'odd': r_odd, 'pixel_count': r_pixel_count, 'object_count': r_object_count,
         'border': r_border, 'obstacle': r_obstacle, 'separator': r_separators, 'frame': r_frame, 'key': r_key, 'axis': r_axis,
         'segments': r_segments, 'region': r_region, 'panels': r_panels, 'between': r_between, 'grid_corners': r_grid_corners,
         'obj_corners': r_obj_corners, 'centre': r_centre}
-ROWS.update(DEF_ROWS)                                  # rows as definitions (v4): marks, ...
 # the review page's row names for these (the grid shows C.1's coarser rows)
 PAGE_ROW = {'marks': 'markers', 'fg': 'fg', 'bg': 'bg', 'markers': 'markers', 'input': 'input', 'exemplar': 'exemplar', 'largest': 'odd',
             'smallest': 'odd', 'odd': 'odd', 'pixel_count': 'count', 'object_count': 'count', 'border': 'border',
@@ -417,9 +420,6 @@ def stamp_apply(g, A, K):
         else:
             if K.get('byc') and ca not in K['seen']: return None   # an anchor colour training never showed
             unit = [(dy, dx, ca if t == 'a' else v) for c0, dy, dx, t, v in K['unit'] if not K.get('byc') or c0 == ca]
-        if A['anchors'] == 'grid_corners':                         # v4 WHY (round 20 §5): a copy at every corner means
-            for dy, dx, v in unit:                                  # each unit cell lands inside the grid from >= 2 corners;
-                if sum(inb(g, cy + dy, cx + dx) for cy, cx, _, _ in an) < 2: return None   # else it only pins positions
         for dy, dx, v in unit:
             y, x = ay + dy, ax + dx
             if not inb(g, y, x): continue
@@ -533,9 +533,6 @@ def tile_bind(train, A):
         return [{'k': kk, 'flip': f} for f in (0, 1)] if len(k) == 1 and len(train) == sum(1 for p in train if len(p['output']) % len(p['input']) == 0 and len(p['output'][0]) % len(p['input'][0]) == 0) else []
     if A['extent'] in ('pixel_count', 'object_count'): return [{'lay': l} for l in ('h', 'v', 'sq')]
     if A['extent'] == 'border': return [{}] if same_dims(train) else []
-    if A['extent'] in DEF_ROWS:                                   # v4: blocks at the cells a definition row picks out;
-        cols = set.intersection(*[{v for r in p['output'] for v in r} for p in train])   # empty blocks: one colour,
-        return [{'fill': c} for c in sorted(cols)]                # the same in all examples
     return [{}]
 
 
@@ -571,10 +568,6 @@ def tile_apply(g, A, K):
         if H * H > 30 or W * W > 30: return None
         on = lambda i, j: (g[i][j] != b) == (e == 'fg')
         return [[g[y % H][x % W] if on(y // H, x // W) else b for x in range(W * W)] for y in range(H * H)]
-    if e in DEF_ROWS:                                             # v4 (Len, key x tile): the unit goes into the blocks
-        on = cells_of(rv(e, g, b))                                # whose index cell the row picks out (Kronecker layout)
-        if not on or H * H > 30 or W * W > 30: return None
-        return [[g[y % H][x % W] if (y // H, x // W) in on else K['fill'] for x in range(W * W)] for y in range(H * H)]
     if e == 'border':
         pp = period(g, b)
         if not pp: return None
@@ -829,7 +822,7 @@ def xtr_apply(g, A, K):
 OBJ_ROWS = ['fg', 'markers', 'largest', 'smallest', 'odd', 'train', 'segments']
 REPEATABLE = {'extend', 'stamp', 'fill'}
 COLUMNS = {
-    'tile':     {'args': [('extent', ['train', 'pixel_count', 'object_count', 'fg', 'bg', 'border'] + sorted(DEF_ROWS)), ('unit', ['input'])],
+    'tile':     {'args': [('extent', ['train', 'pixel_count', 'object_count', 'fg', 'bg', 'border']), ('unit', ['input'])],
                  'bind': tile_bind, 'apply': tile_apply, 'why': 'every block of the output is the unit or empty'},
     'stamp':    {'args': [('anchors', ['markers', 'marks', 'fg', 'objects', 'grid_corners', 'obj_corners', 'centre', 'across']), ('unit', ['train', 'exemplar']),
                           ('rest', ['kept', 'cleared']), ('place', ['nearest', 'topleft'])],
@@ -890,8 +883,7 @@ def fit(train, columns=None):
 
 
 def situation_key(S, page=False):
-    """canonical form: arguments in sorted order (v21a B.4: siblings unordered in the stored and hashed form)"""
-    return S['how'] + '(' + ', '.join('%s:=%s' % (k, PAGE_ROW.get(v, v) if page else v) for k, v in sorted(S['args'].items())) + ')'
+    return S['how'] + '(' + ', '.join('%s:=%s' % (k, PAGE_ROW.get(v, v) if page else v) for k, v in S['args'].items()) + ')'
 
 
 if __name__ == '__main__':
