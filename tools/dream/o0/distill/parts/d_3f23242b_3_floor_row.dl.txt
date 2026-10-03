@@ -1,0 +1,4 @@
+% row: d_3f23242b_3_floor_row
+% source: distillation batch reading, task 3f23242b, sample 3
+% output: floor_row(Y, X)
+floor_row(Y2, X) :- cell(Y, X0, C), C = 3, Y2 = Y + 2, px(Y2, X, C2).

@@ -1,0 +1,6 @@
+% row: d_a406ac07_2_blocks
+% source: distillation batch reading, task a406ac07, sample 2
+% output: blocks(Y, X)
+lastc(max(X)) :- px(Y, X, C).
+lastr(max(Y)) :- px(Y, X, C).
+blocks(Y, X) :- lastc(Wm), lastr(Hm), px(Y, Wm, C), px(Hm, X, C), px(Y, X, D).

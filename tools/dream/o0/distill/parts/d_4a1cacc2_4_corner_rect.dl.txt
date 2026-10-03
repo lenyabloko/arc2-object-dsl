@@ -1,0 +1,11 @@
+% row: d_4a1cacc2_4_corner_rect
+% source: distillation batch reading, task 4a1cacc2, sample 4
+% output: corner_rect(Y, X)
+h(max(Y)) :- px(Y, X, C).
+w(max(X)) :- px(Y, X, C).
+m(Y, X) :- cell(Y, X, C).
+rowok(Y) :- m(MY, MX), h(H), px(Y, X, C), D = MY + MY, D <= H, Y <= MY.
+rowok(Y) :- m(MY, MX), h(H), px(Y, X, C), D = MY + MY, D > H, Y >= MY.
+colok(X) :- m(MY, MX), w(W), px(Y, X, C), D = MX + MX, D <= W, X <= MX.
+colok(X) :- m(MY, MX), w(W), px(Y, X, C), D = MX + MX, D > W, X >= MX.
+corner_rect(Y, X) :- px(Y, X, C), rowok(Y), colok(X).

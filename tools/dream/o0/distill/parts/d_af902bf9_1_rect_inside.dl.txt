@@ -1,0 +1,4 @@
+% row: d_af902bf9_1_rect_inside
+% source: distillation batch reading, task af902bf9, sample 1
+% output: rect_inside(Y, X)
+rect_inside(Y, X) :- cell(Y1, X1, C), cell(Y1, X2, C), cell(Y2, X1, C), cell(Y2, X2, C), px(Y, X, D), Y > Y1, Y < Y2, X > X1, X < X2.

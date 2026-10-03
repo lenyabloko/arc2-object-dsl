@@ -1,0 +1,8 @@
+% row: d_a04b2602_3_inblock2
+% source: distillation batch reading, task a04b2602, sample 3
+% output: inblock2(Y, X)
+bminy(O, min(Y)) :- obj(O, Y, X), px(Y, X, C), C = 3.
+bmaxy(O, max(Y)) :- obj(O, Y, X), px(Y, X, C), C = 3.
+bminx(O, min(X)) :- obj(O, Y, X), px(Y, X, C), C = 3.
+bmaxx(O, max(X)) :- obj(O, Y, X), px(Y, X, C), C = 3.
+inblock2(Y, X) :- px(Y, X, C), C = 2, bminy(O, A), bmaxy(O, B), bminx(O, D), bmaxx(O, E), Y >= A, Y <= B, X >= D, X <= E.

@@ -1,0 +1,4 @@
+% row: d_af902bf9_4_inner4
+% source: distillation batch reading, task af902bf9, sample 4
+% output: inner4(Y, X)
+inner4(Y, X) :- px(Y, X, 0), cell(Y1, X1, 4), cell(Y2, X2, 4), cell(Y1, X2, 4), cell(Y2, X1, 4), Y1 < Y, Y < Y2, X1 < X, X < X2.

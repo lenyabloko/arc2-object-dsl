@@ -1,0 +1,8 @@
+% row: d_32597951_4_inbox8
+% source: distillation batch reading, task 32597951, sample 4
+% output: inbox8(Y, X)
+ya(min(Y)) :- px(Y, X, 8).
+yb(max(Y)) :- px(Y, X, 8).
+xa(min(X)) :- px(Y, X, 8).
+xb(max(X)) :- px(Y, X, 8).
+inbox8(Y, X) :- px(Y, X, 1), ya(A), yb(B), xa(L), xb(R), Y >= A, Y <= B, X >= L, X <= R.

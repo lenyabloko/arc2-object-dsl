@@ -1,0 +1,10 @@
+% row: d_0d87d2a6_2_paint
+% source: distillation batch reading, task 0d87d2a6, sample 2
+% output: paint(Y, X)
+vline(X) :- cell(Y1, X, 1), cell(Y2, X, 1), Y2 > Y1.
+hline(Y) :- cell(Y, X1, 1), cell(Y, X2, 1), X2 > X1.
+online(Y, X) :- px(Y, X, C), vline(X).
+online(Y, X) :- px(Y, X, C), hline(Y).
+hit(O) :- obj(O, Y, X), cell(Y, X, 2), online(Y, X).
+paint(Y, X) :- online(Y, X).
+paint(Y, X) :- hit(O), obj(O, Y, X).

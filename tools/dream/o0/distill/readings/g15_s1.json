@@ -1,0 +1,212 @@
+[
+ {
+  "task": "6f8cd79b",
+  "reading": "An all-background grid gets its outer border painted 8; the interior stays 0.",
+  "verb": "draw border",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "grid_edge",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "grid_edge",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\ngrid_edge(Y, X) :- px(Y, X, C), Y = 0.\ngrid_edge(Y, X) :- px(Y, X, C), X = 0.\ngrid_edge(Y, X) :- px(Y, X, C), hmax(H), Y = H.\ngrid_edge(Y, X) :- px(Y, X, C), wmax(W), X = W."
+   }
+  ],
+  "why": "every border cell of the output is 8 and every interior cell is unchanged (0)",
+  "invariants": [
+   "grid size",
+   "interior cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72207abc",
+  "reading": "The leading colours on the middle row form a cycle; the cycle is continued along the row with copies placed at triangular-number columns 0,1,3,6,10,15,21,28,...",
+  "verb": "continue sequence",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cycle": "the run of non-zero colours at the left end of the middle row, in order",
+   "positions": "columns k(k+1)/2 for k=0,1,2,... while inside the grid",
+   "colour at k": "cycle[k mod len(cycle)]"
+  },
+  "why": "each non-zero cell of the output row sits at a triangular column and carries the cycle colour of its index; all other cells are 0",
+  "invariants": [
+   "grid size",
+   "rows 0 and 2 stay background",
+   "the original seed cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72a961c9",
+  "reading": "A horizontal line of 1s contains special cells 8 and 2; above each special cell a vertical stalk grows upward: two 1s then an 8 for an 8, three 1s then a 2 for a 2.",
+  "verb": "grow stalk",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "line": "the one row of 1s with embedded special cells",
+   "sources": "the non-1 cells in that line",
+   "length": "colour-dependent: 8 -> 3 cells, 2 -> 4 cells above the line",
+   "body colour": "the line colour (1)",
+   "tip colour": "the source cell's own colour"
+  },
+  "why": "for every special cell, the cells directly above it are line-colour for length-1 cells and the source colour at the tip; nothing else changes",
+  "invariants": [
+   "the line row",
+   "all cells not above a special cell"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "73c3b0d8",
+  "reading": "Every 4 falls one row; a 4 that lands directly above the full 2-line shoots diagonal 4-rays up-left and up-right to the grid edge.",
+  "verb": "drop and splash",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "all 4 cells (including any below the line)",
+   "shift": "down by one row",
+   "trigger": "a moved 4 whose new row is the row just above the 2 separator",
+   "rays": "two diagonals of 4 from the trigger cell going up-left and up-right until the border"
+  },
+  "why": "each output 4 is either an input 4 shifted down one row or on an up-diagonal from a shifted 4 that touches the 2-line; the 2-line is unchanged",
+  "invariants": [
+   "the 2 separator row",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "770cc55f",
+  "reading": "A top bar and a bottom bar sit on either side of a full 2-row; in the columns where both bars have cells, the gap between the separator and the longer bar is filled with 4.",
+  "verb": "fill overlap",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "overlap_side",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "overlap_side",
+    "datalog": "sep(Y) :- cell(Y, X, C), C = 2.\ntopx(X) :- cell(Y, X, C), sep(S), Y < S.\nbotx(X) :- cell(Y, X, C), sep(S), Y > S.\ntopy(Y) :- cell(Y, X, C), sep(S), Y < S.\nboty(Y) :- cell(Y, X, C), sep(S), Y > S.\nntop(count(X)) :- topx(X).\nnbot(count(X)) :- botx(X).\noverlap_side(Y, X) :- px(Y, X, C), topx(X), botx(X), ntop(A), nbot(B), A > B, topy(T), sep(S), Y > T, Y < S.\noverlap_side(Y, X) :- px(Y, X, C), topx(X), botx(X), ntop(A), nbot(B), A < B, boty(T), sep(S), Y > S, Y < T."
+   }
+  ],
+  "why": "the only changed cells are 4s in the shared columns of the two bars, strictly between the longer bar and the separator",
+  "invariants": [
+   "both bars",
+   "the 2 separator",
+   "the half next to the shorter bar"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "782b5218",
+  "reading": "A staircase line of 2s crosses the grid; in each column everything above the 2s becomes 0 and everything below becomes the scatter colour; a column with no 2 becomes all 0.",
+  "verb": "split by line",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "line": "the 2 cells (topmost and bottommost 2 per column)",
+   "above": "cells above the column's top 2 (or the whole column if it has no 2) -> 0",
+   "below": "cells below the column's bottom 2 -> the other foreground colour (1/5/8)"
+  },
+  "why": "per column: 0 above the line, line kept, solid foreground colour below",
+  "invariants": [
+   "the 2 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7acdf6d3",
+  "reading": "Several V-shaped 2 cups have gaps between their arms; the loose 9s are removed and used to fill the gaps of the one cup whose gap count equals the number of 9s.",
+  "verb": "pour into matching cup",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cups": "2-coloured V shapes",
+   "capacity": "background cells between two 2 cells on the same row inside a cup",
+   "loose": "scattered 9 cells (all erased)",
+   "target": "the cup whose capacity equals the count of 9s; its gap cells become 9"
+  },
+  "why": "number of 9s is preserved; all 9s end inside exactly one cup's between-cells, filling it completely",
+  "invariants": [
+   "all 2 cells",
+   "background except removed 9s and filled gaps"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7d18a6fb",
+  "reading": "A 7x7 panel of 1s carries four colour marks at (1,1),(1,5),(5,1),(5,5); the output is that panel with 1s turned to 0 and each mark replaced by the 3x3 shape of the same colour found elsewhere (shapes of other colours are ignored).",
+  "verb": "assemble by key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 7x7 rectangle of 1s with coloured marks",
+   "pieces": "the 3x3-box single-colour shapes outside the key",
+   "placement": "each piece's 3x3 box centred on the key mark of its colour",
+   "output size": "the key panel's box"
+  },
+  "why": "output = key box; each 3x3 block around a mark equals the box of the same-coloured piece; everything else 0",
+  "invariants": [
+   "piece shapes unchanged",
+   "relative quadrant layout from the key"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d419a02",
+  "reading": "Bands of 8 (2 cells thick, separated by 0 lines) contain one 6 block; 8 cells stay 8 only inside a bow-tie spreading from the 6 block across bands (the 6's own band stays whole, the next band keeps only the 6's span, and each further band keeps 2 more cells on each side); all other 8s become 4.",
+  "verb": "recolour outside bow-tie",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "centre": "the 6 block",
+   "bands": "the 2-thick stripes of 8 (rows or columns, whichever direction the 0 separator lines run)",
+   "kept": "in band at distance d>=1 from the 6 band, cells within the 6 span widened by 2(d-1) on each side; the 6 band entirely",
+   "change": "8 -> 4 for all other 8 cells"
+  },
+  "why": "only 8 cells change, always to 4, exactly outside the bow-tie; 0 and 6 cells never change",
+  "invariants": [
+   "0 cells",
+   "6 block",
+   "the 6's own band"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d7772cc",
+  "reading": "A framed key line lists colours at regular positions; a parallel line of marks outside is compared position by position: a mark matching the key moves to the cell next to the frame, a non-matching mark moves to the opposite grid edge.",
+  "verb": "sort by key match",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the colour cells on the line just inside the frame",
+   "marks": "the loose coloured cells on a parallel line outside the frame",
+   "match": "mark colour equals key colour at the same position",
+   "target": "match -> cell adjacent to the frame; mismatch -> the far grid border, same row/column"
+  },
+  "why": "each mark keeps its colour and its coordinate along the line; only its distance from the frame changes, decided by the match",
+  "invariants": [
+   "frame and key line",
+   "mark colours and order"
+  ],
+  "confidence": "high"
+ }
+]

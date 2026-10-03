@@ -1,0 +1,200 @@
+[
+ {
+  "task": "c97c0139",
+  "reading": "Each straight red segment becomes the diagonal of a filled diamond of colour 8: a background cell at perpendicular distance D>=1 from the segment is filled if it lies at least D cells inside both segment ends.",
+  "verb": "draw diamond around segment",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "dia",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "dia",
+    "datalog": "lo(O, min(X)) :- obj(O, Y, X).\nhi(O, max(X)) :- obj(O, Y, X).\ntop(O, min(Y)) :- obj(O, Y, X).\nbot(O, max(Y)) :- obj(O, Y, X).\nfgc(Y, X) :- cell(Y, X, C).\nhoriz(O, Y, L, H) :- obj(O, Y, X), top(O, Y), bot(O, Y), lo(O, L), hi(O, H).\nvert(O, X, T, U) :- obj(O, Y, X), lo(O, X), hi(O, X), top(O, T), bot(O, U).\ndia(Y2, X) :- horiz(O, Y, L, H), px(Y2, X, C), !fgc(Y2, X), D = Y2 - Y, D >= 1, A = X - L, A >= D, B = H - X, B >= D.\ndia(Y2, X) :- horiz(O, Y, L, H), px(Y2, X, C), !fgc(Y2, X), D = Y - Y2, D >= 1, A = X - L, A >= D, B = H - X, B >= D.\ndia(Y, X2) :- vert(O, X, T, U), px(Y, X2, C), !fgc(Y, X2), D = X2 - X, D >= 1, A = Y - T, A >= D, B = U - Y, B >= D.\ndia(Y, X2) :- vert(O, X, T, U), px(Y, X2, C), !fgc(Y, X2), D = X - X2, D >= 1, A = Y - T, A >= D, B = U - Y, B >= D."
+   }
+  ],
+  "why": "every 8 cell is inside the diamond whose diagonal is a red segment; red cells and other background unchanged",
+  "invariants": [
+   "red segments unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "ca8de6ea",
+  "reading": "The 9 coloured cells of the 5x5 X pattern are gathered into a 3x3: corners stay corners, centre stays centre, and the four inner diagonal cells move to the edge midpoints (top-left inner to top, top-right inner to right, bottom-left inner to left, bottom-right inner to bottom).",
+  "verb": "compress X into 3x3",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the 9 non-background cells of the X (corners, inner diagonal, centre)",
+   "layout": "corners->3x3 corners, centre->centre, inner diagonals->edge midpoints (rotated 45 degrees)",
+   "output": "3x3 grid"
+  },
+  "why": "output cells are exactly the input's non-background cells, repositioned; no background left",
+  "invariants": [
+   "colour multiset of fg cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "cbded52d",
+  "reading": "The grid is a 3x3 array of 2x2 panels. When two cells of the same special colour (not 0, not 1) sit in the same row or column at the same position of two panels, the corresponding cell of the panel midway between them takes that colour.",
+  "verb": "complete midpoint",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "mid",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "mid",
+    "datalog": "mk(Y, X, C) :- cell(Y, X, C), C > 1.\nmid(Y, X) :- mk(Y, X1, C), mk(Y, X2, C), px(Y, X, B), D = X - X1, D > 0, X2 = X + D.\nmid(Y, X) :- mk(Y1, X, C), mk(Y2, X, C), px(Y, X, B), D = Y - Y1, D > 0, Y2 = Y + D."
+   }
+  ],
+  "slots": {
+   "colour": "the colour of the two equal marks the midpoint lies between"
+  },
+  "why": "each changed cell is the exact midpoint of two same-coloured marks on one row or column and takes their colour",
+  "invariants": [
+   "separators",
+   "all other cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "ccd554ac",
+  "reading": "An n x n input is tiled n times across and n times down (every block is a copy of the input).",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "open",
+    "unit": "input"
+   }
+  },
+  "why": "output is (n*h) x (n*w) with n = input side; every block equals the input",
+  "invariants": [
+   "input pattern in every block"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "ce602527",
+  "reading": "A large object cut off by the grid edge is a 2x-scaled, cropped copy of one of the small objects; the output is the bounding box of that matching small object.",
+  "verb": "select shape matching the big one",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "reference": "the large object touching the grid edge (2x-scaled, cropped)",
+   "candidates": "the small whole objects",
+   "test": "candidate whose 2x upscale contains the visible part of the reference",
+   "output": "the matching candidate's box cut from the input (with background)"
+  },
+  "why": "exactly one small object, scaled by 2, agrees with the visible part of the big edge object",
+  "invariants": [
+   "chosen object's shape and colours"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "cf98881b",
+  "reading": "Three 4x4 panels separated by colour-2 columns are overlaid into one 4x4; at each cell the first panel's colour wins (4), else the second's (9), else the third's (1), else 0.",
+  "verb": "overlay panels with priority",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "parts": "panels cut by the separator columns of colour 2",
+   "order": "left panel over middle over right (4 > 9 > 1 > 0)",
+   "output": "one panel-sized grid"
+  },
+  "why": "each output cell is the non-background colour of the leftmost panel that has one there",
+  "invariants": [
+   "panel size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "cfb2ce5a",
+  "reading": "The 8x8 interior is four 4x4 quadrants: the top-left pattern is copied mirrored into the other three (left-right, top-bottom, rotated 180), and each copy's colours are remapped using the hint cells already in that quadrant; colours with no hint become 0.",
+  "verb": "complete symmetric quadrants with recolouring",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "exemplar": "the full 4x4 top-left quadrant",
+   "copies": "horizontal mirror to top-right, vertical mirror to bottom-left, 180 rotation to bottom-right",
+   "key": "per quadrant: each hint cell maps the exemplar colour at its mirrored position to the hint colour; unhinted colours -> 0"
+  },
+  "why": "each quadrant is the mirrored exemplar under a colour map consistent with every hint in it",
+  "invariants": [
+   "top-left quadrant",
+   "outer border of 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d017b73f",
+  "reading": "Empty columns are deleted and the shapes are chained left to right: each shape is shifted vertically so its leftmost cell sits on the row where the previous shape's path ends at its right side.",
+  "verb": "chain shapes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the shapes, separated by empty columns",
+   "delete": "all-background columns",
+   "shift": "vertical offset so each shape's left-end cell meets the previous shape's right-end row, forming one continuous path"
+  },
+  "why": "output width = input width minus empty columns; shapes keep shape and colour and form one connected chain",
+  "invariants": [
+   "shape forms and colours",
+   "grid height"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d037b0a7",
+  "reading": "Every coloured cell draws a line of its own colour straight down to the bottom border.",
+  "verb": "drip down",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "why": "each column below a coloured cell is filled with that colour down to the border",
+  "invariants": [
+   "original cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d06dbe63",
+  "reading": "From the single 8 cell a fixed staircase of 5s is drawn up-right and (mirrored) down-left: one step out, then three cells sideways, repeating, clipped at the grid edge.",
+  "verb": "draw staircase",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "the 5 cells are the same offset pattern relative to the 8 in every pair (clipped at the border)",
+  "invariants": [
+   "the 8 cell"
+  ],
+  "confidence": "medium"
+ }
+]

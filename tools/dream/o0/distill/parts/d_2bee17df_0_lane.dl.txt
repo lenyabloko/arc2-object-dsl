@@ -1,0 +1,10 @@
+% row: d_2bee17df_0_lane
+% source: distillation batch reading, task 2bee17df, sample 0
+% output: lane(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+rowfg(Y, count(X)) :- cell(Y, X, C).
+colfg(X, count(Y)) :- cell(Y, X, C).
+clearrow(Y) :- rowfg(Y, N), N = 2.
+clearcol(X) :- colfg(X, N), N = 2.
+lane(Y, X) :- clearrow(Y), px(Y, X, C), !fgc(Y, X).
+lane(Y, X) :- clearcol(X), px(Y, X, C), !fgc(Y, X).

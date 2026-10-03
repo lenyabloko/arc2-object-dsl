@@ -1,0 +1,8 @@
+% row: d_d6ad076f_0_inner_between
+% source: distillation batch reading, task d6ad076f, sample 0
+% output: inner_between(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+hb(Y, X) :- bgc(Y, X), cell(Y, X1, C1), X1 < X, cell(Y, X2, C2), X2 > X.
+vb(Y, X) :- bgc(Y, X), cell(Y1, X, C1), Y1 < Y, cell(Y2, X, C2), Y2 > Y.
+inner_between(Y, X) :- hb(Y, X), Ya = Y - 1, hb(Ya, X), Yb = Y + 1, hb(Yb, X).
+inner_between(Y, X) :- vb(Y, X), Xa = X - 1, vb(Y, Xa), Xb = X + 1, vb(Y, Xb).

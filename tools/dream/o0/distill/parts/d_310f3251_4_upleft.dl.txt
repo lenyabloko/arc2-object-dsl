@@ -1,0 +1,9 @@
+% row: d_310f3251_4_upleft
+% source: distillation batch reading, task 310f3251, sample 4
+% output: upleft(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+upleft(Y2, X2) :- cell(Y, X, C), Y > 0, X > 0, Y2 = Y - 1, X2 = X - 1, px(Y2, X2, 0).
+upleft(Y2, X2) :- cell(Y, X, C), Y = 0, X > 0, hmax(Y2), X2 = X - 1, px(Y2, X2, 0).
+upleft(Y2, X2) :- cell(Y, X, C), Y > 0, X = 0, Y2 = Y - 1, wmax(X2), px(Y2, X2, 0).
+upleft(Y2, X2) :- cell(Y, X, C), Y = 0, X = 0, hmax(Y2), wmax(X2), px(Y2, X2, 0).

@@ -1,0 +1,9 @@
+% row: d_6f8cd79b_4_rim
+% source: distillation batch reading, task 6f8cd79b, sample 4
+% output: rim(Y, X)
+maxy(max(Y)) :- px(Y, X, C).
+maxx(max(X)) :- px(Y, X, C).
+rim(Y, X) :- px(Y, X, C), Y = 0.
+rim(Y, X) :- px(Y, X, C), X = 0.
+rim(Y, X) :- px(Y, X, C), maxy(M), Y = M.
+rim(Y, X) :- px(Y, X, C), maxx(M), X = M.

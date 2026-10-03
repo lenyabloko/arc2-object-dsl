@@ -1,0 +1,8 @@
+% row: d_3f7978a0_4_capbox
+% source: distillation batch reading, task 3f7978a0, sample 4
+% output: capbox(Y, X)
+t5(min(Y)) :- cell(Y, X, C), C = 5.
+b5(max(Y)) :- cell(Y, X, C), C = 5.
+l5(min(X)) :- cell(Y, X, C), C = 5.
+r5(max(X)) :- cell(Y, X, C), C = 5.
+capbox(Y, X) :- px(Y, X, C), t5(T), b5(B), l5(L), r5(R), T1 = T - 1, B1 = B + 1, Y >= T1, Y <= B1, X >= L, X <= R.

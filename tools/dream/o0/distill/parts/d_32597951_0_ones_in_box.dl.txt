@@ -1,0 +1,8 @@
+% row: d_32597951_0_ones_in_box
+% source: distillation batch reading, task 32597951, sample 0
+% output: ones_in_box(Y, X)
+y0(min(Y)) :- px(Y, X, 8).
+y1(max(Y)) :- px(Y, X, 8).
+x0(min(X)) :- px(Y, X, 8).
+x1(max(X)) :- px(Y, X, 8).
+ones_in_box(Y, X) :- px(Y, X, 1), y0(A), y1(B), x0(D), x1(E), Y >= A, Y <= B, X >= D, X <= E.

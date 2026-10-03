@@ -1,0 +1,209 @@
+[
+ {
+  "task": "007bbfb7",
+  "reading": "The 3x3 input is scaled to a 3x3 grid of 3x3 blocks; block (i,j) holds a copy of the input exactly where input cell (i,j) is non-background, else it is empty.",
+  "verb": "self-tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "fg",
+    "unit": "input"
+   }
+  },
+  "why": "every output block is the input or empty, and block (i,j) is the input iff input cell (i,j) is fg",
+  "invariants": [
+   "block contents are the input unchanged",
+   "colours unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "017c7c7b",
+  "reading": "The 6-row input is a vertically periodic pattern; it is continued downward to 9 rows using its smallest row period, and colour 1 becomes 2.",
+  "verb": "continue pattern and recolour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "period": "smallest p with row i == row i mod p over the input (2, 4, 3 in the pairs)",
+   "height": "9 rows (train constant)",
+   "recolour": "1 -> 2 (train constant)"
+  },
+  "why": "output row i equals input row (i mod p) with 1 replaced by 2, for i < 9",
+  "invariants": [
+   "width unchanged",
+   "background unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "03560426",
+  "reading": "The solid objects lying along the bottom are taken left to right and chained diagonally from the top-left corner: the first object's top-left goes to (0,0), and each next object's top-left cell is placed on the previous object's bottom-right cell, drawn on top of it. The input positions are cleared.",
+  "verb": "chain objects diagonally",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subjects": "all objects, ordered by leftmost column",
+   "first anchor": "grid top-left corner",
+   "next anchor": "bottom-right cell of the previously placed object (overlap one cell, later object overwrites)",
+   "rest": "cleared"
+  },
+  "why": "each object keeps its shape and colour; consecutive objects overlap in exactly one corner cell, owned by the later object",
+  "invariants": [
+   "object shapes and colours",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "045e512c",
+  "reading": "One exemplar shape (box size s) has small fragments of other colours next to it; each fragment is part of a copy of the exemplar offset by s+1 in one of 8 directions. The exemplar is repeated in that direction every s+1 cells, in the fragment's colour, until it leaves the grid (clipped).",
+  "verb": "repeat exemplar toward fragments",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "the largest single-colour object (exemplar shape)",
+   "directions": "for each fragment, the direction d in the 8 neighbours such that the fragment lies inside the exemplar shifted by d*(s+1)",
+   "colour": "the fragment's colour",
+   "stride": "exemplar box size + 1",
+   "stop": "grid border (partial copies kept)"
+  },
+  "why": "every fragment is a subset of the exemplar shifted one stride; every output copy is the exemplar shape shifted k strides in the fragment's direction, recoloured",
+  "invariants": [
+   "the exemplar itself",
+   "copies keep the exemplar's shape"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0607ce86",
+  "reading": "A lattice of identical rectangular tiles is corrupted by noise (wrong cells inside tiles and stray cells outside). The output restores every tile to the cell-wise majority over all tiles and clears everything outside the tiles.",
+  "verb": "denoise repeated tiles by majority",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "tile positions": "the densely filled row bands and column bands of the input (the repeated block grid)",
+   "tile content": "cell-wise majority colour over all tile copies",
+   "rest": "cleared to background"
+  },
+  "why": "all tiles in the output are identical and equal the per-cell majority of the input tiles; cells outside tiles are background",
+  "invariants": [
+   "grid size",
+   "tile positions"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0692e18c",
+  "reading": "Like a self-tile: the 3x3 input becomes a 9x9 grid of 3x3 blocks, and block (i,j) gets a copy wherever input cell (i,j) is coloured; but the copy is the colour-inverted input (coloured cells become 0, empty cells take the colour).",
+  "verb": "tile inverted input",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "extent": "fg cells of the input (block (i,j) filled iff input (i,j) is fg)",
+   "unit": "input with fg and bg swapped (bg cells take the single fg colour, fg cells become 0)"
+  },
+  "why": "every output block is empty or the inverted input, and block (i,j) is filled iff input (i,j) is fg",
+  "invariants": [
+   "single colour kept"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "06df4c85",
+  "reading": "A lattice of 2x2 cells separated by full grid lines; two cells of the same colour on one row or column are joined by filling the empty (0) cells between them with that colour. The grid lines stay.",
+  "verb": "connect same-colour cells",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between_same",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "between_same",
+    "datalog": "rowc(Y, C, count(X)) :- px(Y, X, C).\nwidth(max(X)) :- px(Y, X, C).\nfull(C) :- rowc(Y, C, N), width(M), N = M + 1.\nhb(Y, X) :- px(Y, X, 0), px(Y, X1, C), px(Y, X2, C), C > 0, !full(C), X1 < X, X < X2.\nvb(Y, X) :- px(Y, X, 0), px(Y1, X, C), px(Y2, X, C), C > 0, !full(C), Y1 < Y, Y < Y2.\nbetween_same(Y, X) :- hb(Y, X).\nbetween_same(Y, X) :- vb(Y, X)."
+   }
+  ],
+  "why": "every 0 cell lying on a row or column strictly between two cells of the same (non-lattice, non-0) colour takes that colour; nothing else changes. Note: the lattice colour is the most common colour, so the empty cells are colour 0, not the background.",
+  "invariants": [
+   "lattice lines",
+   "existing coloured cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "09629e4f",
+  "reading": "The grid is 3x3 panels cut by grey (5) lines. The one panel with the fewest coloured cells (4 instead of 5) is the key; it is blown up so that panel (i,j) is filled entirely with the colour of key cell (i,j) (0 stays empty). Separator lines stay.",
+  "verb": "upscale key panel onto panel grid",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the panel with the fewest non-background cells",
+   "target": "each panel (i,j)",
+   "colour": "key panel cell (i,j)",
+   "rest": "separator lines kept"
+  },
+  "why": "each output panel is uniform and its colour equals the key panel's cell at the panel's position",
+  "invariants": [
+   "separator lines",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0962bcdd",
+  "reading": "Each small plus (centre colour a, four arms colour b) grows into a 5x5 star: the arms extend to length 2 in colour b and the four diagonals are drawn to length 2 in the centre colour a.",
+  "verb": "grow cross into star",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "anchors": "centre cell of each plus",
+   "orthogonal rays": "length 2, arm colour",
+   "diagonal rays": "length 2, centre colour"
+  },
+  "why": "around every plus centre, cells at orthogonal distance 1-2 have the arm colour and cells at diagonal distance 1-2 have the centre colour; nothing else changes",
+  "invariants": [
+   "plus centres",
+   "colours used"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "09c534e7",
+  "reading": "Networks of colour-1 boxes joined by 1-paths; each network holds one seed cell of another colour. The seed's colour fills the interior of every box in its network (cells whose 8 neighbours are all non-background).",
+  "verb": "flood seed colour into box interiors",
+  "frame": {
+   "form": "map",
+   "scale": "object",
+   "sub": {
+    "how": "recolour",
+    "args": {
+     "key": "nearest",
+     "subject": "interior"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "interior",
+    "datalog": "nb(Y, X) :- cell(Y, X, C).\nedge(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !nb(Y2, X2).\ninterior(Y, X) :- cell(Y, X, C), !edge(Y, X)."
+   }
+  ],
+  "why": "within each connected (multi-colour) component, every interior cell takes the component's seed colour; edges and paths stay 1. Plain nearest-seed over the whole grid fails, so the key must be scoped to the component.",
+  "invariants": [
+   "box outlines and connecting paths",
+   "background",
+   "seed cells"
+  ],
+  "confidence": "low"
+ }
+]

@@ -1,0 +1,1370 @@
+{
+ "group": 16,
+ "tasks": {
+  "7e02026e": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "7e02026e",
+     "sample": 0,
+     "verb": "fill plus-shaped holes",
+     "reading": "Every 0-cell that belongs to a plus-shaped cross of five 0-cells (centre plus its 4 orthogonal neighbours all 0) becomes 3; overlapping crosses all fill.",
+     "why": "exactly the cells of 0-crosses change, all to 3",
+     "new_rows": [
+      "d_7e02026e_0_plus0"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus0": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_7e02026e_0_plus0)",
+      "fill(colour:=train, region:=d_7e02026e_0_plus0)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_7e02026e_0_plus0": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        21,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "7e02026e",
+     "sample": 1,
+     "verb": "paint plus-shaped holes",
+     "reading": "Every plus shape (centre plus its 4 orthogonal neighbours) made entirely of colour-0 cells is painted colour 3; overlapping pluses all get painted.",
+     "why": "the changed cells are exactly the union of all 5-cell plus shapes of 0s, all set to 3",
+     "new_rows": [
+      "d_7e02026e_1_plus0"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus0": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_7e02026e_1_plus0)",
+      "fill(colour:=train, region:=d_7e02026e_1_plus0)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_7e02026e_1_plus0": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        21,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "7e02026e",
+     "sample": 2,
+     "verb": "recolour plus shapes",
+     "reading": "Every plus-shaped cross of five 0-cells (a 0 cell whose four orthogonal neighbours are also 0) is recoloured 3; overlapping crosses merge. Everything else is unchanged.",
+     "why": "every 0-cell that belongs to some 5-cell 0 plus becomes 3 (key 0->3); no other cell changes",
+     "new_rows": [
+      "d_7e02026e_2_plus0"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus0": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_7e02026e_2_plus0)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_7e02026e_2_plus0": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        21,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "7e02026e",
+     "sample": 3,
+     "verb": "recolour plus shapes",
+     "reading": "Every plus-shaped pattern of colour-0 cells (a 0 cell whose four orthogonal neighbours are also 0) is recoloured 3, overlapping pluses included; everything else stays.",
+     "why": "exactly the cells of 0-pluses change, each 0 -> 3 (background is 8 in some pairs and 0 in others, so px is used, not cell)",
+     "new_rows": [
+      "d_7e02026e_3_plus0"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus0": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_7e02026e_3_plus0)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_7e02026e_3_plus0": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        21,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "7e02026e",
+     "sample": 4,
+     "verb": "paint pluses",
+     "reading": "Every plus-shaped group of five 0 cells (a 0 cell whose four orthogonal neighbours are also 0) is painted 3; overlapping pluses merge.",
+     "why": "cells of 0-pluses become 3, all other cells unchanged (bg varies between 0 and 8, so colour 0 is literal)",
+     "new_rows": [
+      "d_7e02026e_4_plus0"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus0": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_7e02026e_4_plus0)",
+      "fill(colour:=train, region:=d_7e02026e_4_plus0)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_7e02026e_4_plus0": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        21,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "7ec998c9": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "7ec998c9",
+     "sample": 0,
+     "verb": "draw S-path through marker",
+     "reading": "From the single odd cell, a 1-coloured path runs down its whole column (the cell itself kept), plus a top-row run to one side corner and a bottom-row run to the opposite side corner (top-left/bottom-right when the marker row is odd, top-right/bottom-left when even).",
+     "why": "path cells become 1; marker and other cells unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "7ec998c9",
+     "sample": 1,
+     "verb": "draw snake path through marker column",
+     "reading": "A single marker sits on a uniform grid. A colour-1 path is drawn: along the top row from one corner to the marker's column, down that column (skipping the marker cell), then along the bottom row to the opposite corner. In 2 of 3 pairs the path runs top-left to bottom-right, in the other top-right to bottom-left (it seems to depend on the marker's row parity).",
+     "why": "only background cells on the path change, to 1; the marker keeps its colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "7ec998c9",
+     "sample": 2,
+     "verb": "draw snake path",
+     "reading": "From the single marker, a colour-1 path is drawn: a vertical line through the marker's whole column (marker kept), joined along the top row to one corner and along the bottom row to the opposite corner. The side taken on the top row (left vs right) alternates; it goes left in two pairs (marker row odd) and right in one (marker row even).",
+     "why": "output = input plus a 1-coloured Z/S path through the marker column; marker cell unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "7ec998c9",
+     "sample": 3,
+     "verb": "draw corner-to-corner path through marker",
+     "reading": "A single marker on a uniform grid; a colour-1 path runs vertically through the marker's column (skipping the marker) from top to bottom edge, then turns along the top edge to one corner and along the bottom edge to the opposite corner (Z/S shape).",
+     "why": "output = input plus a 1-path from one top corner to the opposite bottom corner whose vertical leg is the marker column",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "7ec998c9",
+     "sample": 4,
+     "verb": "draw snake path",
+     "reading": "From the single marker a colour-1 line runs up and down the marker's column to both edges (marker kept); at the top edge it turns along the top row to one side, at the bottom edge along the bottom row to the opposite side, making a Z/S path corner to corner.",
+     "why": "output = input plus a 1-cell-wide colour-1 path through the marker column joining opposite grid corners",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "825aa9e9": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "825aa9e9",
+     "sample": 0,
+     "verb": "drop with one-row gap",
+     "reading": "The structure touching the bottom edge is fixed; every other object falls straight down as a rigid shape (lowest first) until it would come within one empty row of the fixed structure or the bottom edge, or until it rests on an already-fallen object.",
+     "why": "shapes unchanged, only vertical translation; each stops with exactly one empty row above the floor or touching a fallen object",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "825aa9e9",
+     "sample": 1,
+     "verb": "drop with one-cell gap",
+     "reading": "Objects of the loose colour fall straight down as rigid bodies (stacking on each other) until they sit one empty row above the floor colour or one row above the bottom edge.",
+     "why": "every falling object keeps its shape, moves only downward, and ends with exactly one background cell between it and the floor/edge",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "825aa9e9",
+     "sample": 2,
+     "verb": "drop with gap",
+     "reading": "Loose shapes (colours other than the air colour 7 and the static floor/wall colour) fall straight down. A falling shape stops leaving exactly one empty row above the floor, a static obstacle or the grid bottom, but stacks directly on top of an already-fallen shape.",
+     "why": "each moved shape keeps its shape, is shifted down only, and the static colour and air layout are unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "825aa9e9",
+     "sample": 3,
+     "verb": "drop objects leaving one-cell gap",
+     "reading": "The loose objects (the colour that is neither background nor the fixed floor/wall structure) fall straight down as rigid objects, stacking on each other, and stop with exactly one background cell between them and the floor or bottom edge.",
+     "why": "each object keeps its shape; its lowest cells end with exactly one background cell above the floor; floor never changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "825aa9e9",
+     "sample": 4,
+     "verb": "drop with gap",
+     "reading": "Each loose object (not the floor colour that fills the bottom) drops straight down as a rigid piece until it is one cell above the floor colour (or the bottom edge); a piece landing on an already dropped piece stacks directly on it.",
+     "why": "each piece keeps its shape and column; it ends with a one-cell gap above the floor (not in contact, so move/obstacle does not fit)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "82819916": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "82819916",
+     "sample": 0,
+     "verb": "complete rows from template",
+     "reading": "The one complete row is a template of two colours; each other row that shows only a short prefix is completed by copying the template pattern, recolouring template colours to the prefix's colours position by position.",
+     "why": "every partial row equals the template under its colour map; template and empty rows unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "82819916",
+     "sample": 1,
+     "verb": "complete rows by analogy",
+     "reading": "One row is a full two-colour pattern; other rows show only its first few cells in new colours. Each partial row is completed by copying the full pattern with the colour substitution implied by its prefix.",
+     "why": "every completed row equals the template under a colour bijection consistent with its original prefix",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "82819916",
+     "sample": 2,
+     "verb": "complete row by analogy",
+     "reading": "One row is a complete two-colour template; other rows show only a prefix. Each partial row is completed by copying the template's pattern, with the template's colours replaced by the colours in the prefix at the matching positions.",
+     "why": "every non-empty row in the output equals the template under a colour substitution consistent with its input prefix",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "82819916",
+     "sample": 3,
+     "verb": "complete rows from template with colour substitution",
+     "reading": "One full row is a two-colour template; each other row holds only a prefix of the template in other colours. Each partial row is completed by copying the template's pattern with the template colours replaced by that row's colours (mapping read from the prefix).",
+     "why": "every completed row equals the template under a per-row colour bijection consistent with its prefix",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "82819916",
+     "sample": 4,
+     "verb": "complete row by analogy",
+     "reading": "One row is a full pattern; every other non-empty row shows only a prefix. Each partial row is completed by copying the full row's pattern with colours renamed by the correspondence its prefix gives (full-row colour at a column -> partial-row colour there).",
+     "why": "each target row equals the exemplar row recoloured by its own prefix-derived map",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "834ec97d": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "834ec97d",
+     "sample": 0,
+     "verb": "drop marker and stripe above",
+     "reading": "The single marker moves down one cell; then every cell above the marker's new row in columns of the same parity as the marker's column becomes 4.",
+     "why": "marker shifted by (+1,0); cells with row < new marker row and column parity equal to marker's become 4",
+     "new_rows": [
+      "d_834ec97d_0_stripes_above"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "stripes_above": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_834ec97d_0_stripes_above)[input:=move(subject:=markers, target:=train)@grid]",
+      "fill(colour:=train, region:=d_834ec97d_0_stripes_above)[input:=move(subject:=markers, target:=train)@grid]"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "seq(move(subject:=markers, target:=train) ; fill(colour:=train, region:=d_row))"
+     ],
+     "fillers": {
+      "seq1.move.subject=markers": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         9
+        ]
+       ]
+      ],
+      "seq2.fill.region=d_834ec97d_0_stripes_above": [
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       null,
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "834ec97d",
+     "sample": 1,
+     "verb": "shift marker down and draw stripes above",
+     "reading": "The single marker moves down one row; every cell above its new row in the columns with the same parity as the marker's column becomes colour 4 (vertical stripes reaching the top).",
+     "why": "marker displaced by (+1,0); cells in rows above the moved marker whose column differs from the marker column by an even number are 4; all else 0",
+     "new_rows": [
+      "d_834ec97d_1_stripes_above"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "stripes_above": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_834ec97d_1_stripes_above)[input:=move(subject:=markers, target:=train)@grid]",
+      "fill(colour:=train, region:=d_834ec97d_1_stripes_above)[input:=move(subject:=markers, target:=train)@grid]"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "seq(move(subject:=markers, target:=train) ; fill(colour:=train, region:=d_row))"
+     ],
+     "fillers": {
+      "seq1.move.subject=markers": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         9
+        ]
+       ]
+      ],
+      "seq2.fill.region=d_834ec97d_1_stripes_above": [
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       null,
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "834ec97d",
+     "sample": 2,
+     "verb": "drop marker and stripe above",
+     "reading": "The single marker moves down one cell. Every row above its new position is filled with colour 4 in every column that has the same parity as the marker's column.",
+     "why": "output has the marker shifted down 1 and alternating vertical stripes of 4 above it",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "834ec97d",
+     "sample": 3,
+     "verb": "drop marker and draw comb above",
+     "reading": "The single marker moves down one cell; then every cell above the moved marker's row in columns of the same parity as the marker's column becomes 4.",
+     "why": "the marker shifts by (+1,0); afterwards 4 fills exactly rows < marker row in columns congruent to the marker column mod 2",
+     "new_rows": [
+      "d_834ec97d_3_comb"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "comb": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_834ec97d_3_comb)[input:=move(subject:=markers, target:=train)@grid]",
+      "fill(colour:=train, region:=d_834ec97d_3_comb)[input:=move(subject:=markers, target:=train)@grid]"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "seq(move(subject:=markers, target:=train) ; fill(colour:=train, region:=d_row))"
+     ],
+     "fillers": {
+      "seq1.move.subject=markers": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         9
+        ]
+       ]
+      ],
+      "seq2.fill.region=d_834ec97d_3_comb": [
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       null,
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "834ec97d",
+     "sample": 4,
+     "verb": "drop marker and stripe above",
+     "reading": "The single marker moves down one cell; every row above its new position is filled with colour 4 in the columns of the same parity as the marker's column.",
+     "why": "marker at (r+1,c); cells (y<=r, x%2==c%2) are 4; all else bg",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "83eb0a57": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "83eb0a57",
+     "sample": 0,
+     "verb": "assemble pieces into container",
+     "reading": "The largest object is a container carrying hint cells of a shared colour; each smaller piece is pasted where its own hint cells coincide with the hints (pieces can nest inside other pasted pieces). The output is the container's box with all pieces assembled.",
+     "why": "output = container box; every piece appears unchanged at the offset where its hints match",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "83eb0a57",
+     "sample": 1,
+     "verb": "assemble nested pieces",
+     "reading": "Several solid rectangles of different colours each carry small marks; the marks of a larger rectangle form the exact footprint of a smaller rectangle (or of its matching-colour cells). The pieces are nested by aligning these marks, and the output is the largest rectangle with all smaller pieces placed inside.",
+     "why": "output box = host box; every piece appears unchanged at the unique offset where its marks overlap the host's marks",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "83eb0a57",
+     "sample": 2,
+     "verb": "assemble nested pieces",
+     "reading": "Several solid rectangles carry small marks of other colours. The pieces are nested: each smaller piece is pasted into the larger one at the offset where its marks line up with the larger piece's marks. The output is the largest piece with the others pasted in.",
+     "why": "the output is the base box with every other piece pasted inside at the unique offset where their marks coincide",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "83eb0a57",
+     "sample": 3,
+     "verb": "nest pieces into matching holes",
+     "reading": "Several rectangular pieces each carry holes/patterns; the output is the largest piece with smaller pieces nested into it wherever a piece's pattern matches that piece's hole pattern (recursively: a piece nested in another can itself receive a smaller piece).",
+     "why": "output size = largest piece's box; every other piece appears once, aligned so its marked cells coincide with the host's marked cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "83eb0a57",
+     "sample": 4,
+     "verb": "assemble nested pieces",
+     "reading": "The input holds several boxes; a smaller piece fits exactly into a hole-pattern of a larger box (pieces nest into matching holes). The output is the largest box with the other pieces inserted into their matching holes.",
+     "why": "output is the container box with all pieces nested into their matching holes",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "846bdb03": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "846bdb03",
+     "sample": 0,
+     "verb": "fit shape into frame",
+     "reading": "A frame of two vertical bars (different colours, 4 at their ends) is cut out; the loose two-colour shape is placed in its interior, mirrored left-right if needed so each side of the shape touches the bar of the same colour.",
+     "why": "output = frame box with piece filling the interior; piece colours match adjacent bar colours",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "846bdb03",
+     "sample": 1,
+     "verb": "fit shape into frame",
+     "reading": "A frame (four yellow corner cells with a coloured vertical bar on each side) and a two-coloured shape are given. The output is the frame's box with the shape placed inside, flipped left-right if needed so that each colour of the shape sits next to the bar of the same colour.",
+     "why": "output = frame box; interior = shape or its mirror, with left-half colour = left bar colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "846bdb03",
+     "sample": 2,
+     "verb": "fit shape into frame",
+     "reading": "Two vertical bars with colour-4 end caps form a frame; their bodies have two colours (left and right). The two-colour shape is cut out and placed between the bars, flipped left-right when needed so its part in each colour sits next to the bar of that colour. The output is the frame's box.",
+     "why": "the piece's box has the frame interior's size, and after the optional flip its colour sides match the bars",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "846bdb03",
+     "sample": 3,
+     "verb": "fit shape into frame",
+     "reading": "A frame of four 4-corners with two coloured side bars and a separate two-colour shape; the output is the frame box with the shape placed inside, mirrored left-right if needed so each colour sits next to the side bar of the same colour.",
+     "why": "output = frame box; interior = shape (possibly flipped) whose left colour equals left bar colour and right colour equals right bar colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "846bdb03",
+     "sample": 4,
+     "verb": "fit shape into bracket",
+     "reading": "A bracket frame (four 4 corners with two coloured side bars) is cut out, and the two-coloured shape is placed between the bars, mirrored left-right if needed so each colour sits next to the bar of the same colour.",
+     "why": "output = bracket box with the piece (possibly flipped) filling its interior",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "84f2aca1": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "84f2aca1",
+     "sample": 0,
+     "verb": "fill holes by size",
+     "reading": "Closed rings enclose holes of background; a one-cell hole is filled with 5 and a two-cell hole is filled with 7.",
+     "why": "1-cell enclosed holes become 5, 2-cell enclosed holes become 7; nothing else changes",
+     "new_rows": [
+      "d_84f2aca1_0_hole1",
+      "d_84f2aca1_0_hole2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole1": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "hole2": [
+       "equal",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "84f2aca1",
+     "sample": 1,
+     "verb": "fill holes by size",
+     "reading": "Hollow rectangles have enclosed background holes: a 1-cell hole is filled with 5, a 2-cell hole is filled with 7.",
+     "why": "each enclosed background cell becomes 5 if it is alone in its hole, 7 if its hole has 2 cells; nothing else changes",
+     "new_rows": [
+      "d_84f2aca1_1_hole_one",
+      "d_84f2aca1_1_hole_two"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole_one": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "hole_two": [
+       "equal",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "84f2aca1",
+     "sample": 2,
+     "verb": "fill holes by size",
+     "reading": "Shapes are closed rectangular outlines with a small background hole. One-cell holes are filled with 5 and two-cell holes with 7, whatever the outline's colour.",
+     "why": "every 0 cell fully enclosed alone becomes 5; every 0 cell in an enclosed 0 pair becomes 7; nothing else changes",
+     "new_rows": [
+      "d_84f2aca1_2_hole1",
+      "d_84f2aca1_2_hole2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole1": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "hole2": [
+       "equal",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "84f2aca1",
+     "sample": 3,
+     "verb": "fill holes by size",
+     "reading": "Every hole inside a rectangular outline is filled by size: one-cell holes become 5, two-cell holes become 7.",
+     "why": "only enclosed background cells change; size-1 holes -> 5, size-2 holes -> 7",
+     "new_rows": [
+      "d_84f2aca1_3_hole1",
+      "d_84f2aca1_3_hole2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole1": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "hole2": [
+       "equal",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "84f2aca1",
+     "sample": 4,
+     "verb": "fill holes by size",
+     "reading": "Each closed outline has a hole of one or two cells; one-cell holes are filled with 5 and two-cell holes with 7.",
+     "why": "1-cell enclosed bg cells become 5 (stage 1), 2-cell enclosed bg pairs become 7 (stage 2); nothing else changes",
+     "new_rows": [
+      "d_84f2aca1_4_hole1",
+      "d_84f2aca1_4_hole2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole1": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "hole2": [
+       "equal",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "8597cfd7": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8597cfd7",
+     "sample": 0,
+     "verb": "compare growth",
+     "reading": "A horizontal separator splits the grid; a column of 2s and a column of 4s appear above and below. The output is a 2x2 block of the colour whose column count grows more from the top panel to the bottom panel.",
+     "why": "output colour = argmax over {2,4} of (bottom count - top count)",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8597cfd7",
+     "sample": 1,
+     "verb": "pick colour that grew most",
+     "reading": "A horizontal separator splits the grid; a column of 2s and a column of 4s appear above and below it. The output is a 2x2 block of the colour whose column grew more (longer below than above, by the larger amount).",
+     "why": "pairs 0-2: growth of 2 > growth of 4 -> 22/22; pair 3: growth of 4 > growth of 2 -> 44/44",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8597cfd7",
+     "sample": 2,
+     "verb": "compare growth",
+     "reading": "A grey separator row splits the grid. Above and below it are a vertical colour-2 bar and a colour-4 bar. The output is a 2x2 block of whichever colour's bar grows more in length from the top half to the bottom half.",
+     "why": "the output colour is always the bar colour with the larger bottom-minus-top length",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8597cfd7",
+     "sample": 3,
+     "verb": "compare growth",
+     "reading": "Two vertical bars (colours 2 and 4) appear above and below a separator line; the output is a 2x2 block of the colour whose bar grew more from the top panel to the bottom panel.",
+     "why": "winner colour has the larger (bottom - top) count difference on every pair",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8597cfd7",
+     "sample": 4,
+     "verb": "pick colour by growth",
+     "reading": "A 5 separator splits the grid into two panels, each with a colour-2 bar and a colour-4 bar. The output is a 2x2 block of whichever colour's bar grew more from the top panel to the bottom panel.",
+     "why": "growth (2 vs 4): pair0 3>2, pair1 3>2, pair2 2>1 -> 2; pair3 1<2 -> 4",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "85fa5666": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "85fa5666",
+     "sample": 0,
+     "verb": "rotate corners and shoot diagonals",
+     "reading": "Each 2x2 block of 2 has four diagonal corner cells; their colours rotate one step clockwise around the block, and each corner then shoots a diagonal ray of its new colour outward away from the block to the border, crossing other rays.",
+     "why": "blocks unchanged; corner colours permuted clockwise; diagonal rays carry corner colours",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "85fa5666",
+     "sample": 1,
+     "verb": "rotate corner colours and shoot diagonal rays",
+     "reading": "Each 2x2 block of 2s has four differently coloured diagonal corner cells. The corner colours rotate one step clockwise around the block (TL takes BL's colour, TR takes TL's, BR takes TR's, BL takes BR's), and each corner then shoots a diagonal ray outward in its new colour to the grid edge, stopping at a 2-block.",
+     "why": "2-blocks unchanged; every changed cell lies on an outward diagonal from a block corner and has that corner's rotated colour",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "85fa5666",
+     "sample": 2,
+     "verb": "rotate corners and shoot diagonals",
+     "reading": "Each 2x2 block of colour 2 has four single-cell colours at its diagonal corners. The corner colours rotate one step clockwise (TL->TR->BR->BL->TL), and each corner then shoots a diagonal ray of its new colour outward, until it reaches the border or runs into another object.",
+     "why": "blocks unchanged; corner colours are a cyclic shift of the input corners; all new cells lie on outward diagonals from corners",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "85fa5666",
+     "sample": 3,
+     "verb": "rotate corner colours and shoot diagonal rays",
+     "reading": "Each 2x2 block of colour 2 has four diagonal corner cells of different colours; the corner colours rotate one step clockwise around the block, then each corner shoots a diagonal ray of its new colour outward to the grid edge.",
+     "why": "2x2 blocks unchanged; corner cells permuted clockwise; diagonal rays outward carry the corner's new colour",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "85fa5666",
+     "sample": 4,
+     "verb": "rotate corners and shoot diagonals",
+     "reading": "Each 2x2 block of 2 has four coloured cells at its diagonal corners; those corner colours rotate one step clockwise around the block, and from each corner a diagonal ray in its new colour runs outward to the grid edge.",
+     "why": "blocks unchanged; corner colours are a clockwise rotation; diagonal rays carry those colours to the edge",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  }
+ }
+}

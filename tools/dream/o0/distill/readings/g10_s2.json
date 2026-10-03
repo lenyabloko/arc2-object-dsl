@@ -1,0 +1,226 @@
+[
+ {
+  "task": "4acc7107",
+  "reading": "Each colour has two objects. Objects are regrouped by colour into columns at the bottom-left: the colour whose object is leftmost gets the left column, the next column starts one blank column after the widest object of the previous one. In a column the objects are stacked from the bottom row upward with one blank row between them, the leftmost (in the input) at the bottom, each left-aligned to the column start.",
+  "verb": "sort and stack objects by colour",
+  "frame": {
+   "how": "other",
+   "verb": "stack objects into colour columns"
+  },
+  "slots": {
+   "groups": "objects grouped by colour",
+   "column order": "colour of the leftmost object first, left to right; column width = widest object + 1 gap",
+   "stack order": "within a colour, object with smaller min-x goes lower; stacked from bottom row with 1-row gaps, left-aligned"
+  },
+  "why": "output holds exactly the input objects, shapes unchanged, packed into bottom-left colour columns",
+  "invariants": [
+   "object shapes and colours",
+   "grid size",
+   "background 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4e45f183",
+  "reading": "The grid is 3x3 panels separated by background lines. Each panel holds a piece of one pattern (a corner, an edge middle, or the full pattern); each panel is moved to the slot its piece points to (top-left piece to top-left slot, full pattern to the centre).",
+  "verb": "rearrange panels",
+  "frame": {
+   "how": "other",
+   "verb": "permute panels by content position"
+  },
+  "slots": {
+   "units": "the 9 panels cut by background separator lines",
+   "target slot": "the slot given by where the panel's minority-colour cells sit inside the panel (left/centre/right x top/middle/bottom); the panel with all pieces goes to the centre"
+  },
+  "why": "output panels are the input panels permuted; each panel's marked cells lie on the side matching its slot",
+  "invariants": [
+   "separator lines",
+   "panel contents (only positions change)",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4e7e0eb9",
+  "reading": "Panels are cut by full separator lines. A panel crossed by a colour-4 line is mirrored across that line (its two blocks swap sides). A panel without a 4-line has its colour-1 placeholder blocks repainted with the one other block colour in that panel.",
+  "verb": "mirror key panels, fill placeholder panels",
+  "frame": {
+   "how": "other",
+   "verb": "per-panel mirror or fill"
+  },
+  "slots": {
+   "units": "panels cut by full separator lines (not by the 4-lines inside a panel)",
+   "case A": "panel contains a line of 4: mirror the panel about that line",
+   "case B": "no 4-line: every 1 cell becomes the panel's single non-1 block colour"
+  },
+  "why": "every panel is either symmetric-swapped about its 4-line or uniformly one block colour",
+  "invariants": [
+   "separator lines",
+   "4-lines",
+   "block positions and sizes",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4ff4c9da",
+  "reading": "Some cells of a woven 1/2 pattern are marked 8. Every other non-zero component that has exactly the same shape (same orientation) as an 8 component is recoloured 8.",
+  "verb": "recolour shape twins",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "shape_twin"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "shape_twin",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nomy(O, min(Y)) :- obj(O, Y, X).\nomx(O, min(X)) :- obj(O, Y, X).\nrel(O, DY, DX) :- obj(O, Y, X), omy(O, MY), omx(O, MX), DY = Y - MY, DX = X - MX.\neight(O) :- obj(O, Y, X), cell(Y, X, 8).\ncand(O) :- obj(O, Y, X), cell(Y, X, C), C > 0, !eight(O).\nmiss(O, E) :- cand(O), eight(E), rel(O, DY, DX), !rel(E, DY, DX).\nsame(O) :- cand(O), eight(E), osize(O, N), osize(E, N), !miss(O, E).\nshape_twin(Y, X) :- same(O), obj(O, Y, X)."
+   }
+  ],
+  "why": "every non-zero, non-8 component whose normalised cell set equals an 8 component's becomes 8 (2->8 or 1->8); nothing else changes",
+  "invariants": [
+   "all cells outside matched components",
+   "existing 8 cells",
+   "0 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "505fff84",
+  "reading": "Some rows hold a 1 and, to its right, an 8. For each such row (top to bottom) the cells strictly between the 1 and the 8 are cut out; the strips are stacked into the output.",
+  "verb": "extract strips between markers",
+  "frame": {
+   "how": "other",
+   "verb": "crop between 1 and 8 per row"
+  },
+  "slots": {
+   "rows": "rows containing both a 1 and an 8, in top-down order",
+   "strip": "cells strictly between the 1 (left) and the 8 (right) on that row",
+   "output": "strips stacked vertically (all strips have equal length)"
+  },
+  "why": "output row k equals the input cells between 1 and 8 on the k-th marked row",
+  "invariants": [
+   "cell colours inside strips"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "50846271",
+  "reading": "Partial plus-shaped crosses of 2 are hidden in 5/0 noise. Each cross is completed: its centre is where the horizontal and vertical arms meet, both arms have the same length (the furthest 2 from the centre), and every non-2 cell on the completed cross becomes 8.",
+  "verb": "complete crosses",
+  "frame": {
+   "how": "other",
+   "verb": "complete partial crosses"
+  },
+  "slots": {
+   "subject": "groups of 2 cells lying on one row and one column through a common centre",
+   "shape": "plus with equal arms, arm length = max distance of a 2 from the centre (2 or 3)",
+   "paint": "8 on every cell of the plus that is not 2 (was 5 or 0)"
+  },
+  "why": "after the change every cross is a full symmetric plus of 2s and 8s; only cross cells change",
+  "invariants": [
+   "2 cells",
+   "all cells off the crosses"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "50aad11f",
+  "reading": "Several 6-shapes each have one single-cell marker of another colour near them. Each shape is recoloured with its nearest marker's colour, and the shapes' bounding boxes are placed side by side (left to right when the shapes are spread horizontally, top to bottom when spread vertically) to form the output.",
+  "verb": "recolour by nearest marker and concatenate",
+  "frame": {
+   "how": "other",
+   "verb": "recolour shapes by marker and pack boxes"
+  },
+  "slots": {
+   "subject": "the 6-coloured objects",
+   "key": "colour of the nearest single-cell marker",
+   "layout": "shape boxes concatenated in reading order along the axis the shapes are spread on, markers dropped"
+  },
+  "why": "output is the shapes' boxes, in input order, each shape painted with its marker colour",
+  "invariants": [
+   "shape forms",
+   "box sizes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "50c07299",
+  "reading": "A diagonal (up-right) segment of 2s of length n sits on the anti-diagonal from the bottom-left corner. It is replaced by the next segment along that diagonal, of length n+1, starting just after where the old one ended; the old segment is erased.",
+  "verb": "advance diagonal",
+  "frame": {
+   "how": "other",
+   "verb": "grow and advance diagonal segment"
+  },
+  "slots": {
+   "subject": "the 2-coloured diagonal segment of length n",
+   "new segment": "n+1 cells on the same anti-diagonal line, continuing up-right right after the old end",
+   "old": "cleared to background 7"
+  },
+  "why": "output holds one diagonal segment, one cell longer, adjacent beyond the old one on the same line",
+  "invariants": [
+   "background 7",
+   "grid size",
+   "diagonal line through the bottom-left corner"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "50f325b5",
+  "reading": "A small shape is drawn in 8. Every placement of that shape, rotated by 0/90/180/270 degrees (no reflections), that lies entirely on 3 cells has those cells recoloured 8.",
+  "verb": "find rotated copies",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "rot_match"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "rot_match",
+    "datalog": "e8(Y, X) :- px(Y, X, 8).\nthree(Y, X) :- px(Y, X, 3).\nry(min(Y)) :- e8(Y, X).\nrx(min(X)) :- e8(Y, X).\nt0(DY, DX) :- e8(Y, X), ry(MY), rx(MX), DY = Y - MY, DX = X - MX.\nt(0, A, B) :- t0(DY, DX), A = DY + 0, B = DX + 0.\nt(1, A, B) :- t0(DY, DX), A = DX + 0, B = 0 - DY.\nt(2, A, B) :- t0(DY, DX), A = 0 - DY, B = 0 - DX.\nt(3, A, B) :- t0(DY, DX), A = 0 - DX, B = DY + 0.\ncand(R, AY, AX) :- t(R, DY, DX), three(Y, X), AY = Y - DY, AX = X - DX.\nbad(R, AY, AX) :- cand(R, AY, AX), t(R, DY, DX), Y = AY + DY, X = AX + DX, !three(Y, X).\nok(R, AY, AX) :- cand(R, AY, AX), !bad(R, AY, AX).\nrot_match(Y, X) :- ok(R, AY, AX), t(R, DY, DX), Y = AY + DY, X = AX + DX."
+   }
+  ],
+  "why": "exactly the 3 cells covered by a rotated copy of the 8 shape become 8 (3->8); nothing else changes",
+  "invariants": [
+   "original 8 shape",
+   "all other cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "5117e062",
+  "reading": "Several 3x3 shapes; exactly one contains an 8 cell. The output is that shape's 3x3 box with the 8 replaced by the shape's own colour.",
+  "verb": "extract marked shape and fill its mark",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extract",
+    "args": {
+     "region": "exemplar"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "nearest",
+     "subject": "eight"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "eight",
+    "datalog": "eight(Y, X) :- px(Y, X, 8)."
+   }
+  ],
+  "why": "the only multi-coloured component is the shape holding the 8; its box is the output with 8 -> surrounding shape colour",
+  "invariants": [
+   "the chosen shape's cells and box"
+  ],
+  "confidence": "medium"
+ }
+]

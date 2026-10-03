@@ -1,0 +1,221 @@
+[
+ {
+  "task": "6a1e5592",
+  "reading": "Grey(5) pieces at the bottom are lifted into the matching holes of the red(2) top band so each piece exactly fills a hole; placed pieces become blue(1) and the bottom is cleared.",
+  "verb": "fit pieces into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "the 5-coloured objects in the lower half",
+   "holes": "background gaps in the red band whose shape matches a piece",
+   "placement": "piece shifted (no rotation) so it fills its hole exactly",
+   "colour": "placed pieces recoloured 1; original piece cells cleared"
+  },
+  "why": "every hole in the red band is filled by exactly one piece of the same shape; the red band is unchanged",
+  "invariants": [
+   "red band cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6b9890af",
+  "reading": "The output is the red(2) square outline cut out, with the small 3x3 coloured shape scaled up by an integer factor to fill the outline's interior exactly.",
+  "verb": "scale shape into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "the red rectangular outline (output = its box)",
+   "shape": "the other object, read in its 3x3 box",
+   "scale": "interior side / 3 (1, 2, 3 ...)",
+   "paste": "scaled shape fills the frame interior"
+  },
+  "why": "output size = outline box; interior = shape upscaled by interior/3",
+  "invariants": [
+   "outline colour and border",
+   "shape colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6c434453",
+  "reading": "Every hollow 3x3 square of 1s is replaced by a red(2) plus sign in the same 3x3 box (plus centred on the hole, corners cleared); all other shapes stay.",
+  "verb": "replace ring by plus",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "ring_centre",
+    "unit": "train",
+    "rest": "kept",
+    "place": "nearest"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ring_centre",
+    "datalog": "fgc(Y, X) :- cell(Y, X, C).\ninside(Y, X) :- px(Y, X, C).\nnonring(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !inside(Y2, X2).\nnonring(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C2), !fgc(Y2, X2).\nring_centre(Y, X) :- px(Y, X, C), !fgc(Y, X), !nonring(Y, X)."
+   }
+  ],
+  "why": "each background cell fully surrounded by fg (a ring hole) becomes the centre of a 3x3 unit '.2./222/.2.' written over the ring",
+  "invariants": [
+   "objects that are not hollow squares",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6ca952ad",
+  "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; objects of 3 or fewer cells stay where they are.",
+  "verb": "drop large objects",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "big",
+    "target": "border"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "big",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(Y, X) :- obj(O, Y, X), osize(O, N), N > 3."
+   }
+  ],
+  "why": "each object with size >= 4 keeps its shape and its bottom row ends on the last grid row; smaller objects are unchanged",
+  "invariants": [
+   "object shapes and colours",
+   "columns of every object",
+   "small objects (size <= 3)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6cf79266",
+  "reading": "Each 3x3 window that is entirely background(0) is filled with blue(1); where two such windows overlap only the first in reading order is filled.",
+  "verb": "fill empty 3x3 squares",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "empty3",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "empty3",
+    "datalog": "zero(Y, X) :- px(Y, X, C), C = 0.\ninside(Y, X) :- px(Y, X, C).\nbad(Y, X) :- inside(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !zero(Y2, X2).\nctr(Y, X) :- zero(Y, X), !bad(Y, X).\nblocked(Y, X) :- ctr(Y, X), ctr(Y2, X2), Y2 < Y, D = Y - Y2, D <= 2, E = X - X2, E <= 2, E >= -2.\nblocked(Y, X) :- ctr(Y, X), ctr(Y, X2), X2 < X, E = X - X2, E <= 2.\nkeep(Y, X) :- ctr(Y, X), !blocked(Y, X).\nempty3(Y, X) :- keep(Y, X).\nempty3(Y, X) :- keep(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX."
+   }
+  ],
+  "why": "exactly the 9 cells of each non-overlapping all-0 3x3 window become 1; nothing else changes",
+  "invariants": [
+   "all non-zero cells",
+   "zero cells outside an empty 3x3 window"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6d0160f0",
+  "reading": "The grid is 3x3 panels cut by grey(5) lines; the panel containing a yellow(4) cell is copied into the panel whose position matches the 4's position inside its own panel, and every other panel is cleared.",
+  "verb": "relocate keyed panel",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "3x3 grid of 3x3 panels cut by full grey separator lines",
+   "source": "the one panel that contains colour 4",
+   "target": "panel at index (row, col) = the 4's local (row, col) inside the source panel",
+   "rest": "all other panel contents cleared; separators kept"
+  },
+  "why": "output = separators + source panel content pasted at target panel, everything else 0",
+  "invariants": [
+   "grey separator lines",
+   "grid size",
+   "source panel content (copied verbatim)"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6d58a25d",
+  "reading": "Under the umbrella-shaped object, each column that has a scattered dot below the umbrella gets a full vertical line in the dot colour from just under the umbrella down to the bottom edge.",
+  "verb": "draw rain under umbrella",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "obstacle",
+    "source": "sheltered",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "sheltered",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\ndot(O) :- osize(O, N), N = 1.\numb(O) :- osize(O, N), N > 1.\nsheltered(Y, X) :- dot(M), obj(M, Y, X), umb(U), obj(U, Y2, X), Y2 < Y."
+   }
+  ],
+  "why": "each sheltered dot extends vertically: upward until the first umbrella cell (not crossing it) and downward to the grid border",
+  "invariants": [
+   "umbrella shape",
+   "dots not under the umbrella",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "6e02f1e3",
+  "reading": "Output 3x3 of grey(5) on background chosen by how many colours the input has: 1 colour gives the top row, 2 colours the main diagonal, 3 colours the anti-diagonal.",
+  "verb": "draw pattern by colour count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "count": "number of distinct colours in the input (1, 2 or 3)",
+   "pattern": "1 -> top row filled; 2 -> diagonal TL-BR; 3 -> diagonal TR-BL",
+   "colour": "5 on 0"
+  },
+  "why": "the output pattern is a fixed function of the input's colour count",
+  "invariants": [
+   "grid size 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6e19193c",
+  "reading": "Each L-shaped 3-cell object (a 2x2 box missing one corner) shoots a diagonal ray of its own colour from its missing corner outward (away from the object) to the grid edge; the missing corner itself stays empty.",
+  "verb": "shoot diagonal ray",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "why": "every ray starts one diagonal step beyond the missing corner, points away from the L's elbow, and runs until the border",
+  "invariants": [
+   "the L objects",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "6f473927",
+  "reading": "The output is the input placed beside its left-right mirror image with colours inverted (0 -> 8, 2 -> 0); the inverted mirror goes on the side where the shape touches the grid edge (right if it touches the right edge, else left).",
+  "verb": "append inverted mirror",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "the input",
+   "copy": "horizontal flip of the input with background -> 8 and 2 -> background",
+   "side": "right of the input if the 2s touch the right edge, otherwise left",
+   "size": "output = same height, double width"
+  },
+  "why": "output halves: one is the input, the other is the flipped, colour-complemented input",
+  "invariants": [
+   "input height",
+   "the original input half"
+  ],
+  "confidence": "high"
+ }
+]

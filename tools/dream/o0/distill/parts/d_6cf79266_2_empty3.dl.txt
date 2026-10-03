@@ -1,0 +1,12 @@
+% row: d_6cf79266_2_empty3
+% source: distillation batch reading, task 6cf79266, sample 2
+% output: empty3(Y, X)
+zero(Y, X) :- px(Y, X, C), C = 0.
+inside(Y, X) :- px(Y, X, C).
+bad(Y, X) :- inside(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !zero(Y2, X2).
+ctr(Y, X) :- zero(Y, X), !bad(Y, X).
+blocked(Y, X) :- ctr(Y, X), ctr(Y2, X2), Y2 < Y, D = Y - Y2, D <= 2, E = X - X2, E <= 2, E >= -2.
+blocked(Y, X) :- ctr(Y, X), ctr(Y, X2), X2 < X, E = X - X2, E <= 2.
+keep(Y, X) :- ctr(Y, X), !blocked(Y, X).
+empty3(Y, X) :- keep(Y, X).
+empty3(Y, X) :- keep(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX.

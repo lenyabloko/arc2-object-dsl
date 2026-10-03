@@ -1,0 +1,10 @@
+% row: d_8fbca751_2_blockbg
+% source: distillation batch reading, task 8fbca751, sample 2
+% output: blockbg(Y, X)
+gy0(min(Y)) :- cell(Y, X, C).
+gx0(min(X)) :- cell(Y, X, C).
+lo(0, 0). lo(1, 4). lo(2, 8). lo(3, 12). lo(4, 16). lo(5, 20). lo(6, 24). lo(7, 28).
+rb(Y, B) :- px(Y, X, C), gy0(Y0), lo(B, L), Y1 = Y0 + L, Y2 = Y1 + 3, Y >= Y1, Y <= Y2.
+cb(X, B) :- px(Y, X, C), gx0(X0), lo(B, L), X1 = X0 + L, X2 = X1 + 3, X >= X1, X <= X2.
+hot(BY, BX) :- cell(Y, X, C), rb(Y, BY), cb(X, BX).
+blockbg(Y, X) :- px(Y, X, C), !cell(Y, X, C), rb(Y, BY), cb(X, BX), hot(BY, BX).

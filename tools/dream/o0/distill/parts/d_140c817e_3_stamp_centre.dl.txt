@@ -1,0 +1,4 @@
+% row: d_140c817e_3_stamp_centre
+% source: distillation batch reading, task 140c817e, sample 3
+% output: stamp_centre(Y, X)
+stamp_centre(Y, X) :- px(Y, X, 2).

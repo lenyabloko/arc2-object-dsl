@@ -1,0 +1,213 @@
+[
+ {
+  "task": "a644e277",
+  "reading": "The input is a lattice of separator lines with noise. Four lattice crossings are background-coloured gaps; the output is the rectangle cut out with those four gaps as its corners.",
+  "verb": "cut out marked cell block",
+  "frame": {
+   "how": "extract",
+   "args": {
+    "region": "lattice_gap"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lattice_gap",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nlattice_gap(Y, X) :- px(Y, X, B), !isfg(Y, X), Y1 = Y - 1, Y2 = Y + 1, X1 = X - 1, X2 = X + 1, cell(Y1, X, C), cell(Y2, X, C), cell(Y, X1, C), cell(Y, X2, C)."
+   }
+  ],
+  "why": "exactly four background cells have all four orthogonal neighbours of one same non-background colour (the separator), and the output equals the input inside their bounding box",
+  "invariants": [
+   "cell contents inside the box are copied unchanged, noise included"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a79310a0",
+  "reading": "The single 8 shape moves down one row and becomes colour 2.",
+  "verb": "shift and recolour",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "fg",
+     "target": "train"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "fg"
+    }
+   }
+  },
+  "why": "output fg = input fg translated by (+1,0), and 8 -> 2",
+  "invariants": [
+   "shape",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a834deea",
+  "reading": "Each 5x5 box of 0 inside the 8 background has a 3x3 interior of 8s and 0s. Every interior 0 becomes the colour at the same position in a fixed keypad 1 7 6 / 4 0 5 / 2 9 3, so a 0 at the centre stays 0. Interior 8s stay.",
+  "verb": "fill by positional keypad",
+  "frame": {
+   "how": "other",
+   "verb": "fill by positional keypad"
+  },
+  "slots": {
+   "boxes": "each 8-connected 0 component (5x5 box with a 3x3 interior)",
+   "key": "fixed 3x3 keypad 176/405/293 indexed by position in the interior",
+   "subject": "0 cells of the interior; 8 cells and the box ring are unchanged"
+  },
+  "why": "on every pair, interior 0 cell at (r,c) of the box interior becomes K[r][c]; nothing else changes",
+  "invariants": [
+   "8 cells",
+   "box rings of 0",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a85d4709",
+  "reading": "Each row has one 5. The whole output row is filled with a colour set by that 5's column: column 0 gives 2, column 1 gives 4, column 2 gives 3.",
+  "verb": "colour row by marker column",
+  "frame": {
+   "how": "other",
+   "verb": "colour row by marker column"
+  },
+  "slots": {
+   "marker": "the single 5 in each row",
+   "key": "column index -> colour {0:2, 1:4, 2:3}",
+   "target": "the entire row"
+  },
+  "why": "every output row is uniform, and its colour is key(column of the 5 in that input row)",
+  "invariants": [
+   "grid size 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a8c38be5",
+  "reading": "Nine 3x3 pieces (mostly 5, with coloured cells on some edges or corners) lie scattered on 0. They are put together unrotated into a 9x9 square: a piece with colour in a corner goes to that corner, a piece with colour along an edge goes to that edge's middle, and the plain piece goes in the centre.",
+  "verb": "assemble jigsaw",
+  "frame": {
+   "how": "other",
+   "verb": "assemble jigsaw"
+  },
+  "slots": {
+   "pieces": "the nine 3x3 non-background blocks",
+   "slot": "position in a 3x3 layout given by which side(s) of the piece carry the non-5 colour (they face outward)",
+   "output": "9x9 grid of the placed pieces"
+  },
+  "why": "each output 3x3 block equals one input piece copied as-is, and its coloured cells lie on the outer boundary of the 9x9",
+  "invariants": [
+   "piece contents unrotated"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a8d7556c",
+  "reading": "In a noisy 5/0 field, blank (0) rectangles at least 2x2 are filled with 2. They are taken largest first and do not overlap: after the largest one is filled, the next largest among the remaining 0 cells is filled, and so on.",
+  "verb": "fill largest blank rectangles",
+  "frame": {
+   "how": "other",
+   "verb": "fill largest blank rectangles"
+  },
+  "slots": {
+   "subject": "all-0 rectangles with both sides >= 2",
+   "order": "greedy by area, largest first; cells already filled are excluded",
+   "colour": "2"
+  },
+  "why": "greedy largest-first rectangle fill reproduces all three pairs. Filling every 0 cell that lies in some 2x2 zero block (a fill with a 2x2-block row) misses only two cells of pair 2, (8,12) and (9,12), which overlap the larger 4x2 rectangle",
+  "invariants": [
+   "5 cells",
+   "0 cells not inside any chosen rectangle"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a9f96cdd",
+  "reading": "The single 2 is removed, and its four diagonal neighbours get 3 (up-left), 6 (up-right), 8 (down-left) and 7 (down-right), clipped at the grid edge.",
+  "verb": "stamp diagonal pattern",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "why": "the output is the fixed 3x3 pattern 3.6/.../8.7 centred on the isolated 2, and everything else is 0",
+  "invariants": [
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aa300dc3",
+  "reading": "Inside the 0 area surrounded by 5, the longest straight diagonal run of 0 cells is recoloured 8. A tie (pair 1 has three parallel runs) goes to the run whose line passes nearest the grid centre.",
+  "verb": "draw longest diagonal",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "long_diag"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "long_diag",
+    "datalog": "z(Y, X) :- px(Y, X, C), C = 0.\ns1(Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X - 1, !z(Y0, X0).\nr1(SY, SX, SY, SX) :- s1(SY, SX).\nr1(SY, SX, Y2, X2) :- r1(SY, SX, Y, X), Y2 = Y + 1, X2 = X + 1, z(Y2, X2).\ns2(Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X + 1, !z(Y0, X0).\nr2(SY, SX, SY, SX) :- s2(SY, SX).\nr2(SY, SX, Y2, X2) :- r2(SY, SX, Y, X), Y2 = Y + 1, X2 = X - 1, z(Y2, X2).\nl1(SY, SX, count(Y, X)) :- r1(SY, SX, Y, X).\nl2(SY, SX, count(Y, X)) :- r2(SY, SX, Y, X).\nln(N) :- l1(SY, SX, N).\nln(N) :- l2(SY, SX, N).\nbest(max(N)) :- ln(N).\nhm(max(Y)) :- px(Y, X, C).\nwm(max(X)) :- px(Y, X, C).\nk1(SY, SX, D) :- l1(SY, SX, N), best(N), hm(H), wm(W), A = SY - SX, B = A + A, E = H - W, D = B - E.\nk2(SY, SX, D) :- l2(SY, SX, N), best(N), hm(H), wm(W), A = SY + SX, B = A + A, E = H + W, D = B - E.\na1(SY, SX, D) :- k1(SY, SX, D), D >= 0.\na1(SY, SX, E) :- k1(SY, SX, D), D < 0, E = 0 - D.\na2(SY, SX, D) :- k2(SY, SX, D), D >= 0.\na2(SY, SX, E) :- k2(SY, SX, D), D < 0, E = 0 - D.\ndd(D) :- a1(SY, SX, D).\ndd(D) :- a2(SY, SX, D).\nmind(min(D)) :- dd(D).\nlong_diag(Y, X) :- a1(SY, SX, D), mind(D), r1(SY, SX, Y, X).\nlong_diag(Y, X) :- a2(SY, SX, D), mind(D), r2(SY, SX, Y, X)."
+   }
+  ],
+  "why": "the 8 cells are exactly one maximal diagonal 0-run of maximum length (0 -> 8); nothing else changes",
+  "invariants": [
+   "5 cells",
+   "all other 0 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "aab50785",
+  "reading": "Pairs of 2x2 blocks of 8 sit on the same two rows like brackets. For each pair, the 2-row strip strictly between the two blocks is cut out, and the strips are stacked top to bottom.",
+  "verb": "cut out between brackets and stack",
+  "frame": {
+   "how": "other",
+   "verb": "cut out between brackets and stack"
+  },
+  "slots": {
+   "brackets": "two 2x2 blocks of 8 in the same rows",
+   "strip": "the 2 rows x the columns strictly between the two blocks",
+   "output": "the strips stacked vertically in top-to-bottom order (all the same width)"
+  },
+  "why": "on every pair, the output equals the vertical concatenation of the between-bracket strips",
+  "invariants": [
+   "strip contents copied unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aaecdb9a",
+  "reading": "Count the 8-connected objects of each colour. The output is a bar chart five columns wide with a fixed column per colour, in the order 5, 2, 8, 9, 6. Each bar is filled from the bottom to that colour's object count, and the height is the largest count. Empty cells are the background 7.",
+  "verb": "bar chart of object counts",
+  "frame": {
+   "how": "other",
+   "verb": "bar chart of object counts"
+  },
+  "slots": {
+   "count": "number of 8-connected objects per non-background colour",
+   "columns": "fixed colour order 5,2,8,9,6 (absent colour = empty column)",
+   "height": "max count; bars bottom-aligned, rest background"
+  },
+  "why": "on every pair, column k of the output holds colour order[k] in its bottom count(order[k]) cells",
+  "invariants": [
+   "background colour 7",
+   "width 5"
+  ],
+  "confidence": "medium"
+ }
+]

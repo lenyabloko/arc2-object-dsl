@@ -1,0 +1,9 @@
+% row: d_1e32b0e9_3_spot
+% source: distillation batch reading, task 1e32b0e9, sample 3
+% output: spot(Y, X)
+sepc(C) :- px(5, 0, C).
+srow(R) :- px(R, 0, C), sepc(C).
+pstart(S) :- px(S, 0, C), S = 0.
+pstart(S) :- srow(R), S = R + 1.
+tmpl(Y, X) :- cell(Y, X, C), Y < 5, X < 5.
+spot(Y2, X2) :- tmpl(Y, X), pstart(A), pstart(B), Y2 = Y + A, X2 = X + B, px(Y2, X2, 0).

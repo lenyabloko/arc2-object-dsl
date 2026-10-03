@@ -1,0 +1,250 @@
+[
+ {
+  "task": "0a938d79",
+  "reading": "Two markers sit on opposite long edges. Each draws a full line across the short dimension in its colour, and the pair of lines repeats with period twice their spacing, alternating colours, until the far edge.",
+  "verb": "draw repeating lines",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "the two markers (first one nearer the start of the long axis)",
+   "direction": "lines run across the short dimension",
+   "period": "2 x distance between the two markers along the long axis",
+   "colours": "alternate marker colours"
+  },
+  "why": "every output line is a full row/column in a marker colour, spaced by the marker distance, alternating colours from the first marker onward",
+  "invariants": [
+   "grid size",
+   "cells before the first marker line stay background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0ca9ddb6",
+  "reading": "Each red (2) marker gets yellow (4) on its four diagonal neighbours; each blue (1) marker gets orange (7) on its four orthogonal neighbours. Other markers (6, 8) are untouched.",
+  "verb": "stamp halo by colour",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "stamp",
+    "args": {
+     "anchors": "red_marker",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   },
+   "outer": {
+    "how": "stamp",
+    "args": {
+     "anchors": "blue_marker",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "red_marker",
+    "datalog": "red_marker(Y, X) :- cell(Y, X, 2)."
+   },
+   {
+    "name": "blue_marker",
+    "datalog": "blue_marker(Y, X) :- cell(Y, X, 1)."
+   }
+  ],
+  "why": "around every 2 the four diagonal cells are 4; around every 1 the four orthogonal cells are 7; nothing else changes",
+  "invariants": [
+   "all input cells keep their colour",
+   "markers of colours 6 and 8 get nothing"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0d3d703e",
+  "reading": "A fixed colour substitution is applied to every cell: 1<->5, 2<->6, 3<->4, 8<->9.",
+  "verb": "recolour by fixed key",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "input"
+   }
+  },
+  "why": "each input colour maps to the same output colour on every pair",
+  "invariants": [
+   "grid size",
+   "layout of colours (stripes) unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0d87d2a6",
+  "reading": "Pairs of blue (1) markers on opposite borders are joined by a full blue line; every red (2) block the line passes through turns entirely blue.",
+  "verb": "connect markers and recolour hit blocks",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "hit_block"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "hit_block",
+    "datalog": "touch1(O) :- obj(O, Y, X), cell(Y, X, 2), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, 1).\nhit_block(Y, X) :- touch1(O), obj(O, Y, X)."
+   }
+  ],
+  "why": "each line runs border to border between two same-row/column markers; every 2-object touching a line becomes 1, other 2-objects unchanged",
+  "invariants": [
+   "red blocks not crossed by a line",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0f63c0b9",
+  "reading": "Each marker draws a full horizontal line at its row; the rows are split into bands (each row goes to the nearest marker, ties to the upper one), and each band gets its marker's colour on the left and right edge columns, with the top and bottom grid rows filled by the first and last band colours.",
+  "verb": "draw banded frames",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "markers, one per band",
+   "lines": "full-width row at each marker row in its colour",
+   "bands": "rows assigned to nearest marker row, ties to the upper marker",
+   "edges": "left/right columns of each band in band colour; row 0 and last row full in first/last band colour"
+  },
+  "why": "every non-background output cell is in a marker row, an edge column, or the top/bottom row, coloured by the band's marker",
+  "invariants": [
+   "grid size",
+   "interior cells off marker rows stay background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "103eff5b",
+  "reading": "A small multicoloured pattern and a large grey-8 shape that is the pattern scaled up and rotated 90 degrees clockwise. The 8 shape is recoloured block by block with the colours of the rotated pattern; the small pattern stays.",
+  "verb": "paint scaled shape from rotated exemplar",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "exemplar": "the small multicoloured component",
+   "target": "the large single-colour (8) shape",
+   "transform": "rotate exemplar 90 degrees clockwise, scale by target size / exemplar size",
+   "paint": "each scaled block of the target takes the matching rotated-exemplar colour"
+  },
+  "why": "the 8 shape's block mask equals the rotated exemplar's non-background mask, and each block gets that exemplar cell's colour",
+  "invariants": [
+   "exemplar unchanged",
+   "target shape mask unchanged",
+   "background unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "10fcaaa3",
+  "reading": "The input is tiled 2x2, then every coloured cell gets azure (8) on each diagonal neighbour that is background (no wraparound).",
+  "verb": "tile then stamp diagonals",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   },
+   "outer": {
+    "how": "stamp",
+    "args": {
+     "anchors": "fg",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   }
+  },
+  "why": "output is twice the input in each direction; tiled coloured cells stay; a background cell becomes 8 exactly when a diagonal neighbour is coloured",
+  "invariants": [
+   "tiled coloured cells keep their colour (8 never overwrites them)"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "11e1fe23",
+  "reading": "Three markers form a right triangle. A grey (5) cell is placed at the midpoint of the hypotenuse, and each marker's colour is placed one diagonal step from that midpoint toward that marker.",
+  "verb": "draw shrunken triangle",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "markers": "the three single cells (triangle corners)",
+   "centre": "midpoint of the two markers not at the right angle, coloured 5",
+   "copies": "each marker colour at centre + sign(marker - centre) in both axes"
+  },
+  "why": "exactly four new cells: 5 at the hypotenuse midpoint and one cell of each marker colour diagonally adjacent to it, pointing to its marker",
+  "invariants": [
+   "the three markers stay",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "12eac192",
+  "reading": "Every single-colour piece (4-connected) of fewer than 3 cells turns green (3); pieces of 3 or more cells keep their colour.",
+  "verb": "recolour small pieces",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "small4"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "small4",
+    "datalog": "o4(DY, DX) :- off(DY, DX), DY = 0.\no4(DY, DX) :- off(DY, DX), DX = 0.\nsame4(Y, X, Y2, X2) :- cell(Y, X, C), o4(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\ndeg(Y, X, count(Y2, X2)) :- same4(Y, X, Y2, X2).\nhas(Y, X) :- same4(Y, X, Y2, X2).\nsmall4(Y, X) :- cell(Y, X, C), !has(Y, X).\nsmall4(Y, X) :- deg(Y, X, N), N = 1, same4(Y, X, Y2, X2), deg(Y2, X2, M), M = 1."
+   }
+  ],
+  "why": "a non-background cell becomes 3 iff its 4-connected same-colour component has size 1 or 2; 8-connectivity fails (diagonal contact does not merge)",
+  "invariants": [
+   "background",
+   "components of size >= 3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "13713586",
+  "reading": "A full grey (5) wall lines one edge. Every coloured segment sweeps toward the wall in its own colour, each cell's line stopping at the first non-background cell (another segment or the wall), so segments nearer the wall stay on top.",
+  "verb": "sweep segments to wall",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "obstacle",
+    "source": "segments",
+    "colour": "own"
+   }
+  },
+  "why": "from every segment cell a line runs toward the wall over background only and stops just before the first non-background input cell",
+  "invariants": [
+   "the wall",
+   "all input coloured cells",
+   "cells on the far side of segments from the wall"
+  ],
+  "confidence": "medium"
+ }
+]

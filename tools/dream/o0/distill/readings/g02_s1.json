@@ -1,0 +1,254 @@
+[
+ {
+  "task": "140c817e",
+  "reading": "Every isolated marker (colour 1) draws a full-width row line and full-height column line of colour 1; the marker itself becomes 2 and its four diagonal neighbours become 3 (drawn on top of the lines).",
+  "verb": "draw cross and stamp",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "stamp",
+    "args": {
+     "anchors": "markers",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "obstacle",
+     "source": "arms",
+     "colour": "own"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "arms",
+    "datalog": "arms(Y, X) :- cell(Y, X, C), C = 1."
+   }
+  ],
+  "why": "Stamp the constant 3x3 unit 313/121/313 centred on each marker, then each colour-1 arm cell extends outward to the grid border (inward/sideways rays stop at once on the stamp's own 2 and 3 cells). No line ever hits another marker's stamp in training or test.",
+  "invariants": [
+   "grid size",
+   "background elsewhere"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "14754a24",
+  "reading": "Colour-4 cells mark partial plus shapes (centre + 4 arms) inside a 0/5 noise field; the 5 cells that complete each plus become 2.",
+  "verb": "complete plus",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "plus5"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plus5",
+    "datalog": "inplus(CY, CX, Y, X) :- px(CY, CX, K), Y = CY, X = CX.\ninplus(CY, CX, Y, X) :- px(CY, CX, K), off(DY, DX), DY = 0, Y = CY, X = CX + DX, px(Y, X, K2).\ninplus(CY, CX, Y, X) :- px(CY, CX, K), off(DY, DX), DX = 0, Y = CY + DY, X = CX, px(Y, X, K2).\nok45(Y, X) :- px(Y, X, C), C = 4.\nok45(Y, X) :- px(Y, X, C), C = 5.\nbad(CY, CX) :- inplus(CY, CX, Y, X), !ok45(Y, X).\nc4(CY, CX, Y, X) :- inplus(CY, CX, Y, X), px(Y, X, C), C = 4, !bad(CY, CX).\ncand(CY, CX) :- c4(CY, CX, Y, X).\nn4(CY, CX, count(Y, X)) :- c4(CY, CX, Y, X).\nmiss(CY, CX, EY, EX) :- c4(CY, CX, Y, X), cand(EY, EX), !c4(EY, EX, Y, X).\ndom(CY, CX) :- cand(CY, CX), cand(EY, EX), !miss(CY, CX, EY, EX), n4(CY, CX, N), n4(EY, EX, M), M > N.\nvalid(CY, CX) :- n4(CY, CX, N), N > 1, !dom(CY, CX).\nplus5(Y, X) :- valid(CY, CX), inplus(CY, CX, Y, X), px(Y, X, C), C = 5."
+   }
+  ],
+  "why": "A plus centre is valid when all its in-grid cells are 4 or 5, it holds at least two 4s, and no other candidate plus holds a strict superset of its 4s; exactly the 5s of valid pluses change, 5 -> 2.",
+  "invariants": [
+   "all 0 and 4 cells",
+   "5 cells outside valid pluses",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "14b8e18c",
+  "reading": "Every object that is a square outline (square box, whole box border filled; a 2x2 block counts) gets colour-2 marks on the two background cells orthogonally outside each of its four corners.",
+  "verb": "mark square corners",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "sqmarks"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "sqmarks",
+    "datalog": "fo(O, Y, X) :- obj(O, Y, X), cell(Y, X, C).\ny0(O, min(Y)) :- fo(O, Y, X).\ny1(O, max(Y)) :- fo(O, Y, X).\nx0(O, min(X)) :- fo(O, Y, X).\nx1(O, max(X)) :- fo(O, Y, X).\nbox(O, A, B, C, D) :- y0(O, A), y1(O, B), x0(O, C), x1(O, D).\nsq(O) :- box(O, A, B, C, D), H = B - A, W = D - C, H = W.\nedge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), Y = A, X >= C, X <= D.\nedge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), Y = B, X >= C, X <= D.\nedge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), X = C, Y >= A, Y <= B.\nedge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), X = D, Y >= A, Y <= B.\ngap(O) :- edge(O, Y, X), !fo(O, Y, X).\nring(O) :- sq(O), !gap(O).\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A - 1, X = C.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A, X = C - 1.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A - 1, X = D.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A, X = D + 1.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B + 1, X = C.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B, X = C - 1.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B + 1, X = D.\nsqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B, X = D + 1."
+   }
+  ],
+  "why": "Only background cells next to the corners of square-outline objects change (7 -> 2); diagonal pairs, lines and non-square rectangles are left alone.",
+  "invariants": [
+   "all object cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "150deff5",
+  "reading": "The grey (5) shape is cut into 2x2 squares, painted 8, and straight 1x3 bars, painted 2.",
+  "verb": "partition into pieces",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the single colour-5 shape",
+   "pieces": "an exact tiling of the shape by 2x2 squares and 1x3 straight bars (horizontal or vertical)",
+   "colours": "2x2 square -> 8, 1x3 bar -> 2 (constant across pairs)"
+  },
+  "why": "Every 5 cell ends in exactly one 2x2 block of 8 or one 3-long straight run of 2; nothing else changes.",
+  "invariants": [
+   "shape footprint",
+   "background",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "15113be4",
+  "reading": "A 6x6 block shows a 3x3 template drawn at 2x scale in colour c; in every 3x3 panel (between the 4-lines) whose 1-cells cover the template, the template cells turn from 1 to c.",
+  "verb": "recolour template matches",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "3x3 cells cut by the colour-4 separator lines",
+   "template": "the colour-c shape (c not in {0,1,4}) in its 4-framed block, downscaled by 2 to a 3x3 mask",
+   "condition": "every template position in the panel is 1",
+   "colour": "c, the template's own colour"
+  },
+  "why": "Changed cells are exactly the template positions inside panels that contain the template among their 1s, 1 -> c; all other cells stay.",
+  "invariants": [
+   "separator lines",
+   "0 cells",
+   "template block",
+   "panels without a full match"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "15663ba9",
+  "reading": "Each closed one-cell-wide outline has its corner cells recoloured: convex corners (the cell between the two arms is enclosed) become 4, concave corners become 2.",
+  "verb": "colour corners",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "convex"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "concave"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "convex",
+    "datalog": "fg(Y, X) :- cell(Y, X, C).\nbgp(Y, X) :- px(Y, X, C), !fg(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\next(Y, X) :- bgp(Y, X), Y = 0.\next(Y, X) :- bgp(Y, X), X = 0.\next(Y, X) :- bgp(Y, X), my(M), Y = M.\next(Y, X) :- bgp(Y, X), mx(M), X = M.\next(Y2, X2) :- ext(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgp(Y2, X2).\ninner(Y, X) :- bgp(Y, X), !ext(Y, X).\nvert(A) :- off(A, Z), Z = 0.\nhorz(B) :- off(Z, B), Z = 0.\nturn(Y, X, A, B) :- fg(Y, X), vert(A), horz(B), Y1 = Y + A, fg(Y1, X), X1 = X + B, fg(Y, X1), Y2 = Y - A, !fg(Y2, X), X2 = X - B, !fg(Y, X2).\nconvex(Y, X) :- turn(Y, X, A, B), Y1 = Y + A, X1 = X + B, inner(Y1, X1)."
+   },
+   {
+    "name": "concave",
+    "datalog": "fg(Y, X) :- cell(Y, X, C).\nbgp(Y, X) :- px(Y, X, C), !fg(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\next(Y, X) :- bgp(Y, X), Y = 0.\next(Y, X) :- bgp(Y, X), X = 0.\next(Y, X) :- bgp(Y, X), my(M), Y = M.\next(Y, X) :- bgp(Y, X), mx(M), X = M.\next(Y2, X2) :- ext(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgp(Y2, X2).\ninner(Y, X) :- bgp(Y, X), !ext(Y, X).\nvert(A) :- off(A, Z), Z = 0.\nhorz(B) :- off(Z, B), Z = 0.\nturn(Y, X, A, B) :- fg(Y, X), vert(A), horz(B), Y1 = Y + A, fg(Y1, X), X1 = X + B, fg(Y, X1), Y2 = Y - A, !fg(Y2, X), X2 = X - B, !fg(Y, X2).\ncvx(Y, X) :- turn(Y, X, A, B), Y1 = Y + A, X1 = X + B, inner(Y1, X1).\nconcave(Y, X) :- turn(Y, X, A, B), !cvx(Y, X)."
+   }
+  ],
+  "why": "A turn cell has exactly one vertical and one horizontal outline neighbour; if the diagonal cell between them is enclosed background it becomes 4, otherwise 2. Straight outline cells keep their colour (8, 3 or 1 in training).",
+  "invariants": [
+   "straight outline cells",
+   "background",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "15696249",
+  "reading": "The 3x3 input has one all-one-colour row or column; the 9x9 output repeats the input three times along that row or column's band, and the rest is 0.",
+  "verb": "tile along line",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "uniform_line",
+    "unit": "input"
+   }
+  },
+  "why": "Output blocks on the band matching the uniform line's index are copies of the input; all other blocks are empty.",
+  "invariants": [
+   "block content equals the input"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "17829a00",
+  "reading": "The top and bottom rows are full lines of two colours; each object between them slides vertically toward the line of its own colour until it touches that line (or a piece already landed).",
+  "verb": "fall to matching line",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "pieces",
+    "target": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "pieces",
+    "datalog": "my(max(Y)) :- px(Y, X, C).\npieces(Y, X) :- cell(Y, X, C), Y > 0, my(M), Y < M."
+   }
+  ],
+  "why": "Each single-colour object keeps its shape and column and ends in contact with the full border row of its colour. Caveat: pair 0's 3-tall colour-8 bar in the last column shows as 5 tall in the output, which no rigid move reproduces.",
+  "invariants": [
+   "top and bottom rows",
+   "object shapes and columns"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "17b80ad2",
+  "reading": "In every column whose bottom cell is 5, each coloured cell paints its colour upward over the background until it reaches the next coloured cell above it (or the top border).",
+  "verb": "fill column upward",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "obstacle",
+    "source": "gcol",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gcol",
+    "datalog": "my(max(Y)) :- px(Y, X, C).\ngcol5(X) :- cell(Y, X, C), my(M), Y = M, C = 5.\ngcol(Y, X) :- cell(Y, X, C), gcol5(X)."
+   }
+  ],
+  "why": "Lines run upward only, from each source cell to just below the first non-background cell above it; columns without a 5 at the bottom do not change.",
+  "invariants": [
+   "all original coloured cells",
+   "columns not ending in 5"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "17cae0c1",
+  "reading": "The 3x9 grid is three 3x3 blocks, each holding a grey pattern; each block is painted entirely in a colour set by its pattern (top row -> 6, ring -> 3, bottom row -> 1, anti-diagonal -> 9, centre dot -> 4).",
+  "verb": "classify blocks",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "blocks": "the three 3x3 blocks side by side (no separator lines)",
+   "key": "lookup pattern -> colour learned from training: 555/000/000->6, 555/505/555->3, 000/000/555->1, 005/050/500->9, 000/050/000->4",
+   "action": "fill the whole block with key(pattern)"
+  },
+  "why": "Each output block is uniform, and its colour depends only on that block's input pattern, the same way in every pair.",
+  "invariants": [
+   "grid size",
+   "block boundaries"
+  ],
+  "confidence": "high"
+ }
+]

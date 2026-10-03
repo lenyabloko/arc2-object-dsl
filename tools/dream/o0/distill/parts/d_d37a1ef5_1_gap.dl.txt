@@ -1,0 +1,19 @@
+% row: d_d37a1ef5_1_gap
+% source: distillation batch reading, task d37a1ef5, sample 1
+% output: gap(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(max(N)) :- osize(O, N).
+frm(O) :- osize(O, N), big(M), N = M.
+fy0(min(Y)) :- frm(O), obj(O, Y, X).
+fy1(max(Y)) :- frm(O), obj(O, Y, X).
+fx0(min(X)) :- frm(O), obj(O, Y, X).
+fx1(max(X)) :- frm(O), obj(O, Y, X).
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+inner(Y, X) :- bgc(Y, X), fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q.
+spot(Y, X) :- cell(Y, X, C), obj(O, Y, X), !frm(O).
+sy0(min(Y)) :- spot(Y, X).
+sy1(max(Y)) :- spot(Y, X).
+sx0(min(X)) :- spot(Y, X).
+sx1(max(X)) :- spot(Y, X).
+inbox(Y, X) :- inner(Y, X), sy0(A), sy1(B), sx0(P), sx1(Q), Y >= A, Y <= B, X >= P, X <= Q.
+gap(Y, X) :- inner(Y, X), !inbox(Y, X).

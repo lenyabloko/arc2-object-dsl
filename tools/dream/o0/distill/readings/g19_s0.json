@@ -1,0 +1,195 @@
+[
+ {
+  "task": "94414823",
+  "reading": "The empty interior of the grey square outline is split into four 2x2 quadrants filled as a checkerboard of the two outside marker colours: the quadrant nearest each marker takes that marker's colour, and the diagonally opposite quadrant takes the same colour.",
+  "verb": "fill quadrants checkerboard",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "region": "interior of the one rectangular outline (frame), cut into four equal quadrants",
+   "colours": "the two isolated marker cells outside the frame",
+   "assignment": "quadrant nearest a marker gets its colour; diagonal quadrant same; the other two quadrants get the other marker colour"
+  },
+  "why": "every interior cell is filled; frame and markers unchanged",
+  "invariants": [
+   "outline",
+   "markers",
+   "cells outside the frame"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "94be5b80",
+  "reading": "A key strip of coloured columns gives a top-to-bottom colour order; the one shape (already present in some of those colours, stacked vertically) is copied above/below in the missing key colours so the stack follows the key order, and the key strip is erased.",
+  "verb": "stack copies in key order",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the multi-coloured strip of vertical one-colour bars (left-to-right order = top-to-bottom order)",
+   "unit": "the repeated shape (all present copies identical up to colour)",
+   "placement": "copies stacked flush vertically, same columns as existing copies, one per key colour in key order",
+   "rest": "key strip cleared"
+  },
+  "why": "the output column stack reads the key colours in order, every copy the same shape",
+  "invariants": [
+   "existing shape copies",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "952a094c",
+  "reading": "Four coloured cells sit in the inner corners of a rectangular outline; each is removed and placed at the cell just diagonally outside the opposite outer corner of the outline (inner top-left goes to outer bottom-right, etc.).",
+  "verb": "swap corners outward",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the four single cells at the inner corners of the outline",
+   "target": "the cell diagonally outside the outline's opposite corner",
+   "rest": "inner corner cells cleared to background"
+  },
+  "why": "outer corner colour = colour of the diagonally opposite inner corner; interior becomes empty",
+  "invariants": [
+   "the outline"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9565186b",
+  "reading": "The most common colour (background) stays; every other cell becomes grey 5.",
+  "verb": "recolour minority to grey",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "fg"
+   }
+  },
+  "why": "every non-background cell becomes 5 (key a->5 for all a); background cells unchanged",
+  "invariants": [
+   "background cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "95990924",
+  "reading": "Each 2x2 grey block gets four single cells placed diagonally outside its corners: 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right.",
+  "verb": "decorate corners",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "objects",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "around every grey object the same 4x4 pattern 1..2 / .55. / .55. / 3..4 appears; all else unchanged",
+  "invariants": [
+   "grey blocks",
+   "background elsewhere"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "95a58926",
+  "reading": "A lattice of grey separator lines is cluttered with noise cells of one colour; the noise is erased, the separator lines are restored to full grey, and every crossing of two separator lines is painted the noise colour.",
+  "verb": "denoise and mark crossings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lines": "the (mostly) full rows and columns of grey 5",
+   "noise": "all cells of the one non-grey foreground colour",
+   "marks": "intersections of separator rows and columns get the noise colour",
+   "rest": "everything else becomes background or grey line"
+  },
+  "why": "output = clean separator lattice with crossings in the noise colour",
+  "invariants": [
+   "separator positions",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "963e52fc",
+  "reading": "The grid is doubled in width and the horizontal periodic pattern in the coloured rows is continued across the new width.",
+  "verb": "extend periodic pattern",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "size": "output width = 2 x input width, same height",
+   "pattern": "each row's smallest horizontal period",
+   "rest": "background rows stay background"
+  },
+  "why": "every output row is the input row's periodic continuation",
+  "invariants": [
+   "height",
+   "background rows",
+   "left half equals input"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "97239e3d",
+  "reading": "On a lattice of hollow 3x3 squares, two cells of the same colour mark opposite corners of a block of squares; a rectangle of that colour is drawn along the gap lines enclosing that block, and the centre of each enclosed square is filled with the colour.",
+  "verb": "draw lattice rectangle",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "markers": "pairs of same-coloured cells lying on gap rows/columns",
+   "rectangle": "the gap-line outline of the smallest block of squares spanned by the pair",
+   "fill": "centre cell of each square inside the rectangle",
+   "colour": "the marker colour"
+  },
+  "why": "each marker pair yields one outline on gap lines plus coloured centres; other squares unchanged",
+  "invariants": [
+   "the 8 squares",
+   "cells outside the rectangles"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "981add89",
+  "reading": "Each single coloured cell in the top row drops a vertical line of its colour to the bottom border, crossing every block; where the line crosses a block of its own colour it is drawn in the background colour instead.",
+  "verb": "drop lines with inversion",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the single non-background cells in the top row",
+   "line": "the full column below each source, to the bottom border",
+   "colour": "source colour, except background colour inside blocks of the same colour"
+  },
+  "why": "each source column becomes its colour everywhere except inside same-colour blocks, where it becomes background",
+  "invariants": [
+   "all other columns"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9841fdad",
+  "reading": "The left panel holds small shapes on rows; they are redrawn on the same rows in the empty right panel: shapes touching the left margin stay at the left margin, shapes touching the right margin go to the right margin, and shapes spanning the full width are stretched to the full width.",
+  "verb": "copy into panel with alignment",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the left panel interior (with its one-cell margin)",
+   "target": "the empty right panel interior, same rows",
+   "rule": "keep shape width and align to left or right inner margin; full-width bars stretch to full inner width"
+  },
+  "why": "each source row's shapes appear on the same row of the target panel with matching edge alignment",
+  "invariants": [
+   "left panel",
+   "panel borders",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

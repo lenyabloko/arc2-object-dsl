@@ -1,0 +1,211 @@
+[
+ {
+  "task": "d07ae81c",
+  "reading": "The grid is split into bands of two colours; each band holds one or more single marker cells. From every marker draw all four diagonals to the grid border; each diagonal cell takes the marker colour assigned to the band it lies in (band colour -> colour of the marker found in that band), so a line changes colour when it crosses into the other band.",
+  "verb": "draw diagonals recoloured by band",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the odd-coloured single cells (markers) inside the two-colour band layout",
+   "lines": "the four diagonal rays from each marker, running to the grid border",
+   "colour": "per-cell key: band colour -> colour of the marker that sits in that band (learned per pair, not constant)"
+  },
+  "why": "every changed cell lies on a diagonal through some marker, and its new colour is the marker colour of the band it is in",
+  "invariants": [
+   "band layout",
+   "cells off every marker diagonal",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d13f3404",
+  "reading": "The 3x3 input is placed at the top-left of a doubled (6x6) background canvas and every coloured cell is extended diagonally down-right in its own colour until it reaches the canvas border.",
+  "verb": "extend diagonally down-right",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "why": "each fg cell's down-right diagonal is its own colour up to the border of the 2H x 2W canvas; nothing else is coloured",
+  "invariants": [
+   "input cells kept at top-left",
+   "background 0"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d23f8c26",
+  "reading": "Keep only the middle column of the (odd-width) grid; every cell outside the centre column is cleared to background 0.",
+  "verb": "keep centre column",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "offcol",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "offcol",
+    "datalog": "w(max(X)) :- px(Y, X, C).\nmid(X) :- px(Y, X, C), w(W), S = X + X, S = W.\noffcol(Y, X) :- px(Y, X, C), !mid(X)."
+   }
+  ],
+  "why": "all cells outside the centre column become 0; centre-column cells are unchanged",
+  "invariants": [
+   "centre column",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d255d7a7",
+  "reading": "Each 0-coloured bracket (3x3 head holding 7/9 contents) has a one-cell-wide 0 tail running to the opposite grid border. The tail is erased and the head (with its contents, same orientation) is translated along the tail line to the far border where the tail ended.",
+  "verb": "slide head to tail end",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 3x3 bracket head of colour 0 with its enclosed cells, sitting on a grid border",
+   "path": "the straight 0 tail leaving the head and reaching the opposite border",
+   "target": "the far border at the tail's end; the head's outer edge lands on that border",
+   "rest": "tail and old head position cleared to background 7"
+  },
+  "why": "each head keeps its shape and contents and ends flush with the opposite border; tails disappear; objects without tails are untouched",
+  "invariants": [
+   "lone 9 cells / 99 pieces with no tail",
+   "head orientation",
+   "background 7"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d2acf2cb",
+  "reading": "Rows (or columns) that have a 4 at both grid-border ends are lanes; inside a lane the colours are swapped 0<->8 and 6<->7. Everything else is unchanged.",
+  "verb": "swap colours between 4 end-markers",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "lane"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "w(max(X)) :- px(Y, X, C).\nh(max(Y)) :- px(Y, X, C).\nfour(Y, X) :- px(Y, X, C), C = 4.\nhrow(Y) :- four(Y, X0), X0 = 0, w(W), four(Y, W).\nvcol(X) :- four(Y0, X), Y0 = 0, h(H), four(H, X).\nlane(Y, X) :- hrow(Y), px(Y, X, C), !four(Y, X).\nlane(Y, X) :- vcol(X), px(Y, X, C), !four(Y, X)."
+   }
+  ],
+  "why": "every lane cell of colour a becomes key(a) with key {0:8, 8:0, 6:7, 7:6}; cells outside lanes never change",
+  "invariants": [
+   "the 4 end-markers",
+   "cells outside 4-bounded rows/columns"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d364b489",
+  "reading": "Around every isolated 1 stamp a fixed plus: 2 above, 7 left, 6 right, 8 below (clipped at the grid edge).",
+  "verb": "stamp coloured plus",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each 1 is the centre of an identical cross 020/716/080; all other cells stay",
+  "invariants": [
+   "the 1 cells",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d37a1ef5",
+  "reading": "The empty interior of the 2-coloured rectangle is filled with 2, except the bounding box of the 5 cells, which keeps its 0s and 5s.",
+  "verb": "fill frame around 5-box",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "hole",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "hole",
+    "datalog": "two(Y, X) :- px(Y, X, C), C = 2.\nfive(Y, X) :- px(Y, X, C), C = 5.\nfy0(min(Y)) :- two(Y, X).\nfy1(max(Y)) :- two(Y, X).\nfx0(min(X)) :- two(Y, X).\nfx1(max(X)) :- two(Y, X).\nvy0(min(Y)) :- five(Y, X).\nvy1(max(Y)) :- five(Y, X).\nvx0(min(X)) :- five(Y, X).\nvx1(max(X)) :- five(Y, X).\ninbox(Y, X) :- px(Y, X, C), vy0(A), vy1(B), vx0(P), vx1(Q), Y >= A, Y <= B, X >= P, X <= Q.\nhole(Y, X) :- px(Y, X, C), C = 0, fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q, !inbox(Y, X)."
+   }
+  ],
+  "why": "every 0 strictly inside the 2-frame and outside the 5s' bounding box becomes 2; nothing else changes",
+  "invariants": [
+   "frame",
+   "5 cells and the 0s inside their bounding box",
+   "outside the frame"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d4469b4b",
+  "reading": "The 5x5 input uses one colour; the output is a fixed 3x3 glyph of 5s chosen by that colour: 1 -> plus (050/555/050), 2 -> T (555/050/050), 3 -> corner (005/005/555).",
+  "verb": "emit glyph keyed by colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the single non-background colour of the input",
+   "glyph": "3x3 pattern of 5 on 0 looked up from that colour (1 plus, 2 T, 3 bottom-right corner L)"
+  },
+  "why": "the output depends only on the input's foreground colour; the cell layout of the input is irrelevant",
+  "invariants": [
+   "output size 3x3",
+   "output colours 5 and 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d5c634a2",
+  "reading": "Count the 2-coloured T shapes by orientation: stem-up (020/222) and stem-down (222/020). The 3x6 output shows the stem-up count as 3s in the left 3x3 block and the stem-down count as 1s in the right block, placed at block corners in the order top-left, bottom-left (for 2), then top-left, top-right, bottom-left (for 3), all four corners (for 4).",
+  "verb": "tally shapes by orientation",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "objects": "T-tetromino shapes of colour 2 (counted by pattern match, since some touch diagonally)",
+   "classes": "stem up -> colour 3, left block; stem down -> colour 1, right block",
+   "display": "count n drawn as n marks on the corners of a 3x3 block: 1 TL; 2 TL,BL; 3 TL,TR,BL; 4 all corners"
+  },
+  "why": "the number of 3s equals the number of stem-up Ts and the number of 1s the number of stem-down Ts on every pair",
+  "invariants": [
+   "output size 3x6",
+   "middle row all 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d6542281",
+  "reading": "Each multi-coloured template shape appears once complete; elsewhere a few of its cells (e.g. its 8s, 4, or diagonal 2s) appear alone. Each partial fragment is completed into a full copy of its template, aligned so the fragment cells coincide with the matching template cells.",
+  "verb": "complete partial copies of template",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "templates": "every complete multi-coloured component (one or two per grid)",
+   "fragments": "small single-colour pieces matching a sub-pattern of a template",
+   "placement": "translate the template so its matching cells cover the fragment; paint the rest of the template, keep everything else"
+  },
+  "why": "after completion every fragment is part of an exact copy of a template; templates themselves are unchanged (pair 2 also turns the template's corner 3 at (4,3) into background, which looks like a data quirk)",
+  "invariants": [
+   "complete templates",
+   "background"
+  ],
+  "confidence": "medium"
+ }
+]

@@ -1,0 +1,208 @@
+[
+ {
+  "task": "1990f7a8",
+  "reading": "Four scattered 3x3 objects of one colour are gathered into a 7x7 grid as a 2x2 layout with a one-cell gap, each object keeping its shape and going to the quadrant matching its relative position (top/bottom, left/right).",
+  "verb": "gather into 2x2 layout",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the four 3x3 objects (8-connected components)",
+   "layout": "7x7 canvas, quadrants at (0,0),(0,4),(4,0),(4,4) separated by a blank row/column",
+   "order": "quadrant chosen by the object's relative vertical and horizontal position among the four"
+  },
+  "why": "each output quadrant equals exactly one input object's 3x3 box, in the same relative arrangement",
+  "invariants": [
+   "object shapes and colour",
+   "background 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1acc24af",
+  "reading": "The colour-1 shape on top has downward-open cavities; every colour-5 piece below that could be slid up (rotation allowed) to completely fill one cavity is recoloured 2, the others stay 5.",
+  "verb": "recolour pieces that fit the lock",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lock": "the colour-1 object; its cavities are background pockets bounded by 1 on the sides and top, open at the bottom",
+   "subject": "colour-5 pieces (8-connected components)",
+   "test": "piece, in some rotation, covers all cells of one cavity without overlapping colour 1 (extra cells may stick out below)",
+   "key": "5 -> 2"
+  },
+  "why": "exactly the 5-pieces that can exactly fill some cavity of the 1-shape change to 2; nothing else changes",
+  "invariants": [
+   "the colour-1 shape",
+   "piece positions and shapes",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1b8318e3",
+  "reading": "Each single coloured cell moves to the nearest 2x2 block of 5 and parks in the cell of the block's surrounding ring on its side (touching the block, edge or corner); the blocks stay.",
+  "verb": "attach dots to nearest block",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "dot",
+    "target": "target"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "dot",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\ndot(Y, X) :- obj(O, Y, X), osize(O, N), N = 1."
+   }
+  ],
+  "why": "every dot keeps its colour and ends 8-adjacent to its nearest 5-block; nothing else changes",
+  "invariants": [
+   "the 2x2 blocks of 5",
+   "dot colours",
+   "dot count"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1bfc4729",
+  "reading": "Two markers (one in the top half, one in the bottom half) each draw, in their own colour, the outline of their half of the grid (top row/bottom row and both side columns) plus a full horizontal line through the marker's row.",
+  "verb": "draw half-frame and line",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the two marker cells",
+   "region": "top half rows 0-4 for the upper marker, bottom half rows 5-9 for the lower",
+   "pattern": "left and right border columns of the half, the grid's outer row in that half, and the full row through the marker, all in the marker's colour"
+  },
+  "why": "every output cell of the half is marker colour exactly on its side columns, outer row and marker row",
+  "invariants": [
+   "grid size",
+   "marker rows and colours"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1d398264",
+  "reading": "A 3x3 multicoloured block shoots a ray from each of its 8 outer cells outward (edge cells straight, corner cells diagonally) in that cell's colour to the grid border; the centre cell emits nothing.",
+  "verb": "radiate rays",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "why": "each ray continues the cell's direction from the block centre and reaches the border",
+  "invariants": [
+   "the 3x3 block itself",
+   "background elsewhere"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1e32b0e9",
+  "reading": "The grid is 3x3 panels cut by separator lines; the shape in the top-left panel is the template, and in every panel the template positions that are empty are filled with the separator colour, existing cells kept.",
+  "verb": "complete panels from template",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap",
+    "datalog": "tmpl(Y0, X0) :- cell(Y0, X0, C), Y0 < 5, X0 < 5.\nrowof(Y, Y0) :- tmpl(Y0, X0), Y = Y0.\nrowof(Y, Y0) :- tmpl(Y0, X0), px(Y, X0, C), Y = Y0 + 6.\nrowof(Y, Y0) :- tmpl(Y0, X0), px(Y, X0, C), Y = Y0 + 12.\ncolof(X, X0) :- tmpl(Y0, X0), X = X0.\ncolof(X, X0) :- tmpl(Y0, X0), px(Y0, X, C), X = X0 + 6.\ncolof(X, X0) :- tmpl(Y0, X0), px(Y0, X, C), X = X0 + 12.\ngap(Y, X) :- tmpl(Y0, X0), rowof(Y, Y0), colof(X, X0), px(Y, X, C), !cell(Y, X, C)."
+   }
+  ],
+  "why": "every background cell at a template position (period 6) becomes the separator colour; nothing else changes",
+  "invariants": [
+   "separator lines",
+   "all existing non-background cells",
+   "the top-left panel"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1e5d6875",
+  "reading": "Each L-tromino casts a copy of itself shifted one cell diagonally onto background: colour-5 Ls shift into their inner corner and paint 4, colour-2 Ls shift away from their corner and paint 3 (3 wins on overlap).",
+  "verb": "cast diagonal shadow",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each L-tromino (3-cell object)",
+   "offset": "one diagonal step; toward the bend's open side for 5, opposite for 2",
+   "colour": "5 -> 4, 2 -> 3",
+   "rest": "only background cells are painted; originals kept"
+  },
+  "why": "every new cell is a shifted cell of an L, coloured by the L's colour; nothing else changes",
+  "invariants": [
+   "the original L shapes",
+   "background 7 elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1f0c79e5",
+  "reading": "A 2x2 block with some red (2) cells slides diagonally toward each red corner to the border, leaving a 2-wide diagonal band in the block's other colour; the block itself becomes that colour.",
+  "verb": "sweep block diagonally",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the 2x2 block",
+   "directions": "one diagonal per red cell, from the block centre through that cell",
+   "colour": "the block's non-red colour",
+   "stop": "grid border"
+  },
+  "why": "every swept position of the block is filled with the main colour, nothing else",
+  "invariants": [
+   "grid size",
+   "background 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2072aba6",
+  "reading": "The 3x3 input is scaled by 2; each 5 cell becomes the 2x2 pattern 12/21 and each background cell a 2x2 background block.",
+  "verb": "upscale with pattern",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "factor": "2",
+   "unit": "2x2 block [1,2 / 2,1] for every foreground cell",
+   "rest": "background cells become 2x2 background"
+  },
+  "why": "output block (i,j) is the pattern iff input cell (i,j) is foreground",
+  "invariants": [
+   "layout of foreground cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "20fb2937",
+  "reading": "Three 3x3 coloured blocks sit on top, with a key row below each block giving a marker colour; the output is the area below the separator, where every marker is replaced by the block keyed to its colour, centred on the marker, on background 7.",
+  "verb": "stamp keyed blocks at markers",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "legend": "the three 3x3 blocks in rows 0-2, each paired with the marker colour found under it in row 4",
+   "canvas": "the panel below the full separator row (13x11)",
+   "anchors": "the marker cells in that panel",
+   "unit": "the block whose key colour equals the marker's colour, centred on the marker"
+  },
+  "why": "each 3x3 block in the output is centred on a lower-panel marker and matches that marker's legend block",
+  "invariants": [
+   "background 7",
+   "marker positions become block centres"
+  ],
+  "confidence": "high"
+ }
+]

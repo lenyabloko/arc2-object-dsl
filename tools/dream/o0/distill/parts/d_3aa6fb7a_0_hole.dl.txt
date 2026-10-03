@@ -1,0 +1,4 @@
+% row: d_3aa6fb7a_0_hole
+% source: distillation batch reading, task 3aa6fb7a, sample 0
+% output: hole(Y, X)
+hole(Y, X) :- px(Y, X, 0), off(DY, DX), Y1 = Y + DY, X1 = X + DX, cell(Y1, X, C), cell(Y, X1, C), cell(Y1, X1, C).

@@ -1,0 +1,7 @@
+% row: d_6d58a25d_4_under_umbrella
+% source: distillation batch reading, task 6d58a25d, sample 4
+% output: under_umbrella(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+maxs(max(N)) :- osize(O, N).
+top(O) :- osize(O, N), maxs(N).
+under_umbrella(Y, X) :- obj(M, Y, X), osize(M, N), N = 1, top(T), obj(T, Y2, X), Y2 < Y.

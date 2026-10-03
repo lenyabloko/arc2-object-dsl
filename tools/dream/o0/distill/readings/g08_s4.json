@@ -1,0 +1,254 @@
+[
+ {
+  "task": "3bd67248",
+  "reading": "The input has one full left column of colour c. Draw a colour-2 anti-diagonal from the top-right corner down-left to the cell just right of the column on the second-to-last row, and fill the bottom row right of the column with 4.",
+  "verb": "draw diagonal and base line",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "diagonal": "cells (y, W-1-y) for y=0..H-2, colour 2 (constant)",
+   "base": "bottom row, columns 1..W-1, colour 4 (constant)",
+   "kept": "the left column"
+  },
+  "why": "on every pair the only added cells are the anti-diagonal (2) and the bottom row (4); output size equals input size",
+  "invariants": [
+   "grid size",
+   "left column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "3d588dc9",
+  "reading": "Among the 0-objects (a 3x4 or 4x3 block with a 2-cell protrusion), the one lying in the same rows as the colour-5 staircase loses its protrusion, and its edge column facing the staircase turns 6. All other objects stay.",
+  "verb": "trim and mark facing side",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the 0-object horizontally level with (sharing rows with) the 5 staircase",
+   "removed": "its 2-cell protrusion (cells outside its rectangular body) become background",
+   "marked": "the body column nearest the 5 staircase becomes 6 (constant)"
+  },
+  "why": "pair 0: block at rows 6-9 is level with 5 on row 9, its right column turns 6 and its top stem goes; pair 1: block at rows 7-9 is level with 5, its left column turns 6 and its right protrusion goes; other 0-objects unchanged",
+  "invariants": [
+   "grid size",
+   "all non-0 objects",
+   "0-objects not level with the 5 staircase"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "3de23699",
+  "reading": "Four corner markers of one colour bound a box holding a shape of another colour. Recolour the shape to the marker colour, then cut out the box interior (markers excluded).",
+  "verb": "recolour and crop",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "recolour",
+    "args": {
+     "key": "open",
+     "subject": "innerfg"
+    }
+   },
+   "outer": {
+    "how": "extract",
+    "args": {
+     "region": "inner"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inner",
+    "datalog": "nb(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).\niso(Y, X) :- cell(Y, X, C), !nb(Y, X).\nit(min(Y)) :- iso(Y, X).\nib(max(Y)) :- iso(Y, X).\nil(min(X)) :- iso(Y, X).\nir(max(X)) :- iso(Y, X).\ninner(Y, X) :- px(Y, X, C), it(T), ib(B), il(L), ir(R), Y > T, Y < B, X > L, X < R."
+   },
+   {
+    "name": "innerfg",
+    "datalog": "innerfg(Y, X) :- inner(Y, X), cell(Y, X, C)."
+   }
+  ],
+  "why": "the output is exactly the strictly-inside box of the isolated corner cells, with every shape cell in the marker colour (key is the marker colour, i.e. nearest other colour)",
+  "invariants": [
+   "shape layout inside the box"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "3f23242b",
+  "reading": "At each single marker stamp a fixed 5x5 house (5 roof, 2 walls, 5 above the marker, 8 floor) centred on it; then the floor row is continued with 2 across the whole grid to both borders.",
+  "verb": "stamp house and draw floor line",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "stamp",
+    "args": {
+     "anchors": "markers",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "train",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "every marker gets the identical 5x5 unit [55555/20502/20302/20002/88888] centred on it, and the row 2 below each marker is 2 everywhere outside that unit's 8 run",
+  "invariants": [
+   "grid size",
+   "marker cells"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "3f7978a0",
+  "reading": "Two vertical colour-5 bars capped by 8s mark a rectangle; the output is that rectangle (5-bar box plus one row above and below) cut from the input, stray 8s inside included.",
+  "verb": "crop",
+  "frame": {
+   "how": "extract",
+   "args": {
+    "region": "capbox"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "capbox",
+    "datalog": "t5(min(Y)) :- cell(Y, X, C), C = 5.\nb5(max(Y)) :- cell(Y, X, C), C = 5.\nl5(min(X)) :- cell(Y, X, C), C = 5.\nr5(max(X)) :- cell(Y, X, C), C = 5.\ncapbox(Y, X) :- px(Y, X, C), t5(T), b5(B), l5(L), r5(R), T1 = T - 1, B1 = B + 1, Y >= T1, Y <= B1, X >= L, X <= R."
+   }
+  ],
+  "why": "the output equals the input box spanned by all 5 cells, widened by one row at top and bottom",
+  "invariants": [
+   "cell contents inside the box"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4093f84a",
+  "reading": "Scattered single cells slide perpendicular to the full colour-5 band until they touch it (stacking against earlier ones), and take the band colour 5.",
+  "verb": "gravitate and absorb",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "dots",
+     "target": "obstacle"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "nearest",
+     "subject": "dots"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "dots",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(max(N)) :- osize(O, N).\nbandc(C) :- osize(O, N), big(N), obj(O, Y, X), cell(Y, X, C).\ndots(Y, X) :- cell(Y, X, C), !bandc(C)."
+   }
+  ],
+  "why": "per row (or column) on each side of the band, the number of 5 cells added next to the band equals the number of dots on that side in that line; the band is unchanged",
+  "invariants": [
+   "the band",
+   "grid size",
+   "count of dots per line and side"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "4258a5f9",
+  "reading": "Every isolated 5 gets a ring of 1 in its 8 neighbours (a 3x3 box of 1 centred on it).",
+  "verb": "surround",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each marker is the centre of an identical 3x3 unit [111/151/111]; nothing else changes",
+  "invariants": [
+   "the 5 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "42918530",
+  "reading": "The grid is a lattice of 5x5 hollow squares. Each empty square takes the inner pattern of a square of the same colour that has a pattern; squares with no patterned same-colour partner stay.",
+  "verb": "copy pattern to same-colour panels",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "5x5 square outlines separated by background rows/columns",
+   "source": "for each colour, the panel of that colour with non-empty interior",
+   "target": "panels of the same colour whose 3x3 interior is empty",
+   "action": "paste the source interior into each target"
+  },
+  "why": "on every pair each output panel is either unchanged or an empty panel now equal to the patterned panel of its colour",
+  "invariants": [
+   "panel outlines and colours",
+   "already-patterned panels",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "444801d8",
+  "reading": "Each 1-shape is a box open by one gap in its top, holding one coloured cell. Fill the box interior, the gap and the row just above the box (over its width) with that cell's colour.",
+  "verb": "fill cup and lid",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cupfill",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cupfill",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\ncup(O) :- osize(O, N), N > 1.\nctop(O, min(Y)) :- cup(O), obj(O, Y, X).\ncbot(O, max(Y)) :- cup(O), obj(O, Y, X).\nclef(O, min(X)) :- cup(O), obj(O, Y, X).\ncrig(O, max(X)) :- cup(O), obj(O, Y, X).\ncupfill(Y, X) :- cup(O), ctop(O, T), cbot(O, B), clef(O, L), crig(O, R), T1 = T - 1, px(Y, X, C), Y >= T1, Y <= B, X >= L, X <= R, !obj(O, Y, X)."
+   }
+  ],
+  "why": "every non-1 cell in each cup's box widened one row upward takes the colour of the seed cell inside that cup; the 1 cells never change",
+  "invariants": [
+   "the 1 outlines",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "4612dd53",
+  "reading": "A rectangle of dashed 1-lines (outline plus possibly one inner line) has gaps; every gap on a line that is mostly 1 is filled with 2 across the shape's box.",
+  "verb": "complete dashed lines",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gaps",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gaps",
+    "datalog": "bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\nbt(min(Y)) :- cell(Y, X, C).\nbb(max(Y)) :- cell(Y, X, C).\nbl(min(X)) :- cell(Y, X, C).\nbr(max(X)) :- cell(Y, X, C).\nrowc(Y, count(X)) :- cell(Y, X, C).\ncolc(X, count(Y)) :- cell(Y, X, C).\nlrow(Y) :- rowc(Y, N), bl(L), br(R), S = R - L, S1 = S + 1, N2 = N + N, N2 > S1.\nlcol(X) :- colc(X, N), bt(T), bb(B), S = B - T, S1 = S + 1, N2 = N + N, N2 > S1.\ngaps(Y, X) :- bgc(Y, X), lrow(Y), bl(L), br(R), X >= L, X <= R.\ngaps(Y, X) :- bgc(Y, X), lcol(X), bt(T), bb(B), Y >= T, Y <= B."
+   }
+  ],
+  "why": "a row (column) holding 1 in more than half of the box width (height) is a line; all its background cells inside the box become 2; nothing else changes",
+  "invariants": [
+   "all 1 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

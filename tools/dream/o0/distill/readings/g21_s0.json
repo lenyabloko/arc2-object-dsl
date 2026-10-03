@@ -1,0 +1,204 @@
+[
+ {
+  "task": "9d9215db",
+  "reading": "The few cells in one corner are completed into a pattern with four-fold symmetry about the grid centre; where a ring's corner cell has a neighbouring mark two cells along the ring, that mark's colour is repeated on every other cell along the ring's edges between the mirrored corners.",
+  "verb": "symmetrize and dot-connect",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "seed": "the corner cluster of cells",
+   "symmetry": "mirror about both grid centre lines (and the diagonal)",
+   "dotted_edges": "for each ring whose corner has an adjacent-by-2 mark of colour c, every second cell of the ring's four edges between its corners becomes c"
+  },
+  "why": "output is symmetric about both centre lines; every ring with a side mark has a full alternating dotted edge of that mark colour",
+  "invariants": [
+   "grid size",
+   "original cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9ddd00f0",
+  "reading": "A partially drawn symmetric pattern is completed so that the output is symmetric about both its horizontal and vertical centre lines.",
+  "verb": "complete symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "the output is mirror-symmetric left-right and top-bottom; every input fg cell is kept",
+  "invariants": [
+   "grid size",
+   "input fg cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9def23fe",
+  "reading": "The big rectangle is projected outward to the grid border in all four directions as full-width bands, but any single row or column of a band that contains a scattered marker is left out entirely; markers stay.",
+  "verb": "project rectangle except blocked lanes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the large solid rectangle (largest object)",
+   "lanes": "each row (left/right) and column (up/down) of the rectangle's span, from its edge to the grid border",
+   "blockers": "isolated marker cells",
+   "rule": "a lane is painted with the rectangle colour only if it contains no marker; blocked lanes stay unchanged"
+  },
+  "why": "every lane from the rectangle to the border is either fully rectangle-coloured (no marker in it) or untouched (contains a marker)",
+  "invariants": [
+   "markers",
+   "rectangle",
+   "cells outside the rectangle's row and column spans"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f5f939b",
+  "reading": "A background cell becomes 4 when four 2-cell segments of colour 1 point at it from left, right, above and below, each with a one-cell gap.",
+  "verb": "mark cross centre",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross_centre",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross_centre",
+    "datalog": "cross_centre(Y, X) :- px(Y, X, 8), XL2 = X - 2, XL3 = X - 3, XR2 = X + 2, XR3 = X + 3, YU2 = Y - 2, YU3 = Y - 3, YD2 = Y + 2, YD3 = Y + 3, px(Y, XL2, 1), px(Y, XL3, 1), px(Y, XR2, 1), px(Y, XR3, 1), px(YU2, X, 1), px(YU3, X, 1), px(YD2, X, 1), px(YD3, X, 1)."
+   }
+  ],
+  "why": "exactly the cells with colour-1 cells at distances 2 and 3 in all four orthogonal directions become 4",
+  "invariants": [
+   "all colour-1 cells",
+   "all other background cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f8de559",
+  "reading": "Inside a 7 rectangle a 2 cell has a tail of 6s; a ray from the 2 continues away from the tail through the 7 interior, and the first frame cell it reaches is recoloured 7.",
+  "verb": "shoot ray to frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "head": "the single 2 cell",
+   "direction": "from the adjacent 6 toward the 2 (orthogonal or diagonal)",
+   "path": "cells of colour 7 passed through unchanged",
+   "target": "first non-7 cell on the ray (in the outer frame), recoloured 7"
+  },
+  "why": "exactly one cell changes: the first non-7 cell on the ray from the 2 opposite its 6 tail, and it becomes 7",
+  "invariants": [
+   "the 2 and the 6 tail",
+   "the 7 rectangle",
+   "all other frame cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a04b2602",
+  "reading": "Each 2 that lies inside a 3 rectangle gets a 3x3 ring of 1 drawn around it (overwriting whatever is there, even outside the rectangle); 2s lying in the 0 background get nothing.",
+  "verb": "halo inner dots",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "halo",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "halo",
+    "datalog": "orth4(DY, DX) :- off(DY, DX), DY = 0.\north4(DY, DX) :- off(DY, DX), DX = 0.\nnb3(Y, X, count(DY, DX)) :- px(Y, X, 2), off(DY, DX), orth4(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 3).\nanchor(Y, X) :- nb3(Y, X, N), N > 1.\nhalo(Y, X) :- anchor(AY, AX), off(DY, DX), Y = AY + DY, X = AX + DX, px(Y, X, C), !anchor(Y, X)."
+   }
+  ],
+  "why": "every 8-neighbour of a 2 having at least two orthogonal 3-neighbours becomes 1, except such 2s themselves; nothing else changes",
+  "invariants": [
+   "grid size",
+   "anchor 2s",
+   "3 cells not adjacent to an anchor"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a096bf4d",
+  "reading": "The grid is a lattice of identical framed 2x2 tiles; when two tiles in the same tile-row or tile-column carry the same odd colour at the same sub-position, every tile between them gets that colour at that sub-position.",
+  "verb": "connect matching tile marks",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cells": "the framed 2x2 tiles of the lattice",
+   "mark": "a sub-position value differing from the common value at that sub-position",
+   "rule": "two equal marks in one tile-row or tile-column fill all tiles between them with that mark at the same sub-position"
+  },
+  "why": "for every sub-position, marks of one colour form unbroken runs between the two original marks along tile-rows/columns",
+  "invariants": [
+   "grid size",
+   "tile frames",
+   "original marks"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a406ac07",
+  "reading": "The right column and bottom row carry matching runs of colours; each colour c fills the block where its rows in the right column cross its columns in the bottom row.",
+  "verb": "cross-product fill",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "row_key": "right column: colour of each row",
+   "col_key": "bottom row: colour of each column",
+   "rule": "cell (y,x) becomes c when right_column[y] = bottom_row[x] = c"
+  },
+  "why": "every cell whose row key equals its column key takes that colour; all others stay",
+  "invariants": [
+   "grid size",
+   "right column",
+   "bottom row"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a416b8f3",
+  "reading": "The input is copied twice side by side.",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "train",
+    "unit": "input"
+   }
+  },
+  "why": "output is a 1x2 arrangement of exact input copies",
+  "invariants": [
+   "input content in each block"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a59b95c0",
+  "reading": "The 3x3 input is tiled k by k, where k is the number of distinct colours in the input.",
+  "verb": "tile by colour count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "the whole input",
+   "extent": "k x k blocks, k = number of distinct colours in the input"
+  },
+  "why": "every output block is the input, and the block count per side equals the input's distinct colour count",
+  "invariants": [
+   "input content in each block"
+  ],
+  "confidence": "high"
+ }
+]

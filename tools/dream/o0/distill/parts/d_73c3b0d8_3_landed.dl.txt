@@ -1,0 +1,4 @@
+% row: d_73c3b0d8_3_landed
+% source: distillation batch reading, task 73c3b0d8, sample 3
+% output: landed(Y, X)
+landed(Y, X) :- px(Y, X, 4), Y2 = Y + 1, px(Y2, X, 2).

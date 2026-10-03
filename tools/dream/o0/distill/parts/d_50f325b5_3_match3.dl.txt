@@ -1,0 +1,15 @@
+% row: d_50f325b5_3_match3
+% source: distillation batch reading, task 50f325b5, sample 3
+% output: match3(Y, X)
+t8(Y, X) :- px(Y, X, 8).
+ty(min(Y)) :- t8(Y, X).
+tx(min(X)) :- ty(Y), t8(Y, X).
+rel(DY, DX) :- t8(Y, X), ty(A), tx(B), DY = Y - A, DX = X - B.
+rot(0, DY, DX) :- rel(DY, DX).
+rot(1, DX, NY) :- rel(DY, DX), NY = 0 - DY.
+rot(2, NY, NX) :- rel(DY, DX), NY = 0 - DY, NX = 0 - DX.
+rot(3, NX, DY) :- rel(DY, DX), NX = 0 - DX.
+rid(R) :- rot(R, DY, DX).
+bad(R, Y, X) :- px(Y, X, 3), rot(R, DY, DX), Y2 = Y + DY, X2 = X + DX, !px(Y2, X2, 3).
+good(R, Y, X) :- px(Y, X, 3), rid(R), !bad(R, Y, X).
+match3(Y2, X2) :- good(R, Y, X), rot(R, DY, DX), Y2 = Y + DY, X2 = X + DX.

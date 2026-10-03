@@ -1,0 +1,4 @@
+% row: d_a644e277_1_gap
+% source: distillation batch reading, task a644e277, sample 1
+% output: gap(Y, X)
+gap(Y, X) :- px(Y, X, C), !cell(Y, X, C), A = X - 1, B = X + 1, U = Y - 1, D = Y + 1, cell(Y, A, K), cell(Y, B, K), cell(U, X, K), cell(D, X, K).

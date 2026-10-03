@@ -1,0 +1,4 @@
+% row: d_2bcee788_2_shape
+% source: distillation batch reading, task 2bcee788, sample 2
+% output: shape(Y, X)
+shape(Y, X) :- cell(Y, X, C), !px(Y, X, 2).

@@ -1,0 +1,5 @@
+% row: d_2281f1f4_1_cross
+% source: distillation batch reading, task 2281f1f4, sample 1
+% output: cross(Y, X)
+wid(max(X)) :- px(Y, X, C).
+cross(Y, X) :- cell(Y0, X, A), Y0 = 0, wid(M), cell(Y, M, B), Y > 0, X < M.

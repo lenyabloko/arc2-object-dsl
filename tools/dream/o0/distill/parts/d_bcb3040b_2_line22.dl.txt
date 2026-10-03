@@ -1,0 +1,8 @@
+% row: d_bcb3040b_2_line22
+% source: distillation batch reading, task bcb3040b, sample 2
+% output: line22(Y, X)
+end(Y, X) :- px(Y, X, 2).
+line22(Y, X) :- end(Y1, X1), end(Y2, X2), Y1 = Y2, X1 < X2, px(Y, X, C), Y = Y1, X1 < X, X < X2.
+line22(Y, X) :- end(Y1, X1), end(Y2, X2), X1 = X2, Y1 < Y2, px(Y, X, C), X = X1, Y1 < Y, Y < Y2.
+line22(Y, X) :- end(Y1, X1), end(Y2, X2), Y1 < Y2, D = Y2 - Y1, X2 = X1 + D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 + K.
+line22(Y, X) :- end(Y1, X1), end(Y2, X2), Y1 < Y2, D = Y2 - Y1, X2 = X1 - D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 - K.

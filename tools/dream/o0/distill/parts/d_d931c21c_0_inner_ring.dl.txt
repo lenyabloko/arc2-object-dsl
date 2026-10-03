@@ -1,0 +1,15 @@
+% row: d_d931c21c_0_inner_ring
+% source: distillation batch reading, task d931c21c, sample 0
+% output: inner_ring(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+off4(DY, DX) :- off(DY, DX), DY = 0.
+off4(DY, DX) :- off(DY, DX), DX = 0.
+maxy(max(Y)) :- px(Y, X, C).
+maxx(max(X)) :- px(Y, X, C).
+out(Y, X) :- bgc(Y, X), Y = 0.
+out(Y, X) :- bgc(Y, X), X = 0.
+out(Y, X) :- bgc(Y, X), maxy(M), Y = M.
+out(Y, X) :- bgc(Y, X), maxx(M), X = M.
+out(Y2, X2) :- out(Y, X), off4(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+inside(Y, X) :- bgc(Y, X), !out(Y, X).
+inner_ring(Y, X) :- inside(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).

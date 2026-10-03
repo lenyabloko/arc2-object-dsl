@@ -1,0 +1,232 @@
+[
+ {
+  "task": "984d8a3e",
+  "reading": "Every row is: left colour, then a run of the middle colour, then (maybe) a third colour. Each middle run slides left until its right end sits on the shape's leftmost right edge (col 5 in both pairs), but never past col 0; the left colour fills the cells it leaves. The third colour is untouched.",
+  "verb": "right-align runs",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the middle-colour run in each row (the shape between the left colour and the third colour)",
+   "target column": "min over rows of the run's right end",
+   "fill": "the row's left colour fills the cells the run leaves",
+   "clamp": "the run's start stays >= 0 (rows that are too long end past the target column)"
+  },
+  "why": "in every row the run keeps its length and ends at the target column, or starts at col 0 if it is too long",
+  "invariants": [
+   "grid size",
+   "third-colour cells",
+   "run length and colour count per row"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "98cf29f8",
+  "reading": "One object has a one-cell-wide stalk reaching to the other object. Its body slides along the stalk until it touches the other object, and the stalk disappears.",
+  "verb": "retract along stalk",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "body",
+     "target": "open"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "stalk",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "stalk",
+    "datalog": "stalk(Y, X) :- cell(Y, X, C), Ya = Y - 1, Yb = Y + 1, !px(Ya, X, C), !px(Yb, X, C).\nstalk(Y, X) :- cell(Y, X, C), Xa = X - 1, Xb = X + 1, !px(Y, Xa, C), !px(Y, Xb, C)."
+   },
+   {
+    "name": "body",
+    "datalog": "stalk(Y, X) :- cell(Y, X, C), Ya = Y - 1, Yb = Y + 1, !px(Ya, X, C), !px(Yb, X, C).\nstalk(Y, X) :- cell(Y, X, C), Xa = X - 1, Xb = X + 1, !px(Y, Xa, C), !px(Y, Xb, C).\nstalked(O) :- obj(O, Y, X), stalk(Y, X).\nbody(Y, X) :- stalked(O), obj(O, Y, X), !stalk(Y, X)."
+   }
+  ],
+  "why": "the body keeps its shape and ends touching the other object; any stalk cells left over become background (0)",
+  "invariants": [
+   "the object without a stalk",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "995c5fa3",
+  "reading": "Columns of 0 cut the input into three 4x4 panels of 5. Each panel's hole pattern names a colour, and output row i is filled with panel i's colour: no hole is 2, a centre 2x2 hole is 8, a bottom-centre hole is 4, side holes are 3.",
+  "verb": "classify panels",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "the three 4x4 panels between the 0 separator columns",
+   "key": "hole pattern -> colour: none->2, centre->8, bottom-middle->4, left+right edges->3",
+   "output": "3x3 grid, row i is all key(panel i)"
+  },
+  "why": "each output row is one colour, set by the pattern of the matching panel",
+  "invariants": [
+   "output is always 3x3",
+   "panel order left to right equals row order top to bottom"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "99fa7670",
+  "reading": "Each single cell draws a line in its own colour right to the grid edge, then down the last column until the row just above the next line (or the bottom edge).",
+  "verb": "draw L-line",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "obstacle",
+     "source": "rend",
+     "colour": "own"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "rend",
+    "datalog": "wmax(max(X)) :- px(Y, X, C).\nrend(Y, X) :- cell(Y, X, C), wmax(X)."
+   }
+  ],
+  "why": "the horizontal part reaches the right edge; the vertical part runs down the last column and stops at the first cell that is not background (the next line's end) or at the bottom edge",
+  "invariants": [
+   "the marker cells",
+   "cells left of each marker"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "9aec4887",
+  "reading": "A frame has four sides in four colours (corners empty), and an 8-shape the size of its interior sits elsewhere. The output is the frame box with the 8-shape placed inside. Each 8 cell takes the colour of its nearest side, and stays 8 when two sides tie.",
+  "verb": "insert and tint",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "container": "the box of the four-sided frame (sides kept, corners 0)",
+   "content": "the 8-coloured shape, whose box equals the frame interior",
+   "tint": "each 8 cell -> colour of the nearest side; ties stay 8; 0 stays 0"
+  },
+  "why": "output = frame box; interior = 8-shape recoloured by nearest side",
+  "invariants": [
+   "frame sides and corners",
+   "the shape's cell positions"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9af7a82c",
+  "reading": "Count each colour. The output has one column per colour, ordered by count from most to least. Each column is filled from the top with that colour for count cells; the rest is 0. Height = the largest count.",
+  "verb": "histogram",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "colours": "the distinct colours of the input",
+   "order": "count, most first",
+   "bar": "column j = colour j repeated count(j) times from the top, then 0",
+   "size": "height = max count, width = number of colours"
+  },
+  "why": "each output column is a top-aligned bar whose length equals that colour's input count",
+  "invariants": [
+   "colour counts"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9b4c17c4",
+  "reading": "The grid is split into an 8 area and a 1 area. Each 2-object slides sideways inside its area: left in the 8 area, right in the 1 area, until it reaches the edge of the area or the grid.",
+  "verb": "slide by area",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "areas": "the two big background areas (colour 8 and colour 1)",
+   "subject": "each 2-object",
+   "direction": "8 area -> left, 1 area -> right",
+   "stop": "the area boundary or the grid border"
+  },
+  "why": "each 2-object keeps its shape and row span and ends flush with its area's left (8) or right (1) edge",
+  "invariants": [
+   "area layout (8/1 split)",
+   "object shapes and rows"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9b5080bb",
+  "reading": "Two big coloured areas each hold rectangular blobs of an inner colour. Each one-cell defect on a blob's rectangle (a one-cell bump outside it or a one-cell dent inside it) becomes a 2-cell line across the rectangle edge, in the other big area's colour.",
+  "verb": "mark defects",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "areas": "the two large areas (e.g. 8 and 4; 4 and 2; 3 and 2)",
+   "blobs": "the near-rectangular inner-colour shapes in each area",
+   "defects": "single cells where the blob deviates from its rectangle: bumps outside or dents inside",
+   "mark": "defect cell + the next cell across the rectangle edge, perpendicular to it, painted in the other area's colour"
+  },
+  "why": "every bump or dent becomes a 2-cell line crossing the rectangle boundary; nothing else changes",
+  "invariants": [
+   "area colours",
+   "blob rectangles",
+   "outer border"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9c56f360",
+  "reading": "In each row, the run of 3s at the right slides left until it hits an 8 or the left edge. Rows move independently, and 8s stay put.",
+  "verb": "slide left per row",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each horizontal run of 3 in a row (rows move separately, so a vertical stack of 3s splits)",
+   "direction": "left",
+   "stop": "the first 8 to the left, or the grid edge"
+  },
+  "why": "each row's 3-run keeps its length and ends next to the nearest 8 on its left, or at column 0",
+  "invariants": [
+   "all 8 cells",
+   "3 count per row"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9caba7c3",
+  "reading": "In a 5/0 noise grid, each cluster of 2s lies in a 3x3 window that has no 0 and a 5 at its centre. Inside that window the centre becomes 4, the other 5s become 7, and the 2s stay. Windows do not overlap, and each one covers its whole cluster.",
+  "verb": "frame clusters",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "windows": "3x3 blocks with no 0 and centre 5 that hold a whole 2-cluster (non-overlapping)",
+   "paint": "centre -> 4, other 5 cells in window -> 7, 2 cells kept"
+  },
+  "why": "every change lies in one such window; the window holds 0 zeros; 2s never change",
+  "invariants": [
+   "all 0 and 2 cells",
+   "cells outside the windows"
+  ],
+  "confidence": "medium"
+ }
+]

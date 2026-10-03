@@ -1,0 +1,8 @@
+% row: d_bcb3040b_1_seg
+% source: distillation batch reading, task bcb3040b, sample 1
+% output: seg(Y, X)
+two(Y, X) :- px(Y, X, C), C = 2.
+seg(Y, X) :- two(Y, X1), two(Y, X2), X1 < X, X < X2, px(Y, X, C).
+seg(Y, X) :- two(Y1, X), two(Y2, X), Y1 < Y, Y < Y2, px(Y, X, C).
+seg(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, E = Y2 - Y1, F = X2 - X1, F = E, px(Y, X, C), Y1 < Y, Y < Y2, DY = Y - Y1, DX = X - X1, DX = DY.
+seg(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, E = Y2 - Y1, G = X1 - X2, G = E, px(Y, X, C), Y1 < Y, Y < Y2, DY = Y - Y1, DX = X1 - X, DX = DY.

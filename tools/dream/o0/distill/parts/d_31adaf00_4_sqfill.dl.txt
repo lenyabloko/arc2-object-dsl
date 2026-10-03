@@ -1,0 +1,10 @@
+% row: d_31adaf00_4_sqfill
+% source: distillation batch reading, task 31adaf00, sample 4
+% output: sqfill(Y, X)
+b2(Y, X) :- px(Y, X, 0), Y1 = Y + 1, X1 = X + 1, px(Y, X1, 0), px(Y1, X, 0), px(Y1, X1, 0).
+b3(Y, X) :- b2(Y, X), Y1 = Y + 1, X1 = X + 1, b2(Y, X1), b2(Y1, X), b2(Y1, X1).
+in3(Y2, X2) :- b3(Y, X), px(Y2, X2, 0), Y3 = Y + 2, X3 = X + 2, Y2 >= Y, Y2 <= Y3, X2 >= X, X2 <= X3.
+hit3(Y, X) :- b2(Y, X), Y1 = Y + 1, X1 = X + 1, in3(Y2, X2), Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1.
+b2ok(Y, X) :- b2(Y, X), !hit3(Y, X).
+sqfill(Y, X) :- in3(Y, X).
+sqfill(Y2, X2) :- b2ok(Y, X), px(Y2, X2, 0), Y1 = Y + 1, X1 = X + 1, Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1.

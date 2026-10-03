@@ -1,0 +1,12 @@
+% row: d_36fdfd69_3_box2
+% source: distillation batch reading, task 36fdfd69, sample 3
+% output: box2(Y, X)
+two(Y, X) :- px(Y, X, C), C = 2.
+near(A, B, P, Q) :- two(A, B), two(P, Q), DY = P - A, DX = Q - B, DY >= -2, DY <= 2, DX >= -2, DX <= 2.
+grp(A, B, P, Q) :- near(A, B, P, Q).
+grp(A, B, E, F) :- grp(A, B, P, Q), near(P, Q, E, F).
+gy0(A, B, min(P)) :- grp(A, B, P, Q).
+gy1(A, B, max(P)) :- grp(A, B, P, Q).
+gx0(A, B, min(Q)) :- grp(A, B, P, Q).
+gx1(A, B, max(Q)) :- grp(A, B, P, Q).
+box2(Y, X) :- gy0(A, B, Y0), gy1(A, B, Y1), gx0(A, B, X0), gx1(A, B, X1), px(Y, X, K), Y >= Y0, Y <= Y1, X >= X0, X <= X1, !two(Y, X).

@@ -1,0 +1,5 @@
+% row: d_17b80ad2_4_base5
+% source: distillation batch reading, task 17b80ad2, sample 4
+% output: base5(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+base5(Y, X) :- cell(Y, X, 5), hmax(M), Y = M.

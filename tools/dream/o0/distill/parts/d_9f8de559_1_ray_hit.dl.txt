@@ -1,0 +1,7 @@
+% row: d_9f8de559_1_ray_hit
+% source: distillation batch reading, task 9f8de559, sample 1
+% output: ray_hit(Y, X)
+dir(DY, DX) :- cell(Y, X, 2), off(DY, DX), A = Y - DY, B = X - DX, cell(A, B, 6).
+ray(Y, X) :- cell(Y, X, 2).
+ray(A, B) :- ray(Y, X), dir(DY, DX), A = Y + DY, B = X + DX, px(A, B, 7).
+ray_hit(A, B) :- ray(Y, X), dir(DY, DX), A = Y + DY, B = X + DX, cell(A, B, K).

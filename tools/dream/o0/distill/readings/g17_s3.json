@@ -1,0 +1,216 @@
+[
+ {
+  "task": "8719f442",
+  "reading": "Output is 5x the input size in 3x3 blocks: the central 3x3 blocks show the input scaled by 3 (each fg cell a solid block), and each solid block on the edge of that core gets a copy of the input in the outer-ring block just beyond it (outward).",
+  "verb": "scale up and sprout copies",
+  "frame": {
+   "how": "other",
+   "verb": "scale up and sprout copies"
+  },
+  "slots": {
+   "core": "input scaled x3 into blocks (1..3,1..3) of a 5x5 block grid",
+   "copy": "the input itself",
+   "sprout_at": "outer-ring block adjacent (up/down/left/right, away from centre) to each solid core block lying on the core's edge"
+  },
+  "why": "every output block is solid fg, the input, or empty; solid blocks = input fg cells shifted by (1,1); input copies sit exactly outward of edge-of-core solid blocks",
+  "invariants": [
+   "colour set unchanged",
+   "output side = 5 x input side"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "88207623",
+  "reading": "Each colour-4 shape stands against a straight vertical 2-segment, with one single marker cell of another colour on the other side; the shape is reflected across the 2-segment and the reflection is painted in the marker's colour.",
+  "verb": "reflect and recolour",
+  "frame": {
+   "how": "other",
+   "verb": "reflect and recolour"
+  },
+  "slots": {
+   "subject": "each 4-shape attached to a 2-segment",
+   "axis": "the 2-segment (column) it touches",
+   "colour": "colour of the single marker cell on the far side of that segment"
+  },
+  "why": "the new cells are the mirror image of the 4-shape across its 2-segment, all in the marker colour (the marker cell lies inside the reflection or is kept)",
+  "invariants": [
+   "original 4 shapes and 2 segments unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8886d717",
+  "reading": "A 9 line runs along one border; each 8 lying inside a 2-area turns into 2, and each 8 lying inside the 7-area grows by one cell toward the 9 line (the neighbouring cell on the 9 side becomes 8).",
+  "verb": "absorb or step toward border",
+  "frame": {
+   "how": "other",
+   "verb": "absorb or step toward border"
+  },
+  "slots": {
+   "cells": "8 cells",
+   "rule_in_2": "8 -> 2 when its neighbours are 2",
+   "rule_in_7": "cell one step toward the 9 border line becomes 8",
+   "direction": "toward the full 9 row/column"
+  },
+  "why": "only 8 cells and the cell next to a 7-area 8 on the 9 side change",
+  "invariants": [
+   "9 line, 2 and 7 regions unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "891232d6",
+  "reading": "From each 6 on the bottom row a 2-path runs upward; when a horizontal 7-bar blocks it, the path marks the bar cell with 8, runs right under the bar (4 at the turn, 3 one past the bar end) and continues up past the bar's right end; it ends with a 6 at the top row or where it can no longer pass.",
+  "verb": "trace detour path",
+  "frame": {
+   "how": "other",
+   "verb": "trace detour path"
+  },
+  "slots": {
+   "start": "each 6 on the bottom row",
+   "obstacle": "horizontal 7 bars",
+   "path": "2 cells going up, detouring right under each bar",
+   "marks": "8 on the bar cell above the path, 4 at the turn below it, 3 at the corner past the bar end",
+   "end": "6 at the top row or when the detour is blocked"
+  },
+  "why": "every new cell lies on a path from a bottom 6; 7 cells only change to 8 where a path meets them",
+  "invariants": [
+   "all 7 cells not hit stay",
+   "bottom-row 6s unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "8a004b2b",
+  "reading": "Four 4-cells mark the corners of the output box; inside it some blocks of a scaled-up copy of a small multicoloured template (found elsewhere in the grid) are shown; the output is the box cut out with the scaled template completed.",
+  "verb": "crop and complete scaled template",
+  "frame": {
+   "how": "other",
+   "verb": "crop and complete scaled template"
+  },
+  "slots": {
+   "box": "rectangle with the four 4 corner markers",
+   "template": "small multicoloured component outside the box",
+   "scale": "factor making template cells match the partial blocks inside the box",
+   "position": "aligned to the partial blocks"
+  },
+  "why": "output = box between the 4 corners, the 4s at its corners, and inside exactly the template scaled and placed over the existing partial blocks",
+  "invariants": [
+   "the 4 corner cells",
+   "partial blocks inside the box"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8abad3cf",
+  "reading": "Each non-background colour has a square number of cells; the output draws one solid square per colour (side = sqrt of its count), bottom-aligned, ordered smallest to largest from left to right, separated by one background column.",
+  "verb": "count and arrange squares",
+  "frame": {
+   "how": "other",
+   "verb": "count and arrange squares"
+  },
+  "slots": {
+   "items": "non-background colours",
+   "size": "square of side sqrt(cell count)",
+   "order": "ascending size, left to right",
+   "gap": "one background column",
+   "height": "largest side"
+  },
+  "why": "output width = sum of sides + gaps, height = largest side; each square holds exactly its colour's count",
+  "invariants": [
+   "background colour",
+   "colour counts"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8cb8642d",
+  "reading": "Each solid rectangle contains one odd-coloured cell; the rectangle keeps its border, its interior is cleared to background, and diagonals from the four interior corners are drawn inward in the odd colour, joining at the centre (by a short straight run when the interior is not square).",
+  "verb": "hollow and draw diagonals",
+  "frame": {
+   "how": "other",
+   "verb": "hollow and draw diagonals"
+  },
+  "slots": {
+   "subject": "each solid rectangle",
+   "colour": "the single odd cell inside it",
+   "pattern": "X of diagonals from the interior corners, joined at the middle"
+  },
+  "why": "only interior cells of rectangles change; each becomes either background or the odd colour on the corner diagonals",
+  "invariants": [
+   "rectangle borders",
+   "cells outside rectangles",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8e2edd66",
+  "reading": "Output is 3x the input in 3x3 blocks; block (i,j) holds the colour-inverted input (fg and background swapped) when input cell (i,j) is background, and is empty otherwise.",
+  "verb": "tile inverted input at background cells",
+  "frame": {
+   "how": "other",
+   "verb": "tile inverted input at background cells"
+  },
+  "slots": {
+   "unit": "input with its one fg colour and background swapped",
+   "extent": "background cells of the input",
+   "rest": "empty blocks"
+  },
+  "why": "every output block is either the inverted input or empty, and it is the inverted input exactly where the input cell is background",
+  "invariants": [
+   "fg colour",
+   "output side = 3 x input side"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8e5a5113",
+  "reading": "Three 3x3 panels separated by 5 columns: the left panel stays, the middle panel becomes the left panel rotated 90 degrees clockwise, and the right panel becomes it rotated 180 degrees.",
+  "verb": "rotate into panels",
+  "frame": {
+   "how": "other",
+   "verb": "rotate into panels"
+  },
+  "slots": {
+   "source": "left panel",
+   "panel_2": "source rotated 90 deg clockwise",
+   "panel_3": "source rotated 180 deg"
+  },
+  "why": "separators and left panel unchanged; panel k = left panel rotated by (k-1)*90 degrees clockwise",
+  "invariants": [
+   "separator columns of 5",
+   "left panel",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8fbca751",
+  "reading": "The 8 shapes are drawn on a grid of 4x4 blocks (starting at the top-left fg cell); every background cell inside a block that contains 8 is filled with 2.",
+  "verb": "fill blocks",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "blk_bg",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "blk_bg",
+    "datalog": "y0(min(Y)) :- cell(Y, X, C).\nx0(min(X)) :- cell(Y, X, C).\nrowb(Y, B) :- px(Y, 0, C), px(B, 0, C2), y0(A), L = A + 4 * B, H = L + 3, Y >= L, Y <= H.\ncolb(X, B) :- px(0, X, C), px(0, B, C2), x0(A), L = A + 4 * B, H = L + 3, X >= L, X <= H.\nhasfg(BY, BX) :- cell(Y, X, C), rowb(Y, BY), colb(X, BX).\nblk_bg(Y, X) :- px(Y, X, C), !cell(Y, X, C), rowb(Y, BY), colb(X, BX), hasfg(BY, BX)."
+   }
+  ],
+  "why": "every background cell in a 4x4 block (aligned to the fg top-left) that holds an 8 becomes 2; nothing else changes",
+  "invariants": [
+   "8 cells",
+   "cells outside occupied blocks",
+   "grid size"
+  ],
+  "confidence": "medium"
+ }
+]

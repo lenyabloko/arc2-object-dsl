@@ -1,0 +1,225 @@
+[
+ {
+  "task": "9d9215db",
+  "reading": "The motif in one corner is completed to 4-fold symmetry about the grid centre; where a mirrored pair of cells on one row or column has a different-coloured cell two steps inward, that colour is repeated every second cell between the pair (dotted edge lines).",
+  "verb": "complete symmetry and dot edges",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "motif": "all input fg cells (one corner quadrant)",
+   "axes": "grid centre row, centre column and diagonals (D4 overlay)",
+   "dotted_line": "for two mirrored same-colour cells E on one row/column whose step-2 inward neighbour has colour D, every second cell strictly between them gets D",
+   "rest": "kept"
+  },
+  "why": "output = D4 overlay of input plus dotted lines; mirrored pairs without a step-2 neighbour (e.g. the 8s in pair 2) get no dots",
+  "invariants": [
+   "grid size",
+   "input cells",
+   "odd rows/columns stay background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9ddd00f0",
+  "reading": "The partial pattern is completed so the grid is symmetric under flips and transpose (D4); fg cells are overlaid with their mirror images.",
+  "verb": "complete symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "output equals the overlay of the input with its horizontal, vertical and diagonal mirror images (pair 1 needs the diagonal)",
+  "invariants": [
+   "grid size",
+   "existing fg cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9def23fe",
+  "reading": "The big colour-2 rectangle extends to the grid border in all four directions along each of its rows and columns, except lanes on a side that contain a marker cell; those lanes stay empty (markers kept).",
+  "verb": "extend block lanes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "open_lanes",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "open_lanes",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(O) :- osize(O, N), N > 3.\ninbig(Y, X) :- big(O), obj(O, Y, X).\nfgc(Y, X) :- cell(Y, X, C).\nmk(Y, X) :- fgc(Y, X), !inbig(Y, X).\ntop(O, min(Y)) :- big(O), obj(O, Y, X).\nbot(O, max(Y)) :- big(O), obj(O, Y, X).\nlft(O, min(X)) :- big(O), obj(O, Y, X).\nrgt(O, max(X)) :- big(O), obj(O, Y, X).\nincol(X) :- big(O), obj(O, Y, X).\ninrow(Y) :- big(O), obj(O, Y, X).\nupblk(X) :- mk(Y, X), big(O), top(O, A), Y < A.\ndnblk(X) :- mk(Y, X), big(O), bot(O, B), Y > B.\nlfblk(Y) :- mk(Y, X), big(O), lft(O, L), X < L.\nrtblk(Y) :- mk(Y, X), big(O), rgt(O, R), X > R.\nopen_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), incol(X), !upblk(X), big(O), top(O, A), Y < A.\nopen_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), incol(X), !dnblk(X), big(O), bot(O, B), Y > B.\nopen_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), inrow(Y), !lfblk(Y), big(O), lft(O, L), X < L.\nopen_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), inrow(Y), !rtblk(Y), big(O), rgt(O, R), X > R."
+   }
+  ],
+  "why": "every background cell in a block row/column lane outside the block becomes 2 unless a marker lies in that lane on that side",
+  "invariants": [
+   "block",
+   "markers",
+   "cells outside the block's row and column bands"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f5f939b",
+  "reading": "Where four 2-cell dominoes point at one background cell from left, right, above and below (each ending two cells away), that centre cell becomes 4.",
+  "verb": "mark cross centre",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross_centre",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross_centre",
+    "datalog": "fgc(Y, X) :- cell(Y, X, K).\ncross_centre(Y, X) :- px(Y, X, K), !fgc(Y, X), A = Y - 2, B = Y - 3, fgc(A, X), fgc(B, X), D = Y + 2, E = Y + 3, fgc(D, X), fgc(E, X), F = X - 2, G = X - 3, fgc(Y, F), fgc(Y, G), H = X + 2, I = X + 3, fgc(Y, H), fgc(Y, I)."
+   }
+  ],
+  "why": "the only changed cells are background cells with fg at distance 2 and 3 in all four orthogonal directions; each becomes 4",
+  "invariants": [
+   "all 1 cells",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f8de559",
+  "reading": "A line of 6s ends in a 2; a ray shot from the 2 away from the 6s crosses the 7 field and the first frame cell it hits turns 7.",
+  "verb": "shoot ray",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "ray_hit",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ray_hit",
+    "datalog": "dir(DY, DX) :- cell(Y, X, 2), off(DY, DX), A = Y - DY, B = X - DX, cell(A, B, 6).\nray(Y, X) :- cell(Y, X, 2).\nray(A, B) :- ray(Y, X), dir(DY, DX), A = Y + DY, B = X + DX, px(A, B, 7).\nray_hit(A, B) :- ray(Y, X), dir(DY, DX), A = Y + DY, B = X + DX, cell(A, B, K)."
+   }
+  ],
+  "why": "exactly one cell changes: the first non-7 cell on the ray from the 2 (direction 2 minus adjacent 6), and it becomes 7 (7 is the background)",
+  "invariants": [
+   "the 6/2 line",
+   "all other frame cells",
+   "the 7 field"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a04b2602",
+  "reading": "Every 2 cell lying inside (or on the edge of) a green rectangle gets a 3x3 ring of 1 around it, the 2 kept in the centre; 2s outside rectangles are left alone.",
+  "verb": "ring",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "boxed_twos",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "boxed_twos",
+    "datalog": "c3(O) :- obj(O, Y, X), cell(Y, X, 3).\ntop(O, min(Y)) :- c3(O), obj(O, Y, X).\nbot(O, max(Y)) :- c3(O), obj(O, Y, X).\nlft(O, min(X)) :- c3(O), obj(O, Y, X).\nrgt(O, max(X)) :- c3(O), obj(O, Y, X).\nboxed_twos(Y, X) :- cell(Y, X, 2), c3(O), top(O, A), bot(O, B), lft(O, L), rgt(O, R), A1 = A - 1, B1 = B + 1, L1 = L - 1, R1 = R + 1, Y > A1, Y < B1, X > L1, X < R1."
+   }
+  ],
+  "why": "unit is the 3x3 block 111/121/111 centred on each anchor; overlapping copies keep the anchor 2s (adjacent anchors occur in pairs 1 and 2); rings may overwrite 0 and outside 2s",
+  "invariants": [
+   "grid size",
+   "2 cells at anchors",
+   "cells farther than 1 from any anchor"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a096bf4d",
+  "reading": "The grid is a lattice of 4x4 boxes (period 5). An odd-coloured cell that appears at the same in-box position in two boxes of the same box-row or box-column is copied into that position of every box between them.",
+  "verb": "bridge matching anomalies across lattice",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lattice": "boxes of 4x4 separated by background lines, period 5",
+   "anomaly": "an interior cell whose colour differs from the regular box pattern at that position (rare colour)",
+   "pair": "two anomalies of the same colour at the same in-box position in one box-row or box-column",
+   "action": "paint that colour at the same in-box position in every box strictly between the pair",
+   "rest": "kept"
+  },
+  "why": "changed cells are exactly the in-between positions of same-colour, same-position anomaly pairs along box rows/columns",
+  "invariants": [
+   "grid size",
+   "box frames",
+   "unpaired anomalies"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a406ac07",
+  "reading": "The bottom row and the right column carry runs of colours; each colour fills the rectangle whose columns are its run in the bottom row and whose rows are its run in the right column.",
+  "verb": "fill run intersections",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "run_cross",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "run_cross",
+    "datalog": "maxy(max(Y)) :- px(Y, X, K).\nmaxx(max(X)) :- px(Y, X, K).\nfgc(Y, X) :- cell(Y, X, K).\nrun_cross(Y, X) :- maxy(M), maxx(N), cell(M, X, K), cell(Y, N, K), !fgc(Y, X)."
+   }
+  ],
+  "why": "background cell (Y,X) takes colour c exactly when the bottom-row cell in column X and the right-column cell in row Y both have colour c; colour is that shared c (per cell), not a constant",
+  "invariants": [
+   "bottom row",
+   "right column",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a416b8f3",
+  "reading": "The input is repeated twice side by side.",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "train",
+    "unit": "input"
+   }
+  },
+  "why": "output is a 1x2 tiling of the input in every pair",
+  "invariants": [
+   "input content",
+   "height"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a59b95c0",
+  "reading": "The 3x3 input is tiled k x k times, where k is the number of distinct colours in the input.",
+  "verb": "tile by colour count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "the whole input",
+   "count": "number of distinct colours in the input (2,2,4,3,3 in the pairs)",
+   "layout": "k by k grid of copies"
+  },
+  "why": "output size is 3k x 3k with every block equal to the input; k matches distinct colour count, not pixel or object count",
+  "invariants": [
+   "every block equals the input"
+  ],
+  "confidence": "high"
+ }
+]

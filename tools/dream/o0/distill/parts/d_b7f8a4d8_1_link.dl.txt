@@ -1,0 +1,12 @@
+% row: d_b7f8a4d8_1_link
+% source: distillation batch reading, task b7f8a4d8, sample 1
+% output: link(Y, X)
+ccount(C, count(Y, X)) :- cell(Y, X, C).
+top(max(N)) :- ccount(C, N).
+low(N) :- ccount(C, N), top(T), N < T.
+second(max(N)) :- low(N).
+special(C) :- ccount(C, N), second(S), N < S.
+sp(Y, X, C) :- cell(Y, X, C), special(C).
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+link(Y, X) :- bgc(Y, X), sp(Y, X1, C), sp(Y, X2, C), X1 < X, X < X2.
+link(Y, X) :- bgc(Y, X), sp(Y1, X, C), sp(Y2, X, C), Y1 < Y, Y < Y2.

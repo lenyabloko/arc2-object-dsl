@@ -1,0 +1,7 @@
+% row: d_67385a82_3_paired
+% source: distillation batch reading, task 67385a82, sample 3
+% output: paired(Y, X)
+paired(Y, X) :- cell(Y, X, C), cell(Y2, X, C), Y2 = Y + 1.
+paired(Y, X) :- cell(Y, X, C), cell(Y2, X, C), Y2 = Y - 1.
+paired(Y, X) :- cell(Y, X, C), cell(Y, X2, C), X2 = X + 1.
+paired(Y, X) :- cell(Y, X, C), cell(Y, X2, C), X2 = X - 1.

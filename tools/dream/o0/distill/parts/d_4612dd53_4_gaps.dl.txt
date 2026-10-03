@@ -1,0 +1,14 @@
+% row: d_4612dd53_4_gaps
+% source: distillation batch reading, task 4612dd53, sample 4
+% output: gaps(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+bt(min(Y)) :- cell(Y, X, C).
+bb(max(Y)) :- cell(Y, X, C).
+bl(min(X)) :- cell(Y, X, C).
+br(max(X)) :- cell(Y, X, C).
+rowc(Y, count(X)) :- cell(Y, X, C).
+colc(X, count(Y)) :- cell(Y, X, C).
+lrow(Y) :- rowc(Y, N), bl(L), br(R), S = R - L, S1 = S + 1, N2 = N + N, N2 > S1.
+lcol(X) :- colc(X, N), bt(T), bb(B), S = B - T, S1 = S + 1, N2 = N + N, N2 > S1.
+gaps(Y, X) :- bgc(Y, X), lrow(Y), bl(L), br(R), X >= L, X <= R.
+gaps(Y, X) :- bgc(Y, X), lcol(X), bt(T), bb(B), Y >= T, Y <= B.

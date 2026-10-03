@@ -1,0 +1,11 @@
+% row: d_c97c0139_0_diamond
+% source: distillation batch reading, task c97c0139, sample 0
+% output: diamond(Y, X)
+dv(Y, X) :- px(Y, X, 0), cell(R, XA, C), obj(O, R, XA), D = Y - R, D > 0, XA = X - D, XB = X + D, obj(O, R, XB).
+uv(Y, X) :- px(Y, X, 0), cell(R, XA, C), obj(O, R, XA), D = R - Y, D > 0, XA = X - D, XB = X + D, obj(O, R, XB).
+rh(Y, X) :- px(Y, X, 0), cell(YA, K, C), obj(O, YA, K), D = X - K, D > 0, YA = Y - D, YB = Y + D, obj(O, YB, K).
+lh(Y, X) :- px(Y, X, 0), cell(YA, K, C), obj(O, YA, K), D = K - X, D > 0, YA = Y - D, YB = Y + D, obj(O, YB, K).
+diamond(Y, X) :- dv(Y, X).
+diamond(Y, X) :- uv(Y, X).
+diamond(Y, X) :- rh(Y, X).
+diamond(Y, X) :- lh(Y, X).

@@ -1,0 +1,8 @@
+% row: d_b7f8a4d8_3_rare_between
+% source: distillation batch reading, task b7f8a4d8, sample 3
+% output: rare_between(Y, X)
+pcount(C, count(Y, X)) :- px(Y, X, C).
+rank(C, count(D)) :- pcount(C, N), pcount(D, M), M > N.
+rare(C) :- rank(C, R), R >= 3.
+rare_between(Y, X) :- px(Y, X, 0), px(Y, X1, C), rare(C), px(Y, X2, C), X1 < X, X < X2.
+rare_between(Y, X) :- px(Y, X, 0), px(Y1, X, C), rare(C), px(Y2, X, C), Y1 < Y, Y < Y2.

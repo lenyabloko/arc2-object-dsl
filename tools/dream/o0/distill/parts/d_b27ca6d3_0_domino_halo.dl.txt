@@ -1,0 +1,7 @@
+% row: d_b27ca6d3_0_domino_halo
+% source: distillation batch reading, task b27ca6d3, sample 0
+% output: domino_halo(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+dom(O) :- osize(O, N), N = 2, obj(O, Y, X), obj(O, Y, X2), X2 = X + 1.
+dom(O) :- osize(O, N), N = 2, obj(O, Y, X), obj(O, Y2, X), Y2 = Y + 1.
+domino_halo(Y2, X2) :- dom(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), !cell(Y2, X2, C).

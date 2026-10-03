@@ -1,0 +1,1394 @@
+{
+ "group": 10,
+ "tasks": {
+  "4acc7107": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "4acc7107",
+     "sample": 0,
+     "verb": "sort and stack objects by colour",
+     "reading": "Objects are sorted by colour into two columns (the colour that starts further left takes the left column at x=0, the other starts one column after the first column's width); within each colour the objects are left-aligned and stacked from the bottom row upward with one empty row between them, the object that was leftmost in the input at the bottom.",
+     "why": "every output object is an input object of the same shape and colour, repositioned; output size equals input size",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4acc7107",
+     "sample": 1,
+     "verb": "sort objects into colour stacks",
+     "reading": "Two colours, two objects each. Each colour becomes its own column, starting at the bottom row: the colour whose leftmost cell is further left goes at col 0, and the other colour starts one column past the first column's width. Within a column, objects are left-aligned and stacked upward with a 1-row gap, the object that started further left at the bottom.",
+     "why": "every object keeps its shape and colour; the output holds exactly the input's objects, packed into bottom-left stacks",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4acc7107",
+     "sample": 2,
+     "verb": "sort and stack objects by colour",
+     "reading": "Each colour has two objects. Objects are regrouped by colour into columns at the bottom-left: the colour whose object is leftmost gets the left column, the next column starts one blank column after the widest object of the previous one. In a column the objects are stacked from the bottom row upward with one blank row between them, the leftmost (in the input) at the bottom, each left-aligned to the",
+     "why": "output holds exactly the input objects, shapes unchanged, packed into bottom-left colour columns",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4acc7107",
+     "sample": 3,
+     "verb": "sort into stacks",
+     "reading": "Each of the two colours has two objects. The objects are regrouped into one column per colour (columns packed from the left in order of each colour's leftmost x, one empty column between). In each column the objects stack upward from the bottom row with one empty row between them, left-aligned, the object with the smaller leftmost x at the bottom.",
+     "why": "every output object is an input object translated; per colour they are stacked bottom-up, gap 1, ordered by input leftmost x",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4acc7107",
+     "sample": 4,
+     "verb": "sort into colour columns and stack",
+     "reading": "The input has objects of two colours. Each colour's objects are gathered into a column (the colour that sits further left in the input goes left at column 0; the other starts after a one-column gap). In each column the objects are left-aligned and stacked upward from the bottom row, with one empty row between slots.",
+     "why": "every input object appears exactly once in the output with the same shape, grouped by colour and resting on the bottom",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "4e45f183": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "4e45f183",
+     "sample": 0,
+     "verb": "rearrange panels by mark position",
+     "reading": "The 3x3 grid of 5x5 panels is permuted: each panel moves to the panel position that matches where its marks sit inside the panel (top-left marks to the top-left panel, right-edge marks to the middle-right panel, etc.); the panel with marks all round (symmetric) goes to the centre.",
+     "why": "the output panels are exactly the input panels, permuted",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e45f183",
+     "sample": 1,
+     "verb": "rearrange panels by content position",
+     "reading": "A 3x3 grid of 5x5 panels split by background lines. One panel holds the full pattern and every other panel holds one directional piece of it. Each panel is moved to the slot matching the piece it shows (top-left piece to the top-left slot, and so on), and the full pattern goes to the centre.",
+     "why": "the output's panels are a permutation of the input's panels, and every panel's content agrees with its slot's region of the full pattern",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e45f183",
+     "sample": 2,
+     "verb": "rearrange panels",
+     "reading": "The grid is 3x3 panels separated by background lines. Each panel holds a piece of one pattern (a corner, an edge middle, or the full pattern); each panel is moved to the slot its piece points to (top-left piece to top-left slot, full pattern to the centre).",
+     "why": "output panels are the input panels permuted; each panel's marked cells lie on the side matching its slot",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e45f183",
+     "sample": 3,
+     "verb": "rearrange panels",
+     "reading": "The grid is a 3x3 array of panels separated by lines. Each panel holds a small mark pattern pointing toward one of the 9 positions (the off-centre direction of its marks); every panel is moved to the panel slot its pattern points at, and the symmetric pattern goes to the centre.",
+     "why": "each output panel equals the input panel whose marks point toward that slot; the 9 directions form a permutation",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e45f183",
+     "sample": 4,
+     "verb": "rearrange panels by content position",
+     "reading": "The 3x3 panels each hold one piece of a pattern, placed off-centre inside the panel. Each panel's content moves to the panel whose position in the 3x3 layout matches where the piece sits inside its own panel (a top-left piece goes to the top-left panel). The full pattern goes to the centre panel.",
+     "why": "the output panels are a permutation of the input panels, and each lands at the slot that matches where its piece lies inside the panel",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "4e7e0eb9": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "4e7e0eb9",
+     "sample": 0,
+     "verb": "swap across divider or fill placeholders",
+     "reading": "Within each region cut by the full separator lines: if the region contains a short 4-coloured divider line, the two halves on either side of it swap (reflect across the 4 line); otherwise every 1-coloured block in the region takes the colour of the region's one non-1 block.",
+     "why": "blocks keep their 3x3 shape and position slots; only colours of blocks change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e7e0eb9",
+     "sample": 1,
+     "verb": "per panel: swap across 4-line or recolour 1-blocks",
+     "reading": "The grid splits into panels along full separator lines, each panel holding 3x3 blocks. In a panel crossed by a 4-line, the blocks swap places across that line. In a panel with no 4-line, the colour-1 blocks take the colour of the panel's single non-1 block.",
+     "why": "separators and 4-lines never change; each panel is either the swap across its 4-line or the 1->other recolouring",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e7e0eb9",
+     "sample": 2,
+     "verb": "mirror key panels, fill placeholder panels",
+     "reading": "Panels are cut by full separator lines. A panel crossed by a colour-4 line is mirrored across that line (its two blocks swap sides). A panel without a 4-line has its colour-1 placeholder blocks repainted with the one other block colour in that panel.",
+     "why": "every panel is either symmetric-swapped about its 4-line or uniformly one block colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4e7e0eb9",
+     "sample": 3,
+     "verb": "swap halves or fill placeholders",
+     "reading": "Cut the grid recursively into panels by full separator lines. A panel split by a colour-4 line is mirrored across that line (its two halves swap). A panel with no 4 line that holds colour 1 plus one other block colour has its 1 blocks recoloured to that other colour.",
+     "why": "checked on all 4 pairs: 4-line panels are exact mirrors; other panels have 1 replaced by the single other colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "4e7e0eb9",
+     "sample": 4,
+     "verb": "per panel: swap across the axis or fill placeholders",
+     "reading": "Each panel (cut by the full separator lines) holds four 3x3 blocks. If the panel has a colour-4 axis line, the two halves on either side of it swap places (a mirror across the 4 line). Otherwise every colour-1 placeholder block takes the panel's single other block colour.",
+     "why": "panels with a 4 line come out mirrored across it; panels without one come out with all blocks one colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "4ff4c9da": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 2,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "4ff4c9da",
+     "sample": 0,
+     "verb": "copy mark motif to matching lattice spots",
+     "reading": "The grid is a periodic lattice of 1/2 lines; a few cells are marked 8. Every other place in the lattice with the same local line context as a marked motif gets the same 8 motif (the 8 overlay is completed consistently with the lattice structure, including its transpose symmetry).",
+     "why": "only lattice cells (1 or 2) become 8; nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4ff4c9da",
+     "sample": 1,
+     "verb": "replicate overlay at matching lattice positions",
+     "reading": "A periodic 0/1/2 lattice carries a few 8 overlays. Each 8 overlay is copied onto every other place where the lattice beneath it is the same, so its local underlying pattern repeats.",
+     "why": "every added 8 lies on a cell whose underlying colour equals the colour under the original 8s (2 in pairs 0 and 2, 1 in pair 1), at positions that repeat the original's lattice context",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4ff4c9da",
+     "sample": 2,
+     "verb": "recolour shape twins",
+     "reading": "Some cells of a woven 1/2 pattern are marked 8. Every other non-zero component that has exactly the same shape (same orientation) as an 8 component is recoloured 8.",
+     "why": "every non-zero, non-8 component whose normalised cell set equals an 8 component's becomes 8 (2->8 or 1->8); nothing else changes",
+     "new_rows": [
+      "d_4ff4c9da_2_shape_twin"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "shape_twin": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_4ff4c9da_2_shape_twin)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_4ff4c9da_2_shape_twin": [
+       [
+        8,
+        [
+         2
+        ]
+       ],
+       [
+        15,
+        [
+         1
+        ]
+       ],
+       [
+        15,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4ff4c9da",
+     "sample": 3,
+     "verb": "recolour shape twins",
+     "reading": "An 8 shape replaces one single-colour component of the patterned grid. Every other component of that same colour with the identical shape (same cells up to translation) is recoloured 8 as well.",
+     "why": "the replaced colour is the one of {0,1,2} absent from the ring around the 8 shape (a maximal component never touches its own colour); every 8-connected component of that colour with the 8 shape's exact shape becomes 8 (key 2->8, 1->8)",
+     "new_rows": [
+      "d_4ff4c9da_3_twin"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "twin": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_4ff4c9da_3_twin)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_4ff4c9da_3_twin": [
+       [
+        8,
+        [
+         2
+        ]
+       ],
+       [
+        15,
+        [
+         1
+        ]
+       ],
+       [
+        15,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4ff4c9da",
+     "sample": 4,
+     "verb": "recolour matching motifs",
+     "reading": "The grid is a woven lattice of row types and column types. A few cells are marked 8. Every other place where the exact same local neighbourhood appears (in either orientation, rows and columns swapped) gets its matching cells recoloured to 8.",
+     "why": "every new 8 sits at a spot whose neighbourhood is identical to an original 8-spot's neighbourhood; nothing else changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "505fff84": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "505fff84",
+     "sample": 0,
+     "verb": "collect strips between 1 and 8",
+     "reading": "Each row that holds a 1 and later an 8 contributes the strip of cells strictly between them; the output stacks these strips top to bottom (all strips have the same width).",
+     "why": "each output row equals the between-segment of one marked input row",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "505fff84",
+     "sample": 1,
+     "verb": "extract between markers per row",
+     "reading": "Some rows contain a 1 followed by an 8. The cells strictly between the 1 and the 8 are cut out, and these strips are stacked top to bottom in row order.",
+     "why": "each output row equals the between-1-and-8 segment of the k-th marked input row; the segments can sit in different columns, so this is no single box cut",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "505fff84",
+     "sample": 2,
+     "verb": "extract strips between markers",
+     "reading": "Some rows hold a 1 and, to its right, an 8. For each such row (top to bottom) the cells strictly between the 1 and the 8 are cut out; the strips are stacked into the output.",
+     "why": "output row k equals the input cells between 1 and 8 on the k-th marked row",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "505fff84",
+     "sample": 3,
+     "verb": "cut strips between markers",
+     "reading": "Some rows hold a 1 cell and, further right, an 8 cell. For each such row take the cells strictly between the 1 and the 8, and stack these strips top to bottom as the output.",
+     "why": "each output row equals the between-markers strip of the corresponding marked input row",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "505fff84",
+     "sample": 4,
+     "verb": "crop between markers",
+     "reading": "Some rows contain a 1 and, further right, an 8. For each such row, take the cells strictly between the 1 and the 8. Stack these runs top to bottom to form the output.",
+     "why": "every output row is exactly the stretch between the 1 and the 8 on one input row; the stretches have equal length",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "50846271": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 2,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "50846271",
+     "sample": 0,
+     "verb": "complete crosses",
+     "reading": "Several plus-shaped crosses of colour 2 are partly hidden by noise; each cross is completed (both arms, same arm length for all crosses in the grid) and every missing cross cell is painted 8.",
+     "why": "every non-2 cell on a completed cross becomes 8; all other cells are unchanged",
+     "new_rows": [
+      "d_50846271_0_plus_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus_gap": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_50846271_0_plus_gap)",
+      "fill(colour:=train, region:=d_50846271_0_plus_gap)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_50846271_0_plus_gap": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        2,
+        [
+         5
+        ]
+       ],
+       [
+        9,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "50846271",
+     "sample": 1,
+     "verb": "complete plus shapes",
+     "reading": "Each partial plus of 2s, whose arms are equal length (2 in most pairs, 3 in the last), is completed to a full plus. The missing cells are painted 8, and arms that run off the grid are clipped.",
+     "why": "after painting, the 2/8 cells are exactly a union of equal-armed pluses, and every original 2 stays 2",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50846271",
+     "sample": 2,
+     "verb": "complete crosses",
+     "reading": "Partial plus-shaped crosses of 2 are hidden in 5/0 noise. Each cross is completed: its centre is where the horizontal and vertical arms meet, both arms have the same length (the furthest 2 from the centre), and every non-2 cell on the completed cross becomes 8.",
+     "why": "after the change every cross is a full symmetric plus of 2s and 8s; only cross cells change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50846271",
+     "sample": 3,
+     "verb": "complete crosses",
+     "reading": "Partial plus-shaped crosses of 2 lie in a 0/5 noise grid. Each cross is completed to a full plus (arm length taken from the most complete cross in the grid) and the missing cells are painted 8; existing 2s stay.",
+     "why": "2-cells cluster (chains of Chebyshev distance <=3) into one cross each; arm L = half the largest same-row/column span inside a cluster (2, or 3 in pair 3); the centre is the unique cell whose plus of arm L holds the whole cluster; its non-2 plus cells become 8",
+     "new_rows": [
+      "d_50846271_3_cross_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "cross_gap": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_50846271_3_cross_gap)",
+      "fill(colour:=train, region:=d_50846271_3_cross_gap)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_50846271_3_cross_gap": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        2,
+        [
+         5
+        ]
+       ],
+       [
+        9,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "50846271",
+     "sample": 4,
+     "verb": "complete crosses",
+     "reading": "There are partial plus/cross shapes drawn in 2 on a noisy 5 background. Each cross is completed to a symmetric plus (equal arms, length 2 or 3 as the visible 2s show), and the missing cells of the plus become 8.",
+     "why": "after the change each cross is a full symmetric plus of 2 and 8; only cells on those pluses change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "50aad11f": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "50aad11f",
+     "sample": 0,
+     "verb": "recolour by nearest marker and pack",
+     "reading": "Each 6-coloured shape takes the colour of the single marker cell nearest to it; the recoloured shapes are cropped to their boxes and placed side by side (or stacked, following how they are laid out in the input) to form the output.",
+     "why": "each output block is one input shape's box with 6 replaced by its marker's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "50aad11f",
+     "sample": 1,
+     "verb": "recolour shapes by nearest marker and concatenate",
+     "reading": "Each 6-coloured shape takes the colour of its nearest single marker. The recoloured shapes are cropped to their 4x4 boxes and concatenated, side by side if they are spread horizontally, stacked if vertically, in spatial order.",
+     "why": "each output block is one 6-shape's box with 6 replaced by its nearest marker's colour; the markers themselves are dropped",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "50aad11f",
+     "sample": 2,
+     "verb": "recolour by nearest marker and concatenate",
+     "reading": "Several 6-shapes each have one single-cell marker of another colour near them. Each shape is recoloured with its nearest marker's colour, and the shapes' bounding boxes are placed side by side (left to right when the shapes are spread horizontally, top to bottom when spread vertically) to form the output.",
+     "why": "output is the shapes' boxes, in input order, each shape painted with its marker colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "50aad11f",
+     "sample": 3,
+     "verb": "recolour and concatenate",
+     "reading": "Several 6-coloured shapes each have one single coloured marker cell next to them. Each shape is recoloured with its nearest marker's colour, cropped to its box, and the crops are joined side by side (left to right) when the shapes lie in a row, or stacked (top to bottom) when they lie in a column.",
+     "why": "each output block is a 6 shape's box with 6 replaced by its nearest marker's colour; blocks follow input order",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "50aad11f",
+     "sample": 4,
+     "verb": "recolour by nearest marker and concatenate",
+     "reading": "Each colour-6 shape takes the colour of the single marker cell nearest to it. The shapes are then cropped to their boxes and joined side by side (left to right, or top to bottom when they are stacked vertically).",
+     "why": "the output is the shapes' boxes placed next to each other, each recoloured to its marker's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "50c07299": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "50c07299",
+     "sample": 0,
+     "verb": "advance diagonal sequence",
+     "reading": "An anti-diagonal segment of 2 of length n is replaced by the next segment of a staircase growing from the bottom-left corner: length n+1, starting at the diagonal cell just above-right of the old segment's top-right end (segments of lengths 1,2,3,4,... laid end to end along one anti-diagonal).",
+     "why": "output has one anti-diagonal segment, one cell longer than the input's, on the same diagonal line from the bottom-left corner",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50c07299",
+     "sample": 1,
+     "verb": "advance diagonal and grow by one",
+     "reading": "A diagonal (up-right) segment of 2s of length n is erased and redrawn as a segment of length n+1 on the same diagonal. The new segment starts at the cell just past the old segment's upper end.",
+     "why": "the output segment lies on the input segment's diagonal, is one longer, and touches the old segment's end without overlapping it",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50c07299",
+     "sample": 2,
+     "verb": "advance diagonal",
+     "reading": "A diagonal (up-right) segment of 2s of length n sits on the anti-diagonal from the bottom-left corner. It is replaced by the next segment along that diagonal, of length n+1, starting just after where the old one ended; the old segment is erased.",
+     "why": "output holds one diagonal segment, one cell longer, adjacent beyond the old one on the same line",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50c07299",
+     "sample": 3,
+     "verb": "advance and grow diagonal",
+     "reading": "A diagonal run of n 2-cells going up-right is replaced by the next run in the sequence: a run of n+1 cells that starts one step up-right of the old run's upper end and continues up-right; the old run is erased.",
+     "why": "lengths go 1->2, 2->3, 3->4 and each new run begins diagonally just beyond the previous run's end",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50c07299",
+     "sample": 4,
+     "verb": "advance and lengthen diagonal",
+     "reading": "A diagonal (up-right) line of 2s is replaced by a line one cell longer that continues on the same anti-diagonal, starting right after the old line's upper end. The old line is erased.",
+     "why": "the output segment lies on the same anti-diagonal, touches the old segment's end, and has length n+1",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "50f325b5": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 3,
+   "harness": "wrong",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "50f325b5",
+     "sample": 0,
+     "verb": "find rotated copies of template",
+     "reading": "The one 8-coloured shape is a template; every placement of that shape (in any of its four rotations) lying entirely on 3-cells is recoloured 8.",
+     "why": "every 3 cell covered by a rotated placement of the 8-template becomes 8; nothing else changes",
+     "new_rows": [
+      "d_50f325b5_0_shape_match"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "shape_match": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_50f325b5_0_shape_match)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_50f325b5_0_shape_match": [
+       [
+        8,
+        [
+         3
+        ]
+       ],
+       [
+        12,
+        [
+         3
+        ]
+       ],
+       [
+        10,
+        [
+         3
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "50f325b5",
+     "sample": 1,
+     "verb": "find rotated template copies and paint them",
+     "reading": "The single 8 shape is a template. Every placement of that template, under any rotation (no reflection), that lands entirely on colour-3 cells has those cells repainted 8.",
+     "why": "the changed cells are exactly the union of all placements of a rotated template that lie entirely on 3s (checked on all 4 pairs)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "50f325b5",
+     "sample": 2,
+     "verb": "find rotated copies",
+     "reading": "A small shape is drawn in 8. Every placement of that shape, rotated by 0/90/180/270 degrees (no reflections), that lies entirely on 3 cells has those cells recoloured 8.",
+     "why": "exactly the 3 cells covered by a rotated copy of the 8 shape become 8 (3->8); nothing else changes",
+     "new_rows": [
+      "d_50f325b5_2_rot_match"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "rot_match": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_50f325b5_2_rot_match)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_50f325b5_2_rot_match": [
+       [
+        8,
+        [
+         3
+        ]
+       ],
+       [
+        12,
+        [
+         3
+        ]
+       ],
+       [
+        10,
+        [
+         3
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "50f325b5",
+     "sample": 3,
+     "verb": "recolour shape matches",
+     "reading": "A small 8 shape sits in a noisy multi-colour grid. Every placement of that shape, possibly rotated by 90/180/270 degrees, that lies entirely on colour-3 cells is recoloured 8.",
+     "why": "cells covered by some rotated copy of the 8 template whose cells are all 3 become 8 (key 3->8); no reflections, no other cells change",
+     "new_rows": [
+      "d_50f325b5_3_match3"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "match3": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_50f325b5_3_match3)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_50f325b5_3_match3": [
+       [
+        8,
+        [
+         3
+        ]
+       ],
+       [
+        12,
+        [
+         3
+        ]
+       ],
+       [
+        10,
+        [
+         3
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "50f325b5",
+     "sample": 4,
+     "verb": "recolour copies of the template shape",
+     "reading": "One small shape of 8 shows a template. Every group of 3-cells that forms the same shape (rotations allowed) is recoloured to 8.",
+     "why": "every changed cell was 3 and belongs to a copy of the 8-template; nothing else changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "5117e062": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 4,
+   "harness": "exact",
+   "max_support": 3,
+   "readings": [
+    {
+     "task": "5117e062",
+     "sample": 0,
+     "verb": "extract marked shape",
+     "reading": "The one shape that contains an 8 cell is cut out to its 3x3 box, and the 8 is repainted with the shape's own colour.",
+     "why": "output is the box of the multi-coloured component with its single 8 cell recoloured to the surrounding colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=nearest, subject:=smallest)[input:=extract(region:=exemplar)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(extract(region:=exemplar) ; recolour(key:=nearest, subject:=smallest))"
+     ],
+     "fillers": {
+      "seq1.extract.region=exemplar": [
+       [
+        6,
+        [
+         3,
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         2,
+         8
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=smallest": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "task": "5117e062",
+     "sample": 1,
+     "verb": "crop marked object and heal it",
+     "reading": "Exactly one object contains an 8 cell. The output is that object's box, with the 8 replaced by the object's own colour.",
+     "why": "the output is the 3x3 box of the only multi-coloured component, and its single 8 cell takes the colour of the surrounding shape",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5117e062",
+     "sample": 2,
+     "verb": "extract marked shape and fill its mark",
+     "reading": "Several 3x3 shapes; exactly one contains an 8 cell. The output is that shape's 3x3 box with the 8 replaced by the shape's own colour.",
+     "why": "the only multi-coloured component is the shape holding the 8; its box is the output with 8 -> surrounding shape colour",
+     "new_rows": [
+      "d_5117e062_2_eight"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "eight": [
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=nearest, subject:=d_5117e062_2_eight)[input:=extract(region:=exemplar)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(extract(region:=exemplar) ; recolour(key:=nearest, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.extract.region=exemplar": [
+       [
+        6,
+        [
+         3,
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         2,
+         8
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_5117e062_2_eight": [
+       [
+        1,
+        [
+         8
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "5117e062",
+     "sample": 3,
+     "verb": "extract and repair",
+     "reading": "Several single-colour shapes; one of them has an 8 cell inside it. Cut out that shape's box and turn the 8 into the shape's own colour.",
+     "why": "the only multi-coloured component is the shape holding the 8; its box is the output with the 8 cell recoloured to the surrounding shape colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=nearest, subject:=smallest)[input:=extract(region:=exemplar)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(extract(region:=exemplar) ; recolour(key:=nearest, subject:=smallest))"
+     ],
+     "fillers": {
+      "seq1.extract.region=exemplar": [
+       [
+        6,
+        [
+         3,
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         2,
+         8
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=smallest": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "task": "5117e062",
+     "sample": 4,
+     "verb": "extract and repaint",
+     "reading": "One shape has a single 8 cell embedded in it. Crop that shape's 3x3 box, then repaint the 8 cell in the shape's own colour.",
+     "why": "the output is the box of the multi-coloured component, with the 8 cell replaced by the colour around it",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "outer.subject"
+     ],
+     "fits": [
+      "recolour(key:=nearest, subject:=smallest)[input:=extract(region:=exemplar)@grid]",
+      "recolour(key:=nearest, subject:=train)[input:=extract(region:=exemplar)@grid]"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "seq(extract(region:=exemplar) ; recolour(key:=nearest, subject:=smallest))",
+      "seq(extract(region:=exemplar) ; recolour(key:=nearest, subject:=train))"
+     ],
+     "fillers": {
+      "seq1.extract.region=exemplar": [
+       [
+        6,
+        [
+         3,
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         2,
+         8
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=smallest": [
+       null,
+       null,
+       null
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

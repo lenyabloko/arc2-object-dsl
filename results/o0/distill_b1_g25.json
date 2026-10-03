@@ -1,0 +1,1141 @@
+{
+ "group": 25,
+ "tasks": {
+  "bf32578f": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "bf32578f",
+     "sample": 0,
+     "verb": "complete and fill interior",
+     "reading": "The input is the left half of an outline shape. Mirror it across the right edge of its box to close the outline, then output only the interior of the closed outline, filled with the shape colour (the outline itself is erased).",
+     "why": "on every pair the output's fg cells are exactly the interior of the outline formed by the input half plus its reflection across the box's right edge",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "bf32578f",
+     "sample": 1,
+     "verb": "complete by mirror, keep filled interior",
+     "reading": "The input is the left half of a closed symmetric outline. Mirror it about a vertical axis just right of its rightmost column to close it. The output is only the filled interior of the closed outline, in the outline colour; the outline itself is erased.",
+     "why": "on every pair the output's non-bg cells are exactly the cells strictly inside the mirrored-closed outline",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "bf32578f",
+     "sample": 2,
+     "verb": "complete symmetric outline and fill interior",
+     "reading": "The input is the left half of an open outline. Mirror it about the vertical line just right of its rightmost column to close the shape, then output only the shape's interior filled with the shape colour (the outline itself is erased).",
+     "why": "on every pair the output's filled cells are exactly the cells strictly inside the outline completed by mirroring",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "bf32578f",
+     "sample": 3,
+     "verb": "complete by mirror and fill interior",
+     "reading": "The input is the left half of a symmetric outline; mirror it about the vertical axis just right of its rightmost column, then output only the enclosed interior filled with the outline colour (the outline itself is erased).",
+     "why": "output cells are exactly the bg cells strictly inside the mirrored closed outline, in its colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "bf32578f",
+     "sample": 4,
+     "verb": "complete by mirror and fill interior",
+     "reading": "The input is the left half of a symmetric outline. Mirror it about the vertical line just right of its rightmost column, then output only the interior of the completed outline, filled with the outline's colour (the outline itself is erased).",
+     "why": "on every pair the filled cells are exactly the cells strictly inside the outline formed by the object plus its mirror image",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "c074846d": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c074846d",
+     "sample": 0,
+     "verb": "rotate arm about pivot",
+     "reading": "A straight arm of 2s is attached to a single 5. The arm is rotated 90 degrees clockwise about the 5 (drawn as 2s), and the cells of the old arm become 3.",
+     "why": "on every pair the arm direction left->up, right->down, up->right, down->left (clockwise), same length, old arm cells become 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "c074846d",
+     "sample": 1,
+     "verb": "rotate arm about pivot",
+     "reading": "A 5 pivot has an arm of 2s. The arm is rotated 90 degrees clockwise about the pivot (same length, still colour 2), and the cells of the old arm become 3.",
+     "why": "on every pair the new 2-run starts next to the 5, has the old arm's length, and points in the old direction turned clockwise; old arm cells are 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "c074846d",
+     "sample": 2,
+     "verb": "rotate arm about pivot",
+     "reading": "A 2-coloured arm is attached to a 5 pivot. The arm turns 90 degrees clockwise about the pivot (same length, colour 2), and the arm's old cells become 3.",
+     "why": "on every pair the new 2 run has the arm's length and points 90 degrees clockwise from the old direction; the old run is all 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "c074846d",
+     "sample": 3,
+     "verb": "rotate arm about pivot",
+     "reading": "A 5 pivot has an arm of 2s; the arm is rotated 90 degrees clockwise about the pivot (new arm in 2), and the old arm cells become 3.",
+     "why": "new 2 cells are the old arm rotated clockwise about the 5; old arm cells are 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "c074846d",
+     "sample": 4,
+     "verb": "rotate arm clockwise about pivot",
+     "reading": "A 5 cell has an arm of 2s attached on one side. The arm rotates 90 degrees clockwise about the 5 (same length); the old arm cells become 3.",
+     "why": "on every pair the new 2 run has the old run's length and points in the direction 90 degrees clockwise from the old one; old run cells are 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "c0f76784": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c0f76784",
+     "sample": 0,
+     "verb": "fill holes by size",
+     "reading": "Each square outline of 5 has its hollow interior filled with a colour set by the interior size: 1x1 -> 6, 2x2 -> 7, 3x3 -> 8.",
+     "why": "every enclosed interior is filled, colour depends only on its size; outlines and outside unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c0f76784",
+     "sample": 1,
+     "verb": "fill holes by size",
+     "reading": "Each square outline of 5 has its hollow interior filled with a colour chosen by the interior size: 1x1 -> 6, 2x2 -> 7, 3x3 -> 8.",
+     "why": "every enclosed hole is filled entirely with the colour its size maps to; nothing outside the holes changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c0f76784",
+     "sample": 2,
+     "verb": "fill hole by size",
+     "reading": "Each hollow square of 5 has its hole filled with a colour set by the hole size: 1x1 hole -> 6, 2x2 -> 7, 3x3 -> 8.",
+     "why": "every interior cell is filled with the size-keyed colour; nothing outside the holes changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c0f76784",
+     "sample": 3,
+     "verb": "fill hollow square by size",
+     "reading": "Each hollow square of 5s has its interior filled with a colour set by the interior size: 1x1 -> 6, 2x2 -> 7, 3x3 -> 8.",
+     "why": "every interior cell gets the colour keyed by its square's interior side; outlines unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c0f76784",
+     "sample": 4,
+     "verb": "fill interior by size",
+     "reading": "Each grey square outline gets its hollow interior filled with a colour chosen by interior size: 1x1 -> 6, 2x2 -> 7, 3x3 -> 8.",
+     "why": "every enclosed background cell is filled and the fill colour depends only on the enclosing square's interior size",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c1990cce": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c1990cce",
+     "sample": 0,
+     "verb": "draw diagonal pattern",
+     "reading": "A 1xN row with a central 2 becomes an NxN grid: the 2 draws a V of two diagonals down to the side borders, and inside/under its left arm parallel down-right diagonals of 1 are drawn every 4 columns (lines with col-row congruent to centre mod 4), never overwriting 2s.",
+     "why": "on every pair the 2s form the V from the apex and the 1s are exactly the down-right diagonals spaced 4 apart starting below the left arm",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c1990cce",
+     "sample": 1,
+     "verb": "draw V and diagonal hatching",
+     "reading": "The 1xN row with a single 2 at the centre column c becomes an NxN grid: the 2 sends two diagonal lines down-left and down-right to the edges (a V), and every cell strictly below/inside the V with (x - y) mod 4 == c mod 4 becomes 1.",
+     "why": "on every pair the 2 cells form the V from the apex and the 1 cells are exactly the inside-V cells on the period-4 down-right diagonals aligned with the apex column",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c1990cce",
+     "sample": 2,
+     "verb": "draw V with hatching",
+     "reading": "The 1-row input with one 2 becomes a WxW square: a V of 2s runs diagonally down-left and down-right from the 2 to the side borders, and inside the V, down-right diagonals of 1 are drawn every 4 cells parallel to the right arm.",
+     "why": "on every pair, 2s lie on |x-c| = y for y <= c, and 1s lie on cells with y-x+c a positive multiple of 4 and y > c-x",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c1990cce",
+     "sample": 3,
+     "verb": "draw diagonal V and parallel rays",
+     "reading": "A 1xN row with a 2 in the middle becomes an NxN grid: the 2 spreads as a V of two diagonals down to the sides, and diagonal lines of 1 parallel to the right arm (every 4 columns) are drawn below the left arm.",
+     "why": "row 0 is the input; 2s on both diagonals from the centre; 1s on the spaced parallel diagonals below the left arm",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c1990cce",
+     "sample": 4,
+     "verb": "draw V and parallel diagonals",
+     "reading": "The 1-row input becomes a square grid (width x width). From the single 2 two diagonal 2-lines go down-left and down-right to the borders (a V). Below the left arm, parallel diagonals of 1 run down-right (parallel to the right arm), spaced 4 columns apart, i.e. on cells with x - y = apex_col - 4k (k >= 1), starting just below the left arm and running to the border.",
+     "why": "on every pair the 1 cells are exactly the cells below the left 2 arm on diagonals x - y congruent to the apex column mod 4",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c1d99e64": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "c1d99e64",
+     "sample": 0,
+     "verb": "paint empty lines",
+     "reading": "Every row or column that is entirely 0 is painted with 2; all other cells stay.",
+     "why": "the cells of all-0 rows and columns become 2 and nothing else changes",
+     "new_rows": [
+      "d_c1d99e64_0_empty_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "empty_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_c1d99e64_0_empty_line)",
+      "fill(colour:=train, region:=d_c1d99e64_0_empty_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_c1d99e64_0_empty_line": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ],
+       [
+        45,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c1d99e64",
+     "sample": 1,
+     "verb": "recolour full lines",
+     "reading": "Every full row or full column made of one colour (always the 0 colour here) is recoloured to 2; all other cells stay.",
+     "why": "every cell of a single-colour full row or column (colour 0) becomes 2 (key 0->2); no other cell changes",
+     "new_rows": [
+      "d_c1d99e64_1_full_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "full_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_c1d99e64_1_full_line)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_c1d99e64_1_full_line": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ],
+       [
+        45,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c1d99e64",
+     "sample": 2,
+     "verb": "paint empty lines",
+     "reading": "Every full row and every full column made only of 0s is painted 2.",
+     "why": "the cells that change are exactly the cells of all-0 rows and columns, all to colour 2",
+     "new_rows": [
+      "d_c1d99e64_2_zline"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zline": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_c1d99e64_2_zline)",
+      "fill(colour:=train, region:=d_c1d99e64_2_zline)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_c1d99e64_2_zline": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ],
+       [
+        45,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c1d99e64",
+     "sample": 3,
+     "verb": "recolour empty lines",
+     "reading": "Every full row or column made only of 0 (a non-background colour here) is recoloured to 2.",
+     "why": "cells on a full single-colour non-background line change 0 -> 2; nothing else changes",
+     "new_rows": [
+      "d_c1d99e64_3_fullline"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "fullline": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c1d99e64",
+     "sample": 4,
+     "verb": "recolour full empty lines",
+     "reading": "Every full row and full column that contains no background cell (all 0 lines) is recoloured to 2.",
+     "why": "every cell of a row or column made entirely of non-background (0) becomes 2; nothing else changes",
+     "new_rows": [
+      "d_c1d99e64_4_full_lines"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "full_lines": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c3e719e8": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c3e719e8",
+     "sample": 0,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is tiled into a 9x9 grid: block (i,j) is a copy of the input where input cell (i,j) has the most common colour, else empty.",
+     "why": "blocks holding a copy are exactly the positions of the input's most frequent colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c3e719e8",
+     "sample": 1,
+     "verb": "self-tile by majority colour",
+     "reading": "The 3x3 input is scaled to a 3x3 arrangement of blocks: a block holds a copy of the input exactly where the input cell has the input's most common colour; other blocks are empty.",
+     "why": "every output block is the input or all 0, and the copies sit at the positions of the input's most common (background) colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c3e719e8",
+     "sample": 2,
+     "verb": "self-tile by most common colour",
+     "reading": "The 3x3 input is scaled into a 3x3 grid of blocks: a block holds a copy of the input where the input cell has the input's most common colour; other blocks are empty.",
+     "why": "each output block is the input exactly when the matching input cell is the most common (background) colour, else all 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c3e719e8",
+     "sample": 3,
+     "verb": "self-tile by majority colour",
+     "reading": "The 3x3 input is tiled 3x3; a block gets a copy of the input where the input cell has the most common colour, other blocks are empty.",
+     "why": "block (i,j) is the input iff input[i][j] is the most common (background) colour, else all 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c3e719e8",
+     "sample": 4,
+     "verb": "self-tile at majority colour",
+     "reading": "The output is a 3x3 grid of input-sized blocks; a block gets a copy of the input where the input cell has the input's most common colour, otherwise it is empty (0).",
+     "why": "block (i,j) is the input exactly when input[i][j] is the most common colour, else all 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c4d1a9ae": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c4d1a9ae",
+     "sample": 0,
+     "verb": "recolour panel background cyclically",
+     "reading": "The grid is split into vertical panels by all-background columns; each panel has one pattern colour. In each panel the background cells take the pattern colour of the next panel to the right (the last panel takes the first panel's colour); separator columns stay.",
+     "why": "on both pairs panel k's background becomes panel k+1's colour (wrapping), pattern cells and separator columns unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c4d1a9ae",
+     "sample": 1,
+     "verb": "cyclic band recolour",
+     "reading": "Full columns of the background colour cut the grid into column bands, each with one other colour. In each band the background cells take the colour of the next band to the right (the last band takes the first band's colour).",
+     "why": "on every pair each band's bg cells become the next band's colour; separator columns and non-bg cells are unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "c4d1a9ae",
+     "sample": 2,
+     "verb": "recolour panel background cyclically",
+     "reading": "Background-coloured columns split the grid into panels, each with one pattern colour. In each panel the background cells take the pattern colour of the next panel to the right, the last panel taking the first panel's colour; the separator columns stay.",
+     "why": "every background cell of panel i becomes the colour of panel i+1 mod n; pattern cells and separator columns are unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c4d1a9ae",
+     "sample": 3,
+     "verb": "recolour panel background by next panel",
+     "reading": "Full background columns split the grid into panels, each with one pattern colour; background cells in each panel take the colour of the next panel to the right (the last wraps to the first).",
+     "why": "in panel i every bg cell becomes colour(panel i+1 mod n); separator columns and pattern cells unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c4d1a9ae",
+     "sample": 4,
+     "verb": "recolour zone background cyclically",
+     "reading": "Full background-coloured columns cut the grid into vertical zones, each with one non-background colour. In each zone the background cells take the colour of the next zone to the right (the last zone takes the first zone's colour); separator columns stay.",
+     "why": "on both pairs zone i's background becomes zone (i+1 mod n)'s colour; non-background cells and separator columns unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c62e2108": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c62e2108",
+     "sample": 0,
+     "verb": "repeat shape toward marker",
+     "reading": "Each hollow square points toward a bar of 1s on the border in line with it; the square is repeated end to end (period = its size) from itself to that border, the last copy cut at the border, and the 1-bars are erased.",
+     "why": "each square's copies tile contiguously along its row or column band from the square to every border carrying an aligned 1-bar",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c62e2108",
+     "sample": 1,
+     "verb": "repeat object toward edge markers",
+     "reading": "Each 4x4 hollow square has 4-cell lines of 1 on some grid edges aligned with it. The square is repeated with period 4 from its position toward each such edge until the grid border (clipped there); the 1 markers are overwritten.",
+     "why": "on every pair the output is the squares plus their period-4 repeats along each marked direction, and no 1 remains",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c62e2108",
+     "sample": 2,
+     "verb": "repeat square toward border marker",
+     "reading": "Each hollow square has 1-bars on the grid border in line with it. The square is copied edge to edge (period = its size) from itself toward each such bar until the border; the bars are covered.",
+     "why": "on every pair the output equals the squares plus abutting copies running from each square to every border bar aligned with it",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c62e2108",
+     "sample": 3,
+     "verb": "repeat square toward edge marker",
+     "reading": "Each 1-coloured segment on a grid edge points at the hollow square aligned with it; that square is repeated with period equal to its size toward that edge (cut at the border), and the 1 segment is removed.",
+     "why": "output = squares plus periodic copies from each square to its marker edge; no 1 remains",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c62e2108",
+     "sample": 4,
+     "verb": "repeat square toward border marker",
+     "reading": "Short runs of 1 on the grid border, aligned with a hollow square, mark directions: the square is repeated edge to edge (period = its size) from its position to that border; the 1 markers are erased (overwritten). Squares without a marker stay as they are.",
+     "why": "every row/column band between a square and its aligned border marker is filled with copies of the square; no 1 remains",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c6e1b8da": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c6e1b8da",
+     "sample": 0,
+     "verb": "slide along tail",
+     "reading": "Some rectangles have a thin one-cell-wide tail; each such rectangle slides in the tail's direction by the tail's length and the tail disappears. Rectangles partly hidden under others are restored as full rectangles; the moved shape is drawn on top.",
+     "why": "on every pair each tailed rectangle's new position equals old position shifted by tail length toward the tail, keeping its shape",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c6e1b8da",
+     "sample": 1,
+     "verb": "slide along tail",
+     "reading": "Some solid rectangles carry a one-cell-wide tail line. Each such rectangle slides along its tail's direction by the tail length and the tail is erased; moved rectangles are drawn on top, and parts of other rectangles that were hidden under them are restored to full rectangles.",
+     "why": "on every pair each tailed rectangle keeps its shape and is shifted by its tail length in the tail direction, with no tail left",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c6e1b8da",
+     "sample": 2,
+     "verb": "slide rectangle along its tail",
+     "reading": "Some rectangles have a one-cell-wide tail. Each such rectangle moves in the tail's direction by the tail's length and the tail disappears; rectangles it was covering are shown complete, and the moved rectangle covers anything at its new place.",
+     "why": "each tailed rectangle keeps its shape and ends shifted by tail length along the tail; tailless rectangles keep place (completed where uncovered)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c6e1b8da",
+     "sample": 3,
+     "verb": "slide rectangle along its tail",
+     "reading": "Some rectangles have a one-cell-wide tail; each such rectangle slides in the tail's direction by the tail's length and the tail disappears; rectangles it was covering are shown whole, and the moved rectangle is drawn on top.",
+     "why": "each tailed rectangle appears shifted by its tail vector, untailed rectangles appear as full boxes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c6e1b8da",
+     "sample": 4,
+     "verb": "slide rectangle along its tail",
+     "reading": "Some solid rectangles have a one-cell-wide tail sticking out of one side. Each such rectangle slides in the tail's direction by the tail's length, and the tail is erased; rectangles it used to overlap are shown complete.",
+     "why": "every tailed rectangle keeps its shape and is shifted by exactly its tail length along the tail; tails vanish",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "c92b942c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "c92b942c",
+     "sample": 0,
+     "verb": "tile then decorate",
+     "reading": "Tile the input 3x3, then for every coloured cell paint the background of its whole row 1 and put 3 at its up-left and down-right diagonal neighbours (if inside the grid).",
+     "why": "on every pair the output equals the 3x3 tiling plus 1-rows through the coloured cells and 3s on their up-left/down-right diagonals",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c92b942c",
+     "sample": 1,
+     "verb": "tile and decorate",
+     "reading": "The input is tiled 3x3. Then every non-zero cell's whole row is filled with 1 (keeping the coloured cells), and the cell diagonally up-left and the cell diagonally down-right of each coloured cell become 3 (clipped at the border).",
+     "why": "on every pair the output equals the 3x3 tiling with 1-rows through coloured cells and 3s on their up-left and down-right diagonals",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c92b942c",
+     "sample": 2,
+     "verb": "tile then decorate",
+     "reading": "Tile the input 3x3. Then every row containing a coloured cell is filled with 1 (except the coloured cells), and each coloured cell gets a 3 at its up-left and down-right diagonal neighbours.",
+     "why": "on every pair the output equals the 3x3 tiling with 1-rows through coloured cells and 3s on their main-diagonal neighbours",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c92b942c",
+     "sample": 3,
+     "verb": "tile then decorate",
+     "reading": "The input is tiled 3x3; then on the big grid, every row containing a coloured cell is filled with 1 (except the coloured cells), and each coloured cell gets a 3 at its up-left and down-right diagonal neighbours.",
+     "why": "output is 3x3 tiling of input with 1-rows through coloured cells and 3s on their NW/SE diagonals",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c92b942c",
+     "sample": 4,
+     "verb": "tile then decorate",
+     "reading": "Tile the input 3x3. Then for every non-background cell, fill its entire row with 1 (except the coloured cells) and put 3 at its up-left and down-right diagonal neighbours.",
+     "why": "on every pair the output equals the 3x3 tiling with full 1 rows through coloured cells and 3 on their main-diagonal neighbours",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,11 @@
+% row: d_c1d99e64_1_full_line
+% source: distillation batch reading, task c1d99e64, sample 1
+% output: full_line(Y, X)
+w(max(X)) :- px(Y, X, C).
+h(max(Y)) :- px(Y, X, C).
+rowc(Y, C, count(X)) :- px(Y, X, C).
+colc(X, C, count(Y)) :- px(Y, X, C).
+frow(Y) :- rowc(Y, C, N), w(M), N = M + 1.
+fcol(X) :- colc(X, C, N), h(M), N = M + 1.
+full_line(Y, X) :- frow(Y), px(Y, X, C).
+full_line(Y, X) :- fcol(X), px(Y, X, C).

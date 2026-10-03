@@ -1,0 +1,7 @@
+% row: d_17829a00_0_loose
+% source: distillation batch reading, task 17829a00, sample 0
+% output: loose(Y, X)
+wid(count(X)) :- px(Y, X, C), Y = 0.
+rowc(Y, C, count(X)) :- cell(Y, X, C).
+wall(Y) :- rowc(Y, C, N), wid(N).
+loose(Y, X) :- cell(Y, X, C), !wall(Y).

@@ -1,0 +1,8 @@
+% row: d_c1d99e64_2_zline
+% source: distillation batch reading, task c1d99e64, sample 2
+% output: zline(Y, X)
+z(Y, X) :- px(Y, X, C), C = 0.
+nzrow(Y) :- px(Y, X, C), !z(Y, X).
+nzcol(X) :- px(Y, X, C), !z(Y, X).
+zline(Y, X) :- z(Y, X), !nzrow(Y).
+zline(Y, X) :- z(Y, X), !nzcol(X).

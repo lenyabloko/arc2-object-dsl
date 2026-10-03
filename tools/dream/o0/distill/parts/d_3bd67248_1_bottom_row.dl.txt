@@ -1,0 +1,6 @@
+% row: d_3bd67248_1_bottom_row
+% source: distillation batch reading, task 3bd67248, sample 1
+% output: bottom_row(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+fgc(Y, X) :- cell(Y, X, C).
+bottom_row(Y, X) :- px(Y, X, C), !fgc(Y, X), hmax(H), Y = H.

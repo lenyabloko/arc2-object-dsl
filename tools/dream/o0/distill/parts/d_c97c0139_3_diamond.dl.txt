@@ -1,0 +1,14 @@
+% row: d_c97c0139_3_diamond
+% source: distillation batch reading, task c97c0139, sample 3
+% output: diamond(Y, X)
+lo_y(O, min(Y)) :- obj(O, Y, X).
+hi_y(O, max(Y)) :- obj(O, Y, X).
+lo_x(O, min(X)) :- obj(O, Y, X).
+hi_x(O, max(X)) :- obj(O, Y, X).
+hseg(O) :- lo_y(O, A), hi_y(O, B), A = B, lo_x(O, L), hi_x(O, R), R > L.
+vseg(O) :- lo_x(O, A), hi_x(O, B), A = B, lo_y(O, T), hi_y(O, U), U > T.
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+diamond(Y, X) :- hseg(O), obj(O, Y0, X), lo_x(O, L), hi_x(O, R), bgc(Y, X), D = Y - Y0, D > 0, E = X - L, F = R - X, D <= E, D <= F.
+diamond(Y, X) :- hseg(O), obj(O, Y0, X), lo_x(O, L), hi_x(O, R), bgc(Y, X), D = Y0 - Y, D > 0, E = X - L, F = R - X, D <= E, D <= F.
+diamond(Y, X) :- vseg(O), obj(O, Y, X0), lo_y(O, T), hi_y(O, U), bgc(Y, X), D = X - X0, D > 0, E = Y - T, F = U - Y, D <= E, D <= F.
+diamond(Y, X) :- vseg(O), obj(O, Y, X0), lo_y(O, T), hi_y(O, U), bgc(Y, X), D = X0 - X, D > 0, E = Y - T, F = U - Y, D <= E, D <= F.

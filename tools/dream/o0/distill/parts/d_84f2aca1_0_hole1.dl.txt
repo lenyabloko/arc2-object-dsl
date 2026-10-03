@@ -1,0 +1,6 @@
+% row: d_84f2aca1_0_hole1
+% source: distillation batch reading, task 84f2aca1, sample 0
+% output: hole1(Y, X)
+z(Y, X) :- px(Y, X, C), C = 0.
+nfg(Y, X, count(DY, DX)) :- z(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+hole1(Y, X) :- nfg(Y, X, N), N = 8.

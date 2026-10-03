@@ -1,0 +1,13 @@
+% row: d_396d80d7_2_diag_ring
+% source: distillation batch reading, task 396d80d7, sample 2
+% output: diag_ring(Y, X)
+top(min(Y)) :- cell(Y, X, C).
+outer(C) :- top(Y), cell(Y, X, C).
+oc(Y, X) :- outer(C), cell(Y, X, C).
+fgc(Y, X) :- cell(Y, X, C).
+ortho(DY, DX) :- off(DY, DX), DY = 0.
+ortho(DY, DX) :- off(DY, DX), DX = 0.
+diag(DY, DX) :- off(DY, DX), !ortho(DY, DX).
+nd(Y2, X2) :- oc(Y, X), diag(DY, DX), Y2 = Y + DY, X2 = X + DX.
+no(Y2, X2) :- oc(Y, X), ortho(DY, DX), Y2 = Y + DY, X2 = X + DX.
+diag_ring(Y, X) :- px(Y, X, C), nd(Y, X), !fgc(Y, X), !no(Y, X).

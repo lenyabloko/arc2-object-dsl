@@ -1,0 +1,22 @@
+% row: d_14b8e18c_4_sq_corner_marks
+% source: distillation batch reading, task 14b8e18c, sample 4
+% output: sq_corner_marks(Y, X)
+ylo(O, min(Y)) :- obj(O, Y, X).
+yhi(O, max(Y)) :- obj(O, Y, X).
+xlo(O, min(X)) :- obj(O, Y, X).
+xhi(O, max(X)) :- obj(O, Y, X).
+box(O, A, B, C, D) :- ylo(O, A), yhi(O, B), xlo(O, C), xhi(O, D).
+sq(O) :- box(O, A, B, C, D), S = B - A, S = D - C, S > 0.
+gap(O) :- box(O, A, B, C, D), px(A, X, K), X >= C, X <= D, !obj(O, A, X).
+gap(O) :- box(O, A, B, C, D), px(B, X, K), X >= C, X <= D, !obj(O, B, X).
+gap(O) :- box(O, A, B, C, D), px(Y, C, K), Y >= A, Y <= B, !obj(O, Y, C).
+gap(O) :- box(O, A, B, C, D), px(Y, D, K), Y >= A, Y <= B, !obj(O, Y, D).
+good(O) :- sq(O), !gap(O).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = A - 1, X = C, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = A - 1, X = D, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = B + 1, X = C, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = B + 1, X = D, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = A, X = C - 1, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = B, X = C - 1, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = A, X = D + 1, px(Y, X, K).
+sq_corner_marks(Y, X) :- good(O), box(O, A, B, C, D), Y = B, X = D + 1, px(Y, X, K).

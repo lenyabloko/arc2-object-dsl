@@ -1,0 +1,10 @@
+% row: d_d2acf2cb_2_lane
+% source: distillation batch reading, task d2acf2cb, sample 2
+% output: lane(Y, X)
+w(max(X)) :- px(Y, X, C).
+h(max(Y)) :- px(Y, X, C).
+four(Y, X) :- px(Y, X, C), C = 4.
+hrow(Y) :- four(Y, X0), X0 = 0, w(W), four(Y, W).
+vcol(X) :- four(Y0, X), Y0 = 0, h(H), four(H, X).
+lane(Y, X) :- hrow(Y), px(Y, X, C), !four(Y, X).
+lane(Y, X) :- vcol(X), px(Y, X, C), !four(Y, X).

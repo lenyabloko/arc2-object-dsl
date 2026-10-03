@@ -1,0 +1,248 @@
+[
+ {
+  "task": "0a938d79",
+  "reading": "Two single cells sit on opposite long edges. Each becomes a full line across the short dimension, and the pair of lines repeats with the same spacing and alternating colours to the far end of the grid.",
+  "verb": "draw repeating stripes",
+  "frame": {
+   "how": "other",
+   "verb": "draw repeating stripes"
+  },
+  "slots": {
+   "seeds": "the two isolated coloured cells",
+   "orientation": "lines run across the short side of the grid (perpendicular to the long axis)",
+   "period": "the offset between the two seeds along the long axis",
+   "colours": "alternate seed1, seed2, seed1, ... starting at the first seed and continuing to the grid end"
+  },
+  "why": "every output line lies at seed position + k*period along the long axis, coloured by k's parity",
+  "invariants": [
+   "grid size",
+   "background before the first seed"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0ca9ddb6",
+  "reading": "Each red (2) cell gets yellow (4) on its four diagonal neighbours; each blue (1) cell gets orange (7) on its four orthogonal neighbours. Other colours are left alone.",
+  "verb": "decorate cells by colour",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "diag_of_red",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "orth_of_blue",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "diag_of_red",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\ndiagoff(DY, DX) :- off(DY, DX), !orth(DY, DX).\ndiag_of_red(Y, X) :- cell(Y0, X0, C), C = 2, diagoff(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B)."
+   },
+   {
+    "name": "orth_of_blue",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\north_of_blue(Y, X) :- cell(Y0, X0, C), C = 1, orth(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B)."
+   }
+  ],
+  "why": "the 4s are exactly the diagonal neighbours of 2s, the 7s exactly the orthogonal neighbours of 1s",
+  "invariants": [
+   "all input cells",
+   "cells of colours 6 and 8 get nothing"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0d3d703e",
+  "reading": "A fixed colour substitution applied to every cell: 1<->5, 2<->6, 3<->4, 8<->9.",
+  "verb": "substitute colours",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "input"
+   }
+  },
+  "why": "each input colour maps to the same output colour in every pair",
+  "invariants": [
+   "grid size",
+   "cell positions"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0d87d2a6",
+  "reading": "Pairs of blue (1) cells on opposite borders are joined by a blue line; every red (2) rectangle the line passes through turns entirely blue.",
+  "verb": "connect and colour crossed",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "hit"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "hit",
+    "datalog": "one(Y, X) :- cell(Y, X, C), C = 1.\nline(Y, X) :- one(Y, X1), one(Y, X2), px(Y, X, C), X1 < X, X < X2.\nline(Y, X) :- one(Y1, X), one(Y2, X), px(Y, X, C), Y1 < Y, Y < Y2.\ncrossed(O) :- line(Y, X), cell(Y, X, C), C = 2, obj(O, Y, X).\nhit(Y, X) :- line(Y, X).\nhit(Y, X) :- crossed(O), obj(O, Y, X)."
+   }
+  ],
+  "why": "the changed cells are exactly the line cells between two 1s on a row or column plus all cells of 2-objects the line meets; key 0->1, 2->1",
+  "invariants": [
+   "2-rectangles not on a line",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0f63c0b9",
+  "reading": "Each single coloured cell becomes a full horizontal line of its colour; the grid is cut into horizontal bands at the midpoints between seeds, and each band gets left and right border columns in its seed's colour (top and bottom grid rows are also drawn in the colour of the first and last band).",
+  "verb": "partition into banded frames",
+  "frame": {
+   "how": "other",
+   "verb": "partition into banded frames"
+  },
+  "slots": {
+   "seeds": "the isolated coloured cells, ordered by row",
+   "bands": "row ranges split halfway between consecutive seeds",
+   "drawn": "full row at each seed, columns 0 and W-1 over its band, row 0 in first seed colour, row H-1 in last seed colour"
+  },
+  "why": "every non-background output cell is a seed row, a band side column, or the top/bottom row, coloured by its band's seed",
+  "invariants": [
+   "grid size",
+   "interior cells off the seed rows stay background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "103eff5b",
+  "reading": "A small multicoloured key pattern is rotated 90 degrees clockwise, scaled up by the block size, and used to colour the large grey (8) silhouette, which has the same shape as the rotated key.",
+  "verb": "rotate and scale key onto silhouette",
+  "frame": {
+   "how": "other",
+   "verb": "rotate and scale key onto silhouette"
+  },
+  "slots": {
+   "key": "the small multicoloured component",
+   "silhouette": "the large single-colour (8) object made of k x k blocks",
+   "transform": "rotate key 90 degrees clockwise, upscale by k",
+   "paint": "each silhouette block takes the colour of the matching rotated key cell"
+  },
+  "why": "the silhouette's block mask equals the rotated key's non-background mask, and each block's output colour equals the rotated key cell",
+  "invariants": [
+   "key unchanged",
+   "background",
+   "silhouette shape"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "10fcaaa3",
+  "reading": "The input is tiled 2x2; then every background cell diagonally adjacent to a coloured cell becomes azure (8).",
+  "verb": "tile then mark diagonals",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "diag_bg",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "diag_bg",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\ndiagoff(DY, DX) :- off(DY, DX), !orth(DY, DX).\ndiag_bg(Y, X) :- cell(Y0, X0, C), diagoff(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B), B = 0."
+   }
+  ],
+  "why": "output = 2x2 tiling of input, plus 8 on exactly the background cells diagonal to a non-background cell (no wrap, coloured cells never overwritten)",
+  "invariants": [
+   "coloured cells of the tiling"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "11e1fe23",
+  "reading": "Three coloured cells mark three corners of a square box. A grey (5) cell is placed at the box centre, and a copy of each corner cell is placed one diagonal step from the centre toward that corner.",
+  "verb": "draw contracted corners around centre",
+  "frame": {
+   "how": "other",
+   "verb": "draw contracted corners around centre"
+  },
+  "slots": {
+   "corners": "the three isolated coloured cells",
+   "centre": "centre of their bounding box, filled with 5",
+   "copies": "for each corner, its colour at centre + sign(corner - centre) (one diagonal step)"
+  },
+  "why": "the added cells are exactly the centre (5) and the three one-step diagonal copies of the corner colours",
+  "invariants": [
+   "the three original cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "12eac192",
+  "reading": "Every single-colour 4-connected group of one or two cells turns green (3); groups of three or more cells stay.",
+  "verb": "recolour small groups",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "small4"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "small4",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\nnz(Y, X, C) :- px(Y, X, C), C > 0.\nsame(Y, X, Y2, X2) :- nz(Y, X, C), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, nz(Y2, X2, C).\ndeg(Y, X, count(Y2, X2)) :- same(Y, X, Y2, X2).\nbig(Y, X) :- deg(Y, X, N), N > 1.\nbig(Y, X) :- same(Y, X, Y2, X2), deg(Y2, X2, N), N > 1.\nsmall4(Y, X) :- nz(Y, X, C), !big(Y, X)."
+   }
+  ],
+  "why": "a non-zero cell becomes 3 iff its 4-connected same-colour component has fewer than 3 cells (8-connectivity is wrong: pair 2 cell (6,5))",
+  "invariants": [
+   "0 cells",
+   "components of size >= 3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "13713586",
+  "reading": "A full grey (5) wall runs along one edge. Every other bar sweeps toward the wall, painting its colour into each background cell until it hits the wall or another bar.",
+  "verb": "sweep bars to wall",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "obstacle",
+    "source": "bars",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "bars",
+    "datalog": "w(max(X)) :- px(Y, X, C).\nh(max(Y)) :- px(Y, X, C).\nrc(Y, C, count(X)) :- cell(Y, X, C).\ncc(X, C, count(Y)) :- cell(Y, X, C).\nwallrow(Y) :- rc(Y, C, N), w(M), N = M + 1.\nwallcol(X) :- cc(X, C, N), h(M), N = M + 1.\nwall(Y, X) :- wallrow(Y), cell(Y, X, C).\nwall(Y, X) :- wallcol(X), cell(Y, X, C).\nbars(Y, X) :- cell(Y, X, C), !wall(Y, X)."
+   }
+  ],
+  "why": "from each bar cell a ray of its colour runs perpendicular to the bar toward the wall and stops at the first non-background cell",
+  "invariants": [
+   "the wall",
+   "all bar cells",
+   "cells on the far side of each bar from the wall"
+  ],
+  "confidence": "medium"
+ }
+]

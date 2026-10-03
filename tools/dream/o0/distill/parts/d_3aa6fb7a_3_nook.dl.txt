@@ -1,0 +1,8 @@
+% row: d_3aa6fb7a_3_nook
+% source: distillation batch reading, task 3aa6fb7a, sample 3
+% output: nook(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+ortho(DY, DX) :- off(DY, DX), DY = 0.
+ortho(DY, DX) :- off(DY, DX), DX = 0.
+diag(DY, DX) :- off(DY, DX), !ortho(DY, DX).
+nook(Y, X) :- px(Y, X, C), !isfg(Y, X), diag(DY, DX), Y2 = Y + DY, X2 = X + DX, isfg(Y2, X2), isfg(Y2, X), isfg(Y, X2).

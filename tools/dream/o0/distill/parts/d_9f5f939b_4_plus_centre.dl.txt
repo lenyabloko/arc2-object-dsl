@@ -1,0 +1,5 @@
+% row: d_9f5f939b_4_plus_centre
+% source: distillation batch reading, task 9f5f939b, sample 4
+% output: plus_centre(Y, X)
+fgat(Y, X) :- cell(Y, X, C).
+plus_centre(Y, X) :- px(Y, X, C0), !fgat(Y, X), Y1 = Y - 2, Y2 = Y - 3, fgat(Y1, X), fgat(Y2, X), Y3 = Y + 2, Y4 = Y + 3, fgat(Y3, X), fgat(Y4, X), X1 = X - 2, X2 = X - 3, fgat(Y, X1), fgat(Y, X2), X3 = X + 2, X4 = X + 3, fgat(Y, X3), fgat(Y, X4).

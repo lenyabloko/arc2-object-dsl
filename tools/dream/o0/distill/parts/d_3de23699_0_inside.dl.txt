@@ -1,0 +1,8 @@
+% row: d_3de23699_0_inside
+% source: distillation batch reading, task 3de23699, sample 0
+% output: inside(Y, X)
+miny(min(Y)) :- cell(Y, X, C).
+maxy(max(Y)) :- cell(Y, X, C).
+minx(min(X)) :- cell(Y, X, C).
+maxx(max(X)) :- cell(Y, X, C).
+inside(Y, X) :- px(Y, X, C), miny(A), maxy(B), minx(L), maxx(R), Y > A, Y < B, X > L, X < R.

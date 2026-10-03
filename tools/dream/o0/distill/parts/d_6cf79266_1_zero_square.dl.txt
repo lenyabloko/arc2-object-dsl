@@ -1,0 +1,11 @@
+% row: d_6cf79266_1_zero_square
+% source: distillation batch reading, task 6cf79266, sample 1
+% output: zero_square(Y, X)
+z(Y, X) :- px(Y, X, 0).
+nz(Y, X) :- px(Y, X, C), !z(Y, X).
+dirty(Y, X) :- px(Y, X, C0), nz(A, B), Y3 = Y + 2, X3 = X + 2, A >= Y, A <= Y3, B >= X, B <= X3.
+sq(Y, X) :- z(Y, X), Y3 = Y + 2, X3 = X + 2, px(Y3, X3, C), !dirty(Y, X).
+ov(Y, X) :- sq(Y, X), sq(A, B), Ylo = Y - 3, Xlo = X - 3, Xhi = X + 3, A < Y, A > Ylo, B > Xlo, B < Xhi.
+ov(Y, X) :- sq(Y, X), sq(A, B), Xlo = X - 3, A = Y, B < X, B > Xlo.
+keep(Y, X) :- sq(Y, X), !ov(Y, X).
+zero_square(A, B) :- keep(Y, X), px(A, B, C), Y3 = Y + 2, X3 = X + 2, A >= Y, A <= Y3, B >= X, B <= X3.

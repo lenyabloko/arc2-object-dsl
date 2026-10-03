@@ -1,0 +1,8 @@
+% row: d_b27ca6d3_2_halo
+% source: distillation batch reading, task b27ca6d3, sample 2
+% output: halo(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+osize(O, count(Y, X)) :- obj(O, Y, X).
+dom(O) :- osize(O, N), N = 2, obj(O, Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2).
+halo(Y2, X2) :- dom(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), !cell(Y2, X2, C).

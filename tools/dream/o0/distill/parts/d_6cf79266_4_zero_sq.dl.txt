@@ -1,0 +1,11 @@
+% row: d_6cf79266_4_zero_sq
+% source: distillation batch reading, task 6cf79266, sample 4
+% output: zero_sq(Y, X)
+z(Y, X) :- px(Y, X, 0).
+zn(Y, X, count(DY, DX)) :- z(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, z(Y2, X2).
+ctr(Y, X) :- zn(Y, X, N), N = 8.
+blocked(Y, X) :- ctr(Y, X), ctr(Y2, X2), Y2 < Y, D = Y - Y2, D <= 2, E = X - X2, E <= 2, F = X2 - X, F <= 2.
+blocked(Y, X) :- ctr(Y, X), ctr(Y, X2), X2 < X, E = X - X2, E <= 2.
+keep(Y, X) :- ctr(Y, X), !blocked(Y, X).
+zero_sq(Y, X) :- keep(Y, X).
+zero_sq(Y, X) :- keep(Yc, Xc), off(DY, DX), Y = Yc + DY, X = Xc + DX.

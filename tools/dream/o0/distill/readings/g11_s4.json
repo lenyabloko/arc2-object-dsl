@@ -1,0 +1,237 @@
+[
+ {
+  "task": "522fdd07",
+  "reading": "Every solid square of side n is replaced by a concentric square of side n-2 in the same colour (a 3x3 becomes its centre cell); a single cell instead grows into a 9x9 square centred on it.",
+  "verb": "shrink squares by one ring",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each solid single-colour square object",
+   "change": "side n -> n-2 concentric (same centre); side 1 -> side 9",
+   "rest": "background"
+  },
+  "why": "every output object is a concentric square of the input square's colour with side n-2 (or 9 when n=1)",
+  "invariants": [
+   "object colours",
+   "object centres",
+   "background colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "52364a65",
+  "reading": "Each object loses its two leftmost columns (those cells become background).",
+  "verb": "trim left two columns",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "trim",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "trim",
+    "datalog": "minx(O, min(X)) :- obj(O, Y, X).\ntrim(Y, X) :- obj(O, Y, X), minx(O, M), D = X - M, D < 2."
+   }
+  ],
+  "why": "every cell of an object within two columns of its leftmost column becomes background 8; nothing else changes",
+  "invariants": [
+   "grid size",
+   "all other object cells",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "52df9849",
+  "reading": "Two single-colour shapes (rectangles or lines) overlap; the shape that was partly hidden is brought to the front, so the overlap cells take the hidden shape's colour.",
+  "verb": "bring hidden shape to front",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shapes": "pairs of overlapping single-colour rectangles/lines",
+   "back": "the shape whose outline is interrupted by the other",
+   "overlap": "cells of the front shape lying on the back shape's completed outline",
+   "colour": "the back shape's colour"
+  },
+  "why": "only overlap cells change, and each takes the colour of the shape that was occluded",
+  "invariants": [
+   "grid size",
+   "all non-overlap cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "52fd389e",
+  "reading": "Each colour-4 rectangle holds k single marks of one colour c; a solid ring of colour c and thickness k is drawn around the rectangle.",
+  "verb": "frame by mark count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 4-rectangle with marks inside",
+   "colour": "the colour of its inner marks",
+   "thickness": "number of inner marks",
+   "region": "background cells within Chebyshev distance thickness of the rectangle's box"
+  },
+  "why": "around every rectangle the band of width k (k = mark count) is filled with the mark colour; the rectangle itself is unchanged",
+  "invariants": [
+   "rectangles and marks",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "55059096",
+  "reading": "Plus-shaped objects whose centres lie on a common diagonal are joined by a diagonal line of colour 2 through the background cells between them.",
+  "verb": "connect diagonally",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "diag",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "diag",
+    "datalog": "ctr(Y, X) :- cell(Y, X, C), Ya = Y - 1, cell(Ya, X, C), Yb = Y + 1, cell(Yb, X, C), Xa = X - 1, cell(Y, Xa, C), Xb = X + 1, cell(Y, Xb, C).\ndiag(Y, X) :- ctr(Y1, X1), ctr(Y2, X2), px(Y, X, 0), D = Y2 - Y1, E = X2 - X1, D = E, D > 1, Y > Y1, Y < Y2, F = Y - Y1, G = X - X1, F = G.\ndiag(Y, X) :- ctr(Y1, X1), ctr(Y2, X2), px(Y, X, 0), D = Y2 - Y1, E = X1 - X2, D = E, D > 1, Y > Y1, Y < Y2, F = Y - Y1, G = X1 - X, F = G."
+   }
+  ],
+  "why": "every background cell on the diagonal segment between two plus centres becomes 2; nothing else changes",
+  "invariants": [
+   "plus shapes",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5521c0d9",
+  "reading": "Each solid object moves straight up by a distance equal to its own height.",
+  "verb": "lift by own height",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object",
+   "direction": "up",
+   "distance": "the object's own height (rows of its box)"
+  },
+  "why": "every object keeps shape and colour and its box shifts up by exactly its height",
+  "invariants": [
+   "object shapes and colours",
+   "columns",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5582e5ca",
+  "reading": "The whole grid is painted with its most common colour.",
+  "verb": "flood with majority colour",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "allc",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "allc",
+    "datalog": "allc(Y, X) :- cell(Y, X, C)."
+   }
+  ],
+  "why": "every non-majority cell takes the majority (background) colour",
+  "invariants": [
+   "grid size",
+   "majority colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "5623160b",
+  "reading": "A hub of colour 9 stays fixed; each other-coloured piece attached to it slides straight away from the 9 cell it touches until it reaches the grid border, keeping its shape.",
+  "verb": "push pieces away from hub to border",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "piece",
+    "target": "border"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "piece",
+    "datalog": "piece(Y, X) :- cell(Y, X, C), C < 9."
+   }
+  ],
+  "why": "every non-9 piece keeps its shape and ends touching the border on the side facing away from the adjacent 9 cell",
+  "invariants": [
+   "colour-9 cells",
+   "piece shapes and colours",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "56dc2b01",
+  "reading": "The colour-3 shape moves straight toward the full colour-2 line until it touches it, then a full line of colour 8 is drawn on the shape's far side, parallel to the 2 line.",
+  "verb": "dock and cap",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "largest",
+     "target": "obstacle"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "far",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "far",
+    "datalog": "top3(min(Y)) :- cell(Y, X, 3).\nbot3(max(Y)) :- cell(Y, X, 3).\nlft3(min(X)) :- cell(Y, X, 3).\nrgt3(max(X)) :- cell(Y, X, 3).\nhsep(Y) :- cell(Y, X, 2), X2 = X + 1, cell(Y, X2, 2).\nvsep(X) :- cell(Y, X, 2), Y2 = Y + 1, cell(Y2, X, 2).\nfar(Y, X) :- hsep(S), top3(T), S > T, Y = T - 1, px(Y, X, C).\nfar(Y, X) :- hsep(S), bot3(B), S < B, Y = B + 1, px(Y, X, C).\nfar(Y, X) :- vsep(S), lft3(L), S > L, X = L - 1, px(Y, X, C).\nfar(Y, X) :- vsep(S), rgt3(R), S < R, X = R + 1, px(Y, X, C)."
+   }
+  ],
+  "why": "the 3 shape keeps its shape and ends in contact with the 2 line; the full line adjacent to its opposite side is 8",
+  "invariants": [
+   "the 2 line",
+   "the 3 shape's form",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "58743b76",
+  "reading": "A 2x2 colour key sits in a corner beside a square field of one-colour cells; the field is split into four quadrants and every coloured cell takes the key colour of its quadrant.",
+  "verb": "recolour by quadrant key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 2x2 multi-coloured block in the corner",
+   "field": "the square background area bounded by the 8 strips",
+   "subject": "the field's coloured cells",
+   "map": "cell in quadrant (i,j) of the field -> key[i][j]"
+  },
+  "why": "every field cell of the mark colour becomes the key colour at the same relative quadrant; nothing else changes",
+  "invariants": [
+   "key",
+   "8 strips",
+   "positions of coloured cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

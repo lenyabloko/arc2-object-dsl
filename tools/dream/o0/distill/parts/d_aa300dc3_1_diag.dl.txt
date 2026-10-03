@@ -1,0 +1,17 @@
+% row: d_aa300dc3_1_diag
+% source: distillation batch reading, task aa300dc3, sample 1
+% output: diag(Y, X)
+z(Y, X) :- px(Y, X, 0).
+s1(Y, X) :- z(Y, X), A = Y - 1, B = X - 1, !z(A, B), !z(A, X), !z(Y, B).
+r1(Y, X, Y, X) :- s1(Y, X).
+r1(Y0, X0, Y2, X2) :- r1(Y0, X0, Y, X), Y2 = Y + 1, X2 = X + 1, z(Y2, X2).
+s2(Y, X) :- z(Y, X), A = Y - 1, B = X + 1, !z(A, B), !z(A, X), !z(Y, B).
+r2(Y, X, Y, X) :- s2(Y, X).
+r2(Y0, X0, Y2, X2) :- r2(Y0, X0, Y, X), Y2 = Y + 1, X2 = X - 1, z(Y2, X2).
+l1(Y0, X0, count(Y, X)) :- r1(Y0, X0, Y, X).
+l2(Y0, X0, count(Y, X)) :- r2(Y0, X0, Y, X).
+ln(D, Y0, X0, N) :- l1(Y0, X0, N), D = 1.
+ln(D, Y0, X0, N) :- l2(Y0, X0, N), D = 2.
+mx(max(N)) :- ln(D, Y0, X0, N).
+diag(Y, X) :- l1(Y0, X0, N), mx(N), r1(Y0, X0, Y, X).
+diag(Y, X) :- l2(Y0, X0, N), mx(N), r2(Y0, X0, Y, X).

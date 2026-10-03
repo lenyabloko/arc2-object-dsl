@@ -1,0 +1,5 @@
+% row: d_4093f84a_3_dot
+% source: distillation batch reading, task 4093f84a, sample 3
+% output: dot(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+dot(Y, X) :- obj(O, Y, X), osize(O, N), N = 1.

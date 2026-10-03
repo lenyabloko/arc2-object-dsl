@@ -1,0 +1,10 @@
+% row: d_a04b2602_2_halo
+% source: distillation batch reading, task a04b2602, sample 2
+% output: halo(Y, X)
+green(Y, X) :- px(Y, X, C), C = 3.
+vert(Y, X) :- px(Y, X, C), C = 2, Y1 = Y - 1, green(Y1, X).
+vert(Y, X) :- px(Y, X, C), C = 2, Y1 = Y + 1, green(Y1, X).
+horz(Y, X) :- px(Y, X, C), C = 2, X1 = X - 1, green(Y, X1).
+horz(Y, X) :- px(Y, X, C), C = 2, X1 = X + 1, green(Y, X1).
+seed(Y, X) :- vert(Y, X), horz(Y, X).
+halo(Y, X) :- seed(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, C), !seed(Y, X).

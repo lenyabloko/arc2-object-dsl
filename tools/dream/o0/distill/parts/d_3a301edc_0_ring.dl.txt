@@ -1,0 +1,24 @@
+% row: d_3a301edc_0_ring
+% source: distillation batch reading, task 3a301edc, sample 0
+% output: ring(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+touchbg(C) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, B), !fgc(Y2, X2).
+innerc(C) :- cell(Y, X, C), !touchbg(C).
+iy0(min(Y)) :- cell(Y, X, C), innerc(C).
+iy1(max(Y)) :- cell(Y, X, C), innerc(C).
+ix0(min(X)) :- cell(Y, X, C), innerc(C).
+ix1(max(X)) :- cell(Y, X, C), innerc(C).
+oy0(min(Y)) :- cell(Y, X, C).
+oy1(max(Y)) :- cell(Y, X, C).
+ox0(min(X)) :- cell(Y, X, C).
+ox1(max(X)) :- cell(Y, X, C).
+gy(max(Y)) :- px(Y, X, C).
+gx(max(X)) :- px(Y, X, C).
+cand(V) :- iy0(A), iy1(B), V = B - A + 1.
+cand(V) :- ix0(A), ix1(B), V = B - A + 1.
+cand(V) :- oy0(V).
+cand(V) :- ox0(V).
+cand(V) :- gy(G), oy1(B), V = G - B.
+cand(V) :- gx(G), ox1(B), V = G - B.
+th(min(V)) :- cand(V).
+ring(Y, X) :- px(Y, X, P), !fgc(Y, X), th(T), oy0(A), oy1(B), ox0(L), ox1(R), Y0 = A - T, Y1 = B + T, X0 = L - T, X1 = R + T, Y >= Y0, Y <= Y1, X >= X0, X <= X1.

@@ -1,0 +1,10 @@
+% row: d_06df4c85_1_between_same
+% source: distillation batch reading, task 06df4c85, sample 1
+% output: between_same(Y, X)
+rowc(Y, C, count(X)) :- px(Y, X, C).
+width(max(X)) :- px(Y, X, C).
+full(C) :- rowc(Y, C, N), width(M), N = M + 1.
+hb(Y, X) :- px(Y, X, 0), px(Y, X1, C), px(Y, X2, C), C > 0, !full(C), X1 < X, X < X2.
+vb(Y, X) :- px(Y, X, 0), px(Y1, X, C), px(Y2, X, C), C > 0, !full(C), Y1 < Y, Y < Y2.
+between_same(Y, X) :- hb(Y, X).
+between_same(Y, X) :- vb(Y, X).

@@ -1,0 +1,197 @@
+[
+ {
+  "task": "465b7d93",
+  "reading": "The small loose shape is removed and redrawn inside the 6-outline: its 2x2 pattern is stretched to the frame interior (a filled cell becomes a full side or corner region; a full 2x2 fills the interior).",
+  "verb": "stretch shape into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "interior of the one rectangular outline object",
+   "shape": "the other object (fits a 2x2 box)",
+   "placement": "shape cells at the 2x2 box corners map to interior corners; lines between filled corners are drawn along the interior sides",
+   "colour": "the shape's own colour"
+  },
+  "why": "the interior shows the shape's pattern scaled to the interior size; the original shape is erased",
+  "invariants": [
+   "the outline frame",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "469497ad",
+  "reading": "Scale the grid by k = number of distinct non-background colours, then draw colour-2 diagonals outward from each corner of the inner square object until they hit a non-background cell or the edge.",
+  "verb": "scale and shoot diagonals",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "factor": "count of distinct non-background colours",
+   "subject": "the square object off the border strips",
+   "rays": "diagonals from its four box corners, colour 2, stop at obstacle or border"
+  },
+  "why": "output = k-times enlarged input plus 2-diagonals from the square's corners",
+  "invariants": [
+   "border strip colours",
+   "the square's colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "46f33fce",
+  "reading": "Cells sit only on odd rows/columns; keep the 5x5 grid of odd positions and enlarge each cell to a 4x4 block (20x20 output).",
+  "verb": "downsample and scale",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sample": "cells at (2i+1, 2j+1)",
+   "factor": "4",
+   "output": "20x20"
+  },
+  "why": "output block (i,j) of size 4x4 has the colour of input cell (2i+1, 2j+1)",
+  "invariants": [
+   "colours",
+   "relative positions"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "47c1f68c",
+  "reading": "Take the shape in the top-left panel (cut by the cross separator), recolour it with the separator colour, and mirror it into all four quadrants of an output that drops the separator.",
+  "verb": "kaleidoscope quadrant",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "top-left panel content",
+   "colour": "separator colour",
+   "layout": "unit, its horizontal flip, vertical flip, and 180-rotation as the four quadrants"
+  },
+  "why": "output is 4-fold mirror-symmetric and its top-left quadrant is the top-left panel shape in the separator colour",
+  "invariants": [
+   "shape of the top-left panel"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "48131b3c",
+  "reading": "Swap the foreground colour with background 0 (invert the grid), then tile the inverted grid 2x2.",
+  "verb": "invert and tile",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "input with fg and 0 swapped",
+   "layout": "2x2 copies"
+  },
+  "why": "every output block equals the colour-inverted input",
+  "invariants": [
+   "the single foreground colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4852f2fa",
+  "reading": "Cut the 3x3 window holding the 8-shape and repeat it side by side once per colour-4 marker in the input.",
+  "verb": "repeat shape by count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "3x3 window around the 8-shape (bottom-aligned when the shape is only 2 rows tall)",
+   "count": "number of colour-4 cells",
+   "layout": "horizontal row of copies"
+  },
+  "why": "output is 3 x 3N with N = number of 4-cells, each 3x3 block the same shape window",
+  "invariants": [
+   "shape cells and colour 8"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "48634b99",
+  "reading": "Vertical 8-segments have lengths 2,4,6,8,10; the half of one segment coloured 9 goes back to 8, and the same half (top or bottom) of the next-longer segment becomes 9.",
+  "verb": "pass marking to next-longer segment",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "vertical segment containing 9 (half of it is 9)",
+   "target": "the vertical segment whose length is the next larger value",
+   "mark": "same half (top/bottom) of the target recoloured 9; source restored to 8"
+  },
+  "why": "exactly one segment carries 9 on half its length, and in the output it is the next-longer one, same end",
+  "invariants": [
+   "all segment positions",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "48f8583b",
+  "reading": "Output is 3x3 blocks of the input size; a block holds a copy of the input exactly where the input has its least frequent colour, else empty.",
+  "verb": "tile at rarest colour",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "rare",
+    "unit": "input"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "rare",
+    "datalog": "ccount(C, count(Y, X)) :- px(Y, X, C).\ncmin(min(N)) :- ccount(C, N).\nrare(Y, X) :- px(Y, X, C), ccount(C, N), cmin(M), N = M."
+   }
+  ],
+  "why": "block (i,j) is the input iff input cell (i,j) has the least frequent colour, otherwise 0",
+  "invariants": [
+   "the unit is the unchanged input"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "496994bd",
+  "reading": "The coloured rows at the top are reflected to the bottom, making the grid symmetric about its horizontal midline.",
+  "verb": "mirror",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "output is symmetric about the horizontal centre line; original rows kept",
+  "invariants": [
+   "top rows",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "4a1cacc2",
+  "reading": "The single marker cell fills, in its own colour, the rectangle spanning from it to the nearest grid corner.",
+  "verb": "fill to nearest corner",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "corner_box",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "corner_box",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\nmk(Y, X) :- cell(Y, X, C).\nrowok(Y) :- px(Y, X, C), mk(MY, MX), hmax(H), D = H - MY, MY <= D, Y <= MY.\nrowok(Y) :- px(Y, X, C), mk(MY, MX), hmax(H), D = H - MY, MY > D, Y >= MY.\ncolok(X) :- px(Y, X, C), mk(MY, MX), wmax(W), D = W - MX, MX <= D, X <= MX.\ncolok(X) :- px(Y, X, C), mk(MY, MX), wmax(W), D = W - MX, MX > D, X >= MX.\ncorner_box(Y, X) :- px(Y, X, C), rowok(Y), colok(X)."
+   }
+  ],
+  "why": "every cell between the marker and the closest grid corner (inclusive) has the marker colour; nothing else changes",
+  "invariants": [
+   "background elsewhere",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

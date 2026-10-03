@@ -1,0 +1,7 @@
+% row: d_10fcaaa3_0_diag_bg
+% source: distillation batch reading, task 10fcaaa3, sample 0
+% output: diag_bg(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+diagoff(DY, DX) :- off(DY, DX), !orth(DY, DX).
+diag_bg(Y, X) :- cell(Y0, X0, C), diagoff(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B), B = 0.

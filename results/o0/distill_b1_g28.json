@@ -1,0 +1,1572 @@
+{
+ "group": 28,
+ "tasks": {
+  "d6ad076f": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "d6ad076f",
+     "sample": 0,
+     "verb": "bridge",
+     "reading": "Two solid rectangles face each other across a background gap; the gap band between their overlapping extent is filled with 8, trimmed by one cell at each side of the overlap.",
+     "why": "every 'between' cell whose two neighbours across the band direction are also between cells becomes 8; plain 'between' would overfill the two edge lines of the overlap",
+     "new_rows": [
+      "d_d6ad076f_0_inner_between"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "inner_between": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d6ad076f_0_inner_between)",
+      "fill(colour:=train, region:=d_d6ad076f_0_inner_between)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d6ad076f_0_inner_between": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d6ad076f",
+     "sample": 1,
+     "verb": "bridge",
+     "reading": "Two solid rectangles face each other across a gap; the gap between them is filled with 8, narrowed by one cell at each end of their overlap.",
+     "why": "every between cell that has between cells on both sides across the gap direction becomes 8; nothing else changes",
+     "new_rows": [
+      "d_d6ad076f_1_between_inner"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "between_inner": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d6ad076f_1_between_inner)",
+      "fill(colour:=train, region:=d_d6ad076f_1_between_inner)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d6ad076f_1_between_inner": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d6ad076f",
+     "sample": 2,
+     "verb": "bridge",
+     "reading": "Two solid rectangles face each other across a background gap; the gap strip between them is filled with 8, trimmed by one cell at each side of their shared overlap.",
+     "why": "every 8 cell lies between the two rectangles on its row (or column) and is not on the first or last row (column) of that between-band.",
+     "new_rows": [
+      "d_d6ad076f_2_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d6ad076f_2_gap)",
+      "fill(colour:=train, region:=d_d6ad076f_2_gap)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d6ad076f_2_gap": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d6ad076f",
+     "sample": 3,
+     "verb": "bridge",
+     "reading": "Between the two facing rectangles, the background gap is filled with 8, but the band is one cell narrower at each end of their shared span.",
+     "why": "every bg cell between the two rectangles on a row (or column) whose neighbours across the band are also between-cells becomes 8; the two end rows/columns of the overlap stay bg",
+     "new_rows": [
+      "d_d6ad076f_3_inner_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "inner_gap": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d6ad076f_3_inner_gap)",
+      "fill(colour:=train, region:=d_d6ad076f_3_inner_gap)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d6ad076f_3_inner_gap": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d6ad076f",
+     "sample": 4,
+     "verb": "bridge",
+     "reading": "Two facing rectangles; the background strip between them (across their shared rows or columns) is filled with 8, inset by one cell at each end of the overlap.",
+     "why": "every filled cell is background lying between the two rectangles and not on the first/last line of their overlap; colour is always 8",
+     "new_rows": [
+      "d_d6ad076f_4_inner_between"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "inner_between": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d6ad076f_4_inner_between)",
+      "fill(colour:=train, region:=d_d6ad076f_4_inner_between)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d6ad076f_4_inner_between": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        20,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "d753a70b": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d753a70b",
+     "sample": 0,
+     "verb": "grow/shrink by colour",
+     "reading": "Diamond-outline shapes (and V-shaped parts of diamonds) change size by colour: colour-5 diamonds grow by one ring (radius+1, same centre), colour-2 diamonds shrink by one ring (radius-1; radius 1 becomes a single cell), other colours stay.",
+     "why": "on every pair each 5-ring has radius+1 and each 2-ring radius-1 about the same centre; one border-clipped 5 fragment in pair 0 does not fit this exactly",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d753a70b",
+     "sample": 1,
+     "verb": "resize rings",
+     "reading": "Diamond rings are resized about their centres: colour-2 rings shrink by one step (a radius-1 ring becomes a single cell), colour-5 rings grow by one step (a single cell becomes a ring); rings of other colours stay.",
+     "why": "each 2 ring has radius one less and each 5 ring radius one more, same centre; other objects identical",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d753a70b",
+     "sample": 2,
+     "verb": "shrink/grow rings",
+     "reading": "Diamond outlines of colour 2 shrink by one ring about the same centre (a radius-1 diamond becomes its centre cell); diamonds of colour 5 grow by one ring about the same centre (a single 5 becomes a radius-1 diamond). Other colours stay.",
+     "why": "each 2 or 5 diamond keeps its centre and changes radius by -1 / +1; pair 0's bottom 5 diamond looks shifted one column, so the training data may contain a slip.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d753a70b",
+     "sample": 3,
+     "verb": "grow / shrink by colour",
+     "reading": "Shapes are diamond outlines; every colour-5 diamond grows by one ring about its centre, every colour-2 diamond shrinks by one ring (radius 0 becomes a single cell), other colours stay; parts off the grid are clipped.",
+     "why": "each 5 or 2 diamond in the output is concentric with its input diamond, radius differs by exactly +1 / -1 (pair 0's clipped bottom 5-diamond lands one column right of this, apparently an anomaly)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d753a70b",
+     "sample": 4,
+     "verb": "grow/shrink ring",
+     "reading": "Diamond outlines of colour 2 shrink by one ring (concentric), diamond outlines of colour 5 grow by one ring; shapes of other colours (8, 9) stay. Clipped at the grid edge.",
+     "why": "each 2/5 object in the output is the input object's diamond with the same centre and radius changed by one (one pair-0 corner piece is off by a column)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "d931c21c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d931c21c",
+     "sample": 0,
+     "verb": "outline closed loops",
+     "reading": "Each closed loop of colour 1 gets a colour-2 ring on the outside cells touching it (8-neighbourhood) and a colour-3 ring on the inside cells touching it; loops with a gap are left alone.",
+     "why": "first pass: border-reachable (4-connected) background cells 8-adjacent to an object that encloses background become 2; second pass: enclosed background cells 8-adjacent to any non-background cell become 3. Reproduces pairs 0,1,3 exactly; pair 2 has one extra 2 at (13,3) that no adjacency rule explai",
+     "new_rows": [
+      "d_d931c21c_0_outer_ring",
+      "d_d931c21c_0_inner_ring"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "outer_ring": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "inner_ring": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d931c21c",
+     "sample": 1,
+     "verb": "outline closed loops",
+     "reading": "Each closed loop of 1 gets a ring of 2 drawn around its outside and a ring of 3 lining its inside; loops with a gap (not closed) are left alone.",
+     "why": "only closed loops change; their outer neighbour ring is 2 and inner neighbour ring is 3",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d931c21c",
+     "sample": 2,
+     "verb": "halo closed loops",
+     "reading": "Every closed loop of 1 gets a ring of 2 on the outside cells touching it (8-neighbour) and a ring of 3 on the inside cells touching it; loops with a gap are left alone.",
+     "why": "2 cells are exactly the exterior background cells 8-adjacent to an enclosing loop and 3 cells exactly the enclosed background cells 8-adjacent to it; holds on pairs 0,1,3, but pair 2 has one extra 2 at (13,3) that is not adjacent to its loop.",
+     "new_rows": [
+      "d_d931c21c_2_ring_out",
+      "d_d931c21c_2_ring_in"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_out": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "ring_in": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d931c21c",
+     "sample": 3,
+     "verb": "outline closed loops",
+     "reading": "Each closed 1-loop gets a 2 ring on the outside cells touching it (8-neighbours) and a 3 ring on the enclosed cells touching it; loops with a gap are left alone.",
+     "why": "outside bg cells 8-adjacent to a loop that encloses bg become 2 (learned colour), enclosed bg cells 8-adjacent to it become 3; open loops untouched (pair 2 has one extra 2 cell at a notch corner, (13,3), that this misses)",
+     "new_rows": [
+      "d_d931c21c_3_outer_halo",
+      "d_d931c21c_3_inner_halo"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "outer_halo": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ],
+      "inner_halo": [
+       "subset",
+       "equal",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d931c21c",
+     "sample": 4,
+     "verb": "outline inside and outside",
+     "reading": "Every closed loop of 1s gets a one-cell halo: background cells touching it (8-neighbour) on the outside become 2, those on the inside become 3. Open (non-enclosing) shapes stay unchanged.",
+     "why": "only loops that enclose a hole are decorated; open shapes untouched",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d94c3b52": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 1,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "d94c3b52",
+     "sample": 0,
+     "verb": "match and mark between",
+     "reading": "The grid is a lattice of 3x3 glyphs; every 1-glyph with the same shape as the 8-glyph becomes 8, then every other glyph lying between two 8-glyphs in the same glyph row or glyph column becomes 7.",
+     "why": "verified on all three pairs: shape matches become 8, row/column betweens of 8-glyphs become 7, everything else stays 1",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d94c3b52",
+     "sample": 1,
+     "verb": "match and connect glyphs",
+     "reading": "The grid is a 4x6 array of 3x3 glyphs; every 1-glyph with the same shape as the one 8 glyph turns 8, then every glyph lying strictly between two 8 glyphs in the same glyph row or column turns 7 (keeping its shape).",
+     "why": "glyph shapes never change; only their colour changes to 8 (same shape as exemplar) or 7 (between two 8s)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d94c3b52",
+     "sample": 2,
+     "verb": "match shape, then mark between",
+     "reading": "In a lattice of 3x3 glyphs, every 1-glyph with the same shape as the 8 glyph turns 8; then every 1-glyph lying between two 8 glyphs in the same glyph row or column turns 7.",
+     "why": "step 1: a 1-object becomes 8 iff its normalised shape equals the 8 object's; step 2: a 1-object becomes 7 iff one of its cells has 8 cells on both sides in its row or column.",
+     "new_rows": [
+      "d_d94c3b52_2_same_shape",
+      "d_d94c3b52_2_between8"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "same_shape": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "between8": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d94c3b52_2_between8)[input:=recolour(key:=train, subject:=d_d94c3b52_2_same_shape)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.recolour.subject=d_d94c3b52_2_same_shape": [
+       [
+        25,
+        [
+         1
+        ]
+       ],
+       [
+        40,
+        [
+         1
+        ]
+       ],
+       [
+        14,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_d94c3b52_2_between8": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "task": "d94c3b52",
+     "sample": 3,
+     "verb": "match shape then connect",
+     "reading": "The grid is a 4x6 lattice of 3x3 glyphs; every 1-glyph with the same shape as the single 8-glyph turns 8, then every glyph lying between two 8-glyphs on the same lattice row or column turns 7.",
+     "why": "8-glyphs are exactly those sharing the exemplar's shape; 7-glyphs are exactly the non-8 glyphs flanked by 8-glyphs in their lattice row or column",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d94c3b52",
+     "sample": 4,
+     "verb": "match and connect",
+     "reading": "The grid is a 4x6 array of 3x3 glyphs; one glyph is drawn in 8. Every glyph with the same shape becomes 8, and every glyph lying between two 8-glyphs in the same glyph-row or glyph-column becomes 7.",
+     "why": "on all pairs the 8s are exactly the key-shaped glyphs and the 7s exactly the glyphs between two of them",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "d968ffd4": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d968ffd4",
+     "sample": 0,
+     "verb": "expand toward each other",
+     "reading": "Two small blocks of different colours sit at opposite ends of the grid; each colour floods its half of the gap toward the other, over the block's width plus one cell on each side, leaving a single background line in the middle when the gap is odd.",
+     "why": "on all pairs each half of the gap takes the colour of the block it touches, one cell wider on each side than the block",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d968ffd4",
+     "sample": 1,
+     "verb": "grow toward each other",
+     "reading": "Two small blocks sit at opposite ends of a uniform grid; each grows toward the other, filling its half of the gap, one cell wider on each side than the block, leaving a single background line in the middle when the gap is odd.",
+     "why": "the gap is split evenly between the two colours; blocks themselves unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d968ffd4",
+     "sample": 2,
+     "verb": "grow toward each other",
+     "reading": "Two blocks of different colours face each other; each grows toward the other through the gap, one cell wider on each side than the block, stopping at the midpoint (an odd middle line stays background).",
+     "why": "every filled cell is in the gap band (block extent widened by 1) and is strictly nearer to the block whose colour it takes.",
+     "new_rows": [
+      "d_d968ffd4_2_half_gaps"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "half_gaps": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d968ffd4",
+     "sample": 3,
+     "verb": "grow toward each other",
+     "reading": "Two small blocks sit at opposite ends; each block's colour floods the gap toward the other across the full grid width/height, meeting halfway (a single middle line stays bg when the gap is odd).",
+     "why": "the lines between the blocks are filled completely, the nearer half with each block's colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d968ffd4",
+     "sample": 4,
+     "verb": "grow toward each other",
+     "reading": "Two blocks face each other across the grid; each grows toward the other over half the gap, as a full-width band (its span widened by one on each side), leaving one background line in the middle when the gap is odd.",
+     "why": "each half of the gap is filled with the colour of the nearer block; middle line stays background when the gap length is odd",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "da2b0fe3": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "da2b0fe3",
+     "sample": 0,
+     "verb": "draw split line",
+     "reading": "The shape is split by one empty row or column inside its bounding box; that line is drawn in 3 across the whole grid.",
+     "why": "the full grid row or column that is empty and lies strictly inside the foreground's box becomes 3; nothing else changes",
+     "new_rows": [
+      "d_da2b0fe3_0_gap_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_da2b0fe3_0_gap_line)",
+      "fill(colour:=train, region:=d_da2b0fe3_0_gap_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_da2b0fe3_0_gap_line": [
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "da2b0fe3",
+     "sample": 1,
+     "verb": "draw split line",
+     "reading": "A shape is split by one empty row or column running through it; that whole grid line is painted 3.",
+     "why": "the empty row/column strictly inside the shape's bounding box is entirely 3; nothing else changes",
+     "new_rows": [
+      "d_da2b0fe3_1_gap_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_da2b0fe3_1_gap_line)",
+      "fill(colour:=train, region:=d_da2b0fe3_1_gap_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_da2b0fe3_1_gap_line": [
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "da2b0fe3",
+     "sample": 2,
+     "verb": "draw split line",
+     "reading": "A shape is split in two by one empty row or column inside its bounding box; that row/column is drawn as a full line of 3 across the grid.",
+     "why": "the 3 cells are exactly the full grid row/column that is empty and lies strictly inside the shape's bounding box.",
+     "new_rows": [
+      "d_da2b0fe3_2_gap_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_da2b0fe3_2_gap_line)",
+      "fill(colour:=train, region:=d_da2b0fe3_2_gap_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_da2b0fe3_2_gap_line": [
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "da2b0fe3",
+     "sample": 3,
+     "verb": "draw split line",
+     "reading": "The shape is split by one empty row or column; that whole line is drawn in 3 across the grid.",
+     "why": "every cell of the all-bg row/column that has foreground on both sides becomes 3; nothing else changes",
+     "new_rows": [
+      "d_da2b0fe3_3_gapline"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gapline": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_da2b0fe3_3_gapline)",
+      "fill(colour:=train, region:=d_da2b0fe3_3_gapline)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_da2b0fe3_3_gapline": [
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "da2b0fe3",
+     "sample": 4,
+     "verb": "mark split line",
+     "reading": "A shape is split by an empty row or column through its middle; that whole grid row or column is filled with 3.",
+     "why": "the filled line is the one empty row/column with shape cells on both sides; colour is always 3",
+     "new_rows": [
+      "d_da2b0fe3_4_gap_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_da2b0fe3_4_gap_line)",
+      "fill(colour:=train, region:=d_da2b0fe3_4_gap_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_da2b0fe3_4_gap_line": [
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "db615bd4": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "db615bd4",
+     "sample": 0,
+     "verb": "pack pieces into frame",
+     "reading": "On a checkered lattice, a dotted rectangular frame becomes a solid frame with a cleared interior, and the dotted coloured pieces outside it are made solid, packed inside the frame along its long axis (in input order, one-cell gaps, centred) and erased from outside.",
+     "why": "on all three pairs the pieces exactly fit the frame interior with one-cell margins and gaps",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db615bd4",
+     "sample": 1,
+     "verb": "pack pieces into frame",
+     "reading": "On a dotted lattice, a dotted rectangle becomes a solid outline with a plain interior; the small dotted pieces outside it become solid blocks (their bounding boxes) packed inside it in input order along its longer side, one-cell gaps, centred; the pieces are erased from outside.",
+     "why": "output = lattice + solid outline + centred row/column of solid piece boxes inside",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db615bd4",
+     "sample": 2,
+     "verb": "pack pieces into frame",
+     "reading": "On a dotted lattice, a dotted rectangle frame is made solid and its inner dots erased; the small dotted colour patches outside are removed and redrawn as solid blocks (their bounding boxes) inside the frame, lined up along the frame's long axis in input order, one cell apart and centred.",
+     "why": "each piece's solid box size equals its input dot bounding box and the packed group is centred in the frame interior.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db615bd4",
+     "sample": 3,
+     "verb": "collect into frame",
+     "reading": "A dotted rectangle outline is completed into a solid one, and the small dotted pieces lying outside it are erased and redrawn as solid blocks stacked inside the frame.",
+     "why": "output keeps the lattice pattern everywhere except the frame (solidified) and its interior (packed solid blocks); outside pieces vanish",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db615bd4",
+     "sample": 4,
+     "verb": "pack pieces into frame",
+     "reading": "A dotted rectangular frame becomes a solid outline with a cleared interior; the small dotted pieces lying outside it are removed and placed inside the frame as solid blocks (their boxes filled), packed side by side.",
+     "why": "output has exactly the pieces' filled boxes inside the solid frame and none outside",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "db7260a4": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "db7260a4",
+     "sample": 0,
+     "verb": "pour",
+     "reading": "A 1-coloured drop at the top falls down its column; if it lands in a watertight cup of colour 2 the cup's interior fills with 1, otherwise (outside or leaky cup) the whole bottom row becomes 1. The drop is removed.",
+     "why": "pairs 0,3,4 drop into sealed cups and fill them; pairs 1,2 miss or hit a cup with a hole in its floor and the bottom row fills",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db7260a4",
+     "sample": 1,
+     "verb": "pour",
+     "reading": "A 1 dropped from the top row falls into the 2 container; if it lands in a sealed cup the cup's interior fills with 1, otherwise (misses or the cup's floor leaks) the whole bottom row becomes 1. The dropped 1 is removed.",
+     "why": "exactly one of: the cup under the drop column is sealed and filled, or the bottom row is all 1",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db7260a4",
+     "sample": 2,
+     "verb": "pour",
+     "reading": "A single 1 at the top is a drop; it is removed and falls in its column: if it lands inside a 2 cup that is closed at bottom and sides, the cup interior fills with 1; otherwise (miss or leaky cup) the whole bottom row becomes 1.",
+     "why": "the interior is filled only when the drop column is over an interior that a floodfill (down/left/right) cannot leave; else only the bottom row changes.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db7260a4",
+     "sample": 3,
+     "verb": "pour",
+     "reading": "A 1 marker at the top drops down its column; if it lands in a sealed cup of 2s, the cup interior is filled with 1; otherwise (outside a cup or the cup leaks) the bottom row becomes all 1. The marker is erased.",
+     "why": "exactly one of: cup interior (bounded by walls and floor) becomes 1, or the last row becomes 1; marker cell becomes bg",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db7260a4",
+     "sample": 4,
+     "verb": "pour",
+     "reading": "A 1 at the top drops down its column; if it lands in a watertight cup of 2s, the cup's interior is filled with 1, otherwise (outside the cup or the cup leaks) the whole bottom row becomes 1. The marker is removed.",
+     "why": "cup filled exactly when the marker column is inside a cup with closed bottom; else bottom row",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "db93a21d": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "db93a21d",
+     "sample": 0,
+     "verb": "frame and drop shadow",
+     "reading": "Each 9 square of side 2k gets a colour-3 border of thickness k around it, and a colour-1 shadow of the square's width falls from below the border to the bottom of the grid; 3 borders cover 1 shadows, 9 stays on top.",
+     "why": "on all four pairs border thickness is side/2 and the shadows run down the square's columns, hidden where a 3 border lies",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "db93a21d",
+     "sample": 1,
+     "verb": "frame and drop shadow",
+     "reading": "Each 9 square of side s gets a 3 frame of thickness s/2 around it and a 1 shadow, as wide as the square, running from it down to the bottom edge; frames are drawn over shadows and squares over both.",
+     "why": "squares keep place; every frame and shadow follows the square's size",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "db93a21d",
+     "sample": 2,
+     "verb": "draw halo and shadow",
+     "reading": "Each 9 square of side s gets a 3 halo of thickness s/2 around it and casts a 1 shadow of its own width straight down from below its halo to the grid bottom; layering is 9 over 3 over 1.",
+     "why": "halo thickness is half the square's side and shadows run to the bottom edge, overwritten by any halo they cross.",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "db93a21d",
+     "sample": 3,
+     "verb": "halo and shadow",
+     "reading": "Each 9 square of side s gets a 3 border of thickness s/2 around it and a 1 column of the square's width running from below that border to the grid bottom; layering 1 under 3 under 9.",
+     "why": "every 9 square keeps its place; its halo and downward shadow are fully drawn with that precedence",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "db93a21d",
+     "sample": 4,
+     "verb": "halo and drop shadow",
+     "reading": "Each 9 square of side s gets a 3 border of thickness s/2 around it and a 1 beam of its width running down from below the border to the bottom edge; 9 over 3 over 1.",
+     "why": "halo thickness equals half the square side on every pair; beams stop only at the bottom border and are covered by halos",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "dbc1a6ce": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "dbc1a6ce",
+     "sample": 0,
+     "verb": "connect",
+     "reading": "Every two 1 cells on the same row or column are joined by a line of 8 through the background between them.",
+     "why": "every background cell between two 1 cells on one row or column becomes 8; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "fillers": {
+      "fill.region=between": [
+       [
+        29,
+        [
+         0
+        ]
+       ],
+       [
+        14,
+        [
+         0
+        ]
+       ],
+       [
+        11,
+        [
+         0
+        ]
+       ],
+       [
+        13,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "dbc1a6ce",
+     "sample": 1,
+     "verb": "connect",
+     "reading": "Any two 1 cells on the same row or column are joined by a line of 8 through the background between them.",
+     "why": "every background cell between two 1s on a row or column is 8; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "fillers": {
+      "fill.region=between": [
+       [
+        29,
+        [
+         0
+        ]
+       ],
+       [
+        14,
+        [
+         0
+        ]
+       ],
+       [
+        11,
+        [
+         0
+        ]
+       ],
+       [
+        13,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "dbc1a6ce",
+     "sample": 2,
+     "verb": "connect",
+     "reading": "Any two 1 cells on the same row or column are joined by a line of 8 through the background between them.",
+     "why": "every 8 cell is a background cell between two 1 cells on its row or column, and every such cell is 8.",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "fillers": {
+      "fill.region=between": [
+       [
+        29,
+        [
+         0
+        ]
+       ],
+       [
+        14,
+        [
+         0
+        ]
+       ],
+       [
+        11,
+        [
+         0
+        ]
+       ],
+       [
+        13,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "dbc1a6ce",
+     "sample": 3,
+     "verb": "connect",
+     "reading": "Every pair of 1 cells on the same row or column is joined by a line of 8 through the background between them.",
+     "why": "every bg cell with a 1 on both sides in its row or column becomes 8; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "fillers": {
+      "fill.region=between": [
+       [
+        29,
+        [
+         0
+        ]
+       ],
+       [
+        14,
+        [
+         0
+        ]
+       ],
+       [
+        11,
+        [
+         0
+        ]
+       ],
+       [
+        13,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "dbc1a6ce",
+     "sample": 4,
+     "verb": "connect",
+     "reading": "Every two 1 cells on the same row or column are joined by a line of 8 over the background between them.",
+     "why": "every 8 cell is background between two 1s on one row or column; colour is 8",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=between)"
+     ],
+     "fillers": {
+      "fill.region=between": [
+       [
+        29,
+        [
+         0
+        ]
+       ],
+       [
+        14,
+        [
+         0
+        ]
+       ],
+       [
+        11,
+        [
+         0
+        ]
+       ],
+       [
+        13,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

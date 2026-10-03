@@ -1,0 +1,10 @@
+% row: d_396d80d7_4_diag_only
+% source: distillation batch reading, task 396d80d7, sample 4
+% output: diag_only(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+diag(DY, DX) :- off(DY, DX), !orth(DY, DX).
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+otouch(Y, X) :- bgc(Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+dtouch(Y, X) :- bgc(Y, X), diag(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+diag_only(Y, X) :- dtouch(Y, X), !otouch(Y, X).

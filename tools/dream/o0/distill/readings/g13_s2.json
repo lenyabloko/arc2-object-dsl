@@ -1,0 +1,208 @@
+[
+ {
+  "task": "62b74c02",
+  "reading": "The coloured block at the left edge is copied flush to the right edge, and the gap between the two copies is filled, row by row, with that row's first-cell colour.",
+  "verb": "stretch pattern to full width",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pattern": "the multi-coloured block at the left edge (its first and last columns match)",
+   "placement": "a copy flush against the right border",
+   "filler": "each row's leftmost colour fills the background between the two copies"
+  },
+  "why": "output row = block + row[0] repeated + block, on every pair",
+  "invariants": [
+   "grid size",
+   "left block"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "639f5a19",
+  "reading": "Each solid 8 rectangle is recoloured by position: an inner core inset by 2 cells becomes 4, and the remaining 2-wide rim is split into quadrants: top-left 6, top-right 1, bottom-left 2, bottom-right 3.",
+  "verb": "colour rectangle by quadrant",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each solid rectangle object",
+   "core": "cells at least 2 from the rectangle edge -> 4",
+   "quadrants": "rim cells by half: TL 6, TR 1, BL 2, BR 3"
+  },
+  "why": "every 8 cell is recoloured by its position in its rectangle; background unchanged",
+  "invariants": [
+   "shapes and positions",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "642248e4",
+  "reading": "Two opposite border lines have different colours; each 1 cell gets one new cell next to it, on the side towards the nearer border line, in that border's colour.",
+  "verb": "point toward nearest border",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each isolated 1 cell",
+   "direction": "toward the nearer of the two full border lines",
+   "colour": "that border line's colour",
+   "length": "one cell"
+  },
+  "why": "every 1 cell gains exactly one neighbour coloured like its nearer border",
+  "invariants": [
+   "border lines",
+   "the 1 cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "64a7c07e",
+  "reading": "Each object moves right by a distance equal to its own width.",
+  "verb": "shift right by own width",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object (8-connected)",
+   "direction": "right",
+   "distance": "the object's bounding-box width"
+  },
+  "why": "each object keeps its shape and rows; its column offset equals its width",
+  "invariants": [
+   "shapes",
+   "rows",
+   "colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "652646ff",
+  "reading": "Several noisy copies of one octagonal ring shape, each in its own colour, overlap in a chain among scattered noise cells; the output stacks a clean 6x6 ring of each ring colour vertically, in chain order.",
+  "verb": "list ring colours as clean rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shape": "the fixed 6x6 octagonal ring (learned from the outputs)",
+   "items": "the colours that form rings (not the scattered noise colours)",
+   "order": "along the chain of overlapping rings (the first in order looks like the most intact / top ring; exact rule unclear)",
+   "background": "the input background colour"
+  },
+  "why": "output is a 6-wide column of clean rings, one per ring colour",
+  "invariants": [
+   "background colour",
+   "ring shape"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "66e6c45b",
+  "reading": "The 2x2 block of four colours at the centre of a 4x4 grid is pulled apart: each cell moves diagonally out to the grid corner nearest it.",
+  "verb": "send cells to corners",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each of the four centre cells",
+   "target": "the grid corner on its diagonal",
+   "rest": "cleared"
+  },
+  "why": "the four colours appear only at the four corners, each at its own diagonal corner",
+  "invariants": [
+   "grid size",
+   "colours"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "67385a82",
+  "reading": "Every 3 cell that has a 3 as an orthogonal neighbour (i.e. belongs to a 4-connected group of 2 or more) becomes 8; lone 3s stay.",
+  "verb": "recolour connected cells",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "paired"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "paired",
+    "datalog": "paired(Y, X) :- cell(Y, X, C), off(DY, DX), DY = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\npaired(Y, X) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C)."
+   }
+  ],
+  "why": "key 3->8 on cells with a same-colour 4-neighbour; diagonal-only contact does not count",
+  "invariants": [
+   "lone 3 cells",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "67a423a3",
+  "reading": "A vertical and a horizontal line cross; a 3x3 square ring of 4 is drawn around the crossing cell, whose own colour is kept.",
+  "verb": "box the crossing",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "cross",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross",
+    "datalog": "cross(Y, X) :- cell(Y, X, C), Ya = Y - 1, cell(Ya, X, C1), Yb = Y + 1, cell(Yb, X, C2), Xa = X - 1, cell(Y, Xa, C3), Xb = X + 1, cell(Y, Xb, C4)."
+   }
+  ],
+  "why": "the 8 cells around the crossing become 4; the crossing cell and all other cells are unchanged",
+  "invariants": [
+   "crossing cell colour",
+   "lines outside the 3x3"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "692cd3b6",
+  "reading": "Two 3x3 boxes of 2 with a 5 centre each have one open side; the openings are filled with 4 and joined by a solid 4 rectangle spanning from just outside one opening to just outside the other, except cells lying behind either box.",
+  "verb": "bridge the box openings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "ends": "the gap cell of each box and the cell just outside it",
+   "region": "the bounding rectangle of the two outside cells, minus the box cells and the cells behind each box (on its closed side)",
+   "colour": "4"
+  },
+  "why": "only background cells inside the bridge become 4; the boxes are unchanged",
+  "invariants": [
+   "the two boxes"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "69889d6e",
+  "reading": "From the single 2 on the bottom row a two-cell-wide diagonal band of 2 runs up and to the right until the border; where a 1 blocks it, the band steps right past the 1 (the row below gains a cell to bridge it) and goes on.",
+  "verb": "draw thick diagonal ray around obstacles",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the 2 cell on the bottom row",
+   "direction": "up-right, each row offset by one column, two cells wide",
+   "obstacle": "1 cells: the band shifts right just past them",
+   "stop": "grid border",
+   "colour": "2"
+  },
+  "why": "the band never overwrites a 1 and reaches the border",
+  "invariants": [
+   "the 1 cells",
+   "the source 2"
+  ],
+  "confidence": "medium"
+ }
+]

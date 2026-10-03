@@ -1,0 +1,5 @@
+% row: d_98cf29f8_0_stalk
+% source: distillation batch reading, task 98cf29f8, sample 0
+% output: stalk(Y, X)
+stalk(Y, X) :- cell(Y, X, C), Ya = Y - 1, Yb = Y + 1, !px(Ya, X, C), !px(Yb, X, C).
+stalk(Y, X) :- cell(Y, X, C), Xa = X - 1, Xb = X + 1, !px(Y, Xa, C), !px(Y, Xb, C).

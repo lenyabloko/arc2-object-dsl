@@ -1,0 +1,12 @@
+% row: d_770cc55f_1_overlap_side
+% source: distillation batch reading, task 770cc55f, sample 1
+% output: overlap_side(Y, X)
+sep(Y) :- cell(Y, X, C), C = 2.
+topx(X) :- cell(Y, X, C), sep(S), Y < S.
+botx(X) :- cell(Y, X, C), sep(S), Y > S.
+topy(Y) :- cell(Y, X, C), sep(S), Y < S.
+boty(Y) :- cell(Y, X, C), sep(S), Y > S.
+ntop(count(X)) :- topx(X).
+nbot(count(X)) :- botx(X).
+overlap_side(Y, X) :- px(Y, X, C), topx(X), botx(X), ntop(A), nbot(B), A > B, topy(T), sep(S), Y > T, Y < S.
+overlap_side(Y, X) :- px(Y, X, C), topx(X), botx(X), ntop(A), nbot(B), A < B, boty(T), sep(S), Y > S, Y < T.

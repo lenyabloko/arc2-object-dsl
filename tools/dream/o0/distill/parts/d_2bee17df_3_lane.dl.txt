@@ -1,0 +1,10 @@
+% row: d_2bee17df_3_lane
+% source: distillation batch reading, task 2bee17df, sample 3
+% output: lane(Y, X)
+w(max(X)) :- px(Y, X, C).
+h(max(Y)) :- px(Y, X, C).
+rowhit(Y) :- cell(Y, X, C), w(W), X > 0, X < W.
+colhit(X) :- cell(Y, X, C), h(H), Y > 0, Y < H.
+bgp(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+lane(Y, X) :- bgp(Y, X), !rowhit(Y).
+lane(Y, X) :- bgp(Y, X), !colhit(X).

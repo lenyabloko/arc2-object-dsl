@@ -1,0 +1,11 @@
+% row: d_310f3251_0_ul
+% source: distillation batch reading, task 310f3251, sample 0
+% output: ul(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+upy(Y, Y1) :- px(Y, X, C), Y > 0, Y1 = Y - 1.
+upy(Y, H) :- px(Y, X, C), Y = 0, hmax(H).
+lfx(X, X1) :- px(Y, X, C), X > 0, X1 = X - 1.
+lfx(X, W) :- px(Y, X, C), X = 0, wmax(W).
+ul(Y1, X1) :- cell(Y, X, C), upy(Y, Y1), lfx(X, X1), !fgc(Y1, X1).

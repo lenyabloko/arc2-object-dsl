@@ -1,0 +1,5 @@
+% row: d_10fcaaa3_2_diag_bg
+% source: distillation batch reading, task 10fcaaa3, sample 2
+% output: diag_bg(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+diag_bg(Y2, X2) :- cell(Y, X, C), off(DY, DX), Q = DY*DY + DX*DX, Q = 2, Y2 = Y + DY, X2 = X + DX, px(Y2, X2, B), !isfg(Y2, X2).

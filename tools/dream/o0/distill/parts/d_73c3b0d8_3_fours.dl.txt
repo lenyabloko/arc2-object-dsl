@@ -1,0 +1,4 @@
+% row: d_73c3b0d8_3_fours
+% source: distillation batch reading, task 73c3b0d8, sample 3
+% output: fours(Y, X)
+fours(Y, X) :- px(Y, X, 4).

@@ -1,0 +1,6 @@
+% row: d_0d87d2a6_4_crossed
+% source: distillation batch reading, task 0d87d2a6, sample 4
+% output: crossed(Y, X)
+oc(O, C) :- obj(O, Y, X), cell(Y, X, C).
+hit(O) :- obj(O, Y, X), oc(O, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2), C2 != C.
+crossed(Y, X) :- hit(O), obj(O, Y, X).

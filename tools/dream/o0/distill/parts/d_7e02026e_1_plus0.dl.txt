@@ -1,0 +1,9 @@
+% row: d_7e02026e_1_plus0
+% source: distillation batch reading, task 7e02026e, sample 1
+% output: plus0(Y, X)
+pc(Y, X) :- px(Y, X, 0), A = Y - 1, px(A, X, 0), B = Y + 1, px(B, X, 0), L = X - 1, px(Y, L, 0), R = X + 1, px(Y, R, 0).
+plus0(Y, X) :- pc(Y, X).
+plus0(A, X) :- pc(Y, X), A = Y - 1.
+plus0(B, X) :- pc(Y, X), B = Y + 1.
+plus0(Y, L) :- pc(Y, X), L = X - 1.
+plus0(Y, R) :- pc(Y, X), R = X + 1.

@@ -1,0 +1,225 @@
+[
+ {
+  "task": "6f8cd79b",
+  "reading": "The all-black input gets a one-cell frame of colour 8 along its outer border; the interior stays 0.",
+  "verb": "draw border",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "edge",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "edge",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\nedge(Y, X) :- px(Y, X, C), Y = 0.\nedge(Y, X) :- px(Y, X, C), X = 0.\nedge(Y, X) :- px(Y, X, C), hmax(H), Y = H.\nedge(Y, X) :- px(Y, X, C), wmax(W), X = W."
+   }
+  ],
+  "why": "every grid-border cell becomes 8 (constant colour); nothing else changes",
+  "invariants": [
+   "grid size",
+   "interior cells stay 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72207abc",
+  "reading": "Row 1 starts with a short colour sequence (2-3 cells); the sequence is continued along the row at positions 0,1,3,6,10,15,21,28,... (gaps growing by one each time), cycling through the starting colours.",
+  "verb": "repeat sequence with growing gaps",
+  "frame": {
+   "how": "other",
+   "verb": "repeat sequence with growing gaps"
+  },
+  "slots": {
+   "sequence": "the leading run of non-zero cells in the middle row, in order",
+   "positions": "triangular numbers n(n+1)/2 along the same row, until the row ends",
+   "colour": "the sequence colours cycled in order"
+  },
+  "why": "every non-zero output cell sits at a triangular-number column of the middle row and its colour is seq[k mod len(seq)] for the k-th such position",
+  "invariants": [
+   "grid size",
+   "other rows stay 0",
+   "original leading cells kept"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72a961c9",
+  "reading": "A horizontal line of 1s contains a few special cells (8 or 2). From each special cell a vertical bar grows upward: colour 8 gives two 1s capped by an 8 (3 cells above); colour 2 gives three 1s capped by a 2 (4 cells above).",
+  "verb": "grow capped stalks",
+  "frame": {
+   "how": "other",
+   "verb": "grow capped stalk by colour"
+  },
+  "slots": {
+   "source": "each non-1 cell in the full horizontal line of 1s",
+   "direction": "upward (away from the line)",
+   "length": "by colour: 8 -> 3 cells, 2 -> 4 cells",
+   "body": "colour 1",
+   "cap": "the source's own colour at the top cell"
+  },
+  "why": "above each special cell of colour c there are L(c)-1 cells of 1 then one cell of c (L(8)=3, L(2)=4); all else unchanged",
+  "invariants": [
+   "grid size",
+   "the horizontal line",
+   "rows below the line"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "73c3b0d8",
+  "reading": "Every 4 drops one row down. A 4 that thereby lands directly on top of the red (2) line shoots two diagonal rays of 4 up-left and up-right to the grid border.",
+  "verb": "drop and shoot diagonals",
+  "frame": {
+   "how": "other",
+   "verb": "drop one row, then emit diagonals on contact"
+  },
+  "slots": {
+   "subject": "each single 4 cell (markers), above or below the line",
+   "move": "down by one row",
+   "trigger": "the moved 4 is directly above the full row of 2s",
+   "rays": "diagonals up-left and up-right from the moved 4, colour 4, stopping at the grid border"
+  },
+  "why": "each 4 is at (y+1,x); for those at the row just above the 2-line, all cells (y+1-k, x+-k) up to the border are 4",
+  "invariants": [
+   "grid size",
+   "the 2 line",
+   "marker count and colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "770cc55f",
+  "reading": "A top bar (row 0) and a bottom bar (last row) are separated by a full red row. In the columns where both bars have cells, colour 4 fills the gap between the red row and the longer of the two bars.",
+  "verb": "fill shared columns",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "shared_gap",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "shared_gap",
+    "datalog": "h(max(Y)) :- px(Y, X, C).\nsepr(Y) :- cell(Y, X, C), C = 2.\ntop(X) :- cell(Y, X, C), Y = 0.\nbot(X) :- h(H), cell(Y, X, C), Y = H.\nnt(count(X)) :- top(X).\nnb(count(X)) :- bot(X).\nboth(X) :- top(X), bot(X).\nshared_gap(Y, X) :- both(X), px(Y, X, C), sepr(S), h(H), nt(A), nb(B), B > A, Y > S, Y < H.\nshared_gap(Y, X) :- both(X), px(Y, X, C), sepr(S), nt(A), nb(B), A > B, Y > 0, Y < S."
+   }
+  ],
+  "why": "cells in columns shared by both bars, strictly between the red row and the longer bar, become 4; nothing else changes",
+  "invariants": [
+   "grid size",
+   "both bars",
+   "the red row"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "782b5218",
+  "reading": "A wall of 2s crosses the grid. Everything on the top side of the wall (4-connected to row 0 without crossing a 2) becomes 0; everything on the other side becomes the grid's other colour; the 2s stay.",
+  "verb": "split by wall",
+  "frame": {
+   "how": "other",
+   "verb": "clear one side, flood the other"
+  },
+  "slots": {
+   "wall": "all cells of colour 2",
+   "cleared side": "non-2 cells 4-connected to the top row without passing a 2 -> 0",
+   "filled side": "all remaining non-2 cells -> the single non-0, non-2 colour of the input"
+  },
+  "why": "output = 2 on input 2 cells, 0 on the top-connected region, colour c elsewhere",
+  "invariants": [
+   "grid size",
+   "positions of all 2 cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7acdf6d3",
+  "reading": "Several open V-shaped 2 figures each enclose a hole; scattered 9 cells are removed and used to fill the hole of the one figure whose hole has exactly as many cells as there are 9s.",
+  "verb": "pour markers into matching hole",
+  "frame": {
+   "how": "other",
+   "verb": "fill matching hole with markers"
+  },
+  "slots": {
+   "markers": "all 9 cells (count N), removed from their places",
+   "holes": "background cells enclosed inside each 2 figure's cup (between its arms)",
+   "target": "the figure whose hole size equals N",
+   "colour": "9"
+  },
+  "why": "all 9s vanish from their positions; the hole with size N becomes 9; other figures unchanged",
+  "invariants": [
+   "grid size",
+   "all 2 cells",
+   "count of 9 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7d18a6fb",
+  "reading": "A 7x7 box of 1s holds four key colours at its corners-inside (positions (1,1),(1,5),(5,1),(5,5)). Output is 7x7: each 3x3 corner block holds the 3x3 shape from the grid whose colour matches the key at that corner; the middle row and column are 0; shapes whose colour is not a key are ignored.",
+  "verb": "assemble shapes by key",
+  "frame": {
+   "how": "other",
+   "verb": "assemble pieces by key layout"
+  },
+  "slots": {
+   "key": "the 7x7 box of 1s; its 4 non-1 cells give colour per quadrant",
+   "pieces": "the 3x3 single-colour objects outside the box",
+   "layout": "piece of key colour at (1,1) -> output block rows 0-2 cols 0-2, (1,5) -> rows 0-2 cols 4-6, (5,1) -> rows 4-6 cols 0-2, (5,5) -> rows 4-6 cols 4-6",
+   "rest": "row 3 and column 3 are 0"
+  },
+  "why": "each output quadrant equals the bounding box of the object whose colour sits at the matching key position",
+  "invariants": [
+   "piece shapes unchanged",
+   "output size 7x7"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d419a02",
+  "reading": "A grid of 8 strips (period 3, with 0 holes) has one 6 block. In every strip other than the 6's own, 8 cells become 4 except inside a cone around the 6: the kept span along the strip is the 6's span widened by 2 cells per side for each further strip of distance (distance 1: same span; distance 2: +2; distance 3: +4).",
+  "verb": "recolour outside cone",
+  "frame": {
+   "how": "other",
+   "verb": "recolour cells outside a cone from the seed"
+  },
+  "slots": {
+   "seed": "the 6 block",
+   "strips": "2-wide stripes of 8 separated by full 0 lines (rows in pair 0, columns in pairs 1-2)",
+   "subject": "8 cells in strips at distance d>=1 lying outside the seed's span extended by 2(d-1) cells on each side along the strip",
+   "key": "8 -> 4"
+  },
+  "why": "only 8 cells change, all to 4, exactly those outside the widening cone and not in the seed's strip; 0 holes and the 6 block unchanged",
+  "invariants": [
+   "grid size",
+   "0 cells",
+   "6 block",
+   "seed strip"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d7772cc",
+  "reading": "A line of marker cells lies outside a box parallel to a matching line inside the box. Each outside marker whose colour equals its partner inside the box moves perpendicular to the box until it touches the box wall; each marker that differs moves the other way to the far grid border.",
+  "verb": "sort markers by match",
+  "frame": {
+   "how": "other",
+   "verb": "move toward or away by comparison"
+  },
+  "slots": {
+   "subject": "each non-background cell in the free line outside the box",
+   "partner": "the cell in the same column (or row) on the box's inner line",
+   "matching": "move perpendicular toward the box, stopping adjacent to its wall",
+   "different": "move perpendicular away, to the grid border"
+  },
+  "why": "each outside marker keeps its colour and column/row; it ends adjacent to the box iff it equals its inside partner, else on the far border",
+  "invariants": [
+   "grid size",
+   "the box and its contents",
+   "marker colours and count"
+  ],
+  "confidence": "high"
+ }
+]

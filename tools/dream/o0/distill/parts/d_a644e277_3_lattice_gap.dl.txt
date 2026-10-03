@@ -1,0 +1,5 @@
+% row: d_a644e277_3_lattice_gap
+% source: distillation batch reading, task a644e277, sample 3
+% output: lattice_gap(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+lattice_gap(Y, X) :- px(Y, X, B), !isfg(Y, X), Y1 = Y - 1, Y2 = Y + 1, X1 = X - 1, X2 = X + 1, cell(Y1, X, C), cell(Y2, X, C), cell(Y, X1, C), cell(Y, X2, C).

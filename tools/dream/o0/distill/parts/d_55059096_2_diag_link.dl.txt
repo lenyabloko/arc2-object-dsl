@@ -1,0 +1,7 @@
+% row: d_55059096_2_diag_link
+% source: distillation batch reading, task 55059096, sample 2
+% output: diag_link(Y, X)
+fg(Y, X) :- cell(Y, X, C).
+ctr(Y, X) :- cell(Y, X, C), Y1 = Y - 1, cell(Y1, X, C), Y2 = Y + 1, cell(Y2, X, C), X1 = X - 1, cell(Y, X1, C), X2 = X + 1, cell(Y, X2, C).
+diag_link(YC, XC) :- ctr(Y, X), ctr(Y2, X2), D = Y2 - Y, D > 0, E = X2 - X, E = D, px(YC, XC, C), YC > Y, YC < Y2, K = YC - Y, XC = X + K, !fg(YC, XC).
+diag_link(YC, XC) :- ctr(Y, X), ctr(Y2, X2), D = Y2 - Y, D > 0, E = X - X2, E = D, px(YC, XC, C), YC > Y, YC < Y2, K = YC - Y, XC = X - K, !fg(YC, XC).

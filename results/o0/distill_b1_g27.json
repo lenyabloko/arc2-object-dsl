@@ -1,0 +1,1701 @@
+{
+ "group": 27,
+ "tasks": {
+  "d07ae81c": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d07ae81c",
+     "sample": 0,
+     "verb": "draw diagonals with region-dependent colour",
+     "reading": "From each single marker cell, diagonal lines run in all four diagonal directions to the grid border, crossing the background regions; each line cell takes the marker colour that belongs to the region it lies in (each of the two background colours has its own marker colour).",
+     "why": "every diagonal ray from a marker reaches the border, and each ray cell is recoloured by the region->marker-colour key",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d07ae81c",
+     "sample": 1,
+     "verb": "draw diagonal rays recoloured by region",
+     "reading": "Each isolated marker shoots diagonal lines in all four diagonal directions to the grid border; a line cell takes the colour of the marker that sits in the same background-stripe colour as that cell.",
+     "why": "every changed cell lies on a diagonal through a marker and its new colour is key(underlying stripe colour)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d07ae81c",
+     "sample": 2,
+     "verb": "draw diagonals recoloured by band",
+     "reading": "The grid is split into bands of two colours; each band holds one or more single marker cells. From every marker draw all four diagonals to the grid border; each diagonal cell takes the marker colour assigned to the band it lies in (band colour -> colour of the marker found in that band), so a line changes colour when it crosses into the other band.",
+     "why": "every changed cell lies on a diagonal through some marker, and its new colour is the marker colour of the band it is in",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d07ae81c",
+     "sample": 3,
+     "verb": "cast diagonal rays coloured by region",
+     "reading": "Each isolated marker casts both diagonals to the grid border; along the rays, a cell in a region of background colour r takes the colour of the marker that sits in an r-region.",
+     "why": "every diagonal through a marker is painted to the border; ray colour switches whenever the ray enters a region of the other background colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d07ae81c",
+     "sample": 4,
+     "verb": "draw diagonals through markers, coloured by region",
+     "reading": "Each isolated marker cell shoots diagonal rays in all four directions to the grid border. Along the rays, each cell takes the colour paired with the background region it lies in; the pairing is read from the markers (marker colour c sitting in region colour r gives r->c, e.g. 1->2 and 3->8).",
+     "why": "every changed cell lies on a diagonal through a marker and has the colour paired with its original region colour; all other cells unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d13f3404": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d13f3404",
+     "sample": 0,
+     "verb": "extend diagonally on enlarged canvas",
+     "reading": "The 3x3 input is placed at the top-left of a 6x6 empty canvas and every coloured cell is extended diagonally down-right until the border.",
+     "why": "each output cell (y,x) equals the input cell (y-k,x-k) for the k bringing it inside the input, else 0",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d13f3404",
+     "sample": 1,
+     "verb": "draw diagonal trails on doubled canvas",
+     "reading": "The 3x3 input is placed at the top-left of a 6x6 canvas and every coloured cell is extended down-right diagonally to the canvas border in its own colour.",
+     "why": "output cell (y,x) equals the input cell (y-k,x-k) for the smallest k>=0 giving a non-background cell",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d13f3404",
+     "sample": 2,
+     "verb": "extend diagonally down-right",
+     "reading": "The 3x3 input is placed at the top-left of a doubled (6x6) background canvas and every coloured cell is extended diagonally down-right in its own colour until it reaches the canvas border.",
+     "why": "each fg cell's down-right diagonal is its own colour up to the border of the 2H x 2W canvas; nothing else is coloured",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d13f3404",
+     "sample": 3,
+     "verb": "draw diagonal trails on doubled canvas",
+     "reading": "The 3x3 input is placed in the top-left of a 6x6 empty canvas, then every coloured cell trails down-right diagonally in its own colour to the border.",
+     "why": "output is 2x the input size, top-left block equals the input, other blocks empty before extension; each fg cell's down-right diagonal is filled with its colour to the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d13f3404",
+     "sample": 4,
+     "verb": "pad and extend diagonals",
+     "reading": "The 3x3 input is placed in the top-left of a 6x6 empty canvas, then every coloured cell is extended diagonally down-right to the border with its own colour.",
+     "why": "output is 2x input size; cell (y,x) of the input is repeated at (y+k,x+k) for all k until the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d23f8c26": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "d23f8c26",
+     "sample": 0,
+     "verb": "keep middle column",
+     "reading": "Only the middle column of the grid is kept; every coloured cell outside the middle column becomes background 0.",
+     "why": "every fg cell not in the centre column becomes 0 (key maps every colour to 0); centre column unchanged",
+     "new_rows": [
+      "d_d23f8c26_0_off_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "off_centre": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d23f8c26_0_off_centre)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d23f8c26_0_off_centre": [
+       [
+        9,
+        [
+         3,
+         5,
+         6,
+         8,
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1,
+         6,
+         9
+        ]
+       ],
+       [
+        8,
+        [
+         2,
+         3,
+         6,
+         7,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d23f8c26",
+     "sample": 1,
+     "verb": "keep centre column",
+     "reading": "Only the middle column is kept; every coloured cell off the middle column becomes background.",
+     "why": "all non-background cells outside the centre column become 0; the centre column is unchanged",
+     "new_rows": [
+      "d_d23f8c26_1_offmid"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "offmid": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d23f8c26_1_offmid)",
+      "fill(colour:=train, region:=d_d23f8c26_1_offmid)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d23f8c26_1_offmid": [
+       [
+        9,
+        [
+         3,
+         5,
+         6,
+         8,
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1,
+         6,
+         9
+        ]
+       ],
+       [
+        8,
+        [
+         2,
+         3,
+         6,
+         7,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d23f8c26",
+     "sample": 2,
+     "verb": "keep centre column",
+     "reading": "Keep only the middle column of the (odd-width) grid; every cell outside the centre column is cleared to background 0.",
+     "why": "all cells outside the centre column become 0; centre-column cells are unchanged",
+     "new_rows": [
+      "d_d23f8c26_2_offcol"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "offcol": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d23f8c26_2_offcol)",
+      "fill(colour:=train, region:=d_d23f8c26_2_offcol)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d23f8c26_2_offcol": [
+       [
+        20,
+        [
+         0,
+         3,
+         5,
+         6,
+         8,
+         9
+        ]
+       ],
+       [
+        6,
+        [
+         0,
+         1,
+         6,
+         9
+        ]
+       ],
+       [
+        20,
+        [
+         0,
+         2,
+         3,
+         6,
+         7,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d23f8c26",
+     "sample": 3,
+     "verb": "keep middle column",
+     "reading": "Only the middle column is kept; every cell outside it is cleared to background.",
+     "why": "every non-background cell outside the centre column becomes 0; the centre column is unchanged",
+     "new_rows": [
+      "d_d23f8c26_3_off_mid"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "off_mid": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d23f8c26_3_off_mid)",
+      "fill(colour:=train, region:=d_d23f8c26_3_off_mid)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d23f8c26_3_off_mid": [
+       [
+        9,
+        [
+         3,
+         5,
+         6,
+         8,
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1,
+         6,
+         9
+        ]
+       ],
+       [
+        8,
+        [
+         2,
+         3,
+         6,
+         7,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d23f8c26",
+     "sample": 4,
+     "verb": "keep centre column",
+     "reading": "Only the centre column is kept; every cell outside the centre column becomes 0.",
+     "why": "all cells not in the middle column are 0 in the output; the middle column is unchanged",
+     "new_rows": [
+      "d_d23f8c26_4_off_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "off_centre": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d23f8c26_4_off_centre)",
+      "fill(colour:=train, region:=d_d23f8c26_4_off_centre)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d23f8c26_4_off_centre": [
+       [
+        20,
+        [
+         0,
+         3,
+         5,
+         6,
+         8,
+         9
+        ]
+       ],
+       [
+        6,
+        [
+         0,
+         1,
+         6,
+         9
+        ]
+       ],
+       [
+        20,
+        [
+         0,
+         2,
+         3,
+         6,
+         7,
+         8
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "d255d7a7": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d255d7a7",
+     "sample": 0,
+     "verb": "slide head to end of stem",
+     "reading": "Each 3x3 cup-shaped head (0-coloured bracket with its contents) sits at one end of a long 0 stem; the head block is translated unchanged to the far end of the stem and the stem is erased to background.",
+     "why": "each output head box equals the input head box, shifted by the stem length along the stem direction",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d255d7a7",
+     "sample": 1,
+     "verb": "slide bracket along rail",
+     "reading": "Each 3x3 bracket attached to a long 0-coloured rail slides along its rail to the rail's far end at the opposite border, carrying whatever is inside it; the rail is erased. Loose 9s not in a bracket stay.",
+     "why": "each bracket with contents reappears unchanged in orientation at the far end of its rail; rail removed",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d255d7a7",
+     "sample": 2,
+     "verb": "slide head to tail end",
+     "reading": "Each 0-coloured bracket (3x3 head holding 7/9 contents) has a one-cell-wide 0 tail running to the opposite grid border. The tail is erased and the head (with its contents, same orientation) is translated along the tail line to the far border where the tail ended.",
+     "why": "each head keeps its shape and contents and ends flush with the opposite border; tails disappear; objects without tails are untouched",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d255d7a7",
+     "sample": 3,
+     "verb": "slide cap to end of its tail",
+     "reading": "Each 0-shape is a 3x3 cap with a straight tail running to the far border; the cap slides along its tail to the far end and the tail is erased.",
+     "why": "the cap pattern is identical before and after, now flush with the opposite border; no tail cells remain",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d255d7a7",
+     "sample": 4,
+     "verb": "slide along own tail",
+     "reading": "Each 0-coloured U-bracket (with the cells inside it) has a straight 0 tail running to the opposite edge; the bracket and its contents slide along the tail to the tail's far end, and the tail is erased (filled with background 7).",
+     "why": "each bracket block reappears translated so its back sits at the far end of its tail, flush with the border",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d2acf2cb": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "d2acf2cb",
+     "sample": 0,
+     "verb": "recolour line between paired 4s",
+     "reading": "Where two 4s sit on opposite borders of the same row or column, every cell strictly between them is recoloured by the swap 0<->8, 6<->7.",
+     "why": "every cell between two border 4s on one row/column maps 0->8, 8->0, 6->7, 7->6; nothing else changes",
+     "new_rows": [
+      "d_d2acf2cb_0_link"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "link": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d2acf2cb_0_link)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d2acf2cb_0_link": [
+       [
+        21,
+        [
+         7,
+         8
+        ]
+       ],
+       [
+        7,
+        [
+         0,
+         6
+        ]
+       ],
+       [
+        8,
+        [
+         0,
+         6
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d2acf2cb",
+     "sample": 1,
+     "verb": "swap colours inside 4-bounded lanes",
+     "reading": "In every row or column that has a 4 at both grid-border ends, the cells between the two 4s swap colours 0<->8 and 6<->7.",
+     "why": "key is 0->8, 8->0, 6->7, 7->6 on lane cells (bg included); all other cells unchanged",
+     "new_rows": [
+      "d_d2acf2cb_1_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d2acf2cb_1_lane)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d2acf2cb_1_lane": [
+       [
+        21,
+        [
+         7,
+         8
+        ]
+       ],
+       [
+        7,
+        [
+         0,
+         6
+        ]
+       ],
+       [
+        8,
+        [
+         0,
+         6
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d2acf2cb",
+     "sample": 2,
+     "verb": "swap colours between 4 end-markers",
+     "reading": "Rows (or columns) that have a 4 at both grid-border ends are lanes; inside a lane the colours are swapped 0<->8 and 6<->7. Everything else is unchanged.",
+     "why": "every lane cell of colour a becomes key(a) with key {0:8, 8:0, 6:7, 7:6}; cells outside lanes never change",
+     "new_rows": [
+      "d_d2acf2cb_2_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d2acf2cb_2_lane)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d2acf2cb_2_lane": [
+       [
+        21,
+        [
+         7,
+         8
+        ]
+       ],
+       [
+        7,
+        [
+         0,
+         6
+        ]
+       ],
+       [
+        8,
+        [
+         0,
+         6
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d2acf2cb",
+     "sample": 3,
+     "verb": "swap colours on bracketed lines",
+     "reading": "Rows (or columns) that have a 4 at both grid edges are recoloured between the 4s by swapping 0<->8 and 6<->7.",
+     "why": "on each line bounded by 4s at opposite edges, every cell a becomes key(a) with key = {0->8, 8->0, 6->7, 7->6, 4->4}; all other cells unchanged",
+     "new_rows": [
+      "d_d2acf2cb_3_bracketed"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "bracketed": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d2acf2cb_3_bracketed)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d2acf2cb_3_bracketed": [
+       [
+        27,
+        [
+         4,
+         7,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         0,
+         4,
+         6
+        ]
+       ],
+       [
+        12,
+        [
+         0,
+         4,
+         6
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d2acf2cb",
+     "sample": 4,
+     "verb": "recolour lanes between 4-endpoints",
+     "reading": "Where a row has 4 at both its left and right ends (or a column has 4 at both top and bottom), the cells strictly between the two 4s are recoloured by the swap 0<->8, 6<->7.",
+     "why": "every lane cell of colour a becomes key(a) with key {0:8, 8:0, 6:7, 7:6}; all other cells unchanged",
+     "new_rows": [
+      "d_d2acf2cb_4_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_d2acf2cb_4_lane)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_d2acf2cb_4_lane": [
+       [
+        21,
+        [
+         7,
+         8
+        ]
+       ],
+       [
+        7,
+        [
+         0,
+         6
+        ]
+       ],
+       [
+        8,
+        [
+         0,
+         6
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "d364b489": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "d364b489",
+     "sample": 0,
+     "verb": "stamp plus around markers",
+     "reading": "Around every isolated 1 a fixed plus pattern is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+     "why": "each marker gets an identical 3x3 plus copy centred on it (2 N, 7 W, 6 E, 8 S, 1 centre)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        6,
+        [
+         1
+        ]
+       ],
+       [
+        5,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d364b489",
+     "sample": 1,
+     "verb": "stamp plus around markers",
+     "reading": "Around every isolated 1 a fixed plus is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+     "why": "each marker gets the identical 3x3 plus (centre 1) and nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        6,
+        [
+         1
+        ]
+       ],
+       [
+        5,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d364b489",
+     "sample": 2,
+     "verb": "stamp coloured plus",
+     "reading": "Around every isolated 1 stamp a fixed plus: 2 above, 7 left, 6 right, 8 below (clipped at the grid edge).",
+     "why": "each 1 is the centre of an identical cross 020/716/080; all other cells stay",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        6,
+        [
+         1
+        ]
+       ],
+       [
+        5,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d364b489",
+     "sample": 3,
+     "verb": "stamp plus around markers",
+     "reading": "Around every isolated 1 a fixed plus is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+     "why": "each marker is the centre of an identical 3x3 plus (2 up, 7 left, 1 centre, 6 right, 8 down); nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        6,
+        [
+         1
+        ]
+       ],
+       [
+        5,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d364b489",
+     "sample": 4,
+     "verb": "stamp cross at markers",
+     "reading": "At every isolated 1 cell a fixed cross is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border); the 1 stays.",
+     "why": "around each marker the four orthogonal neighbours are 2(up),7(left),6(right),8(down); nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        6,
+        [
+         1
+        ]
+       ],
+       [
+        5,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "d37a1ef5": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "d37a1ef5",
+     "sample": 0,
+     "verb": "fill frame except box of inner marks",
+     "reading": "The interior of the 2-coloured rectangular frame is filled with 2, except the bounding box of the 5 cells, which keeps its 0s and 5s.",
+     "why": "every frame-interior cell outside the 5s' bounding box becomes 2; the box of 5s and everything outside the frame are unchanged",
+     "new_rows": [
+      "d_d37a1ef5_0_frame_minus_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "frame_minus_box": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d37a1ef5_0_frame_minus_box)",
+      "fill(colour:=train, region:=d_d37a1ef5_0_frame_minus_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d37a1ef5_0_frame_minus_box": [
+       [
+        32,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ],
+       [
+        36,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d37a1ef5",
+     "sample": 1,
+     "verb": "fill frame around box of spots",
+     "reading": "The interior of the 2-coloured rectangular frame is filled with 2, except the bounding box of the 5 cells, which stays as it is.",
+     "why": "every background cell inside the frame but outside the 5s' bounding box becomes 2; nothing else changes",
+     "new_rows": [
+      "d_d37a1ef5_1_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d37a1ef5_1_gap)",
+      "fill(colour:=train, region:=d_d37a1ef5_1_gap)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d37a1ef5_1_gap": [
+       [
+        32,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ],
+       [
+        36,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d37a1ef5",
+     "sample": 2,
+     "verb": "fill frame around 5-box",
+     "reading": "The empty interior of the 2-coloured rectangle is filled with 2, except the bounding box of the 5 cells, which keeps its 0s and 5s.",
+     "why": "every 0 strictly inside the 2-frame and outside the 5s' bounding box becomes 2; nothing else changes",
+     "new_rows": [
+      "d_d37a1ef5_2_hole"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d37a1ef5_2_hole)",
+      "fill(colour:=train, region:=d_d37a1ef5_2_hole)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d37a1ef5_2_hole": [
+       [
+        32,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ],
+       [
+        36,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d37a1ef5",
+     "sample": 3,
+     "verb": "fill frame around inner box",
+     "reading": "Inside the 2-frame, everything is filled with 2 except the bounding box of the 5 cells, which stays as it was.",
+     "why": "every frame-interior cell outside the 5s' bounding box becomes 2; the box and everything outside the frame are unchanged",
+     "new_rows": [
+      "d_d37a1ef5_3_frame_minus_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "frame_minus_box": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d37a1ef5_3_frame_minus_box)",
+      "fill(colour:=train, region:=d_d37a1ef5_3_frame_minus_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d37a1ef5_3_frame_minus_box": [
+       [
+        32,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ],
+       [
+        36,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d37a1ef5",
+     "sample": 4,
+     "verb": "fill frame around 5-box",
+     "reading": "The interior of the rectangular 2-outline is filled with 2, except the bounding box of the 5 cells, which stays as it is.",
+     "why": "every 0 cell inside the 2-outline but outside the 5 cells' bounding box becomes 2; nothing else changes",
+     "new_rows": [
+      "d_d37a1ef5_4_frame_minus_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "frame_minus_box": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_d37a1ef5_4_frame_minus_box)",
+      "fill(colour:=train, region:=d_d37a1ef5_4_frame_minus_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_d37a1ef5_4_frame_minus_box": [
+       [
+        32,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ],
+       [
+        36,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "d4469b4b": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d4469b4b",
+     "sample": 0,
+     "verb": "classify colour to fixed symbol",
+     "reading": "The input uses one colour; the output is a fixed 3x3 symbol of 5s chosen by that colour: 1 -> plus, 2 -> T (top row plus centre column), 3 -> corner (right column plus bottom row).",
+     "why": "output depends only on the input's fg colour, via a fixed lookup",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d4469b4b",
+     "sample": 1,
+     "verb": "look up glyph by colour",
+     "reading": "The output is a fixed 3x3 glyph in colour 5 chosen by the input's single colour: 1 -> plus, 2 -> T (top bar, stem down), 3 -> corner (right column and bottom row).",
+     "why": "output depends only on the input colour; each colour always gives the same glyph",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d4469b4b",
+     "sample": 2,
+     "verb": "emit glyph keyed by colour",
+     "reading": "The 5x5 input uses one colour; the output is a fixed 3x3 glyph of 5s chosen by that colour: 1 -> plus (050/555/050), 2 -> T (555/050/050), 3 -> corner (005/005/555).",
+     "why": "the output depends only on the input's foreground colour; the cell layout of the input is irrelevant",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d4469b4b",
+     "sample": 3,
+     "verb": "classify colour to glyph",
+     "reading": "The 5x5 input uses a single colour; the output is a fixed 3x3 glyph in 5 picked by that colour: 1 -> plus, 2 -> T (top row + middle column), 3 -> L (right column + bottom row).",
+     "why": "pairs with the same input colour have identical outputs; the cell layout of the input does not matter",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d4469b4b",
+     "sample": 4,
+     "verb": "select glyph by colour",
+     "reading": "The output is a fixed 3x3 glyph of 5s chosen by the input's single foreground colour: 1 -> plus, 2 -> T (top row + centre column), 3 -> L-corner (right column + bottom row).",
+     "why": "each pair's output equals the glyph assigned to its input colour, independent of cell positions",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d5c634a2": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d5c634a2",
+     "sample": 0,
+     "verb": "count shapes by orientation",
+     "reading": "The input holds 4-cell T shapes of 2 pointing up (apex on top) or down; the output 3x6 counts them: up-pointing T's as 3s in the left 3x3 corners, down-pointing as 1s in the right 3x3 corners, filled in order top-left, bottom-left, top-right, bottom-right.",
+     "why": "number of 3s equals number of up T's and number of 1s equals number of down T's, in fixed slot order",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d5c634a2",
+     "sample": 1,
+     "verb": "tally shapes by orientation",
+     "reading": "The input holds T-tetromino shapes pointing up or down. The output is a 3x6 tally: the left 3x3 half shows the number of stem-up shapes as 3s on corner slots, the right half shows the number of stem-down shapes as 1s.",
+     "why": "number of 3s equals the stem-up count and number of 1s equals the stem-down count on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d5c634a2",
+     "sample": 2,
+     "verb": "tally shapes by orientation",
+     "reading": "Count the 2-coloured T shapes by orientation: stem-up (020/222) and stem-down (222/020). The 3x6 output shows the stem-up count as 3s in the left 3x3 block and the stem-down count as 1s in the right block, placed at block corners in the order top-left, bottom-left (for 2), then top-left, top-right, bottom-left (for 3), all four corners (for 4).",
+     "why": "the number of 3s equals the number of stem-up Ts and the number of 1s the number of stem-down Ts on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d5c634a2",
+     "sample": 3,
+     "verb": "count shape kinds as dot glyphs",
+     "reading": "Count the T-shapes with stem up and with stem down; output a fixed 3x6 grid whose left 3x3 shows the stem-up count as 3-dots and right 3x3 the stem-down count as 1-dots, at corner positions 1:(0,0); 2:(0,0),(2,0); 3:(0,0),(0,2),(2,0); 4: all four corners.",
+     "why": "number of 3s equals the number of stem-up Ts and number of 1s equals the number of stem-down Ts, positions given by a fixed per-count pattern",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d5c634a2",
+     "sample": 4,
+     "verb": "tally shapes by orientation",
+     "reading": "Count the 2-coloured T-shapes by orientation: stem-up Ts (bar at bottom) are tallied as 3s in the left 3x3 half, stem-down Ts as 1s in the right half, of a 3x6 output; tally slots fill in order (0,c), (2,c), (0,c+2), (2,c+2).",
+     "why": "number of 3s equals the number of stem-up Ts and number of 1s equals the number of stem-down Ts on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "d6542281": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d6542281",
+     "sample": 0,
+     "verb": "complete fragments from exemplars",
+     "reading": "Each grid has a few multi-coloured exemplar shapes; elsewhere a fragment showing only part of one exemplar (e.g. its 4 or its diagonal 8s) is completed into a full copy of that exemplar in the same orientation.",
+     "why": "every fragment becomes an exact translated copy of the exemplar whose sub-pattern it matches; exemplars unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d6542281",
+     "sample": 1,
+     "verb": "complete partial copies of templates",
+     "reading": "Each grid has one or more complete multi-coloured template shapes; elsewhere a few cells of a template appear as fragments, and each fragment is completed into the full template at the matching position.",
+     "why": "every added cell belongs to a full template copy aligned to the fragment it completes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d6542281",
+     "sample": 2,
+     "verb": "complete partial copies of template",
+     "reading": "Each multi-coloured template shape appears once complete; elsewhere a few of its cells (e.g. its 8s, 4, or diagonal 2s) appear alone. Each partial fragment is completed into a full copy of its template, aligned so the fragment cells coincide with the matching template cells.",
+     "why": "after completion every fragment is part of an exact copy of a template; templates themselves are unchanged (pair 2 also turns the template's corner 3 at (4,3) into background, which looks like a data quirk)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d6542281",
+     "sample": 3,
+     "verb": "complete fragments from template",
+     "reading": "Each complete multi-coloured template appears once; elsewhere a few cells of it appear as fragments, and each fragment is completed into a full copy of the template whose same-coloured cells match it.",
+     "why": "every fragment ends up inside an exact copy of a template; templates and background unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d6542281",
+     "sample": 4,
+     "verb": "complete partial copies of template",
+     "reading": "Complete multicoloured templates: each full multi-colour pattern in the input acts as a template, and every scattered partial copy (a few cells matching part of a template by colour and relative position) is completed into a full copy of that template.",
+     "why": "every added cell belongs to a template copy aligned with an existing fragment; all input cells stay",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  }
+ }
+}

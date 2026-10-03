@@ -1,0 +1,10 @@
+% row: d_310f3251_2_diag
+% source: distillation batch reading, task 310f3251, sample 2
+% output: diag(Y, X)
+maxx(max(X)) :- px(Y, X, C).
+maxy(max(Y)) :- px(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+diag(Y, X) :- bgc(Y, X), Y2 = Y + 1, X2 = X + 1, cell(Y2, X2, D).
+diag(Y, X) :- bgc(Y, X), maxx(M), X = M, Y2 = Y + 1, X2 = 0, cell(Y2, X2, D).
+diag(Y, X) :- bgc(Y, X), maxy(N), Y = N, Y2 = 0, X2 = X + 1, cell(Y2, X2, D).
+diag(Y, X) :- bgc(Y, X), maxy(N), Y = N, maxx(M), X = M, Y2 = 0, X2 = 0, cell(Y2, X2, D).

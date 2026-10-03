@@ -1,0 +1,17 @@
+% row: d_15663ba9_2_convex
+% source: distillation batch reading, task 15663ba9, sample 2
+% output: convex(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !fgc(Y, X).
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+orth(DY, DX) :- off(DY, DX), P = DY * DX, P = 0.
+diag(DY, DX) :- off(DY, DX), !orth(DY, DX).
+out(Y, X) :- bgc(Y, X), Y = 0.
+out(Y, X) :- bgc(Y, X), X = 0.
+out(Y, X) :- bgc(Y, X), hmax(Y).
+out(Y, X) :- bgc(Y, X), wmax(X).
+out(Y2, X2) :- out(Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+ins(Y, X) :- bgc(Y, X), !out(Y, X).
+lc(Y, X, DY, DX) :- fgc(Y, X), diag(DY, DX), Y1 = Y + DY, X1 = X + DX, Y2 = Y - DY, X2 = X - DX, fgc(Y1, X), fgc(Y, X1), !fgc(Y2, X), !fgc(Y, X2).
+convex(Y, X) :- lc(Y, X, DY, DX), Y1 = Y + DY, X1 = X + DX, ins(Y1, X1).

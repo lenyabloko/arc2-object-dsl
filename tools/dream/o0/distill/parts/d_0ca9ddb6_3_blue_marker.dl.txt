@@ -1,0 +1,4 @@
+% row: d_0ca9ddb6_3_blue_marker
+% source: distillation batch reading, task 0ca9ddb6, sample 3
+% output: blue_marker(Y, X)
+blue_marker(Y, X) :- cell(Y, X, 1).

@@ -1,0 +1,17 @@
+% row: d_50846271_3_cross_gap
+% source: distillation batch reading, task 50846271, sample 3
+% output: cross_gap(Y, X)
+two(Y, X) :- px(Y, X, 2).
+near(Y1, X1, Y2, X2) :- two(Y1, X1), two(Y2, X2), DY = Y2 - Y1, DX = X2 - X1, MY = DY + 3, MX = DX + 3, MY >= 0, MY <= 6, MX >= 0, MX <= 6.
+conn(Y1, X1, Y2, X2) :- near(Y1, X1, Y2, X2).
+conn(Y1, X1, Y3, X3) :- conn(Y1, X1, Y2, X2), near(Y2, X2, Y3, X3).
+span(D) :- conn(Y, X1, Y, X2), D = X2 - X1.
+span(D) :- conn(Y1, X, Y2, X), D = Y2 - Y1.
+maxspan(max(D)) :- span(D).
+arm(L) :- maxspan(D), px(L, X, C), D = L + L.
+onplus(CY, CX, CY, X) :- arm(L), px(CY, CX, C), two(CY, X), D = X - CX, M1 = D + L, M2 = L - D, M1 >= 0, M2 >= 0.
+onplus(CY, CX, Y, CX) :- arm(L), px(CY, CX, C), two(Y, CX), D = Y - CY, M1 = D + L, M2 = L - D, M1 >= 0, M2 >= 0.
+stray(CY, CX, Y, X) :- onplus(CY, CX, Y, X), conn(Y, X, Y2, X2), !onplus(CY, CX, Y2, X2).
+centre2(CY, CX) :- onplus(CY, CX, Y, X), !stray(CY, CX, Y, X).
+cross_gap(CY, X) :- centre2(CY, CX), arm(L), px(CY, X, C), C != 2, D = X - CX, M1 = D + L, M2 = L - D, M1 >= 0, M2 >= 0.
+cross_gap(Y, CX) :- centre2(CY, CX), arm(L), px(Y, CX, C), C != 2, D = Y - CY, M1 = D + L, M2 = L - D, M1 >= 0, M2 >= 0.

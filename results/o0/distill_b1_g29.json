@@ -1,0 +1,1051 @@
+{
+ "group": 29,
+ "tasks": {
+  "dc2e9a9d": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "dc2e9a9d",
+     "sample": 0,
+     "verb": "reflect-copy away from stub",
+     "reading": "Each colour-3 hollow shape has a one-cell stub on one side. A mirror copy of the shape is drawn on the opposite side, reflected across the row/column just beyond the body (one-cell gap). The copy is colour 1 when the reflection is left/right and colour 8 when it is up/down.",
+     "why": "every object has exactly one stub; the copy is its exact reflection, and nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "dc2e9a9d",
+     "sample": 1,
+     "verb": "reflect copy away from nub",
+     "reading": "Each green hollow box has a one-cell nub on one side. A reflected copy of the box (with its nub, clipped at the grid edge) is drawn on the opposite side, mirrored about the empty line just beyond that side. The copy is colour 1 when it goes left or right, and colour 8 when it goes up or down.",
+     "why": "every object gets exactly one mirror copy on the side away from its nub; the originals are unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "dc2e9a9d",
+     "sample": 2,
+     "verb": "reflect away from stub",
+     "reading": "Each green box has a one-cell stub on one side. A copy of the box is reflected away from the stub, across the line one cell past the box's far side. The copy is colour 1 when the reflection is left/right and colour 8 when it is up/down.",
+     "why": "each copy is the mirror image of its object about that line; the original objects stay",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "dc2e9a9d",
+     "sample": 3,
+     "verb": "reflect away from nub",
+     "reading": "Each green box with a one-cell nub gets a mirror copy placed on the side opposite the nub, one cell gap away, with the nub mirrored outward. Copies placed left/right are colour 1; copies placed above/below are colour 8.",
+     "why": "every object gets exactly one mirrored copy at distance 1 on the side away from its nub",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "dc2e9a9d",
+     "sample": 4,
+     "verb": "reflect each object away from its tab",
+     "reading": "Each green (3) outline box has a one-cell tab on one side. A mirror copy of the shape is drawn on the opposite side, reflected across the blank line just beyond the box (one-cell gap), coloured 1 if the reflection is left/right and 8 if up/down; copies are clipped at the grid edge.",
+     "why": "every added cell is the reflection of a shape cell across that line, in the axis-dependent colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "de1cd16c": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "de1cd16c",
+     "sample": 0,
+     "verb": "pick region with most specks",
+     "reading": "The grid is split into a few large single-colour regions sprinkled with single noise cells of one colour. The output is a 1x1 grid holding the colour of the region that contains the most noise cells.",
+     "why": "on every pair the output colour is the region with strictly the most noise cells",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "de1cd16c",
+     "sample": 1,
+     "verb": "select region by noise count",
+     "reading": "The grid is split into large single-colour regions with scattered noise cells of one colour. The output is a 1x1 grid holding the colour of the region that contains the most noise cells.",
+     "why": "the output colour's region holds strictly more noise cells than any other region",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "de1cd16c",
+     "sample": 2,
+     "verb": "count and pick",
+     "reading": "The grid is split into large single-colour regions, with scattered single cells of one noise colour. The output is a 1x1 grid holding the colour of the region that contains the most noise cells.",
+     "why": "on every pair the output colour is the region with the highest noise count",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "de1cd16c",
+     "sample": 3,
+     "verb": "pick region with most dots",
+     "reading": "The grid is split into a few solid colour regions sprinkled with noise dots of one colour. The output is a 1x1 grid of the region colour that holds the most noise dots.",
+     "why": "the output colour's region contains strictly more noise cells than any other region",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "de1cd16c",
+     "sample": 4,
+     "verb": "select region by count",
+     "reading": "The grid is split into four solid colour regions sprinkled with single noise cells of one colour. The output is a 1x1 grid of the colour of the region that contains the most noise cells.",
+     "why": "the output colour is the region with strictly the most noise cells",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "df8cc377": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "df8cc377",
+     "sample": 0,
+     "verb": "fill frames with matching checkerboard",
+     "reading": "Several rectangular outlines and many scattered single cells of other colours. Each outline's interior is filled with a checkerboard (starting at the interior top-left) of the scatter colour whose cell count equals the checkerboard's cell count; all scattered cells are erased.",
+     "why": "each frame is assigned the unique marker colour whose count matches its checker capacity",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "df8cc377",
+     "sample": 1,
+     "verb": "fill frames with checkerboard by count",
+     "reading": "There are hollow rectangles and scattered single cells of a few colours. The scattered cells are removed, and each rectangle's interior is filled with a checkerboard (starting at its top-left interior cell) in the scattered colour whose count equals the number of checkerboard cells.",
+     "why": "the markers of each colour equal the checkerboard cells of exactly one frame; the frame outlines are unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "df8cc377",
+     "sample": 2,
+     "verb": "fill frames with checkerboard",
+     "reading": "Scattered single cells are erased. The interior of each rectangular outline is filled with a checkerboard that starts at its top-left interior cell. The checkerboard colour is the scattered colour whose cell count equals the number of checker cells in that interior.",
+     "why": "marker count of the chosen colour equals checker cells per frame; outlines unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "df8cc377",
+     "sample": 3,
+     "verb": "pack dots into frames",
+     "reading": "Scattered single dots are removed and packed into the rectangle outlines as a checkerboard (interior top-left cell filled). Each outline gets the dot colour whose dot count equals the checkerboard cell count of its interior.",
+     "why": "per colour, dots removed = checker cells added; colour counts are preserved",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "df8cc377",
+     "sample": 4,
+     "verb": "fill frame with checkerboard by count",
+     "reading": "Each hollow rectangle's interior is filled with a checkerboard (starting at the interior's top-left cell) of the scattered colour whose number of scattered cells equals the checkerboard's cell count. All scattered single cells are erased.",
+     "why": "per rectangle, count(markers of colour c) = number of checkerboard cells; markers removed",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e179c5f4": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e179c5f4",
+     "sample": 0,
+     "verb": "draw bouncing diagonal",
+     "reading": "A single 1 at the bottom-left corner launches a diagonal line upward that bounces between the left and right borders until the top; all other cells become 8.",
+     "why": "each row has exactly one 1, adjacent rows differ by one column, reversing at the borders",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e179c5f4",
+     "sample": 1,
+     "verb": "draw bouncing diagonal",
+     "reading": "Starting from the single 1 at the bottom-left, a diagonal of 1 is drawn upward, moving one column right per row and bouncing off the left and right edges. Every other cell becomes 8.",
+     "why": "each row has exactly one 1, on the zigzag path; everything else is 8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e179c5f4",
+     "sample": 2,
+     "verb": "bounce diagonal line",
+     "reading": "A single 1 sits in the bottom-left corner. A diagonal line of 1 runs up from it, bouncing between the left and right borders all the way to the top, and every other cell becomes 8.",
+     "why": "one path cell per row, moving one column per row and reversing at the borders",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e179c5f4",
+     "sample": 3,
+     "verb": "bounce diagonal",
+     "reading": "Starting from the 1 at the bottom-left, a diagonal line of 1 goes up-right and bounces off the left/right walls in a zigzag to the top; every other cell becomes 8.",
+     "why": "exactly one 1 per row, column changes by one per row and reverses at the borders",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e179c5f4",
+     "sample": 4,
+     "verb": "draw bouncing diagonal",
+     "reading": "Starting from the single 1 at the bottom-left, a diagonal line of 1 zigzags upward, bouncing between the left and right edges; every other cell becomes 8.",
+     "why": "each row has exactly one 1, at the bounce-path column; rest 8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e2092e0c": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e2092e0c",
+     "sample": 0,
+     "verb": "frame the matching copy",
+     "reading": "The top-left 3x3 block (enclosed by an L of 5s) is a key pattern. Somewhere else in the noisy grid the same 3x3 pattern appears exactly; a 5x5 ring of colour 5 is drawn around that occurrence.",
+     "why": "exactly one other window equals the key; only its surrounding ring changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e2092e0c",
+     "sample": 1,
+     "verb": "find template copy and outline it",
+     "reading": "A 5-coloured L in the top-left corner frames a 3x3 template. The same 3x3 pattern occurs once elsewhere in the noisy grid, and a 5x5 outline of 5 is drawn around that occurrence.",
+     "why": "the ring's interior equals the top-left template exactly; no other cell changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e2092e0c",
+     "sample": 2,
+     "verb": "find and frame match",
+     "reading": "A 3x3 key pattern sits in the top-left corner, framed by a line of 5s. Elsewhere in the noisy grid the same 3x3 pattern appears once, and a 5x5 outline of 5 is drawn around it, overwriting its ring of cells.",
+     "why": "the framed 3x3 equals the key cell for cell; nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e2092e0c",
+     "sample": 3,
+     "verb": "frame the matching window",
+     "reading": "The top-left 3x3 window (fenced by a 5 row and column) is a template; its exact copy appears once elsewhere in the noise grid, and a 5x5 ring of colour 5 is drawn around that copy.",
+     "why": "only cells on the ring around the unique exact template match change, all to 5",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e2092e0c",
+     "sample": 4,
+     "verb": "find copy of key and frame it",
+     "reading": "The top-left 3x3 block (enclosed by the L of 5s) occurs exactly once elsewhere in the noisy grid; a 5x5 square outline of 5s is drawn around that occurrence.",
+     "why": "the ring around the unique exact match becomes 5; nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "e26a3af2": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e26a3af2",
+     "sample": 0,
+     "verb": "denoise stripes",
+     "reading": "The grid is a set of thick single-colour stripes (vertical or horizontal) with noise cells. Every stripe is cleaned to its majority colour: each column (vertical stripes) or each row (horizontal stripes) is set to its most common colour.",
+     "why": "output equals per-column majority (vertical stripes) or per-row majority (horizontal stripes)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e26a3af2",
+     "sample": 1,
+     "verb": "denoise stripes",
+     "reading": "The grid is made of solid stripes (all rows, or all columns) with noise cells of other colours. Each stripe is cleaned to its majority colour: every row (or every column) becomes uniform.",
+     "why": "every output row (or column) is uniform in the majority colour of the same input line",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e26a3af2",
+     "sample": 2,
+     "verb": "denoise stripes",
+     "reading": "The grid is made of full-width or full-height colour stripes sprinkled with noise. Every stripe is repainted entirely in its majority colour.",
+     "why": "each output stripe is uniform and equals the input stripe's majority colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e26a3af2",
+     "sample": 3,
+     "verb": "denoise stripes",
+     "reading": "The grid is made of full-width or full-height colour stripes with noise pixels; every stripe is repainted entirely in its majority colour.",
+     "why": "each output stripe is uniform and equals the input stripe's most common colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e26a3af2",
+     "sample": 4,
+     "verb": "denoise stripes",
+     "reading": "The grid is made of solid colour stripes (vertical or horizontal) with noise cells; every cell is reset to the majority colour of its stripe.",
+     "why": "every output row (horizontal stripes) or column (vertical stripes) is uniform and equals the input majority",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e3497940": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e3497940",
+     "sample": 0,
+     "verb": "fold halves",
+     "reading": "A colour-5 vertical line in column 4 splits the grid. The right half is mirrored onto the left half and overlaid (non-zero cells fill zeros); the output is the left 4 columns.",
+     "why": "output row = left row with zeros replaced by the mirrored right row",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e3497940",
+     "sample": 1,
+     "verb": "fold halves together",
+     "reading": "A grey (5) column splits the grid into a left half and a right half. The output is the left half with the right half mirrored left-right and laid over it (non-zero cells merged).",
+     "why": "output = left panel overlaid with the flipped right panel; the two never clash",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e3497940",
+     "sample": 2,
+     "verb": "fold",
+     "reading": "A column of 5 splits the grid into two halves. The right half is folded onto the left half (mirrored about the 5 column) and the two are overlaid. The output is the left half alone.",
+     "why": "the output cell is the left cell or, failing that, the mirrored right cell; the two never conflict",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e3497940",
+     "sample": 3,
+     "verb": "fold",
+     "reading": "A grey column splits the grid in half; the right half is folded onto the left half (mirrored about the grey column) and overlaid, and the left half is output.",
+     "why": "output cell = left cell if non-zero else the mirrored right cell; no colour conflicts occur",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e3497940",
+     "sample": 4,
+     "verb": "fold",
+     "reading": "A vertical column of 5 splits the grid; the right half is folded over onto the left half (mirrored and overlaid), and the output is the left part without the separator.",
+     "why": "output cell (r,c) = left(r,c) if non-zero else right(r, 8-c); output is the panel left of the 5 separator",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e45ef808": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e45ef808",
+     "sample": 0,
+     "verb": "mark boundary extremes",
+     "reading": "A 1 region sits above a 6 region with a jagged boundary. In the column where the 1 region reaches deepest, all 1 cells become 9; in the column where the 6 region peaks highest (rightmost on ties), all 1 cells become 4.",
+     "why": "only 1 cells in those two columns change",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e45ef808",
+     "sample": 1,
+     "verb": "mark valley and peak columns",
+     "reading": "A region of 1 sits above a jagged 6 terrain. The column where the 1 region reaches deepest (the lowest valley) has its 1 cells turned to 9. The column with the highest 6 peak has the 1 cells above it turned to 4 (on a tie, the rightmost peak, i.e. the one farthest from the valley).",
+     "why": "only 1 cells in exactly two columns change; the 6 cells and the 0 top row are unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e45ef808",
+     "sample": 2,
+     "verb": "mark peak and valley",
+     "reading": "A 1 region sits above a 6 region with a jagged boundary. In the column where 6 reaches highest, a 4 line is drawn from the top 1 row down to the 6. In the column where 1 reaches deepest, a 9 line is drawn from the top 1 row down to the bottom of that 1 run.",
+     "why": "only the 1 cells of those two columns change",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e45ef808",
+     "sample": 3,
+     "verb": "mark deepest and highest columns",
+     "reading": "Above a 6 landscape in a 1 field, the 1 cells in the column where the 1s reach deepest become 9, and the 1 cells in the column where the 6s rise highest become 4 (rightmost on ties).",
+     "why": "only 1 cells in exactly two columns change",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e45ef808",
+     "sample": 4,
+     "verb": "draw lines at deepest valley and highest peak",
+     "reading": "A 1 region sits above a jagged 6 region. In the column where the 1s reach deepest, the 1 cells become 9; in the column where the 6s rise highest (rightmost on a tie), the 1 cells become 4. Each line runs from the top of the 1 region down to the 6s.",
+     "why": "only 1 cells in those two columns change, to 9 and 4 respectively",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e5062a87": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e5062a87",
+     "sample": 0,
+     "verb": "stamp template into empty slots",
+     "reading": "A small colour-2 template sits in a 0/5 noise grid. Copies of the template are stamped in colour 2 into places where its shape fits entirely on 0 cells; not every fitting slot is used (pair 0 skips one, pair 1 skips two that overlap other stamps), so the selection rule is unclear.",
+     "why": "every added 2 belongs to a full copy of the template lying on former 0 cells",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e5062a87",
+     "sample": 1,
+     "verb": "stamp template where it fits",
+     "reading": "A small shape made of 2s sits in a noisy 0/5 grid. Copies of that shape in colour 2 are drawn at places where it fits entirely on 0 cells. Not every fitting place gets a copy (copies do not overlap, and the choice among the candidates is unclear).",
+     "why": "every added cell belongs to a complete copy of the 2 shape lying on former 0 cells; 5 cells never change",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e5062a87",
+     "sample": 2,
+     "verb": "copy pattern into holes",
+     "reading": "A small shape of 2 sits in a noisy 0/5 grid. Copies of that shape are painted in 2 at other places where it fits entirely on 0 cells. Not every fitting spot is used, and the rule that picks the spots is unclear.",
+     "why": "each new 2 group is a translated copy of the original shape on former 0 cells",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e5062a87",
+     "sample": 3,
+     "verb": "copy shape into holes",
+     "reading": "The small red (2) shape is copied into some of the places in the grey/black noise where it fits entirely on 0 cells, without overlapping other copies.",
+     "why": "every new 2 cell was 0 and belongs to a translated exact copy of the shape",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e5062a87",
+     "sample": 4,
+     "verb": "stamp template into fitting holes",
+     "reading": "The red (2) shape is a template; copies of it in red are stamped into some places where it fits entirely on background (0) cells among the 5s. Which fits get copies is unclear: overlapping fits are resolved to one, and one non-overlapping fit in pair 0 is not used.",
+     "why": "every added cell is 2 and belongs to a translated copy of the template lying on former 0 cells",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "e619ca6e": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "e619ca6e",
+     "sample": 0,
+     "verb": "cascade copies diagonally",
+     "reading": "Each colour-3 block spawns two diagonal staircases of copies: repeatedly shifted down by its height and left (and right) by its width, continuing until off the grid.",
+     "why": "every added cell is part of a copy of a block offset by k*(height, +/-width), k>=1",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e619ca6e",
+     "sample": 1,
+     "verb": "repeat block diagonally",
+     "reading": "Each green block is repeated diagonally downward in two directions, down-left and down-right. Each step moves by the block's own height down and its width sideways, until the copies leave the grid (clipped at the edges).",
+     "why": "every added cell lies in a translated copy of an original block at an integer multiple of its diagonal step; the originals stay",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e619ca6e",
+     "sample": 2,
+     "verb": "replicate diagonally",
+     "reading": "Each green rectangle sends out two diagonal chains of copies of itself, one down-left and one down-right. Each copy is offset by one block height down and one block width sideways, and the chains continue until they leave the grid.",
+     "why": "every copy is identical to its source block; the originals stay",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "e619ca6e",
+     "sample": 3,
+     "verb": "cascade copies diagonally",
+     "reading": "Each green rectangle spawns two diagonal cascades of copies going down-left and down-right, each step offset by its own height down and its own width sideways, until leaving the grid (clipped at the border).",
+     "why": "all new cells are translated copies of a rectangle along its two downward diagonals",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "e619ca6e",
+     "sample": 4,
+     "verb": "repeat block diagonally",
+     "reading": "Each green block is repeated diagonally downward in both directions: each new copy is shifted down by the block's height and left (or right) by its width, repeating until it leaves the grid.",
+     "why": "every output 3 cell is in the original block or a copy at offset k*(h, +/-w) for k>=1",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

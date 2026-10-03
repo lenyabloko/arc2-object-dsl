@@ -1,0 +1,24 @@
+% row: d_3a301edc_3_halo
+% source: distillation batch reading, task 3a301edc, sample 3
+% output: halo(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+gh(max(Y)) :- px(Y, X, C).
+gw(max(X)) :- px(Y, X, C).
+top(min(Y)) :- cell(Y, X, C).
+bot(max(Y)) :- cell(Y, X, C).
+lef(min(X)) :- cell(Y, X, C).
+rig(max(X)) :- cell(Y, X, C).
+ocol(C) :- top(T), lef(L), cell(T, L, C).
+inn(Y, X) :- cell(Y, X, C), !ocol(C).
+it(min(Y)) :- inn(Y, X).
+ib(max(Y)) :- inn(Y, X).
+il(min(X)) :- inn(Y, X).
+ir(max(X)) :- inn(Y, X).
+cand(V) :- it(A), ib(B), V = B - A + 1.
+cand(V) :- il(A), ir(B), V = B - A + 1.
+cand(V) :- top(V).
+cand(V) :- lef(V).
+cand(V) :- bot(B), gh(G), V = G - B.
+cand(V) :- rig(B), gw(G), V = G - B.
+thick(min(V)) :- cand(V).
+halo(Y, X) :- px(Y, X, C), !isfg(Y, X), top(T), bot(B), lef(L), rig(R), thick(K), Y0 = T - K, Y1 = B + K, X0 = L - K, X1 = R + K, Y >= Y0, Y <= Y1, X >= X0, X <= X1.

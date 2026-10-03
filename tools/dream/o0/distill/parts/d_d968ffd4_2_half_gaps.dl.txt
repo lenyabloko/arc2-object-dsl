@@ -1,0 +1,15 @@
+% row: d_d968ffd4_2_half_gaps
+% source: distillation batch reading, task d968ffd4, sample 2
+% output: half_gaps(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !isfg(Y, X).
+y0(O, min(Y)) :- obj(O, Y, X).
+y1(O, max(Y)) :- obj(O, Y, X).
+x0(O, min(X)) :- obj(O, Y, X).
+x1(O, max(X)) :- obj(O, Y, X).
+hg(Y, X, D1, D2) :- bgc(Y, X), x1(A, AX), x0(B, BX), AX < X, X < BX, y0(A, T), y1(A, U), L = T - 1, H = U + 1, Y >= L, Y <= H, D1 = X - AX, D2 = BX - X.
+vg(Y, X, D1, D2) :- bgc(Y, X), y1(A, AY), y0(B, BY), AY < Y, Y < BY, x0(A, T), x1(A, U), L = T - 1, H = U + 1, X >= L, X <= H, D1 = Y - AY, D2 = BY - Y.
+half_gaps(Y, X) :- hg(Y, X, D1, D2), D1 < D2.
+half_gaps(Y, X) :- hg(Y, X, D1, D2), D2 < D1.
+half_gaps(Y, X) :- vg(Y, X, D1, D2), D1 < D2.
+half_gaps(Y, X) :- vg(Y, X, D1, D2), D2 < D1.

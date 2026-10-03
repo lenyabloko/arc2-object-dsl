@@ -1,0 +1,214 @@
+[
+ {
+  "task": "21f83797",
+  "reading": "Each of the two isolated cells shoots a full horizontal and vertical line of its colour to the grid border; the rectangle enclosed between the four lines is then filled with colour 1.",
+  "verb": "draw cross lines and fill box",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "region",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "lines run through each marker across the whole grid; the only enclosed background area after drawing is the box between the markers, filled with 1",
+  "invariants": [
+   "grid size",
+   "marker cells keep colour 2"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "22233c11",
+  "reading": "Each pair of diagonally touching same-colour blocks gets two new colour-8 blocks of the same block size placed on the perpendicular diagonal through the pair's centre, at three times the block offset (clipped at the border).",
+  "verb": "add perpendicular diagonal blocks",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each diagonal pair of 3-coloured blocks (block size s)",
+   "added": "two s x s blocks of colour 8",
+   "place": "on the perpendicular diagonal through the pair centre, at distance 1.5*s cells along each diagonal axis from the centre",
+   "rest": "all input cells kept"
+  },
+  "why": "every 8 block is the 90-degree rotation of a 3 block about the pair centre, scaled outward by 3",
+  "invariants": [
+   "original blocks unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "22425bda",
+  "reading": "Several straight lines of different colours cross on a background; output is one row listing the line colours from the bottom-most (drawn first) to the top-most (drawn last), judged by which colour shows at each crossing.",
+  "verb": "list lines by layer order",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the straight lines (one colour each, background = most common colour)",
+   "order": "stacking order read from crossings: lower line first",
+   "output": "1 x n row of the n line colours"
+  },
+  "why": "at every crossing the later colour in the output is the one visible",
+  "invariants": [
+   "output height 1",
+   "output width = number of lines"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "22806e14",
+  "reading": "One small shape has a colour no other object has; it is erased, and every other object whose box has odd side length (1x1, 3x3, 5x5) gets its centre cell recoloured to that odd colour; even-sized objects are unchanged.",
+  "verb": "mark centres with odd colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "donor": "the odd-coloured object (a plus shape); it is removed (set to background)",
+   "subject": "objects of the main colour with an odd-sized square box",
+   "change": "the single centre cell of each subject becomes the donor colour"
+  },
+  "why": "exactly the odd-sized objects have a single centre cell, and only those change",
+  "invariants": [
+   "even-sized objects unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2281f1f4",
+  "reading": "Grey cells on the top row mark columns and grey cells on the right column mark rows; every crossing of a marked row and a marked column (inside the grid) is filled with 2.",
+  "verb": "fill crossings",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross",
+    "datalog": "wmax(max(X)) :- px(Y, X, C).\ncolm(X) :- cell(Y, X, C), Y = 0, wmax(W), X < W.\nrowm(Y) :- cell(Y, X, C), wmax(W), X = W, Y > 0.\ncross(Y, X) :- rowm(Y), colm(X)."
+   }
+  ],
+  "why": "every cell at (marked row, marked column) becomes 2; all other cells unchanged",
+  "invariants": [
+   "grey marker cells unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "228f6490",
+  "reading": "Grey shapes contain background holes; each coloured piece whose shape exactly matches a hole is moved into that hole, leaving background where it was; non-matching pieces stay.",
+  "verb": "fit piece into hole",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "holes": "enclosed background areas inside grey (5) objects",
+   "subject": "coloured pieces whose shape equals a hole's shape",
+   "target": "the matching hole (exact translation)",
+   "rest": "other pieces and grey shapes kept"
+  },
+  "why": "each moved piece keeps its shape and exactly fills one hole",
+  "invariants": [
+   "grey shapes unchanged",
+   "non-matching pieces unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "234bbc79",
+  "reading": "Coloured pieces separated by background columns carry grey (5) connector cells; the pieces are chained left to right, each shifted vertically so its left connector sits beside the previous piece's right connector, grey cells take their piece's colour, and the gaps close so the output is narrower.",
+  "verb": "chain pieces at connectors",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "column-separated components of a colour plus their attached 5 cells",
+   "connectors": "5 cells at a piece's left and right ends",
+   "placement": "next piece shifted so its left connector is horizontally adjacent to previous piece's right connector",
+   "recolour": "each 5 becomes its own piece's colour"
+  },
+  "why": "consecutive pieces touch at connector rows; no 5 remains",
+  "invariants": [
+   "output height = input height",
+   "piece shapes kept"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "239be575",
+  "reading": "Output a single cell: 8 if the two 2x2 blocks of colour 2 are joined by a 4-connected path of 8 cells, else 0.",
+  "verb": "test connectivity",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the two 2x2 blocks of colour 2",
+   "path": "orthogonally connected non-background cells",
+   "answer": "1x1 grid: 8 if both blocks lie in one 4-connected non-background component, else 0"
+  },
+  "why": "on every pair the answer is 8 exactly when the blocks share a component",
+  "invariants": [
+   "output 1x1"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "25d487eb",
+  "reading": "A triangle has one cell of a different colour at the middle of its base; a line of that colour is drawn from that cell through the triangle's apex direction to the grid border, painting only background cells.",
+  "verb": "shoot line from odd cell",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "oddcell",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "oddcell",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\noddcell(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1."
+   }
+  ],
+  "why": "the ray starts at the single odd-coloured cell, heads away from its open side (towards the apex), and runs to the border; triangle cells are not overwritten",
+  "invariants": [
+   "triangle unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "25ff71a9",
+  "reading": "The whole foreground shape moves down by one row.",
+  "verb": "shift down",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "fg",
+    "target": "train"
+   }
+  },
+  "why": "every pair is the same translation (+1 row, 0 columns); the shape keeps its form",
+  "invariants": [
+   "shape and colour",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

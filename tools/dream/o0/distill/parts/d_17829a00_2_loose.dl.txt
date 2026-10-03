@@ -1,0 +1,5 @@
+% row: d_17829a00_2_loose
+% source: distillation batch reading, task 17829a00, sample 2
+% output: loose(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+loose(Y, X) :- cell(Y, X, C), Y > 0, hmax(H), Y < H.

@@ -1,0 +1,4 @@
+% row: d_6e19193c_3_notch
+% source: distillation batch reading, task 6e19193c, sample 3
+% output: notch(Y, X)
+notch(Y, X) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X, C), cell(Y, X2, C), cell(Y2, X2, C).

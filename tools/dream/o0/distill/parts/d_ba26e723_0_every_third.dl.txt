@@ -1,0 +1,6 @@
+% row: d_ba26e723_0_every_third
+% source: distillation batch reading, task ba26e723, sample 0
+% output: every_third(Y, X)
+c3(X) :- px(Y, X, C), X = 0.
+c3(X2) :- c3(X), X2 = X + 3, px(Y, X2, C).
+every_third(Y, X) :- c3(X), px(Y, X, C), C = 4.

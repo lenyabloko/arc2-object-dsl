@@ -1,0 +1,217 @@
+[
+ {
+  "task": "4acc7107",
+  "reading": "Objects are sorted by colour into two columns (the colour that starts further left takes the left column at x=0, the other starts one column after the first column's width); within each colour the objects are left-aligned and stacked from the bottom row upward with one empty row between them, the object that was leftmost in the input at the bottom.",
+  "verb": "sort and stack objects by colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "groups": "objects grouped by colour (two colours)",
+   "column order": "colour whose leftmost cell is further left goes to the left column",
+   "column x": "left column at x=0; right column at x = left column width + 1",
+   "stack order": "within a colour, the object with the smaller leftmost x sits at the bottom",
+   "stacking": "bottom-aligned to the last row, left-aligned, one blank row between objects"
+  },
+  "why": "every output object is an input object of the same shape and colour, repositioned; output size equals input size",
+  "invariants": [
+   "object shapes and colours",
+   "grid size",
+   "object count"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "4e45f183",
+  "reading": "The 3x3 grid of 5x5 panels is permuted: each panel moves to the panel position that matches where its marks sit inside the panel (top-left marks to the top-left panel, right-edge marks to the middle-right panel, etc.); the panel with marks all round (symmetric) goes to the centre.",
+  "verb": "rearrange panels by mark position",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "nine 5x5 panels cut by the background separator lines",
+   "key per panel": "direction (row band, column band) of the panel's minority-colour cells relative to the panel centre; balanced/symmetric panel = centre",
+   "placement": "panel pasted at the panel slot of that direction"
+  },
+  "why": "the output panels are exactly the input panels, permuted",
+  "invariants": [
+   "separator lines",
+   "the set of panels",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "4e7e0eb9",
+  "reading": "Within each region cut by the full separator lines: if the region contains a short 4-coloured divider line, the two halves on either side of it swap (reflect across the 4 line); otherwise every 1-coloured block in the region takes the colour of the region's one non-1 block.",
+  "verb": "swap across divider or fill placeholders",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "regions": "areas cut by full separator lines (colour 5/7/9)",
+   "case A": "region holds a 4-coloured divider: reflect the blocks across the divider (swap the two sides)",
+   "case B": "no divider: recolour all 1-blocks to the colour of the other block in the region",
+   "placeholder colour": "1"
+  },
+  "why": "blocks keep their 3x3 shape and position slots; only colours of blocks change",
+  "invariants": [
+   "separator lines",
+   "4 dividers",
+   "block positions",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "4ff4c9da",
+  "reading": "The grid is a periodic lattice of 1/2 lines; a few cells are marked 8. Every other place in the lattice with the same local line context as a marked motif gets the same 8 motif (the 8 overlay is completed consistently with the lattice structure, including its transpose symmetry).",
+  "verb": "copy mark motif to matching lattice spots",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "motif": "each 8-coloured component (with the original colour under it)",
+   "match": "translations/transposes of the lattice where the surrounding row/column line types equal those around the motif",
+   "action": "recolour the matched cells to 8"
+  },
+  "why": "only lattice cells (1 or 2) become 8; nothing else changes",
+  "invariants": [
+   "lattice cells not matched",
+   "existing 8s",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "505fff84",
+  "reading": "Each row that holds a 1 and later an 8 contributes the strip of cells strictly between them; the output stacks these strips top to bottom (all strips have the same width).",
+  "verb": "collect strips between 1 and 8",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "rows": "input rows containing both a 1 and an 8 (1 left of 8)",
+   "strip": "cells strictly between the 1 and the 8 on that row",
+   "output": "strips stacked in row order"
+  },
+  "why": "each output row equals the between-segment of one marked input row",
+  "invariants": [
+   "cell colours inside the strips"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "50846271",
+  "reading": "Several plus-shaped crosses of colour 2 are partly hidden by noise; each cross is completed (both arms, same arm length for all crosses in the grid) and every missing cross cell is painted 8.",
+  "verb": "complete crosses",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "plus_gap",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plus_gap",
+    "datalog": "two(Y, X) :- px(Y, X, 2).\nhn(Y, X, count(X2)) :- px(Y, X, C), two(Y, X2), D = X2 - X, E = X - X2, D < 4, E < 4.\nvn(Y, X, count(Y2)) :- px(Y, X, C), two(Y2, X), D = Y2 - Y, E = Y - Y2, D < 4, E < 4.\nsc(Y, X, S) :- hn(Y, X, H), vn(Y, X, V), S = H + V.\next(Y, X, D) :- sc(Y, X, S), two(Y, X2), D = X2 - X, E = X - X2, D < 4, E < 1.\next(Y, X, D) :- sc(Y, X, S), two(Y, X2), D = X - X2, E = X2 - X, D < 4, E < 1.\next(Y, X, D) :- sc(Y, X, S), two(Y2, X), D = Y2 - Y, E = Y - Y2, D < 4, E < 1.\next(Y, X, D) :- sc(Y, X, S), two(Y2, X), D = Y - Y2, E = Y2 - Y, D < 4, E < 1.\nreach(Y, X, max(D)) :- ext(Y, X, D).\nnear(Y, X, Y2, X2) :- sc(Y, X, S), sc(Y2, X2, S2), A = Y2 - Y, B = Y - Y2, P = X2 - X, Q = X - X2, A < 4, B < 4, P < 4, Q < 4.\nbeaten(Y, X) :- near(Y, X, Y2, X2), sc(Y, X, S), sc(Y2, X2, S2), S2 > S.\nbeaten(Y, X) :- near(Y, X, Y2, X2), sc(Y, X, S), sc(Y2, X2, S), reach(Y, X, L), reach(Y2, X2, L2), L2 < L.\ncentre(Y, X) :- sc(Y, X, S), !beaten(Y, X).\narm(max(L)) :- centre(Y, X), reach(Y, X, L).\nplus(Y, X) :- centre(Yc, X), arm(L), px(Y, X, C), D = Y - Yc, E = Yc - Y, M = L + 1, D < M, E < M.\nplus(Y, X) :- centre(Y, Xc), arm(L), px(Y, X, C), D = X - Xc, E = Xc - X, M = L + 1, D < M, E < M.\nplus_gap(Y, X) :- plus(Y, X), !two(Y, X)."
+   }
+  ],
+  "why": "every non-2 cell on a completed cross becomes 8; all other cells are unchanged",
+  "invariants": [
+   "2 cells",
+   "noise cells off the crosses",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "50aad11f",
+  "reading": "Each 6-coloured shape takes the colour of the single marker cell nearest to it; the recoloured shapes are cropped to their boxes and placed side by side (or stacked, following how they are laid out in the input) to form the output.",
+  "verb": "recolour by nearest marker and pack",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shapes": "6-coloured objects",
+   "colour": "colour of the nearest single-cell marker",
+   "layout": "cropped shapes concatenated along the axis on which they are spread in the input (left-to-right or top-to-bottom), in input order"
+  },
+  "why": "each output block is one input shape's box with 6 replaced by its marker's colour",
+  "invariants": [
+   "shape forms"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "50c07299",
+  "reading": "An anti-diagonal segment of 2 of length n is replaced by the next segment of a staircase growing from the bottom-left corner: length n+1, starting at the diagonal cell just above-right of the old segment's top-right end (segments of lengths 1,2,3,4,... laid end to end along one anti-diagonal).",
+  "verb": "advance diagonal sequence",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the single 2-coloured anti-diagonal segment (length n)",
+   "new segment": "anti-diagonal of length n+1 on the same line, beginning at the cell diagonally up-right of the old segment's upper end",
+   "rest": "old segment erased to background"
+  },
+  "why": "output has one anti-diagonal segment, one cell longer than the input's, on the same diagonal line from the bottom-left corner",
+  "invariants": [
+   "background",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "50f325b5",
+  "reading": "The one 8-coloured shape is a template; every placement of that shape (in any of its four rotations) lying entirely on 3-cells is recoloured 8.",
+  "verb": "find rotated copies of template",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "shape_match"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "shape_match",
+    "datalog": "eight(Y, X) :- px(Y, X, 8).\nthree(Y, X) :- px(Y, X, 3).\nty(min(Y)) :- eight(Y, X).\ntx(min(X)) :- ty(Y), eight(Y, X).\ntpl(DY, DX) :- eight(Y, X), ty(Y0), tx(X0), DY = Y - Y0, DX = X - X0.\nrot(0, EY, EX) :- tpl(EY, EX).\nrot(1, EY, EX) :- tpl(DY, DX), EY = DX, EX = 0 - DY.\nrot(2, EY, EX) :- tpl(DY, DX), EY = 0 - DY, EX = 0 - DX.\nrot(3, EY, EX) :- tpl(DY, DX), EY = 0 - DX, EX = DY.\nbad(Y0, X0, R) :- px(Y0, X0, C), rot(R, EY, EX), Y = Y0 + EY, X = X0 + EX, !three(Y, X).\ngood(Y0, X0, R) :- px(Y0, X0, C), rot(R, EY, EX), !bad(Y0, X0, R).\nshape_match(Y, X) :- good(Y0, X0, R), rot(R, EY, EX), Y = Y0 + EY, X = X0 + EX."
+   }
+  ],
+  "why": "every 3 cell covered by a rotated placement of the 8-template becomes 8; nothing else changes",
+  "invariants": [
+   "the 8 template",
+   "all cells outside matched placements",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5117e062",
+  "reading": "The one shape that contains an 8 cell is cut out to its 3x3 box, and the 8 is repainted with the shape's own colour.",
+  "verb": "extract marked shape",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extract",
+    "args": {
+     "region": "exemplar"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "nearest",
+     "subject": "smallest"
+    }
+   }
+  },
+  "why": "output is the box of the multi-coloured component with its single 8 cell recoloured to the surrounding colour",
+  "invariants": [
+   "shape form of the marked object"
+  ],
+  "confidence": "medium"
+ }
+]

@@ -1,0 +1,5 @@
+% row: d_ba26e723_1_third
+% source: distillation batch reading, task ba26e723, sample 1
+% output: third(Y, X)
+third(Y, X) :- px(Y, X, C), X = 0.
+third(Y, X2) :- third(Y, X), X2 = X + 3, px(Y, X2, C).

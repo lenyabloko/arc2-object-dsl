@@ -1,0 +1,7 @@
+% row: d_a644e277_4_gapc
+% source: distillation batch reading, task a644e277, sample 4
+% output: gapc(Y, X)
+maxx(max(X)) :- px(Y, X, C).
+rowc(Y, C, count(X)) :- px(Y, X, C).
+sepc(C) :- rowc(Y, C, N), maxx(M), N = M + 1.
+gapc(Y, X) :- px(Y, X, D), !sepc(D), sepc(C), Y1 = Y - 1, Y2 = Y + 1, X1 = X - 1, X2 = X + 1, px(Y1, X, C), px(Y2, X, C), px(Y, X1, C), px(Y, X2, C).

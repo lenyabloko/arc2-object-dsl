@@ -1,0 +1,6 @@
+% row: d_09c534e7_1_interior
+% source: distillation batch reading, task 09c534e7, sample 1
+% output: interior(Y, X)
+nb(Y, X) :- cell(Y, X, C).
+edge(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !nb(Y2, X2).
+interior(Y, X) :- cell(Y, X, C), !edge(Y, X).

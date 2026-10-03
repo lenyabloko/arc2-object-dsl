@@ -1,0 +1,10 @@
+% row: d_310f3251_3_upl
+% source: distillation batch reading, task 310f3251, sample 3
+% output: upl(Y, X)
+h(max(Y)) :- px(Y, X, C).
+w(max(X)) :- px(Y, X, C).
+uy(Y0, Y) :- px(Y0, X, C), Y0 > 0, Y = Y0 - 1.
+uy(Y0, Y) :- px(Y0, X, C), Y0 = 0, h(Y).
+ux(X0, X) :- px(Y, X0, C), X0 > 0, X = X0 - 1.
+ux(X0, X) :- px(Y, X0, C), X0 = 0, w(X).
+upl(Y, X) :- cell(Y0, X0, C), uy(Y0, Y), ux(X0, X), px(Y, X, D), !cell(Y, X, D).

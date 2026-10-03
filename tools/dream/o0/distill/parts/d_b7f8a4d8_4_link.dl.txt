@@ -1,0 +1,12 @@
+% row: d_b7f8a4d8_4_link
+% source: distillation batch reading, task b7f8a4d8, sample 4
+% output: link(Y, X)
+pcount(C, count(Y, X)) :- px(Y, X, C).
+more(C, D) :- pcount(C, N), pcount(D, M), M > N.
+nmore(C, count(D)) :- more(C, D).
+special(C) :- nmore(C, K), K >= 3.
+zero(Y, X) :- px(Y, X, B), B = 0.
+hlink(Y, X) :- zero(Y, X), px(Y, X1, C), special(C), px(Y, X2, C), X1 < X, X < X2.
+vlink(Y, X) :- zero(Y, X), px(Y1, X, C), special(C), px(Y2, X, C), Y1 < Y, Y < Y2.
+link(Y, X) :- hlink(Y, X).
+link(Y, X) :- vlink(Y, X).

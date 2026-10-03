@@ -1,0 +1,7 @@
+% row: d_3bd67248_1_antidiag
+% source: distillation batch reading, task 3bd67248, sample 1
+% output: antidiag(Y, X)
+wmax(max(X)) :- px(Y, X, C).
+hmax(max(Y)) :- px(Y, X, C).
+fgc(Y, X) :- cell(Y, X, C).
+antidiag(Y, X) :- px(Y, X, C), !fgc(Y, X), wmax(W), hmax(H), S = Y + X, S = W, Y < H.

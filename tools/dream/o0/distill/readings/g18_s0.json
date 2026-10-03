@@ -1,0 +1,183 @@
+[
+ {
+  "task": "9110e3c5",
+  "reading": "The output is a fixed 3x3 pattern of 8 chosen by the input's most common non-background colour: 1 -> [008,880,080], 3 -> [088,080,080], 2 -> [000,888,000].",
+  "verb": "classify by majority colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "class": "most frequent non-background colour of the input",
+   "lookup": "train-learned table colour -> 3x3 output (1->008/880/080, 2->000/888/000, 3->088/080/080)"
+  },
+  "why": "the output depends only on the majority colour; equal majority colours give identical outputs",
+  "invariants": [
+   "output is always 3x3 with colours 0 and 8"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "913fb3ed",
+  "reading": "Each isolated single cell gets a 3x3 ring around it whose colour depends on the cell colour: 3 -> 6, 8 -> 4, 2 -> 1; the centre cell stays.",
+  "verb": "surround",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "anchors": "markers (isolated cells)",
+   "shape": "the 8 neighbours of each marker (3x3 ring)",
+   "colour": "train key on the marker colour: 3->6, 8->4, 2->1"
+  },
+  "why": "every marker's 8 neighbours become key(marker colour); nothing else changes",
+  "invariants": [
+   "marker cells unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "91413438",
+  "reading": "The 3x3 input is tiled into a grid of (number of background cells) x (number of background cells) blocks; the first k blocks in reading order (k = number of foreground cells) hold a copy of the input, the rest are empty.",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "pixel_count",
+    "unit": "input"
+   }
+  },
+  "why": "each output block is the input or empty; copies = fg pixel count, filled row-major; blocks per side = bg pixel count",
+  "invariants": [
+   "block contents are exact copies of the input"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9172f3a0",
+  "reading": "The 3x3 input is scaled up by 3: every cell becomes a 3x3 block of its colour.",
+  "verb": "scale up",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "factor": "3 (train constant)",
+   "unit": "each input cell"
+  },
+  "why": "output cell (y,x) equals input cell (y//3, x//3)",
+  "invariants": [
+   "colours unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "928ad970",
+  "reading": "Four isolated 5-cells mark the sides of a box; a rectangle outline in the colour of the central shape is drawn one cell inside the markers (rows/cols just inside the topmost, bottommost, leftmost and rightmost markers).",
+  "verb": "draw box",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "bounds": "markers: top marker row+1, bottom marker row-1, left marker col+1, right marker col-1",
+   "colour": "colour of the non-marker object",
+   "fill": "outline only, painted over background"
+  },
+  "why": "the outline passes exactly one cell inside each of the four markers; everything else unchanged",
+  "invariants": [
+   "markers and the central shape unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "92e50de0",
+  "reading": "Full separator lines cut the grid into equal cells; one cell holds a pattern, which is copied into every cell whose row index and column index have the same parity as that cell's (every second cell in both directions).",
+  "verb": "copy pattern to alternating cells",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cells": "blocks cut by separator rows and columns",
+   "unit": "contents of the one non-empty cell",
+   "anchors": "cells with (row index, col index) congruent mod 2 to the source cell"
+  },
+  "why": "every same-parity cell equals the source cell; other cells and separators unchanged",
+  "invariants": [
+   "separator lines unchanged",
+   "cells of the other parity stay empty"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9356391f",
+  "reading": "The top row (above a full 5 separator) lists colours c0,c1,c2,...; around the single marker below, concentric square rings are drawn: ring k (Chebyshev distance k) gets colour ck, clipped at the grid edge.",
+  "verb": "draw concentric rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "centre": "the single marker cell below the separator",
+   "palette": "header row cells left to right up to the last non-zero",
+   "ring colour": "palette[k] for cells at Chebyshev distance k from the centre"
+  },
+  "why": "every cell within distance len(palette)-1 of the marker has palette[distance]; area outside unchanged",
+  "invariants": [
+   "header and separator rows unchanged (pair 0 also shows the last header colour 8 replaced by 5)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "93b581b8",
+  "reading": "A 2x2 block of four colours sits in the grid; at each diagonal corner of it a 2x2 block (clipped by the grid) is painted in the colour of the diagonally opposite cell of the block.",
+  "verb": "place opposite corners",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the 2x2 four-colour block",
+   "targets": "the four 2x2 areas diagonally adjacent to the block's corners",
+   "colour": "top-left area gets bottom-right colour, top-right gets bottom-left, bottom-left gets top-right, bottom-right gets top-left"
+  },
+  "why": "each corner area is uniformly the opposite block colour; block unchanged",
+  "invariants": [
+   "the original 2x2 block unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "93c31fbe",
+  "reading": "Four L-shaped corner brackets mark a rectangle; the 1-pattern inside each rectangle is completed by mirroring it about the rectangle's centre line (left-right or up-down, whichever makes it symmetric), and stray 1-cells outside every rectangle are erased.",
+  "verb": "complete symmetry inside frames",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frames": "rectangles bounded by four corner brackets of one colour",
+   "subject": "1-cells inside each frame",
+   "axis": "the frame's vertical or horizontal centre line",
+   "cleanup": "1-cells outside all frames become background"
+  },
+  "why": "inside each frame the 1-pattern is symmetric about the frame's centre line; no 1 lies outside a frame",
+  "invariants": [
+   "bracket cells unchanged",
+   "original in-frame 1-cells kept"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "941d9a10",
+  "reading": "Full 5 lines cut the grid into blocks; the top-left block is filled with 1, the centre block (middle row band and middle column band) with 2, and the bottom-right block with 3.",
+  "verb": "colour corner and centre cells",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cells": "blocks cut by full separator rows and columns",
+   "targets": "first block (top-left), middle block, last block (bottom-right)",
+   "colours": "1, 2, 3 respectively (train constants)"
+  },
+  "why": "exactly those three blocks are filled; separators and other blocks unchanged",
+  "invariants": [
+   "separator lines unchanged"
+  ],
+  "confidence": "high"
+ }
+]

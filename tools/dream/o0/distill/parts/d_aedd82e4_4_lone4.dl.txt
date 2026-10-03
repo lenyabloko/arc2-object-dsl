@@ -1,0 +1,8 @@
+% row: d_aedd82e4_4_lone4
+% source: distillation batch reading, task aedd82e4, sample 4
+% output: lone4(Y, X)
+nb4(Y, X) :- px(Y, X, C), C > 0, Y2 = Y + 1, px(Y2, X, D), D > 0.
+nb4(Y, X) :- px(Y, X, C), C > 0, Y2 = Y - 1, px(Y2, X, D), D > 0.
+nb4(Y, X) :- px(Y, X, C), C > 0, X2 = X + 1, px(Y, X2, D), D > 0.
+nb4(Y, X) :- px(Y, X, C), C > 0, X2 = X - 1, px(Y, X2, D), D > 0.
+lone4(Y, X) :- px(Y, X, C), C > 0, !nb4(Y, X).

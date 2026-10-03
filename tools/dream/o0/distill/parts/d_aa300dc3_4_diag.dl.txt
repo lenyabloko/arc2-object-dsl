@@ -1,0 +1,11 @@
+% row: d_aa300dc3_4_diag
+% source: distillation batch reading, task aa300dc3, sample 4
+% output: diag(Y, X)
+dir(DX) :- off(DY, DX), DY = 1, DX > 0.
+dir(DX) :- off(DY, DX), DY = 1, DX < 0.
+start(Y, X, DX) :- dir(DX), px(Y, X, 0), Y1 = Y - 1, X1 = X - DX, !px(Y1, X, 0), !px(Y, X1, 0), !px(Y1, X1, 0).
+ray(Y0, X0, DX, Y, X) :- start(Y0, X0, DX), Y = Y0, X = X0.
+ray(Y0, X0, DX, Y2, X2) :- ray(Y0, X0, DX, Y, X), Y2 = Y + 1, X2 = X + DX, px(Y2, X2, 0).
+len(Y0, X0, DX, count(Y, X)) :- ray(Y0, X0, DX, Y, X).
+best(max(N)) :- len(Y0, X0, DX, N).
+diag(Y, X) :- ray(Y0, X0, DX, Y, X), len(Y0, X0, DX, N), best(M), N = M.

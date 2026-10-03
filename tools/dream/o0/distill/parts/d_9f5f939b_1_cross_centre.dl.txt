@@ -1,0 +1,5 @@
+% row: d_9f5f939b_1_cross_centre
+% source: distillation batch reading, task 9f5f939b, sample 1
+% output: cross_centre(Y, X)
+fgc(Y, X) :- cell(Y, X, K).
+cross_centre(Y, X) :- px(Y, X, K), !fgc(Y, X), A = Y - 2, B = Y - 3, fgc(A, X), fgc(B, X), D = Y + 2, E = Y + 3, fgc(D, X), fgc(E, X), F = X - 2, G = X - 3, fgc(Y, F), fgc(Y, G), H = X + 2, I = X + 3, fgc(Y, H), fgc(Y, I).

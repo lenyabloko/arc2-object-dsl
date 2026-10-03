@@ -1,0 +1,4 @@
+% row: d_9f5f939b_3_plus_centre
+% source: distillation batch reading, task 9f5f939b, sample 3
+% output: plus_centre(Y, X)
+plus_centre(Y, X) :- cell(Y, XA, C1), X = XA + 3, px(Y, X, B), !cell(Y, X, B), XB = X - 2, cell(Y, XB, C2), XC = X + 2, cell(Y, XC, C3), XD = X + 3, cell(Y, XD, C4), YA = Y - 3, cell(YA, X, C5), YB = Y - 2, cell(YB, X, C6), YC = Y + 2, cell(YC, X, C7), YD = Y + 3, cell(YD, X, C8).

@@ -1,0 +1,5 @@
+% row: d_84f2aca1_2_hole2
+% source: distillation batch reading, task 84f2aca1, sample 2
+% output: hole2(Y, X)
+ncount(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), C > 0.
+hole2(Y, X) :- ncount(Y, X, N), N = 7, off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 0), ncount(Y2, X2, M), M = 7.

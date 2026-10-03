@@ -1,0 +1,6 @@
+% row: d_17b80ad2_3_marked_col
+% source: distillation batch reading, task 17b80ad2, sample 3
+% output: marked_col(Y, X)
+my(max(Y)) :- px(Y, X, C).
+mcol(X) :- my(M), cell(M, X, C).
+marked_col(Y, X) :- cell(Y, X, C), mcol(X).

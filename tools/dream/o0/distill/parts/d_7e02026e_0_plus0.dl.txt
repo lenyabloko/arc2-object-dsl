@@ -1,0 +1,10 @@
+% row: d_7e02026e_0_plus0
+% source: distillation batch reading, task 7e02026e, sample 0
+% output: plus0(Y, X)
+z(Y, X) :- px(Y, X, C), C = 0.
+pc(Y, X) :- z(Y, X), Y1 = Y - 1, z(Y1, X), Y2 = Y + 1, z(Y2, X), X1 = X - 1, z(Y, X1), X2 = X + 1, z(Y, X2).
+plus0(Y, X) :- pc(Y, X).
+plus0(Y2, X) :- pc(Y, X), Y2 = Y + 1.
+plus0(Y2, X) :- pc(Y, X), Y2 = Y - 1.
+plus0(Y, X2) :- pc(Y, X), X2 = X + 1.
+plus0(Y, X2) :- pc(Y, X), X2 = X - 1.

@@ -1,0 +1,6 @@
+% row: d_d23f8c26_4_off_centre
+% source: distillation batch reading, task d23f8c26, sample 4
+% output: off_centre(Y, X)
+w(max(X)) :- px(Y, X, C).
+centre(Y, X) :- px(Y, X, C), w(W), W = X + X.
+off_centre(Y, X) :- px(Y, X, C), !centre(Y, X).

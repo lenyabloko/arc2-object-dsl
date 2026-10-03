@@ -1,0 +1,7 @@
+% row: d_6d58a25d_3_under_arch
+% source: distillation batch reading, task 6d58a25d, sample 3
+% output: under_arch(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+dot(Y, X) :- obj(O, Y, X), osize(O, N), N = 1.
+arch(Y, X) :- obj(O, Y, X), osize(O, N), N > 1.
+under_arch(Y, X) :- dot(Y, X), arch(Y2, X), Y2 < Y.

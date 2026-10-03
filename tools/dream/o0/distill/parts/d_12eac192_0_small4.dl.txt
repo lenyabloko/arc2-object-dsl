@@ -1,0 +1,11 @@
+% row: d_12eac192_0_small4
+% source: distillation batch reading, task 12eac192, sample 0
+% output: small4(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+nz(Y, X, C) :- px(Y, X, C), C > 0.
+same(Y, X, Y2, X2) :- nz(Y, X, C), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, nz(Y2, X2, C).
+deg(Y, X, count(Y2, X2)) :- same(Y, X, Y2, X2).
+big(Y, X) :- deg(Y, X, N), N > 1.
+big(Y, X) :- same(Y, X, Y2, X2), deg(Y2, X2, N), N > 1.
+small4(Y, X) :- nz(Y, X, C), !big(Y, X).

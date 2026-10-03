@@ -1,0 +1,8 @@
+% row: d_3f7978a0_1_post_box
+% source: distillation batch reading, task 3f7978a0, sample 1
+% output: post_box(Y, X)
+top(min(Y)) :- cell(Y, X, C), C = 5.
+bot(max(Y)) :- cell(Y, X, C), C = 5.
+post_box(Y, X) :- cell(Y, X, C), C = 5.
+post_box(Y, X) :- cell(Y0, X, C), C = 5, top(T), Y0 = T, Y = T - 1.
+post_box(Y, X) :- cell(Y0, X, C), C = 5, bot(B), Y0 = B, Y = B + 1.

@@ -1,0 +1,8 @@
+% row: d_32597951_2_inbox
+% source: distillation batch reading, task 32597951, sample 2
+% output: inbox(Y, X)
+eminy(min(Y)) :- px(Y, X, 8).
+emaxy(max(Y)) :- px(Y, X, 8).
+eminx(min(X)) :- px(Y, X, 8).
+emaxx(max(X)) :- px(Y, X, 8).
+inbox(Y, X) :- px(Y, X, 1), eminy(A), emaxy(B), eminx(C), emaxx(D), Y >= A, Y <= B, X >= C, X <= D.

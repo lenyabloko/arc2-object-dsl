@@ -1,0 +1,11 @@
+% row: d_d94c3b52_2_same_shape
+% source: distillation batch reading, task d94c3b52, sample 2
+% output: same_shape(Y, X)
+oy(O, min(Y)) :- obj(O, Y, X).
+ox(O, min(X)) :- obj(O, Y, X).
+rel(O, DY, DX) :- obj(O, Y, X), oy(O, MY), ox(O, MX), DY = Y - MY, DX = X - MX.
+keyo(K) :- obj(K, Y, X), cell(Y, X, C), C = 8.
+oneo(O) :- obj(O, Y, X), cell(Y, X, C), C = 1.
+miss(O) :- oneo(O), keyo(K), rel(K, DY, DX), !rel(O, DY, DX).
+extra(O) :- oneo(O), keyo(K), rel(O, DY, DX), !rel(K, DY, DX).
+same_shape(Y, X) :- oneo(O), !miss(O), !extra(O), obj(O, Y, X).

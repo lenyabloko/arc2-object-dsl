@@ -1,0 +1,6 @@
+% row: d_3f7978a0_0_pillars
+% source: distillation batch reading, task 3f7978a0, sample 0
+% output: pillars(Y, X)
+pillars(Y, X) :- cell(Y, X, C), C = 5.
+pillars(Y, X) :- cell(Y, X, C), C = 8, Y2 = Y + 1, cell(Y2, X, D), D = 5.
+pillars(Y, X) :- cell(Y, X, C), C = 8, Y2 = Y - 1, cell(Y2, X, D), D = 5.

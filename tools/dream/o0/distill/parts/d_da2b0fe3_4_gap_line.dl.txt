@@ -1,0 +1,9 @@
+% row: d_da2b0fe3_4_gap_line
+% source: distillation batch reading, task da2b0fe3, sample 4
+% output: gap_line(Y, X)
+filled_row(Y) :- cell(Y, X, C).
+filled_col(X) :- cell(Y, X, C).
+gap_row(Y) :- px(Y, X, C), !filled_row(Y), cell(Y1, X1, C1), Y1 < Y, cell(Y2, X2, C2), Y2 > Y.
+gap_col(X) :- px(Y, X, C), !filled_col(X), cell(Y1, X1, C1), X1 < X, cell(Y2, X2, C2), X2 > X.
+gap_line(Y, X) :- gap_row(Y), px(Y, X, C).
+gap_line(Y, X) :- gap_col(X), px(Y, X, C).

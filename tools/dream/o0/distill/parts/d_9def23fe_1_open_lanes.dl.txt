@@ -1,0 +1,22 @@
+% row: d_9def23fe_1_open_lanes
+% source: distillation batch reading, task 9def23fe, sample 1
+% output: open_lanes(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(O) :- osize(O, N), N > 3.
+inbig(Y, X) :- big(O), obj(O, Y, X).
+fgc(Y, X) :- cell(Y, X, C).
+mk(Y, X) :- fgc(Y, X), !inbig(Y, X).
+top(O, min(Y)) :- big(O), obj(O, Y, X).
+bot(O, max(Y)) :- big(O), obj(O, Y, X).
+lft(O, min(X)) :- big(O), obj(O, Y, X).
+rgt(O, max(X)) :- big(O), obj(O, Y, X).
+incol(X) :- big(O), obj(O, Y, X).
+inrow(Y) :- big(O), obj(O, Y, X).
+upblk(X) :- mk(Y, X), big(O), top(O, A), Y < A.
+dnblk(X) :- mk(Y, X), big(O), bot(O, B), Y > B.
+lfblk(Y) :- mk(Y, X), big(O), lft(O, L), X < L.
+rtblk(Y) :- mk(Y, X), big(O), rgt(O, R), X > R.
+open_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), incol(X), !upblk(X), big(O), top(O, A), Y < A.
+open_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), incol(X), !dnblk(X), big(O), bot(O, B), Y > B.
+open_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), inrow(Y), !lfblk(Y), big(O), lft(O, L), X < L.
+open_lanes(Y, X) :- px(Y, X, C), !fgc(Y, X), inrow(Y), !rtblk(Y), big(O), rgt(O, R), X > R.

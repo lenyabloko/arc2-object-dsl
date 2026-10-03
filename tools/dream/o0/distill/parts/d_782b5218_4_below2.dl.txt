@@ -1,0 +1,6 @@
+% row: d_782b5218_4_below2
+% source: distillation batch reading, task 782b5218, sample 4
+% output: below2(Y, X)
+two(Y, X) :- cell(Y, X, C), C = 2.
+top2(X, min(Y)) :- two(Y, X).
+below2(Y, X) :- px(Y, X, C), top2(X, T), Y > T, !two(Y, X).

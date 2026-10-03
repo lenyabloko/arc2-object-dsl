@@ -1,0 +1,10 @@
+% row: d_84f2aca1_3_hole2
+% source: distillation batch reading, task 84f2aca1, sample 3
+% output: hole2(Y, X)
+nb(Y, X) :- cell(Y, X, C).
+hh(Y, X) :- px(Y, X, 0), X2 = X + 1, px(Y, X2, 0), Xa = X - 1, nb(Y, Xa), Xb = X + 2, nb(Y, Xb), Ya = Y - 1, nb(Ya, X), nb(Ya, X2), Yb = Y + 1, nb(Yb, X), nb(Yb, X2).
+vv(Y, X) :- px(Y, X, 0), Y2 = Y + 1, px(Y2, X, 0), Ya = Y - 1, nb(Ya, X), Yb = Y + 2, nb(Yb, X), Xa = X - 1, nb(Y, Xa), nb(Y2, Xa), Xb = X + 1, nb(Y, Xb), nb(Y2, Xb).
+hole2(Y, X) :- hh(Y, X).
+hole2(Y, X2) :- hh(Y, X), X2 = X + 1.
+hole2(Y, X) :- vv(Y, X).
+hole2(Y2, X) :- vv(Y, X), Y2 = Y + 1.

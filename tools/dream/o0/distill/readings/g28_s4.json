@@ -1,0 +1,209 @@
+[
+ {
+  "task": "d6ad076f",
+  "reading": "Two facing rectangles; the background strip between them (across their shared rows or columns) is filled with 8, inset by one cell at each end of the overlap.",
+  "verb": "bridge",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "inner_between",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inner_between",
+    "datalog": "bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\nhl(Y, X) :- bgc(Y, X), cell(Y, X1, C), X1 < X.\nhr(Y, X) :- bgc(Y, X), cell(Y, X1, C), X1 > X.\nhb(Y, X) :- hl(Y, X), hr(Y, X).\nvu(Y, X) :- bgc(Y, X), cell(Y1, X, C), Y1 < Y.\nvd(Y, X) :- bgc(Y, X), cell(Y1, X, C), Y1 > Y.\nvb(Y, X) :- vu(Y, X), vd(Y, X).\ninner_between(Y, X) :- hb(Y, X), Y1 = Y - 1, hb(Y1, X), Y2 = Y + 1, hb(Y2, X).\ninner_between(Y, X) :- vb(Y, X), X1 = X - 1, vb(Y, X1), X2 = X + 1, vb(Y, X2)."
+   }
+  ],
+  "why": "every filled cell is background lying between the two rectangles and not on the first/last line of their overlap; colour is always 8",
+  "invariants": [
+   "both rectangles unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d753a70b",
+  "reading": "Diamond outlines of colour 2 shrink by one ring (concentric), diamond outlines of colour 5 grow by one ring; shapes of other colours (8, 9) stay. Clipped at the grid edge.",
+  "verb": "grow/shrink ring",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each diamond outline object of colour 2 or 5",
+   "delta": "colour 2 -> radius-1 (radius 1 becomes a single centre cell), colour 5 -> radius+1",
+   "fixed": "objects of any other colour"
+  },
+  "why": "each 2/5 object in the output is the input object's diamond with the same centre and radius changed by one (one pair-0 corner piece is off by a column)",
+  "invariants": [
+   "background 7",
+   "8 and 9 objects unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d931c21c",
+  "reading": "Every closed loop of 1s gets a one-cell halo: background cells touching it (8-neighbour) on the outside become 2, those on the inside become 3. Open (non-enclosing) shapes stay unchanged.",
+  "verb": "outline inside and outside",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "1-objects that enclose background",
+   "outer": "outside bg cells 8-adjacent to the loop -> 2",
+   "inner": "enclosed bg cells 8-adjacent to the loop -> 3"
+  },
+  "why": "only loops that enclose a hole are decorated; open shapes untouched",
+  "invariants": [
+   "1 cells unchanged",
+   "deeper interior cells stay 0",
+   "open shapes unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d94c3b52",
+  "reading": "The grid is a 4x6 array of 3x3 glyphs; one glyph is drawn in 8. Every glyph with the same shape becomes 8, and every glyph lying between two 8-glyphs in the same glyph-row or glyph-column becomes 7.",
+  "verb": "match and connect",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cells": "3x3 glyph slots separated by blank rows/cols",
+   "key": "the glyph drawn in 8",
+   "match": "glyphs identical in shape to the key -> recoloured 8",
+   "between": "glyphs strictly between two 8-glyphs on a glyph-row or glyph-column -> recoloured 7"
+  },
+  "why": "on all pairs the 8s are exactly the key-shaped glyphs and the 7s exactly the glyphs between two of them",
+  "invariants": [
+   "glyph shapes unchanged",
+   "background unchanged",
+   "other glyphs stay 1"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d968ffd4",
+  "reading": "Two blocks face each other across the grid; each grows toward the other over half the gap, as a full-width band (its span widened by one on each side), leaving one background line in the middle when the gap is odd.",
+  "verb": "grow toward each other",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the two coloured blocks",
+   "target": "each other",
+   "extent": "half the gap each (floor), band spans block rows/cols plus one each side",
+   "colour": "own"
+  },
+  "why": "each half of the gap is filled with the colour of the nearer block; middle line stays background when the gap length is odd",
+  "invariants": [
+   "original blocks unchanged",
+   "background outside the gap unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "da2b0fe3",
+  "reading": "A shape is split by an empty row or column through its middle; that whole grid row or column is filled with 3.",
+  "verb": "mark split line",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap_line",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap_line",
+    "datalog": "filled_row(Y) :- cell(Y, X, C).\nfilled_col(X) :- cell(Y, X, C).\ngap_row(Y) :- px(Y, X, C), !filled_row(Y), cell(Y1, X1, C1), Y1 < Y, cell(Y2, X2, C2), Y2 > Y.\ngap_col(X) :- px(Y, X, C), !filled_col(X), cell(Y1, X1, C1), X1 < X, cell(Y2, X2, C2), X2 > X.\ngap_line(Y, X) :- gap_row(Y), px(Y, X, C).\ngap_line(Y, X) :- gap_col(X), px(Y, X, C)."
+   }
+  ],
+  "why": "the filled line is the one empty row/column with shape cells on both sides; colour is always 3",
+  "invariants": [
+   "shape cells unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db615bd4",
+  "reading": "A dotted rectangular frame becomes a solid outline with a cleared interior; the small dotted pieces lying outside it are removed and placed inside the frame as solid blocks (their boxes filled), packed side by side.",
+  "verb": "pack pieces into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "container": "the dotted frame object (made solid, interior set to background)",
+   "pieces": "dotted multi-cell pieces outside the frame, each becoming a filled box of its colour",
+   "placement": "packed inside the frame interior with a one-cell margin",
+   "rest": "original piece locations restored to the background dot pattern"
+  },
+  "why": "output has exactly the pieces' filled boxes inside the solid frame and none outside",
+  "invariants": [
+   "background dot lattice outside the frame unchanged",
+   "frame position and size unchanged"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "db7260a4",
+  "reading": "A 1 at the top drops down its column; if it lands in a watertight cup of 2s, the cup's interior is filled with 1, otherwise (outside the cup or the cup leaks) the whole bottom row becomes 1. The marker is removed.",
+  "verb": "pour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the single 1 marker (cleared)",
+   "container": "the U-shaped 2 object",
+   "outcome_closed": "cup interior between the walls filled with 1",
+   "outcome_leak": "bottom grid row filled with 1"
+  },
+  "why": "cup filled exactly when the marker column is inside a cup with closed bottom; else bottom row",
+  "invariants": [
+   "2 shapes unchanged",
+   "marker cell becomes background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "db93a21d",
+  "reading": "Each 9 square of side s gets a 3 border of thickness s/2 around it and a 1 beam of its width running down from below the border to the bottom edge; 9 over 3 over 1.",
+  "verb": "halo and drop shadow",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 9 square",
+   "halo": "colour 3, thickness half the side",
+   "beam": "colour 1, square's columns, from below the halo to the bottom border",
+   "priority": "9 > 3 > 1"
+  },
+  "why": "halo thickness equals half the square side on every pair; beams stop only at the bottom border and are covered by halos",
+  "invariants": [
+   "9 squares unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "dbc1a6ce",
+  "reading": "Every two 1 cells on the same row or column are joined by a line of 8 over the background between them.",
+  "verb": "connect",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between",
+    "colour": "train"
+   }
+  },
+  "why": "every 8 cell is background between two 1s on one row or column; colour is 8",
+  "invariants": [
+   "1 cells unchanged",
+   "unpaired 1s get no line"
+  ],
+  "confidence": "high"
+ }
+]

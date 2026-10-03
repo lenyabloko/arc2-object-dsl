@@ -1,0 +1,1302 @@
+{
+ "group": 19,
+ "tasks": {
+  "94414823": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "94414823",
+     "sample": 0,
+     "verb": "fill quadrants checkerboard",
+     "reading": "The empty interior of the grey square outline is split into four 2x2 quadrants filled as a checkerboard of the two outside marker colours: the quadrant nearest each marker takes that marker's colour, and the diagonally opposite quadrant takes the same colour.",
+     "why": "every interior cell is filled; frame and markers unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "94414823",
+     "sample": 1,
+     "verb": "fill quadrants by corner markers",
+     "reading": "The empty interior of the 5-outline square is split into four 2x2 quadrants; the quadrant nearest each outside marker (diagonal to a frame corner) and its diagonally opposite quadrant are filled with that marker's colour.",
+     "why": "every interior cell takes the colour of the marker whose corner quadrant is it or its diagonal opposite; frame and markers unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "94414823",
+     "sample": 2,
+     "verb": "fill quadrants",
+     "reading": "The empty frame interior is split into four quadrants; each outside corner marker colours its nearest quadrant and the diagonally opposite one, giving a 2x2 checker.",
+     "why": "on every pair the two markers sit at adjacent outer corners and the interior becomes a diagonal 2-colour checker of 2x2 blocks",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "94414823",
+     "sample": 3,
+     "verb": "fill quadrants checkerboard",
+     "reading": "Two marker cells sit diagonally outside two corners of a hollow square. The square's interior is split into four quadrants; each marker colours the quadrant next to its own corner and the quadrant diagonally opposite, making a 2x2 checkerboard.",
+     "why": "every interior cell takes the colour of the marker nearest its quadrant or of its diagonal partner; frame and markers unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "94414823",
+     "sample": 4,
+     "verb": "fill quadrants from marks",
+     "reading": "A square outline has an empty interior and two single-colour marks sit outside it. The interior is cut into four quadrants. The quadrant nearest each mark, and the quadrant diagonally opposite it, take that mark's colour.",
+     "why": "the interior is a 2x2 checkerboard of quadrants; the quadrant on a mark's side always carries that mark's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "94be5b80": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "94be5b80",
+     "sample": 0,
+     "verb": "stack copies in key order",
+     "reading": "A key strip of coloured columns gives a top-to-bottom colour order; the one shape (already present in some of those colours, stacked vertically) is copied above/below in the missing key colours so the stack follows the key order, and the key strip is erased.",
+     "why": "the output column stack reads the key colours in order, every copy the same shape",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "94be5b80",
+     "sample": 1,
+     "verb": "stack shape copies in key order",
+     "reading": "A strip of colour columns (a key) gives a top-to-bottom colour order; copies of the repeated shape are stacked vertically in that order, keeping the existing copies in place, and the key is erased.",
+     "why": "output is the shape stacked once per key colour in key order, aligned with the existing copies; key removed",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "94be5b80",
+     "sample": 2,
+     "verb": "complete stack",
+     "reading": "A colour strip gives a top-to-bottom order; the stack of identical shapes is completed by adding a copy of the shape in each missing colour above/below in that order, and the strip is erased.",
+     "why": "all existing shapes are identical and vertically adjacent in key order; added copies continue the stack",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "94be5b80",
+     "sample": 3,
+     "verb": "stack copies by key",
+     "reading": "A strip of stacked colour columns is a key read left to right. One shape occurs in some of the key colours stacked vertically; copies of the shape are added above and below so the stack runs top to bottom in key order, and the key is erased.",
+     "why": "the output stack's colours from top to bottom equal the key's colours from left to right; existing copies stay in place",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "94be5b80",
+     "sample": 4,
+     "verb": "stack copies in key order",
+     "reading": "A strip of vertical colour bars is a key giving a top-to-bottom colour order. One shape already appears stacked in some of those colours. The shape is copied in every key colour, stacked vertically in key order and aligned with the existing copies, and the key is erased.",
+     "why": "the output column of shapes reads the key colours in order, each copy has the same shape, and the existing copies stay where they are",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "952a094c": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "952a094c",
+     "sample": 0,
+     "verb": "swap corners outward",
+     "reading": "Four coloured cells sit in the inner corners of a rectangular outline; each is removed and placed at the cell just diagonally outside the opposite outer corner of the outline (inner top-left goes to outer bottom-right, etc.).",
+     "why": "outer corner colour = colour of the diagonally opposite inner corner; interior becomes empty",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "952a094c",
+     "sample": 1,
+     "verb": "send corner marks to opposite outer corners",
+     "reading": "The four single cells in the inner corners of the outline are removed and each reappears just outside the frame at the diagonally opposite corner (point reflection through the frame centre, pushed one step out).",
+     "why": "each inner-corner mark of colour c appears at the outer diagonal of the opposite corner; interior becomes background",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "952a094c",
+     "sample": 2,
+     "verb": "swap corners outward",
+     "reading": "The four coloured cells in the frame's inner corners are removed and each reappears just outside the opposite corner of the frame.",
+     "why": "inner TL colour lands outside BR, TR outside BL, BL outside TR, BR outside TL on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "952a094c",
+     "sample": 3,
+     "verb": "swap corners outward",
+     "reading": "A hollow rectangle holds four coloured cells in its inner corners. They are removed and each colour reappears just outside the rectangle at the diagonally opposite outer corner.",
+     "why": "inner-corner colour at corner k equals the outer diagonal cell at corner opposite k; outline unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "952a094c",
+     "sample": 4,
+     "verb": "reflect corners outward",
+     "reading": "A rectangular outline has one coloured cell in each inner corner. Each is erased and redrawn just outside the outline at the diagonally opposite corner, which is a point reflection through the outline's centre.",
+     "why": "the inner-corner colour at TL appears outside BR, TR outside BL, and so on; the interior becomes empty",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9565186b": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "9565186b",
+     "sample": 0,
+     "verb": "recolour minority to grey",
+     "reading": "The most common colour (background) stays; every other cell becomes grey 5.",
+     "why": "every non-background cell becomes 5 (key a->5 for all a); background cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "fillers": {
+      "recolour.subject=fg": [
+       [
+        2,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         2,
+         3,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         1,
+         3,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "9565186b",
+     "sample": 1,
+     "verb": "recolour minority to grey",
+     "reading": "The most common colour stays; every other cell becomes 5.",
+     "why": "every non-background cell of any colour becomes 5; background (majority) cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "fillers": {
+      "recolour.subject=fg": [
+       [
+        2,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         2,
+         3,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         1,
+         3,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "9565186b",
+     "sample": 2,
+     "verb": "recolour minority",
+     "reading": "The most common colour stays; every other colour becomes grey (5).",
+     "why": "every non-background (non-majority) cell becomes 5; background cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "fillers": {
+      "recolour.subject=fg": [
+       [
+        2,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         2,
+         3,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         1,
+         3,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "9565186b",
+     "sample": 3,
+     "verb": "recolour minority to grey",
+     "reading": "The most common colour of the 3x3 grid stays; every other cell becomes grey 5.",
+     "why": "every non-background (non-majority) cell becomes 5; background cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "fillers": {
+      "recolour.subject=fg": [
+       [
+        2,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         2,
+         3,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         1,
+         3,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "9565186b",
+     "sample": 4,
+     "verb": "recolour minority to grey",
+     "reading": "The most common colour stays. Every other cell becomes 5.",
+     "why": "every non-background (non-majority) cell becomes 5; majority cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=fg)"
+     ],
+     "fillers": {
+      "recolour.subject=fg": [
+       [
+        2,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         2,
+         3,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         1,
+         3,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "95990924": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "95990924",
+     "sample": 0,
+     "verb": "decorate corners",
+     "reading": "Each 2x2 grey block gets four single cells placed diagonally outside its corners: 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right.",
+     "why": "around every grey object the same 4x4 pattern 1..2 / .55. / .55. / 3..4 appears; all else unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "95990924",
+     "sample": 1,
+     "verb": "decorate block corners",
+     "reading": "Every 2x2 grey block gets four diagonal corner cells: 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right.",
+     "why": "around each object the 4x4 pattern 1002/0550/0550/3004 appears (block plus diagonal corner cells); all else unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "95990924",
+     "sample": 2,
+     "verb": "decorate corners",
+     "reading": "Each 2x2 grey square gets four diagonal corner cells: 1 at top-left, 2 top-right, 3 bottom-left, 4 bottom-right.",
+     "why": "the same 4x4 pattern (1..2/.55./.55./3..4, 0 transparent) sits on every 2x2 object",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "95990924",
+     "sample": 3,
+     "verb": "decorate corners",
+     "reading": "Each 2x2 grey block gets four diagonal corner cells: 1 at top-left, 2 at top-right, 3 at bottom-left, 4 at bottom-right.",
+     "why": "every 2x2 object gets the identical 4x4 corner pattern 1..2/3..4 around it; all other cells unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "95990924",
+     "sample": 4,
+     "verb": "decorate block corners",
+     "reading": "Each 2x2 grey block gets four single cells at its outside diagonal corners: 1 at top-left, 2 at top-right, 3 at bottom-left and 4 at bottom-right.",
+     "why": "every 2x2 object has the same 4x4 pattern around it (1..2 / block / 3..4), and nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    }
+   ]
+  },
+  "95a58926": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "95a58926",
+     "sample": 0,
+     "verb": "denoise and mark crossings",
+     "reading": "A lattice of grey separator lines is cluttered with noise cells of one colour; the noise is erased, the separator lines are restored to full grey, and every crossing of two separator lines is painted the noise colour.",
+     "why": "output = clean separator lattice with crossings in the noise colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "95a58926",
+     "sample": 1,
+     "verb": "clean grid and mark crossings",
+     "reading": "The grid of grey separator lines is redrawn clean: all noise cells in the panels are cleared, noise on lines becomes grey, and every line crossing takes the noise colour.",
+     "why": "output = separator rows/columns in 5, their intersections in the noise colour, everything else 0",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "95a58926",
+     "sample": 2,
+     "verb": "clean grid and mark crossings",
+     "reading": "Noise of one colour is cleaned off a grid of grey lines, and every line crossing is painted the noise colour.",
+     "why": "output is the ideal grid with intersections in the noise colour, on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "95a58926",
+     "sample": 3,
+     "verb": "clean lattice, mark crossings",
+     "reading": "A grid of grey separator lines is sprinkled with noise of one colour. All noise is removed, separator lines are restored to grey, and every crossing of a horizontal and vertical separator takes the noise colour.",
+     "why": "output = clean separator lattice in 5 with noise colour exactly at line intersections; nothing else coloured",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "95a58926",
+     "sample": 4,
+     "verb": "clean lattice, mark crossings",
+     "reading": "A grid of full grey separator lines is covered in noise of one colour c. All the noise is removed, the separator lines are restored to grey, and every crossing of a horizontal and a vertical separator becomes c.",
+     "why": "checked on all pairs: output is exactly 0 off the lines, 5 on the lines, and c at line crossings",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "963e52fc": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "963e52fc",
+     "sample": 0,
+     "verb": "extend periodic pattern",
+     "reading": "The grid is doubled in width and the horizontal periodic pattern in the coloured rows is continued across the new width.",
+     "why": "every output row is the input row's periodic continuation",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "963e52fc",
+     "sample": 1,
+     "verb": "extend periodic pattern to double width",
+     "reading": "The output is twice as wide; the horizontally periodic band is continued with its period over the new width.",
+     "why": "out[y][x] = in[y][x mod p] for the smallest period p of the input rows, width 2W",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "963e52fc",
+     "sample": 2,
+     "verb": "continue pattern",
+     "reading": "The output is twice as wide; the periodic coloured rows are continued with their period across the new width.",
+     "why": "output row = periodic extension of input row to double width (pair 2: period 3, width 8 shows it is not tiling)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "963e52fc",
+     "sample": 3,
+     "verb": "continue periodic pattern",
+     "reading": "The output is twice as wide; each patterned row continues its horizontal period across the extra width (not a plain side-by-side copy).",
+     "why": "every output row is the input row's period repeated to width 2W",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "963e52fc",
+     "sample": 4,
+     "verb": "continue periodic pattern",
+     "reading": "The output is twice as wide as the input. The horizontally periodic pattern band continues with its own period across the new width; it is not tiled as a block.",
+     "why": "each output row is its input row's periodic continuation; plain tiling fails on pairs with width not a multiple of the period",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "97239e3d": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "97239e3d",
+     "sample": 0,
+     "verb": "draw lattice rectangle",
+     "reading": "On a lattice of hollow 3x3 squares, two cells of the same colour mark opposite corners of a block of squares; a rectangle of that colour is drawn along the gap lines enclosing that block, and the centre of each enclosed square is filled with the colour.",
+     "why": "each marker pair yields one outline on gap lines plus coloured centres; other squares unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "97239e3d",
+     "sample": 1,
+     "verb": "draw lattice box between marker pair",
+     "reading": "Each pair of same-coloured markers on the lattice of 3x3 rings spans a rectangle snapped outward to the gutter lines; the rectangle outline is drawn on the gutters in that colour and the centre of every ring inside it is filled with that colour.",
+     "why": "every gutter cell on the box border and every enclosed ring centre has the marker colour; rings and cells outside unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "97239e3d",
+     "sample": 2,
+     "verb": "outline lattice rectangle",
+     "reading": "Each pair of same-colour marker cells defines a rectangle snapped to the lattice gap lines; its outline is drawn in that colour and the centres of the enclosed squares are filled with it.",
+     "why": "on every pair the coloured outline runs along gap lines through both markers and enclosed square centres match",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "97239e3d",
+     "sample": 3,
+     "verb": "draw rectangle on lattice",
+     "reading": "A lattice of 3x3 rings has pairs of same-coloured marker cells. For each pair, the bounding box of the two markers is snapped outward to the lattice gap lines; its outline is drawn along those gap rows/columns in the marker colour and the centre of every ring inside is filled with that colour.",
+     "why": "per colour pair, outline lies exactly on the enclosing gap lines and only ring centres inside are recoloured",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "97239e3d",
+     "sample": 4,
+     "verb": "draw lane rectangle between marks",
+     "reading": "A lattice of 3x3 rings has two marks of a colour c for each colour present. The two marks give opposite corners of a rectangle snapped to the background lanes. The rectangle outline is drawn in c along the lanes, and the centre cell of every ring inside it becomes c.",
+     "why": "for every mark colour the outline lies on lane rows/columns through or just outside both marks, and only enclosed ring centres change",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "981add89": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "981add89",
+     "sample": 0,
+     "verb": "drop lines with inversion",
+     "reading": "Each single coloured cell in the top row drops a vertical line of its colour to the bottom border, crossing every block; where the line crosses a block of its own colour it is drawn in the background colour instead.",
+     "why": "each source column becomes its colour everywhere except inside same-colour blocks, where it becomes background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "981add89",
+     "sample": 1,
+     "verb": "drop column lines, invert on own colour",
+     "reading": "Each marker cell in the top row drops a full vertical line down its column; cells of other colours become the marker colour, cells of the marker's own colour become background.",
+     "why": "in each marked column every cell below row 0 is marker colour if it was not, background if it was; other columns unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "981add89",
+     "sample": 2,
+     "verb": "drop toggling lines",
+     "reading": "Each coloured cell in the top row drops a vertical line to the bottom in its colour; where the line crosses a block of its own colour it turns background instead.",
+     "why": "every column under a top-row cell is source colour on cells of other colours and background on cells of the same colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "981add89",
+     "sample": 3,
+     "verb": "draw column lines with inversion",
+     "reading": "Coloured cells in the top row each start a full vertical line of their colour down the grid; where the line crosses a block of the same colour it shows the background colour instead.",
+     "why": "in each source column, every cell is the source colour unless the input cell had that colour, then it is background; other columns unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "981add89",
+     "sample": 4,
+     "verb": "drop lines, invert on same colour",
+     "reading": "Each non-background cell in the top row drops a full-height vertical line of its own colour. Where the line passes through a block of that same colour, the cells become background instead.",
+     "why": "checked on all pairs: in each source column, cells equal to the source colour become background and all other cells become the source colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9841fdad": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "abstains (no fit predicts every test input; no check spent)",
+   "max_support": 3,
+   "readings": [
+    {
+     "task": "9841fdad",
+     "sample": 0,
+     "verb": "copy into panel with alignment",
+     "reading": "The left panel holds small shapes on rows; they are redrawn on the same rows in the empty right panel: shapes touching the left margin stay at the left margin, shapes touching the right margin go to the right margin, and shapes spanning the full width are stretched to the full width.",
+     "why": "each source row's shapes appear on the same row of the target panel with matching edge alignment",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "9841fdad",
+     "sample": 1,
+     "verb": "project panel content with margin anchoring",
+     "reading": "Two framed panels; each shape in the left panel is copied onto the same rows of the empty right panel, keeping its side alignment: left-aligned shapes stay at the left margin, right-aligned at the right margin, and full-width bars stretch across the right panel.",
+     "why": "each source row's shape appears in the target panel on the same rows with the same margin to its anchored side(s)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9841fdad",
+     "sample": 2,
+     "verb": "project justified",
+     "reading": "Shapes in the left panel are copied into the empty right panel on the same rows, justified left, right, or stretched full-width according to which edges of the left area they touch.",
+     "why": "on every pair each right-panel row mirrors its left-panel row's edge contacts and widths of non-spanning shapes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9841fdad",
+     "sample": 3,
+     "verb": "copy into panel with edge alignment",
+     "reading": "Two framed panels: the left one holds coloured bars on its background, the right one is empty. Each bar is copied into the right panel at the same rows: bars touching the left margin go to the right panel's left margin, bars touching the right margin go to its right margin, and full-width bars stretch across the right panel.",
+     "why": "every target row equals the source row's shapes re-aligned to the same edge margins; source panel and borders unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "9841fdad",
+     "sample": 4,
+     "verb": "copy into panel, anchored and stretched",
+     "reading": "Two framed panels sit side by side and the right one is empty. Each shape in the left panel is copied to the same rows of the right panel, keeping its side margin. Shapes against the left side go left, shapes against the right side go right, and bars with a margin on both sides stretch across the full width.",
+     "why": "every right-panel shape sits on the same rows as its source with the same left or right margin; full-span bars keep both margins",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {}
+    }
+   ]
+  }
+ }
+}

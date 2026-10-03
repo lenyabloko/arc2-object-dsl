@@ -1,0 +1,12 @@
+% row: d_13713586_0_bars
+% source: distillation batch reading, task 13713586, sample 0
+% output: bars(Y, X)
+w(max(X)) :- px(Y, X, C).
+h(max(Y)) :- px(Y, X, C).
+rc(Y, C, count(X)) :- cell(Y, X, C).
+cc(X, C, count(Y)) :- cell(Y, X, C).
+wallrow(Y) :- rc(Y, C, N), w(M), N = M + 1.
+wallcol(X) :- cc(X, C, N), h(M), N = M + 1.
+wall(Y, X) :- wallrow(Y), cell(Y, X, C).
+wall(Y, X) :- wallcol(X), cell(Y, X, C).
+bars(Y, X) :- cell(Y, X, C), !wall(Y, X).

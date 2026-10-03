@@ -1,0 +1,4 @@
+% row: d_0ca9ddb6_2_red_diag
+% source: distillation batch reading, task 0ca9ddb6, sample 2
+% output: red_diag(Y, X)
+red_diag(Y2, X2) :- cell(Y, X, 2), off(DY, DX), Q = DY*DY + DX*DX, Q = 2, Y2 = Y + DY, X2 = X + DX, px(Y2, X2, B).

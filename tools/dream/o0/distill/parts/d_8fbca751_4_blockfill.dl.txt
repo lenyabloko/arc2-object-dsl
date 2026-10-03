@@ -1,0 +1,11 @@
+% row: d_8fbca751_4_blockfill
+% source: distillation batch reading, task 8fbca751, sample 4
+% output: blockfill(Y, X)
+minY(min(Y)) :- cell(Y, X, C).
+minX(min(X)) :- cell(Y, X, C).
+k4(0). k4(4). k4(8). k4(12). k4(16). k4(20). k4(24). k4(28).
+r4(0). r4(1). r4(2). r4(3).
+rb(Y, K) :- minY(Y0), k4(K), r4(R), T = Y0 + K, Y = T + R.
+cb(X, K) :- minX(X0), k4(K), r4(R), T = X0 + K, X = T + R.
+hit(KY, KX) :- cell(Y, X, C), rb(Y, KY), cb(X, KX).
+blockfill(Y, X) :- px(Y, X, C), !cell(Y, X, C), rb(Y, KY), cb(X, KX), hit(KY, KX).

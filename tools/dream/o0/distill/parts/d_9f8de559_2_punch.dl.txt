@@ -1,0 +1,10 @@
+% row: d_9f8de559_2_punch
+% source: distillation batch reading, task 9f8de559, sample 2
+% output: punch(Y, X)
+two(Y, X) :- px(Y, X, C), C = 2.
+six(Y, X) :- px(Y, X, C), C = 6.
+inner(Y, X) :- px(Y, X, C), C = 7.
+dir(DY, DX) :- two(Y, X), off(DY, DX), Y2 = Y - DY, X2 = X - DX, six(Y2, X2).
+walk(Y, X) :- two(Y, X).
+walk(Y, X) :- walk(Y1, X1), dir(DY, DX), Y = Y1 + DY, X = X1 + DX, inner(Y, X).
+punch(Y, X) :- walk(Y1, X1), dir(DY, DX), Y = Y1 + DY, X = X1 + DX, px(Y, X, C), !inner(Y, X).

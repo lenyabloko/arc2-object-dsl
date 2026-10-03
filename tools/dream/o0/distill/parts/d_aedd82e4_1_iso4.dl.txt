@@ -1,0 +1,6 @@
+% row: d_aedd82e4_1_iso4
+% source: distillation batch reading, task aedd82e4, sample 1
+% output: iso4(Y, X)
+has4(Y, X) :- cell(Y, X, C), off(DY, DX), DY = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, D).
+has4(Y, X) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, D).
+iso4(Y, X) :- cell(Y, X, C), !has4(Y, X).

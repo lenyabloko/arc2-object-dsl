@@ -1,0 +1,224 @@
+[
+ {
+  "task": "d07ae81c",
+  "reading": "Each isolated marker cell shoots diagonal rays in all four directions to the grid border. Along the rays, each cell takes the colour paired with the background region it lies in; the pairing is read from the markers (marker colour c sitting in region colour r gives r->c, e.g. 1->2 and 3->8).",
+  "verb": "draw diagonals through markers, coloured by region",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "isolated marker cells",
+   "direction": "the four diagonals",
+   "stop": "grid border",
+   "colour": "per crossed cell: key(region colour), key learned from marker colour vs. the region it sits in"
+  },
+  "why": "every changed cell lies on a diagonal through a marker and has the colour paired with its original region colour; all other cells unchanged",
+  "invariants": [
+   "region layout",
+   "markers themselves",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d13f3404",
+  "reading": "The 3x3 input is placed in the top-left of a 6x6 empty canvas, then every coloured cell is extended diagonally down-right to the border with its own colour.",
+  "verb": "pad and extend diagonals",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "fg",
+     "colour": "own"
+    }
+   }
+  },
+  "why": "output is 2x input size; cell (y,x) of the input is repeated at (y+k,x+k) for all k until the border",
+  "invariants": [
+   "top-left 3x3 block equals the input"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d23f8c26",
+  "reading": "Only the centre column is kept; every cell outside the centre column becomes 0.",
+  "verb": "keep centre column",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "off_centre",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "off_centre",
+    "datalog": "w(max(X)) :- px(Y, X, C).\ncentre(Y, X) :- px(Y, X, C), w(W), W = X + X.\noff_centre(Y, X) :- px(Y, X, C), !centre(Y, X)."
+   }
+  ],
+  "why": "all cells not in the middle column are 0 in the output; the middle column is unchanged",
+  "invariants": [
+   "centre column",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d255d7a7",
+  "reading": "Each 0-coloured U-bracket (with the cells inside it) has a straight 0 tail running to the opposite edge; the bracket and its contents slide along the tail to the tail's far end, and the tail is erased (filled with background 7).",
+  "verb": "slide along own tail",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 3-wide bracket plus the cells it encloses (excluding the tail)",
+   "path": "the bracket's 1-wide tail line",
+   "target": "the tail's end at the grid border",
+   "rest": "tail and old bracket position become background; unrelated cells (e.g. lone 9s) stay"
+  },
+  "why": "each bracket block reappears translated so its back sits at the far end of its tail, flush with the border",
+  "invariants": [
+   "bracket shape and contents",
+   "cells not part of any bracket/tail"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d2acf2cb",
+  "reading": "Where a row has 4 at both its left and right ends (or a column has 4 at both top and bottom), the cells strictly between the two 4s are recoloured by the swap 0<->8, 6<->7.",
+  "verb": "recolour lanes between 4-endpoints",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "lane"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "w(max(X)) :- px(Y, X, C).\nh(max(Y)) :- px(Y, X, C).\nlr(Y) :- px(Y, X1, 4), X1 = 0, w(W), px(Y, W, 4).\ntb(X) :- px(Y1, X, 4), Y1 = 0, h(H), px(H, X, 4).\nlane(Y, X) :- lr(Y), px(Y, X, C), w(W), X > 0, X < W.\nlane(Y, X) :- tb(X), px(Y, X, C), h(H), Y > 0, Y < H."
+   }
+  ],
+  "why": "every lane cell of colour a becomes key(a) with key {0:8, 8:0, 6:7, 7:6}; all other cells unchanged",
+  "invariants": [
+   "the 4 endpoints",
+   "cells off the lanes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d364b489",
+  "reading": "At every isolated 1 cell a fixed cross is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border); the 1 stays.",
+  "verb": "stamp cross at markers",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "around each marker the four orthogonal neighbours are 2(up),7(left),6(right),8(down); nothing else changes",
+  "invariants": [
+   "marker cells",
+   "all cells not orthogonally adjacent to a marker"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d37a1ef5",
+  "reading": "The interior of the rectangular 2-outline is filled with 2, except the bounding box of the 5 cells, which stays as it is.",
+  "verb": "fill frame around 5-box",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "frame_minus_box",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "frame_minus_box",
+    "datalog": "ty0(min(Y)) :- px(Y, X, 2).\nty1(max(Y)) :- px(Y, X, 2).\ntx0(min(X)) :- px(Y, X, 2).\ntx1(max(X)) :- px(Y, X, 2).\nfy0(min(Y)) :- px(Y, X, 5).\nfy1(max(Y)) :- px(Y, X, 5).\nfx0(min(X)) :- px(Y, X, 5).\nfx1(max(X)) :- px(Y, X, 5).\ninner(Y, X) :- px(Y, X, 0), ty0(A), ty1(B), tx0(P), tx1(Q), Y > A, Y < B, X > P, X < Q.\ninbox(Y, X) :- px(Y, X, C), fy0(A), fy1(B), fx0(P), fx1(Q), Y >= A, Y <= B, X >= P, X <= Q.\nframe_minus_box(Y, X) :- inner(Y, X), !inbox(Y, X)."
+   }
+  ],
+  "why": "every 0 cell inside the 2-outline but outside the 5 cells' bounding box becomes 2; nothing else changes",
+  "invariants": [
+   "the 2 outline",
+   "5 cells and the 0s within their box",
+   "outside the frame"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d4469b4b",
+  "reading": "The output is a fixed 3x3 glyph of 5s chosen by the input's single foreground colour: 1 -> plus, 2 -> T (top row + centre column), 3 -> L-corner (right column + bottom row).",
+  "verb": "select glyph by colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "selector": "the one non-zero colour of the input",
+   "table": "1:'050/555/050', 2:'555/050/050', 3:'005/005/555'",
+   "output": "3x3 grid of 5 on 0"
+  },
+  "why": "each pair's output equals the glyph assigned to its input colour, independent of cell positions",
+  "invariants": [
+   "output size 3x3",
+   "output colours {0,5}"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d5c634a2",
+  "reading": "Count the 2-coloured T-shapes by orientation: stem-up Ts (bar at bottom) are tallied as 3s in the left 3x3 half, stem-down Ts as 1s in the right half, of a 3x6 output; tally slots fill in order (0,c), (2,c), (0,c+2), (2,c+2).",
+  "verb": "tally shapes by orientation",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "counted": "T tetromino objects of colour 2",
+   "classes": "stem up -> colour 3, left half; stem down -> colour 1, right half",
+   "layout": "3x6 grid, tally slots at rows {0,2} x cols {0,2} (left) and {3,5} (right), column-major order",
+   "rest": "0"
+  },
+  "why": "number of 3s equals the number of stem-up Ts and number of 1s equals the number of stem-down Ts on every pair",
+  "invariants": [
+   "output size 3x6",
+   "middle row and columns 1,4 are 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d6542281",
+  "reading": "Complete multicoloured templates: each full multi-colour pattern in the input acts as a template, and every scattered partial copy (a few cells matching part of a template by colour and relative position) is completed into a full copy of that template.",
+  "verb": "complete partial copies of template",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "template": "each multi-coloured connected pattern (there can be more than one)",
+   "anchors": "fragments: small groups of cells whose colours and relative offsets match a sub-part of a template",
+   "placement": "align template so the fragment cells coincide",
+   "rest": "kept"
+  },
+  "why": "every added cell belongs to a template copy aligned with an existing fragment; all input cells stay",
+  "invariants": [
+   "templates",
+   "fragment cells",
+   "background"
+  ],
+  "confidence": "medium"
+ }
+]

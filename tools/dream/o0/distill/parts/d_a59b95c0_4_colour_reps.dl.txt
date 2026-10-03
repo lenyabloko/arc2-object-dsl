@@ -1,0 +1,6 @@
+% row: d_a59b95c0_4_colour_reps
+% source: distillation batch reading, task a59b95c0, sample 4
+% output: colour_reps(Y, X)
+crow(C, min(Y)) :- px(Y, X, C).
+ccol(C, min(X)) :- crow(C, Y), px(Y, X, C).
+colour_reps(Y, X) :- crow(C, Y), ccol(C, X).

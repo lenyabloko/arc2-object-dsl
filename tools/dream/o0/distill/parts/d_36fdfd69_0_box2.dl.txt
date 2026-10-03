@@ -1,0 +1,13 @@
+% row: d_36fdfd69_0_box2
+% source: distillation batch reading, task 36fdfd69, sample 0
+% output: box2(Y, X)
+two(Y, X) :- cell(Y, X, 2).
+near(Y, X, Y2, X2) :- two(Y, X), two(Y2, X2), DY = Y2 - Y, DX = X2 - X, DY >= -2, DY <= 2, DX >= -2, DX <= 2.
+reach(Y, X, Y2, X2) :- near(Y, X, Y2, X2).
+reach(Y, X, Y3, X3) :- reach(Y, X, Y2, X2), near(Y2, X2, Y3, X3).
+gid(Y, X, min(K)) :- reach(Y, X, Y2, X2), K = Y2 * 100 + X2.
+gy0(G, min(Y)) :- gid(Y, X, G).
+gy1(G, max(Y)) :- gid(Y, X, G).
+gx0(G, min(X)) :- gid(Y, X, G).
+gx1(G, max(X)) :- gid(Y, X, G).
+box2(Y, X) :- gy0(G, A), gy1(G, B), gx0(G, L), gx1(G, R), px(Y, X, C), Y >= A, Y <= B, X >= L, X <= R, !two(Y, X).

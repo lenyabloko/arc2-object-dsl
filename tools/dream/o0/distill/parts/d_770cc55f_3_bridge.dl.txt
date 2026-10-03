@@ -1,0 +1,12 @@
+% row: d_770cc55f_3_bridge
+% source: distillation batch reading, task 770cc55f, sample 3
+% output: bridge(Y, X)
+maxy(max(Y)) :- px(Y, X, C).
+maxx(max(X)) :- px(Y, X, C).
+rowcnt(Y, count(X)) :- cell(Y, X, C).
+sep(Y) :- rowcnt(Y, N), maxx(MX), N = MX + 1, Y > 0, maxy(M), Y < M.
+topn(count(X)) :- cell(Y, X, C), Y = 0.
+botn(count(X)) :- cell(Y, X, C), maxy(M), Y = M.
+ovl(X) :- cell(Y1, X, C1), Y1 = 0, cell(Y2, X, C2), maxy(M), Y2 = M.
+bridge(Y, X) :- ovl(X), px(Y, X, 0), sep(S), topn(A), botn(B), A > B, Y > 0, Y < S.
+bridge(Y, X) :- ovl(X), px(Y, X, 0), sep(S), maxy(M), topn(A), botn(B), B > A, Y > S, Y < M.

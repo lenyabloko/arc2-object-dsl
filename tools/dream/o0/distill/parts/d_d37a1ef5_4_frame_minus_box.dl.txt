@@ -1,0 +1,14 @@
+% row: d_d37a1ef5_4_frame_minus_box
+% source: distillation batch reading, task d37a1ef5, sample 4
+% output: frame_minus_box(Y, X)
+ty0(min(Y)) :- px(Y, X, 2).
+ty1(max(Y)) :- px(Y, X, 2).
+tx0(min(X)) :- px(Y, X, 2).
+tx1(max(X)) :- px(Y, X, 2).
+fy0(min(Y)) :- px(Y, X, 5).
+fy1(max(Y)) :- px(Y, X, 5).
+fx0(min(X)) :- px(Y, X, 5).
+fx1(max(X)) :- px(Y, X, 5).
+inner(Y, X) :- px(Y, X, 0), ty0(A), ty1(B), tx0(P), tx1(Q), Y > A, Y < B, X > P, X < Q.
+inbox(Y, X) :- px(Y, X, C), fy0(A), fy1(B), fx0(P), fx1(Q), Y >= A, Y <= B, X >= P, X <= Q.
+frame_minus_box(Y, X) :- inner(Y, X), !inbox(Y, X).

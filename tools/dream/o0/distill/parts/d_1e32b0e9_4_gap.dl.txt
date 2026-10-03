@@ -1,0 +1,11 @@
+% row: d_1e32b0e9_4_gap
+% source: distillation batch reading, task 1e32b0e9, sample 4
+% output: gap(Y, X)
+tmpl(Y0, X0) :- cell(Y0, X0, C), Y0 < 5, X0 < 5.
+rowof(Y, Y0) :- tmpl(Y0, X0), Y = Y0.
+rowof(Y, Y0) :- tmpl(Y0, X0), px(Y, X0, C), Y = Y0 + 6.
+rowof(Y, Y0) :- tmpl(Y0, X0), px(Y, X0, C), Y = Y0 + 12.
+colof(X, X0) :- tmpl(Y0, X0), X = X0.
+colof(X, X0) :- tmpl(Y0, X0), px(Y0, X, C), X = X0 + 6.
+colof(X, X0) :- tmpl(Y0, X0), px(Y0, X, C), X = X0 + 12.
+gap(Y, X) :- tmpl(Y0, X0), rowof(Y, Y0), colof(X, X0), px(Y, X, C), !cell(Y, X, C).

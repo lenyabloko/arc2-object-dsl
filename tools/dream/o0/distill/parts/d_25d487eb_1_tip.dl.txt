@@ -1,0 +1,5 @@
+% row: d_25d487eb_1_tip
+% source: distillation batch reading, task 25d487eb, sample 1
+% output: tip(Y, X)
+ccount(C, count(Y, X)) :- cell(Y, X, C).
+tip(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1.

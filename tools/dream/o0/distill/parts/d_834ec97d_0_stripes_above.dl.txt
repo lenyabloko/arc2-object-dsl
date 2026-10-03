@@ -1,0 +1,7 @@
+% row: d_834ec97d_0_stripes_above
+% source: distillation batch reading, task 834ec97d, sample 0
+% output: stripes_above(Y, X)
+col(X) :- cell(Y, X, C).
+col(X2) :- col(X), X2 = X + 2, px(Y, X2, C).
+col(X2) :- col(X), X2 = X - 2, px(Y, X2, C).
+stripes_above(Y, X) :- col(X), cell(MY, MX, MC), px(Y, X, C), Y < MY.

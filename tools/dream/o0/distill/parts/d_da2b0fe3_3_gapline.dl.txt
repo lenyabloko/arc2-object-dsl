@@ -1,0 +1,11 @@
+% row: d_da2b0fe3_3_gapline
+% source: distillation batch reading, task da2b0fe3, sample 3
+% output: gapline(Y, X)
+fgr(Y) :- cell(Y, X, C).
+fgk(X) :- cell(Y, X, C).
+anyr(Y) :- px(Y, X, C).
+anyk(X) :- px(Y, X, C).
+gr(Y) :- anyr(Y), !fgr(Y), fgr(Y1), Y1 < Y, fgr(Y2), Y2 > Y.
+gk(X) :- anyk(X), !fgk(X), fgk(X1), X1 < X, fgk(X2), X2 > X.
+gapline(Y, X) :- gr(Y), px(Y, X, C).
+gapline(Y, X) :- gk(X), px(Y, X, C).

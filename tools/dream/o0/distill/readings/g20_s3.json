@@ -1,0 +1,269 @@
+[
+ {
+  "task": "984d8a3e",
+  "reading": "Three colour bands per row (left colour at the left border, a middle colour, a right colour). In each row the middle-colour run is slid horizontally so its right end sits on the rightmost column shared by every row's middle run (clamped at column 0 if the run is too long); the left colour fills the rest of that row's left+middle span.",
+  "verb": "re-align row runs",
+  "frame": {
+   "how": "other",
+   "verb": "re-align row runs",
+   "slots": {
+    "subject": "the middle-colour run in each row",
+    "anchor": "min over rows of the run's right end (a column every run contains)",
+    "action": "shift run so right end = anchor, start clamped at 0",
+    "filler": "left-border colour fills vacated cells of the left+middle span"
+   }
+  },
+  "slots": {
+   "subject": "the middle-colour run in each row",
+   "anchor": "min over rows of the run's right end (a column every run contains)",
+   "action": "shift run so right end = anchor, start clamped at 0",
+   "filler": "left-border colour fills vacated cells of the left+middle span"
+  },
+  "why": "every row keeps its run lengths and its right-colour cells; middle runs end at the shared column",
+  "invariants": [
+   "grid size",
+   "right-colour cells",
+   "length of each middle run",
+   "count of left-colour cells per row"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "98cf29f8",
+  "reading": "Two rectangles; one carries a one-cell-wide tail of its own colour reaching to the other. That rectangle slides along its tail until it touches the other rectangle, and the tail is erased.",
+  "verb": "slide along tail",
+  "frame": {
+   "how": "other",
+   "verb": "slide along tail",
+   "slots": {
+    "subject": "rectangle body of the object that has a 1-wide tail (cells with bg on both perpendicular sides)",
+    "path": "the tail",
+    "target": "the other rectangle (stop on contact)",
+    "erase": "tail cells become background"
+   }
+  },
+  "slots": {
+   "subject": "rectangle body of the object that has a 1-wide tail (cells with bg on both perpendicular sides)",
+   "path": "the tail",
+   "target": "the other rectangle (stop on contact)",
+   "erase": "tail cells become background"
+  },
+  "why": "moved body keeps its shape and ends adjacent to the other rectangle; distance moved = tail length",
+  "invariants": [
+   "the tailless rectangle",
+   "grid size",
+   "body shape"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "995c5fa3",
+  "reading": "The input is three 4x4 panels of 5 separated by 0 columns, each with a hole pattern. Each panel maps to a colour by its hole pattern and the 3x3 output has row i filled with panel i's colour.",
+  "verb": "classify panels",
+  "frame": {
+   "how": "other",
+   "verb": "classify panels",
+   "slots": {
+    "panels": "three 4x4 panels cut by full 0 separator columns",
+    "key": "no hole -> 2; 2x2 centre hole -> 8; 2x2 hole at bottom centre -> 4; holes in middle of left and right edges -> 3",
+    "output": "3x3 grid, row i = colour of panel i"
+   }
+  },
+  "slots": {
+   "panels": "three 4x4 panels cut by full 0 separator columns",
+   "key": "no hole -> 2; 2x2 centre hole -> 8; 2x2 hole at bottom centre -> 4; holes in middle of left and right edges -> 3",
+   "output": "3x3 grid, row i = colour of panel i"
+  },
+  "why": "each output row is uniform and equals key(pattern of panel i)",
+  "invariants": [
+   "output is 3x3",
+   "panel order left to right = row order top to bottom"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "99fa7670",
+  "reading": "Each isolated coloured cell draws a line of its colour right to the grid border, then turns down along the last column, stopping just above the row of the next marker below (or at the bottom).",
+  "verb": "draw L-line",
+  "frame": {
+   "how": "other",
+   "verb": "draw L-line",
+   "slots": {
+    "source": "markers (isolated cells)",
+    "leg1": "rightward from marker to right border",
+    "leg2": "down the last column from the marker row",
+    "stop": "row before the next marker's row, else bottom border",
+    "colour": "marker's own colour"
+   }
+  },
+  "slots": {
+   "source": "markers (isolated cells)",
+   "leg1": "rightward from marker to right border",
+   "leg2": "down the last column from the marker row",
+   "stop": "row before the next marker's row, else bottom border",
+   "colour": "marker's own colour"
+  },
+  "why": "every marker row is filled from the marker to the right border; last column below each marker takes that marker's colour until the next marker row",
+  "invariants": [
+   "markers stay",
+   "cells left of each marker unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9aec4887",
+  "reading": "A four-sided frame (each side a different colour, corners empty) and a same-size 8 shape. Output is the frame box with the 8 shape placed inside; each 8 cell takes the colour of the strictly nearest frame side, staying 8 when tied.",
+  "verb": "fit shape into frame, colour by nearest side",
+  "frame": {
+   "how": "other",
+   "verb": "fit shape into frame, colour by nearest side",
+   "slots": {
+    "frame": "the 4-sided outline object (output = its box incl. sides)",
+    "shape": "the 8 object, same size as frame interior",
+    "placement": "shape box laid into frame interior",
+    "colour": "nearest side's colour by distance to side; tie -> keep 8"
+   }
+  },
+  "slots": {
+   "frame": "the 4-sided outline object (output = its box incl. sides)",
+   "shape": "the 8 object, same size as frame interior",
+   "placement": "shape box laid into frame interior",
+   "colour": "nearest side's colour by distance to side; tie -> keep 8"
+  },
+  "why": "output = frame box; interior equals the 8 shape's mask; colours by nearest side",
+  "invariants": [
+   "frame sides unchanged",
+   "shape mask unchanged",
+   "interior background stays 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9af7a82c",
+  "reading": "Count each colour's cells. Output has one column per colour sorted by count descending; each column holds its colour count times from the top, rest 0; height = largest count.",
+  "verb": "histogram",
+  "frame": {
+   "how": "other",
+   "verb": "histogram",
+   "slots": {
+    "bars": "one per colour present",
+    "order": "count descending",
+    "height": "cell count of the colour",
+    "size": "rows = max count, cols = number of colours"
+   }
+  },
+  "slots": {
+   "bars": "one per colour present",
+   "order": "count descending",
+   "height": "cell count of the colour",
+   "size": "rows = max count, cols = number of colours"
+  },
+  "why": "column j contains exactly count(colour_j) cells of colour_j stacked from row 0",
+  "invariants": [
+   "set of colours",
+   "per-colour counts"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9b4c17c4",
+  "reading": "The grid is split into two background regions (8 and 1), each holding 2-coloured blocks. In the 8 region every block slides left to the region's left edge; in the 1 region every block slides right to the region's right edge.",
+  "verb": "push to side by region colour",
+  "frame": {
+   "form": "map",
+   "scale": "panel",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "fg",
+     "target": "border"
+    }
+   }
+  },
+  "why": "each 2 block keeps its shape and ends touching the panel edge: left edge when panel bg is 8, right edge when panel bg is 1",
+  "invariants": [
+   "panel layout and background colours",
+   "number of 2 cells per row within each panel",
+   "block shapes"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "9b5080bb",
+  "reading": "Two big background regions each hold an inner rectangle of another colour with one-cell defects (notches or bumps) on its edge. Each defect becomes a 2-cell stub perpendicular to the edge (defect cell plus the next cell across the edge) in the other big region's colour.",
+  "verb": "mark edge defects",
+  "frame": {
+   "how": "other",
+   "verb": "mark edge defects",
+   "slots": {
+    "regions": "the two large coloured regions (e.g. 8 and 4)",
+    "rectangles": "inner rectangles inside each region",
+    "defects": "single-cell notch into or bump out of a rectangle edge",
+    "mark": "defect cell + adjacent cell across the edge (outward for notch, inward for bump)",
+    "colour": "the colour of the other big region"
+   }
+  },
+  "slots": {
+   "regions": "the two large coloured regions (e.g. 8 and 4)",
+   "rectangles": "inner rectangles inside each region",
+   "defects": "single-cell notch into or bump out of a rectangle edge",
+   "mark": "defect cell + adjacent cell across the edge (outward for notch, inward for bump)",
+   "colour": "the colour of the other big region"
+  },
+  "why": "only defect stubs change; every stub is 2 cells long, perpendicular to the rectangle edge",
+  "invariants": [
+   "region and rectangle shapes elsewhere",
+   "outer background",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9c56f360",
+  "reading": "Every 3 cell slides left along its row until it hits an 8 or the left border; each row moves independently.",
+  "verb": "gravity left",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "train",
+    "target": "obstacle"
+   }
+  },
+  "why": "each row's run of 3 keeps its length and ends adjacent to the first 8 to its left (or at column 0)",
+  "invariants": [
+   "all 8 cells",
+   "number of 3 cells per row",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "9caba7c3",
+  "reading": "Noisy 0/5 grid with scattered 2 cells. Around certain 5 cells, the 3x3 window contains no 0 and holds 2s; in each such window (the one with most 2s among overlapping ones) the centre becomes 4 and every non-2 cell becomes 7.",
+  "verb": "complete ring around centre",
+  "frame": {
+   "how": "other",
+   "verb": "complete ring around centre",
+   "slots": {
+    "windows": "3x3 windows centred on a 5, containing no 0 and at least one 2; keep the window with most 2s among overlapping candidates",
+    "centre": "recoloured 4",
+    "ring": "non-2 cells of the window recoloured 7",
+    "twos": "unchanged"
+   }
+  },
+  "slots": {
+   "windows": "3x3 windows centred on a 5, containing no 0 and at least one 2; keep the window with most 2s among overlapping candidates",
+   "centre": "recoloured 4",
+   "ring": "non-2 cells of the window recoloured 7",
+   "twos": "unchanged"
+  },
+  "why": "all changed cells lie in the chosen windows; centre = 4, other non-2 window cells = 7",
+  "invariants": [
+   "2 cells",
+   "all cells outside chosen windows",
+   "grid size"
+  ],
+  "confidence": "medium"
+ }
+]

@@ -1,0 +1,8 @@
+% row: d_b7f8a4d8_0_rare_between
+% source: distillation batch reading, task b7f8a4d8, sample 0
+% output: rare_between(Y, X)
+n(C, count(Y, X)) :- px(Y, X, C).
+rare(C) :- n(C, N), n(A, NA), n(B, NB), n(D, ND), A < B, B < D, NA > N, NB > N, ND > N.
+gap(Y, X) :- px(Y, X, C), C = 0.
+rare_between(Y, X) :- gap(Y, X), rare(C), px(Y, X1, C), px(Y, X2, C), X1 < X, X < X2.
+rare_between(Y, X) :- gap(Y, X), rare(C), px(Y1, X, C), px(Y2, X, C), Y1 < Y, Y < Y2.

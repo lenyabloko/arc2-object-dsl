@@ -1,0 +1,203 @@
+[
+ {
+  "task": "007bbfb7",
+  "reading": "The 3x3 input is scaled into a 3x3 grid of blocks; block (i,j) is a copy of the whole input where input cell (i,j) is non-background, else empty.",
+  "verb": "self-tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "fg",
+    "unit": "input"
+   }
+  },
+  "why": "every output block equals the input exactly when the corresponding input cell is fg, and is all background otherwise",
+  "invariants": [
+   "output is 3H x 3W",
+   "colours unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "017c7c7b",
+  "reading": "The 6x3 input is a vertically periodic pattern; it is continued to 9 rows with the same period and colour 1 becomes 2.",
+  "verb": "continue pattern and recolour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "period": "smallest vertical period of the input rows (2, 4 or 3 in training)",
+   "length": "9 rows (constant)",
+   "recolour": "1 -> 2 (constant)"
+  },
+  "why": "output row r equals input row (r mod period) with 1 replaced by 2, for r = 0..8",
+  "invariants": [
+   "width 3",
+   "background 0 unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "03560426",
+  "reading": "The objects lying on the bottom edge are taken left to right and chained diagonally from the top-left corner: each object's top-left cell is placed on the previous object's bottom-right cell, later objects overwriting earlier ones.",
+  "verb": "chain objects diagonally",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subjects": "objects, ordered by left column",
+   "start": "first object's top-left at grid (0,0)",
+   "link": "next object's top-left = previous object's bottom-right cell (overlap of one cell, later on top)"
+  },
+  "why": "every object keeps its shape and colour; consecutive objects share exactly one cell (corner overlap) with the later colour shown",
+  "invariants": [
+   "grid size",
+   "object shapes and colours"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "045e512c",
+  "reading": "A central 3x3 shape has small coloured fragments next to it; each fragment is part of a copy of the shape offset by 4 (size+1) in that direction, and copies of the shape in the fragment's colour are repeated every 4 cells in that direction to the border.",
+  "verb": "repeat shape along marker directions",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "the largest object (3x3 shape)",
+   "directions": "one per fragment: the step from the shape's box to the fragment (orthogonal or diagonal), length 4",
+   "colour": "the fragment's colour",
+   "stop": "grid border (copies clipped)"
+  },
+  "why": "every copy equals the central shape recoloured; each fragment lies inside the first copy in its direction; copies are spaced 4 apart until the border",
+  "invariants": [
+   "central shape unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0607ce86",
+  "reading": "A lattice of identical multi-coloured tiles is corrupted by scattered noise (colour 3 cells inside and outside the tiles); the output restores every tile to the common (majority) tile and clears all noise outside the tiles.",
+  "verb": "denoise repeated tiles",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "tiles": "the repeated rectangular blocks (same size, laid out on a regular lattice)",
+   "template": "per-cell majority over all tiles",
+   "rest": "every cell outside the tiles becomes background"
+  },
+  "why": "all tiles in the output are identical and equal the cellwise majority of the input tiles; non-tile cells are 0",
+  "invariants": [
+   "grid size",
+   "tile positions"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0692e18c",
+  "reading": "Like a self-tile, but the copy is the colour-inverted input (fg cells become background, background cells become the fg colour); block (i,j) holds this inverted copy where input cell (i,j) is fg, else empty.",
+  "verb": "tile inverted input",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "extent": "fg cells of the input pick which 3x3 blocks are filled",
+   "unit": "the input with fg and background swapped (single fg colour)"
+  },
+  "why": "every output block is either all background or the inverted input, exactly when the matching input cell is fg",
+  "invariants": [
+   "output is 3H x 3W",
+   "only the input's fg colour appears"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "06df4c85",
+  "reading": "A grid of 2x2 cells separated by full lines holds a few coloured cells; every empty (0) cell lying between two cells of the same colour on one row or column is filled with that colour, separator lines stay.",
+  "verb": "connect same colours",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap0_between",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap0_between",
+    "datalog": "colr(Y, X, C) :- cell(Y, X, C), C > 0.\ngap0_between(Y, X) :- cell(Y, X, Z), Z = 0, colr(Y, X1, C), colr(Y, X2, C), X1 < X, X < X2.\ngap0_between(Y, X) :- cell(Y, X, Z), Z = 0, colr(Y1, X, C), colr(Y2, X, C), Y1 < Y, Y < Y2."
+   }
+  ],
+  "why": "the separator colour is the most common (background), so cell() gives 0-cells and coloured cells; each filled 0-cell takes the colour of the equal-coloured pair it lies between; no conflicts occur",
+  "invariants": [
+   "separator lines",
+   "existing coloured cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "09629e4f",
+  "reading": "A 3x3 arrangement of 3x3 panels split by 5-lines; the one panel lacking colour 8 (only 4 coloured cells) is selected and upscaled: output panel (i,j) is filled entirely with the colour of that panel's cell (i,j), separators kept.",
+  "verb": "select odd panel and upscale",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "chosen": "the panel with the fewest non-background cells (the one without colour 8)",
+   "upscale": "each cell of the chosen panel fills the whole corresponding panel of the output",
+   "separators": "kept"
+  },
+  "why": "output panel (i,j) is uniform with colour = chosen panel cell (i,j); separator lines unchanged",
+  "invariants": [
+   "grid size",
+   "separator lines"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0962bcdd",
+  "reading": "Each small cross (centre colour c, four arm cells colour a) grows into a radius-2 star: the arms extend one more cell in colour a and the four diagonals from the centre get two cells of colour c.",
+  "verb": "grow cross into star",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subjects": "each plus-shaped object",
+   "orthogonal rays": "arm colour, length 2 from centre",
+   "diagonal rays": "centre colour, length 2 from centre"
+  },
+  "why": "around every cross centre the 5x5 output window is the fixed star pattern with that cross's two colours; everything else stays background",
+  "invariants": [
+   "cross centres and colours",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "09c534e7",
+  "reading": "Blobs of colour 1 (rectangles joined by thin bridges) each contain one seed cell of another colour; every interior cell of the blob (all 8 neighbours non-background) takes the seed's colour.",
+  "verb": "flood interior with seed colour",
+  "frame": {
+   "how": "other"
+  },
+  "new_rows": [
+   {
+    "name": "interior",
+    "datalog": "nonbg(Y, X) :- cell(Y, X, C).\nedge(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !nonbg(Y2, X2).\ninterior(Y, X) :- cell(Y, X, C), !edge(Y, X)."
+   }
+  ],
+  "slots": {
+   "subject": "interior cells of each connected non-background component (the 'interior' row)",
+   "colour": "the single non-1 seed colour inside the same component (not the nearest seed: nearest fails)"
+  },
+  "why": "within each component, a cell changes iff all its 8 neighbours are non-background, and it becomes that component's seed colour; border cells and bridges stay 1",
+  "invariants": [
+   "component outlines and bridges",
+   "background",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,13 @@
+% row: d_aee291af_4_oddsq
+% source: distillation batch reading, task aee291af, sample 4
+% output: oddsq(Y, X)
+c2(O, Y, X) :- obj(O, Y, X), px(Y, X, 2).
+two(O) :- c2(O, Y, X).
+mny(O, min(Y)) :- c2(O, Y, X).
+mnx(O, min(X)) :- c2(O, Y, X).
+rel(O, DY, DX) :- c2(O, Y, X), mny(O, Y0), mnx(O, X0), DY = Y - Y0, DX = X - X0.
+miss(A, B) :- rel(A, DY, DX), two(B), !rel(B, DY, DX).
+same(A, B) :- two(A), two(B), !miss(A, B), !miss(B, A).
+nsame(A, count(B)) :- same(A, B).
+odd2(A) :- nsame(A, N), N = 1.
+oddsq(Y2, X2) :- odd2(O), c2(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.

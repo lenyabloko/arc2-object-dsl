@@ -1,0 +1,14 @@
+% row: d_c97c0139_2_dia
+% source: distillation batch reading, task c97c0139, sample 2
+% output: dia(Y, X)
+lo(O, min(X)) :- obj(O, Y, X).
+hi(O, max(X)) :- obj(O, Y, X).
+top(O, min(Y)) :- obj(O, Y, X).
+bot(O, max(Y)) :- obj(O, Y, X).
+fgc(Y, X) :- cell(Y, X, C).
+horiz(O, Y, L, H) :- obj(O, Y, X), top(O, Y), bot(O, Y), lo(O, L), hi(O, H).
+vert(O, X, T, U) :- obj(O, Y, X), lo(O, X), hi(O, X), top(O, T), bot(O, U).
+dia(Y2, X) :- horiz(O, Y, L, H), px(Y2, X, C), !fgc(Y2, X), D = Y2 - Y, D >= 1, A = X - L, A >= D, B = H - X, B >= D.
+dia(Y2, X) :- horiz(O, Y, L, H), px(Y2, X, C), !fgc(Y2, X), D = Y - Y2, D >= 1, A = X - L, A >= D, B = H - X, B >= D.
+dia(Y, X2) :- vert(O, X, T, U), px(Y, X2, C), !fgc(Y, X2), D = X2 - X, D >= 1, A = Y - T, A >= D, B = U - Y, B >= D.
+dia(Y, X2) :- vert(O, X, T, U), px(Y, X2, C), !fgc(Y, X2), D = X - X2, D >= 1, A = Y - T, A >= D, B = U - Y, B >= D.

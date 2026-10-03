@@ -1,0 +1,8 @@
+% row: d_396d80d7_0_halo
+% source: distillation batch reading, task 396d80d7, sample 0
+% output: halo(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+anyn(Y, X) :- px(Y, X, P), off(DY, DX), Y2 = Y + DY, X2 = X + DX, fgc(Y2, X2).
+orthn(Y, X) :- px(Y, X, P), off(DY, DX), DY = 0, Y2 = Y, X2 = X + DX, fgc(Y2, X2).
+orthn(Y, X) :- px(Y, X, P), off(DY, DX), DX = 0, Y2 = Y + DY, X2 = X, fgc(Y2, X2).
+halo(Y, X) :- anyn(Y, X), !orthn(Y, X), !fgc(Y, X).

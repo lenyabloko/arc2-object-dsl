@@ -1,0 +1,19 @@
+% row: d_aa300dc3_2_long_diag
+% source: distillation batch reading, task aa300dc3, sample 2
+% output: long_diag(Y, X)
+z(Y, X) :- px(Y, X, C), C = 0.
+rs(1, Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X - 1, !z(Y0, X0).
+rs(2, Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X + 1, !z(Y0, X0).
+run(D, SY, SX, Y, X) :- rs(D, SY, SX), Y = SY, X = SX.
+run(1, SY, SX, Y, X) :- run(1, SY, SX, Y0, X0), Y = Y0 + 1, X = X0 + 1, z(Y, X).
+run(2, SY, SX, Y, X) :- run(2, SY, SX, Y0, X0), Y = Y0 + 1, X = X0 - 1, z(Y, X).
+len(D, SY, SX, count(Y, X)) :- run(D, SY, SX, Y, X).
+best(max(N)) :- len(D, SY, SX, N).
+cand(D, SY, SX) :- len(D, SY, SX, N), best(N).
+ncand(count(D, SY, SX)) :- cand(D, SY, SX).
+w(max(X)) :- px(Y, X, C).
+main(1, SY, SX) :- cand(1, SY, SX), SY = SX.
+main(2, SY, SX) :- cand(2, SY, SX), w(M), S = SY + SX, S = M.
+pick(D, SY, SX) :- cand(D, SY, SX), ncand(K), K = 1.
+pick(D, SY, SX) :- main(D, SY, SX), ncand(K), K > 1.
+long_diag(Y, X) :- pick(D, SY, SX), run(D, SY, SX, Y, X).

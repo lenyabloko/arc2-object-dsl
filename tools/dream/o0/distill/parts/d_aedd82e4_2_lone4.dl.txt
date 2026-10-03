@@ -1,0 +1,7 @@
+% row: d_aedd82e4_2_lone4
+% source: distillation batch reading, task aedd82e4, sample 2
+% output: lone4(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+hasnb(Y, X) :- cell(Y, X, C), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).
+lone4(Y, X) :- cell(Y, X, C), !hasnb(Y, X).

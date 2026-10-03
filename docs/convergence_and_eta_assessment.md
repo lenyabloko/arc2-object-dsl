@@ -439,3 +439,8 @@ The two half-A solves read as a person would state them. One is e3721c99: object
 - **C.3 fails** for v4, for v4 + G5, and for map-only on fresh seeds. Depth 2 buys about as many wrong answers as right ones. **T90 no-go before placement.**
 - **Reading.** The second level of the schema, as an automatic search, fits by chance in the related-but-wrong sense. The reviewer's sentences, as definitions, are exact where they apply (2 tasks) but are needed on few other tasks (marks 4, rest-cleared 3).
 - **Oct 12.** B.5's position stands: the OQ7 proxy fails on both arms. The memo is v15 option (a) with the two positive findings. ETA to a higher public score: no evidence of one; v21 keeps 2.50.
+
+## Check-in 10:35 EDT Oct 3
+- **Kaggle.** v20 (V34) public score **2.50**, the same as v11, v15, v16 and v19. v21 (V34 plus the time guard, same digest b6c6bfd8) goes once after 20:00 EDT.
+- **Overnight (Fable fills in cells, 3 packets, 24 build-failing dev tasks).** 8 exact (4 ARC-2), 3 wrong, 2 empty, 1 abstained before its check, 5 failed their own training pairs, 3 not implementable, 2 declined. 13 harness checks: 8 exact. **Definition-level reuse: 0 / 13.** The stop rule fired.
+- **Reading.** A capable author writing per-task definitions from training pairs is accurate (8 / 13) but buys one dev task per definition. Hidden tasks get no definitions, so this cannot move the score. Together with C.3 / C.3′ (the automatic second level fits by chance), both routes to transfer tried this week have measured 0. ETA to a higher public score: no evidence of one; v21 keeps 2.50.

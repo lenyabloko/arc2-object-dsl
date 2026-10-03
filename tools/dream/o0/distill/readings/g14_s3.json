@@ -1,0 +1,231 @@
+[
+ {
+  "task": "6a1e5592",
+  "reading": "Each grey (5) piece at the bottom is translated (no rotation) up into the top red wall so that it exactly plugs a matching hole, and is recoloured blue (1); its original position is cleared.",
+  "verb": "fit pieces into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "the grey 8-connected objects in the lower part",
+   "holes": "background notches in the red wall touching its open side",
+   "match": "piece placed where its top cells fill a hole exactly (shape match, same orientation)",
+   "colour": "placed pieces become 1 (train constant)",
+   "rest": "red wall kept, original piece cells cleared"
+  },
+  "why": "every hole of the wall is filled exactly by one piece of identical shape; piece cell count is preserved",
+  "invariants": [
+   "red wall cells",
+   "grid size",
+   "piece shapes"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6b9890af",
+  "reading": "Cut out the red square outline; inside it, draw the small 3x3 coloured shape scaled up by (interior size / 3) so it exactly fills the interior.",
+  "verb": "scale shape into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "the red (2) square outline object, output is its bounding box",
+   "shape": "the other small object's 3x3 bounding box",
+   "scale": "frame interior side / 3",
+   "placement": "scaled shape fills the frame interior exactly"
+  },
+  "why": "output equals the outline box with the interior equal to the shape upscaled by an integer factor",
+  "invariants": [
+   "outline colour and size",
+   "shape colour and pattern"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6c434453",
+  "reading": "Every 3x3 hollow square of blue (1) is replaced by a red (2) plus sign in the same 3x3 box; all other objects stay.",
+  "verb": "replace ring with plus",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "ring_tl",
+    "unit": "train",
+    "rest": "kept",
+    "place": "topleft"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ring_tl",
+    "datalog": "nfg(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\nring_tl(Y2, X2) :- nfg(Y, X, N), N = 8, Y2 = Y - 1, X2 = X - 1."
+   }
+  ],
+  "why": "the unit is the constant 3x3 patch [020,222,020] (zeros written) placed with its top-left at the top-left of each hollow 3x3 ring (a background cell with all 8 neighbours filled)",
+  "invariants": [
+   "all non-ring objects",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6ca952ad",
+  "reading": "Each 4-connected piece of 4 or more cells falls straight down until it touches the bottom edge; pieces of 3 or fewer cells (short lines, single cells, the small L) stay where they are.",
+  "verb": "drop heavy pieces",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "heavy",
+    "target": "border"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "heavy",
+    "datalog": "adj(Y, X, Y2, X2) :- cell(Y, X, C), off(DY, DX), DY = 0, Y2 = Y, X2 = X + DX, cell(Y2, X2, C).\nadj(Y, X, Y2, X2) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, X2 = X, cell(Y2, X2, C).\nreach(Y, X, Y, X) :- cell(Y, X, C).\nreach(Y, X, Y3, X3) :- reach(Y, X, Y2, X2), adj(Y2, X2, Y3, X3).\ncsize(Y, X, count(Y2, X2)) :- reach(Y, X, Y2, X2).\nheavy(Y, X) :- csize(Y, X, N), N > 3."
+   }
+  ],
+  "why": "each heavy piece keeps its shape and column and ends with its lowest row on the bottom border (downward direction); light pieces unchanged",
+  "invariants": [
+   "piece shapes",
+   "columns",
+   "pieces of size <= 3"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6cf79266",
+  "reading": "Find the 3x3 squares that are entirely background (0) in the noisy grid and paint them blue (1); when two such squares overlap, only the first in reading order is painted.",
+  "verb": "fill empty 3x3 squares",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "empty3",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "empty3",
+    "datalog": "nbg(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 0).\nctr(Y, X) :- nbg(Y, X, N), N = 8.\nblocked(Y, X) :- ctr(Y, X), ctr(Y2, X2), Y2 < Y, D = Y - Y2, D < 3, E = X - X2, E < 3, F = X2 - X, F < 3.\nblocked(Y, X) :- ctr(Y, X), ctr(Y, X2), X2 < X, E = X - X2, E < 3.\nkeep(Y, X) :- ctr(Y, X), !blocked(Y, X).\nempty3(Y, X) :- keep(Y, X).\nempty3(Y2, X2) :- keep(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX."
+   }
+  ],
+  "why": "every cell of each selected all-zero 3x3 square becomes 1; nothing else changes (the third pair has two overlapping candidates, only the upper-left one is filled)",
+  "invariants": [
+   "all noise cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6d0160f0",
+  "reading": "The grid is a 3x3 array of 3x3 panels split by grey lines. The panel containing a yellow (4) cell is copied into the panel whose index equals the 4's position inside its own panel; every other panel is cleared, separators kept.",
+  "verb": "relocate marked panel",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "the 9 cells of the 3x3 panel layout cut by grey (5) separators",
+   "source": "the panel containing colour 4",
+   "target": "panel at (row, col) = position of the 4 within the source panel",
+   "rest": "all other panels cleared to 0; separators kept"
+  },
+  "why": "output has exactly one non-empty panel, equal to the input's 4-panel, at the index given by the 4's local position",
+  "invariants": [
+   "separator lines",
+   "grid size",
+   "source panel content"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6d58a25d",
+  "reading": "A big chevron shape sits above scattered single dots. In each column where a dot lies below the chevron, a line of the dot colour is drawn from just under the chevron's lowest cell in that column down to the bottom edge.",
+  "verb": "draw line under arch",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "open",
+    "source": "under_arch",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "under_arch",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\ndot(Y, X) :- obj(O, Y, X), osize(O, N), N = 1.\narch(Y, X) :- obj(O, Y, X), osize(O, N), N > 1.\nunder_arch(Y, X) :- dot(Y, X), arch(Y2, X), Y2 < Y."
+   }
+  ],
+  "why": "each line runs vertically through a dot below the arch, upward until the arch (first obstacle) and downward to the bottom border; dots not under the arch, or above it, draw nothing",
+  "invariants": [
+   "arch shape",
+   "all dots",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6e02f1e3",
+  "reading": "Count the distinct colours of the 3x3 input: one colour gives a grey (5) top row, two colours give the grey main diagonal, three colours give the grey anti-diagonal; everything else becomes 0.",
+  "verb": "draw pattern by colour count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "count": "number of distinct colours in the input",
+   "pattern": "1 -> top row, 2 -> main diagonal (top-left to bottom-right), 3 -> anti-diagonal",
+   "colour": "5 (train constant)",
+   "rest": "0"
+  },
+  "why": "output is one of three fixed 3x3 patterns chosen only by the input's colour count",
+  "invariants": [
+   "grid size 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6e19193c",
+  "reading": "Each L-tromino (three cells of a 2x2 box) shoots a diagonal ray of its colour out of its missing corner: the corner cell stays empty and the ray starts one step beyond it, continuing to the grid edge.",
+  "verb": "shoot diagonal ray",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "notch",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "notch",
+    "datalog": "notch(Y, X) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X, C), cell(Y, X2, C), cell(Y2, X2, C)."
+   }
+  ],
+  "why": "the ray lies on the diagonal through the L's filled corner and its empty corner, pointing away from the L, coloured like the L, from the cell after the notch to the border",
+  "invariants": [
+   "the L shapes",
+   "the notch cell stays 0",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "6f473927",
+  "reading": "The output doubles the width: the input is kept and a horizontally mirrored copy with colours inverted (0 becomes 8, 2 becomes 0) is attached on the side whose edge the red shape touches.",
+  "verb": "append inverted mirror",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "copy": "left-right mirror of the input",
+   "inversion": "0 -> 8, 2 -> 0 in the copy (train constant)",
+   "side": "the copy goes on the side (left/right) where the red shape touches the grid edge",
+   "size": "output is H x 2W"
+  },
+  "why": "output = input beside its inverted mirror, mirrored about the edge column the shape touches",
+  "invariants": [
+   "input half unchanged",
+   "height"
+  ],
+  "confidence": "high"
+ }
+]

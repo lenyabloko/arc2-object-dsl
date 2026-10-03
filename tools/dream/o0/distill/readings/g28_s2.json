@@ -1,0 +1,250 @@
+[
+ {
+  "task": "d6ad076f",
+  "reading": "Two solid rectangles face each other across a background gap; the gap strip between them is filled with 8, trimmed by one cell at each side of their shared overlap.",
+  "verb": "bridge",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !isfg(Y, X).\nhb(Y, X) :- bgc(Y, X), cell(Y, X1, A), X1 < X, cell(Y, X2, B), X2 > X.\nvb(Y, X) :- bgc(Y, X), cell(Y1, X, A), Y1 < Y, cell(Y2, X, B), Y2 > Y.\ngap(Y, X) :- hb(Y, X), Y1 = Y - 1, hb(Y1, X), Y2 = Y + 1, hb(Y2, X).\ngap(Y, X) :- vb(Y, X), X1 = X - 1, vb(Y, X1), X2 = X + 1, vb(Y, X2)."
+   }
+  ],
+  "why": "every 8 cell lies between the two rectangles on its row (or column) and is not on the first or last row (column) of that between-band.",
+  "invariants": [
+   "both rectangles unchanged",
+   "grid size unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d753a70b",
+  "reading": "Diamond outlines of colour 2 shrink by one ring about the same centre (a radius-1 diamond becomes its centre cell); diamonds of colour 5 grow by one ring about the same centre (a single 5 becomes a radius-1 diamond). Other colours stay.",
+  "verb": "shrink/grow rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shrinkers": "diamond outlines of colour 2 (radius r -> r-1, centre fixed, clipped at grid edge)",
+   "growers": "diamond outlines of colour 5 (radius r -> r+1, centre fixed, clipped at grid edge)",
+   "rest": "all other colours kept"
+  },
+  "why": "each 2 or 5 diamond keeps its centre and changes radius by -1 / +1; pair 0's bottom 5 diamond looks shifted one column, so the training data may contain a slip.",
+  "invariants": [
+   "grid size",
+   "non-2/5 shapes"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d931c21c",
+  "reading": "Every closed loop of 1 gets a ring of 2 on the outside cells touching it (8-neighbour) and a ring of 3 on the inside cells touching it; loops with a gap are left alone.",
+  "verb": "halo closed loops",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "ring_out",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "ring_in",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ring_out",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !isfg(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\nn4(DY, DX) :- off(DY, DX), DY = 0.\nn4(DY, DX) :- off(DY, DX), DX = 0.\nout(Y, X) :- bgc(Y, X), Y = 0.\nout(Y, X) :- bgc(Y, X), X = 0.\nout(Y, X) :- bgc(Y, X), my(M), Y = M.\nout(Y, X) :- bgc(Y, X), mx(M), X = M.\nout(Y2, X2) :- out(Y, X), n4(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).\nins(Y, X) :- bgc(Y, X), !out(Y, X).\nloop(O) :- obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, ins(Y2, X2).\nring_out(Y, X) :- out(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2), loop(O)."
+   },
+   {
+    "name": "ring_in",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !isfg(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\nn4(DY, DX) :- off(DY, DX), DY = 0.\nn4(DY, DX) :- off(DY, DX), DX = 0.\nout(Y, X) :- bgc(Y, X), Y = 0.\nout(Y, X) :- bgc(Y, X), X = 0.\nout(Y, X) :- bgc(Y, X), my(M), Y = M.\nout(Y, X) :- bgc(Y, X), mx(M), X = M.\nout(Y2, X2) :- out(Y, X), n4(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).\nins(Y, X) :- bgc(Y, X), !out(Y, X).\nloop(O) :- obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, ins(Y2, X2).\nring_in(Y, X) :- ins(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2), loop(O)."
+   }
+  ],
+  "why": "2 cells are exactly the exterior background cells 8-adjacent to an enclosing loop and 3 cells exactly the enclosed background cells 8-adjacent to it; holds on pairs 0,1,3, but pair 2 has one extra 2 at (13,3) that is not adjacent to its loop.",
+  "invariants": [
+   "loop cells unchanged",
+   "open shapes unchanged",
+   "interior cells not touching the loop stay 0"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d94c3b52",
+  "reading": "In a lattice of 3x3 glyphs, every 1-glyph with the same shape as the 8 glyph turns 8; then every 1-glyph lying between two 8 glyphs in the same glyph row or column turns 7.",
+  "verb": "match shape, then mark between",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "same_shape"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "between8"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "same_shape",
+    "datalog": "oy(O, min(Y)) :- obj(O, Y, X).\nox(O, min(X)) :- obj(O, Y, X).\nrel(O, DY, DX) :- obj(O, Y, X), oy(O, MY), ox(O, MX), DY = Y - MY, DX = X - MX.\nkeyo(K) :- obj(K, Y, X), cell(Y, X, C), C = 8.\noneo(O) :- obj(O, Y, X), cell(Y, X, C), C = 1.\nmiss(O) :- oneo(O), keyo(K), rel(K, DY, DX), !rel(O, DY, DX).\nextra(O) :- oneo(O), keyo(K), rel(O, DY, DX), !rel(K, DY, DX).\nsame_shape(Y, X) :- oneo(O), !miss(O), !extra(O), obj(O, Y, X)."
+   },
+   {
+    "name": "between8",
+    "datalog": "e8(Y, X) :- cell(Y, X, C), C = 8.\nbt(O) :- obj(O, Y, X), cell(Y, X, C), C = 1, e8(Y, X1), X1 < X, e8(Y, X2), X2 > X.\nbt(O) :- obj(O, Y, X), cell(Y, X, C), C = 1, e8(Y1, X), Y1 < Y, e8(Y2, X), Y2 > Y.\nbetween8(Y, X) :- bt(O), obj(O, Y, X)."
+   }
+  ],
+  "why": "step 1: a 1-object becomes 8 iff its normalised shape equals the 8 object's; step 2: a 1-object becomes 7 iff one of its cells has 8 cells on both sides in its row or column.",
+  "invariants": [
+   "glyph shapes and positions",
+   "lattice of 0 separators",
+   "1-glyphs outside any 8-8 span"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d968ffd4",
+  "reading": "Two blocks of different colours face each other; each grows toward the other through the gap, one cell wider on each side than the block, stopping at the midpoint (an odd middle line stays background).",
+  "verb": "grow toward each other",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "half_gaps",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "half_gaps",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !isfg(Y, X).\ny0(O, min(Y)) :- obj(O, Y, X).\ny1(O, max(Y)) :- obj(O, Y, X).\nx0(O, min(X)) :- obj(O, Y, X).\nx1(O, max(X)) :- obj(O, Y, X).\nhg(Y, X, D1, D2) :- bgc(Y, X), x1(A, AX), x0(B, BX), AX < X, X < BX, y0(A, T), y1(A, U), L = T - 1, H = U + 1, Y >= L, Y <= H, D1 = X - AX, D2 = BX - X.\nvg(Y, X, D1, D2) :- bgc(Y, X), y1(A, AY), y0(B, BY), AY < Y, Y < BY, x0(A, T), x1(A, U), L = T - 1, H = U + 1, X >= L, X <= H, D1 = Y - AY, D2 = BY - Y.\nhalf_gaps(Y, X) :- hg(Y, X, D1, D2), D1 < D2.\nhalf_gaps(Y, X) :- hg(Y, X, D1, D2), D2 < D1.\nhalf_gaps(Y, X) :- vg(Y, X, D1, D2), D1 < D2.\nhalf_gaps(Y, X) :- vg(Y, X, D1, D2), D2 < D1."
+   }
+  ],
+  "slots": {
+   "colour": "each half-gap cell takes the colour of the nearer block (colour 'own' if that means nearest object; otherwise not expressible as one fill)"
+  },
+  "why": "every filled cell is in the gap band (block extent widened by 1) and is strictly nearer to the block whose colour it takes.",
+  "invariants": [
+   "both blocks unchanged",
+   "cells outside the widened band unchanged",
+   "exact midpoint line unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "da2b0fe3",
+  "reading": "A shape is split in two by one empty row or column inside its bounding box; that row/column is drawn as a full line of 3 across the grid.",
+  "verb": "draw split line",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap_line",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap_line",
+    "datalog": "fy0(min(Y)) :- cell(Y, X, C).\nfy1(max(Y)) :- cell(Y, X, C).\nfx0(min(X)) :- cell(Y, X, C).\nfx1(max(X)) :- cell(Y, X, C).\nrowfg(Y) :- cell(Y, X, C).\ncolfg(X) :- cell(Y, X, C).\ngaprow(Y) :- px(Y, X, C), fy0(A), fy1(B), A < Y, Y < B, !rowfg(Y).\ngapcol(X) :- px(Y, X, C), fx0(A), fx1(B), A < X, X < B, !colfg(X).\ngap_line(Y, X) :- gaprow(Y), px(Y, X, C).\ngap_line(Y, X) :- gapcol(X), px(Y, X, C)."
+   }
+  ],
+  "why": "the 3 cells are exactly the full grid row/column that is empty and lies strictly inside the shape's bounding box.",
+  "invariants": [
+   "shape cells unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db615bd4",
+  "reading": "On a dotted lattice, a dotted rectangle frame is made solid and its inner dots erased; the small dotted colour patches outside are removed and redrawn as solid blocks (their bounding boxes) inside the frame, lined up along the frame's long axis in input order, one cell apart and centred.",
+  "verb": "pack pieces into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "container": "the dotted rectangular outline of the odd colour, made solid, interior cleared to background",
+   "pieces": "the other coloured dot patches off the lattice colour; each becomes its solid bounding box",
+   "layout": "pieces in a row along the frame's longer side, ordered by input position on that axis, 1-cell gaps, centred in the interior",
+   "rest": "patches removed from their original spots (lattice restored)"
+  },
+  "why": "each piece's solid box size equals its input dot bounding box and the packed group is centred in the frame interior.",
+  "invariants": [
+   "lattice outside the frame",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "db7260a4",
+  "reading": "A single 1 at the top is a drop; it is removed and falls in its column: if it lands inside a 2 cup that is closed at bottom and sides, the cup interior fills with 1; otherwise (miss or leaky cup) the whole bottom row becomes 1.",
+  "verb": "pour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "drop": "the lone 1 marker in the top row (cleared)",
+   "container": "the 2 U-shaped cup whose opening lies under the drop column",
+   "result_if_held": "cup interior (bg cells enclosed below the rim) filled with 1",
+   "result_if_spilled": "entire last row filled with 1"
+  },
+  "why": "the interior is filled only when the drop column is over an interior that a floodfill (down/left/right) cannot leave; else only the bottom row changes.",
+  "invariants": [
+   "2 walls unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db93a21d",
+  "reading": "Each 9 square of side s gets a 3 halo of thickness s/2 around it and casts a 1 shadow of its own width straight down from below its halo to the grid bottom; layering is 9 over 3 over 1.",
+  "verb": "draw halo and shadow",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subjects": "each solid 9 square (side s)",
+   "halo": "3 border of thickness s/2 around the square",
+   "shadow": "1 columns under the square (same width), from just below the halo to the bottom edge",
+   "priority": "9 > 3 > 1"
+  },
+  "why": "halo thickness is half the square's side and shadows run to the bottom edge, overwritten by any halo they cross.",
+  "invariants": [
+   "9 squares unchanged",
+   "cells above/beside with no halo or shadow stay 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "dbc1a6ce",
+  "reading": "Any two 1 cells on the same row or column are joined by a line of 8 through the background between them.",
+  "verb": "connect",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between",
+    "colour": "train"
+   }
+  },
+  "why": "every 8 cell is a background cell between two 1 cells on its row or column, and every such cell is 8.",
+  "invariants": [
+   "1 cells unchanged"
+  ],
+  "confidence": "high"
+ }
+]

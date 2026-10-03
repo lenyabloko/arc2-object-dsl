@@ -1,0 +1,229 @@
+[
+ {
+  "task": "0a938d79",
+  "reading": "Two single cells sit on opposite or same long edges. Each becomes a full line across the short dimension in its colour, and the pair of lines repeats alternately (period = their spacing) along the long dimension to the grid's end.",
+  "verb": "repeat line pair",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "seeds": "the two non-background cells",
+   "direction": "lines span the short axis; repetition runs along the long axis away from the first seed",
+   "period": "distance between the two seeds' lines (each colour recurs every 2x that distance)",
+   "colour": "own colour of each seed, alternating"
+  },
+  "why": "every output line is a seed line shifted by a multiple of the doubled spacing; cells before the first seed stay background",
+  "invariants": [
+   "grid size",
+   "cells before the first seed line"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0ca9ddb6",
+  "reading": "Around each isolated cell a fixed pattern is stamped that depends on its colour: red (2) gets yellow (4) on its four diagonals, blue (1) gets orange (7) on its four orthogonal neighbours; other colours (6, 8) get nothing.",
+  "verb": "stamp halo by colour",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each marker of a given colour gets the same 3x3 halo for that colour; all input cells stay",
+  "invariants": [
+   "all input cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0d3d703e",
+  "reading": "Every cell is recoloured by a fixed colour permutation (1<->5, 2<->6, 3<->4, 8<->9).",
+  "verb": "recolour",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "input"
+   }
+  },
+  "why": "each colour a always becomes the same colour key(a) across all pairs",
+  "invariants": [
+   "grid size",
+   "layout of cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "0d87d2a6",
+  "reading": "Blue cells on the border come in opposite pairs; a blue line is drawn between each pair, and every red object the line touches turns entirely blue.",
+  "verb": "draw line and recolour crossed objects",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "crossed"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "crossed",
+    "datalog": "oc(O, C) :- obj(O, Y, X), cell(Y, X, C).\nhit(O) :- obj(O, Y, X), oc(O, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2), C2 != C.\ncrossed(Y, X) :- hit(O), obj(O, Y, X)."
+   }
+  ],
+  "why": "each blue line runs from its marker straight across to the opposite border; a red object is recoloured iff a line touches it (2 -> 1)",
+  "invariants": [
+   "red objects not touched by a line",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "0f63c0b9",
+  "reading": "Each single cell becomes a full horizontal line of its colour; the grid is split into horizontal bands (each row belongs to the nearest seed row, ties to the upper one) and each band's left and right border columns take its colour; the top and bottom rows are filled full with the first and last colour.",
+  "verb": "draw banded frames",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "seeds": "the single non-background cells, one per colour",
+   "band": "rows whose nearest seed row is that seed (tie -> upper seed)",
+   "drawn": "full row at the seed's row, left and right border cells over the band, full top row in first band and full bottom row in last band",
+   "colour": "seed's own colour"
+  },
+  "why": "every coloured output cell lies on a seed row, a grid border column within that seed's band, or the top/bottom row",
+  "invariants": [
+   "grid size",
+   "interior cells off the seed rows stay background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "103eff5b",
+  "reading": "A small multicoloured key and a large grey (8) shape that is the key rotated 90 degrees clockwise and scaled up by an integer factor; each block of the large shape is recoloured with the colour of the matching cell of the rotated key. The key stays.",
+  "verb": "recolour by rotated scaled key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the small multicoloured component (exemplar)",
+   "target": "the large single-colour (8) shape",
+   "transform": "key rotated 90 degrees clockwise, scaled by target size / key size (3 and 2 in training)",
+   "effect": "each target block takes the colour of the corresponding transformed key cell"
+  },
+  "why": "the target's block occupancy equals the clockwise-rotated key's occupancy at the scale factor",
+  "invariants": [
+   "the key",
+   "background",
+   "target's shape"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "10fcaaa3",
+  "reading": "The input is tiled 2x2, then every coloured cell gets azure (8) on its four diagonal neighbours wherever those are background (no wrap-around).",
+  "verb": "tile then stamp diagonals",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   },
+   "outer": {
+    "how": "stamp",
+    "args": {
+     "anchors": "fg",
+     "unit": "train",
+     "rest": "kept",
+     "place": "open"
+    }
+   }
+  },
+  "why": "output is 2x2 copies of the input; each fg cell's diagonal background neighbours are 8; fg cells never overwritten",
+  "invariants": [
+   "tiled fg cells keep their colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "11e1fe23",
+  "reading": "Three single cells form the corners of a right angle. At the centre of their bounding box a grey (5) cell is placed, and a copy of each corner cell is placed one diagonal step from the centre toward that corner.",
+  "verb": "draw miniature at centre",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "corners": "the three single non-background cells",
+   "centre": "centre of their bounding box",
+   "centre_colour": "5 (train constant)",
+   "copies": "each corner's colour at centre + (sign(dy), sign(dx)) toward that corner"
+  },
+  "why": "exactly four new cells: the 5 at the box centre and one diagonal neighbour of it per corner, in that corner's colour",
+  "invariants": [
+   "the three original cells",
+   "everything else stays background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "12eac192",
+  "reading": "Every single-colour piece (4-connected) of size 1 or 2 is recoloured green (3); larger pieces stay.",
+  "verb": "recolour small pieces",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "small"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "small",
+    "datalog": "nb(Y, X, Y2, X) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, cell(Y2, X, C).\nnb(Y, X, Y, X2) :- cell(Y, X, C), off(DY, DX), DY = 0, X2 = X + DX, cell(Y, X2, C).\nhasnb(Y, X) :- nb(Y, X, A, B).\ndeg(Y, X, count(A, B)) :- nb(Y, X, A, B).\nlone(Y, X) :- cell(Y, X, C), !hasnb(Y, X).\nduo(Y, X) :- deg(Y, X, N), N = 1, nb(Y, X, A, B), deg(A, B, M), M = 1.\nsmall(Y, X) :- lone(Y, X).\nsmall(Y, X) :- duo(Y, X)."
+   }
+  ],
+  "why": "a cell becomes 3 iff its 4-connected same-colour component has at most 2 cells",
+  "invariants": [
+   "background",
+   "pieces of 3 or more cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "13713586",
+  "reading": "A full grey (5) wall lies on one border. Each coloured bar sweeps toward the wall, filling the rectangle between bar and wall in its colour; a sweep stops at a nearer bar, so bars closer to the wall stay on top.",
+  "verb": "sweep bars to wall",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "obstacle",
+    "source": "segments",
+    "colour": "own"
+   }
+  },
+  "why": "from every bar cell a line runs perpendicular to the bar toward the wall and ends at the first non-background cell (the wall or another bar)",
+  "invariants": [
+   "the wall",
+   "the bars",
+   "cells on the far side of each bar from the wall"
+  ],
+  "confidence": "medium"
+ }
+]

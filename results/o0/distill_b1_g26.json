@@ -1,0 +1,1217 @@
+{
+ "group": 26,
+ "tasks": {
+  "c97c0139": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "c97c0139",
+     "sample": 0,
+     "verb": "draw diamond around segment",
+     "reading": "Each straight colour-2 segment gets a diamond of colour 8 around it: at distance d from the segment's line, the background cells over the segment's span shrunk by d at both ends become 8.",
+     "why": "a background cell becomes 8 exactly when, for some d >= 1, the two cells at offset d along the segment direction, d rows (or columns) away, belong to the same segment",
+     "new_rows": [
+      "d_c97c0139_0_diamond"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diamond": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_c97c0139_0_diamond)",
+      "fill(colour:=train, region:=d_c97c0139_0_diamond)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_c97c0139_0_diamond": [
+       [
+        40,
+        [
+         0
+        ]
+       ],
+       [
+        84,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c97c0139",
+     "sample": 1,
+     "verb": "draw diamond around segment",
+     "reading": "Each red straight segment gets a colour-8 diamond around it: the segment is the diamond's long diagonal, and at segment position i the diamond reaches min(i, L-1-i) cells out on both sides.",
+     "why": "every non-segment 8 cell is within the rhombus spanned by one segment; segments are unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "c97c0139",
+     "sample": 2,
+     "verb": "draw diamond around segment",
+     "reading": "Each straight red segment becomes the diagonal of a filled diamond of colour 8: a background cell at perpendicular distance D>=1 from the segment is filled if it lies at least D cells inside both segment ends.",
+     "why": "every 8 cell is inside the diamond whose diagonal is a red segment; red cells and other background unchanged",
+     "new_rows": [
+      "d_c97c0139_2_dia"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "dia": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_c97c0139_2_dia)",
+      "fill(colour:=train, region:=d_c97c0139_2_dia)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_c97c0139_2_dia": [
+       [
+        40,
+        [
+         0
+        ]
+       ],
+       [
+        84,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c97c0139",
+     "sample": 3,
+     "verb": "grow diamond",
+     "reading": "Each straight red segment gets an 8-coloured diamond around it: a background cell at perpendicular distance D from a segment cell is filled when D is at most that cell's distance to both segment ends.",
+     "why": "every background cell inside the diamond spanned by a segment (half-width = segment half-length) becomes 8; nothing else changes",
+     "new_rows": [
+      "d_c97c0139_3_diamond"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diamond": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_c97c0139_3_diamond)",
+      "fill(colour:=train, region:=d_c97c0139_3_diamond)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_c97c0139_3_diamond": [
+       [
+        40,
+        [
+         0
+        ]
+       ],
+       [
+        84,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "c97c0139",
+     "sample": 4,
+     "verb": "draw diamond around segment",
+     "reading": "Each straight red segment becomes the diagonal of a diamond of 8s: every background cell within Manhattan distance of the segment's centre, shrinking toward its ends (|offset across| <= distance to nearer end), is painted 8.",
+     "why": "every 8 cell lies within the diamond of some segment and every background cell inside such a diamond is 8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "ca8de6ea": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "ca8de6ea",
+     "sample": 0,
+     "verb": "compress",
+     "reading": "The nine non-background cells of the 5x5 X pattern are squeezed together into a 3x3 grid, keeping their relative row/column order.",
+     "why": "output cells are exactly the input's non-background cells in the same relative positions with empty rows/columns gaps closed",
+     "l4": "no executor",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "ca8de6ea",
+     "sample": 1,
+     "verb": "compress",
+     "reading": "The 5x5 X pattern is squeezed into 3x3: the 4 corners go to the 3x3 corners, the centre stays the centre, and the 4 inner diagonal cells fill the 4 edge-middle cells (main-diagonal pair top and bottom, anti-diagonal pair left and right).",
+     "why": "the output holds exactly the 9 X cells, packed with no background",
+     "l4": "no executor",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "ca8de6ea",
+     "sample": 2,
+     "verb": "compress X into 3x3",
+     "reading": "The 9 coloured cells of the 5x5 X pattern are gathered into a 3x3: corners stay corners, centre stays centre, and the four inner diagonal cells move to the edge midpoints (top-left inner to top, top-right inner to right, bottom-left inner to left, bottom-right inner to bottom).",
+     "why": "output cells are exactly the input's non-background cells, repositioned; no background left",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "ca8de6ea",
+     "sample": 3,
+     "verb": "compact",
+     "reading": "The 9 coloured cells lying on the two diagonals of the 5x5 input are packed into a 3x3 grid, keeping their relative order and dropping the background gaps.",
+     "why": "out[i][j] is the i-th diagonal cell row-wise and j-th column-wise; corners from input corners, centre from input centre",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "ca8de6ea",
+     "sample": 4,
+     "verb": "compact",
+     "reading": "The nine coloured cells of the 5x5 X pattern are squeezed together into a 3x3 grid, keeping their relative positions (corners stay corners, centre stays centre, inner diagonal cells move to edge midpoints).",
+     "why": "output is 3x3 and holds exactly the input's fg cells in their relative order",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "cbded52d": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "cbded52d",
+     "sample": 0,
+     "verb": "complete midpoint",
+     "reading": "The grid is 3x3 blocks of 2x2 separated by 0 lines on background 1. Where two blocks in the same block-row or block-column have the same non-background colour at the same position, the block between them gets that colour at that position.",
+     "why": "every changed cell is the exact midpoint of two equal-coloured marks 6 apart on its row or column, and takes their colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cbded52d",
+     "sample": 1,
+     "verb": "complete the line",
+     "reading": "When two special-coloured cells (not 0 or 1) of the same colour lie 6 apart on one row or column (in outer blocks at the same local position), the cell exactly midway (the same spot in the middle block) takes that colour.",
+     "why": "every changed cell is the midpoint of a same-colour special pair and takes that pair's colour; nothing else changes",
+     "new_rows": [
+      "d_cbded52d_1_mid"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "mid": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "cbded52d",
+     "sample": 2,
+     "verb": "complete midpoint",
+     "reading": "The grid is a 3x3 array of 2x2 panels. When two cells of the same special colour (not 0, not 1) sit in the same row or column at the same position of two panels, the corresponding cell of the panel midway between them takes that colour.",
+     "why": "each changed cell is the exact midpoint of two same-coloured marks on one row or column and takes their colour",
+     "new_rows": [
+      "d_cbded52d_2_mid"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "mid": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "cbded52d",
+     "sample": 3,
+     "verb": "mark midpoint",
+     "reading": "Whenever two cells of the same special colour (not 1 or 0) sit on one row or column, the cell exactly midway between them takes that colour.",
+     "why": "every midpoint of a same-coloured pair on a row or column is painted that colour; nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "cbded52d",
+     "sample": 4,
+     "verb": "complete middle panel",
+     "reading": "The grid is a 3x3 array of 2x2 panels (background 1, separators 0). When two outer panels in the same panel row or panel column carry the same colour at the same cell position, the middle panel between them gets that colour at that position.",
+     "why": "each new cell is the midpoint of two equal marks at the same panel-local position; nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "ccd554ac": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 1,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "ccd554ac",
+     "sample": 0,
+     "verb": "tile",
+     "reading": "The output is the input tiled N times across and N times down, where N is the input's side length.",
+     "why": "every block of the output is an exact copy of the input; the block grid is N x N with N = input height = input width (no empty blocks)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "extent"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ccd554ac",
+     "sample": 1,
+     "verb": "tile",
+     "reading": "The output is the input tiled n times across and n times down, where n is the input's side length; every block is a full copy.",
+     "why": "every block of the output equals the input; the block grid has the input's dimensions",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "extent"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ccd554ac",
+     "sample": 2,
+     "verb": "tile",
+     "reading": "An n x n input is tiled n times across and n times down (every block is a copy of the input).",
+     "why": "output is (n*h) x (n*w) with n = input side; every block equals the input",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "extent"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ccd554ac",
+     "sample": 3,
+     "verb": "tile",
+     "reading": "The output tiles the input N times across and N times down, where N is the input's side length; every block is a full copy.",
+     "why": "the output is an N x N grid of blocks (one per input cell) and every block equals the input",
+     "new_rows": [
+      "d_ccd554ac_3_allcells"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "allcells": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=d_ccd554ac_3_allcells, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=d_row, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=d_ccd554ac_3_allcells": [
+       [
+        9,
+        [
+         0,
+         8
+        ]
+       ],
+       [
+        4,
+        [
+         0,
+         1
+        ]
+       ],
+       [
+        4,
+        [
+         0,
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         0,
+         2
+        ]
+       ],
+       [
+        9,
+        [
+         0,
+         2
+        ]
+       ],
+       [
+        16,
+        [
+         0,
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       [
+        2,
+        [
+         1
+        ]
+       ],
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "ccd554ac",
+     "sample": 4,
+     "verb": "tile",
+     "reading": "The output is the input tiled N x N times, where N is the input's side length; every block is a copy of the input.",
+     "why": "every block of the output equals the input; block grid is N x N with N = input width = input height (2,3,4)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "extent"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "ce602527": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "ce602527",
+     "sample": 0,
+     "verb": "select matching shape",
+     "reading": "Several small shapes and one large shape (scaled up and cut by the grid edge) lie on a background; the output is the small shape whose 2x scaled version matches the visible part of the large shape.",
+     "why": "the output equals the box of exactly one small object, and that object scaled by 2 is consistent with the border-cut large object",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ce602527",
+     "sample": 1,
+     "verb": "select matching shape",
+     "reading": "One large shape is cut off by the grid border and is a 2x scaled-up copy of one of the small shapes; the output is that matching small shape's bounding box.",
+     "why": "the output equals the box of the one small object whose scaled form agrees with the visible part of the border-cut object",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ce602527",
+     "sample": 2,
+     "verb": "select shape matching the big one",
+     "reading": "A large object cut off by the grid edge is a 2x-scaled, cropped copy of one of the small objects; the output is the bounding box of that matching small object.",
+     "why": "exactly one small object, scaled by 2, agrees with the visible part of the big edge object",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ce602527",
+     "sample": 3,
+     "verb": "select matching shape",
+     "reading": "A large shape cut off by the grid border is a 2x scaled copy of one of the small complete shapes; the output is that matching small shape cut out.",
+     "why": "the output equals exactly one candidate's bounding box, and that candidate scaled x2 fits the visible part of the border object",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "ce602527",
+     "sample": 4,
+     "verb": "select matching shape",
+     "reading": "One large shape is shown enlarged (2x) and cut off by the grid edge; the output is the box of the small shape whose pattern matches the visible part of that enlarged shape.",
+     "why": "output equals exactly one small shape's box, and that shape matches the downscaled visible part of the border shape",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "cf98881b": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "cf98881b",
+     "sample": 0,
+     "verb": "overlay panels",
+     "reading": "The input is three 4x4 panels separated by colour-2 columns; they are overlaid into one 4x4 grid with the left panel (4) on top, then the middle (9), then the right (1).",
+     "why": "every output cell equals the left panel's cell if non-zero, else the middle's if non-zero, else the right's",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cf98881b",
+     "sample": 1,
+     "verb": "overlay panels",
+     "reading": "The grid is three 4x4 panels separated by colour-2 columns; they are overlaid into one 4x4 with priority 4 over 9 over 1 over 0.",
+     "why": "each output cell is the highest-priority colour among the three panels at that position",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cf98881b",
+     "sample": 2,
+     "verb": "overlay panels with priority",
+     "reading": "Three 4x4 panels separated by colour-2 columns are overlaid into one 4x4; at each cell the first panel's colour wins (4), else the second's (9), else the third's (1), else 0.",
+     "why": "each output cell is the non-background colour of the leftmost panel that has one there",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cf98881b",
+     "sample": 3,
+     "verb": "overlay panels",
+     "reading": "The input holds three 4x4 panels split by colour-2 columns; they are overlaid into one 4x4 with priority left panel (4) over middle (9) over right (1).",
+     "why": "every output cell = first non-zero of (left, middle, right) panel at that position",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cf98881b",
+     "sample": 4,
+     "verb": "overlay panels",
+     "reading": "Three 4x4 panels separated by colour-2 columns are overlaid: colour 4 from panel 1 wins, else 9 from panel 2, else 1 from panel 3, else background.",
+     "why": "each output cell is the highest-priority non-background colour among the three panels at that position",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "cfb2ce5a": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "cfb2ce5a",
+     "sample": 0,
+     "verb": "complete symmetric quadrants with recolouring",
+     "reading": "The top-left quadrant pattern (2 colours) is reflected into the other three quadrants (left-right, up-down, both), and each copy is recoloured using the hint cells already present in that quadrant (a colour with no hint becomes 0).",
+     "why": "each quadrant is the matching reflection of the top-left quadrant under a quadrant-specific colour map consistent with its input hints",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cfb2ce5a",
+     "sample": 1,
+     "verb": "complete by mirroring with recolour",
+     "reading": "An 8x8 square has a full top-left 4x4 quadrant in two colours; the other three quadrants are its mirrors (left-right for top-right, up-down for bottom-left, 180 rotation for bottom-right), each recoloured by the hint cells already in that quadrant (a colour with no hint becomes 0).",
+     "why": "each quadrant's shape pattern is the mirrored source pattern; its colours agree with the hint cells there",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cfb2ce5a",
+     "sample": 2,
+     "verb": "complete symmetric quadrants with recolouring",
+     "reading": "The 8x8 interior is four 4x4 quadrants: the top-left pattern is copied mirrored into the other three (left-right, top-bottom, rotated 180), and each copy's colours are remapped using the hint cells already in that quadrant; colours with no hint become 0.",
+     "why": "each quadrant is the mirrored exemplar under a colour map consistent with every hint in it",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cfb2ce5a",
+     "sample": 3,
+     "verb": "complete symmetric quadrants",
+     "reading": "The top-left 4x4 quadrant is complete; each other quadrant is its mirror image (right: left-right flip, bottom: up-down flip, bottom-right: both), with its two colours remapped as shown by the hint cells in that quadrant (no hint means 0).",
+     "why": "each quadrant equals the mirrored source with a per-quadrant colour substitution consistent with all hint cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "cfb2ce5a",
+     "sample": 4,
+     "verb": "complete quadrants by reflection with recolouring",
+     "reading": "An 8x8 block has its top-left 4x4 quadrant filled; the other three quadrants are completed as its mirror images (left-right, up-down, and both), with each quadrant's colours replaced by a per-quadrant colour map read from the seed cells already present there; source colours with no seed stay background.",
+     "why": "every filled target cell is key_q(source colour at mirrored position); seeds agree with this",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "d017b73f": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d017b73f",
+     "sample": 0,
+     "verb": "remove gaps and chain",
+     "reading": "Empty columns are deleted, then the objects are shifted up or down one after another, left to right, so that each object's left end connects to the previous object's right end, forming one continuous chain.",
+     "why": "output width = input width minus empty columns; each object keeps its shape and colour and touches its predecessor horizontally",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d017b73f",
+     "sample": 1,
+     "verb": "close gaps and chain",
+     "reading": "All-empty columns are deleted, then the objects (left to right) are shifted up or down so each one starts on the row where the previous one's path ends, forming one connected chain.",
+     "why": "the output width is the input width minus empty columns, and each object's shape is kept with only a vertical shift",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d017b73f",
+     "sample": 2,
+     "verb": "chain shapes",
+     "reading": "Empty columns are deleted and the shapes are chained left to right: each shape is shifted vertically so its leftmost cell sits on the row where the previous shape's path ends at its right side.",
+     "why": "output width = input width minus empty columns; shapes keep shape and colour and form one connected chain",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d017b73f",
+     "sample": 3,
+     "verb": "chain shapes",
+     "reading": "All-background columns are removed and the shapes are shifted up or down so that each one joins end-to-end with the previous shape, forming one continuous chain from left to right.",
+     "why": "output width = input width minus empty columns; each object keeps its shape and is vertically shifted to connect to its predecessor",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "d017b73f",
+     "sample": 4,
+     "verb": "chain pieces",
+     "reading": "Empty columns are deleted and the pieces are joined left to right into one chain: each piece is shifted vertically so its starting cell sits next to the previous piece's end cell.",
+     "why": "output width = input width minus empty columns; each piece keeps its shape and touches its predecessor",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "d037b0a7": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "d037b0a7",
+     "sample": 0,
+     "verb": "draw line down",
+     "reading": "Every coloured cell extends a line of its own colour straight down to the bottom of the grid.",
+     "why": "every cell below a coloured cell in its column takes that colour, up to the bottom border; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d037b0a7",
+     "sample": 1,
+     "verb": "draw line down",
+     "reading": "Every coloured cell extends a line of its own colour straight down to the bottom border.",
+     "why": "below each coloured cell, every cell down to the bottom border has that cell's colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d037b0a7",
+     "sample": 2,
+     "verb": "drip down",
+     "reading": "Every coloured cell draws a line of its own colour straight down to the bottom border.",
+     "why": "each column below a coloured cell is filled with that colour down to the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d037b0a7",
+     "sample": 3,
+     "verb": "drip down",
+     "reading": "Every coloured cell extends a line of its own colour straight down to the bottom border.",
+     "why": "every cell below a coloured cell takes that colour, down to the bottom edge",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d037b0a7",
+     "sample": 4,
+     "verb": "draw line down",
+     "reading": "Every coloured cell drops a line of its own colour straight down to the bottom border.",
+     "why": "each fg cell's column below it is filled with its colour up to the bottom edge",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "d06dbe63": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "wrong",
+   "max_support": 3,
+   "readings": [
+    {
+     "task": "d06dbe63",
+     "sample": 0,
+     "verb": "draw staircase",
+     "reading": "From the single 8 cell, a colour-5 staircase is drawn up-right (up 2, right 2, repeated) and its point reflection down-left (down 2, left 2, repeated), clipped at the grid border.",
+     "why": "the 5 cells form the same fixed staircase shape relative to the 8 marker in every pair (clipped by the border)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         8
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d06dbe63",
+     "sample": 1,
+     "verb": "draw staircase",
+     "reading": "From the single 8 cell, a colour-5 staircase runs up-right and down-left to the borders: step 1 cell vertically, then a 3-cell horizontal run, repeated (going up: up then right; going down: down then left).",
+     "why": "the 5 cells form exactly the two staircases from the marker, clipped at the border; the marker stays",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "d06dbe63",
+     "sample": 2,
+     "verb": "draw staircase",
+     "reading": "From the single 8 cell a fixed staircase of 5s is drawn up-right and (mirrored) down-left: one step out, then three cells sideways, repeating, clipped at the grid edge.",
+     "why": "the 5 cells are the same offset pattern relative to the 8 in every pair (clipped at the border)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         8
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d06dbe63",
+     "sample": 3,
+     "verb": "draw staircase",
+     "reading": "From the single 8 cell a staircase of 5s is drawn up-right and down-left (steps of one cell vertical, then three cells horizontal), clipped at the grid border.",
+     "why": "the same staircase pattern, centred on the 8, appears in every output (clipped by the border)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 12,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         8
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "d06dbe63",
+     "sample": 4,
+     "verb": "draw staircase",
+     "reading": "From the single 8 cell, two staircases of 5 are drawn to the grid border: up-right (two cells up, two cells right, repeating) and down-left (two down, two left, repeating).",
+     "why": "every 5 lies on one of the two staircases from the 8, and the staircases run until they leave the grid",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

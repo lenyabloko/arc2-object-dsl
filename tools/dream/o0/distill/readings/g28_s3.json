@@ -1,0 +1,227 @@
+[
+ {
+  "task": "d6ad076f",
+  "reading": "Between the two facing rectangles, the background gap is filled with 8, but the band is one cell narrower at each end of their shared span.",
+  "verb": "bridge",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "inner_gap",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inner_gap",
+    "datalog": "fgc(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !fgc(Y, X).\nbh(Y, X) :- bgc(Y, X), cell(Y, X1, C1), X1 < X, cell(Y, X2, C2), X2 > X.\nbv(Y, X) :- bgc(Y, X), cell(Y1, X, C1), Y1 < Y, cell(Y2, X, C2), Y2 > Y.\ninner_gap(Y, X) :- bh(Y, X), Ya = Y - 1, bh(Ya, X), Yb = Y + 1, bh(Yb, X).\ninner_gap(Y, X) :- bv(Y, X), Xa = X - 1, bv(Y, Xa), Xb = X + 1, bv(Y, Xb)."
+   }
+  ],
+  "why": "every bg cell between the two rectangles on a row (or column) whose neighbours across the band are also between-cells becomes 8; the two end rows/columns of the overlap stay bg",
+  "invariants": [
+   "both rectangles unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d753a70b",
+  "reading": "Shapes are diamond outlines; every colour-5 diamond grows by one ring about its centre, every colour-2 diamond shrinks by one ring (radius 0 becomes a single cell), other colours stay; parts off the grid are clipped.",
+  "verb": "grow / shrink by colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "grower": "colour-5 diamonds (radius +1, same centre)",
+   "shrinker": "colour-2 diamonds (radius -1, same centre)",
+   "fixed": "other colours (8, 9) unchanged",
+   "centre": "diamond centre, may lie off-grid"
+  },
+  "why": "each 5 or 2 diamond in the output is concentric with its input diamond, radius differs by exactly +1 / -1 (pair 0's clipped bottom 5-diamond lands one column right of this, apparently an anomaly)",
+  "invariants": [
+   "background 7",
+   "colour-8 and colour-9 shapes",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d931c21c",
+  "reading": "Each closed 1-loop gets a 2 ring on the outside cells touching it (8-neighbours) and a 3 ring on the enclosed cells touching it; loops with a gap are left alone.",
+  "verb": "outline closed loops",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "outer_halo",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "inner_halo",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "outer_halo",
+    "datalog": "fgc(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !fgc(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\noutr(Y, X) :- bgc(Y, X), Y = 0.\noutr(Y, X) :- bgc(Y, X), X = 0.\noutr(Y, X) :- bgc(Y, X), my(M), Y = M.\noutr(Y, X) :- bgc(Y, X), mx(M), X = M.\noutr(Y, X2) :- outr(Y, X), off(DY, DX), DY = 0, X2 = X + DX, bgc(Y, X2).\noutr(Y2, X) :- outr(Y, X), off(DY, DX), DX = 0, Y2 = Y + DY, bgc(Y2, X).\nhole(Y, X) :- bgc(Y, X), !outr(Y, X).\nclosed(O) :- obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, hole(Y2, X2).\nouter_halo(Y, X) :- outr(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2), closed(O)."
+   },
+   {
+    "name": "inner_halo",
+    "datalog": "fgc(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !fgc(Y, X).\nmy(max(Y)) :- px(Y, X, C).\nmx(max(X)) :- px(Y, X, C).\noutr(Y, X) :- bgc(Y, X), Y = 0.\noutr(Y, X) :- bgc(Y, X), X = 0.\noutr(Y, X) :- bgc(Y, X), my(M), Y = M.\noutr(Y, X) :- bgc(Y, X), mx(M), X = M.\noutr(Y, X2) :- outr(Y, X), off(DY, DX), DY = 0, X2 = X + DX, bgc(Y, X2).\noutr(Y2, X) :- outr(Y, X), off(DY, DX), DX = 0, Y2 = Y + DY, bgc(Y2, X).\nhole(Y, X) :- bgc(Y, X), !outr(Y, X).\nclosed(O) :- obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, hole(Y2, X2).\ninner_halo(Y, X) :- hole(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2), closed(O)."
+   }
+  ],
+  "why": "outside bg cells 8-adjacent to a loop that encloses bg become 2 (learned colour), enclosed bg cells 8-adjacent to it become 3; open loops untouched (pair 2 has one extra 2 cell at a notch corner, (13,3), that this misses)",
+  "invariants": [
+   "all 1 cells",
+   "open (gapped) shapes and their surroundings",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d94c3b52",
+  "reading": "The grid is a 4x6 lattice of 3x3 glyphs; every 1-glyph with the same shape as the single 8-glyph turns 8, then every glyph lying between two 8-glyphs on the same lattice row or column turns 7.",
+  "verb": "match shape then connect",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lattice": "3x3 glyph cells at period 4 separated by bg rows/cols",
+   "exemplar": "the one glyph coloured 8",
+   "match": "all glyphs with the exemplar's shape -> 8",
+   "between": "glyphs strictly between two 8-glyphs on a lattice row or column -> 7 (shape kept)"
+  },
+  "why": "8-glyphs are exactly those sharing the exemplar's shape; 7-glyphs are exactly the non-8 glyphs flanked by 8-glyphs in their lattice row or column",
+  "invariants": [
+   "glyph shapes",
+   "separator rows/cols",
+   "glyphs not matched and not between stay 1"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d968ffd4",
+  "reading": "Two small blocks sit at opposite ends; each block's colour floods the gap toward the other across the full grid width/height, meeting halfway (a single middle line stays bg when the gap is odd).",
+  "verb": "grow toward each other",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "the two coloured blocks at opposite ends",
+   "gap": "the full-span band of lines strictly between the blocks",
+   "split": "each block fills the floor(gap/2) lines nearest it; middle line of an odd gap stays bg"
+  },
+  "why": "the lines between the blocks are filled completely, the nearer half with each block's colour",
+  "invariants": [
+   "original blocks",
+   "lines beyond the blocks",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "da2b0fe3",
+  "reading": "The shape is split by one empty row or column; that whole line is drawn in 3 across the grid.",
+  "verb": "draw split line",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gapline",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gapline",
+    "datalog": "fgr(Y) :- cell(Y, X, C).\nfgk(X) :- cell(Y, X, C).\nanyr(Y) :- px(Y, X, C).\nanyk(X) :- px(Y, X, C).\ngr(Y) :- anyr(Y), !fgr(Y), fgr(Y1), Y1 < Y, fgr(Y2), Y2 > Y.\ngk(X) :- anyk(X), !fgk(X), fgk(X1), X1 < X, fgk(X2), X2 > X.\ngapline(Y, X) :- gr(Y), px(Y, X, C).\ngapline(Y, X) :- gk(X), px(Y, X, C)."
+   }
+  ],
+  "why": "every cell of the all-bg row/column that has foreground on both sides becomes 3; nothing else changes",
+  "invariants": [
+   "the shape",
+   "all other bg"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db615bd4",
+  "reading": "A dotted rectangle outline is completed into a solid one, and the small dotted pieces lying outside it are erased and redrawn as solid blocks stacked inside the frame.",
+  "verb": "collect into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "dotted rectangle on the dot-lattice, completed solid",
+   "pieces": "small coloured dot clusters outside the frame (erased from their place)",
+   "placement": "each piece as a solid block inside the frame, packed side by side / stacked, separated by one line"
+  },
+  "why": "output keeps the lattice pattern everywhere except the frame (solidified) and its interior (packed solid blocks); outside pieces vanish",
+  "invariants": [
+   "background lattice pattern outside the frame",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "db7260a4",
+  "reading": "A 1 marker at the top drops down its column; if it lands in a sealed cup of 2s, the cup interior is filled with 1; otherwise (outside a cup or the cup leaks) the bottom row becomes all 1. The marker is erased.",
+  "verb": "pour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "drop": "the single 1 marker, falling straight down",
+   "container": "the 2-walled cup whose open top spans the marker's column and whose floor is closed",
+   "spill": "bottom row filled with 1 when no sealed cup catches it"
+  },
+  "why": "exactly one of: cup interior (bounded by walls and floor) becomes 1, or the last row becomes 1; marker cell becomes bg",
+  "invariants": [
+   "all 2 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db93a21d",
+  "reading": "Each 9 square of side s gets a 3 border of thickness s/2 around it and a 1 column of the square's width running from below that border to the grid bottom; layering 1 under 3 under 9.",
+  "verb": "halo and shadow",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each solid 9 square (side s)",
+   "halo": "3 ring of thickness s/2 around the square",
+   "shadow": "1 band, same columns as the square, from below the halo down to the last row",
+   "order": "1 drawn first, then 3, then 9 on top"
+  },
+  "why": "every 9 square keeps its place; its halo and downward shadow are fully drawn with that precedence",
+  "invariants": [
+   "9 squares",
+   "cells outside every halo and shadow"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "dbc1a6ce",
+  "reading": "Every pair of 1 cells on the same row or column is joined by a line of 8 through the background between them.",
+  "verb": "connect",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between",
+    "colour": "train"
+   }
+  },
+  "why": "every bg cell with a 1 on both sides in its row or column becomes 8; nothing else changes",
+  "invariants": [
+   "all 1 cells",
+   "other bg cells"
+  ],
+  "confidence": "high"
+ }
+]

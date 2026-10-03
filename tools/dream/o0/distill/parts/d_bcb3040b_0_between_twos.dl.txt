@@ -1,0 +1,8 @@
+% row: d_bcb3040b_0_between_twos
+% source: distillation batch reading, task bcb3040b, sample 0
+% output: between_twos(Y, X)
+two(Y, X) :- px(Y, X, C), C = 2.
+between_twos(Y, X) :- two(Y, X1), two(Y, X2), X1 < X2, px(Y, X, C), X1 < X, X < X2.
+between_twos(Y, X) :- two(Y1, X), two(Y2, X), Y1 < Y2, px(Y, X, C), Y1 < Y, Y < Y2.
+between_twos(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, E = X2 - X1, D = E, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 + K.
+between_twos(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, E = X1 - X2, D = E, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 - K.

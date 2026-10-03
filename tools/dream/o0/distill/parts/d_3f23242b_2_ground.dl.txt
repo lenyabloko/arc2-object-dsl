@@ -1,0 +1,6 @@
+% row: d_3f23242b_2_ground
+% source: distillation batch reading, task 3f23242b, sample 2
+% output: ground(Y, X)
+nb(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).
+mk(Y, X) :- cell(Y, X, C), !nb(Y, X).
+ground(Y2, X) :- mk(Y, X0), Y2 = Y + 2, px(Y2, X, C).

@@ -1,0 +1,5 @@
+% row: d_52364a65_1_left2
+% source: distillation batch reading, task 52364a65, sample 1
+% output: left2(Y, X)
+minx(O, min(X)) :- obj(O, Y, X), cell(Y, X, C).
+left2(Y, X) :- obj(O, Y, X), cell(Y, X, C), minx(O, M), M2 = M + 2, X < M2.

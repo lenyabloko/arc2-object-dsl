@@ -1,0 +1,6 @@
+% row: d_17b80ad2_0_src
+% source: distillation batch reading, task 17b80ad2, sample 0
+% output: src(Y, X)
+bot(max(Y)) :- px(Y, X, C).
+based(X) :- bot(M), cell(M, X, C).
+src(Y, X) :- cell(Y, X, C), based(X).

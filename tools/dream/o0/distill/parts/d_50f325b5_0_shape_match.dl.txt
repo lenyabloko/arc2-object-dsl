@@ -1,0 +1,15 @@
+% row: d_50f325b5_0_shape_match
+% source: distillation batch reading, task 50f325b5, sample 0
+% output: shape_match(Y, X)
+eight(Y, X) :- px(Y, X, 8).
+three(Y, X) :- px(Y, X, 3).
+ty(min(Y)) :- eight(Y, X).
+tx(min(X)) :- ty(Y), eight(Y, X).
+tpl(DY, DX) :- eight(Y, X), ty(Y0), tx(X0), DY = Y - Y0, DX = X - X0.
+rot(0, EY, EX) :- tpl(EY, EX).
+rot(1, EY, EX) :- tpl(DY, DX), EY = DX, EX = 0 - DY.
+rot(2, EY, EX) :- tpl(DY, DX), EY = 0 - DY, EX = 0 - DX.
+rot(3, EY, EX) :- tpl(DY, DX), EY = 0 - DX, EX = DY.
+bad(Y0, X0, R) :- px(Y0, X0, C), rot(R, EY, EX), Y = Y0 + EY, X = X0 + EX, !three(Y, X).
+good(Y0, X0, R) :- px(Y0, X0, C), rot(R, EY, EX), !bad(Y0, X0, R).
+shape_match(Y, X) :- good(Y0, X0, R), rot(R, EY, EX), Y = Y0 + EY, X = X0 + EX.

@@ -1,0 +1,207 @@
+[
+ {
+  "task": "d6ad076f",
+  "reading": "Two solid rectangles face each other across a gap; the gap between them is filled with 8, narrowed by one cell at each end of their overlap.",
+  "verb": "bridge",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between_inner",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "between_inner",
+    "datalog": "isfg(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !isfg(Y, X).\nhl(Y, X) :- bgc(Y, X), cell(Y, X2, C), X2 < X.\nhr(Y, X) :- bgc(Y, X), cell(Y, X2, C), X2 > X.\nhb(Y, X) :- hl(Y, X), hr(Y, X).\nvu(Y, X) :- bgc(Y, X), cell(Y2, X, C), Y2 < Y.\nvd(Y, X) :- bgc(Y, X), cell(Y2, X, C), Y2 > Y.\nvb(Y, X) :- vu(Y, X), vd(Y, X).\nbetween_inner(Y, X) :- hb(Y, X), Ya = Y - 1, Yb = Y + 1, hb(Ya, X), hb(Yb, X).\nbetween_inner(Y, X) :- vb(Y, X), Xa = X - 1, Xb = X + 1, vb(Y, Xa), vb(Y, Xb)."
+   }
+  ],
+  "why": "every between cell that has between cells on both sides across the gap direction becomes 8; nothing else changes",
+  "invariants": [
+   "both rectangles",
+   "all other background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d753a70b",
+  "reading": "Diamond rings are resized about their centres: colour-2 rings shrink by one step (a radius-1 ring becomes a single cell), colour-5 rings grow by one step (a single cell becomes a ring); rings of other colours stay.",
+  "verb": "resize rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each diamond-ring object (8-connected, one colour)",
+   "shrink_colour": "2 (radius - 1)",
+   "grow_colour": "5 (radius + 1)",
+   "centre": "the ring's centre, may lie off-grid",
+   "rest": "other colours unchanged"
+  },
+  "why": "each 2 ring has radius one less and each 5 ring radius one more, same centre; other objects identical",
+  "invariants": [
+   "background 7",
+   "rings of colours other than 2 and 5"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d931c21c",
+  "reading": "Each closed loop of 1 gets a ring of 2 drawn around its outside and a ring of 3 lining its inside; loops with a gap (not closed) are left alone.",
+  "verb": "outline closed loops",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "1-coloured objects that enclose background",
+   "outer": "background cells touching the loop from outside (8-neighbour) -> 2",
+   "inner": "enclosed background cells touching the loop -> 3",
+   "skip": "open loops unchanged"
+  },
+  "why": "only closed loops change; their outer neighbour ring is 2 and inner neighbour ring is 3",
+  "invariants": [
+   "the 1 cells",
+   "open shapes",
+   "enclosed cells not touching the loop"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d94c3b52",
+  "reading": "The grid is a 4x6 array of 3x3 glyphs; every 1-glyph with the same shape as the one 8 glyph turns 8, then every glyph lying strictly between two 8 glyphs in the same glyph row or column turns 7 (keeping its shape).",
+  "verb": "match and connect glyphs",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "cells": "3x3 glyph slots separated by background rows/cols",
+   "exemplar": "the glyph drawn in 8",
+   "match": "glyphs of identical shape -> 8",
+   "between": "glyphs strictly between two 8 glyphs on a glyph row/column -> 7"
+  },
+  "why": "glyph shapes never change; only their colour changes to 8 (same shape as exemplar) or 7 (between two 8s)",
+  "invariants": [
+   "glyph shapes",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d968ffd4",
+  "reading": "Two small blocks sit at opposite ends of a uniform grid; each grows toward the other, filling its half of the gap, one cell wider on each side than the block, leaving a single background line in the middle when the gap is odd.",
+  "verb": "grow toward each other",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subjects": "the two blocks",
+   "fill": "gap between them split in half, each half in the nearer block's colour",
+   "width": "block span plus one cell on each side (only over the gap)",
+   "middle": "one background line left when the gap length is odd"
+  },
+  "why": "the gap is split evenly between the two colours; blocks themselves unchanged",
+  "invariants": [
+   "the two blocks",
+   "cells outside the gap's widened band"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "da2b0fe3",
+  "reading": "A shape is split by one empty row or column running through it; that whole grid line is painted 3.",
+  "verb": "draw split line",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap_line",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap_line",
+    "datalog": "miny(min(Y)) :- cell(Y, X, C).\nmaxy(max(Y)) :- cell(Y, X, C).\nminx(min(X)) :- cell(Y, X, C).\nmaxx(max(X)) :- cell(Y, X, C).\nrowfg(Y) :- cell(Y, X, C).\ncolfg(X) :- cell(Y, X, C).\ngaprow(Y) :- px(Y, X, C), miny(A), maxy(B), Y > A, Y < B, !rowfg(Y).\ngapcol(X) :- px(Y, X, C), minx(A), maxx(B), X > A, X < B, !colfg(X).\ngap_line(Y, X) :- gaprow(Y), px(Y, X, C).\ngap_line(Y, X) :- gapcol(X), px(Y, X, C)."
+   }
+  ],
+  "why": "the empty row/column strictly inside the shape's bounding box is entirely 3; nothing else changes",
+  "invariants": [
+   "the shape"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db615bd4",
+  "reading": "On a dotted lattice, a dotted rectangle becomes a solid outline with a plain interior; the small dotted pieces outside it become solid blocks (their bounding boxes) packed inside it in input order along its longer side, one-cell gaps, centred; the pieces are erased from outside.",
+  "verb": "pack pieces into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "container": "the rectangle drawn in lattice dots of one colour",
+   "pieces": "other-coloured dot groups outside it",
+   "packing": "solid bounding boxes, in order of position, along the interior's longer axis, 1-cell gaps, centred",
+   "cleanup": "interior lattice -> line background colour; old piece sites restored to lattice"
+  },
+  "why": "output = lattice + solid outline + centred row/column of solid piece boxes inside",
+  "invariants": [
+   "lattice outside the rectangle",
+   "rectangle position and colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "db7260a4",
+  "reading": "A 1 dropped from the top row falls into the 2 container; if it lands in a sealed cup the cup's interior fills with 1, otherwise (misses or the cup's floor leaks) the whole bottom row becomes 1. The dropped 1 is removed.",
+  "verb": "pour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the single 1 in the top row (its column)",
+   "container": "2-coloured cup(s) with walls and floor",
+   "held": "cup interior between walls, above floor, up to wall top -> 1",
+   "leak": "bottom grid row -> 1",
+   "marker": "cleared"
+  },
+  "why": "exactly one of: the cup under the drop column is sealed and filled, or the bottom row is all 1",
+  "invariants": [
+   "the 2 container"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "db93a21d",
+  "reading": "Each 9 square of side s gets a 3 frame of thickness s/2 around it and a 1 shadow, as wide as the square, running from it down to the bottom edge; frames are drawn over shadows and squares over both.",
+  "verb": "frame and drop shadow",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 9 square",
+   "frame": "colour 3, thickness half the side",
+   "shadow": "colour 1, square's columns, from below the square to the bottom border",
+   "order": "shadow < frame < square"
+  },
+  "why": "squares keep place; every frame and shadow follows the square's size",
+  "invariants": [
+   "the 9 squares"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "dbc1a6ce",
+  "reading": "Any two 1 cells on the same row or column are joined by a line of 8 through the background between them.",
+  "verb": "connect",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "between",
+    "colour": "train"
+   }
+  },
+  "why": "every background cell between two 1s on a row or column is 8; nothing else changes",
+  "invariants": [
+   "the 1 cells"
+  ],
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,8 @@
+% row: d_3aa6fb7a_2_l_hole
+% source: distillation batch reading, task 3aa6fb7a, sample 2
+% output: l_hole(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+inblk(Y, X, Y, X) :- px(Y, X, C).
+inblk(Y, X, Y2, X2) :- px(Y, X, C), off(DY, DX), DY >= 0, DX >= 0, Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C2).
+bfg(Y, X, count(Y2, X2)) :- inblk(Y, X, Y2, X2), fgc(Y2, X2).
+l_hole(Y2, X2) :- bfg(Y, X, N), N = 3, inblk(Y, X, Y2, X2), !fgc(Y2, X2).

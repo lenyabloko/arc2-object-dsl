@@ -1,0 +1,208 @@
+[
+ {
+  "task": "b4a43f3b",
+  "reading": "The top half (above the 5 separator) is a 3x3 pattern drawn at 2x scale; the bottom half is a 6x6 layout. Output is 18x18: the 3x3 pattern is placed in block (r,c) for every non-background layout cell (r,c), other blocks empty.",
+  "verb": "fractal place",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pattern": "top panel downscaled by 2 (3x3)",
+   "layout": "bottom panel below the separator row (6x6)",
+   "placement": "3x3 block at (3r,3c) for each fg layout cell"
+  },
+  "why": "output block (r,c) equals the downscaled pattern iff layout cell (r,c) is fg, else empty",
+  "invariants": [
+   "output size = 3 x layout size",
+   "pattern copies are identical"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b60334d2",
+  "reading": "Every isolated 5 is replaced by a 3x3 ring centred on it: 5 at the corners, 1 at the edge midpoints, centre 0.",
+  "verb": "stamp",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "nearest"
+   }
+  },
+  "why": "each marker cell becomes the centre of an identical 3x3 unit 515/101/515",
+  "invariants": [
+   "grid size",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b74ca5d1",
+  "reading": "Each shape is one colour plus one odd cell whose colour matches one of the grid-corner marker colours. Each shape swaps its two colours, and an overlay of all shapes keyed to a corner colour, drawn entirely in that colour, is pasted into that corner with its box aligned to the corner.",
+  "verb": "swap colours and collect to corner",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shapes": "objects with one main colour and one odd cell",
+   "key": "corner cell colours of the grid",
+   "swap": "main colour <-> odd-cell colour inside each shape",
+   "corner copy": "union of shapes whose odd colour = corner colour, in that colour, aligned to that corner"
+  },
+  "why": "every shape's colours are swapped in place and each corner holds the union silhouette of its shapes",
+  "invariants": [
+   "grid size",
+   "shape positions",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b7f8a4d8",
+  "reading": "A lattice of framed tiles; a few tiles have a rare centre colour. Background gap cells on a row or column lying between two cells of the same rare colour are filled with that colour, linking those tiles; tiles themselves are unchanged.",
+  "verb": "connect same-coloured tiles",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "link",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "link",
+    "datalog": "pcount(C, count(Y, X)) :- px(Y, X, C).\nmore(C, D) :- pcount(C, N), pcount(D, M), M > N.\nnmore(C, count(D)) :- more(C, D).\nspecial(C) :- nmore(C, K), K >= 3.\nzero(Y, X) :- px(Y, X, B), B = 0.\nhlink(Y, X) :- zero(Y, X), px(Y, X1, C), special(C), px(Y, X2, C), X1 < X, X < X2.\nvlink(Y, X) :- zero(Y, X), px(Y1, X, C), special(C), px(Y2, X, C), Y1 < Y, Y < Y2.\nlink(Y, X) :- hlink(Y, X).\nlink(Y, X) :- vlink(Y, X)."
+   }
+  ],
+  "why": "every changed cell is a 0 cell flanked on its row or column by two cells of one rare colour (a colour with at least 3 more frequent colours), and takes that colour",
+  "invariants": [
+   "all tile cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b8825c91",
+  "reading": "The grid is symmetric under both mirror axes; blocks painted with noise colour 4 are restored from their mirror images.",
+  "verb": "restore symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "the output is symmetric about the central vertical and horizontal axes and contains no 4",
+  "invariants": [
+   "all cells not coloured 4",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b8cdaf2b",
+  "reading": "A bottom-row cup has outer colour A and inner colour B with a cap of A above. From each top corner of the cap a diagonal ray of colour B goes up and outward to the grid border.",
+  "verb": "draw diagonal rays",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the two ends of the topmost fg row (the cap)",
+   "direction": "diagonally up-left and up-right, starting one step beyond the cap ends",
+   "stop": "grid border",
+   "colour": "the inner (minority) colour of the bottom shape"
+  },
+  "why": "every new cell lies on one of the two diagonals from the cap ends and has the inner colour",
+  "invariants": [
+   "the original shape",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "ba1aa698",
+  "reading": "Panels separated by full lines each hold the same small shape, shifted vertically by a constant step from panel to panel. The output is a single panel with the shape at the next position of the progression.",
+  "verb": "continue progression",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "stripes cut by full separator columns",
+   "shape": "the small object in each panel",
+   "step": "vertical offset between shapes in consecutive panels",
+   "output": "one panel (with its border) with the shape placed at the next step after the last panel"
+  },
+  "why": "output is one panel; its shape is the panel shape translated vertically along the progression (the second pair lands one row further than a strict constant step)",
+  "invariants": [
+   "panel frame and fill",
+   "shape form and column offset"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "ba26e723",
+  "reading": "Every 4 in a column whose index is a multiple of 3 (0, 3, 6, ...) becomes 6.",
+  "verb": "recolour periodic columns",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "third"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "third",
+    "datalog": "col3(X) :- px(Y, X, C), X = 0.\ncol3(X2) :- col3(X), X2 = X + 3, px(Y, X2, C).\nthird(Y, X) :- px(Y, X, C), C > 0, col3(X)."
+   }
+  ],
+  "why": "cells with colour 4 in columns 0 mod 3 map 4 -> 6; nothing else changes",
+  "invariants": [
+   "0 cells",
+   "columns not multiple of 3",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bbb1b8b6",
+  "reading": "Two 4x4 panels split by a 5 column. If the right panel's coloured cells exactly cover the left panel's background cells at the same positions, the output is the left panel with them filled in; otherwise the output is the left panel unchanged.",
+  "verb": "overlay if complementary",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "left and right panels cut by the separator column",
+   "test": "right fg cell set == left bg cell set, position for position (no shifting)",
+   "yes": "left panel overlaid with right panel",
+   "no": "left panel alone"
+  },
+  "why": "output equals left panel overlaid with right exactly when they are complementary, else the left panel",
+  "invariants": [
+   "left panel's 1 cells",
+   "output size = panel size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bcb3040b",
+  "reading": "Two 2 markers lie on a common row, column or diagonal. The straight line joining them is drawn: background cells on it become 2 and 1 cells on it become 3.",
+  "verb": "connect markers",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "endpoints": "the two cells of colour 2",
+   "line": "cells on the straight (orthogonal or diagonal) segment between them",
+   "colour": "0 -> 2, 1 -> 3 on the line"
+  },
+  "why": "every changed cell lies on the segment joining the two 2s; off-line cells are unchanged",
+  "invariants": [
+   "cells off the line",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,12 @@
+% row: d_14754a24_3_plus_gap
+% source: distillation batch reading, task 14754a24, sample 3
+% output: plus_gap(Y, X)
+pl(DY, DX) :- off(DY, DX), DY = 0.
+pl(DY, DX) :- off(DY, DX), DX = 0.
+pc(Y, X, Y, X) :- px(Y, X, C).
+pc(Y, X, Y2, X2) :- px(Y, X, C), pl(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C2).
+touch4(Y, X, O) :- pc(Y, X, Y2, X2), px(Y2, X2, 4), obj(O, Y2, X2).
+spill(Y, X) :- touch4(Y, X, O), obj(O, Y3, X3), !pc(Y, X, Y3, X3).
+holed(Y, X) :- touch4(Y, X, O), pc(Y, X, Y2, X2), px(Y2, X2, 0).
+good(Y, X) :- touch4(Y, X, O), !spill(Y, X), !holed(Y, X).
+plus_gap(Y2, X2) :- good(Y, X), pc(Y, X, Y2, X2), px(Y2, X2, 5).

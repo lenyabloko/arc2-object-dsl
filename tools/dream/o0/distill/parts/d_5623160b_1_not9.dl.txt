@@ -1,0 +1,5 @@
+% row: d_5623160b_1_not9
+% source: distillation batch reading, task 5623160b, sample 1
+% output: not9(Y, X)
+nine(Y, X) :- cell(Y, X, 9).
+not9(Y, X) :- cell(Y, X, C), !nine(Y, X).

@@ -1,0 +1,9 @@
+% row: d_84f2aca1_4_hole2
+% source: distillation batch reading, task 84f2aca1, sample 4
+% output: hole2(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+inner(Y, X) :- px(Y, X, C), C = 0, Ya = Y - 1, Yb = Y + 1, Xa = X - 1, Xb = X + 1, px(Ya, X, A), px(Yb, X, B), px(Y, Xa, D), px(Y, Xb, E).
+bgnb(Y, X, count(DY, DX)) :- inner(Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), C = 0.
+one(Y, X) :- bgnb(Y, X, N), N = 1.
+hole2(Y, X) :- one(Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, one(Y2, X2).

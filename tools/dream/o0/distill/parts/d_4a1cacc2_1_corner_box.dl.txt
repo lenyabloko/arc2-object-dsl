@@ -1,0 +1,11 @@
+% row: d_4a1cacc2_1_corner_box
+% source: distillation batch reading, task 4a1cacc2, sample 1
+% output: corner_box(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+mk(Y, X) :- cell(Y, X, C).
+rowok(Y) :- px(Y, X, C), mk(MY, MX), hmax(H), D = H - MY, MY <= D, Y <= MY.
+rowok(Y) :- px(Y, X, C), mk(MY, MX), hmax(H), D = H - MY, MY > D, Y >= MY.
+colok(X) :- px(Y, X, C), mk(MY, MX), wmax(W), D = W - MX, MX <= D, X <= MX.
+colok(X) :- px(Y, X, C), mk(MY, MX), wmax(W), D = W - MX, MX > D, X >= MX.
+corner_box(Y, X) :- px(Y, X, C), rowok(Y), colok(X).

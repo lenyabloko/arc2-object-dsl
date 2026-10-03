@@ -1,0 +1,20 @@
+% row: d_228f6490_4_fits
+% source: distillation batch reading, task 228f6490, sample 4
+% output: fits(Y, X)
+ocol(O, C) :- obj(O, Y, X), cell(Y, X, C).
+grey(O) :- ocol(O, C), C = 5.
+ncol(C, count(O)) :- ocol(O, C).
+uniq(O) :- ocol(O, C), ncol(C, N), N = 1.
+piece(O) :- ocol(O, C), !grey(O), uniq(O).
+oy0(O, min(Y)) :- obj(O, Y, X).
+oy1(O, max(Y)) :- obj(O, Y, X).
+ox0(O, min(X)) :- obj(O, Y, X).
+ox1(O, max(X)) :- obj(O, Y, X).
+hole(O, Y, X) :- grey(O), oy0(O, Y0), oy1(O, Y1), ox0(O, X0), ox1(O, X1), px(Y, X, C), C = 0, Y > Y0, Y < Y1, X > X0, X < X1.
+hy0(O, min(Y)) :- hole(O, Y, X).
+hx0(O, min(X)) :- hole(O, Y, X).
+hn(O, count(Y, X)) :- hole(O, Y, X).
+pn(P, count(Y, X)) :- piece(P), obj(P, Y, X).
+cand(P, O, DY, DX) :- piece(P), grey(O), pn(P, N), hn(O, N), oy0(P, PY), ox0(P, PX), hy0(O, HY), hx0(O, HX), DY = HY - PY, DX = HX - PX.
+miss(P, O) :- cand(P, O, DY, DX), obj(P, Y, X), Y2 = Y + DY, X2 = X + DX, !hole(O, Y2, X2).
+fits(Y, X) :- cand(P, O, DY, DX), !miss(P, O), obj(P, Y, X).

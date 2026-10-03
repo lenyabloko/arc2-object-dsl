@@ -1,0 +1,11 @@
+% row: d_c1d99e64_3_fullline
+% source: distillation batch reading, task c1d99e64, sample 3
+% output: fullline(Y, X)
+rowlen(Y, count(X)) :- px(Y, X, C).
+rowc(Y, C, count(X)) :- px(Y, X, C).
+fullrow(Y, C) :- rowc(Y, C, N), rowlen(Y, M), N = M.
+collen(X, count(Y)) :- px(Y, X, C).
+colc(X, C, count(Y)) :- px(Y, X, C).
+fullcol(X, C) :- colc(X, C, N), collen(X, M), N = M.
+fullline(Y, X) :- fullrow(Y, C), cell(Y, X, C).
+fullline(Y, X) :- fullcol(X, C), cell(Y, X, C).

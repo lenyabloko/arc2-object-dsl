@@ -1,0 +1,10 @@
+{
+ "eval_digest": "b6c6bfd8fd763162973b4c730ba82cfc1aaa3728f83fec7bffb060b3638b4b49",
+ "gate": "digest only (G18): parity_report.json digest_match true and prediction_digest == eval_digest; no all-120 count",
+ "vocab": "fill_interior,ray,connect,border,bbox_fill,outline8,L_inertia,D12,S_holes,D4,D1,S_size,P_pixel,P_frame,D10,S_atoms,G_dsl,L_lines,L_concepts,L_priors2,L_priors3",
+ "probe": "V34 = V33 + 19 second-pass prior-concept families (Fable v10b T65; stratum L_priors3 after L_priors2; fills empty answer slots only) (unchanged from v21)",
+ "requires_dataset": "lenyabloko/arc2-codex-atoms-v1",
+ "admission": "cycle 28: compare_gate c40 (V33) vs c42 (V34) on the N2 gate b=0 c=0 n_changed=0; parity c43 digest b6c6bfd8, correct design slots 85 (V33 74), max 103.9 s per task, 0 timeouts",
+ "note": "v22 = v21 + logging only (Fable v23 A.2): the driver records per-task wall seconds (<out>.times.json) and its final line carries tasks_timed / max_task_s / n_over_120s; the test cell prints PREDICTION_SET_SHA256, TASK_TIMES and TASK_TIMES_SORTED (anonymous, no task ids). Probe payload, parity cell and setup cell byte-identical to v21; predictions unchanged.",
+ "verified": "2026-10-03 16:35 EDT: full local parity run (120 eval tasks, the v21 probe payload + the v22 logged driver, two halves, PYTHONHASHSEED=0) digest b6c6bfd8 = eval_digest; max task 68.5 s, 0 over 120 s; log lines plumbing-tested on half the output"
+}

@@ -1,0 +1,210 @@
+[
+ {
+  "task": "1990f7a8",
+  "reading": "Four 3x3 red shapes scattered on a large grid are gathered into a 7x7 grid: each shape keeps its pattern and goes to the quadrant (top-left, top-right, bottom-left, bottom-right) matching its relative position, with a 1-cell empty gap row/column between them.",
+  "verb": "gather into quadrants",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "the four 8-connected objects, each with a 3x3 bounding box (copied box by box)",
+   "layout": "2x2 arrangement ordered by the pieces' relative row and column positions",
+   "spacing": "one empty row and column between pieces; output size 7x7"
+  },
+  "why": "each output 3x3 corner block equals the bounding box of the input object lying in that relative quadrant",
+  "invariants": [
+   "each piece's 3x3 pattern and colour",
+   "background 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1acc24af",
+  "reading": "Grey shapes below the blue shape turn red when some rotation/reflection of the shape can be pushed up into one of the blue shape's downward-open holes and fill that hole completely (any remainder hanging below the blue shape without touching blue); other grey shapes stay grey.",
+  "verb": "recolour shapes that plug a hole",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "plug"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plug",
+    "datalog": "g(O, Y, X) :- obj(O, Y, X), cell(Y, X, 5).\nlt(min(Y)) :- cell(Y, X, 1).\nlb(max(Y)) :- cell(Y, X, 1).\nhole(Y, X) :- px(Y, X, 0), lt(T), lb(B), Y >= T, Y <= B.\nup(Y, X) :- hole(Y, X), cell(Y2, X, 1), Y2 < Y.\nlf(Y, X) :- hole(Y, X), cell(Y, X2, 1), X2 < X.\nrt(Y, X) :- hole(Y, X), cell(Y, X2, 1), X2 > X.\ncav(Y, X) :- up(Y, X), lf(Y, X), rt(Y, X).\nreach(Y, X, Y, X) :- cav(Y, X).\nreach(Y, X, Y2, X2) :- reach(Y, X, Y1, X1), off(DY, DX), Y2 = Y1 + DY, X2 = X1 + DX, cav(Y2, X2).\nky(Y, X, min(Y2)) :- reach(Y, X, Y2, X2).\nkx(Y, X, min(X2)) :- ky(Y, X, KY), reach(Y, X, KY, X2).\nck(Y, X, KY, KX) :- ky(Y, X, KY), kx(Y, X, KX).\nrot(O, 0, Y, X) :- g(O, Y, X).\nrot(O, 1, Y, NX) :- g(O, Y, X), NX = 0 - X.\nrot(O, 2, NY, X) :- g(O, Y, X), NY = 0 - Y.\nrot(O, 3, NY, NX) :- g(O, Y, X), NY = 0 - Y, NX = 0 - X.\nrot(O, 4, X, Y) :- g(O, Y, X).\nrot(O, 5, X, NY) :- g(O, Y, X), NY = 0 - Y.\nrot(O, 6, NX, Y) :- g(O, Y, X), NX = 0 - X.\nrot(O, 7, NX, NY) :- g(O, Y, X), NX = 0 - X, NY = 0 - Y.\nplace(O, T, KY, KX, SY, SX) :- rot(O, T, A, B), ck(CY, CX, KY, KX), SY = CY - A, SX = CX - B.\npc(O, T, KY, KX, SY, SX, Y, X) :- place(O, T, KY, KX, SY, SX), rot(O, T, A, B), Y = SY + A, X = SX + B.\nbad(O, T, KY, KX, SY, SX) :- pc(O, T, KY, KX, SY, SX, Y, X), cell(Y, X, 1).\nbad(O, T, KY, KX, SY, SX) :- pc(O, T, KY, KX, SY, SX, Y, X), lb(B), Y <= B, !ck(Y, X, KY, KX).\nmiss(O, T, KY, KX, SY, SX) :- place(O, T, KY, KX, SY, SX), ck(CY, CX, KY, KX), !pc(O, T, KY, KX, SY, SX, CY, CX).\nfits(O) :- place(O, T, KY, KX, SY, SX), !bad(O, T, KY, KX, SY, SX), !miss(O, T, KY, KX, SY, SX).\nplug(Y, X) :- fits(O), g(O, Y, X)."
+   }
+  ],
+  "why": "every cell of a grey (5) shape that can fill a hole of the blue (1) shape becomes red (2); the blue shape and the non-fitting grey shapes are unchanged",
+  "invariants": [
+   "blue shape",
+   "shape positions",
+   "non-fitting grey shapes"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1b8318e3",
+  "reading": "Each single coloured pixel slides in a straight (orthogonal or diagonal) line toward the nearest grey 2x2 block and stops at the first cell touching it (8-adjacency); the grey blocks stay.",
+  "verb": "attract pixels to blocks",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "single",
+    "target": "obstacle"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "single",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nsingle(Y, X) :- obj(O, Y, X), osize(O, N), N = 1."
+   }
+  ],
+  "why": "every 1-cell object keeps its colour and ends 8-adjacent to a grey (5) block, reached by a straight or diagonal path; markers are not usable as subject because some pixels touch each other",
+  "invariants": [
+   "grey 2x2 blocks",
+   "pixel colours and count"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1bfc4729",
+  "reading": "Two pixels (upper and lower) each draw a pattern in their own colour: the upper colour draws the top half (rows 0-4): full row 0, full row through the pixel, and both side columns; the lower colour draws the bottom half (rows 5-9): full row through the pixel, full last row, and both side columns.",
+  "verb": "draw frame halves",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "upper colour": "colour of the pixel in the top half; paints top border row, its own row, side columns of rows 0-4",
+   "lower colour": "colour of the pixel in the bottom half; paints its own row, bottom border row, side columns of rows 5-9",
+   "split": "grid cut into top and bottom halves"
+  },
+  "why": "every non-empty output cell lies on a border row/column of its half or on the row of that half's pixel, coloured by that pixel",
+  "invariants": [
+   "grid size 10x10",
+   "interior cells stay 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1d398264",
+  "reading": "A 3x3 multicoloured block shoots rays: each of its 8 outer cells extends in its own colour away from the centre cell (edges straight, corners diagonally) to the grid border; the centre cell does not extend.",
+  "verb": "radiate",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "why": "every outer block cell continues as a straight line in the direction from the block centre through that cell until the border, in that cell's colour",
+  "invariants": [
+   "the 3x3 block itself"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1e32b0e9",
+  "reading": "The grid is 3x3 panels split by separator lines; the top-left panel holds a template shape. In every panel, each template position that is still background is filled with the separator colour; existing cells stay.",
+  "verb": "complete template in panels",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "spot",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "spot",
+    "datalog": "sepc(C) :- px(5, 0, C).\nsrow(R) :- px(R, 0, C), sepc(C).\npstart(S) :- px(S, 0, C), S = 0.\npstart(S) :- srow(R), S = R + 1.\ntmpl(Y, X) :- cell(Y, X, C), Y < 5, X < 5.\nspot(Y2, X2) :- tmpl(Y, X), pstart(A), pstart(B), Y2 = Y + A, X2 = X + B, px(Y2, X2, 0)."
+   }
+  ],
+  "why": "every background cell at a template offset inside any panel becomes the separator colour (which differs per pair, so the colour is the separator's, not a training constant); nothing else changes",
+  "invariants": [
+   "separator lines",
+   "template shape",
+   "cells already coloured in other panels"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "1e5d6875",
+  "reading": "Each 3-cell L shape (on background 7) gets a copy of itself shifted one diagonal step: grey-5 L's are copied in colour 4 toward the missing corner of their 2x2 box; red-2 L's are copied in colour 3 away from their missing corner. Copies paint only background cells; where a 3 and a 4 copy overlap, 3 wins.",
+  "verb": "cast diagonal shadow copy",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each L-tromino object (colour 5 or 2)",
+   "offset": "one diagonal step: toward the empty corner of its 2x2 box for 5, away from it for 2",
+   "colour": "5 -> 4, 2 -> 3 (training constants)",
+   "paint rule": "only background cells; 3 drawn over 4"
+  },
+  "why": "every new cell belongs to the shifted copy of an adjacent L in its mapped colour",
+  "invariants": [
+   "original L shapes",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "1f0c79e5",
+  "reading": "A 2x2 block contains some red (2) cells; the block is swept diagonally toward each red cell's corner direction until the grid edge, painting the swept band (and the block itself) in the block's other colour.",
+  "verb": "sweep block diagonally",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the 2x2 block",
+   "directions": "for each 2-cell, the diagonal pointing from the block through that corner",
+   "colour": "the block's non-2 colour",
+   "stop": "grid border"
+  },
+  "why": "every output cell of that colour is a cell of the block translated k diagonal steps (k >= 0) in one of the marked directions",
+  "invariants": [
+   "grid size",
+   "background 0 elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2072aba6",
+  "reading": "The 3x3 grid is scaled up by 2: each grey (5) cell becomes the 2x2 tile [1 2 / 2 1] and each 0 cell becomes a 2x2 of 0.",
+  "verb": "upscale with tile",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "scale": "2",
+   "tile for fg": "[[1,2],[2,1]] (training constant)",
+   "tile for bg": "2x2 of 0"
+  },
+  "why": "output block (r,c) is the fixed tile when input cell (r,c) is 5, else empty",
+  "invariants": [
+   "layout of input cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "20fb2937",
+  "reading": "The top panel is a key: three 3x3 colour blocks with one marker pixel under each (row 4), mapping marker colour -> block colour. The output is the bottom panel (below the full separator row), where every marker pixel becomes a 3x3 block of its mapped colour centred on it.",
+  "verb": "decode markers into blocks",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "marker colour in the row under each key block -> that block's colour",
+   "canvas": "the panel below the separator row (13 rows), background 7",
+   "anchors": "each marker pixel in that panel",
+   "unit": "3x3 solid block centred on the marker, colour from the key"
+  },
+  "why": "every 3x3 block in the output is centred on a marker of the bottom panel and coloured by the key; all other cells are 7",
+  "invariants": [
+   "marker positions (relative to the bottom panel)",
+   "width 11"
+  ],
+  "confidence": "high"
+ }
+]

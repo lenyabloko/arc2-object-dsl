@@ -1,0 +1,209 @@
+[
+ {
+  "task": "6f8cd79b",
+  "reading": "The grid's outer ring of cells (first/last row and column) is painted 8; the inside stays 0.",
+  "verb": "paint border",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "edge_ring",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "edge_ring",
+    "datalog": "maxy(max(Y)) :- px(Y, X, C).\nmaxx(max(X)) :- px(Y, X, C).\nedge_ring(Y, X) :- px(Y, X, C), Y = 0.\nedge_ring(Y, X) :- px(Y, X, C), X = 0.\nedge_ring(Y, X) :- px(Y, X, C), maxy(M), Y = M.\nedge_ring(Y, X) :- px(Y, X, C), maxx(M), X = M."
+   }
+  ],
+  "why": "every grid-border cell is 8 in the output and every interior cell is unchanged",
+  "invariants": [
+   "grid size",
+   "interior cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72207abc",
+  "reading": "The seed row's coloured cells sit at positions 0,1,3; the row is continued with cells at triangular positions (gaps 1,2,3,4,...) cycling through the seed's colours in order.",
+  "verb": "continue sequence",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "seed": "the non-zero cells of the middle row (colours in left-to-right order)",
+   "positions": "triangular numbers 0,1,3,6,10,15,21,28,... up to the row end",
+   "colour": "seed colours repeated cyclically"
+  },
+  "why": "every non-zero output cell is at a triangular index and its colour is seed[i mod n]",
+  "invariants": [
+   "grid size",
+   "rows other than the seed row stay 0",
+   "seed cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72a961c9",
+  "reading": "Each odd-coloured cell inside the line of 1s grows a stalk upward: 1s then the odd colour on top; 8 gives a stalk of height 3, 2 gives height 4.",
+  "verb": "grow stalk",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "line": "the full row of 1s with odd cells",
+   "sources": "non-1 cells in that row",
+   "length": "per-colour constant learned from training (8->3, 2->4)",
+   "stalk": "(length-1) cells of 1 directly above the source, topped by one cell of the source colour"
+  },
+  "why": "above every odd cell there is a vertical run of 1s ending in the odd colour, of the colour's fixed length; nothing else changes",
+  "invariants": [
+   "the line row",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "73c3b0d8",
+  "reading": "Every 4 moves down one row; any 4 that lands directly on top of the 2-line shoots diagonal rays of 4 up-left and up-right to the grid edge.",
+  "verb": "drop and splash",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "all 4 cells",
+   "shift": "one row down",
+   "trigger": "landing cell directly above the row of 2s",
+   "rays": "two diagonals (up-left, up-right) of 4 from the landed cell to the border"
+  },
+  "why": "each input 4 at (y,x) is at (y+1,x) in the output, and only those touching the separator emit a V of diagonals",
+  "invariants": [
+   "the 2 separator row",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "770cc55f",
+  "reading": "In the columns shared by the top bar and the bottom bar, the cells between the 2-separator and the wider of the two bars are filled with 4.",
+  "verb": "fill overlap",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "overlap_half",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "overlap_half",
+    "datalog": "maxy(max(Y)) :- px(Y, X, C).\nsep(Y) :- cell(Y, X, C), Y > 0, maxy(M), Y < M.\ntopc(X) :- cell(Y, X, C), Y = 0.\nbotc(X) :- cell(Y, X, C), maxy(M), Y = M.\ntopw(count(X)) :- topc(X).\nbotw(count(X)) :- botc(X).\nboth(X) :- topc(X), botc(X).\noverlap_half(Y, X) :- both(X), px(Y, X, C), sep(S), Y > S, maxy(M), Y < M, topw(A), botw(B), B > A.\noverlap_half(Y, X) :- both(X), px(Y, X, C), sep(S), Y < S, Y > 0, topw(A), botw(B), A > B."
+   }
+  ],
+  "why": "exactly the overlap columns on the wider bar's side of the separator become 4; nothing else changes",
+  "invariants": [
+   "both bars",
+   "separator row"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "782b5218",
+  "reading": "The 2s form a boundary across the grid; everything on the lower (bottom-left) side becomes the scatter colour, everything on the upper (top-right) side becomes 0, and the 2s stay.",
+  "verb": "split by boundary",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "boundary": "all 2 cells (kept)",
+   "lower side": "non-2 cells 4-connected to the bottom-left corner without crossing 2 -> filled with the grid's other colour",
+   "upper side": "non-2 cells 4-connected to the top-right corner -> cleared to 0"
+  },
+  "why": "the 2s cut the grid into exactly two regions; lower is solid colour, upper is empty",
+  "invariants": [
+   "every 2 cell",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7acdf6d3",
+  "reading": "The scattered cells of one colour are removed and, as a group, fill the open cup of the other-colour shape whose interior capacity equals their count; other cups stay empty.",
+  "verb": "pour into matching cup",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "filler": "the scattered single cells (their colour and count N)",
+   "cups": "V/U-shaped objects of the other colour",
+   "target": "the cup whose enclosed interior has exactly N cells",
+   "result": "target interior painted the filler colour; scattered cells set to background"
+  },
+  "why": "number of filled cells equals number of removed scattered cells, and they exactly fill one cup's interior",
+  "invariants": [
+   "cup shapes",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7d18a6fb",
+  "reading": "The 7x7 block of 1s is a key with a colour at each inner corner; the output is a 7x7 grid where each 3x3 shape is placed in the quadrant whose key corner has its colour, with an empty middle row and column.",
+  "verb": "assemble by key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 7x7 box of 1 with colours at (1,1),(1,5),(5,1),(5,5)",
+   "pieces": "the four 3x3-box shapes elsewhere, one per key colour",
+   "layout": "piece of key colour at (1,1) -> output rows 0-2 cols 0-2; (1,5) -> rows 0-2 cols 4-6; (5,1) -> rows 4-6 cols 0-2; (5,5) -> rows 4-6 cols 4-6"
+  },
+  "why": "each output quadrant is exactly the 3x3 box of the piece matching that key corner",
+  "invariants": [
+   "piece shapes copied unchanged",
+   "output 7x7"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d419a02",
+  "reading": "The 2x2 block of 6 sits in one 2-wide band; its own band is kept, and in every other band the 8s outside a widening cone around the block's rows/columns turn 4 (band at distance d keeps the block's span plus 2(d-1) on each side).",
+  "verb": "shade outside cone",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "anchor": "the 2x2 block of 6",
+   "bands": "2-wide stripes of 8 separated by 0 lines (rows or columns)",
+   "kept": "cells in the anchor's band, or within the anchor span widened by 2(d-1) per side at band distance d",
+   "recolour": "8 -> 4 for all other 8 cells"
+  },
+  "why": "only 8 cells change, to 4, exactly outside the cone; 0 holes and 6 unchanged",
+  "invariants": [
+   "0 cells",
+   "6 block",
+   "anchor band"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7d7772cc",
+  "reading": "A reference line inside a frame is compared cell by cell with a parallel line of coloured marks; marks equal to the reference cell beside them move next to the frame, marks that differ move to the opposite grid edge.",
+  "verb": "sort by match",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "reference": "the coloured line inside the frame (row or column)",
+   "marks": "the parallel line of coloured cells outside the frame",
+   "match": "mark colour equals reference colour at the same position -> moved to the cell adjacent to the frame",
+   "mismatch": "-> moved to the far grid border line"
+  },
+  "why": "every mark keeps its position along the line; its new depth depends only on whether it matches the reference",
+  "invariants": [
+   "frame and reference line",
+   "background"
+  ],
+  "confidence": "high"
+ }
+]

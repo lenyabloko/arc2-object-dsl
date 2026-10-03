@@ -1,0 +1,6 @@
+% row: d_0ca9ddb6_0_orth_of_blue
+% source: distillation batch reading, task 0ca9ddb6, sample 0
+% output: orth_of_blue(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+orth_of_blue(Y, X) :- cell(Y0, X0, C), C = 1, orth(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B).

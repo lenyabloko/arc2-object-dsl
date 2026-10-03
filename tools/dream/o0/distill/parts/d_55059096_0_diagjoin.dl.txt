@@ -1,0 +1,7 @@
+% row: d_55059096_0_diagjoin
+% source: distillation batch reading, task 55059096, sample 0
+% output: diagjoin(Y, X)
+centre(Y, X) :- cell(Y, X, C), Ya = Y - 1, Yb = Y + 1, Xa = X - 1, Xb = X + 1, cell(Ya, X, C1), cell(Yb, X, C2), cell(Y, Xa, C3), cell(Y, Xb, C4).
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+diagjoin(Y, X) :- centre(Y1, X1), centre(Y2, X2), E = Y2 - Y1, F = X2 - X1, E = F, E > 0, bgc(Y, X), DY = Y - Y1, DX = X - X1, DY = DX, DY > 0, DY < E.
+diagjoin(Y, X) :- centre(Y1, X1), centre(Y2, X2), E = Y2 - Y1, F = X1 - X2, E = F, E > 0, bgc(Y, X), DY = Y - Y1, DX = X1 - X, DY = DX, DY > 0, DY < E.

@@ -1,0 +1,7 @@
+% row: d_2281f1f4_3_cross
+% source: distillation batch reading, task 2281f1f4, sample 3
+% output: cross(Y, X)
+maxx(max(X)) :- px(Y, X, C).
+top(X) :- cell(Y, X, C), Y = 0, maxx(M), X < M.
+right(Y) :- cell(Y, X, C), maxx(M), X = M, Y > 0.
+cross(Y, X) :- top(X), right(Y).

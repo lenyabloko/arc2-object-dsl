@@ -1,0 +1,12 @@
+% row: d_a8d7556c_1_zrect
+% source: distillation batch reading, task a8d7556c, sample 1
+% output: zrect(Y, X)
+z(Y, X) :- px(Y, X, 0).
+vr(Y, Y, X) :- z(Y, X).
+vr(A, B2, X) :- vr(A, B, X), B2 = B + 1, z(B2, X).
+rc(A, B, X, X) :- vr(A, B, X).
+rc(A, B, P, Q2) :- rc(A, B, P, Q), Q2 = Q + 1, vr(A, B, Q2).
+big(A, B, P, Q) :- rc(A, B, P, Q), B > A, Q > P.
+area(A, B, P, Q, count(Y, X)) :- big(A, B, P, Q), z(Y, X), Y >= A, Y <= B, X >= P, X <= Q.
+beaten(A, B, P, Q) :- area(A, B, P, Q, N), area(A2, B2, P2, Q2, M), M > N, A2 <= B, A <= B2, P2 <= Q, P <= Q2.
+zrect(Y, X) :- area(A, B, P, Q, N), !beaten(A, B, P, Q), z(Y, X), Y >= A, Y <= B, X >= P, X <= Q.

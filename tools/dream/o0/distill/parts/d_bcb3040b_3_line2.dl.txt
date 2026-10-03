@@ -1,0 +1,8 @@
+% row: d_bcb3040b_3_line2
+% source: distillation batch reading, task bcb3040b, sample 3
+% output: line2(Y, X)
+two(Y, X) :- px(Y, X, 2).
+line2(Y, X) :- two(Y, X1), two(Y, X2), X1 < X, X < X2, px(Y, X, C).
+line2(Y, X) :- two(Y1, X), two(Y2, X), Y1 < Y, Y < Y2, px(Y, X, C).
+line2(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, X2 = X1 + D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 + K.
+line2(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, X1 = X2 + D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 - K.

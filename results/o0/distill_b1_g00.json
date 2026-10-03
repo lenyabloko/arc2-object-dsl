@@ -1,0 +1,1317 @@
+{
+ "group": 0,
+ "tasks": {
+  "007bbfb7": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "007bbfb7",
+     "sample": 0,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is scaled to a 3x3 grid of 3x3 blocks; block (i,j) is a copy of the input where input cell (i,j) is non-background, otherwise empty.",
+     "why": "every output block is either the input or all background, and it is the input exactly where the input cell is fg",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        5,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        5,
+        [
+         2
+        ]
+       ],
+       [
+        7,
+        [
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "007bbfb7",
+     "sample": 1,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is scaled to a 3x3 grid of 3x3 blocks; block (i,j) holds a copy of the input exactly where input cell (i,j) is non-background, else it is empty.",
+     "why": "every output block is the input or empty, and block (i,j) is the input iff input cell (i,j) is fg",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        5,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        5,
+        [
+         2
+        ]
+       ],
+       [
+        7,
+        [
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "007bbfb7",
+     "sample": 2,
+     "verb": "self-tile",
+     "reading": "The 3x3 input becomes a 3x3 grid of blocks; each block whose position is a foreground cell of the input holds a copy of the input, the rest are empty.",
+     "why": "block (i,j) of the output equals the input iff input cell (i,j) is foreground, else it is all background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        5,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        5,
+        [
+         2
+        ]
+       ],
+       [
+        7,
+        [
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "007bbfb7",
+     "sample": 3,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is scaled into a 3x3 grid of blocks; block (i,j) is a copy of the whole input where input cell (i,j) is non-background, else empty.",
+     "why": "every output block equals the input exactly when the corresponding input cell is fg, and is all background otherwise",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        5,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        5,
+        [
+         2
+        ]
+       ],
+       [
+        7,
+        [
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "007bbfb7",
+     "sample": 4,
+     "verb": "self-tile",
+     "reading": "The 3x3 input becomes a 3x3 grid of 3x3 blocks; a block holds a copy of the input where the input cell at that block position is non-background, else it is empty.",
+     "why": "block (i,j) of the output equals the input iff input(i,j) is fg, otherwise all background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        5,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        5,
+        [
+         2
+        ]
+       ],
+       [
+        7,
+        [
+         7
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    }
+   ]
+  },
+  "017c7c7b": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "017c7c7b",
+     "sample": 0,
+     "verb": "continue pattern",
+     "reading": "The 6-row input is a vertical repeat of a short row pattern; the pattern is continued to 9 rows and colour 1 becomes 2.",
+     "why": "output row i = input row (i mod p) with 1 recoloured to 2, for i in 0..8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "017c7c7b",
+     "sample": 1,
+     "verb": "continue pattern and recolour",
+     "reading": "The 6-row input is a vertically periodic pattern; it is continued downward to 9 rows using its smallest row period, and colour 1 becomes 2.",
+     "why": "output row i equals input row (i mod p) with 1 replaced by 2, for i < 9",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "017c7c7b",
+     "sample": 2,
+     "verb": "continue pattern and recolour",
+     "reading": "The 6x3 input is a vertically periodic pattern; the output continues the pattern to 9 rows and recolours 1 to 2.",
+     "why": "output row r equals input row (r mod period) with 1 replaced by 2",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "017c7c7b",
+     "sample": 3,
+     "verb": "continue pattern and recolour",
+     "reading": "The 6x3 input is a vertically periodic pattern; it is continued to 9 rows with the same period and colour 1 becomes 2.",
+     "why": "output row r equals input row (r mod period) with 1 replaced by 2, for r = 0..8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "017c7c7b",
+     "sample": 4,
+     "verb": "continue period and recolour",
+     "reading": "The 6-row input is a vertically periodic pattern; it is continued with its smallest period to 9 rows and colour 1 is recoloured to 2.",
+     "why": "output row r equals input row (r mod period) with 1 replaced by 2",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "03560426": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "03560426",
+     "sample": 0,
+     "verb": "chain objects diagonally",
+     "reading": "Objects resting on the bottom are taken left to right and chained diagonally from the top-left corner: the first object's box is placed at (0,0) and each next object's top-left cell goes on the previous object's bottom-right cell, later objects drawn over earlier ones.",
+     "why": "every object keeps its shape and colour; boxes overlap only at chained corners",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "03560426",
+     "sample": 1,
+     "verb": "chain objects diagonally",
+     "reading": "The solid objects lying along the bottom are taken left to right and chained diagonally from the top-left corner: the first object's top-left goes to (0,0), and each next object's top-left cell is placed on the previous object's bottom-right cell, drawn on top of it. The input positions are cleared.",
+     "why": "each object keeps its shape and colour; consecutive objects overlap in exactly one corner cell, owned by the later object",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "03560426",
+     "sample": 2,
+     "verb": "stack diagonally",
+     "reading": "The objects standing on the bottom row are taken left to right and chained diagonally from the top-left corner: each next object's top-left cell sits on the previous object's bottom-right cell, the later object drawn on top.",
+     "why": "each object keeps its shape and colour; consecutive objects share exactly the corner cell, which takes the later colour",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "03560426",
+     "sample": 3,
+     "verb": "chain objects diagonally",
+     "reading": "The objects lying on the bottom edge are taken left to right and chained diagonally from the top-left corner: each object's top-left cell is placed on the previous object's bottom-right cell, later objects overwriting earlier ones.",
+     "why": "every object keeps its shape and colour; consecutive objects share exactly one cell (corner overlap) with the later colour shown",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "03560426",
+     "sample": 4,
+     "verb": "chain objects corner to corner",
+     "reading": "The objects sitting on the bottom row are taken left to right and chained diagonally from the top-left corner: the first object's top-left goes to (0,0), and each next object's top-left goes on the previous object's bottom-right cell, overwriting it.",
+     "why": "each object keeps shape and colour; consecutive objects share exactly one corner cell",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "045e512c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "045e512c",
+     "sample": 0,
+     "verb": "repeat shape toward markers",
+     "reading": "A 3x3 main shape has small marker pieces one gap away on some sides; the main shape is repeated in each marker's direction with step 4 (3 + gap) until the border, each copy in that marker's colour.",
+     "why": "copies at offsets 4k*(dy,dx), k>=1, are exact recoloured copies of the unit's shape; the unit itself unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "045e512c",
+     "sample": 1,
+     "verb": "repeat exemplar toward fragments",
+     "reading": "One exemplar shape (box size s) has small fragments of other colours next to it; each fragment is part of a copy of the exemplar offset by s+1 in one of 8 directions. The exemplar is repeated in that direction every s+1 cells, in the fragment's colour, until it leaves the grid (clipped).",
+     "why": "every fragment is a subset of the exemplar shifted one stride; every output copy is the exemplar shape shifted k strides in the fragment's direction, recoloured",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "045e512c",
+     "sample": 2,
+     "verb": "repeat along direction",
+     "reading": "One 3x3 single-colour shape is the exemplar; each small fragment of another colour lying next to it (gap 1) marks a direction, and the exemplar is repeated in that direction every 4 cells in the fragment's colour until the border.",
+     "why": "each fragment is a part of the first copy; all copies have the exemplar's shape and lie on the ray at spacing 4",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "045e512c",
+     "sample": 3,
+     "verb": "repeat shape along marker directions",
+     "reading": "A central 3x3 shape has small coloured fragments next to it; each fragment is part of a copy of the shape offset by 4 (size+1) in that direction, and copies of the shape in the fragment's colour are repeated every 4 cells in that direction to the border.",
+     "why": "every copy equals the central shape recoloured; each fragment lies inside the first copy in its direction; copies are spaced 4 apart until the border",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "045e512c",
+     "sample": 4,
+     "verb": "repeat shape toward marker",
+     "reading": "A 3x3 shape has small marker pieces of other colours next to it on some sides (including diagonals); in each marker's direction the shape is repeated in the marker's colour every 4 cells until the border.",
+     "why": "every copy is the shape's exact mask recoloured, at offsets k*4 along the marker direction, k>=1",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "0607ce86": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "0607ce86",
+     "sample": 0,
+     "verb": "denoise repeated tiles",
+     "reading": "The grid holds a regular array of identical tiles corrupted by noise cells; every tile is replaced by the cell-wise majority tile and everything outside the tiles is cleared.",
+     "why": "every output tile equals the majority tile; output is background outside the tile array",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0607ce86",
+     "sample": 1,
+     "verb": "denoise repeated tiles by majority",
+     "reading": "A lattice of identical rectangular tiles is corrupted by noise (wrong cells inside tiles and stray cells outside). The output restores every tile to the cell-wise majority over all tiles and clears everything outside the tiles.",
+     "why": "all tiles in the output are identical and equal the per-cell majority of the input tiles; cells outside tiles are background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0607ce86",
+     "sample": 2,
+     "verb": "denoise by majority",
+     "reading": "A lattice of copies of one tile is corrupted by noise; the output replaces every tile by the cell-wise majority over all tiles and clears all noise outside the tiles.",
+     "why": "every output tile is identical and equals the per-cell majority of the input tiles; nothing outside the tiles is non-background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0607ce86",
+     "sample": 3,
+     "verb": "denoise repeated tiles",
+     "reading": "A lattice of identical multi-coloured tiles is corrupted by scattered noise (colour 3 cells inside and outside the tiles); the output restores every tile to the common (majority) tile and clears all noise outside the tiles.",
+     "why": "all tiles in the output are identical and equal the cellwise majority of the input tiles; non-tile cells are 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0607ce86",
+     "sample": 4,
+     "verb": "denoise repeated tiles by majority",
+     "reading": "Identical rectangular tiles repeat on a regular grid but are corrupted by noise, and noise is scattered outside; each tile is replaced by the cell-wise majority of all tiles and everything outside the tiles is cleared.",
+     "why": "every tile in the output is the same majority pattern; all non-tile cells are background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "0692e18c": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "0692e18c",
+     "sample": 0,
+     "verb": "tile inverted input",
+     "reading": "Like a self-tile: block (i,j) of the 9x9 output is filled where input cell (i,j) is fg, but the block is the colour-inverted input (fg cells become 0, 0 cells become the fg colour).",
+     "why": "every output block is either the inverted input or all background, inverted exactly where the input cell is fg",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0692e18c",
+     "sample": 1,
+     "verb": "tile inverted input",
+     "reading": "Like a self-tile: the 3x3 input becomes a 9x9 grid of 3x3 blocks, and block (i,j) gets a copy wherever input cell (i,j) is coloured; but the copy is the colour-inverted input (coloured cells become 0, empty cells take the colour).",
+     "why": "every output block is empty or the inverted input, and block (i,j) is filled iff input (i,j) is fg",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0692e18c",
+     "sample": 2,
+     "verb": "self-tile inverted",
+     "reading": "The 3x3 input becomes a 3x3 grid of blocks; each block at a foreground position holds the colour-inverted input (foreground and background swapped), the others are empty.",
+     "why": "block (i,j) equals the inverted input iff input cell (i,j) is foreground, else all background",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "0692e18c",
+     "sample": 3,
+     "verb": "tile inverted input",
+     "reading": "Like a self-tile, but the copy is the colour-inverted input (fg cells become background, background cells become the fg colour); block (i,j) holds this inverted copy where input cell (i,j) is fg, else empty.",
+     "why": "every output block is either all background or the inverted input, exactly when the matching input cell is fg",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0692e18c",
+     "sample": 4,
+     "verb": "self-tile inverted",
+     "reading": "Like a self-tile: the 3x3 input becomes a 3x3 grid of blocks, and each block at a non-background input position holds the colour-inverted input (fg cells become background, background cells take the colour); other blocks are empty.",
+     "why": "block (i,j) equals the inverted input iff input(i,j) is fg",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "06df4c85": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "06df4c85",
+     "sample": 0,
+     "verb": "connect same-colour cells",
+     "reading": "A lattice of separator lines holds 2x2 coloured cells; background cells lying between two cells of the same colour on one row or column are filled with that colour, separator lines left intact.",
+     "why": "each filled cell is background with a same (non-separator) colour on both sides in its row or column; no other cell changes",
+     "new_rows": [
+      "d_06df4c85_0_between_same"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "between_same": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "06df4c85",
+     "sample": 1,
+     "verb": "connect same-colour cells",
+     "reading": "A lattice of 2x2 cells separated by full grid lines; two cells of the same colour on one row or column are joined by filling the empty (0) cells between them with that colour. The grid lines stay.",
+     "why": "every 0 cell lying on a row or column strictly between two cells of the same (non-lattice, non-0) colour takes that colour; nothing else changes. Note: the lattice colour is the most common colour, so the empty cells are colour 0, not the background.",
+     "new_rows": [
+      "d_06df4c85_1_between_same"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "between_same": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "06df4c85",
+     "sample": 2,
+     "verb": "connect same colours",
+     "reading": "On a grid of cells cut by lines, every two same-coloured blocks on one row or column of cells are joined: the background cells between them take their colour, the grid lines stay.",
+     "why": "a background cell is filled with colour c exactly when the nearest non-line coloured cells on both sides along its row or its column are both c; line cells never change",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "06df4c85",
+     "sample": 3,
+     "verb": "connect same colours",
+     "reading": "A grid of 2x2 cells separated by full lines holds a few coloured cells; every empty (0) cell lying between two cells of the same colour on one row or column is filled with that colour, separator lines stay.",
+     "why": "the separator colour is the most common (background), so cell() gives 0-cells and coloured cells; each filled 0-cell takes the colour of the equal-coloured pair it lies between; no conflicts occur",
+     "new_rows": [
+      "d_06df4c85_3_gap0_between"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap0_between": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "06df4c85",
+     "sample": 4,
+     "verb": "connect same-colour cells",
+     "reading": "A grid of 2x2 cells separated by full lines; two cells of the same colour on one row or column are joined by filling the empty cells between them with that colour, the separator lines staying unchanged.",
+     "why": "every 0 cell lying between two cells of one non-separator colour on its row or column takes that colour; no conflicts occur. Note the separator colour is the most common colour, so 0 is not the background here and the built-in 'between' row may not apply.",
+     "new_rows": [
+      "d_06df4c85_4_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "09629e4f": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "09629e4f",
+     "sample": 0,
+     "verb": "enlarge sparsest panel",
+     "reading": "Separator lines cut the grid into 3x3 panels of 3x3 cells; the one panel with the fewest coloured cells (4) is enlarged so that each panel is filled entirely with the colour of the corresponding cell of that panel (0 where it is empty).",
+     "why": "every output panel is uniform and its colour equals the chosen panel's cell at that panel's position",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09629e4f",
+     "sample": 1,
+     "verb": "upscale key panel onto panel grid",
+     "reading": "The grid is 3x3 panels cut by grey (5) lines. The one panel with the fewest coloured cells (4 instead of 5) is the key; it is blown up so that panel (i,j) is filled entirely with the colour of key cell (i,j) (0 stays empty). Separator lines stay.",
+     "why": "each output panel is uniform and its colour equals the key panel's cell at the panel's position",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09629e4f",
+     "sample": 2,
+     "verb": "enlarge odd panel",
+     "reading": "Separator lines cut the grid into 3x3 panels of 3x3 cells; the one panel with 4 coloured cells (others have 5) is enlarged: each output panel is filled with the colour of the matching cell of that panel, or left empty.",
+     "why": "every output panel is uniform and equals the colour of the corresponding cell of the sparsest input panel",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09629e4f",
+     "sample": 3,
+     "verb": "select odd panel and upscale",
+     "reading": "A 3x3 arrangement of 3x3 panels split by 5-lines; the one panel lacking colour 8 (only 4 coloured cells) is selected and upscaled: output panel (i,j) is filled entirely with the colour of that panel's cell (i,j), separators kept.",
+     "why": "output panel (i,j) is uniform with colour = chosen panel cell (i,j); separator lines unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09629e4f",
+     "sample": 4,
+     "verb": "blow up sparse panel",
+     "reading": "A 3x3 arrangement of 3x3 panels split by lines of 5; the panel with the fewest coloured cells is a key, and each output panel is filled entirely with the key's cell at the same position (0 where the key is empty).",
+     "why": "every output panel is uniform with colour key(i,j)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "0962bcdd": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "0962bcdd",
+     "sample": 0,
+     "verb": "grow cross into star",
+     "reading": "Each small plus (centre colour A, arms colour B) grows into a star: the arms extend to length 2 in colour B and diagonals of length 2 are drawn from the centre in colour A.",
+     "why": "every star is a 5x5 pattern centred on the plus centre; other cells unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0962bcdd",
+     "sample": 1,
+     "verb": "grow cross into star",
+     "reading": "Each small plus (centre colour a, four arms colour b) grows into a 5x5 star: the arms extend to length 2 in colour b and the four diagonals are drawn to length 2 in the centre colour a.",
+     "why": "around every plus centre, cells at orthogonal distance 1-2 have the arm colour and cells at diagonal distance 1-2 have the centre colour; nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0962bcdd",
+     "sample": 2,
+     "verb": "grow cross",
+     "reading": "Each small plus (centre colour c, four arms colour a) grows into a 5x5 star: arms of colour a reach distance 2, and both diagonals of colour c reach distance 2.",
+     "why": "every plus becomes the same 5x5 star pattern relative to its centre, colours taken from that plus",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0962bcdd",
+     "sample": 3,
+     "verb": "grow cross into star",
+     "reading": "Each small cross (centre colour c, four arm cells colour a) grows into a radius-2 star: the arms extend one more cell in colour a and the four diagonals from the centre get two cells of colour c.",
+     "why": "around every cross centre the 5x5 output window is the fixed star pattern with that cross's two colours; everything else stays background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "0962bcdd",
+     "sample": 4,
+     "verb": "grow cross into star",
+     "reading": "Each small cross (centre colour A, arms colour B) grows into a 5x5 star: the arms extend one more cell in each orthogonal direction in B, and the four diagonals get two cells each in A.",
+     "why": "around every cross centre the 5x5 pattern (A diagonals, B orthogonals) is drawn; all else unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "09c534e7": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "09c534e7",
+     "sample": 0,
+     "verb": "flood interior with seed colour",
+     "reading": "Blobs of 1 joined by thin paths each contain one seed cell of another colour; every 1-cell whose 8 neighbours are all non-background (inside the grid) takes the seed colour of its connected blob.",
+     "why": "exactly the fg cells with all 8 neighbours fg change, to their component's seed colour",
+     "new_rows": [
+      "d_09c534e7_0_interior"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "interior": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09c534e7",
+     "sample": 1,
+     "verb": "flood seed colour into box interiors",
+     "reading": "Networks of colour-1 boxes joined by 1-paths; each network holds one seed cell of another colour. The seed's colour fills the interior of every box in its network (cells whose 8 neighbours are all non-background).",
+     "why": "within each connected (multi-colour) component, every interior cell takes the component's seed colour; edges and paths stay 1. Plain nearest-seed over the whole grid fails, so the key must be scoped to the component.",
+     "new_rows": [
+      "d_09c534e7_1_interior"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "interior": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09c534e7",
+     "sample": 2,
+     "verb": "flood inside with seed",
+     "reading": "Each blob of 1s contains one seed cell of another colour; every 1-cell of the blob whose 8 neighbours are all non-background (the blob's inside) takes the seed colour.",
+     "why": "within each 8-connected blob, exactly the 1-cells with no background or off-grid neighbour change, and they become the blob's seed colour",
+     "new_rows": [
+      "d_09c534e7_2_interior"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "interior": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09c534e7",
+     "sample": 3,
+     "verb": "flood interior with seed colour",
+     "reading": "Blobs of colour 1 (rectangles joined by thin bridges) each contain one seed cell of another colour; every interior cell of the blob (all 8 neighbours non-background) takes the seed's colour.",
+     "why": "within each component, a cell changes iff all its 8 neighbours are non-background, and it becomes that component's seed colour; border cells and bridges stay 1",
+     "l4": "hypo (first word)",
+     "new_rows": [
+      "d_09c534e7_3_interior"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "interior": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "09c534e7",
+     "sample": 4,
+     "verb": "flood interiors with seed colour",
+     "reading": "Connected shapes of 1 (blocks joined by thin corridors) each contain one seed cell of another colour; every interior cell of that connected shape (all 8 neighbours non-background) takes the seed colour.",
+     "why": "exactly the interior cells of seeded components change, to that component's seed colour; components without a seed and border cells of shapes are unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

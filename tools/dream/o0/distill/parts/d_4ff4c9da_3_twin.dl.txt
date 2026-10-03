@@ -1,0 +1,15 @@
+% row: d_4ff4c9da_3_twin
+% source: distillation batch reading, task 4ff4c9da, sample 3
+% output: twin(Y, X)
+t8(Y, X) :- px(Y, X, 8).
+ringc(C) :- t8(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), C != 8.
+srcc(C) :- px(Y, X, C), C != 8, !ringc(C).
+osize(O, count(Y, X)) :- obj(O, Y, X).
+oy(O, min(Y)) :- obj(O, Y, X).
+ox(O, min(X)) :- obj(O, Y, X).
+rel(O, DY, DX) :- obj(O, Y, X), oy(O, A), ox(O, B), DY = Y - A, DX = X - B.
+tmpl(T) :- obj(T, Y, X), t8(Y, X).
+cand(O) :- obj(O, Y, X), px(Y, X, C), srcc(C).
+miss(O, T) :- cand(O), tmpl(T), rel(T, DY, DX), !rel(O, DY, DX).
+same(O) :- cand(O), tmpl(T), osize(O, N), osize(T, N), !miss(O, T).
+twin(Y, X) :- same(O), obj(O, Y, X).

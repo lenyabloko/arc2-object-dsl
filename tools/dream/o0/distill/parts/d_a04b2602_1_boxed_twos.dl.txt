@@ -1,0 +1,9 @@
+% row: d_a04b2602_1_boxed_twos
+% source: distillation batch reading, task a04b2602, sample 1
+% output: boxed_twos(Y, X)
+c3(O) :- obj(O, Y, X), cell(Y, X, 3).
+top(O, min(Y)) :- c3(O), obj(O, Y, X).
+bot(O, max(Y)) :- c3(O), obj(O, Y, X).
+lft(O, min(X)) :- c3(O), obj(O, Y, X).
+rgt(O, max(X)) :- c3(O), obj(O, Y, X).
+boxed_twos(Y, X) :- cell(Y, X, 2), c3(O), top(O, A), bot(O, B), lft(O, L), rgt(O, R), A1 = A - 1, B1 = B + 1, L1 = L - 1, R1 = R + 1, Y > A1, Y < B1, X > L1, X < R1.

@@ -1,0 +1,229 @@
+[
+ {
+  "task": "7e02026e",
+  "reading": "Every plus-shaped cross of five 0-cells (a 0 cell whose four orthogonal neighbours are also 0) is recoloured 3; overlapping crosses merge. Everything else is unchanged.",
+  "verb": "recolour plus shapes",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "plus0"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plus0",
+    "datalog": "pc(Y, X) :- px(Y, X, 0), Y1 = Y - 1, px(Y1, X, 0), Y2 = Y + 1, px(Y2, X, 0), X1 = X - 1, px(Y, X1, 0), X2 = X + 1, px(Y, X2, 0).\nplus0(Y, X) :- pc(Y, X).\nplus0(Y2, X) :- pc(Y, X), off(DY, DX), DX = 0, Y2 = Y + DY.\nplus0(Y, X2) :- pc(Y, X), off(DY, DX), DY = 0, X2 = X + DX."
+   }
+  ],
+  "why": "every 0-cell that belongs to some 5-cell 0 plus becomes 3 (key 0->3); no other cell changes",
+  "invariants": [
+   "grid size",
+   "all 8 cells",
+   "0 cells not in any plus"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7ec998c9",
+  "reading": "From the single marker, a colour-1 path is drawn: a vertical line through the marker's whole column (marker kept), joined along the top row to one corner and along the bottom row to the opposite corner. The side taken on the top row (left vs right) alternates; it goes left in two pairs (marker row odd) and right in one (marker row even).",
+  "verb": "draw snake path",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "anchor": "the single marker cell",
+   "path": "full column of the marker in colour 1, plus top-row segment to one corner and bottom-row segment to the opposite corner",
+   "direction": "top segment goes left / bottom right, or the reverse; appears to follow marker row parity (odd -> top-left)",
+   "colour": "1 (constant)"
+  },
+  "why": "output = input plus a 1-coloured Z/S path through the marker column; marker cell unchanged",
+  "invariants": [
+   "grid size",
+   "background",
+   "marker cell"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "825aa9e9",
+  "reading": "Loose shapes (colours other than the air colour 7 and the static floor/wall colour) fall straight down. A falling shape stops leaving exactly one empty row above the floor, a static obstacle or the grid bottom, but stacks directly on top of an already-fallen shape.",
+  "verb": "drop with gap",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "objects of the movable colour (not air 7, not the floor/wall colour that appears in the bottom row)",
+   "direction": "down",
+   "stop": "one empty row above any floor/static cell or the grid bottom; direct contact with already-settled movers",
+   "order": "lowest shape first"
+  },
+  "why": "each moved shape keeps its shape, is shifted down only, and the static colour and air layout are unchanged",
+  "invariants": [
+   "grid size",
+   "floor/wall cells",
+   "number of cells of each colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "82819916",
+  "reading": "One row is a complete two-colour template; other rows show only a prefix. Each partial row is completed by copying the template's pattern, with the template's colours replaced by the colours in the prefix at the matching positions.",
+  "verb": "complete row by analogy",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "template": "the one fully non-background row",
+   "targets": "rows with only a short non-background prefix",
+   "mapping": "template colour at column j -> target colour at column j, read from the prefix",
+   "result": "template row recoloured by that mapping"
+  },
+  "why": "every non-empty row in the output equals the template under a colour substitution consistent with its input prefix",
+  "invariants": [
+   "grid size",
+   "template row",
+   "empty rows",
+   "prefix cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "834ec97d",
+  "reading": "The single marker moves down one cell. Every row above its new position is filled with colour 4 in every column that has the same parity as the marker's column.",
+  "verb": "drop marker and stripe above",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the single marker",
+   "move": "one row down",
+   "fill": "colour 4 in rows 0..(new row - 1), columns with x mod 2 = marker x mod 2"
+  },
+  "why": "output has the marker shifted down 1 and alternating vertical stripes of 4 above it",
+  "invariants": [
+   "grid size",
+   "marker colour",
+   "rows below the marker stay background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "83eb0a57",
+  "reading": "Several solid rectangles carry small marks of other colours. The pieces are nested: each smaller piece is pasted into the larger one at the offset where its marks line up with the larger piece's marks. The output is the largest piece with the others pasted in.",
+  "verb": "assemble nested pieces",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "base": "the largest object (its box becomes the output)",
+   "pieces": "the other objects",
+   "placement": "each piece is translated so that its inner mark cells coincide with matching mark cells in the base (or in an already placed piece)",
+   "overlay": "piece cells overwrite the base"
+  },
+  "why": "the output is the base box with every other piece pasted inside at the unique offset where their marks coincide",
+  "invariants": [
+   "the base's size and colour",
+   "each piece's shape and colours"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "846bdb03",
+  "reading": "Two vertical bars with colour-4 end caps form a frame; their bodies have two colours (left and right). The two-colour shape is cut out and placed between the bars, flipped left-right when needed so its part in each colour sits next to the bar of that colour. The output is the frame's box.",
+  "verb": "fit shape into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "the two capped vertical bars (output = their bounding box)",
+   "piece": "the other two-coloured object, cut to its box",
+   "orientation": "mirror horizontally if the piece's left colour differs from the left bar colour",
+   "place": "the frame interior, filled exactly"
+  },
+  "why": "the piece's box has the frame interior's size, and after the optional flip its colour sides match the bars",
+  "invariants": [
+   "bar cells",
+   "piece shape (up to mirror)"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "84f2aca1",
+  "reading": "Shapes are closed rectangular outlines with a small background hole. One-cell holes are filled with 5 and two-cell holes with 7, whatever the outline's colour.",
+  "verb": "fill holes by size",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "hole1",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "hole2",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "hole1",
+    "datalog": "ncount(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), C > 0.\nhole1(Y, X) :- ncount(Y, X, N), N = 8."
+   },
+   {
+    "name": "hole2",
+    "datalog": "ncount(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), C > 0.\nhole2(Y, X) :- ncount(Y, X, N), N = 7, off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 0), ncount(Y2, X2, M), M = 7."
+   }
+  ],
+  "why": "every 0 cell fully enclosed alone becomes 5; every 0 cell in an enclosed 0 pair becomes 7; nothing else changes",
+  "invariants": [
+   "grid size",
+   "all outlines",
+   "outer background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "8597cfd7",
+  "reading": "A grey separator row splits the grid. Above and below it are a vertical colour-2 bar and a colour-4 bar. The output is a 2x2 block of whichever colour's bar grows more in length from the top half to the bottom half.",
+  "verb": "compare growth",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "top and bottom halves cut by the separator",
+   "measure": "per colour (2 and 4): cell count below minus cell count above",
+   "result": "2x2 grid filled with the colour that has the larger increase"
+  },
+  "why": "the output colour is always the bar colour with the larger bottom-minus-top length",
+  "invariants": [
+   "output size 2x2"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "85fa5666",
+  "reading": "Each 2x2 block of colour 2 has four single-cell colours at its diagonal corners. The corner colours rotate one step clockwise (TL->TR->BR->BL->TL), and each corner then shoots a diagonal ray of its new colour outward, until it reaches the border or runs into another object.",
+  "verb": "rotate corners and shoot diagonals",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "centres": "the 2x2 blocks of colour 2",
+   "corners": "the four diagonal corner cells of each block",
+   "recolour": "each corner takes the colour of the previous corner counter-clockwise (colours rotate clockwise)",
+   "rays": "from each corner, a diagonal line away from the block in the corner's new colour, stopping at the border or an obstacle"
+  },
+  "why": "blocks unchanged; corner colours are a cyclic shift of the input corners; all new cells lie on outward diagonals from corners",
+  "invariants": [
+   "grid size",
+   "2x2 blocks of 2",
+   "the set of corner colours of each block"
+  ],
+  "confidence": "medium"
+ }
+]

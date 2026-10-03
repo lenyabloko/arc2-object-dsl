@@ -1,0 +1,11 @@
+% row: d_12eac192_4_small
+% source: distillation batch reading, task 12eac192, sample 4
+% output: small(Y, X)
+nb(Y, X, Y2, X) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, cell(Y2, X, C).
+nb(Y, X, Y, X2) :- cell(Y, X, C), off(DY, DX), DY = 0, X2 = X + DX, cell(Y, X2, C).
+hasnb(Y, X) :- nb(Y, X, A, B).
+deg(Y, X, count(A, B)) :- nb(Y, X, A, B).
+lone(Y, X) :- cell(Y, X, C), !hasnb(Y, X).
+duo(Y, X) :- deg(Y, X, N), N = 1, nb(Y, X, A, B), deg(A, B, M), M = 1.
+small(Y, X) :- lone(Y, X).
+small(Y, X) :- duo(Y, X).

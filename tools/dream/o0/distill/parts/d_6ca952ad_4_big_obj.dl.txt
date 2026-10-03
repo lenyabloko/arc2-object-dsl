@@ -1,0 +1,6 @@
+% row: d_6ca952ad_4_big_obj
+% source: distillation batch reading, task 6ca952ad, sample 4
+% output: big_obj(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(O) :- osize(O, N), N > 3.
+big_obj(Y, X) :- big(O), obj(O, Y, X).

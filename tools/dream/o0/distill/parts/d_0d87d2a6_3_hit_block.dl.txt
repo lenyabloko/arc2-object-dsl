@@ -1,0 +1,5 @@
+% row: d_0d87d2a6_3_hit_block
+% source: distillation batch reading, task 0d87d2a6, sample 3
+% output: hit_block(Y, X)
+touch1(O) :- obj(O, Y, X), cell(Y, X, 2), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, 1).
+hit_block(Y, X) :- touch1(O), obj(O, Y, X).

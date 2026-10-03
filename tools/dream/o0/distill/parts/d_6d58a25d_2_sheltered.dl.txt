@@ -1,0 +1,7 @@
+% row: d_6d58a25d_2_sheltered
+% source: distillation batch reading, task 6d58a25d, sample 2
+% output: sheltered(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+dot(O) :- osize(O, N), N = 1.
+umb(O) :- osize(O, N), N > 1.
+sheltered(Y, X) :- dot(M), obj(M, Y, X), umb(U), obj(U, Y2, X), Y2 < Y.

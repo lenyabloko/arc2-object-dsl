@@ -1,0 +1,10 @@
+% row: d_b27ca6d3_3_halo
+% source: distillation batch reading, task b27ca6d3, sample 3
+% output: halo(Y, X)
+adj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y + 1, X2 = X, cell(Y2, X2, D).
+adj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y - 1, X2 = X, cell(Y2, X2, D).
+adj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y, X2 = X + 1, cell(Y2, X2, D).
+adj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y, X2 = X - 1, cell(Y2, X2, D).
+deg(Y, X, count(Y2, X2)) :- adj(Y, X, Y2, X2).
+pairc(Y, X) :- adj(Y, X, Y2, X2), deg(Y, X, N), N = 1, deg(Y2, X2, M), M = 1.
+halo(Y, X) :- pairc(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, C), !cell(Y, X, C).

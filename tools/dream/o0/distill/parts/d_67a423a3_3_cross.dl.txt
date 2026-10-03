@@ -1,0 +1,4 @@
+% row: d_67a423a3_3_cross
+% source: distillation batch reading, task 67a423a3, sample 3
+% output: cross(Y, X)
+cross(Y, X) :- cell(Y, X, C), cell(Y1, X, A), Y1 = Y - 1, cell(Y2, X, B), Y2 = Y + 1, cell(Y, X1, D), X1 = X - 1, cell(Y, X2, E), X2 = X + 1.

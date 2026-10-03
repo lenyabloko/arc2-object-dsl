@@ -1,0 +1,7 @@
+% row: d_3f23242b_1_floor_row
+% source: distillation batch reading, task 3f23242b, sample 1
+% output: floor_row(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+nb(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).
+iso(Y, X) :- cell(Y, X, C), !nb(Y, X).
+floor_row(Y, X) :- iso(Y0, X0), Y = Y0 + 2, px(Y, X, C), !fgc(Y, X).

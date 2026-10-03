@@ -1,0 +1,219 @@
+[
+ {
+  "task": "ac0c2ac3",
+  "reading": "Each scattered cell lies on one concentric square ring around the grid centre (ring index = Chebyshev distance from the centre); the whole ring is painted that cell's colour, giving nested square rings.",
+  "verb": "paint concentric rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "rings": "concentric square rings of the grid, index = max(|y-cy|,|x-cx|)",
+   "colour_source": "the single non-background cell lying on each ring",
+   "background": "every background cell takes its ring's colour"
+  },
+  "why": "exactly one non-background cell lies on each ring; the output is constant on each ring and equals that cell's colour",
+  "invariants": [
+   "grid size",
+   "each marker cell keeps its colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "ac2e8ecf",
+  "reading": "Hollow rectangular outlines fall to the top border and solid crosses fall to the bottom border, each keeping its column and shape and stacking on objects already settled in the same direction (the two groups pass through each other).",
+  "verb": "gravity by shape class",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject_up": "objects that are hollow rectangular outlines",
+   "subject_down": "all other objects (crosses / plus shapes)",
+   "direction": "outlines move straight up, crosses straight down",
+   "stop": "the grid border or an already-settled object of the same group (stacking, nearest-to-border first)"
+  },
+  "why": "every object keeps shape, colour and columns; outlines end touching the top border or another outline, crosses touching the bottom border or another cross",
+  "invariants": [
+   "object shapes and colours",
+   "column positions",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aedd82e4",
+  "reading": "Every red cell that has no red cell orthogonally adjacent (diagonal contact allowed) turns blue (1); all else unchanged.",
+  "verb": "recolour lone cells",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "lone4"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lone4",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\nhasnb(Y, X) :- cell(Y, X, C), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).\nlone4(Y, X) :- cell(Y, X, C), !hasnb(Y, X)."
+   }
+  ],
+  "why": "the 4-connected singleton 2-cells are exactly the cells that become 1; no other cell changes",
+  "invariants": [
+   "grid size",
+   "all non-singleton cells",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aee291af",
+  "reading": "Several 8-framed squares hold a pattern of 2s; all but one share the same 2-pattern. Output is the framed square whose 2-pattern is unique.",
+  "verb": "extract odd-pattern square",
+  "frame": {
+   "how": "extract",
+   "args": {
+    "region": "oddbox"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "oddbox",
+    "datalog": "c2(O) :- obj(O, Y, X), cell(Y, X, C), C = 2.\ntop(O, min(Y)) :- c2(O), obj(O, Y, X).\nlft(O, min(X)) :- c2(O), obj(O, Y, X).\nrel(O, DY, DX) :- c2(O), obj(O, Y, X), top(O, T), lft(O, L), DY = Y - T, DX = X - L.\ndiffer(O1, O2) :- rel(O1, DY, DX), c2(O2), !rel(O2, DY, DX).\ndiffer(O1, O2) :- rel(O2, DY, DX), c2(O1), !rel(O1, DY, DX).\nnsame(O, count(O2)) :- c2(O), c2(O2), !differ(O, O2).\nodd2(O) :- nsame(O, N), N = 1.\noddbox(Y2, X2) :- odd2(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX."
+   }
+  ],
+  "why": "exactly one colour-2 component has a shape no other 2-component has; its box grown by one cell is the 8-framed square that equals the output",
+  "invariants": [
+   "the cut square is copied cell for cell"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "af902bf9",
+  "reading": "Four same-coloured (4) cells mark the corners of a rectangle; the cells strictly inside that rectangle are filled with 2.",
+  "verb": "fill between corners",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "inside",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inside",
+    "datalog": "inside(Y, X) :- cell(Y1, X1, C), cell(Y1, X2, C), cell(Y2, X1, C), cell(Y2, X2, C), Y1 < Y2, X1 < X2, px(Y, X, B), Y > Y1, Y < Y2, X > X1, X < X2."
+   }
+  ],
+  "why": "every cell strictly inside a rectangle whose four corners are marker cells becomes 2; nothing else changes",
+  "invariants": [
+   "the corner markers",
+   "everything outside the rectangles"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b0f4d537",
+  "reading": "A 5-separator splits a small legend (a lattice of coloured vertical and horizontal lines, partly covered by a 5 block) from a 4-marker panel; output is the marker panel redrawn: 4s at the panel edges mark line positions, and the k-th vertical/horizontal line takes the legend's k-th vertical/horizontal line colour with the legend's over/under layering at crossings.",
+  "verb": "redraw legend lines at marked positions",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "legend": "the panel left/right of the full 5 column that holds coloured lines (5 block below)",
+   "positions": "in the 4-panel: columns with 4 on top and bottom rows = vertical lines; rows with 4 at both ends = horizontal lines",
+   "colours": "k-th vertical line (left to right) gets legend's k-th vertical colour; k-th horizontal (top to bottom) gets legend's k-th horizontal colour",
+   "crossings": "per legend line: whichever colour is on top at that line's crossings in the legend stays on top",
+   "output": "size of the 4-panel, background 0"
+  },
+  "why": "legend has as many vertical/horizontal lines as the marker panel marks; output lines sit exactly at marked rows/columns with legend colours and layering",
+  "invariants": [
+   "output size equals the marker panel"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b190f7f5",
+  "reading": "The input is two equal square halves: one is an 8 mask, the other a colour pattern. Output is their Kronecker product: each coloured cell becomes a copy of the mask painted in that colour, each background cell an empty block.",
+  "verb": "kronecker stamp",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "mask": "the half containing colour 8 (its 8 cells = shape)",
+   "pattern": "the other half (colour per block)",
+   "split": "halves side by side or stacked, whichever gives two squares",
+   "output": "k*k by k*k grid, block (i,j) = mask recoloured with pattern[i][j], or empty if pattern[i][j] is 0"
+  },
+  "why": "every k\u00d7k output block is the mask in the colour of the matching pattern cell, or all background",
+  "invariants": [
+   "mask shape repeated unchanged in every non-empty block"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b20f7c8b",
+  "reading": "Left side holds 5x5 blocks, each either solid colour c or a 2-frame with a 3x3 pattern of 1s; the 8-panel legend shows one 3x3 pattern per colour. A solid c block becomes a 2-frame with legend-c's pattern in 1s; a patterned block becomes solid in the colour whose legend pattern matches it up to rotation/reflection.",
+  "verb": "swap block between pattern and legend colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "legend": "on the 8-background panel: 3x3 shapes, one per colour",
+   "blocks": "5x5 blocks on the 0 background",
+   "solid_to_pattern": "solid c block -> border 2, interior = legend-c shape as 1 (exact orientation), rest 2",
+   "pattern_to_solid": "2-frame block with 1-pattern -> solid block of colour c whose legend shape equals the pattern under one of the 8 symmetries",
+   "legend_panel": "unchanged"
+  },
+  "why": "each block's 3x3 interior pattern corresponds to exactly one legend colour (up to D4), and solid blocks map to their colour's exact legend shape",
+  "invariants": [
+   "legend panel",
+   "block positions and sizes",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b27ca6d3",
+  "reading": "Every pair of orthogonally adjacent red cells (a domino) gets a one-cell green (3) outline around it; isolated red cells are left alone.",
+  "verb": "outline dominoes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "halo",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "halo",
+    "datalog": "orth(DY, DX) :- off(DY, DX), DY = 0.\north(DY, DX) :- off(DY, DX), DX = 0.\nosize(O, count(Y, X)) :- obj(O, Y, X).\ndom(O) :- osize(O, N), N = 2, obj(O, Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2).\nhalo(Y2, X2) :- dom(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C), !cell(Y2, X2, C)."
+   }
+  ],
+  "why": "the background cells 8-adjacent to a two-cell orthogonal red object are exactly the cells that become 3",
+  "invariants": [
+   "all red cells",
+   "background away from dominoes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b457fec5",
+  "reading": "Each diagonal staircase band of 5s is coloured as nested L-shaped layers starting from its top end (corner at the top row's outer end, arms along the top row and down the outer column), layer k taking key colour k mod n from the key row; the leftover cap at the far end takes the last layer's colour.",
+  "verb": "colour band in key-sequence chevrons",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the short multi-coloured row segment (row 1), read left to right",
+   "subject": "each 8-connected 5-band (width w = length of its top row)",
+   "layer": "k = min(y - top_row, |x - outer_x_of_top_row|, rows - w), outer end = the side the band does not slant toward",
+   "colour": "key[k mod n]"
+  },
+  "why": "every 5 cell gets key[k mod n] for its layer k; key row and background unchanged",
+  "invariants": [
+   "key row",
+   "band shape",
+   "background"
+  ],
+  "confidence": "high"
+ }
+]

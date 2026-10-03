@@ -1,0 +1,15 @@
+% row: d_770cc55f_4_gap
+% source: distillation batch reading, task 770cc55f, sample 4
+% output: gap(Y, X)
+maxy(max(Y)) :- px(Y, X, C).
+bar(O) :- obj(O, Y, X), cell(Y, X, C), Y = 0.
+bar(O) :- obj(O, Y, X), cell(Y, X, C), maxy(M), Y = M.
+bsize(O, count(Y, X)) :- bar(O), obj(O, Y, X).
+big(O) :- bsize(O, N), bsize(P, K), N > K.
+small(O) :- bsize(O, N), bsize(P, K), N < K.
+bigcol(X) :- big(O), obj(O, Y, X).
+smallcol(X) :- small(O), obj(O, Y, X).
+bigrow(B) :- big(O), obj(O, B, X).
+seprow(S) :- cell(S, X, C), maxy(M), S > 0, S < M.
+gap(Y, X) :- px(Y, X, C), !cell(Y, X, C), bigcol(X), smallcol(X), bigrow(B), seprow(S), Y > B, Y < S.
+gap(Y, X) :- px(Y, X, C), !cell(Y, X, C), bigcol(X), smallcol(X), bigrow(B), seprow(S), Y < B, Y > S.

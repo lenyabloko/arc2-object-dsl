@@ -1,0 +1,7 @@
+% row: d_0ca9ddb6_0_diag_of_red
+% source: distillation batch reading, task 0ca9ddb6, sample 0
+% output: diag_of_red(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+orth(DY, DX) :- off(DY, DX), DX = 0.
+diagoff(DY, DX) :- off(DY, DX), !orth(DY, DX).
+diag_of_red(Y, X) :- cell(Y0, X0, C), C = 2, diagoff(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, B).

@@ -1,0 +1,218 @@
+[
+ {
+  "task": "21f83797",
+  "reading": "Two single 2-cells each shoot a full row and full column line of 2 to the grid border; the rectangle enclosed between the four lines is filled with 1.",
+  "verb": "draw cross lines then fill box",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "region",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "every marker gets a horizontal and vertical line to the border in its own colour; the only enclosed background area (between the lines) becomes 1",
+  "invariants": [
+   "grid size",
+   "marker cells",
+   "cells outside the lines and box stay 0"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "22233c11",
+  "reading": "Each diagonal pair of equal 3-blocks gets two 8-blocks of the same size on the perpendicular diagonal through the pair's centre, 1.5 block sizes from the centre (clipped at the border).",
+  "verb": "mark perpendicular diagonal",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object = two same-size colour-3 blocks touching diagonally",
+   "mark": "block of colour 8, same size as one subject block",
+   "place": "on the other diagonal through the subject's centre, offset +-1.5*blocksize in both axes"
+  },
+  "why": "input unchanged; added 8 cells are exactly the two rotated-diagonal blocks per subject",
+  "invariants": [
+   "all 3 cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "22425bda",
+  "reading": "Several full lines (rows, columns, diagonals) of different colours cross; the output is one row listing the line colours from bottom layer to top layer, read from which colour wins at each crossing.",
+  "verb": "list colours by stacking order",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the full one-colour lines of the input",
+   "order": "partial order from crossing cells: the visible colour is above",
+   "output": "1xN row of colours, lowest layer first"
+  },
+  "why": "at every crossing the later colour in the output row is the one shown",
+  "invariants": [],
+  "confidence": "high"
+ },
+ {
+  "task": "22806e14",
+  "reading": "Every odd-sized square of the main colour (1x1, 3x3, 5x5) gets its centre cell recoloured to the colour of the plus-shaped object; even squares are unchanged. The plus is erased in two pairs but kept in the third (condition unclear).",
+  "verb": "mark centres with plus colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key_colour": "colour of the 5-cell plus object",
+   "subject": "square objects with odd side length",
+   "target_cell": "the square's centre cell",
+   "plus": "erased to background in pairs 0,1, kept in pair 2"
+  },
+  "why": "only centre cells of odd squares change, to the plus colour; even squares untouched",
+  "invariants": [
+   "even squares",
+   "grid size",
+   "all non-centre square cells"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "2281f1f4",
+  "reading": "Grey marks in the top row pick columns and grey marks in the right column pick rows; every crossing of a picked row and picked column (outside the top row and right column) becomes 2.",
+  "verb": "fill row-column crossings",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross",
+    "datalog": "w(max(X)) :- px(Y, X, C).\ntop(X) :- cell(Y, X, C), Y = 0, w(W), X < W.\nright(Y) :- w(W), cell(Y, W, C), Y > 0.\ncross(Y, X) :- top(X), right(Y)."
+   }
+  ],
+  "why": "every cell (r,c) with a mark at (0,c) and at (r,W-1) is 2; nothing else changes",
+  "invariants": [
+   "top row",
+   "right column",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "228f6490",
+  "reading": "Grey (5) shapes have background holes; each uniquely coloured piece whose shape exactly matches a hole moves into that hole, leaving background behind. Other pieces stay.",
+  "verb": "fit pieces into holes",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "fits",
+    "target": "target"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "fits",
+    "datalog": "ocol(O, C) :- obj(O, Y, X), cell(Y, X, C).\ngrey(O) :- ocol(O, C), C = 5.\nncol(C, count(O)) :- ocol(O, C).\nuniq(O) :- ocol(O, C), ncol(C, N), N = 1.\npiece(O) :- ocol(O, C), !grey(O), uniq(O).\noy0(O, min(Y)) :- obj(O, Y, X).\noy1(O, max(Y)) :- obj(O, Y, X).\nox0(O, min(X)) :- obj(O, Y, X).\nox1(O, max(X)) :- obj(O, Y, X).\nhole(O, Y, X) :- grey(O), oy0(O, Y0), oy1(O, Y1), ox0(O, X0), ox1(O, X1), px(Y, X, C), C = 0, Y > Y0, Y < Y1, X > X0, X < X1.\nhy0(O, min(Y)) :- hole(O, Y, X).\nhx0(O, min(X)) :- hole(O, Y, X).\nhn(O, count(Y, X)) :- hole(O, Y, X).\npn(P, count(Y, X)) :- piece(P), obj(P, Y, X).\ncand(P, O, DY, DX) :- piece(P), grey(O), pn(P, N), hn(O, N), oy0(P, PY), ox0(P, PX), hy0(O, HY), hx0(O, HX), DY = HY - PY, DX = HX - PX.\nmiss(P, O) :- cand(P, O, DY, DX), obj(P, Y, X), Y2 = Y + DY, X2 = X + DX, !hole(O, Y2, X2).\nfits(Y, X) :- cand(P, O, DY, DX), !miss(P, O), obj(P, Y, X)."
+   }
+  ],
+  "why": "each moved piece keeps its shape and lands exactly on the hole cells of a grey shape; its old cells become background",
+  "invariants": [
+   "grey shapes",
+   "noise-colour pieces (colour with several objects)",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "234bbc79",
+  "reading": "Small coloured pieces with grey (5) connector cells are chained left to right: each grey joint is recoloured to the neighbouring piece's colour and pieces are shifted vertically so joints meet, shrinking the grid width.",
+  "verb": "chain pieces at joints",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the fragments separated by background columns",
+   "joint": "grey cells marking where consecutive fragments connect",
+   "joint_colour": "grey becomes the colour of the adjacent fragment",
+   "output": "fragments concatenated horizontally, vertically aligned at joints; width shrinks"
+  },
+  "why": "output is the concatenation of input fragments with joints overlapped and grey replaced",
+  "invariants": [
+   "height 3",
+   "fragment shapes"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "239be575",
+  "reading": "There are two 2x2 blocks of 2 among scattered 8s; output a 1x1 grid of 8 if a chain of 8s connects the two blocks, otherwise 0.",
+  "verb": "test connectivity",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the two 2x2 colour-2 blocks",
+   "path": "connected cells of 8 (non-background) linking them",
+   "output": "1x1: 8 if connected, else 0"
+  },
+  "why": "the non-background component containing one block contains the other exactly when the output is 8",
+  "invariants": [],
+  "confidence": "high"
+ },
+ {
+  "task": "25d487eb",
+  "reading": "A triangle has one odd-coloured cell at the middle of its base; a line of that cell's colour is drawn from just past the triangle's apex, continuing in the base-to-apex direction to the grid border.",
+  "verb": "shoot ray from apex",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "inner",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inner",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nsingle(O) :- osize(O, N), N = 1.\nshape(O) :- osize(O, N), N > 1.\ntouch(M) :- single(M), obj(M, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(S, Y2, X2), shape(S).\ninner(Y, X) :- touch(M), obj(M, Y, X)."
+   }
+  ],
+  "why": "one straight line of the inner cell's colour, on background only, from the apex side of the triangle to the border; direction is base-centre to apex",
+  "invariants": [
+   "triangle and inner cell",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "25ff71a9",
+  "reading": "The whole foreground shape moves down by one row.",
+  "verb": "shift down",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "fg",
+    "target": "train"
+   }
+  },
+  "why": "every fg cell (y,x) appears at (y+1,x) with same colour; shape kept",
+  "invariants": [
+   "shape",
+   "colours",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

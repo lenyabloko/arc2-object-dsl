@@ -1,0 +1,5 @@
+% row: d_6c434453_1_ring_hole
+% source: distillation batch reading, task 6c434453, sample 1
+% output: ring_hole(Y, X)
+nb(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+ring_hole(Y, X) :- nb(Y, X, N), N = 8.

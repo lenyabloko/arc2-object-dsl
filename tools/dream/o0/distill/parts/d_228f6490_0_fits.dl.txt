@@ -1,0 +1,26 @@
+% row: d_228f6490_0_fits
+% source: distillation batch reading, task 228f6490, sample 0
+% output: fits(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+maxy(max(Y)) :- px(Y, X, C).
+maxx(max(X)) :- px(Y, X, C).
+out(Y, X) :- bgc(Y, X), Y = 0.
+out(Y, X) :- bgc(Y, X), X = 0.
+out(Y, X) :- bgc(Y, X), maxy(M), Y = M.
+out(Y, X) :- bgc(Y, X), maxx(M), X = M.
+out(Y2, X2) :- out(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+hole(Y, X) :- bgc(Y, X), !out(Y, X).
+hl(Y, X, L) :- hole(Y, X), L = Y * 100 + X.
+hl(Y2, X2, L) :- hl(Y, X, L), off(DY, DX), Y2 = Y + DY, X2 = X + DX, hole(Y2, X2).
+hid(Y, X, min(L)) :- hl(Y, X, L).
+hroot(H) :- hid(Y, X, H).
+hlin(H, L) :- hid(Y, X, H), L = Y * 100 + X.
+hsize(H, count(Y, X)) :- hid(Y, X, H).
+psize(O, count(Y, X)) :- obj(O, Y, X).
+panc(O, min(L)) :- obj(O, Y, X), L = Y * 100 + X.
+ocol(O, C) :- obj(O, Y, X), cell(Y, X, C).
+ncol(C, count(O)) :- ocol(O, C).
+cand(O, H, D) :- panc(O, P), hroot(H), psize(O, N), hsize(H, N), ocol(O, C), ncol(C, K), K = 1, D = H - P.
+miss(O, H) :- cand(O, H, D), obj(O, Y, X), L = Y * 100 + X + D, !hlin(H, L).
+fit(O) :- cand(O, H, D), !miss(O, H).
+fits(Y, X) :- fit(O), obj(O, Y, X).

@@ -1,0 +1,220 @@
+[
+ {
+  "task": "21f83797",
+  "reading": "Two isolated 2-cells mark opposite corners of a rectangle. Full-length row and column lines of 2 are drawn through each marker, and the rectangle enclosed between the four lines is filled with 1.",
+  "verb": "draw cross lines then fill enclosed box",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "markers",
+     "colour": "own"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "region",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "every marker's row and column become its colour edge to edge; the only enclosed background area (between the lines) becomes 1",
+  "invariants": [
+   "grid size",
+   "marker cells",
+   "cells off the lines and outside the box stay 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "22233c11",
+  "reading": "Each figure is two equal 3-coloured blocks touching diagonally. Two 8 blocks are added on the perpendicular diagonal, mirrored about the figure's centre at three times the blocks' offset (clipped at the border).",
+  "verb": "add rotated diagonal companions",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each diagonal pair of 3 blocks",
+   "companion": "one 8 block per original block, same size",
+   "position": "the original block's offset from the pair centre turned 90 degrees and scaled by 3",
+   "colour": "8 (constant)"
+  },
+  "why": "for each 3-figure, its two 8 blocks sit on the other diagonal through its centre at 3x the distance; the 3 cells are unchanged",
+  "invariants": [
+   "grid size",
+   "all 3 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "22425bda",
+  "reading": "Straight lines of different colours cross on a background. The output is one row listing the line colours from bottom layer to top layer, where the colour shown at each crossing is the upper one.",
+  "verb": "list layer order",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the line colours (non-background)",
+   "order": "partial order from crossings: the colour visible at a crossing is above the other",
+   "output": "1 x N row of colours, bottom-most first"
+  },
+  "why": "output row is the topological order of lines by occlusion at their crossings, lowest first",
+  "invariants": [
+   "output height 1",
+   "output width = number of line colours"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "22806e14",
+  "reading": "Square blocks of the main colour plus one cross-shaped (or odd) object of a second colour. Every square with odd side length gets its centre cell recoloured to the second colour, and the cross-shaped object is erased to background.",
+  "verb": "mark centres of odd squares",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "square objects of the main colour with odd side (1,3,5,...)",
+   "marker": "the odd (plus-shaped) object; its colour",
+   "change": "centre cell of each odd square takes the marker colour; marker object becomes background"
+  },
+  "why": "odd-sided squares have exactly one centre cell, which takes the marker colour; even squares unchanged; the marker shape disappears",
+  "invariants": [
+   "grid size",
+   "even-sided squares",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2281f1f4",
+  "reading": "5-cells on the top row mark columns and 5-cells on the right column mark rows. Every crossing of a marked row with a marked column (left of the right column) is set to 2.",
+  "verb": "fill row-column crossings",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross",
+    "datalog": "wid(max(X)) :- px(Y, X, C).\ncross(Y, X) :- cell(Y0, X, A), Y0 = 0, wid(M), cell(Y, M, B), Y > 0, X < M."
+   }
+  ],
+  "why": "cell (y,x) becomes 2 exactly when the top row has a 5 at x and the right column has a 5 at y",
+  "invariants": [
+   "grid size",
+   "top row",
+   "right column",
+   "all other cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "228f6490",
+  "reading": "Grey (5) shapes contain background holes. A loose coloured piece whose shape exactly matches a hole is moved into that hole; pieces that match no hole stay where they are.",
+  "verb": "fit pieces into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "containers": "5-coloured objects with enclosed background holes",
+   "pieces": "other single-colour objects whose shape equals a hole's shape",
+   "placement": "translate the matching piece onto the hole; vacate its old cells"
+  },
+  "why": "each hole is filled by the piece of identical shape; non-matching pieces and the 5 shapes are unchanged",
+  "invariants": [
+   "grid size",
+   "5 shapes",
+   "non-matching pieces"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "234bbc79",
+  "reading": "Separate coloured pieces each carry grey (5) connector cells. The pieces are chained left to right, each piece shifted so its entry connector sits right after the previous piece's exit connector, connectors take their piece's colour, and the gaps are removed so the output is narrower.",
+  "verb": "chain pieces at connectors",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "left-to-right groups of one colour plus their 5 connectors",
+   "link": "next piece's left connector placed in the column after the previous piece's last connector, on that connector's row",
+   "recolour": "each 5 becomes its own piece's colour (the lone 5 next to the first piece becomes the first piece's colour)",
+   "output": "same height, width = total chained width"
+  },
+  "why": "output is the pieces joined end to end through their connectors with no 5 left and no gaps",
+  "invariants": [
+   "output height = input height",
+   "piece shapes up to vertical shift"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "239be575",
+  "reading": "The grid has two 2x2 blocks of 2 and scattered 8-cells. The output is a single cell: 8 if the two 2-blocks are connected through a chain of 8-cells, otherwise 0.",
+  "verb": "test connectivity",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "endpoints": "the two 2x2 blocks of colour 2",
+   "path": "8-coloured cells (adjacent chain)",
+   "output": "1x1: 8 if connected, 0 if not"
+  },
+  "why": "the two 2 blocks lie in one connected component of {2,8} cells exactly when the output is 8",
+  "invariants": [
+   "output is 1x1"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "25d487eb",
+  "reading": "A triangle (arrow) has one odd-coloured cell at the middle of its base. A line of that odd colour is drawn from just past the apex, in the direction the triangle points, to the grid border; the triangle itself is unchanged.",
+  "verb": "shoot ray from arrow",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "tip",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "tip",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\ntip(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1."
+   }
+  ],
+  "why": "the ray runs from the singleton-colour cell through the apex direction (away from the base) and reaches the border; only background cells are painted",
+  "invariants": [
+   "grid size",
+   "triangle cells",
+   "everything off the ray"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "25ff71a9",
+  "reading": "The single shape moves down by one row; nothing else changes.",
+  "verb": "shift down",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "fg",
+    "target": "train"
+   }
+  },
+  "why": "every foreground cell moves by the same offset (+1 row, 0 columns), shape and colour kept",
+  "invariants": [
+   "grid size",
+   "shape",
+   "colour"
+  ],
+  "confidence": "high"
+ }
+]

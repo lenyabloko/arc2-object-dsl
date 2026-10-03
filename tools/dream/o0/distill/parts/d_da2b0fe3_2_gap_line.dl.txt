@@ -1,0 +1,13 @@
+% row: d_da2b0fe3_2_gap_line
+% source: distillation batch reading, task da2b0fe3, sample 2
+% output: gap_line(Y, X)
+fy0(min(Y)) :- cell(Y, X, C).
+fy1(max(Y)) :- cell(Y, X, C).
+fx0(min(X)) :- cell(Y, X, C).
+fx1(max(X)) :- cell(Y, X, C).
+rowfg(Y) :- cell(Y, X, C).
+colfg(X) :- cell(Y, X, C).
+gaprow(Y) :- px(Y, X, C), fy0(A), fy1(B), A < Y, Y < B, !rowfg(Y).
+gapcol(X) :- px(Y, X, C), fx0(A), fx1(B), A < X, X < B, !colfg(X).
+gap_line(Y, X) :- gaprow(Y), px(Y, X, C).
+gap_line(Y, X) :- gapcol(X), px(Y, X, C).

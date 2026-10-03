@@ -1,0 +1,6 @@
+% row: d_aedd82e4_0_lone4
+% source: distillation batch reading, task aedd82e4, sample 0
+% output: lone4(Y, X)
+has4(Y, X) :- px(Y, X, C), C > 0, off(DY, DX), DX = 0, Y2 = Y + DY, px(Y2, X, D), D > 0.
+has4(Y, X) :- px(Y, X, C), C > 0, off(DY, DX), DY = 0, X2 = X + DX, px(Y, X2, D), D > 0.
+lone4(Y, X) :- px(Y, X, C), C > 0, !has4(Y, X).

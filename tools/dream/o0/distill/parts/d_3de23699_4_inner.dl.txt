@@ -1,0 +1,10 @@
+% row: d_3de23699_4_inner
+% source: distillation batch reading, task 3de23699, sample 4
+% output: inner(Y, X)
+nb(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).
+iso(Y, X) :- cell(Y, X, C), !nb(Y, X).
+it(min(Y)) :- iso(Y, X).
+ib(max(Y)) :- iso(Y, X).
+il(min(X)) :- iso(Y, X).
+ir(max(X)) :- iso(Y, X).
+inner(Y, X) :- px(Y, X, C), it(T), ib(B), il(L), ir(R), Y > T, Y < B, X > L, X < R.

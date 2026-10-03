@@ -1,0 +1,199 @@
+[
+ {
+  "task": "5a5a2103",
+  "reading": "The grid is cut into panels by full separator lines. The one shape found in a panel is copied into every panel, recoloured with the colour of the block in that panel-row's first panel.",
+  "verb": "copy shape into every panel, recoloured per row",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "template": "the single non-square shape inside one panel",
+   "targets": "every panel of the separator lattice",
+   "colour": "colour of the 2x2 block in the first panel of the same panel-row",
+   "separators": "kept unchanged"
+  },
+  "why": "every panel of the output equals the template shape in its row's colour; separators unchanged",
+  "invariants": [
+   "separator lines",
+   "grid size",
+   "panel geometry"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5a719d11",
+  "reading": "Panels come in left/right pairs, each with its own background colour and one shape. The two shapes swap panels; each shape is drawn in the background colour of the panel it came from (so it vanishes when both backgrounds are equal).",
+  "verb": "swap shapes between paired panels",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pair": "the two panels on one panel-row (separated by a zero column)",
+   "subject": "the shape inside each panel (cells not of the panel's background colour)",
+   "colour": "background colour of the source panel",
+   "place": "same relative position inside the other panel"
+  },
+  "why": "each output panel = own background with the partner panel's shape painted in the partner's background colour",
+  "invariants": [
+   "separator rows/columns of 0",
+   "panel backgrounds",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5ad4f10b",
+  "reading": "One big shape is a 3x3 pattern scaled up by a block factor; the rest is scattered noise of another colour. The output is the shape shrunk to 3x3, painted in the noise colour.",
+  "verb": "downscale big shape and recolour with noise colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the largest object (blocky scaled 3x3 pattern)",
+   "scale": "block size = subject box side / 3",
+   "colour": "the colour of the scattered noise pixels"
+  },
+  "why": "output cell (i,j) is the noise colour iff block (i,j) of the subject's box is filled, else 0",
+  "invariants": [
+   "output is 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5adee1b2",
+  "reading": "A key in the bottom-left corner pairs colours a->b. Every shape of colour a gets its bounding box grown by one cell, and all background cells in that grown box become b.",
+  "verb": "frame each shape with keyed colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "2-cell horizontal pairs at the left border: shape colour a -> fill colour b",
+   "subject": "each shape (object of a key colour, excluding the key cells)",
+   "region": "background cells of the subject's bounding box expanded by 1",
+   "colour": "key(a)"
+  },
+  "why": "exactly the bg cells inside each expanded box become key(colour); shapes and key unchanged",
+  "invariants": [
+   "shape cells",
+   "key cells",
+   "cells outside the expanded boxes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5b6cbef5",
+  "reading": "The 4x4 input is placed into a 4x4 grid of blocks: a block holds a copy of the input where the input has a coloured cell, and is empty where it is background.",
+  "verb": "fractal self-tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "fg",
+    "unit": "input"
+   }
+  },
+  "why": "block (i,j) of the output is the input if input(i,j) is non-background, else empty",
+  "invariants": [
+   "colour set"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5c0a986e",
+  "reading": "Two 2x2 squares: from the blue (1) square a diagonal line runs up-left from its top-left corner to the border; from the red (2) square a diagonal runs down-right from its bottom-right corner to the border, each in its own colour.",
+  "verb": "shoot diagonal ray from square",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "fg",
+    "colour": "own"
+   }
+  },
+  "slots": {
+   "direction": "learned per colour: 1 -> up-left, 2 -> down-right, starting at the matching corner"
+  },
+  "why": "every ray reaches the grid border; squares unchanged",
+  "invariants": [
+   "the two squares"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "5c2c9af4",
+  "reading": "Three equally spaced cells lie on a diagonal. Concentric square outlines are drawn centred on the middle cell, with ring spacing equal to the cell spacing, repeating outward (clipped at the border).",
+  "verb": "draw concentric squares",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "centre": "the middle of the three diagonal markers",
+   "step": "diagonal distance d between consecutive markers",
+   "rings": "square outlines at Chebyshev radius k*d for k=1,2,... until fully outside the grid",
+   "colour": "the marker colour"
+  },
+  "why": "a cell is coloured iff its Chebyshev distance from the centre is a multiple of d (centre itself kept)",
+  "invariants": [
+   "marker colour",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5ecac7f7",
+  "reading": "Two separator columns cut the input into three square panels. The output is one panel whose left columns come from panel 1, middle column from panel 2, and right columns from panel 3.",
+  "verb": "splice panels by column thirds",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "three panels cut by full separator columns of colour 6",
+   "left": "columns 0-1 taken from panel 1",
+   "middle": "column 2 taken from panel 2",
+   "right": "columns 3-4 taken from panel 3 (for width 6: two columns each)"
+  },
+  "why": "output column c equals column c of panel floor(3c/width) \u2014 left, middle, right third",
+  "invariants": [
+   "row count",
+   "panel width"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "623ea044",
+  "reading": "A single coloured cell sends diagonal lines in all four diagonal directions to the grid border, in its own colour.",
+  "verb": "draw diagonals from marker",
+  "frame": {
+   "how": "extend",
+   "args": {
+    "stop": "border",
+    "source": "markers",
+    "colour": "own"
+   }
+  },
+  "why": "each of the 4 diagonals from the marker reaches the border",
+  "invariants": [
+   "marker cell",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "626c0bcc",
+  "reading": "The 8-coloured shape is cut into 2x2 squares and L-trominoes; each piece is recoloured by its type: 2x2 square -> 1, L with missing top-left -> 2, L with missing bottom-left -> 3, L with missing top-right -> 4.",
+  "verb": "partition shape into pieces and colour by piece type",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "all cells of colour 8",
+   "pieces": "tiling of the subject by 2x2 squares and 3-cell L pieces",
+   "key": "square->1; .x/xx->2; xx/.x->3; x./xx->4"
+  },
+  "why": "every 8 cell is recoloured, the recoloured cells form exactly a tiling by the four piece types, background unchanged",
+  "invariants": [
+   "background cells",
+   "shape footprint"
+  ],
+  "confidence": "medium"
+ }
+]

@@ -1,0 +1,18 @@
+% row: d_15663ba9_1_concave
+% source: distillation batch reading, task 15663ba9, sample 1
+% output: concave(Y, X)
+fg(Y, X) :- cell(Y, X, C).
+bgp(Y, X) :- px(Y, X, C), !fg(Y, X).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+ext(Y, X) :- bgp(Y, X), Y = 0.
+ext(Y, X) :- bgp(Y, X), X = 0.
+ext(Y, X) :- bgp(Y, X), my(M), Y = M.
+ext(Y, X) :- bgp(Y, X), mx(M), X = M.
+ext(Y2, X2) :- ext(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgp(Y2, X2).
+inner(Y, X) :- bgp(Y, X), !ext(Y, X).
+vert(A) :- off(A, Z), Z = 0.
+horz(B) :- off(Z, B), Z = 0.
+turn(Y, X, A, B) :- fg(Y, X), vert(A), horz(B), Y1 = Y + A, fg(Y1, X), X1 = X + B, fg(Y, X1), Y2 = Y - A, !fg(Y2, X), X2 = X - B, !fg(Y, X2).
+cvx(Y, X) :- turn(Y, X, A, B), Y1 = Y + A, X1 = X + B, inner(Y1, X1).
+concave(Y, X) :- turn(Y, X, A, B), !cvx(Y, X).

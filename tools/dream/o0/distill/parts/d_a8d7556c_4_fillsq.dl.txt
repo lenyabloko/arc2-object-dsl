@@ -1,0 +1,11 @@
+% row: d_a8d7556c_4_fillsq
+% source: distillation batch reading, task a8d7556c, sample 4
+% output: fillsq(Y, X)
+hz(Y, X1, X2) :- px(Y, X1, 0), X2 = X1.
+hz(Y, X1, X3) :- hz(Y, X1, X2), X3 = X2 + 1, px(Y, X3, 0).
+rc(Y1, X1, Y2, X2) :- hz(Y1, X1, X2), Y2 = Y1.
+rc(Y1, X1, Y3, X2) :- rc(Y1, X1, Y2, X2), Y3 = Y2 + 1, hz(Y3, X1, X2).
+big(Y1, X1, Y2, X2) :- rc(Y1, X1, Y2, X2), Y2 > Y1, X2 > X1.
+area(Y1, X1, Y2, X2, count(Y, X)) :- big(Y1, X1, Y2, X2), px(Y, X, 0), Y >= Y1, Y <= Y2, X >= X1, X <= X2.
+beaten(Y1, X1, Y2, X2) :- area(Y1, X1, Y2, X2, A), area(P1, Q1, P2, Q2, B), B > A, P1 <= Y2, Y1 <= P2, Q1 <= X2, X1 <= Q2.
+fillsq(Y, X) :- big(Y1, X1, Y2, X2), !beaten(Y1, X1, Y2, X2), px(Y, X, 0), Y >= Y1, Y <= Y2, X >= X1, X <= X2.

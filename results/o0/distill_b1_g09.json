@@ -1,0 +1,1506 @@
+{
+ "group": 9,
+ "tasks": {
+  "465b7d93": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "465b7d93",
+     "sample": 0,
+     "verb": "fit shape into frame",
+     "reading": "A loose small shape is erased from its place and redrawn inside the interior of the rectangular 6-outline, stretched to fill that interior (a full square fills it, an L becomes a full left column plus full bottom row).",
+     "why": "the frame interior holds the subject's shape stretched to the interior box; the subject's old cells are background; the outline is unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "465b7d93",
+     "sample": 1,
+     "verb": "stretch shape into frame",
+     "reading": "The small loose shape is removed and redrawn inside the 6-outline: its 2x2 pattern is stretched to the frame interior (a filled cell becomes a full side or corner region; a full 2x2 fills the interior).",
+     "why": "the interior shows the shape's pattern scaled to the interior size; the original shape is erased",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "465b7d93",
+     "sample": 2,
+     "verb": "stretch shape into frame",
+     "reading": "A small coloured shape sits outside a rectangular outline of 6. The shape is stretched to fill the outline's interior (its edge rows/columns run along the interior's edges) in its own colour, and the original shape is erased.",
+     "why": "the interior gets the subject's colour exactly where the stretched shape covers it; the outline is unchanged; the subject's original cells become background",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "465b7d93",
+     "sample": 3,
+     "verb": "pour colour into frame",
+     "reading": "The interior of the 6-coloured rectangular outline is filled with the colour of the other (small) object, and that small object is erased.",
+     "why": "frame interior becomes the donor colour; donor cells become background; frame unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "465b7d93",
+     "sample": 4,
+     "verb": "fill frame with loose piece's colour",
+     "reading": "The interior of the rectangular outline is filled with the colour of the small loose object, and that loose object is erased to background.",
+     "why": "the frame interior equals the loose object's colour; the loose object's cells become background; the outline is unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "469497ad": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "469497ad",
+     "sample": 0,
+     "verb": "scale up then draw corner diagonals",
+     "reading": "The input is scaled up by k = number of non-background colours; then colour-2 diagonal lines are drawn from each corner of the inner square outward until they hit the coloured border bands or the grid edge.",
+     "why": "output = k-fold pixel upscale of input plus 2-diagonals leaving every corner of the scaled square and ending at the first non-background cell or edge",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "469497ad",
+     "sample": 1,
+     "verb": "scale and shoot diagonals",
+     "reading": "Scale the grid by k = number of distinct non-background colours, then draw colour-2 diagonals outward from each corner of the inner square object until they hit a non-background cell or the edge.",
+     "why": "output = k-times enlarged input plus 2-diagonals from the square's corners",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "469497ad",
+     "sample": 2,
+     "verb": "upscale then draw corner diagonals",
+     "reading": "The 5x5 input is scaled up by a factor equal to the number of distinct non-background colours. Then diagonal lines of colour 2 are drawn outward from each corner of the scaled square object, through background, until the border or a coloured cell.",
+     "why": "output = input with each cell blown up k x k (k = colour count), plus 2-diagonals from the square's corners covering only former background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "469497ad",
+     "sample": 3,
+     "verb": "scale and draw corner diagonals",
+     "reading": "The input is scaled up by a factor equal to the number of non-background colours; then colour-2 diagonals run from each corner of the scaled interior block outward through background until a non-background cell or the border.",
+     "why": "output = input scaled by colour count, plus 2-diagonals from the inner block's corners",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "469497ad",
+     "sample": 4,
+     "verb": "scale up and draw corner diagonals",
+     "reading": "The input is scaled up by a factor equal to the number of non-background colours; then colour-2 diagonals run from each corner of the scaled square block outward until they hit a non-background cell or the grid edge.",
+     "why": "output = input scaled by k (k = colour count) plus 2-diagonals from the block's corners on background only",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "46f33fce": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "46f33fce",
+     "sample": 0,
+     "verb": "scale up",
+     "reading": "Coloured cells sit on odd coordinates of a 10x10 grid; each cell at (r,c) becomes a 4x4 block of its colour at (2r-2, 2c-2) in a 20x20 output (equivalently: take the 5x5 grid of odd cells and scale it by 4).",
+     "why": "every 4x4 block of the output is uniform and equals the input cell at (2i+1, 2j+1)",
+     "l4": "hypo",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "46f33fce",
+     "sample": 1,
+     "verb": "downsample and scale",
+     "reading": "Cells sit only on odd rows/columns; keep the 5x5 grid of odd positions and enlarge each cell to a 4x4 block (20x20 output).",
+     "why": "output block (i,j) of size 4x4 has the colour of input cell (2i+1, 2j+1)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "46f33fce",
+     "sample": 2,
+     "verb": "downsample then upscale",
+     "reading": "Each single coloured cell sits at odd coordinates (2i+1, 2j+1) of a 10x10 grid; the output is 20x20 and each such cell becomes a 4x4 block at rows 4i..4i+3, cols 4j..4j+3.",
+     "why": "every 4x4 block of the output is uniform and equals input cell (2i+1,2j+1)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "46f33fce",
+     "sample": 3,
+     "verb": "rescale",
+     "reading": "Each coloured cell at odd coordinates (2i+1, 2j+1) becomes a 4x4 block at (4i, 4j) in a 20x20 output (downsample by 2, upscale by 4).",
+     "why": "output block (i,j) has the colour of input cell (2i+1,2j+1)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "46f33fce",
+     "sample": 4,
+     "verb": "rescale sparse grid",
+     "reading": "Each coloured cell (all at odd row/column positions) becomes a 4x4 block in a 20x20 output: output cell (Y,X) takes input cell (2*(Y div 4)+1, 2*(X div 4)+1).",
+     "why": "output is the odd-position 5x5 sample of the input enlarged x4",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "47c1f68c": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "47c1f68c",
+     "sample": 0,
+     "verb": "recolour and reflect into four quadrants",
+     "reading": "A full-row/full-column cross of colour C splits the grid; the shape in the top-left quadrant is recoloured to C and reflected left-right and up-down, giving a 2x2 symmetric output of twice the quadrant size (separator dropped).",
+     "why": "output is symmetric about both centre axes and its top-left quarter is the top-left panel with every fg cell set to the separator colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "47c1f68c",
+     "sample": 1,
+     "verb": "kaleidoscope quadrant",
+     "reading": "Take the shape in the top-left panel (cut by the cross separator), recolour it with the separator colour, and mirror it into all four quadrants of an output that drops the separator.",
+     "why": "output is 4-fold mirror-symmetric and its top-left quadrant is the top-left panel shape in the separator colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "47c1f68c",
+     "sample": 2,
+     "verb": "kaleidoscope recoloured quadrant",
+     "reading": "A full-row and full-column separator of one colour splits the grid; the top-left quadrant holds a shape of another colour. The output is that quadrant recoloured to the separator colour and mirrored into a 4-fold symmetric grid of twice the quadrant size.",
+     "why": "output is symmetric about both its middle axes and its top-left quarter equals the top-left panel with fg recoloured to the separator colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "47c1f68c",
+     "sample": 3,
+     "verb": "mirror into quadrants",
+     "reading": "The shape in the top-left panel (cut by the cross separator) is recoloured to the separator colour and mirrored into four quadrants (original, left-right flip, up-down flip, both); the separator is removed.",
+     "why": "output is the 4-fold symmetric arrangement of the recoloured top-left panel",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "47c1f68c",
+     "sample": 4,
+     "verb": "reflect quadrant four ways",
+     "reading": "A full cross of one colour splits the grid; the shape in the top-left quadrant is recoloured to the cross colour and reflected into all four quadrants (left-right and top-bottom mirrors), with the cross removed.",
+     "why": "output is 2h x 2w, symmetric both ways, each quadrant the recoloured unit or its mirror",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "48131b3c": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "48131b3c",
+     "sample": 0,
+     "verb": "invert and tile",
+     "reading": "Swap the two colours (background 0 and the one foreground colour), then tile the inverted grid 2x2.",
+     "why": "every one of the 4 output blocks equals the input with 0 and its foreground colour exchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.key"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "48131b3c",
+     "sample": 1,
+     "verb": "invert and tile",
+     "reading": "Swap the foreground colour with background 0 (invert the grid), then tile the inverted grid 2x2.",
+     "why": "every output block equals the colour-inverted input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48131b3c",
+     "sample": 2,
+     "verb": "invert and tile",
+     "reading": "The input's two colours are swapped (background and foreground exchange) and the result is tiled 2x2.",
+     "why": "each of the four output blocks equals the input with colour 0 and its single foreground colour exchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "outer.key"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "48131b3c",
+     "sample": 3,
+     "verb": "invert and tile",
+     "reading": "The input is colour-inverted (background and the one foreground colour swap) and the inverted grid is tiled 2x2.",
+     "why": "every output block equals the swapped-colour input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48131b3c",
+     "sample": 4,
+     "verb": "invert and tile",
+     "reading": "The two colours of the input are swapped (background becomes the colour and vice versa), and the result is tiled 2x2.",
+     "why": "every 2x2 block of the output is the colour-inverted input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "4852f2fa": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "4852f2fa",
+     "sample": 0,
+     "verb": "repeat shape per marker",
+     "reading": "The 8-shape (in a 3x3 box, bottom-aligned when only 2 rows tall) is copied side by side once for every colour-4 cell in the input.",
+     "why": "output is 3 rows by 3*n columns, n = number of 4-cells, each 3x3 block equals the 8 shape's box",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4852f2fa",
+     "sample": 1,
+     "verb": "repeat shape by count",
+     "reading": "Cut the 3x3 window holding the 8-shape and repeat it side by side once per colour-4 marker in the input.",
+     "why": "output is 3 x 3N with N = number of 4-cells, each 3x3 block the same shape window",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4852f2fa",
+     "sample": 2,
+     "verb": "repeat shape by marker count",
+     "reading": "An 8-shape fits in a 3x3 box; scattered single 4 cells are counted. The output is the shape's 3x3 box repeated horizontally once per 4 cell.",
+     "why": "output is 3 x 3n with n = number of 4 markers, every 3x3 block equal to the shape box",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4852f2fa",
+     "sample": 3,
+     "verb": "repeat shape by marker count",
+     "reading": "The 8-coloured shape is cut out as a 3x3 box and repeated side by side horizontally once for each colour-4 marker cell in the input.",
+     "why": "output = 3 x (3*k) with k copies of the shape box, k = number of 4-markers",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "4852f2fa",
+     "sample": 4,
+     "verb": "crop shape and repeat per marker",
+     "reading": "The colour-8 shape is cut out as a 3x3 box (its 3 columns, the 3 rows ending at its bottom row) and repeated side by side once for each colour-4 marker cell.",
+     "why": "output is 3 x 3n with n = number of 4-markers, every block equal to the cropped shape",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "48634b99": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "48634b99",
+     "sample": 0,
+     "verb": "advance half-mark to next longer segment",
+     "reading": "Vertical 8-segments have even lengths; one segment has half of its cells (top or bottom half) coloured 9. The 9 half is cleared back to 8 and moved to the segment two cells longer, on the same half (top/bottom).",
+     "why": "exactly one segment holds 9s in input and output; output's 9-segment is 2 longer than input's, with 9 on half of it at the same end; all else unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48634b99",
+     "sample": 1,
+     "verb": "pass marking to next-longer segment",
+     "reading": "Vertical 8-segments have lengths 2,4,6,8,10; the half of one segment coloured 9 goes back to 8, and the same half (top or bottom) of the next-longer segment becomes 9.",
+     "why": "exactly one segment carries 9 on half its length, and in the output it is the next-longer one, same end",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48634b99",
+     "sample": 2,
+     "verb": "pass marking to next longer bar",
+     "reading": "Vertical 8 bars have distinct lengths (plus many length-2 bars); one bar has half its cells (top or bottom half) coloured 9. That bar reverts to all 8, and the bar two cells longer gets the same half (top or bottom) coloured 9.",
+     "why": "exactly the source's 9s become 8 and exactly half of the target bar (same end) becomes 9",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48634b99",
+     "sample": 3,
+     "verb": "advance marker to next bar",
+     "reading": "Vertical 8-bars come in lengths 2,4,6,8,10; one bar has its half coloured 9. That 9 half reverts to 8 and the same end-half (top or bottom) of the next-longer bar is coloured 9.",
+     "why": "exactly one bar carries a 9 half; it moves one step up the length order, keeping which end it is on",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "48634b99",
+     "sample": 4,
+     "verb": "pass marking to next-longer bar",
+     "reading": "Vertical colour-8 bars have lengths 2,4,6,8,10; one bar has half of it coloured 9. The 9 half is removed (back to 8) and instead the next-longer bar (length + 2) gets the same half (top or bottom) coloured 9.",
+     "why": "exactly the source's 9 cells revert to 8 and the target's matching half becomes 9",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "48f8583b": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "48f8583b",
+     "sample": 0,
+     "verb": "tile at rarest colour",
+     "reading": "The 3x3 input is placed into a 9x9 output at each block whose position matches a cell of the input's least frequent colour; other blocks are 0.",
+     "why": "block (i,j) of the output is the input iff input cell (i,j) has the colour with the fewest pixels, else all 0",
+     "new_rows": [
+      "d_48f8583b_0_rare"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "rare": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=d_48f8583b_0_rare, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=d_row, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=d_48f8583b_0_rare": [
+       [
+        1,
+        [
+         3
+        ]
+       ],
+       [
+        2,
+        [
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        2,
+        [
+         1
+        ]
+       ],
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "48f8583b",
+     "sample": 1,
+     "verb": "tile at rarest colour",
+     "reading": "Output is 3x3 blocks of the input size; a block holds a copy of the input exactly where the input has its least frequent colour, else empty.",
+     "why": "block (i,j) is the input iff input cell (i,j) has the least frequent colour, otherwise 0",
+     "new_rows": [
+      "d_48f8583b_1_rare"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "rare": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=d_48f8583b_1_rare, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=d_row, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=d_48f8583b_1_rare": [
+       [
+        1,
+        [
+         3
+        ]
+       ],
+       [
+        2,
+        [
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        2,
+        [
+         1
+        ]
+       ],
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "48f8583b",
+     "sample": 2,
+     "verb": "self-tile at rarest-colour cells",
+     "reading": "The 3x3 input is placed into a 9x9 grid at the block positions given by the cells of the input's least frequent colour; other blocks are empty (0).",
+     "why": "block (i,j) of the output is the input iff input cell (i,j) has the colour with the fewest pixels, else all 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "extent"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "48f8583b",
+     "sample": 3,
+     "verb": "self-tile at rarest colour",
+     "reading": "The 3x3 input is placed into a 9x9 grid at every block whose corresponding input cell has the least frequent colour; other blocks are empty.",
+     "why": "block (i,j) is a copy of the input iff input cell (i,j) has the minimum colour count, else all 0",
+     "new_rows": [
+      "d_48f8583b_3_rare"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "rare": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=d_48f8583b_3_rare, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=d_row, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=d_48f8583b_3_rare": [
+       [
+        1,
+        [
+         3
+        ]
+       ],
+       [
+        2,
+        [
+         9
+        ]
+       ],
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        2,
+        [
+         1
+        ]
+       ],
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        3,
+        [
+         4
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "48f8583b",
+     "sample": 4,
+     "verb": "self-tile at rarest colour",
+     "reading": "The 3x3 input is placed into a 9x9 grid at the blocks where the input has its least frequent colour; other blocks are empty.",
+     "why": "block (i,j) holds the input iff input cell (i,j) has the colour with the fewest pixels, else it is all 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "496994bd": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "496994bd",
+     "sample": 0,
+     "verb": "mirror",
+     "reading": "The coloured rows at the top are reflected to the bottom of the grid about its horizontal centre line.",
+     "why": "output is the input plus its vertical reflection, symmetric about the horizontal midline",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "mirror(axis:=axis, subject:=fg)",
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "fillers": {
+      "mirror.axis=axis": [
+       null,
+       null
+      ],
+      "mirror.subject=fg": [
+       [
+        10,
+        [
+         2,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         2,
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "496994bd",
+     "sample": 1,
+     "verb": "mirror",
+     "reading": "The coloured rows at the top are reflected to the bottom, making the grid symmetric about its horizontal midline.",
+     "why": "output is symmetric about the horizontal centre line; original rows kept",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "mirror(axis:=axis, subject:=fg)",
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "fillers": {
+      "mirror.axis=axis": [
+       null,
+       null
+      ],
+      "mirror.subject=fg": [
+       [
+        10,
+        [
+         2,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         2,
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "496994bd",
+     "sample": 2,
+     "verb": "mirror",
+     "reading": "The coloured rows at the top are mirrored to the bottom so the grid becomes symmetric about its horizontal middle.",
+     "why": "output is symmetric top-bottom about the grid's middle row axis; the top rows are unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "mirror(axis:=axis, subject:=fg)",
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "fillers": {
+      "mirror.axis=axis": [
+       null,
+       null
+      ],
+      "mirror.subject=fg": [
+       [
+        10,
+        [
+         2,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         2,
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "496994bd",
+     "sample": 3,
+     "verb": "mirror",
+     "reading": "The coloured rows at the top are reflected to the bottom about the grid's horizontal midline.",
+     "why": "output is symmetric about the horizontal centre line of the grid; original rows kept",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "mirror(axis:=axis, subject:=fg)",
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "fillers": {
+      "mirror.axis=axis": [
+       null,
+       null
+      ],
+      "mirror.subject=fg": [
+       [
+        10,
+        [
+         2,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         2,
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "496994bd",
+     "sample": 4,
+     "verb": "mirror top to bottom",
+     "reading": "The coloured stripes at the top are reflected to the bottom of the grid about the horizontal centre line.",
+     "why": "output is symmetric about the horizontal mid-line; input cells are kept",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "mirror(axis:=axis, subject:=fg)",
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "mirror(axis:=axis, subject:=fg)"
+     ],
+     "fillers": {
+      "mirror.axis=axis": [
+       null,
+       null
+      ],
+      "mirror.subject=fg": [
+       [
+        10,
+        [
+         2,
+         8
+        ]
+       ],
+       [
+        9,
+        [
+         2,
+         3
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "4a1cacc2": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "4a1cacc2",
+     "sample": 0,
+     "verb": "fill to nearest corner",
+     "reading": "The single odd-coloured cell grows into a filled rectangle of its colour spanning from it to the nearest grid corner.",
+     "why": "every cell in the box between the marker and its nearest grid corner takes the marker's colour; nothing else changes",
+     "new_rows": [
+      "d_4a1cacc2_0_corner_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_box": [
+       "superset",
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=own, region:=d_4a1cacc2_0_corner_box)",
+      "fill(colour:=own, region:=d_4a1cacc2_0_corner_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=own, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_4a1cacc2_0_corner_box": [
+       [
+        9,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         8,
+         9
+        ]
+       ],
+       [
+        15,
+        [
+         6,
+         8
+        ]
+       ],
+       [
+        2,
+        [
+         6,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4a1cacc2",
+     "sample": 1,
+     "verb": "fill to nearest corner",
+     "reading": "The single marker cell fills, in its own colour, the rectangle spanning from it to the nearest grid corner.",
+     "why": "every cell between the marker and the closest grid corner (inclusive) has the marker colour; nothing else changes",
+     "new_rows": [
+      "d_4a1cacc2_1_corner_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_box": [
+       "superset",
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=own, region:=d_4a1cacc2_1_corner_box)",
+      "fill(colour:=own, region:=d_4a1cacc2_1_corner_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=own, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_4a1cacc2_1_corner_box": [
+       [
+        9,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         8,
+         9
+        ]
+       ],
+       [
+        15,
+        [
+         6,
+         8
+        ]
+       ],
+       [
+        2,
+        [
+         6,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4a1cacc2",
+     "sample": 2,
+     "verb": "fill to nearest corner",
+     "reading": "A single off-colour cell in a uniform grid is expanded into the rectangle spanning from it to the nearest grid corner, filled with its colour.",
+     "why": "every cell of the box between the marker and the nearest grid corner takes the marker's colour; nothing else changes",
+     "new_rows": [
+      "d_4a1cacc2_2_corner_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_box": [
+       "superset",
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=own, region:=d_4a1cacc2_2_corner_box)",
+      "fill(colour:=own, region:=d_4a1cacc2_2_corner_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=own, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_4a1cacc2_2_corner_box": [
+       [
+        9,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         8,
+         9
+        ]
+       ],
+       [
+        15,
+        [
+         6,
+         8
+        ]
+       ],
+       [
+        2,
+        [
+         6,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4a1cacc2",
+     "sample": 3,
+     "verb": "fill to nearest corner",
+     "reading": "The single marker cell fills, in its own colour, the rectangle spanning from it to the grid corner nearest to it.",
+     "why": "every cell between the marker and its nearest grid corner (inclusive) takes the marker colour; nothing else changes",
+     "new_rows": [
+      "d_4a1cacc2_3_corner_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_box": [
+       "superset",
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=own, region:=d_4a1cacc2_3_corner_box)",
+      "fill(colour:=own, region:=d_4a1cacc2_3_corner_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=own, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_4a1cacc2_3_corner_box": [
+       [
+        9,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         8,
+         9
+        ]
+       ],
+       [
+        15,
+        [
+         6,
+         8
+        ]
+       ],
+       [
+        2,
+        [
+         6,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "4a1cacc2",
+     "sample": 4,
+     "verb": "fill to nearest corner",
+     "reading": "The single marker cell is extended into a filled rectangle spanning from the marker to the grid corner nearest to it, in the marker's colour.",
+     "why": "every cell of the box between the marker and its nearest grid corner takes the marker colour; all other cells stay background",
+     "new_rows": [
+      "d_4a1cacc2_4_corner_rect"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_rect": [
+       "superset",
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=own, region:=d_4a1cacc2_4_corner_rect)",
+      "fill(colour:=own, region:=d_4a1cacc2_4_corner_rect)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=own, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_4a1cacc2_4_corner_rect": [
+       [
+        9,
+        [
+         4,
+         8
+        ]
+       ],
+       [
+        6,
+        [
+         8,
+         9
+        ]
+       ],
+       [
+        15,
+        [
+         6,
+         8
+        ]
+       ],
+       [
+        2,
+        [
+         6,
+         8
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

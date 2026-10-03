@@ -1,0 +1,13 @@
+% row: d_14754a24_0_plus5
+% source: distillation batch reading, task 14754a24, sample 0
+% output: plus5(Y, X)
+arm(DY, DX) :- off(DY, DX), DY = 0.
+arm(DY, DX) :- off(DY, DX), DX = 0.
+inx(Y, X, Y, X) :- px(Y, X, C).
+inx(Y, X, Y2, X2) :- px(Y, X, C), arm(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C2).
+holed(Y, X) :- inx(Y, X, Y2, X2), px(Y2, X2, 0).
+n4(Y, X, count(Y2, X2)) :- inx(Y, X, Y2, X2), px(Y2, X2, 4).
+cand(Y, X, N) :- n4(Y, X, N), N >= 2, !holed(Y, X).
+beaten(Y, X) :- cand(Y, X, N), inx(Y, X, Y2, X2), px(Y2, X2, 4), inx(Y3, X3, Y2, X2), cand(Y3, X3, M), M > N.
+sel(Y, X) :- cand(Y, X, N), !beaten(Y, X).
+plus5(Y2, X2) :- sel(Y, X), inx(Y, X, Y2, X2), px(Y2, X2, 5).

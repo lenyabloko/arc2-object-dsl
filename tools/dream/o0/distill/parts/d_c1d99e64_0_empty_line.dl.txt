@@ -1,0 +1,7 @@
+% row: d_c1d99e64_0_empty_line
+% source: distillation batch reading, task c1d99e64, sample 0
+% output: empty_line(Y, X)
+nz_row(Y) :- px(Y, X, C), C > 0.
+nz_col(X) :- px(Y, X, C), C > 0.
+empty_line(Y, X) :- px(Y, X, C), !nz_row(Y).
+empty_line(Y, X) :- px(Y, X, C), !nz_col(X).

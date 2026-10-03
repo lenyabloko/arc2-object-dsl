@@ -1,0 +1,1627 @@
+{
+ "group": 6,
+ "tasks": {
+  "2bcee788": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2bcee788",
+     "sample": 0,
+     "verb": "reflect across marker",
+     "reading": "The shape has a colour-2 marker on one side. The main-colour part is reflected across its edge with the marker (the reflection covers the marker cells exactly), the marker disappears, and the background 0 becomes 3.",
+     "why": "output = main part + its reflection across the marker edge, on a 3 background; no 2 remains",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2bcee788",
+     "sample": 1,
+     "verb": "reflect then repaint background",
+     "reading": "The one-colour shape is reflected across its edge where the colour-2 marker cells touch it (the reflection covers the 2s); then all background becomes 3.",
+     "why": "the axis is the line between the shape and its 2-marker cells; reflected shape lands exactly on the 2s; 0->3 everywhere else",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2bcee788",
+     "sample": 2,
+     "verb": "reflect then repaint background",
+     "reading": "The red (2) cells mark which side of the shape to reflect onto: the shape is mirrored across the line between itself and the red cells (red is overwritten), then the background becomes 3.",
+     "why": "the non-red cells plus their reflection about the shape/red boundary give the output's foreground; every 0 becomes 3",
+     "new_rows": [
+      "d_2bcee788_2_shape"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "shape": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2bcee788",
+     "sample": 3,
+     "verb": "reflect across marker edge",
+     "reading": "A one-colour shape has a few 2 cells along one side. The shape is reflected across the edge where the 2 cells touch it (the 2 cells are covered by the reflection), and all background becomes 3.",
+     "why": "output = shape union its reflection about the shape/2 boundary, 2 gone, background 3",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2bcee788",
+     "sample": 4,
+     "verb": "reflect across marker edge",
+     "reading": "A one-colour shape has a colour-2 segment attached to one side; the shape is reflected across the edge it shares with the 2s (the reflection overwrites the 2s), and the background becomes 3.",
+     "why": "output = shape plus its reflection about the line between the shape and its 2-marker; all other cells are 3",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "2bee17df": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "2bee17df",
+     "sample": 0,
+     "verb": "fill clear lanes",
+     "reading": "Inside the ragged 8/2 frame, every row and every column that is completely empty between its two border cells is filled with 3.",
+     "why": "the rows/columns with exactly two non-background cells (the two frame ends) have all their background cells turned 3; nothing else changes",
+     "new_rows": [
+      "d_2bee17df_0_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_2bee17df_0_lane)",
+      "fill(colour:=train, region:=d_2bee17df_0_lane)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_2bee17df_0_lane": [
+       [
+        36,
+        [
+         0
+        ]
+       ],
+       [
+        64,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "2bee17df",
+     "sample": 1,
+     "verb": "fill clear lines",
+     "reading": "Every row or column whose interior (all cells except the two border cells) is entirely background is painted 3 on its background cells.",
+     "why": "a line is filled iff it has no non-background cell off the grid border; fill colour is always 3",
+     "new_rows": [
+      "d_2bee17df_1_clear_line"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "clear_line": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_2bee17df_1_clear_line)",
+      "fill(colour:=train, region:=d_2bee17df_1_clear_line)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_2bee17df_1_clear_line": [
+       [
+        36,
+        [
+         0
+        ]
+       ],
+       [
+        64,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "2bee17df",
+     "sample": 2,
+     "verb": "fill clear lanes",
+     "reading": "Every row or column whose interior (all cells except its two end cells) is entirely background gets its background cells painted 3.",
+     "why": "exactly the background cells of fully clear wall-to-wall rows/columns become 3",
+     "new_rows": [
+      "d_2bee17df_2_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_2bee17df_2_lane)",
+      "fill(colour:=train, region:=d_2bee17df_2_lane)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_2bee17df_2_lane": [
+       [
+        36,
+        [
+         0
+        ]
+       ],
+       [
+        64,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "2bee17df",
+     "sample": 3,
+     "verb": "fill clear lanes",
+     "reading": "Inside a framed grid, every row and every column whose interior (all cells except the two end cells) is fully background gets its background cells filled with 3.",
+     "why": "exactly the background cells of fully clear interior rows/columns become 3",
+     "new_rows": [
+      "d_2bee17df_3_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_2bee17df_3_lane)",
+      "fill(colour:=train, region:=d_2bee17df_3_lane)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_2bee17df_3_lane": [
+       [
+        36,
+        [
+         0
+        ]
+       ],
+       [
+        64,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "2bee17df",
+     "sample": 4,
+     "verb": "paint open lanes",
+     "reading": "Every row whose interior (all cells except the first and last) is entirely background, and every such column, has its background cells painted 3.",
+     "why": "exactly the 0-cells of fully clear interior rows/columns become 3",
+     "new_rows": [
+      "d_2bee17df_4_lane"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lane": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_2bee17df_4_lane)",
+      "fill(colour:=train, region:=d_2bee17df_4_lane)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_2bee17df_4_lane": [
+       [
+        36,
+        [
+         0
+        ]
+       ],
+       [
+        64,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "2dd70a9a": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2dd70a9a",
+     "sample": 0,
+     "verb": "route path",
+     "reading": "A path of 3 starts from the green 2-cell segment, runs along its direction until the cell before an 8 obstacle, turns toward the red 2-cell segment, and keeps turning at obstacles until it joins the red segment end-on.",
+     "why": "the drawn 3 cells form an orthogonal path from the green segment to the red segment that never crosses an 8",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2dd70a9a",
+     "sample": 1,
+     "verb": "route path",
+     "reading": "A colour-3 path is drawn from the free end of the 2-cell green segment, going straight in the segment's direction, turning 90 degrees before obstacles / when aligned with the 2-cell red segment, until it touches the red segment.",
+     "why": "the path is a chain of straight colour-3 runs that never crosses an 8 and ends adjacent to the 2-segment",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2dd70a9a",
+     "sample": 2,
+     "verb": "draw turning path",
+     "reading": "A green path starts from the 2-cell green segment, runs along its direction, turns 90 degrees when the next cell is an 8 obstacle, and continues until it joins the 2-cell red segment.",
+     "why": "the drawn 3 cells form one connected orthogonal path from green to red that never overlaps an 8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2dd70a9a",
+     "sample": 3,
+     "verb": "route path",
+     "reading": "A 2-cell green (3) segment and a 2-cell red (2) segment sit among 8 obstacles. A green path is drawn from the 3 segment along its axis, turning (toward the 2 segment) each time the next cell is an 8, until it joins the 2 segment.",
+     "why": "the new 3 cells form one orthogonal path from the 3 segment to the 2 segment that never crosses an 8",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2dd70a9a",
+     "sample": 4,
+     "verb": "trace turning path",
+     "reading": "A path of 3 grows from the green 2-cell segment along its axis, turning 90 degrees whenever the next cell is an 8, until it reaches the red 2-cell segment.",
+     "why": "the 3-path is connected, never crosses an 8, and turns only in front of an 8, ending adjacent to the red segment",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "2de01db2": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2de01db2",
+     "sample": 0,
+     "verb": "invert per row",
+     "reading": "Each row has one main colour (its most common non-0 colour) plus noise (0 and another colour). In each row, main-colour cells become 0 and every other cell becomes the main colour.",
+     "why": "for every row, output cell = 0 where input = main colour, else main colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2de01db2",
+     "sample": 1,
+     "verb": "invert each row",
+     "reading": "Each row is inverted against its own main colour: cells of the row's dominant non-background colour become 0, every other cell (0 or noise colour) becomes that dominant colour.",
+     "why": "in every output row only the row colour and 0 appear, exactly complementing the input's row-colour cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2de01db2",
+     "sample": 2,
+     "verb": "invert each row",
+     "reading": "Each row is inverted against its dominant colour: cells of the row's main colour become 0, and every other cell (0 or stray colours) becomes the main colour.",
+     "why": "per row, the output is the complement of the main-colour cells, painted in the main colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2de01db2",
+     "sample": 3,
+     "verb": "invert each row",
+     "reading": "Each row is processed alone: its dominant colour c (most frequent non-background colour) is found; cells of colour c become background and every other cell (background or noise colour) becomes c.",
+     "why": "each output row is the complement of its c-mask painted in c",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2de01db2",
+     "sample": 4,
+     "verb": "invert each row",
+     "reading": "Each row has one main colour (its most common non-background colour); cells of that colour become background and every other cell of the row (background or noise) becomes the main colour.",
+     "why": "per row, output = main colour exactly where the input is not main colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "2faf500b": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2faf500b",
+     "sample": 0,
+     "verb": "split apart",
+     "reading": "Each 9-object has a zigzag cut of 6 cells across its middle (perpendicular to its long side). The 6 cells are erased and the two halves on either side of the cut each move one cell away from the cut.",
+     "why": "every piece keeps its shape and is displaced by exactly one cell outward; no 6 remains",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2faf500b",
+     "sample": 1,
+     "verb": "split and pull apart",
+     "reading": "Each colour-9 block is cut by a zigzag band of 6s; the 6s become background and the two 9 pieces on either side of the band each move one cell away from it (perpendicular to the band).",
+     "why": "every output 9 cell is an input 9 cell shifted by one away from its object's 6 band; no 6 remains",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2faf500b",
+     "sample": 2,
+     "verb": "split and push apart",
+     "reading": "Each 9-object carries a 6 stripe through its middle; the object is split into two halves at that middle, the 6 cells are erased, and the two halves each move one cell away from the split line.",
+     "why": "every output 9 cell is an input 9 cell shifted by 1 away from its object's midline",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2faf500b",
+     "sample": 3,
+     "verb": "split apart",
+     "reading": "Each 9 object carries a zigzag band of 6 cells through its middle. The object splits along that band's centre line, each half moves one cell away from the split (perpendicular to it), and the 6 cells become background.",
+     "why": "every 9 cell reappears shifted by 1 away from its object's band centre; no 6 remains",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2faf500b",
+     "sample": 4,
+     "verb": "split and push apart",
+     "reading": "Each colour-9 object carries a two-cell-wide 6/9 checker band across its middle; the object is cut between the two band lines, the 6s are erased, and the two halves move apart by one cell each, perpendicular to the band.",
+     "why": "each half keeps its 9-cells' shape; the halves are separated by a 2-cell gap where the cut was",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "310f3251": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "310f3251",
+     "sample": 0,
+     "verb": "mark and tile",
+     "reading": "Mark the cell diagonally up-left of each coloured cell (wrapping around the grid) with 2 when it is empty, then tile the result 3x3.",
+     "why": "output is a 3x3 tiling of the input with 2 added at the toroidal up-left neighbour of every coloured cell that was background",
+     "new_rows": [
+      "d_310f3251_0_ul"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ul": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "310f3251",
+     "sample": 1,
+     "verb": "mark up-left then tile",
+     "reading": "Each foreground cell gets a 2 placed diagonally up-left of it (wrapping around the grid edges, not over foreground); the result is then tiled 3x3.",
+     "why": "output is 3x3 copies of the input with 2 at the (toroidally) up-left neighbour of every fg cell",
+     "new_rows": [
+      "d_310f3251_1_ul_wrap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ul_wrap": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "310f3251",
+     "sample": 2,
+     "verb": "mark diagonal then tile",
+     "reading": "Each background cell diagonally up-left of a foreground cell (wrapping around the grid edges) becomes 2; the result is then tiled 3x3.",
+     "why": "output is 3H x 3W and every block equals the input with 2 added at the toroidal up-left diagonal of each fg cell",
+     "new_rows": [
+      "d_310f3251_2_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "310f3251",
+     "sample": 3,
+     "verb": "mark then tile",
+     "reading": "In the small input, every background cell diagonally up-left of a coloured cell (wrapping around the grid edges) becomes 2; the result is then tiled 3x3.",
+     "why": "output = 3x3 tiling of the input with 0->2 at toroidal up-left neighbours of coloured cells (coloured cells never overwritten)",
+     "new_rows": [
+      "d_310f3251_3_upl"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "upl": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "310f3251",
+     "sample": 4,
+     "verb": "mark diagonal then tile",
+     "reading": "Each coloured cell gets a 2 at its up-left diagonal neighbour (wrapping around the grid edges, only onto background), then the grid is tiled 3x3.",
+     "why": "output is 3x3 copies of the input with 2 added at the toroidal up-left of every coloured cell",
+     "new_rows": [
+      "d_310f3251_4_upleft"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "upleft": [
+       "size",
+       "size",
+       "size",
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "31aa019c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 4,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "31aa019c",
+     "sample": 0,
+     "verb": "highlight unique",
+     "reading": "Keep only the cell whose colour occurs exactly once; erase everything else and surround that cell with a 3x3 ring of 2.",
+     "why": "first fill erases all non-unique colour cells to 0; second fill paints the 8 neighbours of the unique cell 2",
+     "new_rows": [
+      "d_31aa019c_0_noise",
+      "d_31aa019c_0_ring"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "noise": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "ring": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "31aa019c",
+     "sample": 1,
+     "verb": "highlight unique",
+     "reading": "The single cell whose colour occurs exactly once is kept, everything else is cleared, and a 3x3 ring of 2 is drawn around that cell.",
+     "why": "exactly one colour appears once; output = that cell with its 8 neighbours set to 2, all else 0",
+     "new_rows": [
+      "d_31aa019c_1_uniq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "uniq": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_31aa019c_1_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_1_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_1_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_1_uniq, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_31aa019c_1_uniq": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         4
+        ]
+       ],
+       [
+        1,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "31aa019c",
+     "sample": 2,
+     "verb": "isolate unique cell and frame it",
+     "reading": "Find the one colour that occurs exactly once; keep that cell, erase everything else, and surround it with a 3x3 ring of 2.",
+     "why": "the output has only the unique-colour cell plus the 8 cells around it in colour 2",
+     "new_rows": [
+      "d_31aa019c_2_unique"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "unique": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_31aa019c_2_unique, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_2_unique, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_2_unique, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_2_unique, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_31aa019c_2_unique": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         4
+        ]
+       ],
+       [
+        1,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "31aa019c",
+     "sample": 3,
+     "verb": "highlight unique",
+     "reading": "Find the one cell whose colour occurs only once in the grid; clear everything else and draw a ring of 2 around that cell, which keeps its own colour.",
+     "why": "exactly one unique-colour cell per input; output is only that cell plus its 8 neighbours in 2",
+     "new_rows": [
+      "d_31aa019c_3_uniq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "uniq": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_31aa019c_3_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_3_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_3_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_3_uniq, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_31aa019c_3_uniq": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         4
+        ]
+       ],
+       [
+        1,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "31aa019c",
+     "sample": 4,
+     "verb": "highlight unique cell",
+     "reading": "Keep only the single cell whose colour occurs exactly once, surround it with a 3x3 ring of 2, and clear everything else.",
+     "why": "output is all 0 except the unique-colour cell and its 8 neighbours, which are 2",
+     "new_rows": [
+      "d_31aa019c_4_uniq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "uniq": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_31aa019c_4_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_4_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_4_uniq, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=d_31aa019c_4_uniq, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_31aa019c_4_uniq": [
+       [
+        1,
+        [
+         6
+        ]
+       ],
+       [
+        1,
+        [
+         4
+        ]
+       ],
+       [
+        1,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "31adaf00": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "31adaf00",
+     "sample": 0,
+     "verb": "fill empty squares",
+     "reading": "In the 0/5 noise, all-0 square blocks of side 2 or more are filled with 1, choosing the largest squares first and never overlapping a square already filled.",
+     "why": "1 cells are exactly the union of the greedily chosen empty squares; 5 cells and other 0 cells unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "31adaf00",
+     "sample": 1,
+     "verb": "fill empty squares",
+     "reading": "Square blocks of background (3x3 first, then 2x2 ones not overlapping a 3x3) are filled with 1.",
+     "why": "filled cells are exactly the greedy largest-first non-overlapping all-background squares of side >= 2 (matches 3x3 then non-overlapping 2x2 on all pairs)",
+     "new_rows": [
+      "d_31adaf00_1_zero_square"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zero_square": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_31adaf00_1_zero_square)",
+      "fill(colour:=train, region:=d_31adaf00_1_zero_square)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_31adaf00_1_zero_square": [
+       [
+        20,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "31adaf00",
+     "sample": 2,
+     "verb": "fill empty squares",
+     "reading": "All-background squares of side 2 or more are filled with 1, largest first and without overlap (greedy packing of zero squares).",
+     "why": "filled cells are exactly the union of non-overlapping zero squares chosen greedily largest-first",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "31adaf00",
+     "sample": 3,
+     "verb": "fill empty squares",
+     "reading": "Empty (all-background) squares are filled with 1: every all-background 3x3 square, plus every all-background 2x2 square that does not overlap a 3x3 one.",
+     "why": "exactly the cells of empty 3x3 squares and of empty 2x2 squares not overlapping them become 1",
+     "new_rows": [
+      "d_31adaf00_3_sqfill"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sqfill": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_31adaf00_3_sqfill)",
+      "fill(colour:=train, region:=d_31adaf00_3_sqfill)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_31adaf00_3_sqfill": [
+       [
+        20,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "31adaf00",
+     "sample": 4,
+     "verb": "fill empty squares",
+     "reading": "Empty (all-background) squares of side 3, and side-2 squares that do not overlap a side-3 one, are filled with 1.",
+     "why": "1-cells are exactly the union of largest-first non-overlapping empty squares of side >= 2",
+     "new_rows": [
+      "d_31adaf00_4_sqfill"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sqfill": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_31adaf00_4_sqfill)",
+      "fill(colour:=train, region:=d_31adaf00_4_sqfill)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_31adaf00_4_sqfill": [
+       [
+        20,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        30,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "320afe60": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "320afe60",
+     "sample": 0,
+     "verb": "sort shapes by side",
+     "reading": "Each 1-shape is recoloured and pushed sideways on its own rows: shapes with an open gap (a background cell between two of its cells that leaks to the outside) become 3 and move to the right edge; solid or fully closed shapes become 2 and move to the left edge.",
+     "why": "every shape keeps its shape and rows; its colour and side depend only on open vs closed",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "320afe60",
+     "sample": 1,
+     "verb": "sort to sides by closure",
+     "reading": "Each colour-1 object is classified: closed (hole fully enclosed, or solid) objects slide to the left border and turn 2; objects with a hole open to the outside slide to the right border and turn 3. Rows are kept.",
+     "why": "each object keeps its shape and rows; side and colour depend only on whether its hole is enclosed",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "320afe60",
+     "sample": 2,
+     "verb": "sort shapes by closure",
+     "reading": "Each 1-object is classified: closed shapes (no gap from their hole to the outside, or solid) turn 2 and slide to the left edge; open shapes turn 3 and slide to the right edge, keeping their rows.",
+     "why": "every object keeps shape and row span; colour and side depend only on closure",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "320afe60",
+     "sample": 3,
+     "verb": "sort to sides",
+     "reading": "Each 1 object keeps its row and shape. Objects with an open cavity (a notch of background between their own cells that opens to the outside) slide to the right edge and become 3; solid objects or ones with only an enclosed hole slide to the left edge and become 2.",
+     "why": "every object appears once, same rows and shape, flush to the side chosen by open/closed, recoloured 2 or 3",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "320afe60",
+     "sample": 4,
+     "verb": "sort shapes to sides",
+     "reading": "Each colour-1 shape is classified: closed shapes (solid or with an enclosed hole) turn 2 and slide to the left border; shapes whose outline has a gap turn 3 and slide to the right border, keeping their rows.",
+     "why": "every object keeps its shape and row span, touches the left (2) or right (3) border, and the rest is background 4",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "32597951": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "32597951",
+     "sample": 0,
+     "verb": "recolour inside box",
+     "reading": "Inside the bounding box of the 8 cells, every 1 becomes 3.",
+     "why": "colour-1 cells within the 8s' bounding box map 1 -> 3; nothing else changes",
+     "new_rows": [
+      "d_32597951_0_ones_in_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ones_in_box": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_32597951_0_ones_in_box)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_32597951_0_ones_in_box": [
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ],
+       [
+        13,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "32597951",
+     "sample": 1,
+     "verb": "recolour inside box",
+     "reading": "Inside the bounding box of the colour-8 cells, every 1 becomes 3; nothing else changes.",
+     "why": "key is 1->3 (8 and 0 fixed); only cells within the 8 bounding box change (note 1 is the most common colour in pair 3, so the row uses px)",
+     "new_rows": [
+      "d_32597951_1_box8"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box8": [
+       "superset",
+       "superset",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_32597951_1_box8)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_32597951_1_box8": [
+       [
+        24,
+        [
+         1,
+         8
+        ]
+       ],
+       [
+        25,
+        [
+         1,
+         8
+        ]
+       ],
+       [
+        25,
+        [
+         1,
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "32597951",
+     "sample": 2,
+     "verb": "recolour inside box",
+     "reading": "Inside the bounding box of the 8 cells, every 1 becomes 3; nothing else changes.",
+     "why": "exactly the 1 cells within the 8s' bounding box become 3",
+     "new_rows": [
+      "d_32597951_2_inbox"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "inbox": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_32597951_2_inbox)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_32597951_2_inbox": [
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ],
+       [
+        13,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "32597951",
+     "sample": 3,
+     "verb": "recolour inside box",
+     "reading": "Within the bounding box of the 8 cells, every 1 cell becomes 3; everything else is unchanged.",
+     "why": "exactly the 1 cells inside the 8 box become 3 (uses px because 1 can be the background colour)",
+     "new_rows": [
+      "d_32597951_3_box8"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box8": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_32597951_3_box8)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_32597951_3_box8": [
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ],
+       [
+        13,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "32597951",
+     "sample": 4,
+     "verb": "recolour inside box",
+     "reading": "Inside the bounding box of the colour-8 cells, every 1 becomes 3.",
+     "why": "exactly the 1-cells within the 8-box change, to 3",
+     "new_rows": [
+      "d_32597951_4_inbox8"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "inbox8": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_32597951_4_inbox8)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_32597951_4_inbox8": [
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ],
+       [
+        13,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

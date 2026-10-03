@@ -1,0 +1,5 @@
+% row: d_25d487eb_0_lone
+% source: distillation batch reading, task 25d487eb, sample 0
+% output: lone(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+lone(Y, X) :- osize(O, N), N = 1, obj(O, Y, X).

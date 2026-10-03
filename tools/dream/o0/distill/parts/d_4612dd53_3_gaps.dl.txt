@@ -1,0 +1,13 @@
+% row: d_4612dd53_3_gaps
+% source: distillation batch reading, task 4612dd53, sample 3
+% output: gaps(Y, X)
+ya(min(Y)) :- cell(Y, X, C).
+yb(max(Y)) :- cell(Y, X, C).
+xa(min(X)) :- cell(Y, X, C).
+xb(max(X)) :- cell(Y, X, C).
+rc(Y, count(X)) :- cell(Y, X, C).
+cc(X, count(Y)) :- cell(Y, X, C).
+lrow(Y) :- rc(Y, N), N >= 4.
+lcol(X) :- cc(X, N), N >= 4.
+gaps(Y, X) :- lrow(Y), px(Y, X, C), C = 0, xa(P), xb(Q), X >= P, X <= Q.
+gaps(Y, X) :- lcol(X), px(Y, X, C), C = 0, ya(A), yb(B), Y >= A, Y <= B.

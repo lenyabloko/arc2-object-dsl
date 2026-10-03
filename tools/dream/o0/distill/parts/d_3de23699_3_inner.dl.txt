@@ -1,0 +1,10 @@
+% row: d_3de23699_3_inner
+% source: distillation batch reading, task 3de23699, sample 3
+% output: inner(Y, X)
+nb(Y, X) :- cell(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C2).
+mk(Y, X) :- cell(Y, X, C), !nb(Y, X).
+ya(min(Y)) :- mk(Y, X).
+yb(max(Y)) :- mk(Y, X).
+xa(min(X)) :- mk(Y, X).
+xb(max(X)) :- mk(Y, X).
+inner(Y, X) :- cell(Y, X, C), ya(A), yb(B), xa(P), xb(Q), Y > A, Y < B, X > P, X < Q.

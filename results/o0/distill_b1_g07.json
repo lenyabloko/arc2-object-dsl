@@ -1,0 +1,1358 @@
+{
+ "group": 7,
+ "tasks": {
+  "32e9702f": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "32e9702f",
+     "sample": 0,
+     "verb": "shift left then repaint background",
+     "reading": "Every object shifts one column to the left (cells pushed past the left edge are lost), then all background 0 cells become 5.",
+     "why": "output = input translated by (0,-1) with clipping, every remaining 0 becomes 5",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "32e9702f",
+     "sample": 1,
+     "verb": "shift left and repaint background",
+     "reading": "Every object shifts one cell left (cells pushed off the left edge are lost), then all background cells become 5.",
+     "why": "output = input translated by (0,-1) with 0 replaced by 5 on every pair",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "32e9702f",
+     "sample": 2,
+     "verb": "shift left and repaint background",
+     "reading": "Every foreground run shifts one cell left (cells pushed past the left edge are lost); then the background 0 becomes 5.",
+     "why": "output = input shifted by (0,-1) with clipping at the left border, then 0->5, other colours unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "32e9702f",
+     "sample": 3,
+     "verb": "shift left and repaint background",
+     "reading": "Every horizontal bar shifts one cell left (a cell pushed past the left edge is lost), then every background 0 becomes 5.",
+     "why": "output(y,x) = input(y,x+1) if that is non-zero, else 5; offset (0,-1) and map 0->5 are the same on every pair",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "32e9702f",
+     "sample": 4,
+     "verb": "shift left and repaint background",
+     "reading": "Every object shifts one cell to the left (cells pushed past the left edge are lost), then all background cells become 5.",
+     "why": "each output fg cell is the input fg cell one column to its right; every other cell is 5",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "332202d5": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "332202d5",
+     "sample": 0,
+     "verb": "flood rows by nearest stripe",
+     "reading": "Each row takes the colour of its nearest full-width stripe row; rows equidistant from two differently coloured stripes become all 1; in the vertical line column 8 and 1 swap (stripe rows become 1 with 8 at the crossing, other rows get 1 there).",
+     "why": "on every pair each row's colour equals the nearest stripe colour, with stripes and the line swapped to 1/8",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "332202d5",
+     "sample": 1,
+     "verb": "paint bands by nearest line",
+     "reading": "Horizontal coloured lines cross one vertical 8 line. Each other row takes the colour of its nearest horizontal line (a row equidistant from two different colours becomes all 1); line rows become 1 with 8 at the crossing, and the vertical line becomes 1 elsewhere.",
+     "why": "each row is a function of its distance to the line rows",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "332202d5",
+     "sample": 2,
+     "verb": "colour bands by nearest separator",
+     "reading": "Full separator rows of colour c become 1 (with 8 where they cross the vertical 8 line). Every other row is painted the colour of its nearest separator row, with the 8 line cell becoming 1. A row exactly halfway between two separators of different colours becomes all 1.",
+     "why": "each row's colour is decided by distance to separator rows only; the vertical line column stays a line (1 in bands, 8 on separators)",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "332202d5",
+     "sample": 3,
+     "verb": "spread stripes to nearest (row Voronoi)",
+     "reading": "Each full-width coloured stripe spreads its colour up and down over the 7-rows to the nearest stripe; rows equidistant from two differently coloured stripes become solid 1. The 8 column turns 1 and the 1 crossings on stripe rows turn 8, stripe rows turn 1.",
+     "why": "every non-stripe row in the output is uniform nearest-stripe colour except the line column (1), or an all-1 tie row",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "332202d5",
+     "sample": 4,
+     "verb": "flood bands from nearest line",
+     "reading": "Horizontal coloured lines cross one vertical 8-line (crossing cell 1). Each other row takes the colour of its nearest horizontal line (rows equidistant to two different colours become all 1), the vertical line becomes 1 in those rows, and each horizontal line becomes 1 with 8 at the crossing.",
+     "why": "every non-line row is uniform in its nearest line's colour except the column cell (1); tie rows all 1",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "3391f8c0": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "3391f8c0",
+     "sample": 0,
+     "verb": "swap shapes",
+     "reading": "There are two shape types in two colours; every copy of shape A is replaced by shape B (in B's colour) in the same bounding box, and vice versa.",
+     "why": "each object's box holds the other colour's shape in the output; nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "3391f8c0",
+     "sample": 1,
+     "verb": "swap shapes between colours",
+     "reading": "Two colours each appear as copies of one small shape; every copy of colour A is replaced by colour B's shape (at the same bounding-box top-left) and vice versa.",
+     "why": "each object position now holds the other colour's shape in the other colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "3391f8c0",
+     "sample": 2,
+     "verb": "swap shapes",
+     "reading": "There are two shape kinds, each in its own colour and repeated. Every copy of shape A is replaced by shape B in B's colour, and every copy of B by A in A's colour, aligned at the bounding box top-left.",
+     "why": "exactly two colours, each colour's components are translates of one shape; output has each component replaced by the other colour's shape",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "3391f8c0",
+     "sample": 3,
+     "verb": "swap shapes",
+     "reading": "There are objects of two colours, each colour with one repeated shape. Every object of colour A is replaced by the colour-B shape (top-left of bounding box aligned) and vice versa: the two shapes swap.",
+     "why": "after swapping, every object position holds the other colour's shape and nothing else changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "3391f8c0",
+     "sample": 4,
+     "verb": "swap shapes",
+     "reading": "There are two shape kinds, each in its own colour; every copy of shape A is replaced by shape B (in B's colour) at the same box position, and vice versa.",
+     "why": "each object box in the output holds the other colour's shape; the count and positions of objects unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "342dd610": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "342dd610",
+     "sample": 0,
+     "verb": "shift by colour",
+     "reading": "Each isolated cell moves by a fixed offset that depends on its colour: 7 up 2, 9 down 2, 2 left 2, 1 right 1.",
+     "why": "every marker reappears at its colour's offset and its old cell becomes background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "342dd610",
+     "sample": 1,
+     "verb": "shift by colour",
+     "reading": "Isolated single cells move by an offset fixed by their colour: 7 up 2, 2 left 2, 9 down 2, 1 right 1.",
+     "why": "each marker reappears at its colour's offset; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "342dd610",
+     "sample": 2,
+     "verb": "shift cells by colour",
+     "reading": "Each single coloured cell on the 8 background moves by an offset fixed by its colour: 7 up 2, 9 down 2, 2 left 2, 1 right 1.",
+     "why": "each marker's displacement depends only on its colour and is identical across pairs",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "342dd610",
+     "sample": 3,
+     "verb": "shift by colour",
+     "reading": "Each isolated marker moves by an offset fixed by its colour: 7 up 2, 9 down 2, 2 left 2, 1 right 1.",
+     "why": "every marker of colour c appears translated by offset(c); the offset is not one constant, it depends on the colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "342dd610",
+     "sample": 4,
+     "verb": "shift pixel by colour offset",
+     "reading": "Single coloured pixels on background 8 each move by an offset fixed by their colour: 7 up 2, 2 left 2, 9 down 2, 1 right 1.",
+     "why": "every pixel of colour c appears exactly at its input position plus offset(c); nothing else changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "3618c87e": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 1,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "3618c87e",
+     "sample": 0,
+     "verb": "drop to bottom",
+     "reading": "Each 1 sitting on top of a 5 stem drops to the bottom row, replacing the 5 there; its old cell becomes 0.",
+     "why": "each colour-1 cell ends in the bottom row of its column; the cell it left is background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3618c87e",
+     "sample": 1,
+     "verb": "drop to base",
+     "reading": "Each 1 cell sitting on top of a 5 stem drops two rows to the bottom row, replacing the 5 there; its old place becomes 0.",
+     "why": "the 1 cells keep their columns and land on the bottom row",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "move(subject:=train, target:=train)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "move(subject:=train, target:=train)"
+     ],
+     "fillers": {}
+    },
+    {
+     "task": "3618c87e",
+     "sample": 2,
+     "verb": "drop to bottom",
+     "reading": "Each 1 sitting on top of a 5 pillar drops to the bottom row in its column, replacing the 5 there; its old cell becomes background.",
+     "why": "every 1 ends in the bottom row of its own column; the 5 pillar cells above the bottom row are unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3618c87e",
+     "sample": 3,
+     "verb": "drop to floor",
+     "reading": "Each 1 sitting on top of a 5 post drops straight down to the bottom row, replacing the 5 there; its old cell becomes background.",
+     "why": "every 1 ends on the bottom row in its own column; nothing else changes except the 5 it covers",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3618c87e",
+     "sample": 4,
+     "verb": "drop to floor",
+     "reading": "Each 1 sitting on top of a 5 stem drops straight down to the bottom row, replacing the 5 there; its old cell becomes background.",
+     "why": "each colour-1 cell ends in the bottom row of its column; the stems stay",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "36fdfd69": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "36fdfd69",
+     "sample": 0,
+     "verb": "fill cluster boxes",
+     "reading": "Colour-2 cells form loose clusters (2s within 2 cells of each other); inside each cluster's bounding box every non-2 cell becomes 4.",
+     "why": "exactly the non-2 cells inside each 2-cluster box change, all to 4",
+     "new_rows": [
+      "d_36fdfd69_0_box2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box2": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_36fdfd69_0_box2)",
+      "fill(colour:=train, region:=d_36fdfd69_0_box2)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_36fdfd69_0_box2": [
+       [
+        15,
+        [
+         8
+        ]
+       ],
+       [
+        19,
+        [
+         1
+        ]
+       ],
+       [
+        6,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "36fdfd69",
+     "sample": 1,
+     "verb": "fill cluster boxes",
+     "reading": "In a noisy grid, colour-2 cells form clusters (cells within 2 of each other); every non-2 cell inside each cluster's bounding box becomes 4.",
+     "why": "exactly the non-2 cells inside the 2-cluster bounding boxes change, all to 4",
+     "new_rows": [
+      "d_36fdfd69_1_box2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box2": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_36fdfd69_1_box2)",
+      "fill(colour:=train, region:=d_36fdfd69_1_box2)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_36fdfd69_1_box2": [
+       [
+        15,
+        [
+         8
+        ]
+       ],
+       [
+        19,
+        [
+         1
+        ]
+       ],
+       [
+        6,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "36fdfd69",
+     "sample": 2,
+     "verb": "fill cluster boxes",
+     "reading": "Colour-2 cells form clusters (2-cells within 2 steps of each other); every non-2 cell inside a cluster's bounding box becomes 4.",
+     "why": "every changed cell lies in the bounding box of a 2-cluster (Chebyshev distance <= 2 linking) and becomes 4; nothing outside those boxes changes",
+     "new_rows": [
+      "d_36fdfd69_2_two_box"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "two_box": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_36fdfd69_2_two_box)",
+      "fill(colour:=train, region:=d_36fdfd69_2_two_box)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_36fdfd69_2_two_box": [
+       [
+        15,
+        [
+         8
+        ]
+       ],
+       [
+        19,
+        [
+         1
+        ]
+       ],
+       [
+        6,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "36fdfd69",
+     "sample": 3,
+     "verb": "fill cluster boxes",
+     "reading": "Group the 2-cells into clusters (2s within 2 cells of each other, chained); inside each cluster's bounding box every non-2 cell becomes 4.",
+     "why": "every non-2 cell inside a 2-cluster box becomes 4; all cells outside the boxes are unchanged",
+     "new_rows": [
+      "d_36fdfd69_3_box2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box2": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_36fdfd69_3_box2)",
+      "fill(colour:=train, region:=d_36fdfd69_3_box2)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_36fdfd69_3_box2": [
+       [
+        15,
+        [
+         8
+        ]
+       ],
+       [
+        19,
+        [
+         1
+        ]
+       ],
+       [
+        6,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "36fdfd69",
+     "sample": 4,
+     "verb": "fill cluster boxes",
+     "reading": "Cells of colour 2 form loose clusters (2s at most one cell apart); inside each cluster's bounding box every non-2 cell becomes 4.",
+     "why": "every non-2 cell inside a 2-cluster's box is 4; all other cells unchanged",
+     "new_rows": [
+      "d_36fdfd69_4_box2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box2": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_36fdfd69_4_box2)",
+      "fill(colour:=train, region:=d_36fdfd69_4_box2)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_36fdfd69_4_box2": [
+       [
+        15,
+        [
+         8
+        ]
+       ],
+       [
+        19,
+        [
+         1
+        ]
+       ],
+       [
+        6,
+        [
+         3
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "37ce87bb": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "37ce87bb",
+     "sample": 0,
+     "verb": "draw count bar",
+     "reading": "A new 5 bar rising from the bottom row is drawn two columns right of the rightmost bar; its height is (number of 8 cells) minus (number of 2 cells).",
+     "why": "on every pair the only change is that 5 bar",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "37ce87bb",
+     "sample": 1,
+     "verb": "draw difference bar",
+     "reading": "Vertical bars of 8 and 2 stand on the bottom row; a new 5 bar is drawn two columns right of the last bar, bottom-aligned, with height = (number of 8 cells) - (number of 2 cells).",
+     "why": "the only change is a bottom-aligned 5 run of that height in that column",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "37ce87bb",
+     "sample": 2,
+     "verb": "draw count bar",
+     "reading": "Draw a vertical bar of 5 up from the bottom row, two columns right of the rightmost bar; its height is (number of 8 cells) minus (number of 2 cells).",
+     "why": "on every pair the only change is a 5 bar of that height at that column, anchored at the bottom",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "37ce87bb",
+     "sample": 3,
+     "verb": "draw difference bar",
+     "reading": "Vertical bars of 8 and 2 stand on the bottom row every second column. A new 5 bar is drawn in the next slot (two columns right of the last bar), bottom-aligned, with height = (number of 8 cells) - (number of 2 cells).",
+     "why": "the only change is a bottom-aligned 5 column of that height at that column",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "37ce87bb",
+     "sample": 4,
+     "verb": "draw count-difference bar",
+     "reading": "Vertical bars of 8 and 2 stand on the bottom row in every other column; a new 5 bar is added two columns right of the last bar, bottom-aligned, with height = (number of 8 cells) - (number of 2 cells).",
+     "why": "the only change is a colour-5 vertical run ending at the bottom row whose length is #8 - #2",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "396d80d7": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "396d80d7",
+     "sample": 0,
+     "verb": "diagonal halo",
+     "reading": "Every background cell that touches the shape only diagonally (no orthogonal fg neighbour) is painted with the shape's inner (minority) colour.",
+     "why": "exactly the diagonal-only background neighbours change, all to the inner colour",
+     "new_rows": [
+      "d_396d80d7_0_halo"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "halo": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "396d80d7",
+     "sample": 1,
+     "verb": "grow diagonal halo",
+     "reading": "A two-colour pattern grows one layer: every background cell that touches the pattern diagonally but not orthogonally is painted with the pattern's inner colour (the colour not on its bounding-box edge).",
+     "why": "exactly the halo cells change, all to the inner colour",
+     "l4": "hypo (first word)",
+     "new_rows": [
+      "d_396d80d7_1_halo"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "halo": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "396d80d7",
+     "sample": 2,
+     "verb": "grow diagonal layer",
+     "reading": "The shape has an outer colour (the topmost cell's colour) and an inner colour. Every background cell that touches an outer cell diagonally but touches no outer cell orthogonally becomes the inner colour, growing the diagonal lattice by one layer.",
+     "why": "the added cells are exactly the diag_ring cells and all take the inner colour",
+     "new_rows": [
+      "d_396d80d7_2_diag_ring"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag_ring": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "396d80d7",
+     "sample": 3,
+     "verb": "paint diagonal halo",
+     "reading": "Around the two-colour shape, every background cell that touches the shape only diagonally (no orthogonal fg neighbour) is painted with the shape's inner (minority) colour.",
+     "why": "the new cells are exactly the background cells diagonally but not orthogonally adjacent to the shape",
+     "new_rows": [
+      "d_396d80d7_3_diag_halo"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag_halo": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "396d80d7",
+     "sample": 4,
+     "verb": "add diagonal halo",
+     "reading": "Around a two-colour pattern, every background cell that touches a shape cell only diagonally (no orthogonal shape neighbour) is painted with the pattern's inner (minority) colour.",
+     "why": "every diag_only cell becomes the inner colour; nothing else changes",
+     "new_rows": [
+      "d_396d80d7_4_diag_only"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag_only": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "3a301edc": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "3a301edc",
+     "sample": 0,
+     "verb": "frame with inner colour",
+     "reading": "The two-colour square object gets a surrounding band in its inner colour; the band thickness equals the inner core's smaller side, capped by the room to the nearest grid edge.",
+     "why": "exactly the background cells within T of the object's box change, all to the inner colour",
+     "new_rows": [
+      "d_3a301edc_0_ring"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring": [
+       "equal",
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3a301edc",
+     "sample": 1,
+     "verb": "add ring in inner colour",
+     "reading": "A rectangular frame encloses an inner block of another colour; a ring of the inner colour is added around the frame, its thickness = the inner block's smaller side, reduced to the smallest margin to the grid edge.",
+     "why": "exactly the background cells in the square ring around the bbox change, to the inner colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "3a301edc",
+     "sample": 2,
+     "verb": "surround with band",
+     "reading": "A box of outer colour holds an inner core of a second colour. A band of the core colour is drawn around the box. Its uniform thickness is the core's smaller side, capped by the space to the nearest grid edge.",
+     "why": "the only new cells are background cells within Chebyshev distance k of the box, all in the core colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3a301edc",
+     "sample": 3,
+     "verb": "frame with inner colour",
+     "reading": "A rectangle of colour A holds an inner block of colour B. A frame of colour B is drawn around the rectangle, as thick as the inner block's smaller side, but no thicker than the smallest margin to the grid edge.",
+     "why": "the output adds exactly a uniform-thickness ring of colour B around the rectangle's box",
+     "new_rows": [
+      "d_3a301edc_3_halo"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "halo": [
+       "equal",
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "3a301edc",
+     "sample": 4,
+     "verb": "add outer frame in inner colour",
+     "reading": "A rectangle of colour A contains a centred block of colour B; a frame of colour B is added around the rectangle, its thickness equal to the inner block's width, but never more than the rectangle's smallest margin to the grid edge.",
+     "why": "output = input plus a ring of the inner colour of equal thickness on all sides of the rectangle",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "3aa6fb7a": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "3aa6fb7a",
+     "sample": 0,
+     "verb": "complete corner",
+     "reading": "Each 8 L-tromino is completed to a 2x2 square by colouring its missing corner 1.",
+     "why": "exactly the empty cell of each 2x2 window with three 8s becomes 1",
+     "new_rows": [
+      "d_3aa6fb7a_0_hole"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hole": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_3aa6fb7a_0_hole)",
+      "fill(colour:=train, region:=d_3aa6fb7a_0_hole)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_3aa6fb7a_0_hole": [
+       [
+        3,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "3aa6fb7a",
+     "sample": 1,
+     "verb": "complete L corner",
+     "reading": "Each 3-cell L of 8 fills the missing corner of its 2x2 box with 1.",
+     "why": "exactly the background cell completing each 2x2 L becomes 1",
+     "new_rows": [
+      "d_3aa6fb7a_1_lcorner"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lcorner": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_3aa6fb7a_1_lcorner)",
+      "fill(colour:=train, region:=d_3aa6fb7a_1_lcorner)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_3aa6fb7a_1_lcorner": [
+       [
+        3,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "3aa6fb7a",
+     "sample": 2,
+     "verb": "complete L corners",
+     "reading": "Each 8 L-tromino (a 2x2 block missing one cell) gets its missing cell filled with 1.",
+     "why": "every changed cell is the single background cell of a 2x2 block holding three 8s, and becomes 1",
+     "new_rows": [
+      "d_3aa6fb7a_2_l_hole"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "l_hole": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_3aa6fb7a_2_l_hole)",
+      "fill(colour:=train, region:=d_3aa6fb7a_2_l_hole)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_3aa6fb7a_2_l_hole": [
+       [
+        3,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "3aa6fb7a",
+     "sample": 3,
+     "verb": "complete 2x2 corner",
+     "reading": "Each 8 object is three cells of a 2x2 square; the missing fourth cell becomes 1.",
+     "why": "the only changed cells are background cells that complete a 2x2 block with three 8 cells; they become 1",
+     "new_rows": [
+      "d_3aa6fb7a_3_nook"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "nook": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_3aa6fb7a_3_nook)",
+      "fill(colour:=train, region:=d_3aa6fb7a_3_nook)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_3aa6fb7a_3_nook": [
+       [
+        3,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "3aa6fb7a",
+     "sample": 4,
+     "verb": "complete box corner",
+     "reading": "Each 3-cell L-shaped 8 object fills its 2x2 box; the one missing corner cell becomes 1.",
+     "why": "every background cell inside an object's bounding box becomes 1; nothing else changes",
+     "new_rows": [
+      "d_3aa6fb7a_4_box_holes"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "box_holes": [
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_3aa6fb7a_4_box_holes)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_3aa6fb7a_4_box_holes": [
+       [
+        3,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

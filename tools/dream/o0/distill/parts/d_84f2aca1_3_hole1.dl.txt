@@ -1,0 +1,5 @@
+% row: d_84f2aca1_3_hole1
+% source: distillation batch reading, task 84f2aca1, sample 3
+% output: hole1(Y, X)
+nb(Y, X) :- cell(Y, X, C).
+hole1(Y, X) :- px(Y, X, 0), Ya = Y - 1, nb(Ya, X), Yb = Y + 1, nb(Yb, X), Xa = X - 1, nb(Y, Xa), Xb = X + 1, nb(Y, Xb).

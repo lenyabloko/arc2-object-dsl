@@ -1,0 +1,201 @@
+[
+ {
+  "task": "bf32578f",
+  "reading": "The input is the left half of an outline shape. Mirror it across the right edge of its box to close the outline, then output only the interior of the closed outline, filled with the shape colour (the outline itself is erased).",
+  "verb": "complete and fill interior",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "half": "the single fg object (left half of an outline)",
+   "axis": "vertical line just right of the object's bounding box (no shared column)",
+   "fill": "cells strictly inside the mirrored closed outline, row by row",
+   "colour": "the object's own colour",
+   "rest": "outline and everything else cleared to background"
+  },
+  "why": "on every pair the output's fg cells are exactly the interior of the outline formed by the input half plus its reflection across the box's right edge",
+  "invariants": [
+   "grid size",
+   "colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c074846d",
+  "reading": "A straight arm of 2s is attached to a single 5. The arm is rotated 90 degrees clockwise about the 5 (drawn as 2s), and the cells of the old arm become 3.",
+  "verb": "rotate arm about pivot",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pivot": "the single 5 cell",
+   "arm": "the run of 2s adjacent to the pivot",
+   "new arm": "same length, rotated 90 degrees clockwise around the pivot, colour 2",
+   "old arm": "recoloured 3"
+  },
+  "why": "on every pair the arm direction left->up, right->down, up->right, down->left (clockwise), same length, old arm cells become 3",
+  "invariants": [
+   "grid size",
+   "pivot 5 stays"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c0f76784",
+  "reading": "Each square outline of 5 has its hollow interior filled with a colour set by the interior size: 1x1 -> 6, 2x2 -> 7, 3x3 -> 8.",
+  "verb": "fill holes by size",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "region": "interior (enclosed background) of each 5 outline object",
+   "colour": "function of interior side length: 1 -> 6, 2 -> 7, 3 -> 8"
+  },
+  "why": "every enclosed interior is filled, colour depends only on its size; outlines and outside unchanged",
+  "invariants": [
+   "outlines",
+   "outside background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c1990cce",
+  "reading": "A 1xN row with a central 2 becomes an NxN grid: the 2 draws a V of two diagonals down to the side borders, and inside/under its left arm parallel down-right diagonals of 1 are drawn every 4 columns (lines with col-row congruent to centre mod 4), never overwriting 2s.",
+  "verb": "draw diagonal pattern",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "size": "output is N x N where N is the input width",
+   "V": "2 at (r, c0-r) and (r, c0+r) for r = 0..c0, c0 = centre column",
+   "lines": "colour 1 on cells with (col-row) = c0 - 4k, k >= 1, from the left arm downward-right to the border",
+   "rest": "background 0"
+  },
+  "why": "on every pair the 2s form the V from the apex and the 1s are exactly the down-right diagonals spaced 4 apart starting below the left arm",
+  "invariants": [
+   "apex 2 position in row 0"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "c1d99e64",
+  "reading": "Every row or column that is entirely 0 is painted with 2; all other cells stay.",
+  "verb": "paint empty lines",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "empty_line",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "empty_line",
+    "datalog": "nz_row(Y) :- px(Y, X, C), C > 0.\nnz_col(X) :- px(Y, X, C), C > 0.\nempty_line(Y, X) :- px(Y, X, C), !nz_row(Y).\nempty_line(Y, X) :- px(Y, X, C), !nz_col(X)."
+   }
+  ],
+  "why": "the cells of all-0 rows and columns become 2 and nothing else changes",
+  "invariants": [
+   "all non-empty-line cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c3e719e8",
+  "reading": "The 3x3 input is tiled into a 9x9 grid: block (i,j) is a copy of the input where input cell (i,j) has the most common colour, else empty.",
+  "verb": "self-tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "bg",
+    "unit": "input"
+   }
+  },
+  "why": "blocks holding a copy are exactly the positions of the input's most frequent colour",
+  "invariants": [
+   "the unit is the whole input"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c4d1a9ae",
+  "reading": "The grid is split into vertical panels by all-background columns; each panel has one pattern colour. In each panel the background cells take the pattern colour of the next panel to the right (the last panel takes the first panel's colour); separator columns stay.",
+  "verb": "recolour panel background cyclically",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "column stripes separated by full background-colour columns",
+   "subject": "background cells inside each panel",
+   "colour": "the fg colour of the next panel, cyclically (last -> first)",
+   "separators": "unchanged"
+  },
+  "why": "on both pairs panel k's background becomes panel k+1's colour (wrapping), pattern cells and separator columns unchanged",
+  "invariants": [
+   "pattern cells",
+   "separator columns",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "c62e2108",
+  "reading": "Each hollow square points toward a bar of 1s on the border in line with it; the square is repeated end to end (period = its size) from itself to that border, the last copy cut at the border, and the 1-bars are erased.",
+  "verb": "repeat shape toward marker",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "each square object",
+   "direction": "toward the border where a 1-bar lies on the same rows/columns as the square",
+   "copies": "translate by the square's size repeatedly until the grid edge, cropping the last",
+   "markers": "1-bars removed"
+  },
+  "why": "each square's copies tile contiguously along its row or column band from the square to every border carrying an aligned 1-bar",
+  "invariants": [
+   "original squares",
+   "background elsewhere"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "c6e1b8da",
+  "reading": "Some rectangles have a thin one-cell-wide tail; each such rectangle slides in the tail's direction by the tail's length and the tail disappears. Rectangles partly hidden under others are restored as full rectangles; the moved shape is drawn on top.",
+  "verb": "slide along tail",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each rectangle with a protruding thin line",
+   "direction": "direction of the tail",
+   "distance": "tail length in cells",
+   "tail": "erased",
+   "others": "tail-less rectangles stay, completed to full rectangles where occluded"
+  },
+  "why": "on every pair each tailed rectangle's new position equals old position shifted by tail length toward the tail, keeping its shape",
+  "invariants": [
+   "shapes and colours of rectangles",
+   "untailed rectangles' positions"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "c92b942c",
+  "reading": "Tile the input 3x3, then for every coloured cell paint the background of its whole row 1 and put 3 at its up-left and down-right diagonal neighbours (if inside the grid).",
+  "verb": "tile then decorate",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "tiling": "3x3 copies of the input",
+   "row": "every background cell in a row containing a coloured cell becomes 1",
+   "diagonals": "cells at (r-1,c-1) and (r+1,c+1) of each coloured cell become 3, clipped at the grid edge"
+  },
+  "why": "on every pair the output equals the 3x3 tiling plus 1-rows through the coloured cells and 3s on their up-left/down-right diagonals",
+  "invariants": [
+   "coloured cells keep colour",
+   "output size 3H x 3W"
+  ],
+  "confidence": "high"
+ }
+]

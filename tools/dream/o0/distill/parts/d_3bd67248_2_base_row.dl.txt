@@ -1,0 +1,5 @@
+% row: d_3bd67248_2_base_row
+% source: distillation batch reading, task 3bd67248, sample 2
+% output: base_row(Y, X)
+h(max(Y)) :- px(Y, X, C).
+base_row(Y, X) :- px(Y, X, C), h(H), Y = H, X > 0.

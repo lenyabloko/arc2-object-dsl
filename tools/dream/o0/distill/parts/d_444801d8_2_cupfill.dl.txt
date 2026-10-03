@@ -1,0 +1,10 @@
+% row: d_444801d8_2_cupfill
+% source: distillation batch reading, task 444801d8, sample 2
+% output: cupfill(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+cup(O) :- osize(O, N), N > 1.
+ct(O, min(Y)) :- cup(O), obj(O, Y, X).
+cb(O, max(Y)) :- cup(O), obj(O, Y, X).
+cl(O, min(X)) :- cup(O), obj(O, Y, X).
+cr(O, max(X)) :- cup(O), obj(O, Y, X).
+cupfill(Y, X) :- ct(O, T), cb(O, B), cl(O, L), cr(O, R), px(Y, X, C), C = 0, T1 = T - 1, Y >= T1, Y <= B, X >= L, X <= R.

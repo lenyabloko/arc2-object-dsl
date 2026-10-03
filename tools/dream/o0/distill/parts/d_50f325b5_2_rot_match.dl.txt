@@ -1,0 +1,16 @@
+% row: d_50f325b5_2_rot_match
+% source: distillation batch reading, task 50f325b5, sample 2
+% output: rot_match(Y, X)
+e8(Y, X) :- px(Y, X, 8).
+three(Y, X) :- px(Y, X, 3).
+ry(min(Y)) :- e8(Y, X).
+rx(min(X)) :- e8(Y, X).
+t0(DY, DX) :- e8(Y, X), ry(MY), rx(MX), DY = Y - MY, DX = X - MX.
+t(0, A, B) :- t0(DY, DX), A = DY + 0, B = DX + 0.
+t(1, A, B) :- t0(DY, DX), A = DX + 0, B = 0 - DY.
+t(2, A, B) :- t0(DY, DX), A = 0 - DY, B = 0 - DX.
+t(3, A, B) :- t0(DY, DX), A = 0 - DX, B = DY + 0.
+cand(R, AY, AX) :- t(R, DY, DX), three(Y, X), AY = Y - DY, AX = X - DX.
+bad(R, AY, AX) :- cand(R, AY, AX), t(R, DY, DX), Y = AY + DY, X = AX + DX, !three(Y, X).
+ok(R, AY, AX) :- cand(R, AY, AX), !bad(R, AY, AX).
+rot_match(Y, X) :- ok(R, AY, AX), t(R, DY, DX), Y = AY + DY, X = AX + DX.

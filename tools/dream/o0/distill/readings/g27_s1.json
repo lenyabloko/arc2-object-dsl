@@ -1,0 +1,216 @@
+[
+ {
+  "task": "d07ae81c",
+  "reading": "Each isolated marker shoots diagonal lines in all four diagonal directions to the grid border; a line cell takes the colour of the marker that sits in the same background-stripe colour as that cell.",
+  "verb": "draw diagonal rays recoloured by region",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "isolated marker cells (one per stripe colour)",
+   "direction": "all four diagonals, to the border",
+   "colour": "per cell: the colour of the marker lying in a stripe of the same underlying colour (region colour -> marker colour key)"
+  },
+  "why": "every changed cell lies on a diagonal through a marker and its new colour is key(underlying stripe colour)",
+  "invariants": [
+   "grid size",
+   "stripe layout",
+   "markers"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d13f3404",
+  "reading": "The 3x3 input is placed at the top-left of a 6x6 canvas and every coloured cell is extended down-right diagonally to the canvas border in its own colour.",
+  "verb": "draw diagonal trails on doubled canvas",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "canvas": "output twice the input size, input at top-left",
+   "source": "every non-background cell",
+   "direction": "down-right diagonal, to the border",
+   "colour": "own"
+  },
+  "why": "output cell (y,x) equals the input cell (y-k,x-k) for the smallest k>=0 giving a non-background cell",
+  "invariants": [
+   "input cells kept at top-left"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d23f8c26",
+  "reading": "Only the middle column is kept; every coloured cell off the middle column becomes background.",
+  "verb": "keep centre column",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "offmid",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "offmid",
+    "datalog": "wmax(max(X)) :- px(Y, X, C).\nmidcol(X) :- px(Y, X, C), wmax(M), D = X + X, D = M.\noffmid(Y, X) :- cell(Y, X, C), !midcol(X)."
+   }
+  ],
+  "why": "all non-background cells outside the centre column become 0; the centre column is unchanged",
+  "invariants": [
+   "grid size",
+   "centre column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d255d7a7",
+  "reading": "Each 3x3 bracket attached to a long 0-coloured rail slides along its rail to the rail's far end at the opposite border, carrying whatever is inside it; the rail is erased. Loose 9s not in a bracket stay.",
+  "verb": "slide bracket along rail",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "bracket (3-cell-deep cup of 0 plus its contents) at the grid edge",
+   "path": "the 0 rail extending from the bracket's closed side",
+   "target": "the far end of the rail at the opposite border",
+   "rest": "rail cells become background 7; other cells kept"
+  },
+  "why": "each bracket with contents reappears unchanged in orientation at the far end of its rail; rail removed",
+  "invariants": [
+   "grid size",
+   "isolated 9s outside brackets",
+   "bracket orientation"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d2acf2cb",
+  "reading": "In every row or column that has a 4 at both grid-border ends, the cells between the two 4s swap colours 0<->8 and 6<->7.",
+  "verb": "swap colours inside 4-bounded lanes",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "lane"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\nvlane(Y, X) :- px(Y0, X, 4), Y0 = 0, hmax(H), px(H, X, 4), px(Y, X, C), Y > 0, Y < H.\nhlane(Y, X) :- px(Y, X0, 4), X0 = 0, wmax(W), px(Y, W, 4), px(Y, X, C), X > 0, X < W.\nlane(Y, X) :- vlane(Y, X).\nlane(Y, X) :- hlane(Y, X)."
+   }
+  ],
+  "why": "key is 0->8, 8->0, 6->7, 7->6 on lane cells (bg included); all other cells unchanged",
+  "invariants": [
+   "grid size",
+   "the 4 end cells",
+   "cells outside lanes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d364b489",
+  "reading": "Around every isolated 1 a fixed plus is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+  "verb": "stamp plus around markers",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each marker gets the identical 3x3 plus (centre 1) and nothing else changes",
+  "invariants": [
+   "grid size",
+   "marker cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d37a1ef5",
+  "reading": "The interior of the 2-coloured rectangular frame is filled with 2, except the bounding box of the 5 cells, which stays as it is.",
+  "verb": "fill frame around box of spots",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gap",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(max(N)) :- osize(O, N).\nfrm(O) :- osize(O, N), big(M), N = M.\nfy0(min(Y)) :- frm(O), obj(O, Y, X).\nfy1(max(Y)) :- frm(O), obj(O, Y, X).\nfx0(min(X)) :- frm(O), obj(O, Y, X).\nfx1(max(X)) :- frm(O), obj(O, Y, X).\nbgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\ninner(Y, X) :- bgc(Y, X), fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q.\nspot(Y, X) :- cell(Y, X, C), obj(O, Y, X), !frm(O).\nsy0(min(Y)) :- spot(Y, X).\nsy1(max(Y)) :- spot(Y, X).\nsx0(min(X)) :- spot(Y, X).\nsx1(max(X)) :- spot(Y, X).\ninbox(Y, X) :- inner(Y, X), sy0(A), sy1(B), sx0(P), sx1(Q), Y >= A, Y <= B, X >= P, X <= Q.\ngap(Y, X) :- inner(Y, X), !inbox(Y, X)."
+   }
+  ],
+  "why": "every background cell inside the frame but outside the 5s' bounding box becomes 2; nothing else changes",
+  "invariants": [
+   "grid size",
+   "frame",
+   "5 cells",
+   "background inside the 5s' box"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d4469b4b",
+  "reading": "The output is a fixed 3x3 glyph in colour 5 chosen by the input's single colour: 1 -> plus, 2 -> T (top bar, stem down), 3 -> corner (right column and bottom row).",
+  "verb": "look up glyph by colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the one non-background colour of the input",
+   "table": "1 -> 050/555/050, 2 -> 555/050/050, 3 -> 005/005/555 (learned from train)",
+   "output": "3x3 glyph in colour 5"
+  },
+  "why": "output depends only on the input colour; each colour always gives the same glyph",
+  "invariants": [
+   "output size 3x3",
+   "output colour 5"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d5c634a2",
+  "reading": "The input holds T-tetromino shapes pointing up or down. The output is a 3x6 tally: the left 3x3 half shows the number of stem-up shapes as 3s on corner slots, the right half shows the number of stem-down shapes as 1s.",
+  "verb": "tally shapes by orientation",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "objects": "T shapes of colour 2 (3-cell bar plus 1-cell stem; diagonal touching does not merge them)",
+   "classes": "stem up -> colour 3, left half; stem down -> colour 1, right half",
+   "layout": "count n on corner slots of a 3x3 half: 1 -> TL; 2 -> TL,BL; 3 -> TL,TR,BL; 4 -> all four corners"
+  },
+  "why": "number of 3s equals the stem-up count and number of 1s equals the stem-down count on every pair",
+  "invariants": [
+   "output size 3x6",
+   "middle row all 0"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d6542281",
+  "reading": "Each grid has one or more complete multi-coloured template shapes; elsewhere a few cells of a template appear as fragments, and each fragment is completed into the full template at the matching position.",
+  "verb": "complete partial copies of templates",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "templates": "complete multi-coloured shapes (exemplars)",
+   "fragments": "small cell groups whose colours and relative positions match a part of one template",
+   "placement": "the template position that makes the fragment cells coincide with the template cells",
+   "rest": "kept"
+  },
+  "why": "every added cell belongs to a full template copy aligned to the fragment it completes",
+  "invariants": [
+   "grid size",
+   "background",
+   "the templates"
+  ],
+  "confidence": "medium"
+ }
+]

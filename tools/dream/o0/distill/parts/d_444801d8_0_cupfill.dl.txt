@@ -1,0 +1,12 @@
+% row: d_444801d8_0_cupfill
+% source: distillation batch reading, task 444801d8, sample 0
+% output: cupfill(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+cup(O) :- osize(O, N), N > 1.
+top(O, min(Y)) :- cup(O), obj(O, Y, X).
+bot(O, max(Y)) :- cup(O), obj(O, Y, X).
+lef(O, min(X)) :- cup(O), obj(O, Y, X).
+rig(O, max(X)) :- cup(O), obj(O, Y, X).
+inbox(O, Y, X) :- top(O, T), bot(O, B), lef(O, L), rig(O, R), px(Y, X, C), Y >= T, Y <= B, X >= L, X <= R.
+cupfill(Y, X) :- inbox(O, Y, X), !obj(O, Y, X).
+cupfill(Y, X) :- top(O, T), lef(O, L), rig(O, R), Y = T - 1, px(Y, X, C), X >= L, X <= R.

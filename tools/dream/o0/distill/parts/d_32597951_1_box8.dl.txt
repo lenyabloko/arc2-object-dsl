@@ -1,0 +1,9 @@
+% row: d_32597951_1_box8
+% source: distillation batch reading, task 32597951, sample 1
+% output: box8(Y, X)
+e(Y, X) :- px(Y, X, C), C = 8.
+y0(min(Y)) :- e(Y, X).
+y1(max(Y)) :- e(Y, X).
+x0(min(X)) :- e(Y, X).
+x1(max(X)) :- e(Y, X).
+box8(Y, X) :- px(Y, X, C), y0(A), y1(B), x0(D), x1(E), Y >= A, Y <= B, X >= D, X <= E.

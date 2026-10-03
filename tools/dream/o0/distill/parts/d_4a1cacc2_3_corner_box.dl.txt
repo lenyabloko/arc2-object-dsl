@@ -1,0 +1,10 @@
+% row: d_4a1cacc2_3_corner_box
+% source: distillation batch reading, task 4a1cacc2, sample 3
+% output: corner_box(Y, X)
+hm(max(Y)) :- px(Y, X, C).
+wm(max(X)) :- px(Y, X, C).
+rowsel(Y) :- cell(MY, MX, C), hm(H), D = H - MY, MY < D, px(Y, X, K), Y1 = MY + 1, Y < Y1.
+rowsel(Y) :- cell(MY, MX, C), hm(H), D = H - MY, D < MY, px(Y, X, K), Y0 = MY - 1, Y > Y0.
+colsel(X) :- cell(MY, MX, C), wm(W), D = W - MX, MX < D, px(Y, X, K), X1 = MX + 1, X < X1.
+colsel(X) :- cell(MY, MX, C), wm(W), D = W - MX, D < MX, px(Y, X, K), X0 = MX - 1, X > X0.
+corner_box(Y, X) :- rowsel(Y), colsel(X).

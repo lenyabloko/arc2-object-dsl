@@ -1,0 +1,5 @@
+% row: d_6c434453_3_ring_tl
+% source: distillation batch reading, task 6c434453, sample 3
+% output: ring_tl(Y, X)
+nfg(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+ring_tl(Y2, X2) :- nfg(Y, X, N), N = 8, Y2 = Y - 1, X2 = X - 1.

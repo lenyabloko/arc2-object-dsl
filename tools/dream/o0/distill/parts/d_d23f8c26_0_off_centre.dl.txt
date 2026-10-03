@@ -1,0 +1,6 @@
+% row: d_d23f8c26_0_off_centre
+% source: distillation batch reading, task d23f8c26, sample 0
+% output: off_centre(Y, X)
+gw(max(X)) :- px(Y, X, C).
+off_centre(Y, X) :- cell(Y, X, C), gw(W), X2 = X + X, X2 < W.
+off_centre(Y, X) :- cell(Y, X, C), gw(W), X2 = X + X, X2 > W.

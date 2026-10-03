@@ -1,0 +1,9 @@
+% row: d_aedd82e4_3_lone4
+% source: distillation batch reading, task aedd82e4, sample 3
+% output: lone4(Y, X)
+tw(Y, X, C) :- px(Y, X, C), C > 0.
+nb(Y, X) :- tw(Y, X, C), Y2 = Y + 1, tw(Y2, X, C).
+nb(Y, X) :- tw(Y, X, C), Y2 = Y - 1, tw(Y2, X, C).
+nb(Y, X) :- tw(Y, X, C), X2 = X + 1, tw(Y, X2, C).
+nb(Y, X) :- tw(Y, X, C), X2 = X - 1, tw(Y, X2, C).
+lone4(Y, X) :- tw(Y, X, C), !nb(Y, X).

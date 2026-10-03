@@ -1,0 +1,4 @@
+% row: d_3de23699_4_innerfg
+% source: distillation batch reading, task 3de23699, sample 4
+% output: innerfg(Y, X)
+innerfg(Y, X) :- inner(Y, X), cell(Y, X, C).

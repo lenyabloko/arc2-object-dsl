@@ -1,0 +1,223 @@
+[
+ {
+  "task": "32e9702f",
+  "reading": "Every object shifts one cell left (cells pushed off the left edge are lost), then all background cells become 5.",
+  "verb": "shift left and repaint background",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "fg",
+     "target": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "bg",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "output = input translated by (0,-1) with 0 replaced by 5 on every pair",
+  "invariants": [
+   "object colours",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "332202d5",
+  "reading": "Horizontal coloured lines cross one vertical 8 line. Each other row takes the colour of its nearest horizontal line (a row equidistant from two different colours becomes all 1); line rows become 1 with 8 at the crossing, and the vertical line becomes 1 elsewhere.",
+  "verb": "paint bands by nearest line",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lines": "full rows containing a 1 at the crossing; their non-1 colour is the band colour",
+   "band colour": "colour of the nearest line row; tie between different colours -> whole row 1",
+   "line rows": "line colour -> 1, crossing 1 -> 8",
+   "other rows": "7 -> band colour, 8 -> 1"
+  },
+  "why": "each row is a function of its distance to the line rows",
+  "invariants": [
+   "grid size",
+   "position of the vertical line column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "3391f8c0",
+  "reading": "Two colours each appear as copies of one small shape; every copy of colour A is replaced by colour B's shape (at the same bounding-box top-left) and vice versa.",
+  "verb": "swap shapes between colours",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "objects": "8-connected single-colour objects, two colours, one shape per colour",
+   "replacement": "the other colour's shape, placed at the object's bbox top-left"
+  },
+  "why": "each object position now holds the other colour's shape in the other colour",
+  "invariants": [
+   "object bbox positions",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "342dd610",
+  "reading": "Isolated single cells move by an offset fixed by their colour: 7 up 2, 2 left 2, 9 down 2, 1 right 1.",
+  "verb": "shift by colour",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "markers",
+    "target": "train"
+   }
+  },
+  "slots": {
+   "target": "constant colour-keyed offset table: 7->(-2,0), 2->(0,-2), 9->(+2,0), 1->(0,+1)"
+  },
+  "why": "each marker reappears at its colour's offset; nothing else changes",
+  "invariants": [
+   "background 8",
+   "marker colours and count"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "3618c87e",
+  "reading": "Each 1 cell sitting on top of a 5 stem drops two rows to the bottom row, replacing the 5 there; its old place becomes 0.",
+  "verb": "drop to base",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "train",
+    "target": "train"
+   }
+  },
+  "slots": {
+   "subject": "the colour-1 cells",
+   "target": "constant offset (+2,0), i.e. onto the bottom border row"
+  },
+  "why": "the 1 cells keep their columns and land on the bottom row",
+  "invariants": [
+   "5 stems",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "36fdfd69",
+  "reading": "In a noisy grid, colour-2 cells form clusters (cells within 2 of each other); every non-2 cell inside each cluster's bounding box becomes 4.",
+  "verb": "fill cluster boxes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "box2",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "box2",
+    "datalog": "two(Y, X) :- cell(Y, X, 2).\nnb(Y, X, Y2, X2) :- two(Y, X), two(Y2, X2), DY = Y2 - Y, DX = X2 - X, DY >= -2, DY <= 2, DX >= -2, DX <= 2.\nreach(Y, X, Y2, X2) :- nb(Y, X, Y2, X2).\nreach(Y, X, Y3, X3) :- reach(Y, X, Y2, X2), nb(Y2, X2, Y3, X3).\nlab(Y, X, min(K)) :- reach(Y, X, Y2, X2), K = Y2 * 100 + X2.\ntop(K, min(Y)) :- lab(Y, X, K).\nbot(K, max(Y)) :- lab(Y, X, K).\nlft(K, min(X)) :- lab(Y, X, K).\nrgt(K, max(X)) :- lab(Y, X, K).\nbox2(Y, X) :- px(Y, X, C), !two(Y, X), top(K, T), bot(K, B), lft(K, L), rgt(K, R), Y >= T, Y <= B, X >= L, X <= R."
+   }
+  ],
+  "why": "exactly the non-2 cells inside the 2-cluster bounding boxes change, all to 4",
+  "invariants": [
+   "2 cells",
+   "everything outside the boxes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "37ce87bb",
+  "reading": "Vertical bars of 8 and 2 stand on the bottom row; a new 5 bar is drawn two columns right of the last bar, bottom-aligned, with height = (number of 8 cells) - (number of 2 cells).",
+  "verb": "draw difference bar",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "column": "rightmost bar column + 2",
+   "height": "count(8) - count(2)",
+   "colour": "5",
+   "anchor": "bottom row"
+  },
+  "why": "the only change is a bottom-aligned 5 run of that height in that column",
+  "invariants": [
+   "existing bars",
+   "background 7"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "396d80d7",
+  "reading": "A two-colour pattern grows one layer: every background cell that touches the pattern diagonally but not orthogonally is painted with the pattern's inner colour (the colour not on its bounding-box edge).",
+  "verb": "grow diagonal halo",
+  "frame": {
+   "how": "other"
+  },
+  "new_rows": [
+   {
+    "name": "halo",
+    "datalog": "bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\ndfg(Y, X) :- bgc(Y, X), off(DY, DX), off(DY, 0), off(0, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\nofg(Y, X) :- bgc(Y, X), off(DY, DX), DY = 0, X2 = X + DX, cell(Y, X2, C).\nofg(Y, X) :- bgc(Y, X), off(DY, DX), DX = 0, Y2 = Y + DY, cell(Y2, X, C).\nhalo(Y, X) :- dfg(Y, X), !ofg(Y, X)."
+   }
+  ],
+  "slots": {
+   "region": "halo row (fill region)",
+   "colour": "the inner fg colour (fg colour absent from the fg bounding-box edge); varies per pair, so not train/own"
+  },
+  "why": "exactly the halo cells change, all to the inner colour",
+  "invariants": [
+   "original pattern",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "3a301edc",
+  "reading": "A rectangular frame encloses an inner block of another colour; a ring of the inner colour is added around the frame, its thickness = the inner block's smaller side, reduced to the smallest margin to the grid edge.",
+  "verb": "add ring in inner colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shape": "the one framed object (outer colour on its bbox edge)",
+   "colour": "inner block colour",
+   "thickness": "min(inner height, inner width, margins to all four grid edges)",
+   "region": "background cells within that distance (Chebyshev) of the shape's bbox"
+  },
+  "why": "exactly the background cells in the square ring around the bbox change, to the inner colour",
+  "invariants": [
+   "the original framed object",
+   "cells outside the ring"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "3aa6fb7a",
+  "reading": "Each 3-cell L of 8 fills the missing corner of its 2x2 box with 1.",
+  "verb": "complete L corner",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "lcorner",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lcorner",
+    "datalog": "lcorner(Y, X) :- px(Y, X, C0), !cell(Y, X, C0), off(DY, DX), off(DY, 0), off(0, DX), Y1 = Y + DY, X1 = X + DX, cell(Y1, X, A), cell(Y, X1, B), cell(Y1, X1, D)."
+   }
+  ],
+  "why": "exactly the background cell completing each 2x2 L becomes 1",
+  "invariants": [
+   "8 cells",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ }
+]

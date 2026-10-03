@@ -1,0 +1,4 @@
+% row: d_3aa6fb7a_1_lcorner
+% source: distillation batch reading, task 3aa6fb7a, sample 1
+% output: lcorner(Y, X)
+lcorner(Y, X) :- px(Y, X, C0), !cell(Y, X, C0), off(DY, DX), off(DY, 0), off(0, DX), Y1 = Y + DY, X1 = X + DX, cell(Y1, X, A), cell(Y, X1, B), cell(Y1, X1, D).

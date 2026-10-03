@@ -1,0 +1,5 @@
+% row: d_1b8318e3_3_single
+% source: distillation batch reading, task 1b8318e3, sample 3
+% output: single(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+single(Y, X) :- obj(O, Y, X), osize(O, N), N = 1.

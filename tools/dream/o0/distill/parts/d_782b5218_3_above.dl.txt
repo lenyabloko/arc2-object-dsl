@@ -1,0 +1,6 @@
+% row: d_782b5218_3_above
+% source: distillation batch reading, task 782b5218, sample 3
+% output: above(Y, X)
+has2(Y, X) :- px(Y, X, 2).
+has2(Y, X) :- px(Y, X, C), px(Y2, X, 2), Y2 < Y.
+above(Y, X) :- px(Y, X, C), !has2(Y, X).

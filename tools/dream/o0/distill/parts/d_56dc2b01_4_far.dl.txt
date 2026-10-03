@@ -1,0 +1,13 @@
+% row: d_56dc2b01_4_far
+% source: distillation batch reading, task 56dc2b01, sample 4
+% output: far(Y, X)
+top3(min(Y)) :- cell(Y, X, 3).
+bot3(max(Y)) :- cell(Y, X, 3).
+lft3(min(X)) :- cell(Y, X, 3).
+rgt3(max(X)) :- cell(Y, X, 3).
+hsep(Y) :- cell(Y, X, 2), X2 = X + 1, cell(Y, X2, 2).
+vsep(X) :- cell(Y, X, 2), Y2 = Y + 1, cell(Y2, X, 2).
+far(Y, X) :- hsep(S), top3(T), S > T, Y = T - 1, px(Y, X, C).
+far(Y, X) :- hsep(S), bot3(B), S < B, Y = B + 1, px(Y, X, C).
+far(Y, X) :- vsep(S), lft3(L), S > L, X = L - 1, px(Y, X, C).
+far(Y, X) :- vsep(S), rgt3(R), S < R, X = R + 1, px(Y, X, C).

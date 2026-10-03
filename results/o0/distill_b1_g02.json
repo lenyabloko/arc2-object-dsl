@@ -1,0 +1,1933 @@
+{
+ "group": 2,
+ "tasks": {
+  "140c817e": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "140c817e",
+     "sample": 0,
+     "verb": "draw cross with badge",
+     "reading": "Every isolated marker (colour 1) gets a 3x3 badge: centre 2, orthogonal neighbours 1, diagonal neighbours 3; then a full row and full column of colour 1 run through the marker to the borders, painting only background (they pass under other badges).",
+     "why": "unit = [313/121/313] centred on each marker; lines of colour 1 go in all four directions from each 2-cell to the border and overwrite only background cells (badges drawn after lines would give the same result).",
+     "new_rows": [
+      "d_140c817e_0_hub"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "hub": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "140c817e",
+     "sample": 1,
+     "verb": "draw cross and stamp",
+     "reading": "Every isolated marker (colour 1) draws a full-width row line and full-height column line of colour 1; the marker itself becomes 2 and its four diagonal neighbours become 3 (drawn on top of the lines).",
+     "why": "Stamp the constant 3x3 unit 313/121/313 centred on each marker, then each colour-1 arm cell extends outward to the grid border (inward/sideways rays stop at once on the stamp's own 2 and 3 cells). No line ever hits another marker's stamp in training or test.",
+     "new_rows": [
+      "d_140c817e_1_arms"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "arms": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "140c817e",
+     "sample": 2,
+     "verb": "cross-hair markers",
+     "reading": "Each isolated marker cell becomes 2, gets 3s on its four diagonal neighbours, and sends full-length lines of the marker colour (1) along its row and column to the grid border.",
+     "why": "every marker gets the identical 3x3 stamp and its row and column are 1 wherever not the 2 centre; no marker lines hit another stamp's 3s in training",
+     "new_rows": [
+      "d_140c817e_2_centre2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "centre2": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "140c817e",
+     "sample": 3,
+     "verb": "stamp cross and draw lines",
+     "reading": "Each isolated marker cell becomes the centre of a 3x3 stamp (2 in the centre, 1 orthogonally, 3 diagonally), and full row and column lines of 1 are drawn through every stamp centre to the grid border.",
+     "why": "every input marker is the centre of an identical 3x3 unit [313/121/313]; from each centre, lines of colour 1 run in all four directions to the border",
+     "new_rows": [
+      "d_140c817e_3_stamp_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "stamp_centre": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "140c817e",
+     "sample": 4,
+     "verb": "stamp ornament and draw cross lines",
+     "reading": "Each isolated cell becomes the centre of a 3x3 ornament (2 at centre, 1 on the edge cells, 3 on the diagonal corners); then a full row and full column of 1 is drawn through each centre over background cells only.",
+     "why": "Every marker gets the same 3x3 unit centred on it; lines of 1 run from each centre to all four borders along its row and column, painting only background (other ornaments' 3s stay). Equivalent: draw full lines first, then stamp on top.",
+     "new_rows": [
+      "d_140c817e_4_centre2"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "centre2": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "14754a24": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "14754a24",
+     "sample": 0,
+     "verb": "complete plus",
+     "reading": "The yellow (4) cells are pieces of plus shapes (centre + 4 arms, clipped at the border); each plus whose cells are all non-zero is completed by turning its grey (5) cells red (2).",
+     "why": "key 5->2; a plus is chosen if it has no 0 cell, holds >=2 yellow cells, and no other such plus with more yellow cells shares one of its yellow cells; chosen pluses cover every yellow cell exactly once. Colours are named explicitly because 5 outnumbers 0 in the test grid.",
+     "new_rows": [
+      "d_14754a24_0_plus5"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus5": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14754a24_0_plus5)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14754a24_0_plus5": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        12,
+        [
+         5
+        ]
+       ],
+       [
+        6,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14754a24",
+     "sample": 1,
+     "verb": "complete plus",
+     "reading": "Colour-4 cells mark partial plus shapes (centre + 4 arms) inside a 0/5 noise field; the 5 cells that complete each plus become 2.",
+     "why": "A plus centre is valid when all its in-grid cells are 4 or 5, it holds at least two 4s, and no other candidate plus holds a strict superset of its 4s; exactly the 5s of valid pluses change, 5 -> 2.",
+     "new_rows": [
+      "d_14754a24_1_plus5"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus5": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14754a24_1_plus5)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14754a24_1_plus5": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        12,
+        [
+         5
+        ]
+       ],
+       [
+        6,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14754a24",
+     "sample": 2,
+     "verb": "complete plus",
+     "reading": "Partial plus shapes are marked by 4s; for each plus (5 cells, no 0 inside, at least two 4s, ties among overlapping pluses broken by most 4s) the 5 cells inside it become 2.",
+     "why": "the changed cells are exactly the 5-cells of winning plus centres; 5 -> 2 on every pair",
+     "new_rows": [
+      "d_14754a24_2_plus5"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus5": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14754a24_2_plus5)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14754a24_2_plus5": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        12,
+        [
+         5
+        ]
+       ],
+       [
+        6,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14754a24",
+     "sample": 3,
+     "verb": "complete plus",
+     "reading": "Each 8-connected group of 4s is part of a plus shape (centre + 4 arms); the plus that contains the whole group and has no 0 cell is completed by turning its 5 cells into 2.",
+     "why": "every changed cell is a 5 inside a plus whose 4-cells form whole 4-components and which has no 0; 5 -> 2 there, nothing else changes",
+     "new_rows": [
+      "d_14754a24_3_plus_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus_gap": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14754a24_3_plus_gap)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14754a24_3_plus_gap": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        12,
+        [
+         5
+        ]
+       ],
+       [
+        6,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14754a24",
+     "sample": 4,
+     "verb": "complete plus",
+     "reading": "Groups of 4-cells are partial plus shapes; the plus is completed by turning its remaining 5-cells into 2.",
+     "why": "For each 8-connected component of 4s there is exactly one in-grid plus (centre + 4 orthogonal neighbours) containing all its cells whose other cells are all 5 (no 0); exactly those 5s become 2 (key 5->2).",
+     "new_rows": [
+      "d_14754a24_4_plus_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "plus_gap": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14754a24_4_plus_gap)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14754a24_4_plus_gap": [
+       [
+        7,
+        [
+         5
+        ]
+       ],
+       [
+        14,
+        [
+         5
+        ]
+       ],
+       [
+        12,
+        [
+         5
+        ]
+       ],
+       [
+        6,
+        [
+         5
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "14b8e18c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "14b8e18c",
+     "sample": 0,
+     "verb": "mark square corners",
+     "reading": "Every square object (box height = width > 1, all four box corners filled: square rings and solid squares) gets a red (2) tick on the background just outside each corner, one above/below and one left/right; non-square objects get nothing.",
+     "why": "key 7->2 on the 8 tick cells of each square object; lines, the 2x4 block and the 2-cell diagonal (corners not all filled) are skipped.",
+     "new_rows": [
+      "d_14b8e18c_0_tick"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "tick": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14b8e18c_0_tick)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14b8e18c_0_tick": [
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        16,
+        [
+         7
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14b8e18c",
+     "sample": 1,
+     "verb": "mark square corners",
+     "reading": "Every object that is a square outline (square box, whole box border filled; a 2x2 block counts) gets colour-2 marks on the two background cells orthogonally outside each of its four corners.",
+     "why": "Only background cells next to the corners of square-outline objects change (7 -> 2); diagonal pairs, lines and non-square rectangles are left alone.",
+     "new_rows": [
+      "d_14b8e18c_1_sqmarks"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sqmarks": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14b8e18c_1_sqmarks)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14b8e18c_1_sqmarks": [
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        16,
+        [
+         7
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14b8e18c",
+     "sample": 2,
+     "verb": "tick square corners",
+     "reading": "Every square object whose box outline is fully filled (hollow or solid square) gets 2s on the eight background cells just outside its corners, continuing each edge by one cell; other shapes are untouched.",
+     "why": "only background cells orthogonally beside the corners of full-rim square objects change, 7 -> 2",
+     "new_rows": [
+      "d_14b8e18c_2_corner_ticks"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_ticks": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_14b8e18c_2_corner_ticks)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_14b8e18c_2_corner_ticks": [
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        16,
+        [
+         7
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14b8e18c",
+     "sample": 3,
+     "verb": "mark square corners",
+     "reading": "Every object that is exactly the outline of a square box (side >= 2, solid 2x2 included) gets eight 2-cells placed just outside its four corners, one above/below and one left/right of each corner cell.",
+     "why": "the only changes are background cells set to 2 at the 8 orthogonal outside-corner positions of each square-outline object; non-square shapes (lines, rectangles, diagonal pairs) get nothing",
+     "new_rows": [
+      "d_14b8e18c_3_corner_out"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_out": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_14b8e18c_3_corner_out)",
+      "fill(colour:=train, region:=d_14b8e18c_3_corner_out)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_14b8e18c_3_corner_out": [
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        16,
+        [
+         7
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "14b8e18c",
+     "sample": 4,
+     "verb": "mark square corners",
+     "reading": "Every square object (square bounding box with its whole box outline filled, hollow or solid) gets eight 2-marks: the cells just outside each corner, continuing its top/bottom rows and left/right columns.",
+     "why": "Only objects whose box is square (side >= 2) and whose box border is fully occupied get marks; diagonal pairs, lines and non-square rectangles get none. Marks are colour 2 on background.",
+     "new_rows": [
+      "d_14b8e18c_4_sq_corner_marks"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sq_corner_marks": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_14b8e18c_4_sq_corner_marks)",
+      "fill(colour:=train, region:=d_14b8e18c_4_sq_corner_marks)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_14b8e18c_4_sq_corner_marks": [
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        8,
+        [
+         7
+        ]
+       ],
+       [
+        16,
+        [
+         7
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "150deff5": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "150deff5",
+     "sample": 0,
+     "verb": "decompose into pieces",
+     "reading": "The single grey shape is cut into pieces that tile it exactly: 2x2 squares become 8 and straight 1x3 bars (horizontal or vertical) become 2.",
+     "why": "each grey cell lies in exactly one piece, every piece is a 2x2 square or a 1x3 bar.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "150deff5",
+     "sample": 1,
+     "verb": "partition into pieces",
+     "reading": "The grey (5) shape is cut into 2x2 squares, painted 8, and straight 1x3 bars, painted 2.",
+     "why": "Every 5 cell ends in exactly one 2x2 block of 8 or one 3-long straight run of 2; nothing else changes.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "150deff5",
+     "sample": 2,
+     "verb": "tile shape into pieces",
+     "reading": "The single grey shape is cut into 2x2 squares and 1x3 straight bars; squares are coloured 8 and bars are coloured 2.",
+     "why": "every 5-cell is covered by exactly one piece; output colour depends only on the piece type",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "150deff5",
+     "sample": 3,
+     "verb": "tile shape with pieces",
+     "reading": "The grey (5) shape is exactly partitioned into 2x2 squares and 1x3 straight bars; squares are coloured 8 and bars are coloured 2.",
+     "why": "every 5 cell becomes 8 or 2; the 8 cells group into 2x2 blocks and the 2 cells into straight 3-cell bars, covering the shape exactly",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "150deff5",
+     "sample": 4,
+     "verb": "partition into pieces",
+     "reading": "The single grey (5) shape is partitioned into 2x2 squares, coloured 8, and straight 1x3 bars, coloured 2.",
+     "why": "Every 5-cell is covered by exactly one piece; output differs from input only in the shape's colours.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "15113be4": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "15113be4",
+     "sample": 0,
+     "verb": "recolour template matches",
+     "reading": "An 8x8 yellow-bordered box holds a 2x-scaled 3x3 picture of colour c; in every 3x3 panel (cut by the yellow separator lines) whose blue (1) cells contain that picture's mask, the masked cells turn c and other 1s stay.",
+     "why": "exact on all four pairs: only panels containing the full mask change, and only on mask cells.",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "15113be4",
+     "sample": 1,
+     "verb": "recolour template matches",
+     "reading": "A 6x6 block shows a 3x3 template drawn at 2x scale in colour c; in every 3x3 panel (between the 4-lines) whose 1-cells cover the template, the template cells turn from 1 to c.",
+     "why": "Changed cells are exactly the template positions inside panels that contain the template among their 1s, 1 -> c; all other cells stay.",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "15113be4",
+     "sample": 2,
+     "verb": "paint matching panels",
+     "reading": "A large 6x6 key block (2x2 cells per unit) of colour c shows a 3x3 pattern; in every 3x3 panel of the 4-line grid whose 1-cells contain that pattern, those pattern cells are repainted c.",
+     "why": "changed cells are exactly mask positions in panels that contain the mask among their 1s",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "15113be4",
+     "sample": 3,
+     "verb": "match key pattern and recolour",
+     "reading": "A corner key area (6x6, i.e. a 3x3 mask drawn in 2x2 blocks of a key colour) shows a pattern; in every 3x3 panel of 0/1 cells (panels separated by 4-lines) whose 1s cover all mask positions, those mask cells are recoloured to the key colour.",
+     "why": "only 1 cells change, only to the key colour, only in panels where the whole key mask is present as 1s, and exactly at the mask positions",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "15113be4",
+     "sample": 4,
+     "verb": "recolour pattern matches",
+     "reading": "One large panel shows a 3x3 pattern drawn at 2x scale in a colour; in every small 3x3 panel of the separator grid whose 1-cells contain that pattern, those cells are recoloured to the pattern colour.",
+     "why": "Only 1-cells at mask positions in fully matching panels change; all separators, 0s and the large panel stay.",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "15663ba9": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "15663ba9",
+     "sample": 0,
+     "verb": "mark corners",
+     "reading": "Each closed one-wide outline has its corner cells recoloured: convex corners (the diagonal between the two arms is inside the shape) become 4, concave corners (that diagonal is outside) become 2.",
+     "why": "key shape colour->4 on convex corners, then shape colour->2 on concave corners (test colour 3 appears in training); a corner is a shape cell with exactly one vertical and one horizontal shape neighbour; outside = background reachable from the border.",
+     "new_rows": [
+      "d_15663ba9_0_convex",
+      "d_15663ba9_0_concave"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "convex": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "concave": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_15663ba9_0_concave)[input:=recolour(key:=train, subject:=d_15663ba9_0_convex)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.recolour.subject=d_15663ba9_0_convex": [
+       [
+        17,
+        [
+         8
+        ]
+       ],
+       [
+        13,
+        [
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_15663ba9_0_concave": [
+       [
+        5,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "15663ba9",
+     "sample": 1,
+     "verb": "colour corners",
+     "reading": "Each closed one-cell-wide outline has its corner cells recoloured: convex corners (the cell between the two arms is enclosed) become 4, concave corners become 2.",
+     "why": "A turn cell has exactly one vertical and one horizontal outline neighbour; if the diagonal cell between them is enclosed background it becomes 4, otherwise 2. Straight outline cells keep their colour (8, 3 or 1 in training).",
+     "new_rows": [
+      "d_15663ba9_1_convex",
+      "d_15663ba9_1_concave"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "convex": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "concave": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_15663ba9_1_concave)[input:=recolour(key:=train, subject:=d_15663ba9_1_convex)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.recolour.subject=d_15663ba9_1_convex": [
+       [
+        17,
+        [
+         8
+        ]
+       ],
+       [
+        13,
+        [
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_15663ba9_1_concave": [
+       [
+        5,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "15663ba9",
+     "sample": 2,
+     "verb": "colour loop corners",
+     "reading": "Each closed outline loop gets its corners recoloured: convex (outer) corners become 4 and concave (inner) corners become 2.",
+     "why": "only L-corner cells of loops change; convex ones to 4, concave ones to 2, whatever the loop colour",
+     "new_rows": [
+      "d_15663ba9_2_convex",
+      "d_15663ba9_2_concave"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "convex": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "concave": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_15663ba9_2_concave)[input:=recolour(key:=train, subject:=d_15663ba9_2_convex)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.recolour.subject=d_15663ba9_2_convex": [
+       [
+        17,
+        [
+         8
+        ]
+       ],
+       [
+        13,
+        [
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_15663ba9_2_concave": [
+       [
+        5,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "15663ba9",
+     "sample": 3,
+     "verb": "mark corners convex/concave",
+     "reading": "Each closed rectilinear loop has its corners recoloured: convex corners (diagonal cell between the two arms is inside the loop) become 4, concave corners (that diagonal cell is outside) become 2.",
+     "why": "only loop cells with one vertical and one horizontal loop neighbour change; they become 4 when the diagonal between the arms is enclosed (4-connected flood from the border does not reach it) and 2 when it is outside",
+     "new_rows": [
+      "d_15663ba9_3_convex_corner",
+      "d_15663ba9_3_concave_corner"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "convex_corner": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "concave_corner": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_15663ba9_3_concave_corner)[input:=recolour(key:=train, subject:=d_15663ba9_3_convex_corner)@grid]"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))"
+     ],
+     "fillers": {
+      "seq1.recolour.subject=d_15663ba9_3_convex_corner": [
+       [
+        17,
+        [
+         8
+        ]
+       ],
+       [
+        13,
+        [
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.recolour.subject=d_15663ba9_3_concave_corner": [
+       [
+        5,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "15663ba9",
+     "sample": 4,
+     "verb": "colour corners",
+     "reading": "Each closed one-cell-wide outline has its corner cells recoloured: convex corners become 4, concave corners become 2.",
+     "why": "A corner is an outline cell with one horizontal and one vertical outline neighbour; it is concave if the diagonal cell between those two neighbours is background connected to the grid border, else convex. Convex -> 4, concave -> 2; straight cells keep their colour.",
+     "new_rows": [
+      "d_15663ba9_4_concave",
+      "d_15663ba9_4_convex"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "concave": [
+       "subset",
+       "subset",
+       "subset"
+      ],
+      "convex": [
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_15663ba9_4_concave)[input:=fill(colour:=train, region:=d_15663ba9_4_convex)@grid]",
+      "fill(colour:=train, region:=d_15663ba9_4_concave)[input:=fill(colour:=train, region:=d_15663ba9_4_convex)@grid]"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "seq(fill(colour:=train, region:=d_row) ; fill(colour:=train, region:=d_row))"
+     ],
+     "fillers": {
+      "seq1.fill.region=d_15663ba9_4_convex": [
+       [
+        17,
+        [
+         8
+        ]
+       ],
+       [
+        13,
+        [
+         3
+        ]
+       ],
+       [
+        16,
+        [
+         1
+        ]
+       ]
+      ],
+      "seq2.fill.region=d_15663ba9_4_concave": [
+       [
+        5,
+        [
+         8
+        ]
+       ],
+       [
+        5,
+        [
+         3
+        ]
+       ],
+       [
+        8,
+        [
+         1
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "15696249": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "15696249",
+     "sample": 0,
+     "verb": "tile along uniform line",
+     "reading": "The 3x3 input has one uniform row or column; the 9x9 output places three copies of the input along that row-band or column-band, the rest is 0.",
+     "why": "block (i,k) holds the input iff input row i is uniform (or block (k,j) iff column j is uniform); other blocks empty.",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=uniform_line": [
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "15696249",
+     "sample": 1,
+     "verb": "tile along line",
+     "reading": "The 3x3 input has one all-one-colour row or column; the 9x9 output repeats the input three times along that row or column's band, and the rest is 0.",
+     "why": "Output blocks on the band matching the uniform line's index are copies of the input; all other blocks are empty.",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=uniform_line": [
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "15696249",
+     "sample": 2,
+     "verb": "tile along uniform line",
+     "reading": "The 3x3 input is tiled three times into a 9x9 output along the block row or block column matching its one uniform (single-colour) row or column; other blocks are 0.",
+     "why": "each output block is the input or empty; the filled blocks form the row (or column) indexed by the input's uniform line",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=uniform_line": [
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "15696249",
+     "sample": 3,
+     "verb": "tile along uniform line",
+     "reading": "The 3x3 input has one all-one-colour row or column; the 9x9 output places three copies of the input along that block row or block column and leaves the rest 0.",
+     "why": "output is 3x3 blocks of the input size; block (i,j) is a copy of the input iff row i (or column j) of the input is the uniform line, else empty",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=uniform_line": [
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "15696249",
+     "sample": 4,
+     "verb": "tile along uniform line",
+     "reading": "The 3x3 input has one uniform row or column; the 9x9 output places copies of the input in the matching row or column of 3x3 blocks, other blocks empty.",
+     "why": "Block (i,j) holds the input iff i is the uniform row index (row case) or j is the uniform column index (column case); otherwise 0.",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=uniform_line, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=uniform_line": [
+       [
+        3,
+        [
+         1
+        ]
+       ],
+       [
+        3,
+        [
+         2
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ],
+       [
+        3,
+        [
+         3
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    }
+   ]
+  },
+  "17829a00": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "17829a00",
+     "sample": 0,
+     "verb": "fall to matching wall",
+     "reading": "The top and bottom rows are walls of two colours; every loose object slides straight up or down until it touches the wall of its own colour, keeping its shape.",
+     "why": "each object ends adjacent to the same-coloured wall, column unchanged. Exact on pair 1; on pair 0 everything matches except the 3-cell 8-bar in the last column, which shows as 5 cells (rows 10-14) instead of 3 (rows 12-14), so pair 0 looks noisy or has a rule I can't see.",
+     "new_rows": [
+      "d_17829a00_0_loose"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "loose": [
+       "other",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17829a00",
+     "sample": 1,
+     "verb": "fall to matching line",
+     "reading": "The top and bottom rows are full lines of two colours; each object between them slides vertically toward the line of its own colour until it touches that line (or a piece already landed).",
+     "why": "Each single-colour object keeps its shape and column and ends in contact with the full border row of its colour. Caveat: pair 0's 3-tall colour-8 bar in the last column shows as 5 tall in the output, which no rigid move reproduces.",
+     "new_rows": [
+      "d_17829a00_1_pieces"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "pieces": [
+       "other",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17829a00",
+     "sample": 2,
+     "verb": "slide to matching wall",
+     "reading": "The top and bottom rows are walls of two colours; every loose object slides vertically toward the wall of its own colour until it touches that wall.",
+     "why": "each object keeps its shape and column and ends adjacent to the same-coloured wall",
+     "new_rows": [
+      "d_17829a00_2_loose"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "loose": [
+       "other",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17829a00",
+     "sample": 3,
+     "verb": "move to same-coloured border",
+     "reading": "Top and bottom rows are full lines of two colours; every object moves straight up or down toward the line of its own colour until it touches that line, keeping its shape.",
+     "why": "each single-colour object keeps its shape and column, ending adjacent to the border line of its colour; note pair 0 has two extra 8 cells at (10,15),(11,15) that no shape-keeping move explains (likely task noise)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17829a00",
+     "sample": 4,
+     "verb": "fall toward same-colour wall",
+     "reading": "Between a top line and a bottom line of different colours, each object slides vertically toward the line of its own colour until it touches that line.",
+     "why": "Each object keeps its shape and column and ends in contact with the full border line of its colour (top or bottom); the two lines do not move. Note: in pair 0 the 3-tall 8 bar at column 15 appears as a 5-tall bar ending on the bottom line, which a rigid move does not produce.",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "17b80ad2": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "17b80ad2",
+     "sample": 0,
+     "verb": "fill column upward",
+     "reading": "In each column whose bottom cell is coloured, every coloured cell paints upward in its own colour until the next coloured cell above (the top one runs to the border); other columns stay unchanged.",
+     "why": "lines go upward only (direction up), each stopping just under the next non-background cell, or at the top border; source cells keep their colour.",
+     "new_rows": [
+      "d_17b80ad2_0_src"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "src": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17b80ad2",
+     "sample": 1,
+     "verb": "fill column upward",
+     "reading": "In every column whose bottom cell is 5, each coloured cell paints its colour upward over the background until it reaches the next coloured cell above it (or the top border).",
+     "why": "Lines run upward only, from each source cell to just below the first non-background cell above it; columns without a 5 at the bottom do not change.",
+     "new_rows": [
+      "d_17b80ad2_1_gcol"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gcol": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17b80ad2",
+     "sample": 2,
+     "verb": "drip upward",
+     "reading": "In each column whose bottom cell is coloured (5), every coloured cell drips upward, filling the cells above it with its own colour until the next coloured cell or the top border.",
+     "why": "in marked columns each cell takes the colour of the nearest coloured cell at or below it; unmarked columns are unchanged",
+     "new_rows": [
+      "d_17b80ad2_2_dripsrc"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "dripsrc": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17b80ad2",
+     "sample": 3,
+     "verb": "extend colours upward",
+     "reading": "In every column whose bottom cell is coloured (5), each coloured cell draws its colour upward until the next coloured cell above it; the topmost one extends to the top border. Other columns are unchanged.",
+     "why": "lines go upward only, in own colour, from every coloured cell of a marked column, each stopping just below the next coloured cell (or at the top border)",
+     "new_rows": [
+      "d_17b80ad2_3_marked_col"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "marked_col": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "17b80ad2",
+     "sample": 4,
+     "verb": "grow column with colour change",
+     "reading": "From each 5 in the bottom row a vertical line grows upward to the top border; every cell takes the colour of the nearest non-background cell at or below it in that column (the line changes colour each time it hits a cell).",
+     "why": "Only columns with a 5 in the bottom row change; the line runs upward only, to the top border, and its colour switches to each hit cell's colour from there up.",
+     "new_rows": [
+      "d_17b80ad2_4_base5"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "base5": [
+       "other",
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "17cae0c1": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "17cae0c1",
+     "sample": 0,
+     "verb": "classify block and fill",
+     "reading": "The 3x9 grid is three 3x3 blocks; each block's grey pattern names a colour and the block is filled solid with it: top row->6, ring->3, bottom row->1, anti-diagonal->9, centre dot->4.",
+     "why": "the same pattern always gives the same colour across all four pairs; every test pattern is in the key.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "17cae0c1",
+     "sample": 1,
+     "verb": "classify blocks",
+     "reading": "The 3x9 grid is three 3x3 blocks, each holding a grey pattern; each block is painted entirely in a colour set by its pattern (top row -> 6, ring -> 3, bottom row -> 1, anti-diagonal -> 9, centre dot -> 4).",
+     "why": "Each output block is uniform, and its colour depends only on that block's input pattern, the same way in every pair.",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "17cae0c1",
+     "sample": 2,
+     "verb": "classify blocks",
+     "reading": "The 3x9 input is three 3x3 blocks; each block's grey pattern is looked up in a fixed pattern-to-colour table and the block is filled solid with that colour.",
+     "why": "same pattern always gives the same colour across all pairs",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "17cae0c1",
+     "sample": 3,
+     "verb": "classify panel pattern",
+     "reading": "The grid is three 3x3 panels side by side, each holding a 5-pattern; each panel is filled entirely with the colour its pattern stands for (top row->6, hollow square->3, bottom row->1, anti-diagonal->9, centre dot->4).",
+     "why": "each output panel is uniform and its colour is a fixed function of the input panel's 5-pattern, consistent across all pairs",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "17cae0c1",
+     "sample": 4,
+     "verb": "classify block pattern",
+     "reading": "The 3x9 grid is three 3x3 blocks; each block's 5-pattern is classified and the whole block is filled with that pattern's colour.",
+     "why": "Every output block is uniform and its colour depends only on the shape of the 5s in the same input block (same shape, same colour across pairs).",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  }
+ }
+}

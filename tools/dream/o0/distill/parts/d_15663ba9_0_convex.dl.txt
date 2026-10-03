@@ -1,0 +1,18 @@
+% row: d_15663ba9_0_convex
+% source: distillation batch reading, task 15663ba9, sample 0
+% output: convex(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+fgc(Y, X) :- cell(Y, X, C).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+vdir(DY) :- off(DY, DX), DX = 0.
+hdir(DX) :- off(DY, DX), DY = 0.
+step(DY, DX) :- off(DY, DX), DY = 0.
+step(DY, DX) :- off(DY, DX), DX = 0.
+outside(Y, X) :- bgc(Y, X), Y = 0.
+outside(Y, X) :- bgc(Y, X), X = 0.
+outside(Y, X) :- bgc(Y, X), my(M), Y = M.
+outside(Y, X) :- bgc(Y, X), mx(M), X = M.
+outside(Y2, X2) :- outside(Y, X), step(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+corner(Y, X, DY, DX) :- cell(Y, X, C), vdir(DY), hdir(DX), Y1 = Y + DY, X1 = X + DX, fgc(Y1, X), fgc(Y, X1), Y2 = Y - DY, X2 = X - DX, !fgc(Y2, X), !fgc(Y, X2).
+convex(Y, X) :- corner(Y, X, DY, DX), Y1 = Y + DY, X1 = X + DX, !outside(Y1, X1).

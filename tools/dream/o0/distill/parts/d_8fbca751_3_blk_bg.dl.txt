@@ -1,0 +1,9 @@
+% row: d_8fbca751_3_blk_bg
+% source: distillation batch reading, task 8fbca751, sample 3
+% output: blk_bg(Y, X)
+y0(min(Y)) :- cell(Y, X, C).
+x0(min(X)) :- cell(Y, X, C).
+rowb(Y, B) :- px(Y, 0, C), px(B, 0, C2), y0(A), L = A + 4 * B, H = L + 3, Y >= L, Y <= H.
+colb(X, B) :- px(0, X, C), px(0, B, C2), x0(A), L = A + 4 * B, H = L + 3, X >= L, X <= H.
+hasfg(BY, BX) :- cell(Y, X, C), rowb(Y, BY), colb(X, BX).
+blk_bg(Y, X) :- px(Y, X, C), !cell(Y, X, C), rowb(Y, BY), colb(X, BX), hasfg(BY, BX).

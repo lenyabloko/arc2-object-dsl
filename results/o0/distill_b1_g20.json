@@ -1,0 +1,999 @@
+{
+ "group": 20,
+ "tasks": {
+  "984d8a3e": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "984d8a3e",
+     "sample": 0,
+     "verb": "right-align runs",
+     "reading": "Every row is: left colour, then a run of the middle colour, then (maybe) a third colour. Each middle run slides left until its right end sits on the shape's leftmost right edge (col 5 in both pairs), but never past col 0; the left colour fills the cells it leaves. The third colour is untouched.",
+     "why": "in every row the run keeps its length and ends at the target column, or starts at col 0 if it is too long",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "984d8a3e",
+     "sample": 1,
+     "verb": "align run edges",
+     "reading": "Three colour bands sit side by side in every row (left colour, middle colour, right colour). In each row the middle-colour run slides left until its right end sits on the leftmost right end of all middle runs (or until it starts at column 0). The left-colour cells it passes over fill in to its right. The right band does not change.",
+     "why": "on every pair each output row has the same number of each colour as its input row, and the middle run ends at min-right-end unless that would push it past column 0",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "984d8a3e",
+     "sample": 2,
+     "verb": "slide row runs left to a common right edge",
+     "reading": "Each row is three runs: left colour, middle colour, right colour. In every row the middle run slides left until its right end is at the leftmost right end of any middle run (stopping at column 0 if it gets there first). The left colour fills the cells it leaves behind.",
+     "why": "after the shift every middle run ends at column M, or starts at column 0; run lengths are kept",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "984d8a3e",
+     "sample": 3,
+     "verb": "re-align row runs",
+     "reading": "Three colour bands per row (left colour at the left border, a middle colour, a right colour). In each row the middle-colour run is slid horizontally so its right end sits on the rightmost column shared by every row's middle run (clamped at column 0 if the run is too long); the left colour fills the rest of that row's left+middle span.",
+     "why": "every row keeps its run lengths and its right-colour cells; middle runs end at the shared column",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "984d8a3e",
+     "sample": 4,
+     "verb": "slide row runs left",
+     "reading": "Three colour bands per row: left colour, a middle-colour run, then the rest. Each row's middle run slides left so its right end sits on the shape's minimum right-end column (clamped at column 0); the left colour fills the vacated cells behind it.",
+     "why": "per row, middle-run length and left-colour count are preserved; middle run ends at min right-end column unless it would pass column 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "98cf29f8": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "98cf29f8",
+     "sample": 0,
+     "verb": "retract along stalk",
+     "reading": "One object has a one-cell-wide stalk reaching to the other object. Its body slides along the stalk until it touches the other object, and the stalk disappears.",
+     "why": "the body keeps its shape and ends touching the other object; any stalk cells left over become background (0)",
+     "new_rows": [
+      "d_98cf29f8_0_stalk",
+      "d_98cf29f8_0_body"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "stalk": [
+       "other",
+       "other",
+       "other"
+      ],
+      "body": [
+       "subset",
+       "subset",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "sub.target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "98cf29f8",
+     "sample": 1,
+     "verb": "retract along tether",
+     "reading": "One rectangle is joined to a second rectangle by a straight tether one cell wide, in the first rectangle's colour. The tether is erased and the rectangle slides along the tether's direction by the tether's length, so it ends up touching the second rectangle.",
+     "why": "the body keeps its shape and ends exactly where the tether used to end, touching the target object",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "98cf29f8",
+     "sample": 2,
+     "verb": "reel in along tether",
+     "reading": "Two rectangles are joined by a one-cell-wide arm that has the colour of one of them. That rectangle slides along the arm until it touches the other rectangle, and the arm is erased.",
+     "why": "the moved body keeps its rectangle shape, touches the fixed rectangle, and no arm cells remain",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "98cf29f8",
+     "sample": 3,
+     "verb": "slide along tail",
+     "reading": "Two rectangles; one carries a one-cell-wide tail of its own colour reaching to the other. That rectangle slides along its tail until it touches the other rectangle, and the tail is erased.",
+     "why": "moved body keeps its shape and ends adjacent to the other rectangle; distance moved = tail length",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "98cf29f8",
+     "sample": 4,
+     "verb": "retract along stem",
+     "reading": "Two rectangles; one carries a one-cell-wide stem of its own colour that reaches the other. The stem is erased and the stemmed rectangle slides along the stem direction until it touches the other rectangle.",
+     "why": "mover keeps its rectangle shape, ends in contact with the anchor, stem cells disappear, anchor unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "995c5fa3": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "995c5fa3",
+     "sample": 0,
+     "verb": "classify panels",
+     "reading": "Columns of 0 cut the input into three 4x4 panels of 5. Each panel's hole pattern names a colour, and output row i is filled with panel i's colour: no hole is 2, a centre 2x2 hole is 8, a bottom-centre hole is 4, side holes are 3.",
+     "why": "each output row is one colour, set by the pattern of the matching panel",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "995c5fa3",
+     "sample": 1,
+     "verb": "classify panels",
+     "reading": "Columns of 0 split the input into three 4x4 panels of 5. The hole pattern in each panel maps to a colour: solid\u21922, centre hole\u21928, bottom-centre notch\u21924, side notches in rows 1-2\u21923. The output is 3x3: row i is filled with panel i's colour.",
+     "why": "on every pair each output row is uniform, and its colour depends only on the hole pattern of the matching panel",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "995c5fa3",
+     "sample": 2,
+     "verb": "classify panels into colour rows",
+     "reading": "Three 4x4 panels of 5s, separated by 0 columns, each have a hole pattern. Each panel becomes one row of a 3x3 output, coloured by its pattern: no hole -> 2, 2x2 centre hole -> 8, hole in the bottom-middle two rows -> 4, holes on the left and right edges of the middle rows -> 3.",
+     "why": "every training panel's hole pattern maps to its output row colour by one fixed table",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "995c5fa3",
+     "sample": 3,
+     "verb": "classify panels",
+     "reading": "The input is three 4x4 panels of 5 separated by 0 columns, each with a hole pattern. Each panel maps to a colour by its hole pattern and the 3x3 output has row i filled with panel i's colour.",
+     "why": "each output row is uniform and equals key(pattern of panel i)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "995c5fa3",
+     "sample": 4,
+     "verb": "classify panels to colour rows",
+     "reading": "Input is three 4x4 panels of 5 split by background columns; each panel's hole pattern maps to a colour (solid->2, centre 2x2 hole->8, bottom-centre hole->4, side holes in middle rows->3). Output row i is filled with panel i's colour.",
+     "why": "each output row is one colour equal to the class of the corresponding panel",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "99fa7670": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "99fa7670",
+     "sample": 0,
+     "verb": "draw L-line",
+     "reading": "Each single cell draws a line in its own colour right to the grid edge, then down the last column until the row just above the next line (or the bottom edge).",
+     "why": "the horizontal part reaches the right edge; the vertical part runs down the last column and stops at the first cell that is not background (the next line's end) or at the bottom edge",
+     "new_rows": [
+      "d_99fa7670_0_rend"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "rend": [
+       "subset",
+       "subset",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "99fa7670",
+     "sample": 1,
+     "verb": "draw L-path",
+     "reading": "Each isolated coloured cell draws a line in its own colour to the right border. The line then turns down along the last column and stops on the row just above the next marker (counting markers by row) or at the bottom of the grid.",
+     "why": "every marker row is filled from the marker to the right edge, and each part of the right column takes the colour of the closest marker above it",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "99fa7670",
+     "sample": 2,
+     "verb": "draw L-path right then down",
+     "reading": "From each single coloured cell a line in its own colour runs right to the border. It then turns down the rightmost column and stops just above the next cell's line, or at the bottom border.",
+     "why": "every marker's line reaches the right border, then runs down the last column until the row before the next marker's row (or the grid bottom), never crossing another line",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "99fa7670",
+     "sample": 3,
+     "verb": "draw L-line",
+     "reading": "Each isolated coloured cell draws a line of its colour right to the grid border, then turns down along the last column, stopping just above the row of the next marker below (or at the bottom).",
+     "why": "every marker row is filled from the marker to the right border; last column below each marker takes that marker's colour until the next marker row",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "99fa7670",
+     "sample": 4,
+     "verb": "draw L-shaped ray",
+     "reading": "Each isolated coloured cell draws a line rightward to the right border, then down the last column until the row just above the next marker's row (or to the bottom for the last marker).",
+     "why": "every marker row is filled from the marker to the right edge; the last column between marker rows takes the colour of the marker above",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9aec4887": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9aec4887",
+     "sample": 0,
+     "verb": "insert and tint",
+     "reading": "A frame has four sides in four colours (corners empty), and an 8-shape the size of its interior sits elsewhere. The output is the frame box with the 8-shape placed inside. Each 8 cell takes the colour of its nearest side, and stays 8 when two sides tie.",
+     "why": "output = frame box; interior = 8-shape recoloured by nearest side",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9aec4887",
+     "sample": 1,
+     "verb": "fit and colour by nearest side",
+     "reading": "A hollow box has four sides of four different colours. A separate 8-shape has the same size as the box's interior. The output is the box cut out with the 8-shape placed inside it. Each 8 cell becomes the colour of the strictly nearest side; a cell equally near two sides stays 8.",
+     "why": "the output is the container's box; its interior non-0 cells are exactly the 8-shape's cells, coloured by the strictly nearest side",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9aec4887",
+     "sample": 2,
+     "verb": "insert shape into frame and colour by nearest side",
+     "reading": "A loose shape of 8s is placed into the interior of a frame whose four sides have four different colours. Each 8 cell takes the colour of the nearest side, and stays 8 on a tie. The output is the frame's box.",
+     "why": "the output is the frame box with the 8-shape copied into its interior and recoloured by nearest side",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9aec4887",
+     "sample": 3,
+     "verb": "fit shape into frame, colour by nearest side",
+     "reading": "A four-sided frame (each side a different colour, corners empty) and a same-size 8 shape. Output is the frame box with the 8 shape placed inside; each 8 cell takes the colour of the strictly nearest frame side, staying 8 when tied.",
+     "why": "output = frame box; interior equals the 8 shape's mask; colours by nearest side",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9aec4887",
+     "sample": 4,
+     "verb": "insert shape into frame, colour by nearest side",
+     "reading": "A frame made of four coloured sides (corners empty) and a separate 8-shape sized to its interior. Output is the frame cut out with the 8-shape placed inside; each 8 cell takes the colour of the nearest side, and stays 8 when two sides tie.",
+     "why": "output = frame box; interior cells empty where shape empty, else nearest-side colour or 8 on ties",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "9af7a82c": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9af7a82c",
+     "sample": 0,
+     "verb": "histogram",
+     "reading": "Count each colour. The output has one column per colour, ordered by count from most to least. Each column is filled from the top with that colour for count cells; the rest is 0. Height = the largest count.",
+     "why": "each output column is a top-aligned bar whose length equals that colour's input count",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9af7a82c",
+     "sample": 1,
+     "verb": "histogram",
+     "reading": "A colour histogram. Each input colour becomes one output column, ordered from most frequent to least. The column is filled from the top for as many cells as that colour has, and the rest is 0. Output height = the largest count; output width = the number of colours.",
+     "why": "on every pair column j holds the j-th most frequent colour exactly count times, top-aligned",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9af7a82c",
+     "sample": 2,
+     "verb": "histogram of colour counts",
+     "reading": "Count each colour's cells. The output has one column per colour, ordered by count from most to least. Each column is filled from the top with that colour, as many cells as its count, and the rest is 0. Output height is the largest count.",
+     "why": "each output column has exactly as many cells of its colour as the input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9af7a82c",
+     "sample": 3,
+     "verb": "histogram",
+     "reading": "Count each colour's cells. Output has one column per colour sorted by count descending; each column holds its colour count times from the top, rest 0; height = largest count.",
+     "why": "column j contains exactly count(colour_j) cells of colour_j stacked from row 0",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9af7a82c",
+     "sample": 4,
+     "verb": "colour histogram",
+     "reading": "Count each colour's cells; output has one column per colour ordered by count (largest first), each column filled from the top with as many cells as that colour's count, rest 0. Height = largest count.",
+     "why": "column j has exactly count(colour j) cells of colour j at the top, counts non-increasing left to right",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9b4c17c4": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9b4c17c4",
+     "sample": 0,
+     "verb": "slide by area",
+     "reading": "The grid is split into an 8 area and a 1 area. Each 2-object slides sideways inside its area: left in the 8 area, right in the 1 area, until it reaches the edge of the area or the grid.",
+     "why": "each 2-object keeps its shape and row span and ends flush with its area's left (8) or right (1) edge",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b4c17c4",
+     "sample": 1,
+     "verb": "slide by region colour",
+     "reading": "The grid is split into a block of 8 and a block of 1. The colour-2 pieces inside them slide horizontally, row by row: in the 8 block they go left to that block's edge, and in the 1 block they go right to that block's edge. The block colour fills in behind them.",
+     "why": "each row segment of a region keeps its count of 2s, packed against the region's left edge for 8 and its right edge for 1",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b4c17c4",
+     "sample": 2,
+     "verb": "slide objects to a side of their half",
+     "reading": "The grid is split into an 8-coloured part and a 1-coloured part. The 2-objects slide horizontally to the edge of their part: left in the 8 part, right in the 1 part.",
+     "why": "within each half every 2-object keeps its shape and its rows, and touches the half's left (8) or right (1) edge",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b4c17c4",
+     "sample": 3,
+     "verb": "push to side by region colour",
+     "reading": "The grid is split into two background regions (8 and 1), each holding 2-coloured blocks. In the 8 region every block slides left to the region's left edge; in the 1 region every block slides right to the region's right edge.",
+     "why": "each 2 block keeps its shape and ends touching the panel edge: left edge when panel bg is 8, right edge when panel bg is 1",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b4c17c4",
+     "sample": 4,
+     "verb": "slide to panel edge",
+     "reading": "The grid is two solid colour regions (8 and 1) holding 2-blocks. Within each region the 2 cells of every row slide horizontally to the region's edge: left in the 8 region, right in the 1 region.",
+     "why": "per panel (colour region, not separator-cut), 2 cells per row are preserved and packed against the panel border; direction fixed by panel colour (8->left, 1->right)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9b5080bb": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9b5080bb",
+     "sample": 0,
+     "verb": "mark defects",
+     "reading": "Two big coloured areas each hold rectangular blobs of an inner colour. Each one-cell defect on a blob's rectangle (a one-cell bump outside it or a one-cell dent inside it) becomes a 2-cell line across the rectangle edge, in the other big area's colour.",
+     "why": "every bump or dent becomes a 2-cell line crossing the rectangle boundary; nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b5080bb",
+     "sample": 1,
+     "verb": "mark edge defects",
+     "reading": "There are two nested-rectangle structures, each an outer block with an inner rectangle. The inner rectangle's edge has defects: notches of the outer colour cut into it, or bumps of the inner colour sticking out. Each defect becomes a two-cell domino straddling the edge (the defect cell plus its neighbour across the edge), coloured with the OTHER structure's outer colour.",
+     "why": "every changed cell lies in such a domino, and every defect gets one",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b5080bb",
+     "sample": 2,
+     "verb": "mark rectangle defects with partner-colour dominoes",
+     "reading": "There are two big regions, each holding an inner rectangle. Each defect on an inner rectangle's edge (a dent into it, or a single cell sticking out of it) becomes a 2-cell bar across that edge, in the other big region's colour. For a dent the bar is the dent cell plus the cell just outside it; for a bump it is the bump cell plus the cell just inside it.",
+     "why": "only the cells of these bars change, and each bar takes the partner region's colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b5080bb",
+     "sample": 3,
+     "verb": "mark edge defects",
+     "reading": "Two big background regions each hold an inner rectangle of another colour with one-cell defects (notches or bumps) on its edge. Each defect becomes a 2-cell stub perpendicular to the edge (defect cell plus the next cell across the edge) in the other big region's colour.",
+     "why": "only defect stubs change; every stub is 2 cells long, perpendicular to the rectangle edge",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9b5080bb",
+     "sample": 4,
+     "verb": "mark boundary defects",
+     "reading": "Two framed regions each contain rectangles with one-cell defects: a notch (frame colour poking in) or a bump (rectangle colour poking out). Each defect becomes a 2-cell stroke across the rectangle edge (the defect cell plus its neighbour on the other side), coloured with the other framed region's colour.",
+     "why": "every changed cell lies on a 1x2 stroke straddling a rectangle edge at a defect; nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9c56f360": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9c56f360",
+     "sample": 0,
+     "verb": "slide left per row",
+     "reading": "In each row, the run of 3s at the right slides left until it hits an 8 or the left edge. Rows move independently, and 8s stay put.",
+     "why": "each row's 3-run keeps its length and ends next to the nearest 8 on its left, or at column 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9c56f360",
+     "sample": 1,
+     "verb": "slide left until blocked",
+     "reading": "Each colour-3 cell slides left along its row, row by row, until the next cell is 8 or the grid border. The cells it leaves become 0. The 8s never move.",
+     "why": "in each row the 3s end packed against the nearest 8 or border to their left, with the same count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9c56f360",
+     "sample": 2,
+     "verb": "slide left per row until blocked",
+     "reading": "In each row, every run of 3s slides left until it touches an 8 or the left border.",
+     "why": "every 3-run keeps its length and ends next to the first 8 to its left, or at column 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9c56f360",
+     "sample": 3,
+     "verb": "gravity left",
+     "reading": "Every 3 cell slides left along its row until it hits an 8 or the left border; each row moves independently.",
+     "why": "each row's run of 3 keeps its length and ends adjacent to the first 8 to its left (or at column 0)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9c56f360",
+     "sample": 4,
+     "verb": "slide left until blocked",
+     "reading": "Colour-3 cells slide left along their row through background until they hit an 8 or the left border; each row moves independently.",
+     "why": "parts = each row's horizontal run of 3; it keeps its length and ends touching an 8 (or the border) on its left",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "9caba7c3": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "9caba7c3",
+     "sample": 0,
+     "verb": "frame clusters",
+     "reading": "In a 5/0 noise grid, each cluster of 2s lies in a 3x3 window that has no 0 and a 5 at its centre. Inside that window the centre becomes 4, the other 5s become 7, and the 2s stay. Windows do not overlap, and each one covers its whole cluster.",
+     "why": "every change lies in one such window; the window holds 0 zeros; 2s never change",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9caba7c3",
+     "sample": 1,
+     "verb": "mark completed rings",
+     "reading": "Find each 5 cell whose eight neighbours are all non-zero (2 or 5) and which gathers a cluster of 2s around it. Process them greedily, most 2s first, taking a cell only if its 2s are not yet claimed. That centre becomes 4, the 5s in its ring become 7, and the 2s stay.",
+     "why": "every changed cell lies in the 3x3 window of a chosen centre, and the window holds no 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "9caba7c3",
+     "sample": 2,
+     "verb": "box each 2-group in a 3x3 window",
+     "reading": "The 2 cells are grouped into 3x3 windows. Each window has a 5 at its centre and no 0 in it, and together the windows cover every 2. In each window the centre becomes 4 and the other 5s become 7. The 2s stay.",
+     "why": "every changed cell lies in a window; every 2 is in a window",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9caba7c3",
+     "sample": 3,
+     "verb": "complete ring around centre",
+     "reading": "Noisy 0/5 grid with scattered 2 cells. Around certain 5 cells, the 3x3 window contains no 0 and holds 2s; in each such window (the one with most 2s among overlapping ones) the centre becomes 4 and every non-2 cell becomes 7.",
+     "why": "all changed cells lie in the chosen windows; centre = 4, other non-2 window cells = 7",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "9caba7c3",
+     "sample": 4,
+     "verb": "complete 3x3 badge",
+     "reading": "On a 5/0 noise field, a few 3x3 windows contain only 2 and 5 cells with all touching 2-components inside the window (centre not 2). In each such window the centre becomes 4 and every 5 becomes 7; 2 cells stay.",
+     "why": "every changed cell is 5->7 or centre 5->4 inside a selected window; four windows per pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  }
+ }
+}

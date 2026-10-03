@@ -1,0 +1,5 @@
+% row: d_67a423a3_1_ring
+% source: distillation batch reading, task 67a423a3, sample 1
+% output: ring(Y, X)
+cross(Y, X) :- cell(Y, X, C), Y1 = Y - 1, cell(Y1, X, A), Y2 = Y + 1, cell(Y2, X, B), X1 = X - 1, cell(Y, X1, D), X2 = X + 1, cell(Y, X2, E).
+ring(Y2, X2) :- cross(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.

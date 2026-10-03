@@ -1,0 +1,11 @@
+% row: d_4612dd53_2_dash_gaps
+% source: distillation batch reading, task 4612dd53, sample 2
+% output: dash_gaps(Y, X)
+rowc(Y, count(X)) :- cell(Y, X, C).
+colc(X, count(Y)) :- cell(Y, X, C).
+y0(min(Y)) :- cell(Y, X, C).
+y1(max(Y)) :- cell(Y, X, C).
+x0(min(X)) :- cell(Y, X, C).
+x1(max(X)) :- cell(Y, X, C).
+dash_gaps(Y, X) :- rowc(Y, N), N >= 4, px(Y, X, C), C = 0, x0(A), x1(B), X >= A, X <= B.
+dash_gaps(Y, X) :- colc(X, N), N >= 4, px(Y, X, C), C = 0, y0(A), y1(B), Y >= A, Y <= B.

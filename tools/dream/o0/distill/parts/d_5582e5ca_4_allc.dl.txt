@@ -1,0 +1,4 @@
+% row: d_5582e5ca_4_allc
+% source: distillation batch reading, task 5582e5ca, sample 4
+% output: allc(Y, X)
+allc(Y, X) :- cell(Y, X, C).

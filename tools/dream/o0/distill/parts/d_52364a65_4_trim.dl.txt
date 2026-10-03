@@ -1,0 +1,5 @@
+% row: d_52364a65_4_trim
+% source: distillation batch reading, task 52364a65, sample 4
+% output: trim(Y, X)
+minx(O, min(X)) :- obj(O, Y, X).
+trim(Y, X) :- obj(O, Y, X), minx(O, M), D = X - M, D < 2.

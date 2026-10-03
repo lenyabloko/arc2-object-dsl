@@ -1,0 +1,10 @@
+% row: d_2bee17df_1_clear_line
+% source: distillation batch reading, task 2bee17df, sample 1
+% output: clear_line(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+busy_row(Y) :- cell(Y, X, C), mx(M), X > 0, X < M.
+busy_col(X) :- cell(Y, X, C), my(M), Y > 0, Y < M.
+clear_line(Y, X) :- px(Y, X, C), !fgc(Y, X), !busy_row(Y).
+clear_line(Y, X) :- px(Y, X, C), !fgc(Y, X), !busy_col(X).

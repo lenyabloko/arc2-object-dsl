@@ -1,0 +1,10 @@
+% row: d_67a423a3_4_cross_ring
+% source: distillation batch reading, task 67a423a3, sample 4
+% output: cross_ring(Y, X)
+rn(Y, count(X)) :- px(Y, X, C).
+rf(Y, count(X)) :- cell(Y, X, C).
+fullrow(Y) :- rn(Y, N), rf(Y, M), N = M.
+cn(X, count(Y)) :- px(Y, X, C).
+cf(X, count(Y)) :- cell(Y, X, C).
+fullcol(X) :- cn(X, N), cf(X, M), N = M.
+cross_ring(Y2, X2) :- fullrow(Y), fullcol(X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.

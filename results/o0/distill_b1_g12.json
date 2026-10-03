@@ -1,0 +1,1367 @@
+{
+ "group": 12,
+ "tasks": {
+  "5a5a2103": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5a5a2103",
+     "sample": 0,
+     "verb": "stamp shape into every panel, coloured per row",
+     "reading": "The grid is cut into panels by full separator lines. One panel holds a shape; the first panel of each panel-row holds a colour block. Every panel in a panel-row gets a copy of the shape in that row's colour, and the colour blocks are replaced by the shape too.",
+     "why": "every output panel equals the shape pattern drawn in its row's key colour on background",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5a5a2103",
+     "sample": 1,
+     "verb": "stamp shape into every panel, coloured per row",
+     "reading": "Separator lines cut the grid into a lattice of equal panels. One panel holds a shape; every panel in each panel-row gets a copy of that shape, coloured with the colour of the square in that row's first panel (which it replaces).",
+     "why": "every panel of row r equals the shape pattern recoloured to row r's square colour; separators unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5a5a2103",
+     "sample": 2,
+     "verb": "stamp template into every panel, coloured by row",
+     "reading": "The grid is cut into panels by full separator lines. One panel holds a template shape; the first panel of each panel-row holds a block in that row's colour. Every panel gets a copy of the template shape painted in its row's colour.",
+     "why": "every panel equals the template mask filled with its row's key colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5a5a2103",
+     "sample": 3,
+     "verb": "copy shape into every panel, recoloured per row",
+     "reading": "The grid is cut into panels by full separator lines. The one shape found in a panel is copied into every panel, recoloured with the colour of the block in that panel-row's first panel.",
+     "why": "every panel of the output equals the template shape in its row's colour; separators unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5a5a2103",
+     "sample": 4,
+     "verb": "stamp template per panel in row colour",
+     "reading": "The grid is cut into panels by full separator lines. One panel holds a template shape; the first panel of each panel-row holds a colour block. Every panel of a row becomes the template shape painted in that row's colour.",
+     "why": "every non-separator panel equals the template mask in its row's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "5a719d11": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5a719d11",
+     "sample": 0,
+     "verb": "swap shapes between paired panels",
+     "reading": "Panels come in left/right pairs separated by background lines. The shapes swap: each panel keeps its own background colour and shows the other panel's shape, drawn in the other panel's background colour.",
+     "why": "out_left = bg(left) except where right has shape -> bg(right); out_right = bg(right) except where left has shape -> bg(left)",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5a719d11",
+     "sample": 1,
+     "verb": "swap shapes between paired panels",
+     "reading": "Panels come in left/right pairs separated by background lines. Within each pair the two shapes swap panels, each keeping its position and being drawn in the background colour of the panel it came from (so if both panels share a background, both shapes vanish).",
+     "why": "out left panel = panel bg with right shape mask in right bg colour, and vice versa; separators unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5a719d11",
+     "sample": 2,
+     "verb": "swap shapes between paired panels",
+     "reading": "Panels come in left/right pairs separated by background stripes, each panel a solid colour with a shape drawn in another colour. The two shapes swap panels, and each shape is painted in the background colour of the panel it came from.",
+     "why": "each panel's shape cells equal its partner panel's input shape cells, coloured with the partner's background",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5a719d11",
+     "sample": 3,
+     "verb": "swap shapes between paired panels",
+     "reading": "Panels come in left/right pairs, each with its own background colour and one shape. The two shapes swap panels; each shape is drawn in the background colour of the panel it came from (so it vanishes when both backgrounds are equal).",
+     "why": "each output panel = own background with the partner panel's shape painted in the partner's background colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5a719d11",
+     "sample": 4,
+     "verb": "swap shapes between paired panels",
+     "reading": "Panels come in left/right pairs separated by background lines; each panel has its own background colour and a shape. Each panel gets its partner's shape (same relative position), painted in the partner's background colour, on its own background.",
+     "why": "out(P)[y][x] = bg(Q) if in(Q)[y][x] != bg(Q) else bg(P), for each paired panel P,Q",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "5ad4f10b": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5ad4f10b",
+     "sample": 0,
+     "verb": "downscale largest object, recolour with noise colour",
+     "reading": "One large colour object is a coarse 3x3 pattern made of equal square blocks; it is shrunk to 3x3 (one cell per block) and drawn in the colour of the scattered noise pixels.",
+     "why": "output cell (i,j) is the noise colour iff block (i,j) of the large object's box is filled",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ad4f10b",
+     "sample": 1,
+     "verb": "downscale shape and recolour to noise colour",
+     "reading": "One large shape is built from k-by-k solid blocks among scattered noise pixels of a second colour. Output is the shape downscaled by k (one cell per block) and drawn in the noise colour.",
+     "why": "output cell (i,j) is noise colour iff block (i,j) of the shape's box is filled",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ad4f10b",
+     "sample": 2,
+     "verb": "downscale shape and recolour with noise colour",
+     "reading": "A large shape is built from k x k solid blocks on a 3x3 lattice, among scattered noise cells of a second colour. The output is that shape shrunk to 3x3 (one cell per block), painted in the noise colour.",
+     "why": "output cell (i,j) is the noise colour exactly when block (i,j) of the large shape is filled",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ad4f10b",
+     "sample": 3,
+     "verb": "downscale big shape and recolour with noise colour",
+     "reading": "One big shape is a 3x3 pattern scaled up by a block factor; the rest is scattered noise of another colour. The output is the shape shrunk to 3x3, painted in the noise colour.",
+     "why": "output cell (i,j) is the noise colour iff block (i,j) of the subject's box is filled, else 0",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ad4f10b",
+     "sample": 4,
+     "verb": "downscale shape and recolour",
+     "reading": "One large shape is a 3x3 pattern scaled up by a block factor, among scattered noise cells of another colour. The output is the 3x3 pattern downscaled, with filled blocks painted in the noise colour.",
+     "why": "each output cell = noise colour iff the corresponding k x k block of the large shape's box is filled",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "5adee1b2": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5adee1b2",
+     "sample": 0,
+     "verb": "halo each object in its key colour",
+     "reading": "Key pairs at the left edge map shape colours to new colours. Around each shape, every background cell of its box grown by one cell that is reachable from outside (not an enclosed hole) is painted with key(shape colour).",
+     "why": "every changed cell is outside-reachable background within one expanded object box and gets key of that object's colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5adee1b2",
+     "sample": 1,
+     "verb": "halo each shape in its key colour",
+     "reading": "A key in the corner shows colour pairs a->b (two-colour component). Each other shape of colour a gets its bounding box grown by one cell, and every background cell in that box that is reachable from outside the shape (not an enclosed hole) is painted key(a).",
+     "why": "only those halo cells change, each to key(a); shapes, holes and key unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5adee1b2",
+     "sample": 2,
+     "verb": "frame each shape with its key colour",
+     "reading": "Two-colour key bars at the left edge map shape colour a to b. Each shape gets its bounding box grown by one cell, and the background cells of that box reachable from outside the shape are filled with key(a); enclosed holes stay background.",
+     "why": "every background cell in a shape's padded box and outside its holes becomes key(shape colour); nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5adee1b2",
+     "sample": 3,
+     "verb": "frame each shape with keyed colour",
+     "reading": "A key in the bottom-left corner pairs colours a->b. Every shape of colour a gets its bounding box grown by one cell, and all background cells in that grown box become b.",
+     "why": "exactly the bg cells inside each expanded box become key(colour); shapes and key unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5adee1b2",
+     "sample": 4,
+     "verb": "frame each shape in key colour",
+     "reading": "Two-cell key pairs at the left edge map shape colours a -> b. Each shape gets a box of colour key(a): every background cell in its bounding box grown by one, except enclosed holes, becomes key(a).",
+     "why": "every non-enclosed bg cell within bbox+1 of an object of colour a becomes key(a); nothing else changes",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "5b6cbef5": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "5b6cbef5",
+     "sample": 0,
+     "verb": "self-tile (fractal)",
+     "reading": "The output is the input scaled by its own size: every foreground cell of the input becomes a full copy of the input, every background cell an empty block.",
+     "why": "output block (i,j) is the input if input[i][j] is non-background, else empty",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        9,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         4
+        ]
+       ],
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        10,
+        [
+         2
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "5b6cbef5",
+     "sample": 1,
+     "verb": "self-tile",
+     "reading": "The output is the input scaled up as a fractal: block (i,j) of the output is a copy of the input where input cell (i,j) is foreground, else empty.",
+     "why": "each output block is the input or all background, exactly at the fg cells of the input",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        9,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         4
+        ]
+       ],
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        10,
+        [
+         2
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "5b6cbef5",
+     "sample": 2,
+     "verb": "fractal self-tile",
+     "reading": "The 4x4 input is scaled into a 4x4 grid of 4x4 blocks: each block is a copy of the input where the corresponding input cell is non-background, empty otherwise.",
+     "why": "block (i,j) equals the input when input(i,j) is fg, else all background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        9,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         4
+        ]
+       ],
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        10,
+        [
+         2
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "5b6cbef5",
+     "sample": 3,
+     "verb": "fractal self-tile",
+     "reading": "The 4x4 input is placed into a 4x4 grid of blocks: a block holds a copy of the input where the input has a coloured cell, and is empty where it is background.",
+     "why": "block (i,j) of the output is the input if input(i,j) is non-background, else empty",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        9,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         4
+        ]
+       ],
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        10,
+        [
+         2
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    },
+    {
+     "task": "5b6cbef5",
+     "sample": 4,
+     "verb": "self-tile",
+     "reading": "The 4x4 input is tiled 4x4 into a 16x16 grid: a copy of the input goes in each block whose corresponding input cell is non-background; other blocks are empty.",
+     "why": "block (i,j) is the input iff input[i][j] is fg, else empty",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "tile(extent:=fg, unit:=input)"
+     ],
+     "fillers": {
+      "tile.extent=fg": [
+       [
+        9,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         1
+        ]
+       ],
+       [
+        8,
+        [
+         4
+        ]
+       ],
+       [
+        10,
+        [
+         1
+        ]
+       ],
+       [
+        10,
+        [
+         2
+        ]
+       ]
+      ],
+      "tile.unit=input": [
+       "err",
+       "err",
+       "err",
+       "err",
+       "err"
+      ]
+     }
+    }
+   ]
+  },
+  "5c0a986e": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5c0a986e",
+     "sample": 0,
+     "verb": "draw diagonal ray",
+     "reading": "Each 2x2 square shoots a diagonal line of its own colour to the grid border: colour 1 goes up-left from its top-left corner, colour 2 goes down-right from its bottom-right corner.",
+     "why": "each ray is a diagonal of the object's colour starting next to its corner and ending at the border; direction fixed per colour (1 up-left, 2 down-right)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c0a986e",
+     "sample": 1,
+     "verb": "shoot diagonal ray",
+     "reading": "Two 2x2 squares: from the blue (1) square a diagonal ray of 1 runs up-left from its top-left corner to the border; from the red (2) square a diagonal ray of 2 runs down-right from its bottom-right corner to the border.",
+     "why": "each ray starts at the square's outer corner, direction fixed per colour (1: up-left, 2: down-right), and stops at the grid border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c0a986e",
+     "sample": 2,
+     "verb": "draw diagonal ray per colour",
+     "reading": "Two 2x2 squares, colours 1 and 2. The 1 square shoots a diagonal line of 1 from its top-left corner up-left to the border; the 2 square shoots a diagonal line of 2 from its bottom-right corner down-right to the border.",
+     "why": "each square's ray runs diagonally (direction fixed per colour: 1 up-left, 2 down-right) until the grid border; squares unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c0a986e",
+     "sample": 3,
+     "verb": "shoot diagonal ray from square",
+     "reading": "Two 2x2 squares: from the blue (1) square a diagonal line runs up-left from its top-left corner to the border; from the red (2) square a diagonal runs down-right from its bottom-right corner to the border, each in its own colour.",
+     "why": "every ray reaches the grid border; squares unchanged",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c0a986e",
+     "sample": 4,
+     "verb": "draw diagonal",
+     "reading": "There is a 2x2 square of colour 1 and one of colour 2. The 1-square shoots a diagonal line of 1 up-left from its top-left corner, the 2-square shoots a diagonal of 2 down-right from its bottom-right corner, each to the grid border.",
+     "why": "each line reaches the border; direction is fixed by colour (1: up-left, 2: down-right)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "5c2c9af4": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5c2c9af4",
+     "sample": 0,
+     "verb": "draw concentric square rings",
+     "reading": "Three equally spaced pixels lie on a diagonal; the middle one is the centre and their spacing d is the step. Concentric square rings of that colour are drawn around the centre at every Chebyshev distance that is a multiple of d, clipped to the grid.",
+     "why": "out cell is colour iff max(|y-cy|,|x-cx|) mod d == 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c2c9af4",
+     "sample": 1,
+     "verb": "draw concentric squares",
+     "reading": "Three same-colour points lie on a diagonal with equal spacing d. Draw concentric square rings centred on the middle point at Chebyshev distances 0, d, 2d, ... clipped by the grid.",
+     "why": "cell is colour iff its Chebyshev distance to the centre is a multiple of d",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c2c9af4",
+     "sample": 2,
+     "verb": "draw concentric squares",
+     "reading": "Three equally spaced cells lie on a diagonal. Concentric square rings of that colour are drawn centred on the middle cell, ring radii being multiples of the cell spacing, out past the grid edge.",
+     "why": "a cell is coloured exactly when its Chebyshev distance from the centre is a multiple of the step",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c2c9af4",
+     "sample": 3,
+     "verb": "draw concentric squares",
+     "reading": "Three equally spaced cells lie on a diagonal. Concentric square outlines are drawn centred on the middle cell, with ring spacing equal to the cell spacing, repeating outward (clipped at the border).",
+     "why": "a cell is coloured iff its Chebyshev distance from the centre is a multiple of d (centre itself kept)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "5c2c9af4",
+     "sample": 4,
+     "verb": "draw concentric squares",
+     "reading": "Three markers lie on a diagonal at equal spacing d. Concentric square outlines of the marker colour are drawn around the middle marker with radii d, 2d, 3d, ... until they leave the grid.",
+     "why": "a cell is coloured iff its Chebyshev distance to the centre is a multiple of d (including the centre)",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "5ecac7f7": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "5ecac7f7",
+     "sample": 0,
+     "verb": "assemble panel from column slices",
+     "reading": "Two separator columns cut the grid into three equal panels. The output panel is assembled column-wise: left columns from the first panel, the middle column from the second, right columns from the third.",
+     "why": "every output column equals the same-index column of the panel assigned to that position",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ecac7f7",
+     "sample": 1,
+     "verb": "splice panels by column",
+     "reading": "Two separator columns (6) cut the input into three equal panels. Output is one panel-sized grid spliced from them: the left columns from panel 1, the middle column(s) from panel 2, the right columns from panel 3 (for width 5: 2+1+2).",
+     "why": "out[:,0:2]=p1[:,0:2], out[:,2]=p2[:,2], out[:,3:5]=p3[:,3:5] on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ecac7f7",
+     "sample": 2,
+     "verb": "splice panel slices",
+     "reading": "Three 5x5 panels are separated by columns of 6. The output is 5x5: columns 0-1 from the first panel, column 2 from the second panel, columns 3-4 from the third panel.",
+     "why": "each output column equals the same column of the panel assigned to that third of the width",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ecac7f7",
+     "sample": 3,
+     "verb": "splice panels by column thirds",
+     "reading": "Two separator columns cut the input into three square panels. The output is one panel whose left columns come from panel 1, middle column from panel 2, and right columns from panel 3.",
+     "why": "output column c equals column c of panel floor(3c/width) \u2014 left, middle, right third",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "5ecac7f7",
+     "sample": 4,
+     "verb": "splice panel columns",
+     "reading": "The input is three 5-wide panels split by separator columns of 6. The output 5x5 is spliced: columns 0-1 from the first panel, column 2 from the second, columns 3-4 from the third.",
+     "why": "out[y][j] = panel_k[y][j] with k = A,A,B,C,C for j = 0..4",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "623ea044": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "623ea044",
+     "sample": 0,
+     "verb": "draw diagonal rays",
+     "reading": "A single pixel shoots diagonal lines of its colour in all four diagonal directions until the grid border.",
+     "why": "every cell on the two diagonals through the marker is its colour; all other cells are background",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "fillers": {
+      "extend.stop=border": [
+       null,
+       null,
+       null
+      ],
+      "extend.source=markers": [
+       [
+        1,
+        [
+         7
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "623ea044",
+     "sample": 1,
+     "verb": "draw diagonals from marker",
+     "reading": "A single marker cell shoots diagonal lines of its own colour in all four diagonal directions until the grid border.",
+     "why": "every diagonal from the marker reaches the border; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "fillers": {
+      "extend.stop=border": [
+       null,
+       null,
+       null
+      ],
+      "extend.source=markers": [
+       [
+        1,
+        [
+         7
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "623ea044",
+     "sample": 2,
+     "verb": "draw diagonal X through marker",
+     "reading": "A single coloured cell shoots diagonal lines in all four diagonal directions until each reaches the grid border.",
+     "why": "every cell on the marker's two diagonals has the marker colour, up to the border; nothing else changes",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "fillers": {
+      "extend.stop=border": [
+       null,
+       null,
+       null
+      ],
+      "extend.source=markers": [
+       [
+        1,
+        [
+         7
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "623ea044",
+     "sample": 3,
+     "verb": "draw diagonals from marker",
+     "reading": "A single coloured cell sends diagonal lines in all four diagonal directions to the grid border, in its own colour.",
+     "why": "each of the 4 diagonals from the marker reaches the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "fillers": {
+      "extend.stop=border": [
+       null,
+       null,
+       null
+      ],
+      "extend.source=markers": [
+       [
+        1,
+        [
+         7
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "623ea044",
+     "sample": 4,
+     "verb": "draw diagonals",
+     "reading": "A single marker shoots diagonal lines of its own colour in all four diagonal directions to the grid border.",
+     "why": "the four diagonal rays from the marker reach the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)",
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "n_fits": 4,
+     "frames": [
+      "extend(colour:=own, source:=markers, stop:=border)"
+     ],
+     "fillers": {
+      "extend.stop=border": [
+       null,
+       null,
+       null
+      ],
+      "extend.source=markers": [
+       [
+        1,
+        [
+         7
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "626c0bcc": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "626c0bcc",
+     "sample": 0,
+     "verb": "decompose shape into pieces and colour by piece type",
+     "reading": "The single-colour shape is cut into 2x2 squares and L-trominoes; each piece is recoloured by its shape: square -> 1, L missing top-left -> 2, L missing bottom-left -> 3, L missing top-right -> 4.",
+     "why": "every output fg cell belongs to one piece, colour set by the piece's missing corner",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "626c0bcc",
+     "sample": 1,
+     "verb": "decompose into pieces and colour by piece shape",
+     "reading": "One 8-coloured blob is a tiling of 2x2 squares and 3-cell L pieces; each piece is recoloured by its type: 2x2 square -> 1, L missing top-left -> 2, L missing bottom-left -> 3, L missing top-right -> 4.",
+     "why": "every 8 cell becomes the colour of the piece it belongs to; no other cell changes",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "626c0bcc",
+     "sample": 2,
+     "verb": "decompose shape into tiles and colour by tile type",
+     "reading": "A single-colour (8) blob is split into pieces: 2x2 squares become 1 and three-cell L pieces are coloured by orientation (missing top-left corner -> 2, missing bottom-left -> 3, missing top-right -> 4).",
+     "why": "every 8 cell is recoloured by the type of the tiling piece containing it; background unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "626c0bcc",
+     "sample": 3,
+     "verb": "partition shape into pieces and colour by piece type",
+     "reading": "The 8-coloured shape is cut into 2x2 squares and L-trominoes; each piece is recoloured by its type: 2x2 square -> 1, L with missing top-left -> 2, L with missing bottom-left -> 3, L with missing top-right -> 4.",
+     "why": "every 8 cell is recoloured, the recoloured cells form exactly a tiling by the four piece types, background unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "626c0bcc",
+     "sample": 4,
+     "verb": "tile into pieces and colour by piece type",
+     "reading": "A shape of 8s is partitioned into 2x2 squares and L-trominoes (2x2 minus one cell). Squares become 1; L-pieces are coloured by which corner is missing: top-left missing -> 2, bottom-left missing -> 3, top-right missing -> 4.",
+     "why": "every 8 cell is recoloured by the piece it belongs to; background unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

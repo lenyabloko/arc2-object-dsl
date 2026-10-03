@@ -1,0 +1,214 @@
+[
+ {
+  "task": "a644e277",
+  "reading": "A grid is cut by separator lines with noise in the cells. Four separator crossings show the background colour instead of the line colour; the output is the box with those four cells as corners, cut from the input.",
+  "verb": "crop between marked crossings",
+  "frame": {
+   "how": "extract",
+   "args": {
+    "region": "gap_corner"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gap_corner",
+    "datalog": "fgc(Y, X) :- cell(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !fgc(Y, X).\ngap_corner(Y, X) :- bgc(Y, X), X1 = X - 1, X2 = X + 1, Y1 = Y - 1, Y2 = Y + 1, cell(Y, X1, S), cell(Y, X2, S), cell(Y1, X, S), cell(Y2, X, S)."
+   }
+  ],
+  "why": "exactly four background cells have all four orthogonal neighbours in one separator colour; the output equals the input box spanned by them",
+  "invariants": [
+   "output cells are copied unchanged from the input"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a79310a0",
+  "reading": "The 8 shape moves down one row and is recoloured to 2.",
+  "verb": "shift and recolour",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "fg",
+     "target": "train"
+    }
+   },
+   "outer": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "fg"
+    }
+   }
+  },
+  "why": "output shape equals input shape shifted by (+1,0), colour 8 becomes 2",
+  "invariants": [
+   "shape",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a834deea",
+  "reading": "Each 5x5 room of 0 inside the 8 background has a 3x3 centre. Every 0 cell of that centre takes the digit at the same position of a fixed keypad [[1,7,6],[4,0,5],[2,9,3]]; its 8 cells stay 8.",
+  "verb": "fill keypad",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "room": "each 0 region bounded by 8 whose ring is a 1-cell 0 margin around a 3x3 centre",
+   "key": "fixed 3x3 keypad [[1,7,6],[4,0,5],[2,9,3]] (learned from training)",
+   "mask": "only 0 cells of the centre are written; 8 cells kept"
+  },
+  "why": "every changed cell is a 0 cell in a room centre, and its new colour is the keypad digit at its relative position",
+  "invariants": [
+   "8 cells",
+   "room margins",
+   "everything outside rooms"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a85d4709",
+  "reading": "Each row has one 5; the whole row is painted a colour chosen by the 5's column: left 2, middle 4, right 3.",
+  "verb": "paint row by marker column",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "each row",
+   "marker": "the single 5 in the row",
+   "key": "column 0 -> 2, column 1 -> 4, column 2 -> 3 (learned from training)"
+  },
+  "why": "every output row is uniform, coloured by the column index of that row's 5",
+  "invariants": [
+   "grid size 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a8c38be5",
+  "reading": "Scattered 3x3 pieces (grey 5 with a coloured edge part) are assembled into a 9x9 square: each piece goes to the slot (corner, edge or centre) where its coloured part lies on the outer rim.",
+  "verb": "assemble jigsaw",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "the nine 3x3 blocks made of 5 and one other colour (one all 5)",
+   "slot": "the 3x3 position in the 9x9 output whose outer side matches where the piece's coloured cells are",
+   "output": "9x9 grid of the pieces placed unchanged"
+  },
+  "why": "every 3x3 block of the output is one input piece copied unchanged, and the coloured cells all lie on the outer rim",
+  "invariants": [
+   "piece contents are not rotated or recoloured"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a8d7556c",
+  "reading": "Rectangles of 0 at least 2x2 are filled with 2. Take the maximal all-0 rectangles; a rectangle that overlaps a strictly larger one is skipped.",
+  "verb": "fill empty rectangles",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "zero_rect",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "zero_rect",
+    "datalog": "zero(Y, X) :- px(Y, X, 0).\nnz(Y, X) :- px(Y, X, C), C != 0.\ncand(Y0, X0, Y1, X1) :- zero(Y0, X0), zero(Y1, X1), Y1 > Y0, X1 > X0.\nbad(Y0, X0, Y1, X1) :- cand(Y0, X0, Y1, X1), nz(Y, X), Y >= Y0, Y <= Y1, X >= X0, X <= X1.\nrect(Y0, X0, Y1, X1) :- cand(Y0, X0, Y1, X1), !bad(Y0, X0, Y1, X1).\ngrow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = Y0 - 1, rect(A, X0, Y1, X1).\ngrow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = X0 - 1, rect(Y0, A, Y1, X1).\ngrow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = Y1 + 1, rect(Y0, X0, A, X1).\ngrow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = X1 + 1, rect(Y0, X0, Y1, A).\nmrect(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), !grow(Y0, X0, Y1, X1).\nmarea(Y0, X0, Y1, X1, A) :- mrect(Y0, X0, Y1, X1), H0 = Y1 - Y0, H = H0 + 1, W0 = X1 - X0, W = W0 + 1, A = H * W.\ndom(Y0, X0, Y1, X1) :- marea(Y0, X0, Y1, X1, A), marea(P0, Q0, P1, Q1, B), B > A, P0 <= Y1, Y0 <= P1, Q0 <= X1, X0 <= Q1.\nkeep(Y0, X0, Y1, X1) :- mrect(Y0, X0, Y1, X1), !dom(Y0, X0, Y1, X1).\nzero_rect(Y, X) :- keep(Y0, X0, Y1, X1), zero(Y, X), Y >= Y0, Y <= Y1, X >= X0, X <= X1."
+   }
+  ],
+  "why": "the changed cells are exactly the 0 cells of maximal all-0 rectangles (at least 2x2) that overlap no larger such rectangle; all become 2",
+  "invariants": [
+   "5 cells",
+   "0 cells outside such rectangles"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a9f96cdd",
+  "reading": "The single 2 is removed and its four diagonal neighbours get fixed colours: up-left 3, up-right 6, down-left 8, down-right 7 (clipped at the border).",
+  "verb": "stamp diagonal pattern",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "why": "the output is the 3x3 pattern [[3,0,6],[0,0,0],[8,0,7]] centred on the marker, clipped to the grid",
+  "invariants": [
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aa300dc3",
+  "reading": "In the 0 room inside the 5 walls, an 8 diagonal is drawn from a top corner pocket (wall above and wall behind it). The diagonal chosen is the longest run of 0 cells.",
+  "verb": "draw longest diagonal",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "corner_diag",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "corner_diag",
+    "datalog": "zero(Y, X) :- px(Y, X, 0).\nwall(Y, X) :- px(Y, X, C), C != 0.\nra(Y0, X0, Y0, X0) :- zero(Y0, X0), Y1 = Y0 - 1, X1 = X0 - 1, wall(Y1, X0), wall(Y0, X1).\nra(Y0, X0, Y2, X2) :- ra(Y0, X0, Y, X), Y2 = Y + 1, X2 = X + 1, zero(Y2, X2).\nrb(Y0, X0, Y0, X0) :- zero(Y0, X0), Y1 = Y0 - 1, X1 = X0 + 1, wall(Y1, X0), wall(Y0, X1).\nrb(Y0, X0, Y2, X2) :- rb(Y0, X0, Y, X), Y2 = Y + 1, X2 = X - 1, zero(Y2, X2).\nla(Y0, X0, count(Y, X)) :- ra(Y0, X0, Y, X).\nlb(Y0, X0, count(Y, X)) :- rb(Y0, X0, Y, X).\nlen(N) :- la(Y0, X0, N).\nlen(N) :- lb(Y0, X0, N).\nbest(max(N)) :- len(N).\ncorner_diag(Y, X) :- la(Y0, X0, N), best(N), ra(Y0, X0, Y, X).\ncorner_diag(Y, X) :- lb(Y0, X0, N), best(N), rb(Y0, X0, Y, X)."
+   }
+  ],
+  "why": "the 8 cells are exactly the longest diagonal 0-run that starts at a top corner pocket; nothing else changes",
+  "invariants": [
+   "5 walls",
+   "other 0 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "aab50785",
+  "reading": "Pairs of 2x2 8-blocks sit on the same two rows like brackets. The 2-row strip between each pair is cut out, and the strips are stacked top to bottom.",
+  "verb": "collect bracketed strips",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "brackets": "2x2 blocks of 8, paired by sharing the same rows",
+   "strip": "the cells strictly between a pair, on those two rows",
+   "order": "strips stacked by row, top to bottom",
+   "output": "the vertical stack of strips (all same width)"
+  },
+  "why": "every output row pair equals the cells between one bracket pair, in top-to-bottom order",
+  "invariants": [
+   "strip contents copied unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aaecdb9a",
+  "reading": "Count the 8-connected objects of each colour on the 7 background. Draw a bottom-aligned bar chart with fixed column order 5,2,8,9,6, each bar as tall as its colour's object count, on 7.",
+  "verb": "draw histogram",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "count": "number of 8-connected objects of each colour",
+   "columns": "fixed colour order [5,2,8,9,6] (learned from training), width 5",
+   "height": "max count; bars grow up from the bottom row",
+   "background": "7"
+  },
+  "why": "output column j holds colour order[j] in its bottom count(order[j]) cells and 7 above",
+  "invariants": [
+   "output width 5",
+   "background 7"
+  ],
+  "confidence": "high"
+ }
+]

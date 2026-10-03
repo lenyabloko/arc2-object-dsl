@@ -1,0 +1,9 @@
+% row: d_2bee17df_2_lane
+% source: distillation batch reading, task 2bee17df, sample 2
+% output: lane(Y, X)
+maxx(max(X)) :- px(Y, X, C).
+maxy(max(Y)) :- px(Y, X, C).
+rowhit(Y) :- cell(Y, X, C), maxx(M), X > 0, X < M.
+colhit(X) :- cell(Y, X, C), maxy(M), Y > 0, Y < M.
+lane(Y, X) :- px(Y, X, C), !cell(Y, X, C), !rowhit(Y).
+lane(Y, X) :- px(Y, X, C), !cell(Y, X, C), !colhit(X).

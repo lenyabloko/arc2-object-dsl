@@ -1,0 +1,11 @@
+% row: d_444801d8_1_cup
+% source: distillation batch reading, task 444801d8, sample 1
+% output: cup(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(O) :- osize(O, N), N > 1.
+inbig(Y, X) :- big(O), obj(O, Y, X).
+oy0(O, min(Y)) :- big(O), obj(O, Y, X).
+oy1(O, max(Y)) :- big(O), obj(O, Y, X).
+ox0(O, min(X)) :- big(O), obj(O, Y, X).
+ox1(O, max(X)) :- big(O), obj(O, Y, X).
+cup(Y, X) :- big(O), oy0(O, A), oy1(O, B), ox0(O, P), ox1(O, Q), T = A - 2, U = B + 1, R = P - 1, S = Q + 1, px(Y, X, C), Y > T, Y < U, X > R, X < S, !inbig(Y, X).

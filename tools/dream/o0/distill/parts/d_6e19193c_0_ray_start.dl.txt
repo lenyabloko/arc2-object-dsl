@@ -1,0 +1,6 @@
+% row: d_6e19193c_0_ray_start
+% source: distillation batch reading, task 6e19193c, sample 0
+% output: ray_start(Y, X)
+diag(DY, DX) :- off(DY, DX), P = DY * DX, P = 1.
+diag(DY, DX) :- off(DY, DX), P = DY * DX, P = -1.
+ray_start(Y, X) :- diag(DY, DX), px(Ym, Xm, 0), A = Ym + DY, B = Xm + DX, obj(O, A, Xm), obj(O, Ym, B), obj(O, A, B), Y = Ym - DY, X = Xm - DX.

@@ -1,0 +1,16 @@
+% row: d_14754a24_1_plus5
+% source: distillation batch reading, task 14754a24, sample 1
+% output: plus5(Y, X)
+inplus(CY, CX, Y, X) :- px(CY, CX, K), Y = CY, X = CX.
+inplus(CY, CX, Y, X) :- px(CY, CX, K), off(DY, DX), DY = 0, Y = CY, X = CX + DX, px(Y, X, K2).
+inplus(CY, CX, Y, X) :- px(CY, CX, K), off(DY, DX), DX = 0, Y = CY + DY, X = CX, px(Y, X, K2).
+ok45(Y, X) :- px(Y, X, C), C = 4.
+ok45(Y, X) :- px(Y, X, C), C = 5.
+bad(CY, CX) :- inplus(CY, CX, Y, X), !ok45(Y, X).
+c4(CY, CX, Y, X) :- inplus(CY, CX, Y, X), px(Y, X, C), C = 4, !bad(CY, CX).
+cand(CY, CX) :- c4(CY, CX, Y, X).
+n4(CY, CX, count(Y, X)) :- c4(CY, CX, Y, X).
+miss(CY, CX, EY, EX) :- c4(CY, CX, Y, X), cand(EY, EX), !c4(EY, EX, Y, X).
+dom(CY, CX) :- cand(CY, CX), cand(EY, EX), !miss(CY, CX, EY, EX), n4(CY, CX, N), n4(EY, EX, M), M > N.
+valid(CY, CX) :- n4(CY, CX, N), N > 1, !dom(CY, CX).
+plus5(Y, X) :- valid(CY, CX), inplus(CY, CX, Y, X), px(Y, X, C), C = 5.

@@ -1,0 +1,16 @@
+% row: d_aa300dc3_0_corner_diag
+% source: distillation batch reading, task aa300dc3, sample 0
+% output: corner_diag(Y, X)
+zero(Y, X) :- px(Y, X, 0).
+wall(Y, X) :- px(Y, X, C), C != 0.
+ra(Y0, X0, Y0, X0) :- zero(Y0, X0), Y1 = Y0 - 1, X1 = X0 - 1, wall(Y1, X0), wall(Y0, X1).
+ra(Y0, X0, Y2, X2) :- ra(Y0, X0, Y, X), Y2 = Y + 1, X2 = X + 1, zero(Y2, X2).
+rb(Y0, X0, Y0, X0) :- zero(Y0, X0), Y1 = Y0 - 1, X1 = X0 + 1, wall(Y1, X0), wall(Y0, X1).
+rb(Y0, X0, Y2, X2) :- rb(Y0, X0, Y, X), Y2 = Y + 1, X2 = X - 1, zero(Y2, X2).
+la(Y0, X0, count(Y, X)) :- ra(Y0, X0, Y, X).
+lb(Y0, X0, count(Y, X)) :- rb(Y0, X0, Y, X).
+len(N) :- la(Y0, X0, N).
+len(N) :- lb(Y0, X0, N).
+best(max(N)) :- len(N).
+corner_diag(Y, X) :- la(Y0, X0, N), best(N), ra(Y0, X0, Y, X).
+corner_diag(Y, X) :- lb(Y0, X0, N), best(N), rb(Y0, X0, Y, X).

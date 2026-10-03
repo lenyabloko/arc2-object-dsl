@@ -1,0 +1,210 @@
+[
+ {
+  "task": "b4a43f3b",
+  "reading": "The top 6x6 panel is a 3x3 pattern drawn at 2x scale; the bottom 6x6 panel (below the 5 separator) is a mask. The 18x18 output places one copy of the 3x3 pattern in every mask block whose mask cell is coloured, empty elsewhere.",
+  "verb": "fractal tile by mask",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "top panel (above the full separator row) downscaled by 2 to 3x3",
+   "mask": "bottom panel (below the separator); a block gets a copy where the mask cell is non-background",
+   "output_size": "mask size x unit size (6*3 = 18)"
+  },
+  "why": "output block (a,b) equals the downscaled pattern iff mask cell (a,b) is non-background, else all background",
+  "invariants": [
+   "pattern colours unchanged",
+   "mask colour never appears in output"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b60334d2",
+  "reading": "Every isolated 5 is replaced by a fixed 3x3 stamp 515/101/515 centred on it (the centre becomes 0).",
+  "verb": "stamp",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "why": "each marker cell is the centre of one identical 3x3 copy; no other cells are coloured",
+  "invariants": [
+   "grid size",
+   "marker positions are the stamp centres"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b74ca5d1",
+  "reading": "Each non-background grid corner holds a colour c. Every 5x5 shape that contains a c cell swaps its two colours (main colour <-> c), and the union of all those shapes' masks is drawn in colour c in a 5x5 box flush against that corner.",
+  "verb": "swap colours and gather shapes at corner",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key_colour": "colour of each non-background grid corner cell",
+   "subjects": "shapes (5x5 boxes, possibly not connected) containing a cell of the key colour",
+   "recolour": "within each subject, main colour <-> key colour",
+   "stamp": "union of the subject masks, box aligned to the matching grid corner, painted in the key colour"
+  },
+  "why": "for each corner colour c, the shapes holding c are colour-swapped and their overlaid silhouettes appear at the corner of colour c",
+  "invariants": [
+   "shapes without a corner colour unchanged",
+   "shape positions unchanged"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b7f8a4d8",
+  "reading": "A lattice of framed boxes, most with the common centre colour; boxes with a rare centre colour are linked: every background cell lying on a row or column between two rare cells of the same colour is filled with that colour.",
+  "verb": "connect same-colour odd boxes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "link",
+    "colour": "own"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "link",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\ntop(max(N)) :- ccount(C, N).\nlow(N) :- ccount(C, N), top(T), N < T.\nsecond(max(N)) :- low(N).\nspecial(C) :- ccount(C, N), second(S), N < S.\nsp(Y, X, C) :- cell(Y, X, C), special(C).\nbgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\nlink(Y, X) :- bgc(Y, X), sp(Y, X1, C), sp(Y, X2, C), X1 < X, X < X2.\nlink(Y, X) :- bgc(Y, X), sp(Y1, X, C), sp(Y2, X, C), Y1 < Y, Y < Y2."
+   }
+  ],
+  "why": "only background cells between two same-colour rare-centre cells on a row/column change, taking that colour; frames and other centres stay",
+  "invariants": [
+   "all box frames and centres unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b8825c91",
+  "reading": "The grid is symmetric (left-right, up-down and transpose); patches painted 4 hide parts of it and are restored from their mirror images.",
+  "verb": "restore symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "the output is fully symmetric and only cells that were 4 in the input change",
+  "invariants": [
+   "all non-4 cells unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b8cdaf2b",
+  "reading": "A cup at the bottom: base row A..BBB..A with a top bar above the B part. From the cells diagonally above-outside the top bar's two ends, diagonal lines in the base's middle colour B run up-left and up-right to the border.",
+  "verb": "shoot diagonals",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "the two ends of the second-from-bottom bar",
+   "direction": "up-left from the left end, up-right from the right end (diagonal)",
+   "colour": "the middle colour of the bottom row (not the bar's colour)",
+   "stop": "grid border"
+  },
+  "why": "each diagonal starts one step diagonally outside a bar end and reaches the border; nothing else changes",
+  "invariants": [
+   "bottom shape unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "ba1aa698",
+  "reading": "The input is a row of identical framed panels showing one small shape that moves vertically by a step from panel to panel; the output is one panel with the shape at the next position in the sequence.",
+  "verb": "extrapolate sequence",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "stripes cut by full separator columns",
+   "subject": "the small shape inside each panel",
+   "step": "vertical offset between consecutive panels",
+   "output": "one panel, shape at last position + step"
+  },
+  "why": "output = a single panel whose shape position continues the panels' motion (pair 1 lands one row further than a constant step predicts)",
+  "invariants": [
+   "panel frame and fill colours",
+   "shape and its column"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "ba26e723",
+  "reading": "Every 4 in a column whose index is a multiple of 3 becomes 6.",
+  "verb": "recolour every third column",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "third"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "third",
+    "datalog": "third(Y, X) :- px(Y, X, C), X = 0.\nthird(Y, X2) :- third(Y, X), X2 = X + 3, px(Y, X2, C)."
+   }
+  ],
+  "why": "cells in columns 0,3,6,... map 4->6 (0 stays); all other cells unchanged",
+  "invariants": [
+   "grid size",
+   "0 cells",
+   "columns not divisible by 3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bbb1b8b6",
+  "reading": "Left 4x4 panel is a 1-shape with holes, right 4x4 panel a coloured piece. If the piece exactly occupies the holes (same position), the output is the left panel with holes filled by the piece; otherwise the output is the left panel unchanged.",
+  "verb": "fit piece into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "base": "left panel (before the separator column)",
+   "piece": "right panel's coloured cells",
+   "condition": "piece cells == base hole cells exactly, no shift",
+   "result": "overlay piece on base if condition holds, else base"
+  },
+  "why": "output is always the left panel, with the right panel's colours overlaid exactly when they match the holes",
+  "invariants": [
+   "base cells unchanged",
+   "output size = panel size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bcb3040b",
+  "reading": "Two 2 cells lie on one row, column or diagonal; every cell on the straight line between them is recoloured: 0 becomes 2 and 1 becomes 3.",
+  "verb": "draw line between markers",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "seg"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "seg",
+    "datalog": "two(Y, X) :- px(Y, X, C), C = 2.\nseg(Y, X) :- two(Y, X1), two(Y, X2), X1 < X, X < X2, px(Y, X, C).\nseg(Y, X) :- two(Y1, X), two(Y2, X), Y1 < Y, Y < Y2, px(Y, X, C).\nseg(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, E = Y2 - Y1, F = X2 - X1, F = E, px(Y, X, C), Y1 < Y, Y < Y2, DY = Y - Y1, DX = X - X1, DX = DY.\nseg(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, E = Y2 - Y1, G = X1 - X2, G = E, px(Y, X, C), Y1 < Y, Y < Y2, DY = Y - Y1, DX = X1 - X, DX = DY."
+   }
+  ],
+  "why": "only cells strictly between the two 2s on their shared line change, by 0->2 and 1->3",
+  "invariants": [
+   "cells off the line unchanged",
+   "the two 2 endpoints"
+  ],
+  "confidence": "high"
+ }
+]

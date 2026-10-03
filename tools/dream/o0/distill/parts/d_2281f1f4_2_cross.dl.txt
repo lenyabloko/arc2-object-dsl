@@ -1,0 +1,7 @@
+% row: d_2281f1f4_2_cross
+% source: distillation batch reading, task 2281f1f4, sample 2
+% output: cross(Y, X)
+wmax(max(X)) :- px(Y, X, C).
+colm(X) :- cell(Y, X, C), Y = 0, wmax(W), X < W.
+rowm(Y) :- cell(Y, X, C), wmax(W), X = W, Y > 0.
+cross(Y, X) :- rowm(Y), colm(X).

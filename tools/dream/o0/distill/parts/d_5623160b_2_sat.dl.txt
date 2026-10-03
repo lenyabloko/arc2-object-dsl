@@ -1,0 +1,4 @@
+% row: d_5623160b_2_sat
+% source: distillation batch reading, task 5623160b, sample 2
+% output: sat(Y, X)
+sat(Y, X) :- cell(Y, X, C), C < 9.

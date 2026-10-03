@@ -1,0 +1,228 @@
+[
+ {
+  "task": "62b74c02",
+  "reading": "The multi-coloured block at the left edge is copied flush against the right edge, and each row's gap between the two copies is filled with that row's edge colour (the block's first and last columns share a colour).",
+  "verb": "copy to far edge and bridge",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "stamp",
+    "args": {
+     "anchors": "grid_corners",
+     "unit": "exemplar",
+     "rest": "kept",
+     "place": "nearest"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "between",
+     "colour": "own"
+    }
+   }
+  },
+  "why": "output = block at left, block at right edge, and every row's middle cells equal the colour of the block cells bounding them",
+  "invariants": [
+   "grid size",
+   "the original block",
+   "row-wise colours"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "639f5a19",
+  "reading": "Each solid 8 rectangle is recoloured by quadrant: top-left 6, top-right 1, bottom-left 2, bottom-right 3, and its core (cells at least 2 in from the rectangle's edge) becomes 4.",
+  "verb": "paint rectangle quadrants with core",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each solid colour-8 rectangle (even sides)",
+   "quadrant colours": "TL 6, TR 1, BL 2, BR 3 (split at the half-height and half-width)",
+   "core": "cells at distance >= 2 from the rectangle's border -> 4"
+  },
+  "why": "every 8 cell is recoloured by its quadrant or core position; background unchanged",
+  "invariants": [
+   "rectangle shapes and positions",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "642248e4",
+  "reading": "Two opposite grid edges are full lines of different colours; next to every colour-1 cell one cell is painted on the side facing the nearer edge line, in that line's colour.",
+  "verb": "mark side toward nearer border",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each colour-1 single cell",
+   "borders": "the two opposite full edge lines (rows or columns) with their colours",
+   "mark": "the orthogonal neighbour of the cell in the direction of the nearer border line, coloured as that line"
+  },
+  "why": "each 1 cell gets exactly one new neighbour, toward the closer coloured edge, with that edge's colour",
+  "invariants": [
+   "border lines",
+   "the 1 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "64a7c07e",
+  "reading": "Every object slides right by exactly its own width (bounding-box width).",
+  "verb": "shift right by own width",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "fg",
+    "target": "width_shift"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "width_shift",
+    "datalog": "xlo(O, min(X)) :- obj(O, Y, X).\nxhi(O, max(X)) :- obj(O, Y, X).\nwid(O, W) :- xlo(O, A), xhi(O, B), D = B - A, W = D + 1.\nwidth_shift(Y, X2) :- obj(O, Y, X), wid(O, W), X2 = X + W."
+   }
+  ],
+  "why": "each object keeps its shape and its new left edge is at old left + width (it lands just right of where it was)",
+  "invariants": [
+   "object shapes",
+   "rows",
+   "colours",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "652646ff",
+  "reading": "The noisy grid hides several partial octagon rings (6x6 ring shape) of distinct colours; the output stacks one clean copy of the ring per colour vertically on the background, ordered by their position in the input.",
+  "verb": "collect and stack ring shapes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shape": "fixed 6x6 octagon ring template (224422/242242/422224/422224/242242/224422 pattern)",
+   "colours": "the colours of the partial rings found in the input, ordered along their diagonal/left-to-right position",
+   "background": "the input's background colour",
+   "layout": "6 wide, 6 rows per ring, stacked top to bottom"
+  },
+  "why": "output height = 6 x number of ring colours; each 6x6 block is the ring template in one ring colour",
+  "invariants": [
+   "output width 6",
+   "ring template"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "66e6c45b",
+  "reading": "The 2x2 block in the centre of the 4x4 grid is pushed apart: each of its cells moves to the grid corner on its side.",
+  "verb": "spread block to corners",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the four cells of the central 2x2 block",
+   "target": "the grid corner nearest each cell (TL->TL, TR->TR, BL->BL, BR->BR)",
+   "rest": "cleared to background"
+  },
+  "why": "each block cell's colour appears at the corresponding grid corner; all else background",
+  "invariants": [
+   "grid size",
+   "colours"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "67385a82",
+  "reading": "Colour-3 cells that belong to an orthogonally connected group of 2 or more become 8; lone 3 cells (no orthogonal 3 neighbour) stay 3.",
+  "verb": "recolour non-single groups",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "paired"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "paired",
+    "datalog": "paired(Y, X) :- cell(Y, X, C), off(DY, DX), DY = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\npaired(Y, X) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C)."
+   }
+  ],
+  "why": "every 3 cell with an orthogonal 3 neighbour becomes 8 (key 3->8); nothing else changes",
+  "invariants": [
+   "lone 3 cells",
+   "background",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "67a423a3",
+  "reading": "A full vertical line crosses a full horizontal line; the 8 cells around the crossing are painted 4, the crossing cell keeps its colour.",
+  "verb": "ring the crossing",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross_ring",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross_ring",
+    "datalog": "rn(Y, count(X)) :- px(Y, X, C).\nrf(Y, count(X)) :- cell(Y, X, C).\nfullrow(Y) :- rn(Y, N), rf(Y, M), N = M.\ncn(X, count(Y)) :- px(Y, X, C).\ncf(X, count(Y)) :- cell(Y, X, C).\nfullcol(X) :- cn(X, N), cf(X, M), N = M.\ncross_ring(Y2, X2) :- fullrow(Y), fullcol(X), off(DY, DX), Y2 = Y + DY, X2 = X + DX."
+   }
+  ],
+  "why": "the 8 neighbours of the full-row/full-column intersection are colour 4; nothing else changes",
+  "invariants": [
+   "crossing cell",
+   "lines away from the crossing",
+   "background"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "692cd3b6",
+  "reading": "Two 3x3 colour-2 boxes with a 5 centre each have one missing edge cell (a door); the door cells and a rectangular corridor of 4 joining the two doors' outsides are filled, leaving the area behind each box (the side opposite its door) empty.",
+  "verb": "connect doors with filled corridor",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "two 3x3 boxes, each with one gap cell (door) in an edge middle",
+   "region": "the rectangle spanned by the two cells just outside the doors, minus the boxes and minus each box's row/column band on the side opposite its door; plus both door cells",
+   "colour": "4"
+  },
+  "why": "all filled cells are 4, lie in that corridor, and the boxes are untouched",
+  "invariants": [
+   "the boxes",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "69889d6e",
+  "reading": "From the 2 cell on the bottom row a two-cell-thick staircase of 2s climbs up-right to the top/right edge; when its next cell is a 1, the staircase shifts right past the 1s (widening the row below) and continues.",
+  "verb": "draw diagonal staircase around obstacles",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the single colour-2 cell on the bottom row",
+   "direction": "up-right diagonal, each row two cells wide (cols c and c+1 when the row above starts at c+1)",
+   "obstacles": "colour-1 cells; on collision the path shifts right until clear, the lower row is extended to stay connected",
+   "stop": "grid border",
+   "colour": "own (2)"
+  },
+  "why": "every row above the source holds a contiguous run of 2s continuing the diagonal, never overwriting 1s",
+  "invariants": [
+   "1 cells",
+   "source cell",
+   "grid size"
+  ],
+  "confidence": "medium"
+ }
+]

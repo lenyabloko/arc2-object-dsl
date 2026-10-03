@@ -1,0 +1,8 @@
+% row: d_a8d7556c_2_zero_sq
+% source: distillation batch reading, task a8d7556c, sample 2
+% output: zero_sq(Y, X)
+q(Y, X) :- px(Y, X, C), C = 0, X1 = X + 1, px(Y, X1, C), Y1 = Y + 1, px(Y1, X, C), px(Y1, X1, C).
+zero_sq(Y, X) :- q(Y, X).
+zero_sq(Y, X) :- q(Y, X0), X = X0 + 1.
+zero_sq(Y, X) :- q(Y0, X), Y = Y0 + 1.
+zero_sq(Y, X) :- q(Y0, X0), Y = Y0 + 1, X = X0 + 1.

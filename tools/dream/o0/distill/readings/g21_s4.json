@@ -1,0 +1,209 @@
+[
+ {
+  "task": "9d9215db",
+  "reading": "The corner pattern is completed to four-fold symmetry about the grid centre, and each outer ring side is drawn as a dotted line (every second cell) in the colour of the mark next to the corner, running from corner to corner.",
+  "verb": "symmetrize and draw dotted sides",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pattern": "the marks in one corner of the input",
+   "symmetry": "both grid mid-axes (4-fold)",
+   "dotted_line": "between each pair of mirrored outer corner marks, period 2, colour of the mark adjacent to the corner on that side"
+  },
+  "why": "output is symmetric about both central axes and each outer side is a period-2 run between its two corners",
+  "invariants": [
+   "grid size",
+   "original marks"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9ddd00f0",
+  "reading": "Missing parts of a symmetric pattern are filled so the output is symmetric about the grid's central axes.",
+  "verb": "complete symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "output is symmetric (horizontal, vertical and diagonal) about the grid centre and contains every input fg cell",
+  "invariants": [
+   "grid size",
+   "existing fg cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9def23fe",
+  "reading": "The big rectangle extends each of its rows and columns outward to the grid border in all four directions, except rows/columns that contain a marker on that side, which are not extended at all.",
+  "verb": "extend rectangle except blocked lines",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the large solid rectangle",
+   "directions": "up, down, left, right to the border",
+   "blocked": "a row/column on a given side is skipped entirely if any marker lies on it on that side",
+   "colour": "rectangle colour; markers stay"
+  },
+  "why": "every unblocked rectangle row/column is filled to the border; blocked ones stay empty",
+  "invariants": [
+   "markers",
+   "rectangle"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f5f939b",
+  "reading": "A background cell that is the centre of a plus formed by four dominoes (two cells at distance 2-3 in each of the four directions) becomes 4.",
+  "verb": "mark plus centre",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "plus_centre",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plus_centre",
+    "datalog": "fgat(Y, X) :- cell(Y, X, C).\nplus_centre(Y, X) :- px(Y, X, C0), !fgat(Y, X), Y1 = Y - 2, Y2 = Y - 3, fgat(Y1, X), fgat(Y2, X), Y3 = Y + 2, Y4 = Y + 3, fgat(Y3, X), fgat(Y4, X), X1 = X - 2, X2 = X - 3, fgat(Y, X1), fgat(Y, X2), X3 = X + 2, X4 = X + 3, fgat(Y, X3), fgat(Y, X4)."
+   }
+  ],
+  "why": "exactly the plus-centre cells become colour 4; nothing else changes",
+  "invariants": [
+   "all other cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f8de559",
+  "reading": "The 6-line with a 2 at its head points a ray from the 2 through the 7 area; the first frame cell (non-7) the ray hits becomes 7.",
+  "verb": "shoot ray and puncture frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pointer": "the 6 run ending in the 2 cell (direction 6 -> 2, may be diagonal)",
+   "ray": "from the 2 onward through 7 cells",
+   "hit": "first non-7 cell on the ray",
+   "colour": "7 (the region colour)"
+  },
+  "why": "only the first non-7 cell along the pointer's direction changes, to 7",
+  "invariants": [
+   "all cells except the hit cell"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a04b2602",
+  "reading": "Every 2 lying inside the bounding box of a 3-block gets a ring of 1s on all eight neighbours (overwriting 3, 0 or outside 2s); 2s outside the blocks are untouched.",
+  "verb": "ring inner marks",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "ring2",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ring2",
+    "datalog": "b3(O) :- obj(O, Y, X), px(Y, X, 3).\ntop(O, min(Y)) :- b3(O), obj(O, Y, X).\nbot(O, max(Y)) :- b3(O), obj(O, Y, X).\nlft(O, min(X)) :- b3(O), obj(O, Y, X).\nrgt(O, max(X)) :- b3(O), obj(O, Y, X).\nin2(Y, X) :- px(Y, X, 2), top(O, T), bot(O, B), lft(O, L), rgt(O, R), Y >= T, Y <= B, X >= L, X <= R.\nring2(Y, X) :- in2(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, C), !in2(Y, X)."
+   }
+  ],
+  "why": "all 8-neighbours of in-block 2s (except in-block 2s) become 1; nothing else changes",
+  "invariants": [
+   "in-block 2s",
+   "2s outside blocks not adjacent to in-block 2s",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a096bf4d",
+  "reading": "In a lattice of identical small tiles, when two tiles in the same tile-row or tile-column carry the same odd colour at the same position, every tile between them gets that colour at that position.",
+  "verb": "connect matching tile cells",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "lattice": "grid of framed 2x2-interior tiles (period 5)",
+   "odd_cell": "a tile cell whose colour differs from the usual colour at that position",
+   "pair": "two tiles on one tile-row or tile-column with the same odd colour at the same position",
+   "fill": "that position in every tile between them takes the odd colour"
+  },
+  "why": "for each position, odd colours form unbroken runs between matching tiles along tile-rows/columns",
+  "invariants": [
+   "tile frames",
+   "separators",
+   "other tile cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "a406ac07",
+  "reading": "The bottom row and right column are colour keys; each interior cell whose column key equals its row key takes that colour, forming coloured blocks on the diagonal.",
+  "verb": "intersect row and column keys",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "column_key": "colour of the bottom-row cell in that column",
+   "row_key": "colour of the right-column cell in that row",
+   "rule": "cell (Y,X) gets colour C when both keys equal C"
+  },
+  "why": "a cell is coloured C exactly when bottom[X] = right[Y] = C",
+  "invariants": [
+   "bottom row",
+   "right column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a416b8f3",
+  "reading": "The input is repeated twice side by side.",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "train",
+    "unit": "input"
+   }
+  },
+  "why": "output is a 1x2 row of input copies",
+  "invariants": [
+   "input content"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a59b95c0",
+  "reading": "The input is tiled N x N times, where N is the number of distinct colours in the input.",
+  "verb": "tile by colour count",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "colour_reps",
+    "unit": "input"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "colour_reps",
+    "datalog": "crow(C, min(Y)) :- px(Y, X, C).\nccol(C, min(X)) :- crow(C, Y), px(Y, X, C).\ncolour_reps(Y, X) :- crow(C, Y), ccol(C, X)."
+   }
+  ],
+  "slots": {
+   "extent": "count of colour_reps cells (one cell per distinct colour) = N, giving an N x N block of copies"
+  },
+  "why": "every block of the N x N output is the input, N = number of distinct colours",
+  "invariants": [
+   "input content"
+  ],
+  "confidence": "medium"
+ }
+]

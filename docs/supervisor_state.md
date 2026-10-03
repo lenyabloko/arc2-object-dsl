@@ -559,3 +559,54 @@ _Last updated: 2026-10-03 (00:39 EDT). Updated with every outbox batch._
   - definitions rendered under the key × tile and markers × stamp checks;
   - cycle/current v29.
 - **Round 21 response:** claude/fable_round_21_response.md (OQ-21.4 H stratum, OQ-21.5 v4′, OQ-21.6 dates).
+
+## Update 08:00 EDT Oct 3: Fable v22; v4″ fails C.3′; OVERNIGHT-FABLE (Fable fills in cells) — 8 exact, reuse 0, stopped
+- **Fable v22** (claude/fable_guidance_v22.md; response claude/fable_round_22_response.md): C.3′ = precision of answers added at depth 2 ≥ depth-1 precision, with no displacement. v4″ (V4PP: no learned-pattern outer, admitted inner) **fails C.3′**. No further engine variants before Oct 12; T90 not run; H stays sealed. Oct 12 memo draft: claude/oct12_memo_draft.md (Len: take OQ-22.2 to Fable first).
+- **OVERNIGHT-FABLE** (Len's decision claude/decision_overnight_fable_fills_in.md): Fable writes per-task cell definitions from training pairs and test inputs; the supervisor implements each literally (G83), checks training fit, then that the test input gets a prediction, then ONE harness check (G87; ledger results/o0/overnight_harness.json), then definition-level reuse on the 393 dev tasks. Packets of 8 build-failing dev tasks, hardest first (tools/dream/o0/overnight_packets.py).
+  - Code: tools/dream/o0/overnight_p1.py, overnight_p2.py, overnight_p3.py (sha 0b88fa3712be); overnight_check.py (harness_once_fn).
+  - Responses: claude/fable_round_overnight_1/2/3_response.md; Fable's ledger claude/fable_overnight_ledger.md.
+- **Night totals (24 tasks):** exact 8 (58f5dbd5, 21897d95, f931b4a8, 7b5033c1 ARC-2; c1990cce, 332202d5, 782b5218, 522fdd07 ARC-1); wrong 3; empty 2; fits training but abstains on the test input, no check 1 (e87109e9); failed training 5; not checked 3; declined by Fable 2. 13 harness checks: 8 exact / 3 wrong / 2 empty.
+- **Definition-level reuse on dev: 0 for all 13 definitions that fit training; no Fable part has needed R ≥ 2 → stop rule fired after packet 3.** Same shape as Len's two definitions (dfadab01, 15696249): accurate, specific, no transfer.
+- 4c7dc4dd (in-grid example pair): framed_boxes found the structure on both pairs, but the engine's fit on one sub-grid pair is led by learned-pattern stamps (chance fit at sub-grid level; C.3 again).
+- Unchanged: v21 standing (digest b6c6bfd8); ORDERS seq 21 (WSL submits v21 once after 20:00 EDT Oct 3); check-in 10:30 EDT Oct 3 (v20 score, batch-0086 RESULT).
+
+## Update 10:35 EDT Oct 3: check-in
+- v20 (V34) public score 2.50 (ref 56787078), the same as v11/v15/v16/v19. Recorded on the review page (cycle/current v31: kaggle row, in-flight rows) and in the convergence doc.
+- batch-0085 pushed (816ae2b) and batch-0086 pushed (55993b5). Windows and WSL both acked ORDERS seq 21; WSL will check that LATEST = v21 and submit once after 20:00 EDT. No reminder needed.
+- No new Fable guidance doc. Fable's overnight ledger is final (claude/fable_overnight_ledger.md, 08:10 EDT) and agrees with the supervisor's totals. No answers yet to OQ-20.3/20.4 or OQ-20b.1–3 beyond v21/v22.
+- Review page: no new CELL_ / PLACE_ decisions since 22:47 EDT Oct 2; no open comment threads. Nothing to check with the engine.
+- device_bash failed to start this morning ("workspace unavailable"); stage, list and commit work. Heartbeat committed 10:33 EDT, sizes verified.
+- Waiting on Len: take the overnight result to Fable with the Oct 12 memo question, or run more packets.
+- Next check-in: 22:30 EDT Oct 3.
+
+## Update 18:50 EDT Oct 3: Fable v23 rev. 5 / v23a (FREEZE-AND-RESEARCH); v22 verified; distillation batch 1
+- **Decisions.**
+  - Len: claude/decision_freeze_and_front_load_research.md (11:10). v21 is final. The nightly resubmission stops. The
+    budget goes to the floor, the lattice and one composition experiment.
+  - Len's answers after v23a: claude/decision_v23_budget_memo_page.md.
+    - Distillation batch 1 runs at full scale; batches 2–4 are decided Oct 8.
+    - The Oct 12 memo is finalised Oct 10, with the Oct 8 numbers.
+    - C.8 goes on the desktop review page.
+  - Fable: v23 rev. 5 (claude/fable_guidance_v23_standing_orders.md: layers L1–L5, C.5–C.8, T91–T95) and v23a (first
+    days).
+  - Response: claude/fable_round_23_response.md.
+- **Submission.**
+  - ORDERS seq 22 (15:00): v21's one Kaggle run is tonight (seq 21). After it, no submissions until an order names a
+    version.
+  - v22 = v21 + logging (submission/v22; tools/m1b/predict_m1_logged.py; anonymous per-task times,
+    PREDICTION_SET_SHA256). Local parity run: digest b6c6bfd8; max task 68.5 s.
+  - Proposed: one v22 run on an order for Oct 4. After that, Len selects the final submission on Kaggle (only he can).
+- **C.7 batch 1** (tools/dream/o0/distill/: SPEC.md, l4_verbs.json, distill_check.py, distill_summary.py,
+  distill_reuse.py, distill_transfer.py; results/o0/distill_b1_*.json, distill_harness.json,
+  distill_transfer_harness.json):
+  - 300 dev tasks × 5 samples = 1,500 readings, from 150 model runs (about 12 M tokens).
+  - 1,042 readings are executable and 316 fit training; 78 tasks have a fit (enumeration fits 45).
+  - Harness: 74 exact / 3 wrong / 1 abstains; 5 of the exact are on build-failing tasks.
+  - Frames: 38 distinct, 11 with R(S) ≥ 2. The top two are degenerate `d_row` frames (Q1 to Fable).
+  - G89 rows needed by ≥ 2 non-source tasks: `uniq` (31aa019c) and `crossing` (67a423a3).
+  - Transfer check: 1818057f exact (1 of 5).
+- **Engine.** `fill` region accepts definition rows (fallback only). Dev depth 1 is unchanged: 55 / 393, identical fit
+  lists. The pre-change copy is in the scratchpad.
+- **Slip.** A plumbing test printed 60 public-eval task ids with times into the supervisor's own tool output. It was
+  not written to any doc. The notebook now prints times without ids.
+- **Next.** C.8 by Oct 6; B.1 draft Oct 4; C.1 L1 + EL++; T94/T95 first numbers Oct 8; check-in 22:30 EDT.

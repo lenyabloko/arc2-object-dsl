@@ -1,0 +1,15 @@
+% row: d_d37a1ef5_2_hole
+% source: distillation batch reading, task d37a1ef5, sample 2
+% output: hole(Y, X)
+two(Y, X) :- px(Y, X, C), C = 2.
+five(Y, X) :- px(Y, X, C), C = 5.
+fy0(min(Y)) :- two(Y, X).
+fy1(max(Y)) :- two(Y, X).
+fx0(min(X)) :- two(Y, X).
+fx1(max(X)) :- two(Y, X).
+vy0(min(Y)) :- five(Y, X).
+vy1(max(Y)) :- five(Y, X).
+vx0(min(X)) :- five(Y, X).
+vx1(max(X)) :- five(Y, X).
+inbox(Y, X) :- px(Y, X, C), vy0(A), vy1(B), vx0(P), vx1(Q), Y >= A, Y <= B, X >= P, X <= Q.
+hole(Y, X) :- px(Y, X, C), C = 0, fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q, !inbox(Y, X).

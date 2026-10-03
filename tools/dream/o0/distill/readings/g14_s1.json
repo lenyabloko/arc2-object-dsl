@@ -1,0 +1,211 @@
+[
+ {
+  "task": "6a1e5592",
+  "reading": "Grey pieces at the bottom are jigsaw pieces; each slides (up and sideways) into the hole of the red ceiling whose shape it fills, and is recoloured blue; the grey originals vanish.",
+  "verb": "fit pieces into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "pieces": "grey 4-connected components at the bottom",
+   "holes": "background notches in the red top band (plus the open row below it)",
+   "match": "each piece goes to the hole its shape exactly fills (translation only)",
+   "colour": "placed piece becomes 1; source cells become 0"
+  },
+  "why": "blue cells in the output are exactly the grey pieces translated so their top part fills each red-band hole",
+  "invariants": [
+   "red band unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6b9890af",
+  "reading": "Output is the red square outline cut out; the small 3x3 pattern elsewhere is scaled up by (frame interior size / 3) to fill the frame interior.",
+  "verb": "scale pattern into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "the red rectangular outline (output = its box)",
+   "pattern": "the other object's 3x3 bounding box",
+   "scale": "interior side / 3 (1, 2, 3 in train)"
+  },
+  "why": "output box = red outline box; interior = pattern upscaled by integer factor",
+  "invariants": [
+   "red outline border kept"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6c434453",
+  "reading": "Every 3x3 hollow blue square (ring around one background cell) is replaced in place by a red plus sign; other shapes stay.",
+  "verb": "replace ring with plus",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "ring_hole",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "ring_hole",
+    "datalog": "nb(Y, X, count(DY, DX)) :- px(Y, X, 0), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\nring_hole(Y, X) :- nb(Y, X, N), N = 8."
+   }
+  ],
+  "why": "each background cell with all 8 neighbours coloured gets the 3x3 unit 020/222/020 centred on it (its 0 corners overwrite the ring corners)",
+  "invariants": [
+   "non-ring objects unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "6ca952ad",
+  "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; smaller objects (single cells, short lines, 3-cell L) stay put.",
+  "verb": "drop",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "big",
+    "target": "border"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "big",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(Y, X) :- obj(O, Y, X), osize(O, N), N > 3."
+   }
+  ],
+  "why": "each object with >3 cells is translated down so its lowest row is the last grid row, shape unchanged",
+  "invariants": [
+   "objects with <=3 cells unchanged",
+   "colours unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6cf79266",
+  "reading": "In the noisy grid, each 3x3 square made entirely of 0 is filled with 1 (scanning top-left first, a square overlapping an already chosen one is skipped).",
+  "verb": "fill empty square",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "zero_square",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "zero_square",
+    "datalog": "z(Y, X) :- px(Y, X, 0).\nnz(Y, X) :- px(Y, X, C), !z(Y, X).\ndirty(Y, X) :- px(Y, X, C0), nz(A, B), Y3 = Y + 2, X3 = X + 2, A >= Y, A <= Y3, B >= X, B <= X3.\nsq(Y, X) :- z(Y, X), Y3 = Y + 2, X3 = X + 2, px(Y3, X3, C), !dirty(Y, X).\nov(Y, X) :- sq(Y, X), sq(A, B), Ylo = Y - 3, Xlo = X - 3, Xhi = X + 3, A < Y, A > Ylo, B > Xlo, B < Xhi.\nov(Y, X) :- sq(Y, X), sq(A, B), Xlo = X - 3, A = Y, B < X, B > Xlo.\nkeep(Y, X) :- sq(Y, X), !ov(Y, X).\nzero_square(A, B) :- keep(Y, X), px(A, B, C), Y3 = Y + 2, X3 = X + 2, A >= Y, A <= Y3, B >= X, B <= X3."
+   }
+  ],
+  "why": "exactly the cells of non-overlapping all-0 3x3 squares become 1",
+  "invariants": [
+   "all other cells unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6d0160f0",
+  "reading": "The grid is 3x3 panels split by grey lines; the panel containing a yellow 4 is copied into the panel whose position matches the 4's position inside its panel; all other panels are cleared to 0.",
+  "verb": "relocate panel",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "9 panels cut by the grey separators",
+   "source": "the panel containing colour 4",
+   "destination": "panel index = (row, col) of the 4 within its 3x3 panel",
+   "rest": "all other panels emptied; separators kept"
+  },
+  "why": "output = separators + source panel content at destination panel, zeros elsewhere",
+  "invariants": [
+   "separator lines unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6d58a25d",
+  "reading": "A hat-shaped object shelters the columns below it; in each hat column that contains a marker dot below the hat, a vertical line of the marker colour is drawn from just under the hat down to the bottom border.",
+  "verb": "drop curtain",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shelter": "the one multi-cell object (hat)",
+   "triggers": "markers below the hat within its column span",
+   "line": "from the cell under the hat's lowest cell in that column to the bottom border",
+   "colour": "marker colour"
+  },
+  "why": "new cells are exactly the vertical runs below the hat in columns holding a marker beneath it",
+  "invariants": [
+   "hat and all markers unchanged",
+   "markers outside hat columns get no line"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6e02f1e3",
+  "reading": "Output is a 3x3 grey line chosen by the number of distinct colours in the input: 1 colour -> top row, 2 colours -> main diagonal, 3 colours -> anti-diagonal; rest 0.",
+  "verb": "draw by colour count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "count": "number of distinct colours in input",
+   "pattern": "1: row 0; 2: main diagonal; 3: anti-diagonal",
+   "colour": "5 on 0"
+  },
+  "why": "the grey line chosen by the distinct-colour count",
+  "invariants": [
+   "grid size 3x3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6e19193c",
+  "reading": "Each 3-cell L (2x2 box missing one corner) shoots a diagonal ray of its colour out of its missing corner, starting one step beyond that corner and running to the grid border.",
+  "verb": "shoot diagonal ray",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "each 3-cell L object",
+   "direction": "diagonal from the L's elbow cell through its missing corner",
+   "start": "cell diagonally beyond the missing corner",
+   "stop": "grid border",
+   "colour": "own"
+  },
+  "why": "new cells are exactly the diagonal rays beyond each L's missing corner",
+  "invariants": [
+   "L objects unchanged",
+   "missing-corner cell stays 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "6f473927",
+  "reading": "The output doubles the width: the input plus its left-right mirror image with colours inverted (0->8, 2->0), the mirror attached on the side where the red shape touches the edge so the reds meet in the middle.",
+  "verb": "mirror and invert",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "copy": "horizontal mirror of input",
+   "recolour": "in the copy 0->8, 2->0",
+   "side": "copy placed on the side of the input edge column that contains red (left in pair 1,2; right in 0,3)"
+  },
+  "why": "output = [input | inverted mirror] or [inverted mirror | input]",
+  "invariants": [
+   "original input appears unchanged in one half",
+   "height unchanged"
+  ],
+  "confidence": "high"
+ }
+]

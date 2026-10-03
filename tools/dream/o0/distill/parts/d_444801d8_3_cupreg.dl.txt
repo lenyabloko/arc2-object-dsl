@@ -1,0 +1,10 @@
+% row: d_444801d8_3_cupreg
+% source: distillation batch reading, task 444801d8, sample 3
+% output: cupreg(Y, X)
+one(Y, X) :- cell(Y, X, C), C = 1.
+cup(O) :- obj(O, Y, X), one(Y, X).
+by0(O, min(Y)) :- cup(O), obj(O, Y, X).
+by1(O, max(Y)) :- cup(O), obj(O, Y, X).
+bx0(O, min(X)) :- cup(O), obj(O, Y, X).
+bx1(O, max(X)) :- cup(O), obj(O, Y, X).
+cupreg(Y, X) :- by0(O, A), by1(O, B), bx0(O, P), bx1(O, Q), A1 = A - 1, px(Y, X, C), Y >= A1, Y <= B, X >= P, X <= Q, !one(Y, X).

@@ -1,0 +1,1150 @@
+{
+ "group": 17,
+ "tasks": {
+  "8719f442": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8719f442",
+     "sample": 0,
+     "verb": "fractal scale with outward copies",
+     "reading": "The 3x3 input becomes a 5x5 grid of 3x3 blocks: the centre 3x3 blocks are the input scaled x3 (each coloured cell a solid block); for every coloured input cell on the input's edge, a copy of the input is placed in the outer block just beyond it in each outward direction (corner cells give two copies).",
+     "why": "every 3x3 block is empty, solid fg colour, or an exact input copy, as dictated by the input's cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8719f442",
+     "sample": 1,
+     "verb": "upscale and stamp outward copies",
+     "reading": "The 3x3 input is scaled up x3 into the centre 9x9 of a 15x15 grid (each fg cell becomes a full 3x3 block). Every fg cell on the input's edge also gets a copy of the input placed in the outer ring block next to its scaled block, in each orthogonal outward direction (corner cells get two copies, edge-middle cells one, the centre cell none).",
+     "why": "every 3x3 output block is empty, solid fg, or an exact copy of the input; solid blocks are the x3 upscale of the input; copies sit only just outside solid edge blocks",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8719f442",
+     "sample": 2,
+     "verb": "upscale and sprout copies",
+     "reading": "The 3x3 input becomes a 15x15 grid of 5x5 blocks: the middle 3x3 blocks are the input upscaled x3 (each fg cell a solid block), and a copy of the input is placed in every outer-ring block that is 4-adjacent to a solid block.",
+     "why": "every 3x3 block is solid fg, a copy of the input, or empty; copies appear exactly in ring blocks touching a solid block",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8719f442",
+     "sample": 3,
+     "verb": "scale up and sprout copies",
+     "reading": "Output is 5x the input size in 3x3 blocks: the central 3x3 blocks show the input scaled by 3 (each fg cell a solid block), and each solid block on the edge of that core gets a copy of the input in the outer-ring block just beyond it (outward).",
+     "why": "every output block is solid fg, the input, or empty; solid blocks = input fg cells shifted by (1,1); input copies sit exactly outward of edge-of-core solid blocks",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8719f442",
+     "sample": 4,
+     "verb": "upscale and project",
+     "reading": "Output is a 5x5 grid of 3x3 blocks. The centre 3x3 blocks are the input upscaled x3 (fg cell -> solid block). Each fg cell on an input edge also gets a copy of the input in the outer block just past that edge (corners project on both edges, never diagonally).",
+     "why": "every output block is empty, solid, or the input; solid blocks mirror the input pattern in the centre, input copies sit outward of edge fg cells",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "88207623": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "88207623",
+     "sample": 0,
+     "verb": "reflect across wall and recolour",
+     "reading": "Each colour-4 shape touching a vertical colour-2 wall is reflected across the wall to the other side, and the reflection is painted in the colour of the single marker cell on that side.",
+     "why": "the new cells are exactly the mirror image of the 4-shape about the wall, in the marker's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "88207623",
+     "sample": 1,
+     "verb": "reflect across line in marker colour",
+     "reading": "Each 4-shape sits against a straight line of 2; a single marker cell lies on the other side of the line. The shape is reflected across the 2 line and the reflection is drawn in the marker's colour (covering the marker).",
+     "why": "the new cells are the mirror image of the 4-shape about the 2 line, and the marker lies inside that image",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "88207623",
+     "sample": 2,
+     "verb": "reflect and recolour",
+     "reading": "Each colour-4 shape sits against a vertical colour-2 line; a single marker cell of another colour lies on the other side. The shape is mirrored across the 2-line and the mirrored copy is drawn in the marker's colour.",
+     "why": "every mirrored cell is the reflection of a shape cell across its 2-line and has the marker colour; originals unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "88207623",
+     "sample": 3,
+     "verb": "reflect and recolour",
+     "reading": "Each colour-4 shape stands against a straight vertical 2-segment, with one single marker cell of another colour on the other side; the shape is reflected across the 2-segment and the reflection is painted in the marker's colour.",
+     "why": "the new cells are the mirror image of the 4-shape across its 2-segment, all in the marker colour (the marker cell lies inside the reflection or is kept)",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "88207623",
+     "sample": 4,
+     "verb": "reflect in marker colour",
+     "reading": "Each vertical bar of 2 has a colour-4 shape on one side and a single marker cell on the other. The 4-shape is reflected across the bar onto the marker side, drawn in the marker's colour.",
+     "why": "for each bar, new cells = mirror image of the 4-shape about the bar column, all in marker colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "8886d717": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8886d717",
+     "sample": 0,
+     "verb": "clean and push toward border",
+     "reading": "Noise 8 cells inside the 2 area become 2; each 8 cell inside the 7 area gains one more 8 cell next to it on the side facing the colour-9 border line.",
+     "why": "only 8 cells and their one neighbour toward the 9 line change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8886d717",
+     "sample": 1,
+     "verb": "erase or push marks by region",
+     "reading": "A full line of 9 runs along one grid edge; the rest is 2-regions and 7-regions with scattered 8 cells. An 8 lying in a 2-region is erased (becomes 2); an 8 lying in a 7-region is duplicated one cell toward the 9 edge.",
+     "why": "every output change is either an 8 inside 2 becoming 2, or a new 8 directly adjacent to an 8 inside 7 on the side of the 9 line",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8886d717",
+     "sample": 2,
+     "verb": "absorb or step toward border",
+     "reading": "Stray 8 cells inside the 2-region become 2; stray 8 cells inside the 7-region stay and add one more 8 one step toward the edge that is a full line of 9.",
+     "why": "8s whose neighbours are mostly 2 become 2; every other 8 gains exactly one 8 neighbour on the 9-border side",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8886d717",
+     "sample": 3,
+     "verb": "absorb or step toward border",
+     "reading": "A 9 line runs along one border; each 8 lying inside a 2-area turns into 2, and each 8 lying inside the 7-area grows by one cell toward the 9 line (the neighbouring cell on the 9 side becomes 8).",
+     "why": "only 8 cells and the cell next to a 7-area 8 on the 9 side change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8886d717",
+     "sample": 4,
+     "verb": "clean and push noise",
+     "reading": "The grid is split into a 2-region and a 7-region with a full 9 line on one border; 8 noise cells inside the 2-region are erased to 2, while each 8 inside the 7-region is kept and also copied one cell toward the 9 border.",
+     "why": "only 8 cells and their one neighbour toward the 9 side change",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "891232d6": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "891232d6",
+     "sample": 0,
+     "verb": "route path around bars",
+     "reading": "From each 6 on the bottom row a path is drawn upward in 2; when it meets a horizontal 7 bar from below it marks the bar cell 8, turns and runs under the bar (4 at the turn, 2 along, 3 at the corner past the bar's end) and continues up, ending in a 6 at the top or in a gap of a bar.",
+     "why": "the path never crosses a 7 bar; each bar it meets is passed on its right end",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "891232d6",
+     "sample": 1,
+     "verb": "draw deflected path",
+     "reading": "From each 6 on the bottom row a path of 2 is drawn upward; when it meets a horizontal 7 bar it runs along the row beneath the bar (4 at the entry end, 2 along, 3 at the far end), marks the bar cell above the entry with 8, then continues upward past the bar's end, until it leaves the grid (ending with a 6 at the top) or reaches a gap.",
+     "why": "the path climbs vertically, sidesteps each 7 bar it would hit by running beneath it to its end, and never crosses a 7",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "891232d6",
+     "sample": 2,
+     "verb": "trace path around bars",
+     "reading": "From each 6 on the bottom row a 2-line climbs; just below a horizontal 7-segment it marks 4, puts 8 on the segment above, runs 2s right under the segment to one past its end where it marks 3, then climbs again, ending at the top (marked 6) or at a gap.",
+     "why": "every added cell lies on the climb-and-detour path from a 6",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "891232d6",
+     "sample": 3,
+     "verb": "trace detour path",
+     "reading": "From each 6 on the bottom row a 2-path runs upward; when a horizontal 7-bar blocks it, the path marks the bar cell with 8, runs right under the bar (4 at the turn, 3 one past the bar end) and continues up past the bar's right end; it ends with a 6 at the top row or where it can no longer pass.",
+     "why": "every new cell lies on a path from a bottom 6; 7 cells only change to 8 where a path meets them",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "891232d6",
+     "sample": 4,
+     "verb": "route path around bars",
+     "reading": "From each 6 on the bottom row a 2-path climbs upward. When the next cell up is a horizontal 7-bar, that bar cell becomes 8, the current cell 4, the path runs right under the bar to one column past the bar's right end (marked 3) and climbs again. The path ends with 6 at the top border (or where it is boxed in).",
+     "why": "every 2/3/4/8/6 added lies on one such staircase path from a bottom 6",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "8a004b2b": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8a004b2b",
+     "sample": 0,
+     "verb": "crop and complete scaled key",
+     "reading": "Crop the rectangle marked by the four 4 corner cells; inside it, the partial scaled-up pieces are completed into a full scaled copy of the small multi-coloured key shape found elsewhere.",
+     "why": "the output is the corner box with the scaled key drawn so all existing coloured pieces agree with it",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8a004b2b",
+     "sample": 1,
+     "verb": "crop and complete scaled pattern",
+     "reading": "Four 4 cells mark the corners of a box that contains a partial, scaled-up copy of a small multi-coloured exemplar elsewhere in the grid. The output is the box cut out, with the exemplar scaled to the same factor and completed so it lines up with the partial copy.",
+     "why": "output equals the corner box from the input with every exemplar cell drawn as a scale x scale block, consistent with the pieces already inside",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8a004b2b",
+     "sample": 2,
+     "verb": "crop and complete scaled pattern",
+     "reading": "Four 4-coloured corner cells mark a window; crop it and complete the large partial pattern inside as a scaled-up copy of the small multicolour exemplar found elsewhere in the input.",
+     "why": "output = window crop with the scaled exemplar painted where its existing pieces fit",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8a004b2b",
+     "sample": 3,
+     "verb": "crop and complete scaled template",
+     "reading": "Four 4-cells mark the corners of the output box; inside it some blocks of a scaled-up copy of a small multicoloured template (found elsewhere in the grid) are shown; the output is the box cut out with the scaled template completed.",
+     "why": "output = box between the 4 corners, the 4s at its corners, and inside exactly the template scaled and placed over the existing partial blocks",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8a004b2b",
+     "sample": 4,
+     "verb": "complete scaled pattern",
+     "reading": "Four 4-cells mark the corners of a box; inside it a few enlarged colour blocks appear. Output is that box (corners included) with the small multi-coloured exemplar found elsewhere scaled up and placed so it agrees with the enlarged blocks already inside.",
+     "why": "output = cropped window with the exemplar scaled by k drawn over it, matching the given blocks",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "8abad3cf": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8abad3cf",
+     "sample": 0,
+     "verb": "count to squares",
+     "reading": "For each non-background colour, its cell count N (a square number) becomes a solid sqrt(N) x sqrt(N) square; the squares are laid out left to right in increasing size, bottom-aligned, separated by one background column, output height = largest side.",
+     "why": "each output square's area equals the input count of its colour",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8abad3cf",
+     "sample": 1,
+     "verb": "count colours and draw squares",
+     "reading": "Count the cells of each non-background colour; each count is a perfect square n*n. Draw an n x n square of each colour, sorted from smallest to largest left to right, bottom-aligned, separated by one background column, on a background canvas as tall as the largest square.",
+     "why": "each square's area equals that colour's cell count in the input",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8abad3cf",
+     "sample": 2,
+     "verb": "count colours into squares",
+     "reading": "Count the cells of each non-background colour; each count is a perfect square n*n, drawn as an n x n square. Squares are laid left to right in ascending size, bottom-aligned, separated by one background column, height = largest side.",
+     "why": "each colour's square area equals its input cell count",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8abad3cf",
+     "sample": 3,
+     "verb": "count and arrange squares",
+     "reading": "Each non-background colour has a square number of cells; the output draws one solid square per colour (side = sqrt of its count), bottom-aligned, ordered smallest to largest from left to right, separated by one background column.",
+     "why": "output width = sum of sides + gaps, height = largest side; each square holds exactly its colour's count",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8abad3cf",
+     "sample": 4,
+     "verb": "count and draw squares",
+     "reading": "Count the cells of each non-background colour (each count is a square number). Draw a solid square of side sqrt(count) per colour, sorted smallest to largest from left to right, bottom-aligned, separated by one background column.",
+     "why": "each colour's area is preserved as a square; output size = (max side) x (sum of sides + gaps)",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "8cb8642d": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8cb8642d",
+     "sample": 0,
+     "verb": "draw box diagonals",
+     "reading": "Each solid rectangle has one odd-coloured cell at an inner corner; the rectangle's interior (inside its 1-cell border) is cleared to background and diagonals are drawn from all four interior corners toward the centre in the odd cell's colour.",
+     "why": "border ring of each rectangle unchanged; interior holds only the diagonal X",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8cb8642d",
+     "sample": 1,
+     "verb": "draw diagonals in rectangle",
+     "reading": "Each solid rectangle contains one odd-coloured mark. The rectangle's interior is cleared to background and diagonals in the mark's colour are drawn from the four interior corners inward until they meet (joined by a straight middle run when the rectangle is not square).",
+     "why": "inside every rectangle, only the outline and the corner diagonals (mark colour) are non-background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8cb8642d",
+     "sample": 2,
+     "verb": "draw diagonals in box",
+     "reading": "Each solid rectangle holds one marker cell of another colour; its interior is cleared to 0 (outline kept) and an X is drawn from the four interior corners inward along the diagonals in the marker colour.",
+     "why": "every interior cell is either on a corner diagonal (marker colour) or background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8cb8642d",
+     "sample": 3,
+     "verb": "hollow and draw diagonals",
+     "reading": "Each solid rectangle contains one odd-coloured cell; the rectangle keeps its border, its interior is cleared to background, and diagonals from the four interior corners are drawn inward in the odd colour, joining at the centre (by a short straight run when the interior is not square).",
+     "why": "only interior cells of rectangles change; each becomes either background or the odd colour on the corner diagonals",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8cb8642d",
+     "sample": 4,
+     "verb": "draw diagonals in box",
+     "reading": "Each filled rectangle carries one odd-coloured cell. Its interior is cleared to background and an envelope is drawn in the odd colour: diagonals from the four interior corners run inward until they meet the middle, joined by a straight line along the longer axis.",
+     "why": "inside every rectangle the only coloured interior cells lie on that X/envelope",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "8e2edd66": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8e2edd66",
+     "sample": 0,
+     "verb": "tile inverse at background cells",
+     "reading": "The 3x3 input is tiled into a 9x9 grid of 3x3 blocks; the blocks at the input's background positions get the colour-inverted input (fg<->bg), the others stay empty.",
+     "why": "each block is the inverted input where the input cell is background, else empty",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e2edd66",
+     "sample": 1,
+     "verb": "tile inverted input",
+     "reading": "The output is 3x3 blocks of the input's size. Each block whose input cell is background gets a copy of the colour-inverted input (fg and bg swapped); blocks of fg cells stay empty.",
+     "why": "every output block is either empty or the inverted input, and it is the inverted input exactly where the input cell is background",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e2edd66",
+     "sample": 2,
+     "verb": "tile inverted input",
+     "reading": "The 3x3 input becomes a 9x9 grid of 3x3 blocks; each block whose input cell is background gets the colour-inverted input (fg<->bg swapped), the others stay empty.",
+     "why": "every block is the inverted input or empty; inverted copies exactly at input background positions",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e2edd66",
+     "sample": 3,
+     "verb": "tile inverted input at background cells",
+     "reading": "Output is 3x the input in 3x3 blocks; block (i,j) holds the colour-inverted input (fg and background swapped) when input cell (i,j) is background, and is empty otherwise.",
+     "why": "every output block is either the inverted input or empty, and it is the inverted input exactly where the input cell is background",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "extent",
+      "unit"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e2edd66",
+     "sample": 4,
+     "verb": "fractal tile of complement",
+     "reading": "Output is 3x3 blocks of 3x3. Each block whose input cell is background holds the colour-inverted input (fg->0, 0->fg colour); blocks under fg cells stay empty.",
+     "why": "every block is empty or the inverted input, placed exactly at the input's background cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "8e5a5113": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "8e5a5113",
+     "sample": 0,
+     "verb": "fill panels with rotations",
+     "reading": "The grid has three 3x3 panels separated by 5 columns; the second panel is filled with the first panel rotated 90 degrees clockwise and the third with the first rotated 180 degrees.",
+     "why": "panels 2 and 3 are exact rotations of panel 1",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e5a5113",
+     "sample": 1,
+     "verb": "rotate into panels",
+     "reading": "The grid is three 3x3 panels separated by columns of 5; only the first panel is filled. The second panel becomes the first rotated 90 degrees clockwise and the third becomes the first rotated 180 degrees.",
+     "why": "panel k (k = 0,1,2) equals the first panel rotated by k*90 degrees clockwise",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8e5a5113",
+     "sample": 2,
+     "verb": "fill panels with rotations",
+     "reading": "Three 3x3 panels are separated by 5-columns; the first holds a pattern, the second gets it rotated 90 degrees clockwise and the third rotated 180 degrees.",
+     "why": "panel k equals the source rotated by (k-1)*90 degrees clockwise",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8e5a5113",
+     "sample": 3,
+     "verb": "rotate into panels",
+     "reading": "Three 3x3 panels separated by 5 columns: the left panel stays, the middle panel becomes the left panel rotated 90 degrees clockwise, and the right panel becomes it rotated 180 degrees.",
+     "why": "separators and left panel unchanged; panel k = left panel rotated by (k-1)*90 degrees clockwise",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "8e5a5113",
+     "sample": 4,
+     "verb": "rotate into panels",
+     "reading": "The grid is three 3x3 panels separated by 5 columns; the first panel is given, the second becomes the first rotated 90 degrees clockwise, and the third the first rotated 180 degrees.",
+     "why": "panel k = source rotated by (k-1)*90 degrees clockwise",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "8fbca751": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 4,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "8fbca751",
+     "sample": 0,
+     "verb": "fill shape boxes",
+     "reading": "The 8 shapes sit in 4x4 boxes (grid anchored at the top-left of all fg); every background cell in a box that contains 8 is filled with 2.",
+     "why": "every background cell in a 4x4 box holding 8 becomes 2; nothing else changes",
+     "new_rows": [
+      "d_8fbca751_0_boxbg"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "boxbg": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_8fbca751_0_boxbg)",
+      "fill(colour:=train, region:=d_8fbca751_0_boxbg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_8fbca751_0_boxbg": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "8fbca751",
+     "sample": 1,
+     "verb": "fill occupied blocks",
+     "reading": "The 8-shapes are laid out on a grid of 4x4 squares anchored at the top-left of the fg; every background cell inside a 4x4 square that contains any 8 becomes 2.",
+     "why": "after filling, every block holding an 8 has no background left and no cell outside such blocks changes (per-object bounding box fails because two blocks touch diagonally in pair 1)",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "8fbca751",
+     "sample": 2,
+     "verb": "fill occupied blocks",
+     "reading": "The 8-figure is built on a 4x4 block lattice anchored at its top-left fg cell; every background cell inside a 4x4 block that contains any 8 is filled with 2.",
+     "why": "every background cell in an occupied 4x4 block becomes 2; nothing else changes",
+     "new_rows": [
+      "d_8fbca751_2_blockbg"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "blockbg": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_8fbca751_2_blockbg)",
+      "fill(colour:=train, region:=d_8fbca751_2_blockbg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_8fbca751_2_blockbg": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "8fbca751",
+     "sample": 3,
+     "verb": "fill blocks",
+     "reading": "The 8 shapes are drawn on a grid of 4x4 blocks (starting at the top-left fg cell); every background cell inside a block that contains 8 is filled with 2.",
+     "why": "every background cell in a 4x4 block (aligned to the fg top-left) that holds an 8 becomes 2; nothing else changes",
+     "new_rows": [
+      "d_8fbca751_3_blk_bg"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "blk_bg": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_8fbca751_3_blk_bg)",
+      "fill(colour:=train, region:=d_8fbca751_3_blk_bg)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_8fbca751_3_blk_bg": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "8fbca751",
+     "sample": 4,
+     "verb": "fill occupied tiles",
+     "reading": "The 8-figure is built from 4x4 tiles aligned to its bounding box's top-left corner; every background cell inside a tile that holds any 8 is filled with 2.",
+     "why": "exactly the background cells of 4x4 tiles (grid anchored at fg bbox top-left) containing an 8 become 2",
+     "new_rows": [
+      "d_8fbca751_4_blockfill"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "blockfill": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_8fbca751_4_blockfill)",
+      "fill(colour:=train, region:=d_8fbca751_4_blockfill)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_8fbca751_4_blockfill": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        10,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

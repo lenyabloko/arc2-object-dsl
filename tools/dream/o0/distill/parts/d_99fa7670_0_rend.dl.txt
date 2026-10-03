@@ -1,0 +1,5 @@
+% row: d_99fa7670_0_rend
+% source: distillation batch reading, task 99fa7670, sample 0
+% output: rend(Y, X)
+wmax(max(X)) :- px(Y, X, C).
+rend(Y, X) :- cell(Y, X, C), wmax(X).

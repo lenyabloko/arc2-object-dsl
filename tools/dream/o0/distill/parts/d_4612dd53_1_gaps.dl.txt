@@ -1,0 +1,13 @@
+% row: d_4612dd53_1_gaps
+% source: distillation batch reading, task 4612dd53, sample 1
+% output: gaps(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+rcount(Y, count(X)) :- cell(Y, X, C).
+ccount(X, count(Y)) :- cell(Y, X, C).
+y0(min(Y)) :- cell(Y, X, C).
+y1(max(Y)) :- cell(Y, X, C).
+x0(min(X)) :- cell(Y, X, C).
+x1(max(X)) :- cell(Y, X, C).
+inbox(Y, X) :- px(Y, X, C), y0(A), y1(B), x0(P), x1(Q), A1 = A - 1, B1 = B + 1, P1 = P - 1, Q1 = Q + 1, Y > A1, Y < B1, X > P1, X < Q1.
+gaps(Y, X) :- inbox(Y, X), !fgc(Y, X), rcount(Y, N), N > 3.
+gaps(Y, X) :- inbox(Y, X), !fgc(Y, X), ccount(X, N), N > 3.

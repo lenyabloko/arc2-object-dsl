@@ -1,0 +1,14 @@
+{
+ "definition_reuse": {
+  "332202d5": [],
+  "782b5218": [],
+  "522fdd07": [],
+  "5ecac7f7": [],
+  "e87109e9": []
+ },
+ "part_picks": {
+  "legend": 3,
+  "framed_boxes(>=2 boxes)": 51,
+  "boundary(red curve, 2 sides)": 7
+ }
+}

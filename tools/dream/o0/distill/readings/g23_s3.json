@@ -1,0 +1,212 @@
+[
+ {
+  "task": "ac0c2ac3",
+  "reading": "Each coloured cell becomes a full square ring centred on the grid centre, at radius equal to its Chebyshev distance from the centre; the rings fill the whole grid.",
+  "verb": "draw concentric rings",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "centre": "the grid's centre cell",
+   "rings": "one per non-background cell; radius = max(|dy|,|dx|) from the centre; colour = that cell's colour",
+   "rest": "every cell is covered by exactly one ring (the background disappears)"
+  },
+  "why": "every radius 0..R has exactly one coloured cell, so each output cell takes the colour of the cell whose radius equals its own",
+  "invariants": [
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "ac2e8ecf",
+  "reading": "Closed-loop objects (with a hole) slide straight up and crosses/open shapes slide straight down; each group stacks like gravity, ignoring the other group.",
+  "verb": "gravity sort by shape",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "up_group": "single-colour objects that enclose background (rings/boxes)",
+   "down_group": "objects with no hole (plus/cross shapes)",
+   "motion": "each object moves vertically until it hits the grid edge or an already-settled object of the same group; nearest-to-edge objects settle first"
+  },
+  "why": "every object keeps shape and column; hollow ones end at the top, the others at the bottom",
+  "invariants": [
+   "object shapes and colours",
+   "columns of each object"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aedd82e4",
+  "reading": "Red cells with no orthogonal red neighbour turn blue (1); all other cells stay.",
+  "verb": "recolour lone cells",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "lone4"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lone4",
+    "datalog": "tw(Y, X, C) :- px(Y, X, C), C > 0.\nnb(Y, X) :- tw(Y, X, C), Y2 = Y + 1, tw(Y2, X, C).\nnb(Y, X) :- tw(Y, X, C), Y2 = Y - 1, tw(Y2, X, C).\nnb(Y, X) :- tw(Y, X, C), X2 = X + 1, tw(Y, X2, C).\nnb(Y, X) :- tw(Y, X, C), X2 = X - 1, tw(Y, X2, C).\nlone4(Y, X) :- tw(Y, X, C), !nb(Y, X)."
+   }
+  ],
+  "why": "exactly the non-zero cells without a 4-neighbour of their colour change, 2 -> 1 (diagonal contact does not count; in two pairs 2 is the most common colour, so the row uses px, not cell)",
+  "invariants": [
+   "grid size",
+   "all other cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "aee291af",
+  "reading": "Among several 8-framed squares with red patterns inside (noise 8 pixels around), output the one square whose red pattern is unique.",
+  "verb": "pick odd square",
+  "frame": {
+   "how": "extract",
+   "args": {
+    "region": "odd_square"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "odd_square",
+    "datalog": "two(Y, X) :- px(Y, X, C), C = 2.\nnear(Y, X, Y2, X2) :- two(Y, X), two(Y2, X2), DY = Y2 - Y, DX = X2 - X, DY >= -2, DY <= 2, DX >= -2, DX <= 2.\nreach(Y, X, Y2, X2) :- near(Y, X, Y2, X2).\nreach(Y, X, Y3, X3) :- reach(Y, X, Y2, X2), near(Y2, X2, Y3, X3).\ncid(Y, X, min(K)) :- reach(Y, X, Y2, X2), K = Y2 * 100 + X2.\nky(K, min(Y)) :- cid(Y, X, K).\nkx(K, min(X)) :- cid(Y, X, K).\nrel(K, DY, DX) :- cid(Y, X, K), ky(K, Y0), kx(K, X0), DY = Y - Y0, DX = X - X0.\ndiffer(K1, K2) :- rel(K1, DY, DX), ky(K2, A), !rel(K2, DY, DX).\ntwin(K1) :- ky(K1, A), ky(K2, B), K1 < K2, !differ(K1, K2), !differ(K2, K1).\ntwin(K1) :- ky(K1, A), ky(K2, B), K1 > K2, !differ(K1, K2), !differ(K2, K1).\noddk(K) :- ky(K, A), !twin(K).\nodd_square(Y, X) :- oddk(K), cid(Y0, X0, K), off(DY, DX), Y = Y0 + DY, X = X0 + DX."
+   }
+  ],
+  "why": "red cells cluster per square (gap <= 2); exactly one cluster has a pattern no other cluster has, and its box grown by 1 is the square",
+  "invariants": [
+   "cell colours inside the chosen square"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "af902bf9",
+  "reading": "Four yellow cells mark the corners of a rectangle; its strict interior is filled with red (2).",
+  "verb": "fill rectangle between corners",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "inside",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inside",
+    "datalog": "inside(Y, X) :- cell(Y1, X1, C), cell(Y1, X2, C), cell(Y2, X1, C), cell(Y2, X2, C), Y1 < Y2, X1 < X2, px(Y, X, B), Y > Y1, Y < Y2, X > X1, X < X2."
+   }
+  ],
+  "why": "every cell strictly inside a four-corner rectangle becomes 2; corners and everything else unchanged",
+  "invariants": [
+   "the yellow corner cells",
+   "cells outside the rectangles"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b0f4d537",
+  "reading": "A small key block (left of the grey separator) shows a lattice of coloured vertical and horizontal lines with set crossings; the output is the marker panel redrawn with that lattice, lines placed at the rows/columns marked by the yellow edge markers.",
+  "verb": "transplant key lattice",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the small line pattern block beside the grey (5) separator/block",
+   "canvas": "the panel holding the yellow (4) markers; output has its size",
+   "vertical_lines": "columns marked on the top/bottom edge, coloured in order by the key's vertical lines",
+   "horizontal_lines": "rows marked on the left/right edge, coloured in order by the key's horizontal lines",
+   "crossings": "each crossing takes the key's corresponding crossing colour (which line is on top)"
+  },
+  "why": "line counts in the key equal the marked row/column counts; all other output cells are 0",
+  "invariants": [
+   "order of lines",
+   "crossing precedence per key"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b190f7f5",
+  "reading": "The input splits into a shape half (8 on 0) and a colour half; each coloured cell of the colour half becomes a copy of the shape in that colour (Kronecker product), empty cells become empty blocks.",
+  "verb": "kronecker paint",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "shape": "the half containing only 8s",
+   "colours": "the other half",
+   "block(i,j)": "shape recoloured to colours[i][j], or all 0 if colours[i][j]=0"
+  },
+  "why": "output size = colours size x shape size; every block is the shape in one colour or empty",
+  "invariants": [
+   "shape pattern in every non-empty block"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b20f7c8b",
+  "reading": "An 8-panel holds a legend of small coloured 3x3 shapes. Each 5x5 red box with a blue pattern becomes a solid box of the legend colour whose shape matches the pattern (up to rotation/reflection); each solid coloured box becomes a red box with that colour's legend shape drawn in blue.",
+  "verb": "translate boxes via legend",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "legend": "coloured shapes inside the 8 panel",
+   "pattern_box": "5x5 box: 2 frame, 1-pattern in the 3x3 interior -> solid box of the colour whose legend shape equals the pattern under rotation/reflection",
+   "solid_box": "5x5 box of one colour c -> 2 frame with legend shape of c (same orientation) drawn in 1"
+  },
+  "why": "each box is replaced in place, the legend panel and background never change",
+  "invariants": [
+   "legend panel",
+   "box positions and sizes",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b27ca6d3",
+  "reading": "Every pair of orthogonally adjacent red cells gets a green (3) outline in the surrounding background cells; single red cells are untouched.",
+  "verb": "outline dominoes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "halo",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "halo",
+    "datalog": "adj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y + 1, X2 = X, cell(Y2, X2, D).\nadj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y - 1, X2 = X, cell(Y2, X2, D).\nadj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y, X2 = X + 1, cell(Y2, X2, D).\nadj(Y, X, Y2, X2) :- cell(Y, X, C), Y2 = Y, X2 = X - 1, cell(Y2, X2, D).\ndeg(Y, X, count(Y2, X2)) :- adj(Y, X, Y2, X2).\npairc(Y, X) :- adj(Y, X, Y2, X2), deg(Y, X, N), N = 1, deg(Y2, X2, M), M = 1.\nhalo(Y, X) :- pairc(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, C), !cell(Y, X, C)."
+   }
+  ],
+  "why": "exactly the background cells 8-adjacent to a 2-cell domino become 3",
+  "invariants": [
+   "all red cells",
+   "cells away from dominoes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b457fec5",
+  "reading": "A colour sequence at the top paints each grey diagonal band in nested chevron layers: the band's leading row and edge get the first colour, the next layer the second, and so on, the innermost layer continuing to the band's end.",
+  "verb": "paint band layers from key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the horizontal run of colours in the top rows",
+   "subject": "each 5-coloured diagonal band",
+   "layer(cell)": "depth = min(distance from the band's top row, distance from its leading diagonal edge); colour = key[depth], cycling through the key along the band and capped by the band width"
+  },
+  "why": "only 5-cells change; each becomes a key colour determined by its layer depth",
+  "invariants": [
+   "key row",
+   "background",
+   "band shape"
+  ],
+  "confidence": "low"
+ }
+]

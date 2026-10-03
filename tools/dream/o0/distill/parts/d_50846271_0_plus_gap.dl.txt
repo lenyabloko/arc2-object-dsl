@@ -1,0 +1,20 @@
+% row: d_50846271_0_plus_gap
+% source: distillation batch reading, task 50846271, sample 0
+% output: plus_gap(Y, X)
+two(Y, X) :- px(Y, X, 2).
+hn(Y, X, count(X2)) :- px(Y, X, C), two(Y, X2), D = X2 - X, E = X - X2, D < 4, E < 4.
+vn(Y, X, count(Y2)) :- px(Y, X, C), two(Y2, X), D = Y2 - Y, E = Y - Y2, D < 4, E < 4.
+sc(Y, X, S) :- hn(Y, X, H), vn(Y, X, V), S = H + V.
+ext(Y, X, D) :- sc(Y, X, S), two(Y, X2), D = X2 - X, E = X - X2, D < 4, E < 1.
+ext(Y, X, D) :- sc(Y, X, S), two(Y, X2), D = X - X2, E = X2 - X, D < 4, E < 1.
+ext(Y, X, D) :- sc(Y, X, S), two(Y2, X), D = Y2 - Y, E = Y - Y2, D < 4, E < 1.
+ext(Y, X, D) :- sc(Y, X, S), two(Y2, X), D = Y - Y2, E = Y2 - Y, D < 4, E < 1.
+reach(Y, X, max(D)) :- ext(Y, X, D).
+near(Y, X, Y2, X2) :- sc(Y, X, S), sc(Y2, X2, S2), A = Y2 - Y, B = Y - Y2, P = X2 - X, Q = X - X2, A < 4, B < 4, P < 4, Q < 4.
+beaten(Y, X) :- near(Y, X, Y2, X2), sc(Y, X, S), sc(Y2, X2, S2), S2 > S.
+beaten(Y, X) :- near(Y, X, Y2, X2), sc(Y, X, S), sc(Y2, X2, S), reach(Y, X, L), reach(Y2, X2, L2), L2 < L.
+centre(Y, X) :- sc(Y, X, S), !beaten(Y, X).
+arm(max(L)) :- centre(Y, X), reach(Y, X, L).
+plus(Y, X) :- centre(Yc, X), arm(L), px(Y, X, C), D = Y - Yc, E = Yc - Y, M = L + 1, D < M, E < M.
+plus(Y, X) :- centre(Y, Xc), arm(L), px(Y, X, C), D = X - Xc, E = Xc - X, M = L + 1, D < M, E < M.
+plus_gap(Y, X) :- plus(Y, X), !two(Y, X).

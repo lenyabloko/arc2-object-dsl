@@ -1,0 +1,6 @@
+% row: d_d23f8c26_3_off_mid
+% source: distillation batch reading, task d23f8c26, sample 3
+% output: off_mid(Y, X)
+wmax(max(X)) :- px(Y, X, C).
+midcol(X) :- px(Y, X, C), wmax(M), M = X + X.
+off_mid(Y, X) :- cell(Y, X, C), !midcol(X).

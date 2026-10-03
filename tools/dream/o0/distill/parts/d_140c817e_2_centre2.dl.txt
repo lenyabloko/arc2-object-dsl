@@ -1,0 +1,4 @@
+% row: d_140c817e_2_centre2
+% source: distillation batch reading, task 140c817e, sample 2
+% output: centre2(Y, X)
+centre2(Y, X) :- cell(Y, X, 2).

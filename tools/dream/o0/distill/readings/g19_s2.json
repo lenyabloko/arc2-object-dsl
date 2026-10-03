@@ -1,0 +1,237 @@
+[
+ {
+  "task": "94414823",
+  "reading": "The empty frame interior is split into four quadrants; each outside corner marker colours its nearest quadrant and the diagonally opposite one, giving a 2x2 checker.",
+  "verb": "fill quadrants",
+  "frame": {
+   "how": "other",
+   "verb": "fill quadrants",
+   "slots": {
+    "frame_interior": "the 4x4 interior of the rectangular outline object, split into four 2x2 quadrants",
+    "corner_markers": "two single cells just outside two adjacent corners of the frame",
+    "colouring": "the quadrant nearest each marker and its diagonally opposite quadrant take that marker's colour"
+   }
+  },
+  "slots": {
+   "frame_interior": "the 4x4 interior of the rectangular outline object, split into four 2x2 quadrants",
+   "corner_markers": "two single cells just outside two adjacent corners of the frame",
+   "colouring": "the quadrant nearest each marker and its diagonally opposite quadrant take that marker's colour"
+  },
+  "why": "on every pair the two markers sit at adjacent outer corners and the interior becomes a diagonal 2-colour checker of 2x2 blocks",
+  "invariants": [
+   "frame and markers unchanged",
+   "outside the frame unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "94be5b80",
+  "reading": "A colour strip gives a top-to-bottom order; the stack of identical shapes is completed by adding a copy of the shape in each missing colour above/below in that order, and the strip is erased.",
+  "verb": "complete stack",
+  "frame": {
+   "how": "other",
+   "verb": "complete stack",
+   "slots": {
+    "key": "a strip of single-colour columns (height 3) listing colours in top-to-bottom order",
+    "template": "the shape shared by the existing stacked objects",
+    "placement": "copies of the template, one per key colour, stacked vertically flush with the existing ones in key order",
+    "rest": "the key strip is erased"
+   }
+  },
+  "slots": {
+   "key": "a strip of single-colour columns (height 3) listing colours in top-to-bottom order",
+   "template": "the shape shared by the existing stacked objects",
+   "placement": "copies of the template, one per key colour, stacked vertically flush with the existing ones in key order",
+   "rest": "the key strip is erased"
+  },
+  "why": "all existing shapes are identical and vertically adjacent in key order; added copies continue the stack",
+  "invariants": [
+   "existing shapes unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "952a094c",
+  "reading": "The four coloured cells in the frame's inner corners are removed and each reappears just outside the opposite corner of the frame.",
+  "verb": "swap corners outward",
+  "frame": {
+   "how": "other",
+   "verb": "swap corners outward",
+   "slots": {
+    "subject": "the four single cells in the inner corners of the rectangular outline",
+    "target": "the four cells diagonally just outside the outline's corners",
+    "mapping": "each inner-corner colour goes to the outside corner diagonally opposite (point reflection through the frame centre)"
+   }
+  },
+  "slots": {
+   "subject": "the four single cells in the inner corners of the rectangular outline",
+   "target": "the four cells diagonally just outside the outline's corners",
+   "mapping": "each inner-corner colour goes to the outside corner diagonally opposite (point reflection through the frame centre)"
+  },
+  "why": "inner TL colour lands outside BR, TR outside BL, BL outside TR, BR outside TL on every pair",
+  "invariants": [
+   "outline unchanged"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9565186b",
+  "reading": "The most common colour stays; every other colour becomes grey (5).",
+  "verb": "recolour minority",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "fg"
+   }
+  },
+  "why": "every non-background (non-majority) cell becomes 5; background cells unchanged",
+  "invariants": [
+   "background (majority colour) cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "95990924",
+  "reading": "Each 2x2 grey square gets four diagonal corner cells: 1 at top-left, 2 top-right, 3 bottom-left, 4 bottom-right.",
+  "verb": "decorate corners",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "objects",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "the same 4x4 pattern (1..2/.55./.55./3..4, 0 transparent) sits on every 2x2 object",
+  "invariants": [
+   "the grey squares"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "95a58926",
+  "reading": "Noise of one colour is cleaned off a grid of grey lines, and every line crossing is painted the noise colour.",
+  "verb": "clean grid and mark crossings",
+  "frame": {
+   "how": "other",
+   "verb": "clean grid and mark crossings",
+   "slots": {
+    "grid": "the separator lines of 5 (full rows and columns once noise is ignored)",
+    "noise": "scattered cells of a second colour, on and off the lines",
+    "result": "noise erased (lines restored to 5, other cells to 0); every crossing of a separator row and separator column takes the noise colour"
+   }
+  },
+  "slots": {
+   "grid": "the separator lines of 5 (full rows and columns once noise is ignored)",
+   "noise": "scattered cells of a second colour, on and off the lines",
+   "result": "noise erased (lines restored to 5, other cells to 0); every crossing of a separator row and separator column takes the noise colour"
+  },
+  "why": "output is the ideal grid with intersections in the noise colour, on every pair",
+  "invariants": [
+   "separator positions"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "963e52fc",
+  "reading": "The output is twice as wide; the periodic coloured rows are continued with their period across the new width.",
+  "verb": "continue pattern",
+  "frame": {
+   "how": "other",
+   "verb": "continue pattern",
+   "slots": {
+    "pattern": "the horizontally periodic band of rows in the input",
+    "extent": "output width = 2 x input width, same height",
+    "rule": "each row continues its own period (not a copy of the input)"
+   }
+  },
+  "slots": {
+   "pattern": "the horizontally periodic band of rows in the input",
+   "extent": "output width = 2 x input width, same height",
+   "rule": "each row continues its own period (not a copy of the input)"
+  },
+  "why": "output row = periodic extension of input row to double width (pair 2: period 3, width 8 shows it is not tiling)",
+  "invariants": [
+   "height",
+   "background rows"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "97239e3d",
+  "reading": "Each pair of same-colour marker cells defines a rectangle snapped to the lattice gap lines; its outline is drawn in that colour and the centres of the enclosed squares are filled with it.",
+  "verb": "outline lattice rectangle",
+  "frame": {
+   "how": "other",
+   "verb": "outline lattice rectangle",
+   "slots": {
+    "lattice": "3x3 hollow 8-squares separated by background gap lines",
+    "markers": "two cells of one colour per rectangle, lying on gap lines",
+    "result": "the smallest gap-line rectangle containing both markers is outlined in their colour, and the centre of every lattice square inside it gets that colour"
+   }
+  },
+  "slots": {
+   "lattice": "3x3 hollow 8-squares separated by background gap lines",
+   "markers": "two cells of one colour per rectangle, lying on gap lines",
+   "result": "the smallest gap-line rectangle containing both markers is outlined in their colour, and the centre of every lattice square inside it gets that colour"
+  },
+  "why": "on every pair the coloured outline runs along gap lines through both markers and enclosed square centres match",
+  "invariants": [
+   "8 squares",
+   "cells outside the rectangles"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "981add89",
+  "reading": "Each coloured cell in the top row drops a vertical line to the bottom in its colour; where the line crosses a block of its own colour it turns background instead.",
+  "verb": "drop toggling lines",
+  "frame": {
+   "how": "other",
+   "verb": "drop toggling lines",
+   "slots": {
+    "source": "the non-background cells in row 0",
+    "line": "the full column below each source cell, down to the border",
+    "colour": "source colour, except where the column crosses a cell already of that colour, which becomes background"
+   }
+  },
+  "slots": {
+   "source": "the non-background cells in row 0",
+   "line": "the full column below each source cell, down to the border",
+   "colour": "source colour, except where the column crosses a cell already of that colour, which becomes background"
+  },
+  "why": "every column under a top-row cell is source colour on cells of other colours and background on cells of the same colour",
+  "invariants": [
+   "columns without a top-row cell",
+   "row 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9841fdad",
+  "reading": "Shapes in the left panel are copied into the empty right panel on the same rows, justified left, right, or stretched full-width according to which edges of the left area they touch.",
+  "verb": "project justified",
+  "frame": {
+   "how": "other",
+   "verb": "project justified",
+   "slots": {
+    "source": "left panel (inside its margin of the panel colour): rows with shapes",
+    "target": "right panel, empty, same rows, keeping a one-cell margin",
+    "rule": "a shape touching the source's left edge is copied flush left, touching right edge flush right, touching both stretches the full target width; height and colour kept"
+   }
+  },
+  "slots": {
+   "source": "left panel (inside its margin of the panel colour): rows with shapes",
+   "target": "right panel, empty, same rows, keeping a one-cell margin",
+   "rule": "a shape touching the source's left edge is copied flush left, touching right edge flush right, touching both stretches the full target width; height and colour kept"
+  },
+  "why": "on every pair each right-panel row mirrors its left-panel row's edge contacts and widths of non-spanning shapes",
+  "invariants": [
+   "left panel",
+   "separators and margins"
+  ],
+  "confidence": "medium"
+ }
+]

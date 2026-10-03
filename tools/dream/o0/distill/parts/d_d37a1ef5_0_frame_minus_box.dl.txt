@@ -1,0 +1,18 @@
+% row: d_d37a1ef5_0_frame_minus_box
+% source: distillation batch reading, task d37a1ef5, sample 0
+% output: frame_minus_box(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(max(N)) :- osize(O, N).
+fr(O) :- osize(O, N), big(M), N = M.
+frc(Y, X) :- fr(O), obj(O, Y, X).
+fy0(min(Y)) :- frc(Y, X).
+fy1(max(Y)) :- frc(Y, X).
+fx0(min(X)) :- frc(Y, X).
+fx1(max(X)) :- frc(Y, X).
+inner(Y, X) :- cell(Y, X, C), !frc(Y, X).
+iy0(min(Y)) :- inner(Y, X).
+iy1(max(Y)) :- inner(Y, X).
+ix0(min(X)) :- inner(Y, X).
+ix1(max(X)) :- inner(Y, X).
+inbox(Y, X) :- px(Y, X, C), iy0(A), iy1(B), ix0(P), ix1(Q), Y >= A, Y <= B, X >= P, X <= Q.
+frame_minus_box(Y, X) :- px(Y, X, C), fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q, !inbox(Y, X).

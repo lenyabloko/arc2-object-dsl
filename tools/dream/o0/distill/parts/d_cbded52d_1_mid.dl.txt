@@ -1,0 +1,5 @@
+% row: d_cbded52d_1_mid
+% source: distillation batch reading, task cbded52d, sample 1
+% output: mid(Y, X)
+mid(Y, X) :- cell(Y, X1, C), cell(Y, X2, C), C > 1, X2 = X1 + 6, X = X1 + 3.
+mid(Y, X) :- cell(Y1, X, C), cell(Y2, X, C), C > 1, Y2 = Y1 + 6, Y = Y1 + 3.

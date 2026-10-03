@@ -1,0 +1,4 @@
+% row: d_140c817e_0_hub
+% source: distillation batch reading, task 140c817e, sample 0
+% output: hub(Y, X)
+hub(Y, X) :- cell(Y, X, 2).

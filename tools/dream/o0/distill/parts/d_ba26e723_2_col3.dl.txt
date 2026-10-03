@@ -1,0 +1,6 @@
+% row: d_ba26e723_2_col3
+% source: distillation batch reading, task ba26e723, sample 2
+% output: col3(Y, X)
+c3(X) :- px(Y, X, C), X = 0.
+c3(X2) :- c3(X), X2 = X + 3, px(Y, X2, C).
+col3(Y, X) :- c3(X), px(Y, X, 4).

@@ -1,0 +1,223 @@
+[
+ {
+  "task": "d07ae81c",
+  "reading": "Each isolated marker casts both diagonals to the grid border; along the rays, a cell in a region of background colour r takes the colour of the marker that sits in an r-region.",
+  "verb": "cast diagonal rays coloured by region",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sources": "the isolated marker cells (one per region colour)",
+   "rays": "both diagonals through each marker, to the border",
+   "colour": "region colour r -> colour of the marker lying in an r-region"
+  },
+  "why": "every diagonal through a marker is painted to the border; ray colour switches whenever the ray enters a region of the other background colour",
+  "invariants": [
+   "grid size",
+   "region layout",
+   "cells off the diagonals"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d13f3404",
+  "reading": "The 3x3 input is placed in the top-left of a 6x6 empty canvas, then every coloured cell trails down-right diagonally in its own colour to the border.",
+  "verb": "draw diagonal trails on doubled canvas",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "fg",
+     "colour": "own"
+    }
+   }
+  },
+  "why": "output is 2x the input size, top-left block equals the input, other blocks empty before extension; each fg cell's down-right diagonal is filled with its colour to the border",
+  "invariants": [
+   "original cells keep position and colour",
+   "trail direction is always down-right"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d23f8c26",
+  "reading": "Only the middle column is kept; every cell outside it is cleared to background.",
+  "verb": "keep middle column",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "off_mid",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "off_mid",
+    "datalog": "wmax(max(X)) :- px(Y, X, C).\nmidcol(X) :- px(Y, X, C), wmax(M), M = X + X.\noff_mid(Y, X) :- cell(Y, X, C), !midcol(X)."
+   }
+  ],
+  "why": "every non-background cell outside the centre column becomes 0; the centre column is unchanged",
+  "invariants": [
+   "grid size",
+   "centre column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d255d7a7",
+  "reading": "Each 0-shape is a 3x3 cap with a straight tail running to the far border; the cap slides along its tail to the far end and the tail is erased.",
+  "verb": "slide cap to end of its tail",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 3x3 cap (0 ring with inner 7/9 cells) attached to a one-cell-wide 0 line",
+   "path": "the cap's tail line, ending at the opposite grid border",
+   "result": "cap copied unchanged at the tail's far end, touching the border; tail and old cap cleared to background"
+  },
+  "why": "the cap pattern is identical before and after, now flush with the opposite border; no tail cells remain",
+  "invariants": [
+   "grid size",
+   "stray 9 cells not part of a cap",
+   "cap's internal pattern"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d2acf2cb",
+  "reading": "Rows (or columns) that have a 4 at both grid edges are recoloured between the 4s by swapping 0<->8 and 6<->7.",
+  "verb": "swap colours on bracketed lines",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "bracketed"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "bracketed",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\nrowpair(Y) :- px(Y, 0, 4), wmax(W), px(Y, W, 4).\ncolpair(X) :- px(0, X, 4), hmax(H), px(H, X, 4).\nbracketed(Y, X) :- rowpair(Y), px(Y, X, C).\nbracketed(Y, X) :- colpair(X), px(Y, X, C)."
+   }
+  ],
+  "why": "on each line bounded by 4s at opposite edges, every cell a becomes key(a) with key = {0->8, 8->0, 6->7, 7->6, 4->4}; all other cells unchanged",
+  "invariants": [
+   "the 4 endpoints",
+   "cells off bracketed lines"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d364b489",
+  "reading": "Around every isolated 1 a fixed plus is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+  "verb": "stamp plus around markers",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each marker is the centre of an identical 3x3 plus (2 up, 7 left, 1 centre, 6 right, 8 down); nothing else changes",
+  "invariants": [
+   "marker positions",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d37a1ef5",
+  "reading": "Inside the 2-frame, everything is filled with 2 except the bounding box of the 5 cells, which stays as it was.",
+  "verb": "fill frame around inner box",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "frame_minus_box",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "frame_minus_box",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(max(N)) :- osize(O, N).\nframeobj(O) :- osize(O, N), big(N).\ninner(Y, X) :- cell(Y, X, C), obj(O, Y, X), !frameobj(O).\nfy0(min(Y)) :- frameobj(O), obj(O, Y, X).\nfy1(max(Y)) :- frameobj(O), obj(O, Y, X).\nfx0(min(X)) :- frameobj(O), obj(O, Y, X).\nfx1(max(X)) :- frameobj(O), obj(O, Y, X).\niy0(min(Y)) :- inner(Y, X).\niy1(max(Y)) :- inner(Y, X).\nix0(min(X)) :- inner(Y, X).\nix1(max(X)) :- inner(Y, X).\ninbox(Y, X) :- px(Y, X, C), iy0(A), iy1(B), ix0(P), ix1(Q), Y >= A, Y <= B, X >= P, X <= Q.\nframe_minus_box(Y, X) :- px(Y, X, C), fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q, !inbox(Y, X)."
+   }
+  ],
+  "why": "every frame-interior cell outside the 5s' bounding box becomes 2; the box and everything outside the frame are unchanged",
+  "invariants": [
+   "frame",
+   "5 cells and the 0 cells inside their bounding box",
+   "outside of frame"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d4469b4b",
+  "reading": "The 5x5 input uses a single colour; the output is a fixed 3x3 glyph in 5 picked by that colour: 1 -> plus, 2 -> T (top row + middle column), 3 -> L (right column + bottom row).",
+  "verb": "classify colour to glyph",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the input's one non-background colour",
+   "table": "1 -> 050/555/050, 2 -> 555/050/050, 3 -> 005/005/555",
+   "output": "3x3 glyph drawn in colour 5"
+  },
+  "why": "pairs with the same input colour have identical outputs; the cell layout of the input does not matter",
+  "invariants": [
+   "output size 3x3",
+   "output colours {0,5}"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d5c634a2",
+  "reading": "Count the T-shapes with stem up and with stem down; output a fixed 3x6 grid whose left 3x3 shows the stem-up count as 3-dots and right 3x3 the stem-down count as 1-dots, at corner positions 1:(0,0); 2:(0,0),(2,0); 3:(0,0),(0,2),(2,0); 4: all four corners.",
+  "verb": "count shape kinds as dot glyphs",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "items": "T-tetrominoes of colour 2 (222 over a centre stem)",
+   "classes": "stem pointing up vs stem pointing down",
+   "output": "fixed 3x6 canvas; left half corners get colour 3 for the stem-up count, right half corners get colour 1 for the stem-down count, using the count-glyph pattern"
+  },
+  "why": "number of 3s equals the number of stem-up Ts and number of 1s equals the number of stem-down Ts, positions given by a fixed per-count pattern",
+  "invariants": [
+   "output size 3x6",
+   "middle row empty"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d6542281",
+  "reading": "Each complete multi-coloured template appears once; elsewhere a few cells of it appear as fragments, and each fragment is completed into a full copy of the template whose same-coloured cells match it.",
+  "verb": "complete fragments from template",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "templates": "each multi-coloured 8-connected shape (there can be more than one per grid)",
+   "fragments": "small groups of loose cells whose colours and relative offsets match a sub-pattern of one template",
+   "placement": "copy of the matching template positioned so the fragment cells coincide with its same-coloured cells",
+   "rest": "kept"
+  },
+  "why": "every fragment ends up inside an exact copy of a template; templates and background unchanged",
+  "invariants": [
+   "templates",
+   "fragment cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ }
+]

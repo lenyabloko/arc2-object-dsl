@@ -1,0 +1,236 @@
+[
+ {
+  "task": "7e02026e",
+  "reading": "Every 0-cell that belongs to a plus-shaped cross of five 0-cells (centre plus its 4 orthogonal neighbours all 0) becomes 3; overlapping crosses all fill.",
+  "verb": "fill plus-shaped holes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "plus0",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "plus0",
+    "datalog": "z(Y, X) :- px(Y, X, C), C = 0.\npc(Y, X) :- z(Y, X), Y1 = Y - 1, z(Y1, X), Y2 = Y + 1, z(Y2, X), X1 = X - 1, z(Y, X1), X2 = X + 1, z(Y, X2).\nplus0(Y, X) :- pc(Y, X).\nplus0(Y2, X) :- pc(Y, X), Y2 = Y + 1.\nplus0(Y2, X) :- pc(Y, X), Y2 = Y - 1.\nplus0(Y, X2) :- pc(Y, X), X2 = X + 1.\nplus0(Y, X2) :- pc(Y, X), X2 = X - 1."
+   }
+  ],
+  "why": "exactly the cells of 0-crosses change, all to 3",
+  "invariants": [
+   "all 8-cells and all 0-cells not in any cross",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7ec998c9",
+  "reading": "From the single odd cell, a 1-coloured path runs down its whole column (the cell itself kept), plus a top-row run to one side corner and a bottom-row run to the opposite side corner (top-left/bottom-right when the marker row is odd, top-right/bottom-left when even).",
+  "verb": "draw S-path through marker",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the single non-background cell",
+   "path": "its full column, plus top row from that column to one side edge and bottom row from that column to the opposite side edge",
+   "colour": "1 (constant)",
+   "side": "chosen by marker parity (uncertain; row odd -> top goes left)"
+  },
+  "why": "path cells become 1; marker and other cells unchanged",
+  "invariants": [
+   "marker cell colour",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "825aa9e9",
+  "reading": "The structure touching the bottom edge is fixed; every other object falls straight down as a rigid shape (lowest first) until it would come within one empty row of the fixed structure or the bottom edge, or until it rests on an already-fallen object.",
+  "verb": "drop with one-row gap",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "objects not touching the bottom border",
+   "floor": "objects touching the bottom border (and the bottom edge itself)",
+   "stop": "one background row left above the floor; direct contact allowed with other fallen objects",
+   "order": "bottom-most objects first"
+  },
+  "why": "shapes unchanged, only vertical translation; each stops with exactly one empty row above the floor or touching a fallen object",
+  "invariants": [
+   "floor structure",
+   "colours and shapes of falling objects",
+   "background colour 7"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "82819916",
+  "reading": "The one complete row is a template of two colours; each other row that shows only a short prefix is completed by copying the template pattern, recolouring template colours to the prefix's colours position by position.",
+  "verb": "complete rows from template",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "template": "the full non-zero row",
+   "subject": "rows with a non-empty prefix then zeros",
+   "key": "template colour -> prefix colour at matching positions"
+  },
+  "why": "every partial row equals the template under its colour map; template and empty rows unchanged",
+  "invariants": [
+   "template row",
+   "all-zero rows",
+   "the given prefix cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "834ec97d",
+  "reading": "The single marker moves down one cell; then every cell above the marker's new row in columns of the same parity as the marker's column becomes 4.",
+  "verb": "drop marker and stripe above",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "markers",
+     "target": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "stripes_above",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "stripes_above",
+    "datalog": "col(X) :- cell(Y, X, C).\ncol(X2) :- col(X), X2 = X + 2, px(Y, X2, C).\ncol(X2) :- col(X), X2 = X - 2, px(Y, X2, C).\nstripes_above(Y, X) :- col(X), cell(MY, MX, MC), px(Y, X, C), Y < MY."
+   }
+  ],
+  "why": "marker shifted by (+1,0); cells with row < new marker row and column parity equal to marker's become 4",
+  "invariants": [
+   "marker colour",
+   "cells at or below the marker's new row (except marker)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "83eb0a57",
+  "reading": "The largest object is a container carrying hint cells of a shared colour; each smaller piece is pasted where its own hint cells coincide with the hints (pieces can nest inside other pasted pieces). The output is the container's box with all pieces assembled.",
+  "verb": "assemble pieces into container",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "container": "largest object (its box is the output)",
+   "pieces": "the other objects",
+   "anchor": "cells of the shared hint colour/pattern in piece and container (or in an already-placed piece)",
+   "placement": "translate piece so its hint cells overlay the matching hint cells"
+  },
+  "why": "output = container box; every piece appears unchanged at the offset where its hints match",
+  "invariants": [
+   "piece shapes and colours",
+   "container size and colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "846bdb03",
+  "reading": "A frame of two vertical bars (different colours, 4 at their ends) is cut out; the loose two-colour shape is placed in its interior, mirrored left-right if needed so each side of the shape touches the bar of the same colour.",
+  "verb": "fit shape into frame",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "frame": "the two coloured bars with 4-end cells; its box is the output",
+   "piece": "the other (two-colour) object",
+   "orientation": "identity or horizontal flip, whichever puts each colour beside the bar of that colour",
+   "place": "interior between bars, rows between the 4 cells"
+  },
+  "why": "output = frame box with piece filling the interior; piece colours match adjacent bar colours",
+  "invariants": [
+   "bar cells and 4 corner cells",
+   "piece shape up to horizontal flip"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "84f2aca1",
+  "reading": "Closed rings enclose holes of background; a one-cell hole is filled with 5 and a two-cell hole is filled with 7.",
+  "verb": "fill holes by size",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "hole1",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "hole2",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "hole1",
+    "datalog": "z(Y, X) :- px(Y, X, C), C = 0.\nnfg(Y, X, count(DY, DX)) :- z(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\nhole1(Y, X) :- nfg(Y, X, N), N = 8."
+   },
+   {
+    "name": "hole2",
+    "datalog": "z(Y, X) :- px(Y, X, C), C = 0.\nnfg(Y, X, count(DY, DX)) :- z(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).\nc7(Y, X) :- nfg(Y, X, N), N = 7.\nhole2(Y, X) :- c7(Y, X), Y2 = Y + 1, c7(Y2, X).\nhole2(Y, X) :- c7(Y, X), Y2 = Y - 1, c7(Y2, X).\nhole2(Y, X) :- c7(Y, X), X2 = X + 1, c7(Y, X2).\nhole2(Y, X) :- c7(Y, X), X2 = X - 1, c7(Y, X2)."
+   }
+  ],
+  "why": "1-cell enclosed holes become 5, 2-cell enclosed holes become 7; nothing else changes",
+  "invariants": [
+   "ring cells",
+   "outside background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "8597cfd7",
+  "reading": "A horizontal separator splits the grid; a column of 2s and a column of 4s appear above and below. The output is a 2x2 block of the colour whose column count grows more from the top panel to the bottom panel.",
+  "verb": "compare growth",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "top and bottom halves cut by the 5-separator row",
+   "measure": "per colour, cell count below minus cell count above",
+   "output": "2x2 grid filled with the colour of larger growth"
+  },
+  "why": "output colour = argmax over {2,4} of (bottom count - top count)",
+  "invariants": [
+   "output size 2x2"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "85fa5666",
+  "reading": "Each 2x2 block of 2 has four diagonal corner cells; their colours rotate one step clockwise around the block, and each corner then shoots a diagonal ray of its new colour outward away from the block to the border, crossing other rays.",
+  "verb": "rotate corners and shoot diagonals",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the four diagonal corner cells of each 2x2 block of colour 2",
+   "rotation": "colour moves TL->TR->BR->BL->TL",
+   "rays": "from each corner, diagonally outward over background to the border (one pair shows a ray stopping early next to another block)"
+  },
+  "why": "blocks unchanged; corner colours permuted clockwise; diagonal rays carry corner colours",
+  "invariants": [
+   "2x2 blocks",
+   "grid size"
+  ],
+  "confidence": "medium"
+ }
+]

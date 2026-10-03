@@ -1,0 +1,8 @@
+% row: d_3de23699_1_inner_box
+% source: distillation batch reading, task 3de23699, sample 1
+% output: inner_box(Y, X)
+ymin(min(Y)) :- cell(Y, X, C).
+ymax(max(Y)) :- cell(Y, X, C).
+xmin(min(X)) :- cell(Y, X, C).
+xmax(max(X)) :- cell(Y, X, C).
+inner_box(Y, X) :- px(Y, X, C), ymin(A), ymax(B), xmin(P), xmax(Q), Y > A, Y < B, X > P, X < Q.

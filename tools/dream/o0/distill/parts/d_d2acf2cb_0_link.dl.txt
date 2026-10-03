@@ -1,0 +1,7 @@
+% row: d_d2acf2cb_0_link
+% source: distillation batch reading, task d2acf2cb, sample 0
+% output: link(Y, X)
+gw(max(X)) :- px(Y, X, C).
+gh(max(Y)) :- px(Y, X, C).
+link(Y, X) :- px(Y, X1, C1), C1 = 4, X1 = 0, gw(W), px(Y, W, C2), C2 = 4, px(Y, X, C), X > 0, X < W.
+link(Y, X) :- px(Y1, X, C1), C1 = 4, Y1 = 0, gh(H), px(H, X, C2), C2 = 4, px(Y, X, C), Y > 0, Y < H.

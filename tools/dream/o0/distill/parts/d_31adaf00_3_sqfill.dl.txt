@@ -1,0 +1,19 @@
+% row: d_31adaf00_3_sqfill
+% source: distillation batch reading, task 31adaf00, sample 3
+% output: sqfill(Y, X)
+bgp(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+nb(Y, X, count(DY, DX)) :- bgp(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgp(Y2, X2).
+c3(Y, X) :- nb(Y, X, N), N = 8.
+in3(Y, X) :- c3(Y, X).
+in3(Y2, X2) :- c3(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.
+q2(Y, X) :- bgp(Y, X), Y1 = Y + 1, X1 = X + 1, bgp(Y, X1), bgp(Y1, X), bgp(Y1, X1).
+hit(Y, X) :- q2(Y, X), in3(Y, X).
+hit(Y, X) :- q2(Y, X), X1 = X + 1, in3(Y, X1).
+hit(Y, X) :- q2(Y, X), Y1 = Y + 1, in3(Y1, X).
+hit(Y, X) :- q2(Y, X), Y1 = Y + 1, X1 = X + 1, in3(Y1, X1).
+ok2(Y, X) :- q2(Y, X), !hit(Y, X).
+sqfill(Y, X) :- in3(Y, X).
+sqfill(Y, X) :- ok2(Y, X).
+sqfill(Y, X1) :- ok2(Y, X), X1 = X + 1.
+sqfill(Y1, X) :- ok2(Y, X), Y1 = Y + 1.
+sqfill(Y1, X1) :- ok2(Y, X), Y1 = Y + 1, X1 = X + 1.

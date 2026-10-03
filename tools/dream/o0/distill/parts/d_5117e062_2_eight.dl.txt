@@ -1,0 +1,4 @@
+% row: d_5117e062_2_eight
+% source: distillation batch reading, task 5117e062, sample 2
+% output: eight(Y, X)
+eight(Y, X) :- px(Y, X, 8).

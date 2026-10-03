@@ -1,0 +1,218 @@
+[
+ {
+  "task": "d07ae81c",
+  "reading": "From each single marker cell, diagonal lines run in all four diagonal directions to the grid border, crossing the background regions; each line cell takes the marker colour that belongs to the region it lies in (each of the two background colours has its own marker colour).",
+  "verb": "draw diagonals with region-dependent colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the isolated marker cells (one per region colour)",
+   "direction": "all four diagonals from each marker",
+   "stop": "grid border (lines pass through region boundaries)",
+   "colour": "per-cell: the marker colour paired with the background colour of the region the cell lies in"
+  },
+  "why": "every diagonal ray from a marker reaches the border, and each ray cell is recoloured by the region->marker-colour key",
+  "invariants": [
+   "grid size",
+   "off-diagonal cells unchanged",
+   "markers stay"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d13f3404",
+  "reading": "The 3x3 input is placed at the top-left of a 6x6 empty canvas and every coloured cell is extended diagonally down-right until the border.",
+  "verb": "extend diagonally on enlarged canvas",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "canvas": "output is 2x the input size, input placed at top-left",
+   "source": "every fg cell",
+   "direction": "down-right diagonal",
+   "stop": "border",
+   "colour": "own"
+  },
+  "why": "each output cell (y,x) equals the input cell (y-k,x-k) for the k bringing it inside the input, else 0",
+  "invariants": [
+   "input copied at top-left",
+   "colours never change"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d23f8c26",
+  "reading": "Only the middle column of the grid is kept; every coloured cell outside the middle column becomes background 0.",
+  "verb": "keep middle column",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "off_centre"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "off_centre",
+    "datalog": "gw(max(X)) :- px(Y, X, C).\noff_centre(Y, X) :- cell(Y, X, C), gw(W), X2 = X + X, X2 < W.\noff_centre(Y, X) :- cell(Y, X, C), gw(W), X2 = X + X, X2 > W."
+   }
+  ],
+  "why": "every fg cell not in the centre column becomes 0 (key maps every colour to 0); centre column unchanged",
+  "invariants": [
+   "grid size",
+   "centre column"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d255d7a7",
+  "reading": "Each 3x3 cup-shaped head (0-coloured bracket with its contents) sits at one end of a long 0 stem; the head block is translated unchanged to the far end of the stem and the stem is erased to background.",
+  "verb": "slide head to end of stem",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the 3x3 box of each head (bracket plus enclosed cells)",
+   "path": "the straight 0 stem attached to the head",
+   "target": "the far end of the stem (opposite border), head box ends flush with it",
+   "rest": "stem and old head cells become background; loose 9 cells untouched"
+  },
+  "why": "each output head box equals the input head box, shifted by the stem length along the stem direction",
+  "invariants": [
+   "grid size",
+   "cells not on a head or stem"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "d2acf2cb",
+  "reading": "Where two 4s sit on opposite borders of the same row or column, every cell strictly between them is recoloured by the swap 0<->8, 6<->7.",
+  "verb": "recolour line between paired 4s",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "link"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "link",
+    "datalog": "gw(max(X)) :- px(Y, X, C).\ngh(max(Y)) :- px(Y, X, C).\nlink(Y, X) :- px(Y, X1, C1), C1 = 4, X1 = 0, gw(W), px(Y, W, C2), C2 = 4, px(Y, X, C), X > 0, X < W.\nlink(Y, X) :- px(Y1, X, C1), C1 = 4, Y1 = 0, gh(H), px(H, X, C2), C2 = 4, px(Y, X, C), Y > 0, Y < H."
+   }
+  ],
+  "why": "every cell between two border 4s on one row/column maps 0->8, 8->0, 6->7, 7->6; nothing else changes",
+  "invariants": [
+   "grid size",
+   "the 4s",
+   "all cells off the linked lines"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d364b489",
+  "reading": "Around every isolated 1 a fixed plus pattern is stamped: 2 above, 7 left, 6 right, 8 below (clipped at the border).",
+  "verb": "stamp plus around markers",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "kept",
+    "place": "open"
+   }
+  },
+  "why": "each marker gets an identical 3x3 plus copy centred on it (2 N, 7 W, 6 E, 8 S, 1 centre)",
+  "invariants": [
+   "grid size",
+   "the 1 markers"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d37a1ef5",
+  "reading": "The interior of the 2-coloured rectangular frame is filled with 2, except the bounding box of the 5 cells, which keeps its 0s and 5s.",
+  "verb": "fill frame except box of inner marks",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "frame_minus_box",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "frame_minus_box",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nbig(max(N)) :- osize(O, N).\nfr(O) :- osize(O, N), big(M), N = M.\nfrc(Y, X) :- fr(O), obj(O, Y, X).\nfy0(min(Y)) :- frc(Y, X).\nfy1(max(Y)) :- frc(Y, X).\nfx0(min(X)) :- frc(Y, X).\nfx1(max(X)) :- frc(Y, X).\ninner(Y, X) :- cell(Y, X, C), !frc(Y, X).\niy0(min(Y)) :- inner(Y, X).\niy1(max(Y)) :- inner(Y, X).\nix0(min(X)) :- inner(Y, X).\nix1(max(X)) :- inner(Y, X).\ninbox(Y, X) :- px(Y, X, C), iy0(A), iy1(B), ix0(P), ix1(Q), Y >= A, Y <= B, X >= P, X <= Q.\nframe_minus_box(Y, X) :- px(Y, X, C), fy0(A), fy1(B), fx0(P), fx1(Q), Y > A, Y < B, X > P, X < Q, !inbox(Y, X)."
+   }
+  ],
+  "why": "every frame-interior cell outside the 5s' bounding box becomes 2; the box of 5s and everything outside the frame are unchanged",
+  "invariants": [
+   "grid size",
+   "frame",
+   "the 5 cells and the 0s inside their bounding box",
+   "cells outside the frame"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d4469b4b",
+  "reading": "The input uses one colour; the output is a fixed 3x3 symbol of 5s chosen by that colour: 1 -> plus, 2 -> T (top row plus centre column), 3 -> corner (right column plus bottom row).",
+  "verb": "classify colour to fixed symbol",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "feature": "the single fg colour of the input",
+   "table": "1 -> 050/555/050, 2 -> 555/050/050, 3 -> 005/005/555",
+   "output": "3x3 grid of 5 on 0"
+  },
+  "why": "output depends only on the input's fg colour, via a fixed lookup",
+  "invariants": [
+   "output size 3x3",
+   "output colours 0 and 5"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d5c634a2",
+  "reading": "The input holds 4-cell T shapes of 2 pointing up (apex on top) or down; the output 3x6 counts them: up-pointing T's as 3s in the left 3x3 corners, down-pointing as 1s in the right 3x3 corners, filled in order top-left, bottom-left, top-right, bottom-right.",
+  "verb": "count shapes by orientation",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "objects": "T-tetromino components of colour 2",
+   "feature": "orientation: apex up vs apex down",
+   "output": "3x6 grid; left half corners (0,0),(2,0),(0,2),(2,2) get one 3 per up T; right half corners (0,3),(2,3),(0,5),(2,5) get one 1 per down T"
+  },
+  "why": "number of 3s equals number of up T's and number of 1s equals number of down T's, in fixed slot order",
+  "invariants": [
+   "output size 3x6",
+   "middle row all 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "d6542281",
+  "reading": "Each grid has a few multi-coloured exemplar shapes; elsewhere a fragment showing only part of one exemplar (e.g. its 4 or its diagonal 8s) is completed into a full copy of that exemplar in the same orientation.",
+  "verb": "complete fragments from exemplars",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "units": "each multi-coloured exemplar object",
+   "anchors": "partial matches: cells that equal a sub-pattern of an exemplar (one colour of it) at some offset",
+   "action": "paint the missing exemplar cells at that offset",
+   "rest": "kept"
+  },
+  "why": "every fragment becomes an exact translated copy of the exemplar whose sub-pattern it matches; exemplars unchanged",
+  "invariants": [
+   "grid size",
+   "exemplars",
+   "existing fragment cells"
+  ],
+  "confidence": "medium"
+ }
+]

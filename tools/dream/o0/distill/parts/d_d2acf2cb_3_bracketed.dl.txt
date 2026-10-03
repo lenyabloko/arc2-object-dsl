@@ -1,0 +1,9 @@
+% row: d_d2acf2cb_3_bracketed
+% source: distillation batch reading, task d2acf2cb, sample 3
+% output: bracketed(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+rowpair(Y) :- px(Y, 0, 4), wmax(W), px(Y, W, 4).
+colpair(X) :- px(0, X, 4), hmax(H), px(H, X, 4).
+bracketed(Y, X) :- rowpair(Y), px(Y, X, C).
+bracketed(Y, X) :- colpair(X), px(Y, X, C).

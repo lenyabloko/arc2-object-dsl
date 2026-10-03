@@ -1,0 +1,8 @@
+% row: d_25d487eb_4_inner
+% source: distillation batch reading, task 25d487eb, sample 4
+% output: inner(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+single(O) :- osize(O, N), N = 1.
+shape(O) :- osize(O, N), N > 1.
+touch(M) :- single(M), obj(M, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(S, Y2, X2), shape(S).
+inner(Y, X) :- touch(M), obj(M, Y, X).

@@ -1,0 +1,209 @@
+[
+ {
+  "task": "b4a43f3b",
+  "reading": "The 6x6 top panel (above the 5-separator) is a 3x3 pattern drawn in 2x2 blocks; shrink it to 3x3. The 6x6 bottom panel is a mask: the 18x18 output has a copy of the 3x3 pattern in each 3x3 block whose mask cell is non-zero, empty elsewhere.",
+  "verb": "tile pattern by mask",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "top panel downscaled by 2 (3x3)",
+   "mask": "bottom panel below the separator (6x6), non-zero cells",
+   "layout": "output block (i,j) = unit if mask(i,j) else empty; output size = mask size x unit size"
+  },
+  "why": "output = kron(mask != 0, downscaled top panel) on every pair",
+  "invariants": [
+   "unit pattern colours unchanged",
+   "empty blocks are 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b60334d2",
+  "reading": "Every isolated grey cell is replaced by a 3x3 stamp centred on it: grey corners, blue edges, empty centre.",
+  "verb": "stamp",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "markers",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "why": "each marker becomes the centre of an identical 3x3 pattern 5 1 5 / 1 0 1 / 5 1 5",
+  "invariants": [
+   "grid size",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "b74ca5d1",
+  "reading": "Each shape has one odd key cell; the shape swaps its main and key colours. The grid corners hold colour cells; at each such corner, the union of the (5x5-box) shapes whose key colour equals that corner colour is drawn in that colour, flush in the corner.",
+  "verb": "swap colours and collect shapes into corners",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "objects": "multi-colour shapes, each with one key cell of a second colour",
+   "swap": "main colour <-> key colour inside each shape",
+   "corner glyph": "for each non-background grid corner of colour k: overlay of all shapes with key colour k, normalised to their box, placed in that corner, painted k"
+  },
+  "why": "corner colour = key colour of the shapes gathered there; shapes keep position with swapped colours",
+  "invariants": [
+   "background",
+   "shape positions"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b7f8a4d8",
+  "reading": "A lattice of framed tiles; most tile centres share one colour but a few have rare colours. Between two rare-coloured centres of the same colour on one row or column, the empty gap cells (0) are filled with that colour; frames and other tiles are not painted.",
+  "verb": "connect same rare tiles",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "rare_between",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "rare_between",
+    "datalog": "pcount(C, count(Y, X)) :- px(Y, X, C).\nrank(C, count(D)) :- pcount(C, N), pcount(D, M), M > N.\nrare(C) :- rank(C, R), R >= 3.\nrare_between(Y, X) :- px(Y, X, 0), px(Y, X1, C), rare(C), px(Y, X2, C), X1 < X, X < X2.\nrare_between(Y, X) :- px(Y, X, 0), px(Y1, X, C), rare(C), px(Y2, X, C), Y1 < Y, Y < Y2."
+   }
+  ],
+  "why": "every 0-cell lying on a row or column between two cells of the same rare colour (fewer cells than gap, frame and common-centre colours) takes that rare colour",
+  "invariants": [
+   "tile frames and centres unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b8825c91",
+  "reading": "The grid is symmetric (both mirror axes and diagonals) except for patches of 4 that hide cells; each 4 is replaced by its mirror-image cell.",
+  "verb": "restore symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "output is symmetric about the grid's central axes; only 4-cells change",
+  "invariants": [
+   "all non-4 cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "b8cdaf2b",
+  "reading": "A cup-shaped object sits on the bottom row with a different inner colour in its base. From just outside the two ends of the cup's top row, diagonal rays go up and outward to the border, painted in the inner colour.",
+  "verb": "shoot diagonal rays",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "origin": "the cells diagonally up-left of the top row's left end and up-right of its right end",
+   "direction": "up-left and up-right diagonals",
+   "colour": "the object's inner (least frequent) colour",
+   "stop": "grid border"
+  },
+  "why": "two diagonal lines of the inner colour, one per side, from the cup's top corners to the border",
+  "invariants": [
+   "the object unchanged",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "ba1aa698",
+  "reading": "Panels separated by frame lines each show the same small object, shifted vertically by a constant step from panel to panel; the output is one panel with the object moved one more step.",
+  "verb": "extrapolate motion",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "panels": "stripes cut by the full separator columns",
+   "subject": "the small object in each panel",
+   "step": "vertical offset between consecutive panels",
+   "output": "a single panel with the object at last position + step"
+  },
+  "why": "object positions form an arithmetic sequence across panels; output continues it (pair 1 lands one row further than a strict step would give)",
+  "invariants": [
+   "panel frame and fill colours",
+   "object shape"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "ba26e723",
+  "reading": "In every third column (columns 0, 3, 6, ...), yellow cells become magenta.",
+  "verb": "recolour periodic columns",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "every_third"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "every_third",
+    "datalog": "third(X) :- px(Y, X, C), X = 0.\nthird(X2) :- third(X), X2 = X + 3, px(Y, X2, C).\nevery_third(Y, X) :- px(Y, X, C), third(X)."
+   }
+  ],
+  "why": "cells with column index divisible by 3 map 4 -> 6 (0 stays 0); all other cells unchanged",
+  "invariants": [
+   "grid size",
+   "columns not divisible by 3"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bbb1b8b6",
+  "reading": "Left 4x4 panel is a blue shape with holes; right 4x4 panel holds a coloured shape. If the coloured shape occupies exactly the holes (same positions), it is dropped into them; otherwise the output is the left panel unchanged.",
+  "verb": "fit piece into holes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "base": "left panel (before the grey separator)",
+   "piece": "right panel's coloured cells",
+   "condition": "piece cells == base's 0 cells, position for position",
+   "result": "base overlaid with piece if condition holds, else base"
+  },
+  "why": "filled in pairs 0,2,4,6 where the piece is the exact complement; unchanged in 1,3,5 where it is not",
+  "invariants": [
+   "base blue cells",
+   "output is the left panel's size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "bcb3040b",
+  "reading": "Two red cells mark the ends of a straight line (row, column or diagonal). Cells strictly between them are recoloured: 0 becomes red, blue becomes green.",
+  "verb": "draw line between markers",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "line2"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "line2",
+    "datalog": "two(Y, X) :- px(Y, X, 2).\nline2(Y, X) :- two(Y, X1), two(Y, X2), X1 < X, X < X2, px(Y, X, C).\nline2(Y, X) :- two(Y1, X), two(Y2, X), Y1 < Y, Y < Y2, px(Y, X, C).\nline2(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, X2 = X1 + D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 + K.\nline2(Y, X) :- two(Y1, X1), two(Y2, X2), Y1 < Y2, D = Y2 - Y1, X1 = X2 + D, px(Y, X, C), Y1 < Y, Y < Y2, K = Y - Y1, X = X1 - K."
+   }
+  ],
+  "why": "on the segment between the two 2-cells, 0 -> 2 and 1 -> 3; nothing off the segment changes",
+  "invariants": [
+   "all cells off the segment",
+   "the two red endpoints"
+  ],
+  "confidence": "high"
+ }
+]

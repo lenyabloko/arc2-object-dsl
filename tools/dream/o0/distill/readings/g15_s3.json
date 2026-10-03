@@ -1,0 +1,256 @@
+[
+ {
+  "task": "6f8cd79b",
+  "reading": "The all-black grid gets a one-cell frame of colour 8 along its border; the inside stays 0.",
+  "verb": "draw border",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "gborder",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "gborder",
+    "datalog": "maxy(max(Y)) :- px(Y, X, C).\nmaxx(max(X)) :- px(Y, X, C).\ngborder(Y, X) :- px(Y, X, C), Y = 0.\ngborder(Y, X) :- px(Y, X, C), X = 0.\ngborder(Y, X) :- px(Y, X, C), maxy(M), Y = M.\ngborder(Y, X) :- px(Y, X, C), maxx(M), X = M."
+   }
+  ],
+  "why": "every grid-border cell becomes 8; interior cells unchanged",
+  "invariants": [
+   "grid size",
+   "interior cells stay 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72207abc",
+  "reading": "The colour run at the start of the middle row is repeated cyclically along that row at positions 0,1,3,6,10,15,... (gaps grow by one each step).",
+  "verb": "repeat at growing gaps",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "sequence": "the contiguous colour run starting at column 0 of the middle row",
+   "positions": "triangular numbers k(k+1)/2 for k=0,1,2,... while inside the row",
+   "colour": "the k-th placed cell takes sequence[k mod len(sequence)]"
+  },
+  "why": "on every pair the non-zero cells of the output row sit exactly at triangular-number columns, colours cycling through the seed run",
+  "invariants": [
+   "grid size",
+   "rows other than the middle row stay 0",
+   "the seed run stays"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "72a961c9",
+  "reading": "A full line of 1 holds some 8 and 2 cells; from each, a stalk grows upward: under a top cell of the same colour, 8 gets 2 cells of 1 (height 3) and 2 gets 3 cells of 1 (height 4).",
+  "verb": "grow stalk",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "line": "the one full row of non-background cells (mostly 1)",
+   "sources": "cells of the line whose colour is not 1 (8 or 2)",
+   "length": "colour-dependent: 8 -> 3 cells, 2 -> 4 cells, going up from the line",
+   "body": "cells between line and tip are colour 1",
+   "tip": "top cell of the stalk takes the source colour"
+  },
+  "why": "each stalk sits directly above its source cell, its length set by the source colour (8:3, 2:4)",
+  "invariants": [
+   "the line itself",
+   "everything not on a stalk"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "73c3b0d8",
+  "reading": "Every 4 drops one row. A 4 that lands right on top of the 2-line shoots diagonal rays of 4 up-left and up-right to the grid border.",
+  "verb": "drop and splash",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "move",
+    "args": {
+     "subject": "fours",
+     "target": "train"
+    }
+   },
+   "outer": {
+    "how": "extend",
+    "args": {
+     "stop": "border",
+     "source": "landed",
+     "colour": "own"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "fours",
+    "datalog": "fours(Y, X) :- px(Y, X, 4)."
+   },
+   {
+    "name": "landed",
+    "datalog": "landed(Y, X) :- px(Y, X, 4), Y2 = Y + 1, px(Y2, X, 2)."
+   }
+  ],
+  "why": "all 4 cells shift down by exactly one row; rays (two diagonals going upward) start only at 4s whose cell below is 2 and run to the border",
+  "invariants": [
+   "the 2 separator row",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "770cc55f",
+  "reading": "A top-row segment and a bottom-row segment of one colour face a full 2 row. In the columns both segments share, the cells between the separator and the longer segment become 4.",
+  "verb": "bridge overlap",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "bridge",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "bridge",
+    "datalog": "maxy(max(Y)) :- px(Y, X, C).\nmaxx(max(X)) :- px(Y, X, C).\nrowcnt(Y, count(X)) :- cell(Y, X, C).\nsep(Y) :- rowcnt(Y, N), maxx(MX), N = MX + 1, Y > 0, maxy(M), Y < M.\ntopn(count(X)) :- cell(Y, X, C), Y = 0.\nbotn(count(X)) :- cell(Y, X, C), maxy(M), Y = M.\novl(X) :- cell(Y1, X, C1), Y1 = 0, cell(Y2, X, C2), maxy(M), Y2 = M.\nbridge(Y, X) :- ovl(X), px(Y, X, 0), sep(S), topn(A), botn(B), A > B, Y > 0, Y < S.\nbridge(Y, X) :- ovl(X), px(Y, X, 0), sep(S), maxy(M), topn(A), botn(B), B > A, Y > S, Y < M."
+   }
+  ],
+  "why": "filled cells are exactly the overlap columns on the longer segment's side of the separator, colour 4",
+  "invariants": [
+   "both segments",
+   "the separator row",
+   "cells outside overlap columns"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "782b5218",
+  "reading": "A ragged line of 2 crosses the grid. In each column, everything above the line becomes 0 and everything below becomes the noise colour; the 2s stay.",
+  "verb": "split by curve",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "below",
+     "colour": "open"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "above",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "below",
+    "datalog": "bot2(X, max(Y)) :- px(Y, X, 2).\nbelow(Y, X) :- px(Y, X, C), bot2(X, B), Y > B."
+   },
+   {
+    "name": "above",
+    "datalog": "has2(Y, X) :- px(Y, X, 2).\nhas2(Y, X) :- px(Y, X, C), px(Y2, X, 2), Y2 < Y.\nabove(Y, X) :- px(Y, X, C), !has2(Y, X)."
+   }
+  ],
+  "why": "per column, cells below the lowest 2 take the pair's non-2 foreground colour (1, 5, 8) and cells above the highest 2 (or the whole column if it has no 2) become 0",
+  "invariants": [
+   "every 2 cell",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7acdf6d3",
+  "reading": "Several V-shaped 2 containers and some loose 9 cells. The container whose inside (background cells between its arms, row by row) holds exactly as many cells as there are loose 9s is filled with 9, and the loose 9s are erased.",
+  "verb": "pour into matching container",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "containers": "open-topped single-colour objects (V/cup shapes)",
+   "capacity": "count of background cells lying between the object's own cells on each of its rows",
+   "markers": "the loose cells of the other colour",
+   "target": "the container whose capacity equals the marker count",
+   "action": "fill the target's inside with the marker colour; erase the markers"
+  },
+  "why": "marker count equals the capacity of exactly one container on each pair (1 and 4), and only that one is filled",
+  "invariants": [
+   "the containers' own cells",
+   "the other containers stay empty",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d18a6fb",
+  "reading": "A 7x7 key panel of 1 has four coloured cells at its inner corners. Each 3x3 shape whose colour is in the key is copied into a 7x7 output, into the corner quadrant where the key shows that colour. Other shapes are dropped.",
+  "verb": "assemble by key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 7x7 colour-1 panel; its cells at (1,1),(1,5),(5,1),(5,5) name the colour for each quadrant",
+   "pieces": "single-colour objects outside the panel, each fitting a 3x3 box",
+   "output": "7x7 of 0; quadrant boxes at rows/cols 0-2 and 4-6, row 3 and col 3 empty",
+   "placement": "piece of colour c goes, keeping its shape in its 3x3 box, to the quadrant whose key cell is c; pieces of colours not in the key are dropped"
+  },
+  "why": "each output quadrant equals the 3x3 box of the shape coloured like the matching key corner",
+  "invariants": [
+   "piece shapes are kept exactly"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "7d419a02",
+  "reading": "Stripes of 8 separated by 0 lines contain one 2x2 block of 6. In every other stripe, the 8 cells beyond a widening cone around the 6 block become 4. The cone is 2 cells wide one stripe away and grows by 2 cells on each side per further stripe.",
+  "verb": "recolour outside cone",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "cone"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cone",
+    "datalog": "y0(min(Y)) :- px(Y, X, 6).\ny1(max(Y)) :- px(Y, X, 6).\nx0(min(X)) :- px(Y, X, 6).\nx1(max(X)) :- px(Y, X, 6).\nmaxy(max(Y)) :- px(Y, X, C).\nfullrow(Y) :- px(Y, X, 8).\nfullrow(Y) :- px(Y, X, 6).\nhz(K) :- px(Y, X, C), Y > 0, maxy(M), Y < M, !fullrow(Y), K = 1.\nvt(K) :- px(Y, X, C), K = 1, !hz(K).\nry(Y, D) :- px(Y, X, C), y0(A), Y < A, D = A - Y.\nry(Y, D) :- px(Y, X, C), y1(B), Y > B, D = Y - B.\nry(Y, D) :- px(Y, X, C), y0(A), y1(B), Y >= A, Y <= B, D = 0.\nrx(X, D) :- px(Y, X, C), x0(A), X < A, D = A - X.\nrx(X, D) :- px(Y, X, C), x1(B), X > B, D = X - B.\nrx(X, D) :- px(Y, X, C), x0(A), x1(B), X >= A, X <= B, D = 0.\ncone(Y, X) :- hz(K), px(Y, X, 8), ry(Y, D), D > 0, rx(X, F), L = 3 * F, R = 2 * D - 3, L >= R.\ncone(Y, X) :- vt(K), px(Y, X, 8), rx(X, D), D > 0, ry(Y, F), L = 3 * F, R = 2 * D - 3, L >= R."
+   }
+  ],
+  "why": "only 8 cells change, all to 4, exactly those outside the cone; the 6 block's own stripe, the 0 cells and the 6 block are untouched",
+  "invariants": [
+   "0 cells (holes and gaps)",
+   "the 6 block",
+   "its own stripe"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "7d7772cc",
+  "reading": "A wall line (frame edge) has a key line just inside it, and a parallel line of marks lies outside it. Each mark equal to the key cell in its row or column moves next to the wall. Each mark that differs moves to the far grid border. The mark line is cleared.",
+  "verb": "sort marks by key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "wall": "the full single-colour non-background line (row 7 of 0s; column 2 of 4s)",
+   "key": "the line adjacent to the wall on the frame side",
+   "marks": "non-background cells on the open side of the wall, all in one line parallel to it",
+   "match": "mark colour equals the key cell aligned with it across the wall",
+   "action": "matching mark moves to the cell adjacent to the wall; non-matching mark moves to the grid border on the open side; original mark positions become background"
+  },
+  "why": "on every pair each mark stays in its own column/row and lands either touching the wall (key match) or on the far border (mismatch)",
+  "invariants": [
+   "wall, key line and frame",
+   "marks keep their colour and their column/row"
+  ],
+  "confidence": "high"
+ }
+]

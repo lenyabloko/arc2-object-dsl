@@ -1,0 +1,28 @@
+% row: d_aa300dc3_3_long_diag
+% source: distillation batch reading, task aa300dc3, sample 3
+% output: long_diag(Y, X)
+z(Y, X) :- px(Y, X, C), C = 0.
+s1(Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X - 1, !z(Y0, X0).
+r1(SY, SX, SY, SX) :- s1(SY, SX).
+r1(SY, SX, Y2, X2) :- r1(SY, SX, Y, X), Y2 = Y + 1, X2 = X + 1, z(Y2, X2).
+s2(Y, X) :- z(Y, X), Y0 = Y - 1, X0 = X + 1, !z(Y0, X0).
+r2(SY, SX, SY, SX) :- s2(SY, SX).
+r2(SY, SX, Y2, X2) :- r2(SY, SX, Y, X), Y2 = Y + 1, X2 = X - 1, z(Y2, X2).
+l1(SY, SX, count(Y, X)) :- r1(SY, SX, Y, X).
+l2(SY, SX, count(Y, X)) :- r2(SY, SX, Y, X).
+ln(N) :- l1(SY, SX, N).
+ln(N) :- l2(SY, SX, N).
+best(max(N)) :- ln(N).
+hm(max(Y)) :- px(Y, X, C).
+wm(max(X)) :- px(Y, X, C).
+k1(SY, SX, D) :- l1(SY, SX, N), best(N), hm(H), wm(W), A = SY - SX, B = A + A, E = H - W, D = B - E.
+k2(SY, SX, D) :- l2(SY, SX, N), best(N), hm(H), wm(W), A = SY + SX, B = A + A, E = H + W, D = B - E.
+a1(SY, SX, D) :- k1(SY, SX, D), D >= 0.
+a1(SY, SX, E) :- k1(SY, SX, D), D < 0, E = 0 - D.
+a2(SY, SX, D) :- k2(SY, SX, D), D >= 0.
+a2(SY, SX, E) :- k2(SY, SX, D), D < 0, E = 0 - D.
+dd(D) :- a1(SY, SX, D).
+dd(D) :- a2(SY, SX, D).
+mind(min(D)) :- dd(D).
+long_diag(Y, X) :- a1(SY, SX, D), mind(D), r1(SY, SX, Y, X).
+long_diag(Y, X) :- a2(SY, SX, D), mind(D), r2(SY, SX, Y, X).

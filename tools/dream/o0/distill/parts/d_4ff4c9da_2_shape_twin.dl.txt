@@ -1,0 +1,12 @@
+% row: d_4ff4c9da_2_shape_twin
+% source: distillation batch reading, task 4ff4c9da, sample 2
+% output: shape_twin(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+omy(O, min(Y)) :- obj(O, Y, X).
+omx(O, min(X)) :- obj(O, Y, X).
+rel(O, DY, DX) :- obj(O, Y, X), omy(O, MY), omx(O, MX), DY = Y - MY, DX = X - MX.
+eight(O) :- obj(O, Y, X), cell(Y, X, 8).
+cand(O) :- obj(O, Y, X), cell(Y, X, C), C > 0, !eight(O).
+miss(O, E) :- cand(O), eight(E), rel(O, DY, DX), !rel(E, DY, DX).
+same(O) :- cand(O), eight(E), osize(O, N), osize(E, N), !miss(O, E).
+shape_twin(Y, X) :- same(O), obj(O, Y, X).

@@ -1,0 +1,6 @@
+% row: d_31aa019c_0_ring
+% source: distillation batch reading, task 31aa019c, sample 0
+% output: ring(Y, X)
+ccount(C, count(Y, X)) :- cell(Y, X, C).
+uniq(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1.
+ring(Y2, X2) :- uniq(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C).

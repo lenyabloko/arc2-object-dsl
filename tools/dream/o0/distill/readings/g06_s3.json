@@ -1,0 +1,235 @@
+[
+ {
+  "task": "2bcee788",
+  "reading": "A one-colour shape has a few 2 cells along one side. The shape is reflected across the edge where the 2 cells touch it (the 2 cells are covered by the reflection), and all background becomes 3.",
+  "verb": "reflect across marker edge",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the single non-2 coloured object",
+   "axis": "the line between the shape and its adjacent 2 cells (2 cells lie on the mirror side)",
+   "markers": "the 2 cells, replaced by the reflected shape",
+   "background": "every remaining background cell recoloured to 3 (constant)"
+  },
+  "why": "output = shape union its reflection about the shape/2 boundary, 2 gone, background 3",
+  "invariants": [
+   "grid size",
+   "original shape cells and colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "2bee17df",
+  "reading": "Inside a framed grid, every row and every column whose interior (all cells except the two end cells) is fully background gets its background cells filled with 3.",
+  "verb": "fill clear lanes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "lane",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "w(max(X)) :- px(Y, X, C).\nh(max(Y)) :- px(Y, X, C).\nrowhit(Y) :- cell(Y, X, C), w(W), X > 0, X < W.\ncolhit(X) :- cell(Y, X, C), h(H), Y > 0, Y < H.\nbgp(Y, X) :- px(Y, X, C), !cell(Y, X, C).\nlane(Y, X) :- bgp(Y, X), !rowhit(Y).\nlane(Y, X) :- bgp(Y, X), !colhit(X)."
+   }
+  ],
+  "why": "exactly the background cells of fully clear interior rows/columns become 3",
+  "invariants": [
+   "all non-background cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2dd70a9a",
+  "reading": "A 2-cell green (3) segment and a 2-cell red (2) segment sit among 8 obstacles. A green path is drawn from the 3 segment along its axis, turning (toward the 2 segment) each time the next cell is an 8, until it joins the 2 segment.",
+  "verb": "route path",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "source": "the 3 segment; path leaves from its end along its axis",
+   "target": "the 2 segment",
+   "obstacle": "8 cells: when the next cell is 8 the path turns 90 degrees toward the target",
+   "colour": "3"
+  },
+  "why": "the new 3 cells form one orthogonal path from the 3 segment to the 2 segment that never crosses an 8",
+  "invariants": [
+   "all 8, 2 and original 3 cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "2de01db2",
+  "reading": "Each row is processed alone: its dominant colour c (most frequent non-background colour) is found; cells of colour c become background and every other cell (background or noise colour) becomes c.",
+  "verb": "invert each row",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "scale": "each row",
+   "colour": "the row's most frequent non-background colour c",
+   "rule": "cell == c -> 0, else -> c"
+  },
+  "why": "each output row is the complement of its c-mask painted in c",
+  "invariants": [
+   "grid size",
+   "row order"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2faf500b",
+  "reading": "Each 9 object carries a zigzag band of 6 cells through its middle. The object splits along that band's centre line, each half moves one cell away from the split (perpendicular to it), and the 6 cells become background.",
+  "verb": "split apart",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 9 object containing 6 cells",
+   "split line": "centre line of the 2-wide 6 band (vertical band -> left/right halves, horizontal band -> top/bottom halves)",
+   "move": "each half shifted 1 cell outward",
+   "removed": "all 6 cells -> background"
+  },
+  "why": "every 9 cell reappears shifted by 1 away from its object's band centre; no 6 remains",
+  "invariants": [
+   "grid size",
+   "number and shape of 9 cells per half"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "310f3251",
+  "reading": "In the small input, every background cell diagonally up-left of a coloured cell (wrapping around the grid edges) becomes 2; the result is then tiled 3x3.",
+  "verb": "mark then tile",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "recolour",
+    "args": {
+     "key": "train",
+     "subject": "upl"
+    }
+   },
+   "outer": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "upl",
+    "datalog": "h(max(Y)) :- px(Y, X, C).\nw(max(X)) :- px(Y, X, C).\nuy(Y0, Y) :- px(Y0, X, C), Y0 > 0, Y = Y0 - 1.\nuy(Y0, Y) :- px(Y0, X, C), Y0 = 0, h(Y).\nux(X0, X) :- px(Y, X0, C), X0 > 0, X = X0 - 1.\nux(X0, X) :- px(Y, X0, C), X0 = 0, w(X).\nupl(Y, X) :- cell(Y0, X0, C), uy(Y0, Y), ux(X0, X), px(Y, X, D), !cell(Y, X, D)."
+   }
+  ],
+  "why": "output = 3x3 tiling of the input with 0->2 at toroidal up-left neighbours of coloured cells (coloured cells never overwritten)",
+  "invariants": [
+   "original coloured cells",
+   "output is exactly 3H x 3W"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "31aa019c",
+  "reading": "Find the one cell whose colour occurs only once in the grid; clear everything else and draw a ring of 2 around that cell, which keeps its own colour.",
+  "verb": "highlight unique",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "uniq",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "uniq",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\nuniq(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1."
+   }
+  ],
+  "why": "exactly one unique-colour cell per input; output is only that cell plus its 8 neighbours in 2",
+  "invariants": [
+   "grid size",
+   "the unique cell's position and colour"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "31adaf00",
+  "reading": "Empty (all-background) squares are filled with 1: every all-background 3x3 square, plus every all-background 2x2 square that does not overlap a 3x3 one.",
+  "verb": "fill empty squares",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "sqfill",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "sqfill",
+    "datalog": "bgp(Y, X) :- px(Y, X, C), !cell(Y, X, C).\nnb(Y, X, count(DY, DX)) :- bgp(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgp(Y2, X2).\nc3(Y, X) :- nb(Y, X, N), N = 8.\nin3(Y, X) :- c3(Y, X).\nin3(Y2, X2) :- c3(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.\nq2(Y, X) :- bgp(Y, X), Y1 = Y + 1, X1 = X + 1, bgp(Y, X1), bgp(Y1, X), bgp(Y1, X1).\nhit(Y, X) :- q2(Y, X), in3(Y, X).\nhit(Y, X) :- q2(Y, X), X1 = X + 1, in3(Y, X1).\nhit(Y, X) :- q2(Y, X), Y1 = Y + 1, in3(Y1, X).\nhit(Y, X) :- q2(Y, X), Y1 = Y + 1, X1 = X + 1, in3(Y1, X1).\nok2(Y, X) :- q2(Y, X), !hit(Y, X).\nsqfill(Y, X) :- in3(Y, X).\nsqfill(Y, X) :- ok2(Y, X).\nsqfill(Y, X1) :- ok2(Y, X), X1 = X + 1.\nsqfill(Y1, X) :- ok2(Y, X), Y1 = Y + 1.\nsqfill(Y1, X1) :- ok2(Y, X), Y1 = Y + 1, X1 = X + 1."
+   }
+  ],
+  "why": "exactly the cells of empty 3x3 squares and of empty 2x2 squares not overlapping them become 1",
+  "invariants": [
+   "all 5 cells",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "320afe60",
+  "reading": "Each 1 object keeps its row and shape. Objects with an open cavity (a notch of background between their own cells that opens to the outside) slide to the right edge and become 3; solid objects or ones with only an enclosed hole slide to the left edge and become 2.",
+  "verb": "sort to sides",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 1 object (8-connected)",
+   "test": "has a background cell between its own cells (same row or column) that is 4-connected to outside its box",
+   "if open": "move right until touching the right border, colour 3",
+   "else": "move left until touching the left border, colour 2"
+  },
+  "why": "every object appears once, same rows and shape, flush to the side chosen by open/closed, recoloured 2 or 3",
+  "invariants": [
+   "grid size",
+   "background 4",
+   "object shapes and rows"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "32597951",
+  "reading": "Within the bounding box of the 8 cells, every 1 cell becomes 3; everything else is unchanged.",
+  "verb": "recolour inside box",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "box8"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "box8",
+    "datalog": "y0(min(Y)) :- px(Y, X, C), C = 8.\ny1(max(Y)) :- px(Y, X, C), C = 8.\nx0(min(X)) :- px(Y, X, C), C = 8.\nx1(max(X)) :- px(Y, X, C), C = 8.\nbox8(Y, X) :- px(Y, X, C), C = 1, y0(A), y1(B), x0(L), x1(R), Y >= A, Y <= B, X >= L, X <= R."
+   }
+  ],
+  "why": "exactly the 1 cells inside the 8 box become 3 (uses px because 1 can be the background colour)",
+  "invariants": [
+   "8 cells",
+   "everything outside the 8 bounding box",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

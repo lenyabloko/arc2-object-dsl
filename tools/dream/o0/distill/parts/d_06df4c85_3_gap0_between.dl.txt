@@ -1,0 +1,6 @@
+% row: d_06df4c85_3_gap0_between
+% source: distillation batch reading, task 06df4c85, sample 3
+% output: gap0_between(Y, X)
+colr(Y, X, C) :- cell(Y, X, C), C > 0.
+gap0_between(Y, X) :- cell(Y, X, Z), Z = 0, colr(Y, X1, C), colr(Y, X2, C), X1 < X, X < X2.
+gap0_between(Y, X) :- cell(Y, X, Z), Z = 0, colr(Y1, X, C), colr(Y2, X, C), Y1 < Y, Y < Y2.

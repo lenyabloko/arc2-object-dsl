@@ -1,0 +1,24 @@
+% row: d_14b8e18c_1_sqmarks
+% source: distillation batch reading, task 14b8e18c, sample 1
+% output: sqmarks(Y, X)
+fo(O, Y, X) :- obj(O, Y, X), cell(Y, X, C).
+y0(O, min(Y)) :- fo(O, Y, X).
+y1(O, max(Y)) :- fo(O, Y, X).
+x0(O, min(X)) :- fo(O, Y, X).
+x1(O, max(X)) :- fo(O, Y, X).
+box(O, A, B, C, D) :- y0(O, A), y1(O, B), x0(O, C), x1(O, D).
+sq(O) :- box(O, A, B, C, D), H = B - A, W = D - C, H = W.
+edge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), Y = A, X >= C, X <= D.
+edge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), Y = B, X >= C, X <= D.
+edge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), X = C, Y >= A, Y <= B.
+edge(O, Y, X) :- box(O, A, B, C, D), px(Y, X, K), X = D, Y >= A, Y <= B.
+gap(O) :- edge(O, Y, X), !fo(O, Y, X).
+ring(O) :- sq(O), !gap(O).
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A - 1, X = C.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A, X = C - 1.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A - 1, X = D.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = A, X = D + 1.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B + 1, X = C.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B, X = C - 1.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B + 1, X = D.
+sqmarks(Y, X) :- ring(O), box(O, A, B, C, D), px(Y, X, K), Y = B, X = D + 1.

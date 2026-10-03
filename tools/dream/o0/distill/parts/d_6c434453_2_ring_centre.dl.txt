@@ -1,0 +1,8 @@
+% row: d_6c434453_2_ring_centre
+% source: distillation batch reading, task 6c434453, sample 2
+% output: ring_centre(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+inside(Y, X) :- px(Y, X, C).
+nonring(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !inside(Y2, X2).
+nonring(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, C2), !fgc(Y2, X2).
+ring_centre(Y, X) :- px(Y, X, C), !fgc(Y, X), !nonring(Y, X).

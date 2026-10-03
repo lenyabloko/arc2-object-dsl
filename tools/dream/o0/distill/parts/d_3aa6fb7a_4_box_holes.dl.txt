@@ -1,0 +1,8 @@
+% row: d_3aa6fb7a_4_box_holes
+% source: distillation batch reading, task 3aa6fb7a, sample 4
+% output: box_holes(Y, X)
+oy0(O, min(Y)) :- obj(O, Y, X).
+oy1(O, max(Y)) :- obj(O, Y, X).
+ox0(O, min(X)) :- obj(O, Y, X).
+ox1(O, max(X)) :- obj(O, Y, X).
+box_holes(Y, X) :- px(Y, X, C), !cell(Y, X, C), oy0(O, A), oy1(O, B), ox0(O, D), ox1(O, E), Y >= A, Y <= B, X >= D, X <= E.

@@ -1,0 +1,1047 @@
+{
+ "group": 5,
+ "tasks": {
+  "264363fd": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "264363fd",
+     "sample": 0,
+     "verb": "stamp exemplar and extend its arms",
+     "reading": "A small cross-shaped exemplar on the background is erased. At each single marker cell inside the large rectangles, the exemplar's surrounding cells are stamped and its arm colour is extended as full lines (in the arm directions only) across the rectangle containing the marker; the marker cell keeps its colour.",
+     "why": "every marker gets the same exemplar pattern; lines span exactly the rectangle containing the marker; exemplar position becomes background",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "264363fd",
+     "sample": 1,
+     "verb": "stamp exemplar at markers and extend its arms",
+     "reading": "A small cross-shaped exemplar (centre colour, arm colour, optional diagonal colour) sits on the background; each single marker cell inside a large rectangle gets the exemplar stamped centred on it, and the exemplar's arms are then extended as full lines across that rectangle to its edges. The original exemplar is erased.",
+     "why": "every anchor gets the same exemplar centred on it; lines only in the directions the exemplar has arms; lines stay inside the anchor's rectangle",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "264363fd",
+     "sample": 2,
+     "verb": "stamp exemplar and extend its arms",
+     "reading": "A small multi-coloured exemplar sits outside the big rectangles; each single marker cell inside a rectangle gets the exemplar's central 3x3 stamped around it, and lines in the exemplar's arm colour run from the marker to the rectangle's edges along every direction in which the exemplar has an arm beyond its 3x3. The exemplar itself is erased to background.",
+     "why": "every marker gets the same 3x3 neighbourhood as the exemplar centre, and arm lines fill exactly the marker's row/column inside its rectangle",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "264363fd",
+     "sample": 3,
+     "verb": "stamp exemplar and extend its arms",
+     "reading": "A small multi-coloured exemplar (centre colour plus a ring and straight arms) sits outside the large rectangles; at every marker inside a rectangle whose colour equals the exemplar's centre, the exemplar's ring is stamped and its arms are extended as full lines to the rectangle's edges. The exemplar itself is erased.",
+     "why": "every anchor gets the exemplar's ring, and lines of the arm colour run in exactly the exemplar's arm directions to the edge of the containing rectangle",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "264363fd",
+     "sample": 4,
+     "verb": "stamp exemplar and extend its arms",
+     "reading": "A small multi-coloured cross pattern sits outside the big rectangles. At every single marker cell inside a rectangle, the pattern is stamped centred on the marker, and its arms are extended as full lines to that rectangle's edges; the original pattern is erased.",
+     "why": "every marker gets an identical exemplar copy centred on it, and each arm line spans exactly its rectangle",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "2685904e": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2685904e",
+     "sample": 0,
+     "verb": "draw count bars",
+     "reading": "N is the number of 8 cells in the top row. Every column whose colour in the coloured row occurs exactly N times in that row gets a bar of that colour, N cells tall, directly above the 5 separator line.",
+     "why": "bar heights all equal N; only colours with frequency N in the colour row get bars",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2685904e",
+     "sample": 1,
+     "verb": "draw bars for colours with count N",
+     "reading": "The number N of 8-cells in the top row is a count; every colour that occurs exactly N times in the bottom data row gets a vertical bar of height N drawn directly above the grey separator, in the same columns as its occurrences.",
+     "why": "only colours whose frequency in the data row equals N are drawn; bar height equals N",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2685904e",
+     "sample": 2,
+     "verb": "draw bars for colours with count N",
+     "reading": "The number N of 8-cells in the top row is a count; every colour that occurs exactly N times in the patterned row below the 5-separator gets, above its positions, a vertical bar of height N standing on the row just above the separator.",
+     "why": "bars appear exactly in columns whose key colour has count N, with height N",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2685904e",
+     "sample": 3,
+     "verb": "draw count bars",
+     "reading": "The number n of 8s in the top row selects the colours that occur exactly n times in the coloured row below the separator; above each such column a bar of that colour, n cells tall, rises from the separator.",
+     "why": "bars appear exactly at columns whose key colour has frequency n, each n tall, ending just above the 5-separator",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2685904e",
+     "sample": 4,
+     "verb": "draw bars for colours of count N",
+     "reading": "The number N of 8-cells in the top row is a count. Every colour that appears exactly N times in the patterned row below the grey separator gets, in each of its columns, a bar of height N standing on the separator.",
+     "why": "bar height equals the 8-count and only colours with that frequency are drawn",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "2697da3f": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2697da3f",
+     "sample": 0,
+     "verb": "arrange four rotations (pinwheel)",
+     "reading": "The single shape (h x w box) is arranged four times in 90-degree rotations around an empty central h x h square, giving a (2w+h) square output: original on the left, horizontal mirror on the right, transposed copy on top, its vertical flip on the bottom.",
+     "why": "the output has 4-fold rotational arrangement of the cropped shape with an empty centre",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2697da3f",
+     "sample": 1,
+     "verb": "arrange four rotations around centre",
+     "reading": "The single shape (h rows by w columns) is cut out and arranged in a four-armed pinwheel on a (2w+h)-square canvas: the original on the left, rotated 90 degrees clockwise on top, rotated 180 on the right, rotated 270 on the bottom, all facing an empty h-by-h centre.",
+     "why": "output is 4-fold rotationally symmetric and its left arm equals the input shape's box",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2697da3f",
+     "sample": 2,
+     "verb": "arrange four rotations",
+     "reading": "The single shape is copied four times, rotated by 90 degrees each, and arranged as a cross/pinwheel around an empty centre: the original on the left, its mirror on the right, rotated copies on top and bottom. The output is square with side 2*width + height of the shape.",
+     "why": "the four arm blocks are the four rotations of the shape and the centre is background",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2697da3f",
+     "sample": 3,
+     "verb": "rotate into pinwheel",
+     "reading": "The single shape is cropped and placed four times around an empty centre square as a pinwheel: original on the left, then rotated 90 degrees for each of top, right, bottom; output is (2w+h) square.",
+     "why": "the output is invariant under 90-degree rotation and its left arm equals the cropped input shape",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "2697da3f",
+     "sample": 4,
+     "verb": "rotate four ways around a centre",
+     "reading": "The single shape is copied four times in a pinwheel: original on the left, rotated 90 degrees clockwise on top, 180 on the right, 270 at the bottom, around an empty centre square. Output side = 2*width + height of the shape.",
+     "why": "output has 4-fold rotational symmetry and its left arm equals the input shape",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "272f95fa": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "272f95fa",
+     "sample": 0,
+     "verb": "fill panels by position",
+     "reading": "Two full horizontal and two full vertical 8 lines cut the grid into 3x3 panels. The corner panels stay empty; top-centre is filled 2, middle-left 4, centre 6, middle-right 3, bottom-centre 1.",
+     "why": "every non-corner panel is filled entirely with its position's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "272f95fa",
+     "sample": 1,
+     "verb": "paint panels by position",
+     "reading": "Two horizontal and two vertical 8-lines cut the grid into 3x3 panels; the five panels of the plus pattern are filled by position: top-middle 2, middle-left 4, centre 6, middle-right 3, bottom-middle 1. Corner panels stay empty.",
+     "why": "each non-corner panel is filled solidly with its position's colour",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "272f95fa",
+     "sample": 2,
+     "verb": "colour panels by position",
+     "reading": "Two full horizontal and two full vertical 8-lines cut the grid into a 3x3 of panels; the panels are filled by position with fixed colours: top-middle 2, middle-left 4, centre 6, middle-right 3, bottom-middle 1; the four corner panels stay 0.",
+     "why": "each non-corner panel is uniformly filled with its position's colour on every pair",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "272f95fa",
+     "sample": 3,
+     "verb": "colour panels by position",
+     "reading": "Two full horizontal and two full vertical 8-lines cut the grid into a 3x3 panel layout; the four edge-middle panels and the centre are filled by position (top 2, left 4, centre 6, right 3, bottom 1), corners stay empty.",
+     "why": "each of the five non-corner panels is wholly filled with its position's colour; separators and corner panels unchanged",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "272f95fa",
+     "sample": 4,
+     "verb": "colour panels by position",
+     "reading": "Two full horizontal and two full vertical 8-lines cut the grid into 3x3 panels. Panels are filled by position: top-middle 2, middle-left 4, centre 6, middle-right 3, bottom-middle 1; corner panels stay empty.",
+     "why": "each non-corner panel is filled entirely with its position's colour",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "27a28665": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "27a28665",
+     "sample": 0,
+     "verb": "classify shape",
+     "reading": "The 3x3 input holds one colour in one of a few fixed shapes; the output is a single cell whose colour names the shape (2x2 block plus opposite corner -> 3, plus sign -> 6, X -> 2, the other diagonal-ish pattern 440/404/040 -> 1), regardless of the input colour.",
+     "why": "same fg pattern always gives same output colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "27a28665",
+     "sample": 1,
+     "verb": "classify shape",
+     "reading": "The 3x3 input shows one shape in some colour; the output is a single cell whose colour names the shape (ignoring its colour): plus -> 6, X -> 2, the 'two-by-two block plus diagonal corner' shape -> 3, the '110/101/010' shape -> 1.",
+     "why": "same mask gives the same output colour on every pair, regardless of input colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "27a28665",
+     "sample": 2,
+     "verb": "classify shape",
+     "reading": "The 3x3 input shows one colour in one of a few fixed shapes; the output is a single cell whose colour names the shape class (diagonal X pattern -> 2, plus -> 6, the 2x2-block-with-corner pattern -> 3, the zigzag/arrow pattern -> 1), regardless of the input colour.",
+     "why": "pairs with the same mask give the same output colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "27a28665",
+     "sample": 3,
+     "verb": "classify shape",
+     "reading": "The 3x3 grid shows one of a few fixed shapes in any colour; the output is a 1x1 cell whose colour codes the shape (2x2 block with opposite corner -> 3, plus -> 6, X -> 2, the 440/404/040 shape -> 1).",
+     "why": "pairs with the same mask (regardless of colour) give the same output colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "27a28665",
+     "sample": 4,
+     "verb": "classify shape",
+     "reading": "The 3x3 input holds one shape of some colour; the output is a single cell whose colour names the shape's pattern (X -> 2, plus -> 6, the 2x2-block-plus-corner pattern -> 3, the 110/101/010 pattern -> 1), independent of the shape's colour.",
+     "why": "identical patterns always give the same output colour regardless of input colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "27a77e38": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "27a77e38",
+     "sample": 0,
+     "verb": "write majority colour",
+     "reading": "Above a full 5 separator row is a multi-coloured block; the most frequent colour of that block is written into the centre cell of the bottom row.",
+     "why": "exactly one cell changes, at bottom centre, to the top panel's majority colour",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "27a77e38",
+     "sample": 1,
+     "verb": "place majority colour at bottom centre",
+     "reading": "Above a grey separator row is a block of mixed colours; the most frequent colour in that block is written into the centre cell of the bottom row.",
+     "why": "only the bottom-centre cell changes, and it takes the majority colour of the top block",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27a77e38",
+     "sample": 2,
+     "verb": "place majority colour",
+     "reading": "The colour that occurs most often above the full 5-separator row is written into the centre cell of the bottom row; nothing else changes.",
+     "why": "exactly one cell changes: bottom-centre gets the majority colour of the top part",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27a77e38",
+     "sample": 3,
+     "verb": "place majority colour",
+     "reading": "The most frequent colour in the block above the 5-separator is written into the centre cell of the bottom row; everything else unchanged.",
+     "why": "exactly one cell changes, the bottom-centre, and it takes the majority colour of the top block",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27a77e38",
+     "sample": 4,
+     "verb": "mark majority colour",
+     "reading": "The most frequent colour in the coloured rows above the grey line is written into the centre cell of the bottom row.",
+     "why": "exactly one cell changes, at the bottom-centre, to the majority colour of the top block",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "27f8ce4f": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "27f8ce4f",
+     "sample": 0,
+     "verb": "self-tile by majority colour",
+     "reading": "The 3x3 input is scaled into a 3x3 arrangement of blocks; a block holds a copy of the input wherever the input cell has the input's most frequent colour, else it is empty.",
+     "why": "every output block is the input or empty; copies sit exactly at the cells of the most common input colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27f8ce4f",
+     "sample": 1,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is tiled into a 9x9 output: block (i,j) is a copy of the input where input cell (i,j) has the input's most frequent colour, and empty (0) elsewhere.",
+     "why": "every 3x3 block of the output is the input or all 0; a block holds the copy exactly where the input cell has the most common colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27f8ce4f",
+     "sample": 2,
+     "verb": "self-tile by majority colour",
+     "reading": "The 3x3 input is used as a tile in a 3x3 arrangement of blocks: a block holds a copy of the input exactly where the input cell has the input's most common colour, otherwise the block is empty.",
+     "why": "every 3x3 block is the input or all 0, and the non-empty blocks are the positions of the input's most common colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27f8ce4f",
+     "sample": 3,
+     "verb": "tile by majority colour",
+     "reading": "The 3x3 input is scaled to a 3x3 arrangement of 3x3 blocks; a block holds a copy of the input exactly where the input cell has the input's most frequent colour, others are empty.",
+     "why": "every output block is the input or empty, and the copied blocks are the positions of the most common (background) colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "27f8ce4f",
+     "sample": 4,
+     "verb": "self-tile",
+     "reading": "The 3x3 input is scaled into a 3x3 grid of blocks: each block is a copy of the whole input where the input cell has the input's most common colour, and empty otherwise.",
+     "why": "each output block is the input or empty, and copies sit exactly at cells of the input's most common colour",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "28e73c20": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "28e73c20",
+     "sample": 0,
+     "verb": "draw spiral",
+     "reading": "An empty grid is filled with a square spiral of colour 3 starting at the top-left, running clockwise inward with a one-cell gap between successive turns.",
+     "why": "output is the canonical spiral for the grid size; input is all background",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "28e73c20",
+     "sample": 1,
+     "verb": "draw spiral",
+     "reading": "An empty grid gets a 3-coloured square spiral drawn from the top-left corner, running clockwise inward with a one-cell gap between successive turns.",
+     "why": "the output depends only on grid size; spiral cells are 3, gaps are 0",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "28e73c20",
+     "sample": 2,
+     "verb": "draw spiral",
+     "reading": "An empty square grid is filled with a clockwise square spiral of colour 3 starting at the top-left corner along the top row, with one background cell between successive turns.",
+     "why": "output is the 1-cell-gap spiral for that grid size",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "28e73c20",
+     "sample": 3,
+     "verb": "draw spiral",
+     "reading": "On an empty grid a clockwise square spiral of 3 is drawn from the top-left corner inward, with one-cell gaps between turns.",
+     "why": "output is the input-size spiral; only size varies",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "28e73c20",
+     "sample": 4,
+     "verb": "draw spiral",
+     "reading": "An empty grid is filled with a 3-coloured square spiral starting along the top row and turning clockwise inwards, with one empty cell gap between turns.",
+     "why": "output is the canonical spiral for the grid size",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "29c11459": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "29c11459",
+     "sample": 0,
+     "verb": "extend ends to meet at middle",
+     "reading": "Each row with a coloured cell at both ends is filled: the left colour extends right and the right colour extends left until they meet, and the single middle cell becomes 5.",
+     "why": "each line covers exactly half the row; the centre cell is 5",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "29c11459",
+     "sample": 1,
+     "verb": "bridge pair with grey midpoint",
+     "reading": "A row has one coloured cell at each end; each colour is extended toward the other until the middle, where the single centre cell becomes grey 5.",
+     "why": "each half of the gap takes its own end's colour; the exact midpoint is 5",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "29c11459",
+     "sample": 2,
+     "verb": "bridge two ends",
+     "reading": "A row has a coloured cell at each end; each colour extends toward the other along the row until they meet, and the meeting middle cell becomes 5.",
+     "why": "the row between the endpoints is filled half by each colour with 5 at the centre",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "29c11459",
+     "sample": 3,
+     "verb": "bridge to midpoint",
+     "reading": "Two cells sit at the two ends of a row; each extends toward the other in its own colour until they meet, and the middle cell becomes 5.",
+     "why": "the row between the endpoints is filled: left half left colour, right half right colour, centre 5",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "29c11459",
+     "sample": 4,
+     "verb": "join halfway",
+     "reading": "Two coloured cells at opposite ends of a row each grow toward the other until they meet; the meeting cell in the middle becomes 5.",
+     "why": "each row with two ends is filled, left half left colour, right half right colour, centre 5",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "2b01abd0": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "2b01abd0",
+     "sample": 0,
+     "verb": "reflect across separator and swap colours",
+     "reading": "A two-colour shape lies on one side of a full separator line of 1. A mirror copy of it, with its original colours, appears on the other side reflected across the line, while the original shape has its two colours swapped.",
+     "why": "reflected copy is the exact mirror image; the original's colour swap is the 2-colour exchange of that shape",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2b01abd0",
+     "sample": 1,
+     "verb": "reflect across separator and swap original's colours",
+     "reading": "A two-coloured shape lies on one side of a blue separator line; it is reflected across the line with its original colours, while the shape left in place has its two colours swapped.",
+     "why": "the two sides are mirror images in shape; colours on the original side are the swap of the mirrored side",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2b01abd0",
+     "sample": 2,
+     "verb": "reflect across line and swap colours",
+     "reading": "A two-coloured shape lies on one side of a full 1-coloured separator line; it is reflected across that line (the reflection keeps the original colours), and the original shape's two colours are swapped.",
+     "why": "the far side is the exact mirror of the input shape, and the near side is the input shape with colours a<->b",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2b01abd0",
+     "sample": 3,
+     "verb": "reflect across separator and swap colours",
+     "reading": "A two-colour shape lies beside a full separator line of 1; a mirror copy of it in its original colours is added on the other side of the line, and the original shape has its two colours swapped.",
+     "why": "the reflected copy's mask equals the original's mask mirrored; colours a<->b differ between the two sides",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "2b01abd0",
+     "sample": 4,
+     "verb": "reflect and swap colours",
+     "reading": "A two-coloured shape lies on one side of a full separator line. It is reflected across the separator with its original colours, and the original shape has its two colours swapped.",
+     "why": "reflection is the exact mirror across the separator; original cells keep shape with colours a<->b",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

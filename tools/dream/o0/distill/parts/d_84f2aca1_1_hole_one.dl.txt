@@ -1,0 +1,15 @@
+% row: d_84f2aca1_1_hole_one
+% source: distillation batch reading, task 84f2aca1, sample 1
+% output: hole_one(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !isfg(Y, X).
+maxy(max(Y)) :- px(Y, X, C).
+maxx(max(X)) :- px(Y, X, C).
+out(Y, X) :- bgc(Y, X), Y = 0.
+out(Y, X) :- bgc(Y, X), X = 0.
+out(Y, X) :- bgc(Y, X), maxy(M), Y = M.
+out(Y, X) :- bgc(Y, X), maxx(M), X = M.
+out(Y2, X2) :- out(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+hole(Y, X) :- bgc(Y, X), !out(Y, X).
+hn(Y, X) :- hole(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, hole(Y2, X2).
+hole_one(Y, X) :- hole(Y, X), !hn(Y, X).

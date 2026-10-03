@@ -1,0 +1,9 @@
+% row: d_6f8cd79b_2_edge
+% source: distillation batch reading, task 6f8cd79b, sample 2
+% output: edge(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+edge(Y, X) :- px(Y, X, C), Y = 0.
+edge(Y, X) :- px(Y, X, C), X = 0.
+edge(Y, X) :- px(Y, X, C), hmax(H), Y = H.
+edge(Y, X) :- px(Y, X, C), wmax(W), X = W.

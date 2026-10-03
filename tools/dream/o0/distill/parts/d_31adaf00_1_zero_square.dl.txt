@@ -1,0 +1,12 @@
+% row: d_31adaf00_1_zero_square
+% source: distillation batch reading, task 31adaf00, sample 1
+% output: zero_square(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+z(Y, X) :- px(Y, X, C), !fgc(Y, X).
+sq2(Y, X) :- z(Y, X), Y1 = Y + 1, X1 = X + 1, z(Y, X1), z(Y1, X), z(Y1, X1).
+sq3(Y, X) :- sq2(Y, X), Y1 = Y + 1, X1 = X + 1, sq2(Y, X1), sq2(Y1, X), sq2(Y1, X1).
+in3(Y2, X2) :- sq3(Y, X), z(Y2, X2), Y3 = Y + 2, X3 = X + 2, Y2 >= Y, Y2 <= Y3, X2 >= X, X2 <= X3.
+bad2(Y, X) :- sq2(Y, X), Y1 = Y + 1, X1 = X + 1, in3(Y2, X2), Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1.
+good2(Y, X) :- sq2(Y, X), !bad2(Y, X).
+zero_square(Y, X) :- in3(Y, X).
+zero_square(Y2, X2) :- good2(Y, X), z(Y2, X2), Y1 = Y + 1, X1 = X + 1, Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1.

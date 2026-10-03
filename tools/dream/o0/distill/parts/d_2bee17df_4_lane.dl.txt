@@ -1,0 +1,11 @@
+% row: d_2bee17df_4_lane
+% source: distillation batch reading, task 2bee17df, sample 4
+% output: lane(Y, X)
+wmax(max(X)) :- px(Y, X, C).
+hmax(max(Y)) :- px(Y, X, C).
+rowz(Y, count(X)) :- px(Y, X, 0), wmax(W), X > 0, X < W.
+fullrow(Y) :- rowz(Y, N), wmax(W), N = W - 1.
+colz(X, count(Y)) :- px(Y, X, 0), hmax(H), Y > 0, Y < H.
+fullcol(X) :- colz(X, N), hmax(H), N = H - 1.
+lane(Y, X) :- fullrow(Y), px(Y, X, 0).
+lane(Y, X) :- fullcol(X), px(Y, X, 0).

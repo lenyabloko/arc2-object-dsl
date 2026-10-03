@@ -1,0 +1,207 @@
+[
+ {
+  "task": "522fdd07",
+  "reading": "Each solid square is replaced, in place and concentrically, by the next size in the cycle 9->7->5->3->1->9: squares lose their outer ring, and a single cell grows into a 9x9 square centred on it.",
+  "verb": "shrink squares (cyclic size)",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each single-colour solid square object",
+   "size_rule": "side n becomes n-2; side 1 becomes 9",
+   "anchor": "same centre, same colour"
+  },
+  "why": "every output square has the input square's colour and centre and side (n-2), or 9 when n=1",
+  "invariants": [
+   "background colour",
+   "object colours",
+   "object centres",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "52364a65",
+  "reading": "Every object loses the cells in the two leftmost columns of its bounding box (they become background); objects two columns wide vanish.",
+  "verb": "trim left two columns",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "left2",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "left2",
+    "datalog": "ominx(O, min(X)) :- obj(O, Y, X), cell(Y, X, C).\nleft2(Y, X) :- obj(O, Y, X), cell(Y, X, C), ominx(O, M), L = M + 2, X < L."
+   }
+  ],
+  "why": "exactly the object cells in the first two columns of each object's box turn to background colour 8; nothing else changes",
+  "invariants": [
+   "grid size",
+   "all other object cells",
+   "background 8"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "52df9849",
+  "reading": "Two overlapping shapes: the one that is partly hidden is brought to the front, so the overlap cells take the colour of the occluded shape and it is shown complete.",
+  "verb": "swap layering (bring occluded shape to front)",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the incomplete (occluded) shape",
+   "completion": "its full shape (rectangle, line or diagonal) as implied by its visible part",
+   "overlap": "cells where the complete shape covers the occluder are recoloured to the occluded shape's colour"
+  },
+  "why": "after the change the previously occluded shape is a complete rectangle/line and the other shape loses exactly the overlap cells",
+  "invariants": [
+   "grid size",
+   "non-overlap cells",
+   "background"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "52fd389e",
+  "reading": "Each colour-4 rectangle contains N dots of some colour c; draw a border of colour c around the rectangle with thickness N.",
+  "verb": "frame by dot count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 4-rectangle with its inner dots",
+   "colour": "the colour of the inner dots",
+   "thickness": "number of inner dots",
+   "place": "ring of that thickness around the rectangle's box, on background cells"
+  },
+  "why": "every rectangle is surrounded by a solid ring whose colour is its dot colour and whose width equals its dot count",
+  "invariants": [
+   "the rectangles and their dots unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "55059096",
+  "reading": "Plus-shaped objects whose centres lie on a common diagonal are joined by a diagonal line of colour 2 drawn on the background cells between them.",
+  "verb": "connect diagonal pluses",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "pairs of plus objects with centres on the same diagonal",
+   "line": "diagonal from centre to centre, background cells only",
+   "colour": "2 (constant)"
+  },
+  "why": "every 2 cell lies on the diagonal between two plus centres that are diagonally aligned, and every such pair is joined",
+  "invariants": [
+   "the plus shapes unchanged",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5521c0d9",
+  "reading": "Each bar standing on the bottom edge is lifted straight up by a distance equal to its own height.",
+  "verb": "lift by own height",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object",
+   "direction": "up",
+   "distance": "the object's own height (bbox rows)"
+  },
+  "why": "every object keeps its shape and column span and its rows shift up by its height",
+  "invariants": [
+   "shapes",
+   "colours",
+   "columns",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5582e5ca",
+  "reading": "The whole grid is filled with its most common colour.",
+  "verb": "flood with majority colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "region": "every cell of the grid",
+   "colour": "the most frequent colour of the input"
+  },
+  "why": "the output is uniform and its colour is the input's majority colour",
+  "invariants": [
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5623160b",
+  "reading": "Small pieces attached to a colour-9 hub slide away from the hub, in the direction they stick out from it, until they reach the grid border; the 9 hub stays.",
+  "verb": "push pieces away from hub to border",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "hub": "the colour-9 cells",
+   "subject": "each non-9 object touching the hub",
+   "direction": "from the touching 9 cell toward the object (up/down/left/right)",
+   "target": "the grid border"
+  },
+  "why": "each piece keeps its shape and ends touching the border on the side it pointed to; hub unchanged",
+  "invariants": [
+   "9 hub cells",
+   "piece shapes and colours",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "56dc2b01",
+  "reading": "The 3-shape slides toward the 2-line until it touches it, and a full line of colour 8 is drawn alongside the 3-shape's box on the side away from the 2-line.",
+  "verb": "slide to wall and mark the back",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the colour-3 shape (largest object)",
+   "target": "the colour-2 full line; move until contact",
+   "mark": "full line of colour 8 parallel to the 2-line, adjacent to the moved shape's box on the far side"
+  },
+  "why": "the 3-shape keeps its shape and touches the 2-line; the 8 line is directly behind it",
+  "invariants": [
+   "the 2 line",
+   "3-shape's form",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "58743b76",
+  "reading": "A 2x2 colour key sits in a corner beyond the 8 bars; the square work area is split into four quadrants and each dot takes the key colour at the matching quadrant position.",
+  "verb": "recolour by quadrant key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 2x2 block of colours in the corner of the 8 bars",
+   "region": "the square area bounded by the 8 bars, cut into 2x2 equal quadrants",
+   "subject": "every dot in the area",
+   "colour": "key cell in the same relative quadrant"
+  },
+  "why": "every dot's new colour equals the key cell whose position matches the dot's quadrant",
+  "invariants": [
+   "dot positions",
+   "8 bars and key",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

@@ -1,0 +1,201 @@
+[
+ {
+  "task": "522fdd07",
+  "reading": "Every solid square shrinks by one cell on each side (9x9->7x7, 5x5->3x3, 3x3->single cell), while a single cell grows into a 9x9 square centred on it; same colours, background 7.",
+  "verb": "shrink squares one ring / grow dots to 9x9",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each solid single-colour square object",
+   "size_rule": "side n -> n-2 for n>1; side 1 -> 9 (centred on the dot)",
+   "anchor": "object's own box, inset by one on top-left"
+  },
+  "why": "each output object is the input object's box inset by one, except 1x1 objects which become 9x9 centred",
+  "invariants": [
+   "colours of objects",
+   "background 7",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "52364a65",
+  "reading": "Every object loses its two leftmost columns (relative to its own bounding box); objects only two columns wide vanish.",
+  "verb": "trim left two columns",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each single-colour object",
+   "cut": "cells in the first two columns of the object's bbox become background"
+  },
+  "why": "output object = input object minus its two leftmost bbox columns",
+  "invariants": [
+   "background 8",
+   "all other cells of each object",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "52df9849",
+  "reading": "Two shapes overlap; the shape that was underneath is brought to the front, so the overlap cells take the hidden shape's colour.",
+  "verb": "swap layer order at overlap",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "overlap cells: cells of the top shape that lie on the hidden shape's (completed) extent",
+   "colour": "the hidden shape's colour"
+  },
+  "why": "only cells where the occluded shape would continue change, and they become that shape's colour",
+  "invariants": [
+   "non-overlap cells",
+   "background 7"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "52fd389e",
+  "reading": "Each yellow rectangle containing k dots of colour c gets a solid surrounding border of colour c, k cells thick.",
+  "verb": "frame by dot count",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each colour-4 rectangle",
+   "colour": "colour of the dots inside it",
+   "thickness": "number of dots inside it"
+  },
+  "why": "ring around each rectangle's box has thickness = dot count and dot colour",
+  "invariants": [
+   "rectangles and their dots unchanged",
+   "background elsewhere"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "55059096",
+  "reading": "Plus shapes whose centres lie on a common diagonal are joined by a diagonal line of colour 2 through the background cells between them.",
+  "verb": "connect diagonal crosses",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "diag_link",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "diag_link",
+    "datalog": "fg(Y, X) :- cell(Y, X, C).\nctr(Y, X) :- cell(Y, X, C), Y1 = Y - 1, cell(Y1, X, C), Y2 = Y + 1, cell(Y2, X, C), X1 = X - 1, cell(Y, X1, C), X2 = X + 1, cell(Y, X2, C).\ndiag_link(YC, XC) :- ctr(Y, X), ctr(Y2, X2), D = Y2 - Y, D > 0, E = X2 - X, E = D, px(YC, XC, C), YC > Y, YC < Y2, K = YC - Y, XC = X + K, !fg(YC, XC).\ndiag_link(YC, XC) :- ctr(Y, X), ctr(Y2, X2), D = Y2 - Y, D > 0, E = X - X2, E = D, px(YC, XC, C), YC > Y, YC < Y2, K = YC - Y, XC = X - K, !fg(YC, XC)."
+   }
+  ],
+  "why": "every new 2 cell lies strictly between two diagonally aligned plus centres; nothing else changes",
+  "invariants": [
+   "plus shapes",
+   "non-diagonal pairs stay unconnected"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "5521c0d9",
+  "reading": "Each object (resting on the bottom) is lifted straight up by a distance equal to its own height.",
+  "verb": "lift by own height",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object",
+   "offset": "up by the object's height"
+  },
+  "why": "each output object = input object shifted up by its bbox height, shape kept",
+  "invariants": [
+   "shapes and colours",
+   "background 0"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5582e5ca",
+  "reading": "The whole grid is filled with the most frequent colour of the input.",
+  "verb": "flood with majority colour",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "colour": "most common colour of the input",
+   "region": "every cell"
+  },
+  "why": "output is uniform in the input's majority colour",
+  "invariants": [
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "5623160b",
+  "reading": "Colour-9 pieces stay fixed; every other piece attached to a 9 slides straight away from that 9 until it reaches the grid border, keeping its shape.",
+  "verb": "push away to border",
+  "frame": {
+   "how": "move",
+   "args": {
+    "subject": "sat",
+    "target": "border"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "sat",
+    "datalog": "sat(Y, X) :- cell(Y, X, C), C < 9."
+   }
+  ],
+  "why": "each non-9 piece keeps its shape and ends touching the border on the side facing away from its 9 neighbour",
+  "invariants": [
+   "colour-9 cells",
+   "background 7"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "56dc2b01",
+  "reading": "The green shape slides toward the red bar until it touches it, and a full bar of 8 is drawn right behind the shape on the side away from the red bar.",
+  "verb": "slide to bar and back with 8 bar",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "the colour-3 object",
+   "target": "the full colour-2 line (contact)",
+   "added": "full line of 8 adjacent to the moved shape on the far side"
+  },
+  "why": "shape keeps its form and touches the 2 line; one 8 line parallel to it touches the shape's opposite side",
+  "invariants": [
+   "red bar",
+   "shape form"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "58743b76",
+  "reading": "A 2x2 colour key sits in a corner; each dot in the main area is recoloured with the key colour of the quadrant of the area it lies in.",
+  "verb": "recolour by quadrant key",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "key": "the 2x2 colour block in the 8-bordered corner",
+   "subject": "dots in the main (non-8) area",
+   "map": "key scaled up to the area: quadrant (top/bottom, left/right) -> key cell colour"
+  },
+  "why": "each dot cell takes the colour of the key cell for its quadrant; nothing else changes",
+  "invariants": [
+   "8 border",
+   "key",
+   "background 0",
+   "dot positions"
+  ],
+  "confidence": "high"
+ }
+]

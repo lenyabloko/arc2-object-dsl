@@ -1,0 +1,5 @@
+% row: d_31aa019c_2_unique
+% source: distillation batch reading, task 31aa019c, sample 2
+% output: unique(Y, X)
+ccount(C, count(Y, X)) :- cell(Y, X, C).
+unique(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1.

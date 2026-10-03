@@ -1,0 +1,206 @@
+{
+ "batch": 1,
+ "tasks": 300,
+ "readings": 1500,
+ "executable_readings": 1042,
+ "other_readings": 458,
+ "l4_normalised": 516,
+ "fitting_readings": 316,
+ "fitting_readings_all_slots_bound": 273,
+ "tasks_with_a_fit": 78,
+ "harness": {
+  "exact": 74,
+  "no fit": 222,
+  "wrong": 3,
+  "abstains": 1
+ },
+ "tasks_support_ge3": 20,
+ "exact_by_build": {
+  "build_failing": 5,
+  "build_solved_or_unknown": 69
+ },
+ "batch_build_failing_tasks": 31,
+ "frames_distinct": 38,
+ "frames_R_ge2": {
+  "fill(colour:=train, region:=d_row)": 30,
+  "recolour(key:=train, subject:=d_row)": 18,
+  "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)": 5,
+  "seq(fill(colour:=train, region:=d_row) ; fill(colour:=train, region:=d_row))": 3,
+  "extract(region:=d_row)": 3,
+  "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)": 3,
+  "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)": 3,
+  "tile(extent:=fg, unit:=input)": 2,
+  "seq(recolour(key:=train, subject:=d_row) ; recolour(key:=train, subject:=d_row))": 2,
+  "tile(extent:=d_row, unit:=input)": 2,
+  "stamp(anchors:=d_row, place:=nearest, rest:=kept, unit:=train)": 2
+ },
+ "fitting_by_column": {
+  "tile": 6,
+  "seq": 12,
+  "stamp": 23,
+  "recolour": 20,
+  "fill": 32,
+  "move": 2,
+  "extract": 3,
+  "mirror": 1,
+  "extend": 1
+ },
+ "other_head_verbs_top": [
+  [
+   "complete",
+   37
+  ],
+  [
+   "swap",
+   26
+  ],
+  [
+   "classify",
+   22
+  ],
+  [
+   "fit",
+   19
+  ],
+  [
+   "rotate",
+   17
+  ],
+  [
+   "sort",
+   15
+  ],
+  [
+   "assemble",
+   15
+  ],
+  [
+   "chain",
+   12
+  ],
+  [
+   "pour",
+   11
+  ],
+  [
+   "scale",
+   10
+  ],
+  [
+   "overlay",
+   9
+  ],
+  [
+   "invert",
+   8
+  ],
+  [
+   "split",
+   8
+  ],
+  [
+   "count",
+   8
+  ],
+  [
+   "advance",
+   7
+  ],
+  [
+   "histogram",
+   7
+  ],
+  [
+   "pack",
+   6
+  ],
+  [
+   "bridge",
+   6
+  ],
+  [
+   "clean",
+   6
+  ],
+  [
+   "stack",
+   5
+  ],
+  [
+   "match",
+   5
+  ],
+  [
+   "cast",
+   5
+  ],
+  [
+   "sweep",
+   5
+  ],
+  [
+   "list",
+   5
+  ],
+  [
+   "test",
+   5
+  ]
+ ],
+ "other_head_verbs_distinct": 102,
+ "other_verbs_not_in_L4": 369,
+ "tasks_other_verb_3of5": 76,
+ "new_rows": 367,
+ "new_row_errors": 0,
+ "new_rows_equal_to_changed_cells_on_every_pair": 184,
+ "growth_distinct_frames": [
+  [
+   25,
+   7
+  ],
+  [
+   50,
+   11
+  ],
+  [
+   75,
+   13
+  ],
+  [
+   100,
+   17
+  ],
+  [
+   125,
+   21
+  ],
+  [
+   150,
+   23
+  ],
+  [
+   175,
+   24
+  ],
+  [
+   200,
+   36
+  ],
+  [
+   225,
+   37
+  ],
+  [
+   250,
+   37
+  ],
+  [
+   275,
+   37
+  ],
+  [
+   300,
+   38
+  ]
+ ]
+}

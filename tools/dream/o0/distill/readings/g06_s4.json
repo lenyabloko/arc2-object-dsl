@@ -1,0 +1,243 @@
+[
+ {
+  "task": "2bcee788",
+  "reading": "A one-colour shape has a colour-2 segment attached to one side; the shape is reflected across the edge it shares with the 2s (the reflection overwrites the 2s), and the background becomes 3.",
+  "verb": "reflect across marker edge",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "mirror",
+    "args": {
+     "axis": "axis",
+     "subject": "fg"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "bg",
+     "colour": "train"
+    }
+   }
+  },
+  "why": "output = shape plus its reflection about the line between the shape and its 2-marker; all other cells are 3",
+  "invariants": [
+   "original shape cells",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "2bee17df",
+  "reading": "Every row whose interior (all cells except the first and last) is entirely background, and every such column, has its background cells painted 3.",
+  "verb": "paint open lanes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "lane",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "wmax(max(X)) :- px(Y, X, C).\nhmax(max(Y)) :- px(Y, X, C).\nrowz(Y, count(X)) :- px(Y, X, 0), wmax(W), X > 0, X < W.\nfullrow(Y) :- rowz(Y, N), wmax(W), N = W - 1.\ncolz(X, count(Y)) :- px(Y, X, 0), hmax(H), Y > 0, Y < H.\nfullcol(X) :- colz(X, N), hmax(H), N = H - 1.\nlane(Y, X) :- fullrow(Y), px(Y, X, 0).\nlane(Y, X) :- fullcol(X), px(Y, X, 0)."
+   }
+  ],
+  "why": "exactly the 0-cells of fully clear interior rows/columns become 3",
+  "invariants": [
+   "walls (2 and 8 cells)",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2dd70a9a",
+  "reading": "A path of 3 grows from the green 2-cell segment along its axis, turning 90 degrees whenever the next cell is an 8, until it reaches the red 2-cell segment.",
+  "verb": "trace turning path",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "start": "the 2-cell colour-3 segment (its axis gives the initial direction, toward the target)",
+   "obstacle": "colour-8 cells, which force a 90-degree turn",
+   "goal": "the 2-cell colour-2 segment",
+   "colour": "3"
+  },
+  "why": "the 3-path is connected, never crosses an 8, and turns only in front of an 8, ending adjacent to the red segment",
+  "invariants": [
+   "all 8 cells",
+   "the 2 segment",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "2de01db2",
+  "reading": "Each row has one main colour (its most common non-background colour); cells of that colour become background and every other cell of the row (background or noise) becomes the main colour.",
+  "verb": "invert each row",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "each row",
+   "main": "the row's most common non-0 colour",
+   "rule": "main -> 0, everything else -> main"
+  },
+  "why": "per row, output = main colour exactly where the input is not main colour",
+  "invariants": [
+   "grid size",
+   "row order"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2faf500b",
+  "reading": "Each colour-9 object carries a two-cell-wide 6/9 checker band across its middle; the object is cut between the two band lines, the 6s are erased, and the two halves move apart by one cell each, perpendicular to the band.",
+  "verb": "split and push apart",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each object containing 6s",
+   "cut": "the line between the two band rows/columns",
+   "erase": "colour-6 cells -> 0",
+   "shift": "each half moves one cell away from the cut"
+  },
+  "why": "each half keeps its 9-cells' shape; the halves are separated by a 2-cell gap where the cut was",
+  "invariants": [
+   "9-cell shapes of the halves",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "310f3251",
+  "reading": "Each coloured cell gets a 2 at its up-left diagonal neighbour (wrapping around the grid edges, only onto background), then the grid is tiled 3x3.",
+  "verb": "mark diagonal then tile",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "upleft",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "upleft",
+    "datalog": "hmax(max(Y)) :- px(Y, X, C).\nwmax(max(X)) :- px(Y, X, C).\nupleft(Y2, X2) :- cell(Y, X, C), Y > 0, X > 0, Y2 = Y - 1, X2 = X - 1, px(Y2, X2, 0).\nupleft(Y2, X2) :- cell(Y, X, C), Y = 0, X > 0, hmax(Y2), X2 = X - 1, px(Y2, X2, 0).\nupleft(Y2, X2) :- cell(Y, X, C), Y > 0, X = 0, Y2 = Y - 1, wmax(X2), px(Y2, X2, 0).\nupleft(Y2, X2) :- cell(Y, X, C), Y = 0, X = 0, hmax(Y2), wmax(X2), px(Y2, X2, 0)."
+   }
+  ],
+  "why": "output is 3x3 copies of the input with 2 added at the toroidal up-left of every coloured cell",
+  "invariants": [
+   "original coloured cells in every copy"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "31aa019c",
+  "reading": "Keep only the single cell whose colour occurs exactly once, surround it with a 3x3 ring of 2, and clear everything else.",
+  "verb": "highlight unique cell",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "uniq",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "uniq",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\nuniq(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1."
+   }
+  ],
+  "why": "output is all 0 except the unique-colour cell and its 8 neighbours, which are 2",
+  "invariants": [
+   "position and colour of the unique cell",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "31adaf00",
+  "reading": "Empty (all-background) squares of side 3, and side-2 squares that do not overlap a side-3 one, are filled with 1.",
+  "verb": "fill empty squares",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "sqfill",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "sqfill",
+    "datalog": "b2(Y, X) :- px(Y, X, 0), Y1 = Y + 1, X1 = X + 1, px(Y, X1, 0), px(Y1, X, 0), px(Y1, X1, 0).\nb3(Y, X) :- b2(Y, X), Y1 = Y + 1, X1 = X + 1, b2(Y, X1), b2(Y1, X), b2(Y1, X1).\nin3(Y2, X2) :- b3(Y, X), px(Y2, X2, 0), Y3 = Y + 2, X3 = X + 2, Y2 >= Y, Y2 <= Y3, X2 >= X, X2 <= X3.\nhit3(Y, X) :- b2(Y, X), Y1 = Y + 1, X1 = X + 1, in3(Y2, X2), Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1.\nb2ok(Y, X) :- b2(Y, X), !hit3(Y, X).\nsqfill(Y, X) :- in3(Y, X).\nsqfill(Y2, X2) :- b2ok(Y, X), px(Y2, X2, 0), Y1 = Y + 1, X1 = X + 1, Y2 >= Y, Y2 <= Y1, X2 >= X, X2 <= X1."
+   }
+  ],
+  "why": "1-cells are exactly the union of largest-first non-overlapping empty squares of side >= 2",
+  "invariants": [
+   "all 5 cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "320afe60",
+  "reading": "Each colour-1 shape is classified: closed shapes (solid or with an enclosed hole) turn 2 and slide to the left border; shapes whose outline has a gap turn 3 and slide to the right border, keeping their rows.",
+  "verb": "sort shapes to sides",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each colour-1 object",
+   "test": "closed outline/solid vs outline with an opening",
+   "closed": "recolour 2, move left to the border",
+   "open": "recolour 3, move right to the border"
+  },
+  "why": "every object keeps its shape and row span, touches the left (2) or right (3) border, and the rest is background 4",
+  "invariants": [
+   "object shapes",
+   "object row positions",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "32597951",
+  "reading": "Inside the bounding box of the colour-8 cells, every 1 becomes 3.",
+  "verb": "recolour inside box",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "inbox8"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inbox8",
+    "datalog": "ya(min(Y)) :- px(Y, X, 8).\nyb(max(Y)) :- px(Y, X, 8).\nxa(min(X)) :- px(Y, X, 8).\nxb(max(X)) :- px(Y, X, 8).\ninbox8(Y, X) :- px(Y, X, 1), ya(A), yb(B), xa(L), xb(R), Y >= A, Y <= B, X >= L, X <= R."
+   }
+  ],
+  "why": "exactly the 1-cells within the 8-box change, to 3",
+  "invariants": [
+   "8 cells",
+   "cells outside the 8-box",
+   "grid size"
+  ],
+  "confidence": "high"
+ }
+]

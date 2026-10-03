@@ -1,0 +1,17 @@
+% row: d_56dc2b01_0_cap
+% source: distillation batch reading, task 56dc2b01, sample 0
+% output: cap(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+rowgap(Y) :- bgc(Y, X).
+colgap(X) :- bgc(Y, X).
+fullrow(Y) :- cell(Y, X, C), !rowgap(Y).
+fullcol(X) :- cell(Y, X, C), !colgap(X).
+shp(Y, X) :- cell(Y, X, C), !fullrow(Y), !fullcol(X).
+shminy(min(Y)) :- shp(Y, X).
+shmaxy(max(Y)) :- shp(Y, X).
+shminx(min(X)) :- shp(Y, X).
+shmaxx(max(X)) :- shp(Y, X).
+cap(Y, X) :- fullrow(S), shmaxy(M), M < S, shminy(N), Y = N - 1, px(Y, X, C).
+cap(Y, X) :- fullrow(S), shminy(N), N > S, shmaxy(M), Y = M + 1, px(Y, X, C).
+cap(Y, X) :- fullcol(S), shmaxx(M), M < S, shminx(N), X = N - 1, px(Y, X, C).
+cap(Y, X) :- fullcol(S), shminx(N), N > S, shmaxx(M), X = M + 1, px(Y, X, C).

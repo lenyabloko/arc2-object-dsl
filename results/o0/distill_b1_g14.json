@@ -1,0 +1,1385 @@
+{
+ "group": 14,
+ "tasks": {
+  "6a1e5592": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6a1e5592",
+     "sample": 0,
+     "verb": "fit pieces into holes",
+     "reading": "A red band at the top has holes; grey pieces lie at the bottom. Each grey piece is lifted into the hole whose shape it matches (fitting the red band like a jigsaw) and turns blue; the bottom is cleared.",
+     "why": "every hole is exactly filled by one piece of the same shape, recoloured 1",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6a1e5592",
+     "sample": 1,
+     "verb": "fit pieces into holes",
+     "reading": "Grey pieces at the bottom are jigsaw pieces; each slides (up and sideways) into the hole of the red ceiling whose shape it fills, and is recoloured blue; the grey originals vanish.",
+     "why": "blue cells in the output are exactly the grey pieces translated so their top part fills each red-band hole",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6a1e5592",
+     "sample": 2,
+     "verb": "fit pieces into holes",
+     "reading": "Grey(5) pieces at the bottom are lifted into the matching holes of the red(2) top band so each piece exactly fills a hole; placed pieces become blue(1) and the bottom is cleared.",
+     "why": "every hole in the red band is filled by exactly one piece of the same shape; the red band is unchanged",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6a1e5592",
+     "sample": 3,
+     "verb": "fit pieces into holes",
+     "reading": "Each grey (5) piece at the bottom is translated (no rotation) up into the top red wall so that it exactly plugs a matching hole, and is recoloured blue (1); its original position is cleared.",
+     "why": "every hole of the wall is filled exactly by one piece of identical shape; piece cell count is preserved",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6a1e5592",
+     "sample": 4,
+     "verb": "fit pieces into holes",
+     "reading": "Grey (5) pieces at the bottom are lifted into the matching holes of the red (2) band at the top, each piece fitting exactly into a hole, and recoloured blue (1); the bottom area is cleared.",
+     "why": "every hole in the red band is filled exactly by one grey piece of the same shape; no piece overlaps red",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "6b9890af": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6b9890af",
+     "sample": 0,
+     "verb": "scale shape into frame",
+     "reading": "The output is the red square outline cut out, with the small 3x3 coloured shape scaled up by an integer factor to exactly fill the outline's interior.",
+     "why": "output is the frame box and its interior equals the shape upscaled by interior_size/3",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6b9890af",
+     "sample": 1,
+     "verb": "scale pattern into frame",
+     "reading": "Output is the red square outline cut out; the small 3x3 pattern elsewhere is scaled up by (frame interior size / 3) to fill the frame interior.",
+     "why": "output box = red outline box; interior = pattern upscaled by integer factor",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6b9890af",
+     "sample": 2,
+     "verb": "scale shape into frame",
+     "reading": "The output is the red(2) square outline cut out, with the small 3x3 coloured shape scaled up by an integer factor to fill the outline's interior exactly.",
+     "why": "output size = outline box; interior = shape upscaled by interior/3",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6b9890af",
+     "sample": 3,
+     "verb": "scale shape into frame",
+     "reading": "Cut out the red square outline; inside it, draw the small 3x3 coloured shape scaled up by (interior size / 3) so it exactly fills the interior.",
+     "why": "output equals the outline box with the interior equal to the shape upscaled by an integer factor",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6b9890af",
+     "sample": 4,
+     "verb": "scale shape into frame",
+     "reading": "The output is the red square outline cut from the input, with the small 3x3 coloured shape scaled up by an integer factor to exactly fill the outline's interior.",
+     "why": "output size equals the outline's box; interior equals the shape's 3x3 box upscaled by interior/3",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "6c434453": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 4,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "6c434453",
+     "sample": 0,
+     "verb": "replace ring with plus",
+     "reading": "Every 3x3 hollow square of 1s is replaced by a red plus (corners become background); other shapes stay.",
+     "why": "at each background cell whose 8 neighbours are all foreground, the 3x3 block becomes 020/222/020",
+     "new_rows": [
+      "d_6c434453_0_ring_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_centre": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_0_ring_centre, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 6,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_6c434453_0_ring_centre": [
+       [
+        2,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6c434453",
+     "sample": 1,
+     "verb": "replace ring with plus",
+     "reading": "Every 3x3 hollow blue square (ring around one background cell) is replaced in place by a red plus sign; other shapes stay.",
+     "why": "each background cell with all 8 neighbours coloured gets the 3x3 unit 020/222/020 centred on it (its 0 corners overwrite the ring corners)",
+     "new_rows": [
+      "d_6c434453_1_ring_hole"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_hole": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_1_ring_hole, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 6,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_6c434453_1_ring_hole": [
+       [
+        2,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6c434453",
+     "sample": 2,
+     "verb": "replace ring by plus",
+     "reading": "Every hollow 3x3 square of 1s is replaced by a red(2) plus sign in the same 3x3 box (plus centred on the hole, corners cleared); all other shapes stay.",
+     "why": "each background cell fully surrounded by fg (a ring hole) becomes the centre of a 3x3 unit '.2./222/.2.' written over the ring",
+     "new_rows": [
+      "d_6c434453_2_ring_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_centre": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 6,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_6c434453_2_ring_centre": [
+       [
+        2,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6c434453",
+     "sample": 3,
+     "verb": "replace ring with plus",
+     "reading": "Every 3x3 hollow square of blue (1) is replaced by a red (2) plus sign in the same 3x3 box; all other objects stay.",
+     "why": "the unit is the constant 3x3 patch [020,222,020] (zeros written) placed with its top-left at the top-left of each hollow 3x3 ring (a background cell with all 8 neighbours filled)",
+     "new_rows": [
+      "d_6c434453_3_ring_tl"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_tl": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6c434453",
+     "sample": 4,
+     "verb": "replace ring with plus",
+     "reading": "Every hollow 3x3 square (8 cells around a background hole) is replaced by a red (2) plus of the same box; other shapes stay.",
+     "why": "at each background cell whose 8 neighbours are all foreground, the 3x3 box centred there becomes the plus 020/222/020 (corners cleared to 0); no other cell changes",
+     "new_rows": [
+      "d_6c434453_4_ring_centre"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ring_centre": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+      "stamp(anchors:=d_6c434453_4_ring_centre, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "n_fits": 6,
+     "frames": [
+      "stamp(anchors:=d_row, place:=nearest, rest:=kept, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=d_6c434453_4_ring_centre": [
+       [
+        2,
+        [
+         0
+        ]
+       ],
+       [
+        2,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "6ca952ad": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6ca952ad",
+     "sample": 0,
+     "verb": "drop to bottom",
+     "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; small objects (1-3 cells) stay where they are.",
+     "why": "each big object keeps its shape and column and its lowest cell ends on the bottom row; small objects unchanged",
+     "new_rows": [
+      "d_6ca952ad_0_big"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "big": [
+       "other",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6ca952ad",
+     "sample": 1,
+     "verb": "drop",
+     "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; smaller objects (single cells, short lines, 3-cell L) stay put.",
+     "why": "each object with >3 cells is translated down so its lowest row is the last grid row, shape unchanged",
+     "new_rows": [
+      "d_6ca952ad_1_big"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "big": [
+       "other",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6ca952ad",
+     "sample": 2,
+     "verb": "drop large objects",
+     "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; objects of 3 or fewer cells stay where they are.",
+     "why": "each object with size >= 4 keeps its shape and its bottom row ends on the last grid row; smaller objects are unchanged",
+     "new_rows": [
+      "d_6ca952ad_2_big"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "big": [
+       "other",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6ca952ad",
+     "sample": 3,
+     "verb": "drop heavy pieces",
+     "reading": "Each 4-connected piece of 4 or more cells falls straight down until it touches the bottom edge; pieces of 3 or fewer cells (short lines, single cells, the small L) stay where they are.",
+     "why": "each heavy piece keeps its shape and column and ends with its lowest row on the bottom border (downward direction); light pieces unchanged",
+     "new_rows": [
+      "d_6ca952ad_3_heavy"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "heavy": [
+       "other",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6ca952ad",
+     "sample": 4,
+     "verb": "drop large objects",
+     "reading": "Objects of 4 or more cells fall straight down until they touch the bottom border; objects of 1-3 cells stay where they are.",
+     "why": "each subject object keeps its shape and column and its lowest row becomes the last grid row (direction down every pair)",
+     "new_rows": [
+      "d_6ca952ad_4_big_obj"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "big_obj": [
+       "other",
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "6cf79266": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "6cf79266",
+     "sample": 0,
+     "verb": "fill empty 3x3 squares",
+     "reading": "Every 3x3 square made entirely of 0 is filled with 1; when two such squares overlap, only the first in reading order is filled.",
+     "why": "exactly the cells of the chosen all-0 3x3 squares become 1",
+     "new_rows": [
+      "d_6cf79266_0_sq3"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sq3": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_6cf79266_0_sq3)",
+      "fill(colour:=train, region:=d_6cf79266_0_sq3)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_6cf79266_0_sq3": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        18,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6cf79266",
+     "sample": 1,
+     "verb": "fill empty square",
+     "reading": "In the noisy grid, each 3x3 square made entirely of 0 is filled with 1 (scanning top-left first, a square overlapping an already chosen one is skipped).",
+     "why": "exactly the cells of non-overlapping all-0 3x3 squares become 1",
+     "new_rows": [
+      "d_6cf79266_1_zero_square"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zero_square": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_6cf79266_1_zero_square)",
+      "fill(colour:=train, region:=d_6cf79266_1_zero_square)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_6cf79266_1_zero_square": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        18,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6cf79266",
+     "sample": 2,
+     "verb": "fill empty 3x3 squares",
+     "reading": "Each 3x3 window that is entirely background(0) is filled with blue(1); where two such windows overlap only the first in reading order is filled.",
+     "why": "exactly the 9 cells of each non-overlapping all-0 3x3 window become 1; nothing else changes",
+     "new_rows": [
+      "d_6cf79266_2_empty3"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "empty3": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_6cf79266_2_empty3)",
+      "fill(colour:=train, region:=d_6cf79266_2_empty3)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_6cf79266_2_empty3": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        18,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6cf79266",
+     "sample": 3,
+     "verb": "fill empty 3x3 squares",
+     "reading": "Find the 3x3 squares that are entirely background (0) in the noisy grid and paint them blue (1); when two such squares overlap, only the first in reading order is painted.",
+     "why": "every cell of each selected all-zero 3x3 square becomes 1; nothing else changes (the third pair has two overlapping candidates, only the upper-left one is filled)",
+     "new_rows": [
+      "d_6cf79266_3_empty3"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "empty3": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_6cf79266_3_empty3)",
+      "fill(colour:=train, region:=d_6cf79266_3_empty3)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_6cf79266_3_empty3": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        18,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "6cf79266",
+     "sample": 4,
+     "verb": "fill empty squares",
+     "reading": "Each 3x3 window that is entirely colour 0 is filled with blue (1); when two such windows overlap only the first in reading order is filled.",
+     "why": "the 9 cells of each kept all-0 3x3 window become 1; nothing else changes (colour 0 is not always the background, so the row uses px(...,0))",
+     "new_rows": [
+      "d_6cf79266_4_zero_sq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zero_sq": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_6cf79266_4_zero_sq)",
+      "fill(colour:=train, region:=d_6cf79266_4_zero_sq)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_6cf79266_4_zero_sq": [
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        9,
+        [
+         0
+        ]
+       ],
+       [
+        18,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "6d0160f0": {
+   "n_readings": 5,
+   "n_executable": 2,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6d0160f0",
+     "sample": 0,
+     "verb": "copy panel to indexed slot",
+     "reading": "The grid is 3x3 panels cut by grey lines. The panel containing a yellow 4 is copied into the panel slot given by the 4's position inside its panel; all other panels are cleared.",
+     "why": "output panel at the 4's local position equals the source panel; every other panel is empty",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6d0160f0",
+     "sample": 1,
+     "verb": "relocate panel",
+     "reading": "The grid is 3x3 panels split by grey lines; the panel containing a yellow 4 is copied into the panel whose position matches the 4's position inside its panel; all other panels are cleared to 0.",
+     "why": "output = separators + source panel content at destination panel, zeros elsewhere",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6d0160f0",
+     "sample": 2,
+     "verb": "relocate keyed panel",
+     "reading": "The grid is 3x3 panels cut by grey(5) lines; the panel containing a yellow(4) cell is copied into the panel whose position matches the 4's position inside its own panel, and every other panel is cleared.",
+     "why": "output = separators + source panel content pasted at target panel, everything else 0",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6d0160f0",
+     "sample": 3,
+     "verb": "relocate marked panel",
+     "reading": "The grid is a 3x3 array of 3x3 panels split by grey lines. The panel containing a yellow (4) cell is copied into the panel whose index equals the 4's position inside its own panel; every other panel is cleared, separators kept.",
+     "why": "output has exactly one non-empty panel, equal to the input's 4-panel, at the index given by the 4's local position",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6d0160f0",
+     "sample": 4,
+     "verb": "copy marked panel to indexed slot",
+     "reading": "The grid is 3x3 panels split by grey (5) lines; the panel containing a yellow 4 is copied into the panel whose position matches the 4's position inside its own panel, and all other panels are cleared.",
+     "why": "output panel at the 4's local position equals the source panel; every other panel is all 0; separators unchanged",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 4,
+     "open": [
+      "anchors",
+      "unit",
+      "rest",
+      "place"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "6d58a25d": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6d58a25d",
+     "sample": 0,
+     "verb": "draw vertical rain line",
+     "reading": "A large umbrella shape sits among scattered single cells. Each single cell lying below the umbrella in a column it covers draws a vertical line of its colour from just under the umbrella down to the bottom border.",
+     "why": "each such column is filled with the marker colour from the cell below the umbrella to the bottom row; umbrella untouched",
+     "new_rows": [
+      "d_6d58a25d_0_under"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "under": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6d58a25d",
+     "sample": 1,
+     "verb": "drop curtain",
+     "reading": "A hat-shaped object shelters the columns below it; in each hat column that contains a marker dot below the hat, a vertical line of the marker colour is drawn from just under the hat down to the bottom border.",
+     "why": "new cells are exactly the vertical runs below the hat in columns holding a marker beneath it",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "subject",
+      "target"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6d58a25d",
+     "sample": 2,
+     "verb": "draw rain under umbrella",
+     "reading": "Under the umbrella-shaped object, each column that has a scattered dot below the umbrella gets a full vertical line in the dot colour from just under the umbrella down to the bottom edge.",
+     "why": "each sheltered dot extends vertically: upward until the first umbrella cell (not crossing it) and downward to the grid border",
+     "new_rows": [
+      "d_6d58a25d_2_sheltered"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "sheltered": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6d58a25d",
+     "sample": 3,
+     "verb": "draw line under arch",
+     "reading": "A big chevron shape sits above scattered single dots. In each column where a dot lies below the chevron, a line of the dot colour is drawn from just under the chevron's lowest cell in that column down to the bottom edge.",
+     "why": "each line runs vertically through a dot below the arch, upward until the arch (first obstacle) and downward to the bottom border; dots not under the arch, or above it, draw nothing",
+     "new_rows": [
+      "d_6d58a25d_3_under_arch"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "under_arch": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "stop"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6d58a25d",
+     "sample": 4,
+     "verb": "drop curtain lines",
+     "reading": "Under the large umbrella-shaped object, every column that holds a single marker below the umbrella is filled with the marker colour from just under the umbrella down to the bottom border; other markers stay.",
+     "why": "each source marker's column is coloured vertically from the first cell below the umbrella (obstacle, upward) to the bottom border (downward)",
+     "new_rows": [
+      "d_6d58a25d_4_under_umbrella"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "under_umbrella": [
+       "other",
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "6e02f1e3": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6e02f1e3",
+     "sample": 0,
+     "verb": "draw pattern by colour count",
+     "reading": "The output is a 3x3 pattern of 5 chosen by the number of colours in the input: 1 colour gives a full top row, 2 colours the main diagonal, 3 colours the anti-diagonal.",
+     "why": "output equals the pattern indexed by the input's colour count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e02f1e3",
+     "sample": 1,
+     "verb": "draw by colour count",
+     "reading": "Output is a 3x3 grey line chosen by the number of distinct colours in the input: 1 colour -> top row, 2 colours -> main diagonal, 3 colours -> anti-diagonal; rest 0.",
+     "why": "the grey line chosen by the distinct-colour count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e02f1e3",
+     "sample": 2,
+     "verb": "draw pattern by colour count",
+     "reading": "Output 3x3 of grey(5) on background chosen by how many colours the input has: 1 colour gives the top row, 2 colours the main diagonal, 3 colours the anti-diagonal.",
+     "why": "the output pattern is a fixed function of the input's colour count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e02f1e3",
+     "sample": 3,
+     "verb": "draw pattern by colour count",
+     "reading": "Count the distinct colours of the 3x3 input: one colour gives a grey (5) top row, two colours give the grey main diagonal, three colours give the grey anti-diagonal; everything else becomes 0.",
+     "why": "output is one of three fixed 3x3 patterns chosen only by the input's colour count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e02f1e3",
+     "sample": 4,
+     "verb": "draw pattern by colour count",
+     "reading": "Count the distinct colours of the 3x3 input: 1 colour gives a grey (5) top row, 2 colours give a grey main diagonal, 3 colours give a grey anti-diagonal; the rest is 0.",
+     "why": "output is fully determined by the input's distinct-colour count",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "6e19193c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6e19193c",
+     "sample": 0,
+     "verb": "shoot diagonal ray",
+     "reading": "Each L-shaped three-cell object shoots a diagonal line of its colour from its missing corner outward (away from the object, starting one cell beyond the missing corner) to the grid border.",
+     "why": "each diagonal starts one cell past the L's missing corner, continues in the direction away from the L, and reaches the border; missing corner stays empty",
+     "new_rows": [
+      "d_6e19193c_0_ray_start"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "ray_start": [
+       "subset",
+       "subset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e19193c",
+     "sample": 1,
+     "verb": "shoot diagonal ray",
+     "reading": "Each 3-cell L (2x2 box missing one corner) shoots a diagonal ray of its colour out of its missing corner, starting one step beyond that corner and running to the grid border.",
+     "why": "new cells are exactly the diagonal rays beyond each L's missing corner",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e19193c",
+     "sample": 2,
+     "verb": "shoot diagonal ray",
+     "reading": "Each L-shaped 3-cell object (a 2x2 box missing one corner) shoots a diagonal ray of its own colour from its missing corner outward (away from the object) to the grid edge; the missing corner itself stays empty.",
+     "why": "every ray starts one diagonal step beyond the missing corner, points away from the L's elbow, and runs until the border",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e19193c",
+     "sample": 3,
+     "verb": "shoot diagonal ray",
+     "reading": "Each L-tromino (three cells of a 2x2 box) shoots a diagonal ray of its colour out of its missing corner: the corner cell stays empty and the ray starts one step beyond it, continuing to the grid edge.",
+     "why": "the ray lies on the diagonal through the L's filled corner and its empty corner, pointing away from the L, coloured like the L, from the cell after the notch to the border",
+     "new_rows": [
+      "d_6e19193c_3_notch"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "notch": [
+       "other",
+       "other"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6e19193c",
+     "sample": 4,
+     "verb": "shoot diagonal ray",
+     "reading": "Each L-tromino (2x2 box missing one cell) shoots a diagonal ray of its colour from its missing corner outward (away from the elbow) to the grid border; the missing corner cell itself stays empty.",
+     "why": "each ray is a diagonal line of the object's colour from beyond the gap to the border",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "6f473927": {
+   "n_readings": 5,
+   "n_executable": 3,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "6f473927",
+     "sample": 0,
+     "verb": "reflect with colour inversion",
+     "reading": "The grid is doubled in width: the input is joined to its left-right mirror image with colours inverted (0 becomes 8, 2 becomes 0); the mirrored copy goes on the side whose edge the red shape touches.",
+     "why": "one half equals the input, the other half equals the inverted mirror, joined at the touched edge",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6f473927",
+     "sample": 1,
+     "verb": "mirror and invert",
+     "reading": "The output doubles the width: the input plus its left-right mirror image with colours inverted (0->8, 2->0), the mirror attached on the side where the red shape touches the edge so the reds meet in the middle.",
+     "why": "output = [input | inverted mirror] or [inverted mirror | input]",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "6f473927",
+     "sample": 2,
+     "verb": "append inverted mirror",
+     "reading": "The output is the input placed beside its left-right mirror image with colours inverted (0 -> 8, 2 -> 0); the inverted mirror goes on the side where the shape touches the grid edge (right if it touches the right edge, else left).",
+     "why": "output halves: one is the input, the other is the flipped, colour-complemented input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6f473927",
+     "sample": 3,
+     "verb": "append inverted mirror",
+     "reading": "The output doubles the width: the input is kept and a horizontally mirrored copy with colours inverted (0 becomes 8, 2 becomes 0) is attached on the side whose edge the red shape touches.",
+     "why": "output = input beside its inverted mirror, mirrored about the edge column the shape touches",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "6f473927",
+     "sample": 4,
+     "verb": "mirror and invert",
+     "reading": "The output places beside the input a left-right mirror of it with colours swapped (0 -> 8, 2 -> 0), on the side where the red shape touches the input's edge.",
+     "why": "output width is twice the input; one half is the input, the other is its inverted mirror joined at the edge the shape touches",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "axis",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  }
+ }
+}

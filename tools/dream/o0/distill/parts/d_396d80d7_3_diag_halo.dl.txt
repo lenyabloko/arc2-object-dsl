@@ -1,0 +1,10 @@
+% row: d_396d80d7_3_diag_halo
+% source: distillation batch reading, task 396d80d7, sample 3
+% output: diag_halo(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+ortho(DY, DX) :- off(DY, DX), DY = 0.
+ortho(DY, DX) :- off(DY, DX), DX = 0.
+diag(DY, DX) :- off(DY, DX), !ortho(DY, DX).
+dtouch(Y, X) :- px(Y, X, C), diag(DY, DX), Y2 = Y + DY, X2 = X + DX, isfg(Y2, X2).
+otouch(Y, X) :- px(Y, X, C), ortho(DY, DX), Y2 = Y + DY, X2 = X + DX, isfg(Y2, X2).
+diag_halo(Y, X) :- dtouch(Y, X), !otouch(Y, X), !isfg(Y, X).

@@ -1,0 +1,5 @@
+% row: d_17829a00_1_pieces
+% source: distillation batch reading, task 17829a00, sample 1
+% output: pieces(Y, X)
+my(max(Y)) :- px(Y, X, C).
+pieces(Y, X) :- cell(Y, X, C), Y > 0, my(M), Y < M.

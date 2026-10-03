@@ -1,0 +1,10 @@
+% row: d_6cf79266_0_sq3
+% source: distillation batch reading, task 6cf79266, sample 0
+% output: sq3(Y, X)
+z(Y, X) :- px(Y, X, 0).
+sq(Y, X) :- z(Y, X), Y1 = Y + 1, Y2 = Y + 2, X1 = X + 1, X2 = X + 2, z(Y, X1), z(Y, X2), z(Y1, X), z(Y1, X1), z(Y1, X2), z(Y2, X), z(Y2, X1), z(Y2, X2).
+earlier(Y, X) :- sq(Y, X), sq(A, B), A < Y, DA = Y - A, DA <= 2, DB = X - B, DB <= 2, DB >= -2.
+earlier(Y, X) :- sq(Y, X), sq(Y, B), B < X, DB = X - B, DB <= 2.
+pick(Y, X) :- sq(Y, X), !earlier(Y, X).
+sq3(Y, X) :- pick(A, B), Y = A + 1, X = B + 1.
+sq3(Y, X) :- pick(A, B), off(DY, DX), Y = A + 1 + DY, X = B + 1 + DX.

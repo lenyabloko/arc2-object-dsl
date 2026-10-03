@@ -1,0 +1,67 @@
+{
+ "58f5dbd5": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p1.f_58f5dbd5 (Fable packet 1, literal reading)"
+ },
+ "22425bda": {
+  "result": "empty",
+  "n_predictions": 1,
+  "program": "overnight_p1.f_22425bda (Fable packet 1, literal reading)"
+ },
+ "21897d95": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p1.f_21897d95 (Fable packet 1, literal reading; pointer connectivity: T 4-connected, V 8-connected; pointer region = most common colour around it)"
+ },
+ "291dc1e1": {
+  "result": "wrong",
+  "n_predictions": 1,
+  "program": "overnight_p1.f_291dc1e1 (Fable packet 1, literal; runs = 4-connected non-background chains; centring exact)"
+ },
+ "65b59efc": {
+  "result": "empty",
+  "n_predictions": 1,
+  "program": "Fable revision; abstains on test: the test inputs have 3 x 4 panels, the definition says 3 x 3"
+ },
+ "f931b4a8": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p2.f_f931b4a8 (Fable packet 2, literal)"
+ },
+ "c1990cce": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p2.f_c1990cce (Fable packet 2, literal)"
+ },
+ "7b5033c1": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p2.f_7b5033c1 (Fable packet 2, literal)"
+ },
+ "eee78d87": {
+  "result": "wrong",
+  "n_predictions": 1,
+  "program": "overnight_p2.f_eee78d87 (Fable packet 2, literal lookup)"
+ },
+ "332202d5": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p3.f_332202d5 (Fable revision: equal-colour tie)"
+ },
+ "782b5218": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p3.f_782b5218 (Fable packet 3, literal; sides = 4-connected components of non-red cells)"
+ },
+ "522fdd07": {
+  "result": "exact",
+  "n_predictions": 1,
+  "program": "overnight_p3.f_522fdd07 (Fable packet 3, literal; squares = 4-connected one-colour components)"
+ },
+ "5ecac7f7": {
+  "result": "wrong",
+  "n_predictions": 1,
+  "program": "overnight_p3.f_5ecac7f7 (Fable packet 3; separator = the one colour whose full columns cut equal-width panels)"
+ }
+}

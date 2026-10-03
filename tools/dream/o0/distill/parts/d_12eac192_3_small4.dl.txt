@@ -1,0 +1,10 @@
+% row: d_12eac192_3_small4
+% source: distillation batch reading, task 12eac192, sample 3
+% output: small4(Y, X)
+o4(DY, DX) :- off(DY, DX), DY = 0.
+o4(DY, DX) :- off(DY, DX), DX = 0.
+same4(Y, X, Y2, X2) :- cell(Y, X, C), o4(DY, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+deg(Y, X, count(Y2, X2)) :- same4(Y, X, Y2, X2).
+has(Y, X) :- same4(Y, X, Y2, X2).
+small4(Y, X) :- cell(Y, X, C), !has(Y, X).
+small4(Y, X) :- deg(Y, X, N), N = 1, same4(Y, X, Y2, X2), deg(Y2, X2, M), M = 1.

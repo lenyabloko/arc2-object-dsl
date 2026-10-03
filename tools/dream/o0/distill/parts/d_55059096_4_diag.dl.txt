@@ -1,0 +1,6 @@
+% row: d_55059096_4_diag
+% source: distillation batch reading, task 55059096, sample 4
+% output: diag(Y, X)
+ctr(Y, X) :- cell(Y, X, C), Ya = Y - 1, cell(Ya, X, C), Yb = Y + 1, cell(Yb, X, C), Xa = X - 1, cell(Y, Xa, C), Xb = X + 1, cell(Y, Xb, C).
+diag(Y, X) :- ctr(Y1, X1), ctr(Y2, X2), px(Y, X, 0), D = Y2 - Y1, E = X2 - X1, D = E, D > 1, Y > Y1, Y < Y2, F = Y - Y1, G = X - X1, F = G.
+diag(Y, X) :- ctr(Y1, X1), ctr(Y2, X2), px(Y, X, 0), D = Y2 - Y1, E = X1 - X2, D = E, D > 1, Y > Y1, Y < Y2, F = Y - Y1, G = X1 - X, F = G.

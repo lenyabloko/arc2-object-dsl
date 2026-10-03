@@ -1,0 +1,17 @@
+% row: d_d931c21c_2_ring_in
+% source: distillation batch reading, task d931c21c, sample 2
+% output: ring_in(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !isfg(Y, X).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+n4(DY, DX) :- off(DY, DX), DY = 0.
+n4(DY, DX) :- off(DY, DX), DX = 0.
+out(Y, X) :- bgc(Y, X), Y = 0.
+out(Y, X) :- bgc(Y, X), X = 0.
+out(Y, X) :- bgc(Y, X), my(M), Y = M.
+out(Y, X) :- bgc(Y, X), mx(M), X = M.
+out(Y2, X2) :- out(Y, X), n4(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+ins(Y, X) :- bgc(Y, X), !out(Y, X).
+loop(O) :- obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, ins(Y2, X2).
+ring_in(Y, X) :- ins(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, obj(O, Y2, X2), loop(O).

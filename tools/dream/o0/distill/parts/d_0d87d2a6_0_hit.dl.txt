@@ -1,0 +1,9 @@
+% row: d_0d87d2a6_0_hit
+% source: distillation batch reading, task 0d87d2a6, sample 0
+% output: hit(Y, X)
+one(Y, X) :- cell(Y, X, C), C = 1.
+line(Y, X) :- one(Y, X1), one(Y, X2), px(Y, X, C), X1 < X, X < X2.
+line(Y, X) :- one(Y1, X), one(Y2, X), px(Y, X, C), Y1 < Y, Y < Y2.
+crossed(O) :- line(Y, X), cell(Y, X, C), C = 2, obj(O, Y, X).
+hit(Y, X) :- line(Y, X).
+hit(Y, X) :- crossed(O), obj(O, Y, X).

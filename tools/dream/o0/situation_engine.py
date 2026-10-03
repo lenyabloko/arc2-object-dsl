@@ -691,6 +691,7 @@ def fill_region(g, b, name):
         f = r_frame(g, b)
         if not f: return None
         return {(y, x) for y in range(f[0], f[2] + 1) for x in range(f[1], f[3] + 1) if g[y][x] == b} or None
+    if name in DEF_ROWS: return cells_of(rv(name, g, b))              # rows as definitions (v21 A.7): any definition row
     return None
 
 

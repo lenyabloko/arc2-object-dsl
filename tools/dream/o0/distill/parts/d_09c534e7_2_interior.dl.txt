@@ -1,0 +1,7 @@
+% row: d_09c534e7_2_interior
+% source: distillation batch reading, task 09c534e7, sample 2
+% output: interior(Y, X)
+inb(Y, X) :- px(Y, X, C).
+nb0(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, D), D = 0.
+nbout(Y, X) :- px(Y, X, C), off(DY, DX), Y2 = Y + DY, X2 = X + DX, !inb(Y2, X2).
+interior(Y, X) :- px(Y, X, C), C = 1, !nb0(Y, X), !nbout(Y, X).

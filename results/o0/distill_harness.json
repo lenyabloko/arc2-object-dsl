@@ -1,0 +1,772 @@
+{
+ "007bbfb7": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=fg, unit:=input)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "0ca9ddb6": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+   "support": 2,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "0d3d703e": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=input)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "0d87d2a6": {
+  "result": "wrong",
+  "n_predictions": 2,
+  "first": {
+   "key": "fill(colour:=train, region:=d_0d87d2a6_2_paint)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "10fcaaa3": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_10fcaaa3_0_diag_bg)[input:=tile(extent:=train, unit:=input)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "12eac192": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_12eac192_0_small4)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "14754a24": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_14754a24_0_plus5)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "14b8e18c": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_14b8e18c_3_corner_out)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "15663ba9": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_15663ba9_4_concave)[input:=fill(colour:=train, region:=d_15663ba9_4_convex)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "15696249": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=uniform_line, unit:=input)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "1acc24af": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_1acc24af_3_plug)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "21f83797": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=region)[input:=extend(colour:=own, source:=markers, stop:=border)@grid]",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "2281f1f4": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_2281f1f4_0_cross)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "25ff71a9": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "move(subject:=fg, target:=train)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "2bee17df": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_2bee17df_0_lane)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "31aa019c": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=d_31aa019c_1_uniq, place:=nearest, rest:=cleared, unit:=train)",
+   "support": 1,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "31adaf00": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_31adaf00_1_zero_square)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "32597951": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_32597951_0_ones_in_box)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "3618c87e": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "move(subject:=train, target:=train)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "36fdfd69": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_36fdfd69_0_box2)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "3aa6fb7a": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_3aa6fb7a_0_hole)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "3bd67248": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_3bd67248_1_bottom_row)[input:=fill(colour:=train, region:=d_3bd67248_1_antidiag)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "3f7978a0": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "extract(region:=d_3f7978a0_0_pillars)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "4258a5f9": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "4612dd53": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_4612dd53_0_gaps)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "48f8583b": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=d_48f8583b_0_rare, unit:=input)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "496994bd": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "mirror(axis:=axis, subject:=fg)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "4a1cacc2": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=own, region:=d_4a1cacc2_0_corner_box)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "4ff4c9da": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_4ff4c9da_2_shape_twin)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "50846271": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_50846271_0_plus_gap)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "50f325b5": {
+  "result": "wrong",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_50f325b5_0_shape_match)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "5117e062": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=nearest, subject:=smallest)[input:=extract(region:=exemplar)@grid]",
+   "support": 3,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "55059096": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_55059096_0_diagjoin)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "56dc2b01": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_56dc2b01_0_cap)[input:=move(subject:=largest, target:=obstacle)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "5b6cbef5": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=fg, unit:=input)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "623ea044": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "extend(colour:=own, source:=markers, stop:=border)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "67385a82": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_67385a82_0_paired)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "67a423a3": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_67a423a3_1_ring)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "6c434453": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=d_6c434453_2_ring_centre, place:=nearest, rest:=kept, unit:=train)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "6cf79266": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_6cf79266_0_sq3)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "6f8cd79b": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_6f8cd79b_0_edge_ring)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "770cc55f": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_770cc55f_0_overlap_half)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "7d419a02": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_7d419a02_3_cone)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "7e02026e": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_7e02026e_0_plus0)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "834ec97d": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_834ec97d_0_stripes_above)[input:=move(subject:=markers, target:=train)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "8fbca751": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_8fbca751_0_boxbg)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "913fb3ed": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "9565186b": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=fg)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "95990924": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=objects, place:=nearest, rest:=kept, unit:=train)",
+   "support": 5,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "9def23fe": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_9def23fe_1_open_lanes)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "9f5f939b": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_9f5f939b_0_cross_centre)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "9f8de559": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_9f8de559_1_ray_hit)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "a04b2602": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_a04b2602_0_halo)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "a416b8f3": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=train, unit:=input)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "a644e277": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "extract(region:=d_a644e277_0_gap_corner)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "a8d7556c": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_a8d7556c_0_zero_rect)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "a9f96cdd": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+   "support": 5,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "aa300dc3": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_aa300dc3_0_corner_diag)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "aedd82e4": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_aedd82e4_0_lone4)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "aee291af": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "extract(region:=d_aee291af_2_oddbox)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "af902bf9": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_af902bf9_0_inrect)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "b27ca6d3": {
+  "result": "exact",
+  "n_predictions": 2,
+  "first": {
+   "key": "fill(colour:=train, region:=d_b27ca6d3_0_domino_halo)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "b60334d2": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "ba26e723": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_ba26e723_0_every_third)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "bcb3040b": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_bcb3040b_0_between_twos)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "c1d99e64": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_c1d99e64_0_empty_line)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "c97c0139": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_c97c0139_0_diamond)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "ccd554ac": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "tile(extent:=d_ccd554ac_3_allcells, unit:=input)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d06dbe63": {
+  "result": "wrong",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+   "support": 3,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d23f8c26": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_d23f8c26_1_offmid)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d2acf2cb": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_d2acf2cb_0_link)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d364b489": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "stamp(anchors:=markers, place:=nearest, rest:=kept, unit:=train)",
+   "support": 5,
+   "n_open": 1
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d37a1ef5": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_d37a1ef5_0_frame_minus_box)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d6ad076f": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_d6ad076f_0_inner_between)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "d94c3b52": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "recolour(key:=train, subject:=d_d94c3b52_2_between8)[input:=recolour(key:=train, subject:=d_d94c3b52_2_same_shape)@grid]",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "da2b0fe3": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=d_da2b0fe3_0_gap_line)",
+   "support": 1,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ },
+ "dbc1a6ce": {
+  "result": "exact",
+  "n_predictions": 1,
+  "first": {
+   "key": "fill(colour:=train, region:=between)",
+   "support": 5,
+   "n_open": 0
+  },
+  "program": "distillation batch 1 readings, pooled by support (G48), then fewest open slots"
+ }
+}

@@ -1,0 +1,8 @@
+% row: d_a04b2602_0_halo
+% source: distillation batch reading, task a04b2602, sample 0
+% output: halo(Y, X)
+orth4(DY, DX) :- off(DY, DX), DY = 0.
+orth4(DY, DX) :- off(DY, DX), DX = 0.
+nb3(Y, X, count(DY, DX)) :- px(Y, X, 2), off(DY, DX), orth4(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 3).
+anchor(Y, X) :- nb3(Y, X, N), N > 1.
+halo(Y, X) :- anchor(AY, AX), off(DY, DX), Y = AY + DY, X = AX + DX, px(Y, X, C), !anchor(Y, X).

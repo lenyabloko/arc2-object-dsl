@@ -1,0 +1,8 @@
+% row: d_834ec97d_1_stripes_above
+% source: distillation batch reading, task 834ec97d, sample 1
+% output: stripes_above(Y, X)
+mk(Y, X) :- cell(Y, X, C).
+par(X) :- mk(Y, X).
+par(X2) :- par(X), X2 = X + 2, px(0, X2, C).
+par(X2) :- par(X), X2 = X - 2, px(0, X2, C).
+stripes_above(Y, X) :- mk(MY, MX), par(X), px(Y, X, C), Y < MY.

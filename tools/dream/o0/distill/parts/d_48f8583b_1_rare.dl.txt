@@ -1,0 +1,6 @@
+% row: d_48f8583b_1_rare
+% source: distillation batch reading, task 48f8583b, sample 1
+% output: rare(Y, X)
+ccount(C, count(Y, X)) :- px(Y, X, C).
+cmin(min(N)) :- ccount(C, N).
+rare(Y, X) :- px(Y, X, C), ccount(C, N), cmin(M), N = M.

@@ -1,0 +1,12 @@
+% row: d_770cc55f_0_overlap_half
+% source: distillation batch reading, task 770cc55f, sample 0
+% output: overlap_half(Y, X)
+maxy(max(Y)) :- px(Y, X, C).
+sep(Y) :- cell(Y, X, C), Y > 0, maxy(M), Y < M.
+topc(X) :- cell(Y, X, C), Y = 0.
+botc(X) :- cell(Y, X, C), maxy(M), Y = M.
+topw(count(X)) :- topc(X).
+botw(count(X)) :- botc(X).
+both(X) :- topc(X), botc(X).
+overlap_half(Y, X) :- both(X), px(Y, X, C), sep(S), Y > S, maxy(M), Y < M, topw(A), botw(B), B > A.
+overlap_half(Y, X) :- both(X), px(Y, X, C), sep(S), Y < S, Y > 0, topw(A), botw(B), A > B.

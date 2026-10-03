@@ -1,0 +1,225 @@
+[
+ {
+  "task": "9d9215db",
+  "reading": "The corner pattern is completed with 4-fold mirror symmetry about the grid's centre row and column; a colour that sits one gap away from a corner element along a row/column is continued as a dotted line (every other cell) until the mirrored copy of that element.",
+  "verb": "symmetrize and dot-connect",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "axes": "centre row and centre column of the grid (4-fold copy of every fg cell)",
+   "seed": "a cell two steps from a corner element along its row or column (e.g. the 1 next to the 4, the 3 next to the 4)",
+   "line": "dotted run of the seed colour on every second cell from the seed to the mirrored corner element"
+  },
+  "why": "output is symmetric about both centre axes, and each seeded row/column carries an alternating dotted line between the two mirrored corner elements",
+  "invariants": [
+   "grid size",
+   "input fg cells",
+   "bg cells on even offsets of dotted lines"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "9ddd00f0",
+  "reading": "The partial pattern is completed so the output is symmetric (left-right, up-down and diagonal) about the grid centre.",
+  "verb": "complete symmetry",
+  "frame": {
+   "how": "mirror",
+   "args": {
+    "axis": "axis",
+    "subject": "fg"
+   }
+  },
+  "why": "the output is the input plus its reflections about the grid's centre axes (and diagonal); no input fg cell changes",
+  "invariants": [
+   "grid size",
+   "all input fg cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9def23fe",
+  "reading": "The big colour-2 rectangle shoots full-width/height bands of 2 in all four directions through each of its rows and columns, except a row/column-side that contains a marker, which stays empty.",
+  "verb": "project rectangle unless blocked",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "rays",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "rays",
+    "datalog": "osize(O, count(Y, X)) :- obj(O, Y, X).\nmaxsize(max(N)) :- osize(O, N).\nrect(Y, X) :- osize(O, N), maxsize(N), obj(O, Y, X).\nry0(min(Y)) :- rect(Y, X).\nry1(max(Y)) :- rect(Y, X).\nrx0(min(X)) :- rect(Y, X).\nrx1(max(X)) :- rect(Y, X).\nrowin(Y) :- rect(Y, X).\ncolin(X) :- rect(Y, X).\nmk(Y, X) :- cell(Y, X, C), !rect(Y, X).\nblockr(Y) :- mk(Y, X), rx1(B), X > B.\nblockl(Y) :- mk(Y, X), rx0(B), X < B.\nblocku(X) :- mk(Y, X), ry0(B), Y < B.\nblockd(X) :- mk(Y, X), ry1(B), Y > B.\nrays(Y, X) :- rowin(Y), rx1(B), px(Y, X, C), X > B, !blockr(Y).\nrays(Y, X) :- rowin(Y), rx0(B), px(Y, X, C), X < B, !blockl(Y).\nrays(Y, X) :- colin(X), ry0(B), px(Y, X, C), Y < B, !blocku(X).\nrays(Y, X) :- colin(X), ry1(B), px(Y, X, C), Y > B, !blockd(X)."
+   }
+  ],
+  "why": "every cell in a rectangle row/column outside the rectangle on a side with no marker becomes 2; sides with a marker are untouched",
+  "invariants": [
+   "rectangle",
+   "markers",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f5f939b",
+  "reading": "A background cell becomes 4 when four 2-cell segments of 1 point at it from left, right, up and down, each separated from it by one gap cell.",
+  "verb": "mark cross centre",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "cross_centre",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "cross_centre",
+    "datalog": "one(Y, X) :- px(Y, X, C), C = 1.\ncross_centre(Y, X) :- px(Y, X, C), !cell(Y, X, C), A1 = Y - 2, A2 = Y - 3, B1 = Y + 2, B2 = Y + 3, L1 = X - 2, L2 = X - 3, R1 = X + 2, R2 = X + 3, one(A1, X), one(A2, X), one(B1, X), one(B2, X), one(Y, L1), one(Y, L2), one(Y, R1), one(Y, R2)."
+   }
+  ],
+  "why": "exactly the cells with 1s at distances 2 and 3 in all four orthogonal directions turn 4",
+  "invariants": [
+   "all 1 segments",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "9f8de559",
+  "reading": "The 6-line ending in a 2 points a direction; continuing from the 2 in that direction through the 7 interior, the first border-band cell hit is turned to 7.",
+  "verb": "shoot ray, punch border",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "punch",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "punch",
+    "datalog": "two(Y, X) :- px(Y, X, C), C = 2.\nsix(Y, X) :- px(Y, X, C), C = 6.\ninner(Y, X) :- px(Y, X, C), C = 7.\ndir(DY, DX) :- two(Y, X), off(DY, DX), Y2 = Y - DY, X2 = X - DX, six(Y2, X2).\nwalk(Y, X) :- two(Y, X).\nwalk(Y, X) :- walk(Y1, X1), dir(DY, DX), Y = Y1 + DY, X = X1 + DX, inner(Y, X).\npunch(Y, X) :- walk(Y1, X1), dir(DY, DX), Y = Y1 + DY, X = X1 + DX, px(Y, X, C), !inner(Y, X)."
+   }
+  ],
+  "why": "only one cell changes: the first non-7 cell on the ray from the 2 (direction 6->2), which becomes 7",
+  "invariants": [
+   "6/2 line",
+   "interior",
+   "all other border cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a04b2602",
+  "reading": "Each 2 lying inside a green (3) rectangle gets its 8 neighbours painted 1 (a 3x3 halo), overwriting whatever is there except other such 2s; 2s outside the rectangles get no halo.",
+  "verb": "halo inner seeds",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "halo",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "halo",
+    "datalog": "green(Y, X) :- px(Y, X, C), C = 3.\nvert(Y, X) :- px(Y, X, C), C = 2, Y1 = Y - 1, green(Y1, X).\nvert(Y, X) :- px(Y, X, C), C = 2, Y1 = Y + 1, green(Y1, X).\nhorz(Y, X) :- px(Y, X, C), C = 2, X1 = X - 1, green(Y, X1).\nhorz(Y, X) :- px(Y, X, C), C = 2, X1 = X + 1, green(Y, X1).\nseed(Y, X) :- vert(Y, X), horz(Y, X).\nhalo(Y, X) :- seed(Y0, X0), off(DY, DX), Y = Y0 + DY, X = X0 + DX, px(Y, X, C), !seed(Y, X)."
+   }
+  ],
+  "why": "every 8-neighbour of a 2 that has 3 both vertically and horizontally adjacent becomes 1; the seeds themselves stay 2",
+  "invariants": [
+   "seed 2s",
+   "cells away from seeds",
+   "grid size"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a096bf4d",
+  "reading": "The grid is a lattice of identical 2x2-interior boxes; when two boxes in the same box-row or box-column share an odd cell (same position in the box, same non-standard colour), every box between them gets that cell too.",
+  "verb": "propagate between boxes",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "each 4x4 box (2x2 interior) of the lattice, pitch 5",
+   "odd cell": "a box-interior cell whose colour differs from the most common colour at that box position",
+   "pair": "two boxes on the same box-row or box-column with the same odd cell at the same position",
+   "effect": "boxes strictly between the pair get that cell set to the odd colour"
+  },
+  "why": "only interior cells at the shared position of boxes lying between a matching pair change, to the pair's colour",
+  "invariants": [
+   "box borders",
+   "gaps",
+   "boxes outside any matching pair"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a406ac07",
+  "reading": "The last column and last row each list colour runs; every cell whose row's last-column colour equals its column's last-row colour is filled with that colour, giving a diagonal of blocks.",
+  "verb": "cross-product blocks",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "blocks",
+    "colour": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "blocks",
+    "datalog": "lastc(max(X)) :- px(Y, X, C).\nlastr(max(Y)) :- px(Y, X, C).\nblocks(Y, X) :- lastc(Wm), lastr(Hm), px(Y, Wm, C), px(Hm, X, C), px(Y, X, D)."
+   }
+  ],
+  "slots": {
+   "colour": "per cell: the shared key colour C of its row (in last column) and column (in last row)"
+  },
+  "why": "cell (y,x) gets colour c exactly when lastcol[y] = lastrow[x] = c; all other cells unchanged",
+  "invariants": [
+   "last row",
+   "last column",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "a416b8f3",
+  "reading": "The input is repeated twice side by side.",
+  "verb": "tile",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "train",
+    "unit": "input"
+   }
+  },
+  "why": "output is 1x2 blocks, each an exact copy of the input",
+  "invariants": [
+   "input content"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "a59b95c0",
+  "reading": "The 3x3 input is tiled k by k, where k is the number of distinct colours in the input.",
+  "verb": "tile by colour count",
+  "frame": {
+   "how": "tile",
+   "args": {
+    "extent": "open",
+    "unit": "input"
+   }
+  },
+  "slots": {
+   "extent": "k x k blocks, all filled, k = number of distinct colours in the input (2,2,4,3,3 in training)"
+  },
+  "why": "every block of the output is the input; block count per side equals the number of colours",
+  "invariants": [
+   "input content"
+  ],
+  "confidence": "low"
+ }
+]

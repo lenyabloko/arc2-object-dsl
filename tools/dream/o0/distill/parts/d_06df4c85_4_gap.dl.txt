@@ -1,0 +1,7 @@
+% row: d_06df4c85_4_gap
+% source: distillation batch reading, task 06df4c85, sample 4
+% output: gap(Y, X)
+uneven(Y) :- px(Y, X, C), px(Y, X2, C2), C < C2.
+sepc(C) :- px(Y, X, C), !uneven(Y).
+gap(Y, X) :- px(Y, X, 0), px(Y, X1, C), px(Y, X2, C), X1 < X, X < X2, C > 0, !sepc(C).
+gap(Y, X) :- px(Y, X, 0), px(Y1, X, C), px(Y2, X, C), Y1 < Y, Y < Y2, C > 0, !sepc(C).

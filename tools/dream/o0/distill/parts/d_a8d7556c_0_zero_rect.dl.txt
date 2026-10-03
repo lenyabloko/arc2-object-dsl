@@ -1,0 +1,17 @@
+% row: d_a8d7556c_0_zero_rect
+% source: distillation batch reading, task a8d7556c, sample 0
+% output: zero_rect(Y, X)
+zero(Y, X) :- px(Y, X, 0).
+nz(Y, X) :- px(Y, X, C), C != 0.
+cand(Y0, X0, Y1, X1) :- zero(Y0, X0), zero(Y1, X1), Y1 > Y0, X1 > X0.
+bad(Y0, X0, Y1, X1) :- cand(Y0, X0, Y1, X1), nz(Y, X), Y >= Y0, Y <= Y1, X >= X0, X <= X1.
+rect(Y0, X0, Y1, X1) :- cand(Y0, X0, Y1, X1), !bad(Y0, X0, Y1, X1).
+grow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = Y0 - 1, rect(A, X0, Y1, X1).
+grow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = X0 - 1, rect(Y0, A, Y1, X1).
+grow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = Y1 + 1, rect(Y0, X0, A, X1).
+grow(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), A = X1 + 1, rect(Y0, X0, Y1, A).
+mrect(Y0, X0, Y1, X1) :- rect(Y0, X0, Y1, X1), !grow(Y0, X0, Y1, X1).
+marea(Y0, X0, Y1, X1, A) :- mrect(Y0, X0, Y1, X1), H0 = Y1 - Y0, H = H0 + 1, W0 = X1 - X0, W = W0 + 1, A = H * W.
+dom(Y0, X0, Y1, X1) :- marea(Y0, X0, Y1, X1, A), marea(P0, Q0, P1, Q1, B), B > A, P0 <= Y1, Y0 <= P1, Q0 <= X1, X0 <= Q1.
+keep(Y0, X0, Y1, X1) :- mrect(Y0, X0, Y1, X1), !dom(Y0, X0, Y1, X1).
+zero_rect(Y, X) :- keep(Y0, X0, Y1, X1), zero(Y, X), Y >= Y0, Y <= Y1, X >= X0, X <= X1.

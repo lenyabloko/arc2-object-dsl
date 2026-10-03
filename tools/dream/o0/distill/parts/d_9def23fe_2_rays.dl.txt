@@ -1,0 +1,21 @@
+% row: d_9def23fe_2_rays
+% source: distillation batch reading, task 9def23fe, sample 2
+% output: rays(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+maxsize(max(N)) :- osize(O, N).
+rect(Y, X) :- osize(O, N), maxsize(N), obj(O, Y, X).
+ry0(min(Y)) :- rect(Y, X).
+ry1(max(Y)) :- rect(Y, X).
+rx0(min(X)) :- rect(Y, X).
+rx1(max(X)) :- rect(Y, X).
+rowin(Y) :- rect(Y, X).
+colin(X) :- rect(Y, X).
+mk(Y, X) :- cell(Y, X, C), !rect(Y, X).
+blockr(Y) :- mk(Y, X), rx1(B), X > B.
+blockl(Y) :- mk(Y, X), rx0(B), X < B.
+blocku(X) :- mk(Y, X), ry0(B), Y < B.
+blockd(X) :- mk(Y, X), ry1(B), Y > B.
+rays(Y, X) :- rowin(Y), rx1(B), px(Y, X, C), X > B, !blockr(Y).
+rays(Y, X) :- rowin(Y), rx0(B), px(Y, X, C), X < B, !blockl(Y).
+rays(Y, X) :- colin(X), ry0(B), px(Y, X, C), Y < B, !blocku(X).
+rays(Y, X) :- colin(X), ry1(B), px(Y, X, C), Y > B, !blockd(X).

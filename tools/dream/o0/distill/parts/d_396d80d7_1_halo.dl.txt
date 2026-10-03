@@ -1,0 +1,8 @@
+% row: d_396d80d7_1_halo
+% source: distillation batch reading, task 396d80d7, sample 1
+% output: halo(Y, X)
+bgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).
+dfg(Y, X) :- bgc(Y, X), off(DY, DX), off(DY, 0), off(0, DX), Y2 = Y + DY, X2 = X + DX, cell(Y2, X2, C).
+ofg(Y, X) :- bgc(Y, X), off(DY, DX), DY = 0, X2 = X + DX, cell(Y, X2, C).
+ofg(Y, X) :- bgc(Y, X), off(DY, DX), DX = 0, Y2 = Y + DY, cell(Y2, X, C).
+halo(Y, X) :- dfg(Y, X), !ofg(Y, X).

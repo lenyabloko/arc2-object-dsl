@@ -1,0 +1,16 @@
+% row: d_14b8e18c_0_tick
+% source: distillation batch reading, task 14b8e18c, sample 0
+% output: tick(Y, X)
+ominy(O, min(Y)) :- obj(O, Y, X).
+omaxy(O, max(Y)) :- obj(O, Y, X).
+ominx(O, min(X)) :- obj(O, Y, X).
+omaxx(O, max(X)) :- obj(O, Y, X).
+sq(O, Y0, Y1, X0, X1) :- ominy(O, Y0), omaxy(O, Y1), ominx(O, X0), omaxx(O, X1), H = Y1 - Y0, V = X1 - X0, H = V, H > 0, obj(O, Y0, X0), obj(O, Y0, X1), obj(O, Y1, X0), obj(O, Y1, X1).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y0 - 1, X = X0, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y0, X = X0 - 1, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y0 - 1, X = X1, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y0, X = X1 + 1, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y1 + 1, X = X0, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y1, X = X0 - 1, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y1 + 1, X = X1, px(Y, X, C).
+tick(Y, X) :- sq(O, Y0, Y1, X0, X1), Y = Y1, X = X1 + 1, px(Y, X, C).

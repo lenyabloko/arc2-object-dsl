@@ -1,0 +1,8 @@
+% row: d_3de23699_2_inner
+% source: distillation batch reading, task 3de23699, sample 2
+% output: inner(Y, X)
+y0(min(Y)) :- cell(Y, X, C).
+y1(max(Y)) :- cell(Y, X, C).
+x0(min(X)) :- cell(Y, X, C).
+x1(max(X)) :- cell(Y, X, C).
+inner(Y, X) :- px(Y, X, C), y0(A), y1(B), x0(L), x1(R), Y > A, Y < B, X > L, X < R.

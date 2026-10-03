@@ -1,0 +1,4 @@
+% row: d_5623160b_4_piece
+% source: distillation batch reading, task 5623160b, sample 4
+% output: piece(Y, X)
+piece(Y, X) :- cell(Y, X, C), C < 9.

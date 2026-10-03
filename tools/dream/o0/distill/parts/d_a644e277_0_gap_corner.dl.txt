@@ -1,0 +1,6 @@
+% row: d_a644e277_0_gap_corner
+% source: distillation batch reading, task a644e277, sample 0
+% output: gap_corner(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !fgc(Y, X).
+gap_corner(Y, X) :- bgc(Y, X), X1 = X - 1, X2 = X + 1, Y1 = Y - 1, Y2 = Y + 1, cell(Y, X1, S), cell(Y, X2, S), cell(Y1, X, S), cell(Y2, X, S).

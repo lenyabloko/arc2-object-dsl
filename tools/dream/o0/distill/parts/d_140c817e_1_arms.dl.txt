@@ -1,0 +1,4 @@
+% row: d_140c817e_1_arms
+% source: distillation batch reading, task 140c817e, sample 1
+% output: arms(Y, X)
+arms(Y, X) :- cell(Y, X, C), C = 1.

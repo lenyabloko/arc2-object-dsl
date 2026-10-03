@@ -1,0 +1,4 @@
+% row: d_9f5f939b_0_cross_centre
+% source: distillation batch reading, task 9f5f939b, sample 0
+% output: cross_centre(Y, X)
+cross_centre(Y, X) :- px(Y, X, 8), XL2 = X - 2, XL3 = X - 3, XR2 = X + 2, XR3 = X + 3, YU2 = Y - 2, YU3 = Y - 3, YD2 = Y + 2, YD3 = Y + 3, px(Y, XL2, 1), px(Y, XL3, 1), px(Y, XR2, 1), px(Y, XR3, 1), px(YU2, X, 1), px(YU3, X, 1), px(YD2, X, 1), px(YD3, X, 1).

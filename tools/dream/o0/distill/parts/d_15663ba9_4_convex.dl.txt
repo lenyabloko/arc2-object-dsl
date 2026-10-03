@@ -1,0 +1,15 @@
+% row: d_15663ba9_4_convex
+% source: distillation batch reading, task 15663ba9, sample 4
+% output: convex(Y, X)
+hmax(max(Y)) :- px(Y, X, C).
+wmax(max(X)) :- px(Y, X, C).
+out(Y, X) :- px(Y, X, 0), Y = 0.
+out(Y, X) :- px(Y, X, 0), X = 0.
+out(Y, X) :- px(Y, X, 0), hmax(M), Y = M.
+out(Y, X) :- px(Y, X, 0), wmax(M), X = M.
+out(Y2, X2) :- out(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 0).
+hn(Y, X, DX) :- cell(Y, X, C), off(DY, DX), DY = 0, X2 = X + DX, cell(Y, X2, C2).
+vn(Y, X, DY) :- cell(Y, X, C), off(DY, DX), DX = 0, Y2 = Y + DY, cell(Y2, X, C2).
+concave(Y, X) :- hn(Y, X, DX), vn(Y, X, DY), Y2 = Y + DY, X2 = X + DX, out(Y2, X2).
+corner(Y, X) :- hn(Y, X, DX), vn(Y, X, DY).
+convex(Y, X) :- corner(Y, X), !concave(Y, X).

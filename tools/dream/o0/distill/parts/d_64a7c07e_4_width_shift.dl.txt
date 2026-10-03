@@ -1,0 +1,7 @@
+% row: d_64a7c07e_4_width_shift
+% source: distillation batch reading, task 64a7c07e, sample 4
+% output: width_shift(Y, X)
+xlo(O, min(X)) :- obj(O, Y, X).
+xhi(O, max(X)) :- obj(O, Y, X).
+wid(O, W) :- xlo(O, A), xhi(O, B), D = B - A, W = D + 1.
+width_shift(Y, X2) :- obj(O, Y, X), wid(O, W), X2 = X + W.

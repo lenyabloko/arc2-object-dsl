@@ -1,0 +1,11 @@
+% row: d_310f3251_1_ul_wrap
+% source: distillation batch reading, task 310f3251, sample 1
+% output: ul_wrap(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+upy(Y, Y2) :- px(Y, X, C), Y > 0, Y2 = Y - 1.
+upy(Y, Y2) :- px(Y, X, C), Y = 0, my(Y2).
+leftx(X, X2) :- px(Y, X, C), X > 0, X2 = X - 1.
+leftx(X, X2) :- px(Y, X, C), X = 0, mx(X2).
+ul_wrap(Y2, X2) :- cell(Y, X, C), upy(Y, Y2), leftx(X, X2), !fgc(Y2, X2).

@@ -1,0 +1,244 @@
+[
+ {
+  "task": "2bcee788",
+  "reading": "The red (2) cells mark which side of the shape to reflect onto: the shape is mirrored across the line between itself and the red cells (red is overwritten), then the background becomes 3.",
+  "verb": "reflect then repaint background",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "mirror",
+    "args": {
+     "axis": "axis",
+     "subject": "shape"
+    }
+   },
+   "outer": {
+    "how": "fill",
+    "args": {
+     "region": "bg",
+     "colour": "train"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "shape",
+    "datalog": "shape(Y, X) :- cell(Y, X, C), !px(Y, X, 2)."
+   }
+  ],
+  "why": "the non-red cells plus their reflection about the shape/red boundary give the output's foreground; every 0 becomes 3",
+  "invariants": [
+   "shape colour",
+   "grid size",
+   "original shape cells"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "2bee17df",
+  "reading": "Every row or column whose interior (all cells except its two end cells) is entirely background gets its background cells painted 3.",
+  "verb": "fill clear lanes",
+  "frame": {
+   "how": "fill",
+   "args": {
+    "region": "lane",
+    "colour": "train"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "lane",
+    "datalog": "maxx(max(X)) :- px(Y, X, C).\nmaxy(max(Y)) :- px(Y, X, C).\nrowhit(Y) :- cell(Y, X, C), maxx(M), X > 0, X < M.\ncolhit(X) :- cell(Y, X, C), maxy(M), Y > 0, Y < M.\nlane(Y, X) :- px(Y, X, C), !cell(Y, X, C), !rowhit(Y).\nlane(Y, X) :- px(Y, X, C), !cell(Y, X, C), !colhit(X)."
+   }
+  ],
+  "why": "exactly the background cells of fully clear wall-to-wall rows/columns become 3",
+  "invariants": [
+   "walls (8/2 cells)",
+   "all other background cells"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2dd70a9a",
+  "reading": "A green path starts from the 2-cell green segment, runs along its direction, turns 90 degrees when the next cell is an 8 obstacle, and continues until it joins the 2-cell red segment.",
+  "verb": "draw turning path",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "start": "the 2-cell green (3) segment and its direction",
+   "goal": "the 2-cell red (2) segment",
+   "obstacle": "8 cells that force a 90-degree turn",
+   "colour": "3 (green)"
+  },
+  "why": "the drawn 3 cells form one connected orthogonal path from green to red that never overlaps an 8",
+  "invariants": [
+   "all 8 cells",
+   "red segment",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "2de01db2",
+  "reading": "Each row is inverted against its dominant colour: cells of the row's main colour become 0, and every other cell (0 or stray colours) becomes the main colour.",
+  "verb": "invert each row",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "unit": "each row",
+   "key colour": "the most common non-zero colour of that row",
+   "map": "main colour -> 0, everything else -> main colour"
+  },
+  "why": "per row, the output is the complement of the main-colour cells, painted in the main colour",
+  "invariants": [
+   "grid size",
+   "row's main colour"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "2faf500b",
+  "reading": "Each 9-object carries a 6 stripe through its middle; the object is split into two halves at that middle, the 6 cells are erased, and the two halves each move one cell away from the split line.",
+  "verb": "split and push apart",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 9/6 object",
+   "cut": "the midline of the object perpendicular to the 6 stripe's long direction",
+   "erase": "6 cells become 0",
+   "move": "each half shifts 1 cell outward, away from the cut"
+  },
+  "why": "every output 9 cell is an input 9 cell shifted by 1 away from its object's midline",
+  "invariants": [
+   "9 cell count",
+   "object halves keep shape"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "310f3251",
+  "reading": "Each background cell diagonally up-left of a foreground cell (wrapping around the grid edges) becomes 2; the result is then tiled 3x3.",
+  "verb": "mark diagonal then tile",
+  "frame": {
+   "form": "seq",
+   "sub": {
+    "how": "fill",
+    "args": {
+     "region": "diag",
+     "colour": "train"
+    }
+   },
+   "outer": {
+    "how": "tile",
+    "args": {
+     "extent": "train",
+     "unit": "input"
+    }
+   }
+  },
+  "new_rows": [
+   {
+    "name": "diag",
+    "datalog": "maxx(max(X)) :- px(Y, X, C).\nmaxy(max(Y)) :- px(Y, X, C).\nbgc(Y, X) :- px(Y, X, C), !cell(Y, X, C).\ndiag(Y, X) :- bgc(Y, X), Y2 = Y + 1, X2 = X + 1, cell(Y2, X2, D).\ndiag(Y, X) :- bgc(Y, X), maxx(M), X = M, Y2 = Y + 1, X2 = 0, cell(Y2, X2, D).\ndiag(Y, X) :- bgc(Y, X), maxy(N), Y = N, Y2 = 0, X2 = X + 1, cell(Y2, X2, D).\ndiag(Y, X) :- bgc(Y, X), maxy(N), Y = N, maxx(M), X = M, Y2 = 0, X2 = 0, cell(Y2, X2, D)."
+   }
+  ],
+  "why": "output is 3H x 3W and every block equals the input with 2 added at the toroidal up-left diagonal of each fg cell",
+  "invariants": [
+   "fg cells",
+   "all 9 blocks identical"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "31aa019c",
+  "reading": "Find the one colour that occurs exactly once; keep that cell, erase everything else, and surround it with a 3x3 ring of 2.",
+  "verb": "isolate unique cell and frame it",
+  "frame": {
+   "how": "stamp",
+   "args": {
+    "anchors": "unique",
+    "unit": "train",
+    "rest": "cleared",
+    "place": "open"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "unique",
+    "datalog": "ccount(C, count(Y, X)) :- cell(Y, X, C).\nunique(Y, X) :- cell(Y, X, C), ccount(C, N), N = 1."
+   }
+  ],
+  "why": "the output has only the unique-colour cell plus the 8 cells around it in colour 2",
+  "invariants": [
+   "position and colour of the unique cell",
+   "grid size"
+  ],
+  "confidence": "low"
+ },
+ {
+  "task": "31adaf00",
+  "reading": "All-background squares of side 2 or more are filled with 1, largest first and without overlap (greedy packing of zero squares).",
+  "verb": "fill empty squares",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "region": "maximal all-0 k x k squares (k >= 2), chosen greedily from largest k down, scanning top-left to bottom-right, never overlapping already filled cells",
+   "colour": "1"
+  },
+  "why": "filled cells are exactly the union of non-overlapping zero squares chosen greedily largest-first",
+  "invariants": [
+   "all 5 cells",
+   "grid size"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "task": "320afe60",
+  "reading": "Each 1-object is classified: closed shapes (no gap from their hole to the outside, or solid) turn 2 and slide to the left edge; open shapes turn 3 and slide to the right edge, keeping their rows.",
+  "verb": "sort shapes by closure",
+  "frame": {
+   "how": "other"
+  },
+  "slots": {
+   "subject": "each 1-object",
+   "test": "whether its enclosed background is sealed (closed) or leaks to outside (open)",
+   "closed": "recolour 2, move horizontally to touch left border",
+   "open": "recolour 3, move horizontally to touch right border"
+  },
+  "why": "every object keeps shape and row span; colour and side depend only on closure",
+  "invariants": [
+   "object shapes",
+   "object vertical positions",
+   "background 4"
+  ],
+  "confidence": "high"
+ },
+ {
+  "task": "32597951",
+  "reading": "Inside the bounding box of the 8 cells, every 1 becomes 3; nothing else changes.",
+  "verb": "recolour inside box",
+  "frame": {
+   "how": "recolour",
+   "args": {
+    "key": "train",
+    "subject": "inbox"
+   }
+  },
+  "new_rows": [
+   {
+    "name": "inbox",
+    "datalog": "eminy(min(Y)) :- px(Y, X, 8).\nemaxy(max(Y)) :- px(Y, X, 8).\neminx(min(X)) :- px(Y, X, 8).\nemaxx(max(X)) :- px(Y, X, 8).\ninbox(Y, X) :- px(Y, X, 1), eminy(A), emaxy(B), eminx(C), emaxx(D), Y >= A, Y <= B, X >= C, X <= D."
+   }
+  ],
+  "why": "exactly the 1 cells within the 8s' bounding box become 3",
+  "invariants": [
+   "8 cells",
+   "all cells outside the 8 box"
+  ],
+  "confidence": "high"
+ }
+]

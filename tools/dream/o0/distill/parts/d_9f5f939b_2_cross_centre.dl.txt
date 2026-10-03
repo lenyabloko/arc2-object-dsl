@@ -1,0 +1,5 @@
+% row: d_9f5f939b_2_cross_centre
+% source: distillation batch reading, task 9f5f939b, sample 2
+% output: cross_centre(Y, X)
+one(Y, X) :- px(Y, X, C), C = 1.
+cross_centre(Y, X) :- px(Y, X, C), !cell(Y, X, C), A1 = Y - 2, A2 = Y - 3, B1 = Y + 2, B2 = Y + 3, L1 = X - 2, L2 = X - 3, R1 = X + 2, R2 = X + 3, one(A1, X), one(A2, X), one(B1, X), one(B2, X), one(Y, L1), one(Y, L2), one(Y, R1), one(Y, R2).

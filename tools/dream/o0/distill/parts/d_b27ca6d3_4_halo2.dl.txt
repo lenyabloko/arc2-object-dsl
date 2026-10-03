@@ -1,0 +1,6 @@
+% row: d_b27ca6d3_4_halo2
+% source: distillation batch reading, task b27ca6d3, sample 4
+% output: halo2(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+pair(O) :- osize(O, N), N = 2.
+halo2(Y2, X2) :- pair(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, px(Y2, X2, 0).

@@ -1,0 +1,1600 @@
+{
+ "group": 22,
+ "tasks": {
+  "a644e277": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "a644e277",
+     "sample": 0,
+     "verb": "crop between marked crossings",
+     "reading": "A grid is cut by separator lines with noise in the cells. Four separator crossings show the background colour instead of the line colour; the output is the box with those four cells as corners, cut from the input.",
+     "why": "exactly four background cells have all four orthogonal neighbours in one separator colour; the output equals the input box spanned by them",
+     "new_rows": [
+      "d_a644e277_0_gap_corner"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_corner": [
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extract(region:=d_a644e277_0_gap_corner)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "extract(region:=d_row)"
+     ],
+     "fillers": {
+      "extract.region=d_a644e277_0_gap_corner": [
+       [
+        4,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a644e277",
+     "sample": 1,
+     "verb": "crop",
+     "reading": "The grid is cut into cells by separator lines; exactly four separator crossings are background-coloured. Output is the sub-grid whose corners are those four crossings (inclusive).",
+     "why": "exactly four background cells have all four orthogonal neighbours of one same non-background colour; the output equals the input box spanned by them",
+     "new_rows": [
+      "d_a644e277_1_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap": [
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extract(region:=d_a644e277_1_gap)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "extract(region:=d_row)"
+     ],
+     "fillers": {
+      "extract.region=d_a644e277_1_gap": [
+       [
+        4,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a644e277",
+     "sample": 2,
+     "verb": "cut out gapped panel",
+     "reading": "The grid is cut into panels by separator lines; one rectangle of four lines has background-coloured gaps where those lines cross. The output is that rectangle cut out, its boundary lines included.",
+     "why": "exactly four background cells have all four orthogonal neighbours of one separator colour; their bounding box equals the output",
+     "new_rows": [
+      "d_a644e277_2_gap_corners"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gap_corners": [
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extract(region:=d_a644e277_2_gap_corners)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "extract(region:=d_row)"
+     ],
+     "fillers": {
+      "extract.region=d_a644e277_2_gap_corners": [
+       [
+        4,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a644e277",
+     "sample": 3,
+     "verb": "cut out marked cell block",
+     "reading": "The input is a lattice of separator lines with noise. Four lattice crossings are background-coloured gaps; the output is the rectangle cut out with those four gaps as its corners.",
+     "why": "exactly four background cells have all four orthogonal neighbours of one same non-background colour (the separator), and the output equals the input inside their bounding box",
+     "new_rows": [
+      "d_a644e277_3_lattice_gap"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "lattice_gap": [
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extract(region:=d_a644e277_3_lattice_gap)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "extract(region:=d_row)"
+     ],
+     "fillers": {
+      "extract.region=d_a644e277_3_lattice_gap": [
+       [
+        4,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a644e277",
+     "sample": 4,
+     "verb": "crop marked rectangle",
+     "reading": "The grid is cut into panels by full separator lines; two rows and two columns of separator colour have panel-colour gaps where they cross each other. Output is the box spanned by those four gap cells, outline included.",
+     "why": "exactly four non-separator cells have separator colour on all 4 sides; their bounding box equals the output",
+     "new_rows": [
+      "d_a644e277_4_gapc"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "gapc": [
+       "size",
+       "size"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "extract(region:=d_a644e277_4_gapc)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "extract(region:=d_row)"
+     ],
+     "fillers": {
+      "extract.region=d_a644e277_4_gapc": [
+       [
+        4,
+        [
+         3
+        ]
+       ],
+       [
+        4,
+        [
+         8
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "a79310a0": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "a79310a0",
+     "sample": 0,
+     "verb": "shift and recolour",
+     "reading": "The 8 shape moves down one row and is recoloured to 2.",
+     "why": "output shape equals input shape shifted by (+1,0), colour 8 becomes 2",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a79310a0",
+     "sample": 1,
+     "verb": "shift and recolour",
+     "reading": "The single 8 shape moves down one row and is recoloured to 2.",
+     "why": "output shape is the input shape translated by (+1,0) with colour 8 replaced by 2",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a79310a0",
+     "sample": 2,
+     "verb": "shift down and recolour",
+     "reading": "The single shape of 8 moves down one row and becomes colour 2.",
+     "why": "output = input translated by (+1,0) with 8 replaced by 2",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a79310a0",
+     "sample": 3,
+     "verb": "shift and recolour",
+     "reading": "The single 8 shape moves down one row and becomes colour 2.",
+     "why": "output fg = input fg translated by (+1,0), and 8 -> 2",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a79310a0",
+     "sample": 4,
+     "verb": "shift and recolour",
+     "reading": "The 8 shape moves down one row and is recoloured 2.",
+     "why": "output shape = input shape translated by (+1,0), colour 8 -> 2",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "a834deea": {
+   "n_readings": 5,
+   "n_executable": 4,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "a834deea",
+     "sample": 0,
+     "verb": "fill keypad",
+     "reading": "Each 5x5 room of 0 inside the 8 background has a 3x3 centre. Every 0 cell of that centre takes the digit at the same position of a fixed keypad [[1,7,6],[4,0,5],[2,9,3]]; its 8 cells stay 8.",
+     "why": "every changed cell is a 0 cell in a room centre, and its new colour is the keypad digit at its relative position",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a834deea",
+     "sample": 1,
+     "verb": "paint positional template",
+     "reading": "Each 5x5 window with an all-0 border has a 3x3 interior; every 0 cell of that interior is replaced by a fixed positional digit (176/405/293, centre stays 0); 8 cells stay.",
+     "why": "every changed cell is a 0 inside a window interior and becomes template[row][col] of its interior position",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a834deea",
+     "sample": 2,
+     "verb": "write positional code",
+     "reading": "Each 5x5 box of 0 (with 8 holes) has a 3x3 interior; every interior 0 cell except the centre is written with a fixed digit by its position: [[1,7,6],[4,-,5],[2,9,3]]. 8 cells and the centre are unchanged.",
+     "why": "every changed cell is an interior 0 of a box and gets the table digit for its position",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "a834deea",
+     "sample": 3,
+     "verb": "fill by positional keypad",
+     "reading": "Each 5x5 box of 0 inside the 8 background has a 3x3 interior of 8s and 0s. Every interior 0 becomes the colour at the same position in a fixed keypad 1 7 6 / 4 0 5 / 2 9 3, so a 0 at the centre stays 0. Interior 8s stay.",
+     "why": "on every pair, interior 0 cell at (r,c) of the box interior becomes K[r][c]; nothing else changes",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a834deea",
+     "sample": 4,
+     "verb": "fill holes with positional digits",
+     "reading": "Each 5x5 box outlined by 0 has a 3x3 interior; every 0 interior cell (except the centre) is written with a fixed keypad digit for its position: 1 7 6 / 4 . 5 / 2 9 3. Interior 8 cells and the centre stay.",
+     "why": "for each interior position the 0->digit value is the same in every box of every pair; 8 cells never change",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "a85d4709": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "a85d4709",
+     "sample": 0,
+     "verb": "paint row by marker column",
+     "reading": "Each row has one 5; the whole row is painted a colour chosen by the 5's column: left 2, middle 4, right 3.",
+     "why": "every output row is uniform, coloured by the column index of that row's 5",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a85d4709",
+     "sample": 1,
+     "verb": "colour row by marker column",
+     "reading": "Each row has one 5; the whole output row is painted by the column of that 5: column 0 -> 2, column 1 -> 4, column 2 -> 3.",
+     "why": "each output row is uniform and its colour depends only on the column of the 5 in that input row",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a85d4709",
+     "sample": 2,
+     "verb": "colour rows by marker column",
+     "reading": "Each row has one 5; the whole row is painted by the column of that 5: column 0 -> 2, column 1 -> 4, column 2 -> 3.",
+     "why": "each output row is uniform and its colour depends only on the marker's column",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a85d4709",
+     "sample": 3,
+     "verb": "colour row by marker column",
+     "reading": "Each row has one 5. The whole output row is filled with a colour set by that 5's column: column 0 gives 2, column 1 gives 4, column 2 gives 3.",
+     "why": "every output row is uniform, and its colour is key(column of the 5 in that input row)",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a85d4709",
+     "sample": 4,
+     "verb": "paint row by marker column",
+     "reading": "Each row has one 5; the whole row is painted by the 5's column: column 0 -> 2, column 1 -> 4, column 2 -> 3.",
+     "why": "every output row is uniform with the colour keyed by the 5's position in that input row",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "key",
+      "subject"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "a8c38be5": {
+   "n_readings": 5,
+   "n_executable": 0,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "a8c38be5",
+     "sample": 0,
+     "verb": "assemble jigsaw",
+     "reading": "Scattered 3x3 pieces (grey 5 with a coloured edge part) are assembled into a 9x9 square: each piece goes to the slot (corner, edge or centre) where its coloured part lies on the outer rim.",
+     "why": "every 3x3 block of the output is one input piece copied unchanged, and the coloured cells all lie on the outer rim",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "a8c38be5",
+     "sample": 1,
+     "verb": "assemble jigsaw",
+     "reading": "Nine 3x3 pieces (mostly 5 with coloured corner/edge cells) are scattered on a 0 background; they are assembled into a 9x9 square, each piece placed in the 3x3 slot matching where its coloured cells sit (corner pieces to corners, edge pieces to edges, plain 5 block in the centre).",
+     "why": "output is a 3x3 arrangement of exactly the input pieces, unrotated, with coloured parts facing outward",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "a8c38be5",
+     "sample": 2,
+     "verb": "assemble jigsaw",
+     "reading": "Nine 3x3 jigsaw pieces (grey 5 with coloured corner/edge bits) are scattered on 0; they are assembled into one 9x9 square whose coloured bits form the outer frame, with the all-grey piece in the centre.",
+     "why": "the output is the nine input pieces placed without rotation in a 3x3 arrangement",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "a8c38be5",
+     "sample": 3,
+     "verb": "assemble jigsaw",
+     "reading": "Nine 3x3 pieces (mostly 5, with coloured cells on some edges or corners) lie scattered on 0. They are put together unrotated into a 9x9 square: a piece with colour in a corner goes to that corner, a piece with colour along an edge goes to that edge's middle, and the plain piece goes in the centre.",
+     "why": "each output 3x3 block equals one input piece copied as-is, and its coloured cells lie on the outer boundary of the 9x9",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "a8c38be5",
+     "sample": 4,
+     "verb": "assemble jigsaw",
+     "reading": "Nine 3x3 pieces (grey 5 with coloured edge/corner cells) are scattered on the input; they are assembled like a jigsaw into a 9x9 grey square, each piece placed where its coloured cells form the outer border pattern (corners at corners, edges at edge-middles, plain piece in the centre).",
+     "why": "output is a 3x3 arrangement of the input pieces unchanged, coloured cells all on the outer ring",
+     "l4": "no executor (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  },
+  "a8d7556c": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 3,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "a8d7556c",
+     "sample": 0,
+     "verb": "fill empty rectangles",
+     "reading": "Rectangles of 0 at least 2x2 are filled with 2. Take the maximal all-0 rectangles; a rectangle that overlaps a strictly larger one is skipped.",
+     "why": "the changed cells are exactly the 0 cells of maximal all-0 rectangles (at least 2x2) that overlap no larger such rectangle; all become 2",
+     "new_rows": [
+      "d_a8d7556c_0_zero_rect"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zero_rect": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_a8d7556c_0_zero_rect)",
+      "fill(colour:=train, region:=d_a8d7556c_0_zero_rect)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_a8d7556c_0_zero_rect": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a8d7556c",
+     "sample": 1,
+     "verb": "fill rectangles",
+     "reading": "Solid rectangles of 0 at least 2x2 are filled with 2; where candidate rectangles overlap, only those not overlapped by a strictly larger one are filled.",
+     "why": "every 0 cell in a kept all-0 rectangle (both sides >= 2, no overlapping strictly larger such rectangle) becomes 2; nothing else changes",
+     "new_rows": [
+      "d_a8d7556c_1_zrect"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zrect": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_a8d7556c_1_zrect)",
+      "fill(colour:=train, region:=d_a8d7556c_1_zrect)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_a8d7556c_1_zrect": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a8d7556c",
+     "sample": 2,
+     "verb": "fill 2x2 holes",
+     "reading": "Every 0 cell that belongs to some all-0 2x2 square is painted 2; other cells stay.",
+     "why": "exactly the cells covered by all-0 2x2 squares become 2 (pairs 0,1 exact; pair 2 leaves two such cells at (8,12),(9,12) as 0, an apparent exception)",
+     "new_rows": [
+      "d_a8d7556c_2_zero_sq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "zero_sq": [
+       "equal",
+       "equal",
+       "superset"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a8d7556c",
+     "sample": 3,
+     "verb": "fill largest blank rectangles",
+     "reading": "In a noisy 5/0 field, blank (0) rectangles at least 2x2 are filled with 2. They are taken largest first and do not overlap: after the largest one is filled, the next largest among the remaining 0 cells is filled, and so on.",
+     "why": "greedy largest-first rectangle fill reproduces all three pairs. Filling every 0 cell that lies in some 2x2 zero block (a fill with a 2x2-block row) misses only two cells of pair 2, (8,12) and (9,12), which overlap the larger 4x2 rectangle",
+     "l4": "syn (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 2,
+     "open": [
+      "region",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "a8d7556c",
+     "sample": 4,
+     "verb": "fill open squares",
+     "reading": "All-0 rectangles at least 2x2 are filled with 2, except a rectangle overlapped by a strictly larger such rectangle (largest-first).",
+     "why": "every 2 cell lies in a >=2x2 all-0 rectangle not overlapped by a larger one; all other cells unchanged (plain 2x2 cover over-fills 2 cells in pair 3)",
+     "new_rows": [
+      "d_a8d7556c_4_fillsq"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "fillsq": [
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_a8d7556c_4_fillsq)",
+      "fill(colour:=train, region:=d_a8d7556c_4_fillsq)"
+     ],
+     "n_fits": 2,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_a8d7556c_4_fillsq": [
+       [
+        24,
+        [
+         0
+        ]
+       ],
+       [
+        22,
+        [
+         0
+        ]
+       ],
+       [
+        16,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "a9f96cdd": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 5,
+   "readings": [
+    {
+     "task": "a9f96cdd",
+     "sample": 0,
+     "verb": "stamp diagonal pattern",
+     "reading": "The single 2 is removed and its four diagonal neighbours get fixed colours: up-left 3, up-right 6, down-left 8, down-right 7 (clipped at the border).",
+     "why": "the output is the 3x3 pattern [[3,0,6],[0,0,0],[8,0,7]] centred on the marker, clipped to the grid",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 5,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a9f96cdd",
+     "sample": 1,
+     "verb": "stamp diagonal pattern",
+     "reading": "The single 2 cell is erased and its four diagonal neighbours get fixed colours: up-left 3, up-right 6, down-left 8, down-right 7 (clipped at the border).",
+     "why": "output is the 3x3 unit 3.6/.../8.7 centred on the marker, clipped to the grid, everything else 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 5,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a9f96cdd",
+     "sample": 2,
+     "verb": "stamp diagonal pattern",
+     "reading": "The single 2 is erased and its four diagonal neighbours get fixed colours: up-left 3, up-right 6, down-left 8, down-right 7 (clipped at the border).",
+     "why": "the output is the 3x3 pattern [[3,0,6],[0,0,0],[8,0,7]] centred on the marker, everything else 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 5,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a9f96cdd",
+     "sample": 3,
+     "verb": "stamp diagonal pattern",
+     "reading": "The single 2 is removed, and its four diagonal neighbours get 3 (up-left), 6 (up-right), 8 (down-left) and 7 (down-right), clipped at the grid edge.",
+     "why": "the output is the fixed 3x3 pattern 3.6/.../8.7 centred on the isolated 2, and everything else is 0",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 5,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "a9f96cdd",
+     "sample": 4,
+     "verb": "stamp corners",
+     "reading": "The single 2 is erased and replaced by four diagonal neighbours: 3 up-left, 6 up-right, 8 down-left, 7 down-right (clipped at the border).",
+     "why": "output = constant 3x3 pattern [[3,0,6],[0,0,0],[8,0,7]] centred on the 2, cropped to the grid",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "place"
+     ],
+     "fits": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)",
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "n_fits": 5,
+     "frames": [
+      "stamp(anchors:=markers, place:=nearest, rest:=cleared, unit:=train)"
+     ],
+     "fillers": {
+      "stamp.anchors=markers": [
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ],
+       [
+        1,
+        [
+         2
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "aa300dc3": {
+   "n_readings": 5,
+   "n_executable": 5,
+   "n_fitting": 5,
+   "harness": "exact",
+   "max_support": 1,
+   "readings": [
+    {
+     "task": "aa300dc3",
+     "sample": 0,
+     "verb": "draw longest diagonal",
+     "reading": "In the 0 room inside the 5 walls, an 8 diagonal is drawn from a top corner pocket (wall above and wall behind it). The diagonal chosen is the longest run of 0 cells.",
+     "why": "the 8 cells are exactly the longest diagonal 0-run that starts at a top corner pocket; nothing else changes",
+     "new_rows": [
+      "d_aa300dc3_0_corner_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "corner_diag": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "fill(colour:=train, region:=d_aa300dc3_0_corner_diag)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "fill(colour:=train, region:=d_row)"
+     ],
+     "fillers": {
+      "fill.region=d_aa300dc3_0_corner_diag": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        7,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "aa300dc3",
+     "sample": 1,
+     "verb": "draw longest diagonal",
+     "reading": "Inside the 0 region, the longest diagonal run of 0 that starts in a corner pocket (cell whose upper and side neighbours toward the run's back are walls) is recoloured 8.",
+     "why": "the changed cells are exactly one maximal diagonal 0-run starting at a corner pocket, the unique longest such run, and 0 -> 8 on it",
+     "new_rows": [
+      "d_aa300dc3_1_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_aa300dc3_1_diag)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_aa300dc3_1_diag": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        7,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "aa300dc3",
+     "sample": 2,
+     "verb": "draw longest diagonal",
+     "reading": "Inside the 5-walled region, the longest diagonal run of 0 cells is painted 8 (on a tie, the one lying on the grid's main diagonal/anti-diagonal).",
+     "why": "the 8 cells form one maximal diagonal run of 0 cells of maximum length; 0 becomes 8, nothing else changes",
+     "new_rows": [
+      "d_aa300dc3_2_long_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "long_diag": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_aa300dc3_2_long_diag)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_aa300dc3_2_long_diag": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        7,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "aa300dc3",
+     "sample": 3,
+     "verb": "draw longest diagonal",
+     "reading": "Inside the 0 area surrounded by 5, the longest straight diagonal run of 0 cells is recoloured 8. A tie (pair 1 has three parallel runs) goes to the run whose line passes nearest the grid centre.",
+     "why": "the 8 cells are exactly one maximal diagonal 0-run of maximum length (0 -> 8); nothing else changes",
+     "new_rows": [
+      "d_aa300dc3_3_long_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "long_diag": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_aa300dc3_3_long_diag)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_aa300dc3_3_long_diag": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        7,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "task": "aa300dc3",
+     "sample": 4,
+     "verb": "draw longest diagonal",
+     "reading": "Inside the 5-walled cavity, the longest diagonal run of 0 cells that starts in a top pocket corner is recoloured 8.",
+     "why": "the 8 cells are exactly one maximal diagonal 0-run, the longest among runs whose upper end has walls above and beside it (unique on every pair); key 0 -> 8",
+     "new_rows": [
+      "d_aa300dc3_4_diag"
+     ],
+     "row_errors": [],
+     "row_vs_changed": {
+      "diag": [
+       "equal",
+       "equal",
+       "equal",
+       "equal"
+      ]
+     },
+     "problems": [],
+     "executable": true,
+     "n_open": 0,
+     "open": [],
+     "fits": [
+      "recolour(key:=train, subject:=d_aa300dc3_4_diag)"
+     ],
+     "n_fits": 1,
+     "frames": [
+      "recolour(key:=train, subject:=d_row)"
+     ],
+     "fillers": {
+      "recolour.subject=d_aa300dc3_4_diag": [
+       [
+        8,
+        [
+         0
+        ]
+       ],
+       [
+        7,
+        [
+         0
+        ]
+       ],
+       [
+        6,
+        [
+         0
+        ]
+       ],
+       [
+        8,
+        [
+         0
+        ]
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "aab50785": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "aab50785",
+     "sample": 0,
+     "verb": "collect bracketed strips",
+     "reading": "Pairs of 2x2 8-blocks sit on the same two rows like brackets. The 2-row strip between each pair is cut out, and the strips are stacked top to bottom.",
+     "why": "every output row pair equals the cells between one bracket pair, in top-to-bottom order",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aab50785",
+     "sample": 1,
+     "verb": "cut between brackets and stack",
+     "reading": "Pairs of 2x2 blocks of 8 sit on the same two rows; the cells strictly between each pair are cut out and the cut strips are stacked top to bottom.",
+     "why": "each 2-row band of the output equals the input cells between one bracket pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aab50785",
+     "sample": 2,
+     "verb": "cut strips between paired squares",
+     "reading": "2x2 squares of 8 come in pairs on the same two rows; the 2-row strip strictly between each pair is cut out, and the strips are stacked top to bottom.",
+     "why": "every pair's gap has the same width, and the output equals the strips stacked",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aab50785",
+     "sample": 3,
+     "verb": "cut out between brackets and stack",
+     "reading": "Pairs of 2x2 blocks of 8 sit on the same two rows like brackets. For each pair, the 2-row strip strictly between the two blocks is cut out, and the strips are stacked top to bottom.",
+     "why": "on every pair, the output equals the vertical concatenation of the between-bracket strips",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aab50785",
+     "sample": 4,
+     "verb": "crop between brackets and stack",
+     "reading": "Pairs of 2x2 blocks of 8 sit on the same two rows; the 2-row strip strictly between each pair is cut out, and the strips are stacked top to bottom.",
+     "why": "every output 2-row band equals the input strip between one 8-square pair; all pairs have equal gap width",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 1,
+     "open": [
+      "region"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    }
+   ]
+  },
+  "aaecdb9a": {
+   "n_readings": 5,
+   "n_executable": 1,
+   "n_fitting": 0,
+   "harness": "no fit",
+   "max_support": 0,
+   "readings": [
+    {
+     "task": "aaecdb9a",
+     "sample": 0,
+     "verb": "draw histogram",
+     "reading": "Count the 8-connected objects of each colour on the 7 background. Draw a bottom-aligned bar chart with fixed column order 5,2,8,9,6, each bar as tall as its colour's object count, on 7.",
+     "why": "output column j holds colour order[j] in its bottom count(order[j]) cells and 7 above",
+     "l4": "hypo (first word)",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [],
+     "executable": true,
+     "n_open": 3,
+     "open": [
+      "stop",
+      "source",
+      "colour"
+     ],
+     "fits": [],
+     "n_fits": 0,
+     "frames": []
+    },
+    {
+     "task": "aaecdb9a",
+     "sample": 1,
+     "verb": "histogram object counts",
+     "reading": "Count the 8-connected objects of each non-background colour; draw a bottom-aligned bar chart of width 5 where each colour has a fixed column (5,2,8,9,6 left to right) and bar height = its object count; height = max count, empty cells are 7.",
+     "why": "each output column holds k cells of its colour at the bottom where k is the number of objects of that colour in the input",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aaecdb9a",
+     "sample": 2,
+     "verb": "histogram object counts",
+     "reading": "Count the 8-connected objects of each colour on the 7 background; output is a bar chart, width 5, height = largest count, with a bottom-aligned bar per colour in fixed columns 5,2,8,9,6 (left to right), height = that colour's object count, rest 7.",
+     "why": "each output column c holds count(colour_c) cells of colour_c at the bottom",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aaecdb9a",
+     "sample": 3,
+     "verb": "bar chart of object counts",
+     "reading": "Count the 8-connected objects of each colour. The output is a bar chart five columns wide with a fixed column per colour, in the order 5, 2, 8, 9, 6. Each bar is filled from the bottom to that colour's object count, and the height is the largest count. Empty cells are the background 7.",
+     "why": "on every pair, column k of the output holds colour order[k] in its bottom count(order[k]) cells",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    },
+    {
+     "task": "aaecdb9a",
+     "sample": 4,
+     "verb": "histogram colours",
+     "reading": "Count the 8-connected objects of each colour on the 7 background and draw a bottom-aligned bar chart: fixed columns 5,2,8,9,6, bar height = object count, height = max count, empty is 7.",
+     "why": "each output column c is 7 above and colour c in its bottom count(c) cells on every pair",
+     "l4": "not in L4",
+     "new_rows": [],
+     "row_errors": [],
+     "problems": [
+      "how 'other' has no executor"
+     ],
+     "executable": false,
+     "fits": [],
+     "n_open": 0
+    }
+   ]
+  }
+ }
+}

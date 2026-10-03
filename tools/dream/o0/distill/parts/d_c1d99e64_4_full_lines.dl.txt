@@ -1,0 +1,9 @@
+% row: d_c1d99e64_4_full_lines
+% source: distillation batch reading, task c1d99e64, sample 4
+% output: full_lines(Y, X)
+row(Y) :- px(Y, X, C).
+col(X) :- px(Y, X, C).
+gaprow(Y) :- px(Y, X, C), !cell(Y, X, C).
+gapcol(X) :- px(Y, X, C), !cell(Y, X, C).
+full_lines(Y, X) :- px(Y, X, C), row(Y), !gaprow(Y).
+full_lines(Y, X) :- px(Y, X, C), col(X), !gapcol(X).

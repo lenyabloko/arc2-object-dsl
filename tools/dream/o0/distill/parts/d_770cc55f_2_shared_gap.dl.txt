@@ -1,0 +1,12 @@
+% row: d_770cc55f_2_shared_gap
+% source: distillation batch reading, task 770cc55f, sample 2
+% output: shared_gap(Y, X)
+h(max(Y)) :- px(Y, X, C).
+sepr(Y) :- cell(Y, X, C), C = 2.
+top(X) :- cell(Y, X, C), Y = 0.
+bot(X) :- h(H), cell(Y, X, C), Y = H.
+nt(count(X)) :- top(X).
+nb(count(X)) :- bot(X).
+both(X) :- top(X), bot(X).
+shared_gap(Y, X) :- both(X), px(Y, X, C), sepr(S), h(H), nt(A), nb(B), B > A, Y > S, Y < H.
+shared_gap(Y, X) :- both(X), px(Y, X, C), sepr(S), nt(A), nb(B), A > B, Y > 0, Y < S.

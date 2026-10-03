@@ -1,0 +1,21 @@
+% row: d_15663ba9_3_convex_corner
+% source: distillation batch reading, task 15663ba9, sample 3
+% output: convex_corner(Y, X)
+orth(DY, DX) :- off(DY, DX), DY = 0.
+ortho(DY, DX) :- off(DY, DX), DX = 0.
+fgc(Y, X) :- cell(Y, X, C).
+bgc(Y, X) :- px(Y, X, C), !fgc(Y, X).
+my(max(Y)) :- px(Y, X, C).
+mx(max(X)) :- px(Y, X, C).
+edge(Y, X) :- bgc(Y, X), Y = 0.
+edge(Y, X) :- bgc(Y, X), X = 0.
+edge(Y, X) :- bgc(Y, X), my(M), Y = M.
+edge(Y, X) :- bgc(Y, X), mx(M), X = M.
+out(Y, X) :- edge(Y, X).
+out(Y2, X2) :- out(Y, X), orth(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+out(Y2, X2) :- out(Y, X), ortho(DY, DX), Y2 = Y + DY, X2 = X + DX, bgc(Y2, X2).
+isorth(DY, DX) :- orth(DY, DX).
+isorth(DY, DX) :- ortho(DY, DX).
+diag(DY, DX) :- off(DY, DX), !isorth(DY, DX).
+corner(Y, X, DY, DX) :- fgc(Y, X), diag(DY, DX), Y2 = Y + DY, fgc(Y2, X), X2 = X + DX, fgc(Y, X2).
+convex_corner(Y, X) :- corner(Y, X, DY, DX), Y2 = Y + DY, X2 = X + DX, !out(Y2, X2).

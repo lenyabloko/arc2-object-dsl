@@ -1,0 +1,13 @@
+% row: d_8fbca751_0_boxbg
+% source: distillation batch reading, task 8fbca751, sample 0
+% output: boxbg(Y, X)
+isfg(Y, X) :- cell(Y, X, C).
+fy0(C, min(Y)) :- cell(Y, X, C).
+fx0(C, min(X)) :- cell(Y, X, C).
+by0(Y) :- fy0(C, Y).
+by0(Y2) :- by0(Y), Y2 = Y + 4, px(Y2, X, C).
+bx0(X) :- fx0(C, X).
+bx0(X2) :- bx0(X), X2 = X + 4, px(Y, X2, C).
+inblk(Y, X, BY, BX) :- by0(BY), bx0(BX), px(Y, X, C), Y >= BY, Y3 = BY + 3, Y <= Y3, X >= BX, X3 = BX + 3, X <= X3.
+blkfg(BY, BX) :- inblk(Y, X, BY, BX), isfg(Y, X).
+boxbg(Y, X) :- inblk(Y, X, BY, BX), blkfg(BY, BX), !isfg(Y, X).

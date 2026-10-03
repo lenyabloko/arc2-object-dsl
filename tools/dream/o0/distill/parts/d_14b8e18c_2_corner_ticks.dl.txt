@@ -1,0 +1,24 @@
+% row: d_14b8e18c_2_corner_ticks
+% source: distillation batch reading, task 14b8e18c, sample 2
+% output: corner_ticks(Y, X)
+ymin(O, min(Y)) :- obj(O, Y, X), cell(Y, X, C).
+ymax(O, max(Y)) :- obj(O, Y, X), cell(Y, X, C).
+xmin(O, min(X)) :- obj(O, Y, X), cell(Y, X, C).
+xmax(O, max(X)) :- obj(O, Y, X), cell(Y, X, C).
+box(O, Y0, X0, Y1, X1) :- ymin(O, Y0), xmin(O, X0), ymax(O, Y1), xmax(O, X1).
+sq(O) :- box(O, Y0, X0, Y1, X1), H = Y1 - Y0, W = X1 - X0, H = W, H > 0.
+rim(O, Y, X) :- sq(O), box(O, Y0, X0, Y1, X1), px(Y, X, C), Y = Y0, X >= X0, X <= X1.
+rim(O, Y, X) :- sq(O), box(O, Y0, X0, Y1, X1), px(Y, X, C), Y = Y1, X >= X0, X <= X1.
+rim(O, Y, X) :- sq(O), box(O, Y0, X0, Y1, X1), px(Y, X, C), X = X0, Y >= Y0, Y <= Y1.
+rim(O, Y, X) :- sq(O), box(O, Y0, X0, Y1, X1), px(Y, X, C), X = X1, Y >= Y0, Y <= Y1.
+gap(O) :- rim(O, Y, X), !obj(O, Y, X).
+full(O) :- sq(O), !gap(O).
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y0 - 1, X = X0.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y0, X = X0 - 1.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y0 - 1, X = X1.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y0, X = X1 + 1.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y1 + 1, X = X0.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y1, X = X0 - 1.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y1 + 1, X = X1.
+tick(Y, X) :- full(O), box(O, Y0, X0, Y1, X1), Y = Y1, X = X1 + 1.
+corner_ticks(Y, X) :- tick(Y, X), px(Y, X, C), !cell(Y, X, C).

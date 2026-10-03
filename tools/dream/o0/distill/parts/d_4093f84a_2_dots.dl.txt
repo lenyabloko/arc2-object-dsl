@@ -1,0 +1,7 @@
+% row: d_4093f84a_2_dots
+% source: distillation batch reading, task 4093f84a, sample 2
+% output: dots(Y, X)
+osize(O, count(Y, X)) :- obj(O, Y, X).
+big(max(N)) :- osize(O, N).
+band(O) :- osize(O, N), big(N).
+dots(Y, X) :- obj(O, Y, X), !band(O).

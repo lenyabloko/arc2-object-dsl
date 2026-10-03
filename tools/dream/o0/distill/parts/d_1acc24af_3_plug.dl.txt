@@ -1,0 +1,31 @@
+% row: d_1acc24af_3_plug
+% source: distillation batch reading, task 1acc24af, sample 3
+% output: plug(Y, X)
+g(O, Y, X) :- obj(O, Y, X), cell(Y, X, 5).
+lt(min(Y)) :- cell(Y, X, 1).
+lb(max(Y)) :- cell(Y, X, 1).
+hole(Y, X) :- px(Y, X, 0), lt(T), lb(B), Y >= T, Y <= B.
+up(Y, X) :- hole(Y, X), cell(Y2, X, 1), Y2 < Y.
+lf(Y, X) :- hole(Y, X), cell(Y, X2, 1), X2 < X.
+rt(Y, X) :- hole(Y, X), cell(Y, X2, 1), X2 > X.
+cav(Y, X) :- up(Y, X), lf(Y, X), rt(Y, X).
+reach(Y, X, Y, X) :- cav(Y, X).
+reach(Y, X, Y2, X2) :- reach(Y, X, Y1, X1), off(DY, DX), Y2 = Y1 + DY, X2 = X1 + DX, cav(Y2, X2).
+ky(Y, X, min(Y2)) :- reach(Y, X, Y2, X2).
+kx(Y, X, min(X2)) :- ky(Y, X, KY), reach(Y, X, KY, X2).
+ck(Y, X, KY, KX) :- ky(Y, X, KY), kx(Y, X, KX).
+rot(O, 0, Y, X) :- g(O, Y, X).
+rot(O, 1, Y, NX) :- g(O, Y, X), NX = 0 - X.
+rot(O, 2, NY, X) :- g(O, Y, X), NY = 0 - Y.
+rot(O, 3, NY, NX) :- g(O, Y, X), NY = 0 - Y, NX = 0 - X.
+rot(O, 4, X, Y) :- g(O, Y, X).
+rot(O, 5, X, NY) :- g(O, Y, X), NY = 0 - Y.
+rot(O, 6, NX, Y) :- g(O, Y, X), NX = 0 - X.
+rot(O, 7, NX, NY) :- g(O, Y, X), NX = 0 - X, NY = 0 - Y.
+place(O, T, KY, KX, SY, SX) :- rot(O, T, A, B), ck(CY, CX, KY, KX), SY = CY - A, SX = CX - B.
+pc(O, T, KY, KX, SY, SX, Y, X) :- place(O, T, KY, KX, SY, SX), rot(O, T, A, B), Y = SY + A, X = SX + B.
+bad(O, T, KY, KX, SY, SX) :- pc(O, T, KY, KX, SY, SX, Y, X), cell(Y, X, 1).
+bad(O, T, KY, KX, SY, SX) :- pc(O, T, KY, KX, SY, SX, Y, X), lb(B), Y <= B, !ck(Y, X, KY, KX).
+miss(O, T, KY, KX, SY, SX) :- place(O, T, KY, KX, SY, SX), ck(CY, CX, KY, KX), !pc(O, T, KY, KX, SY, SX, CY, CX).
+fits(O) :- place(O, T, KY, KX, SY, SX), !bad(O, T, KY, KX, SY, SX), !miss(O, T, KY, KX, SY, SX).
+plug(Y, X) :- fits(O), g(O, Y, X).

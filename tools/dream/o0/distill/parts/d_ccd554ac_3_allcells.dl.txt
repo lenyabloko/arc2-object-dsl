@@ -1,0 +1,4 @@
+% row: d_ccd554ac_3_allcells
+% source: distillation batch reading, task ccd554ac, sample 3
+% output: allcells(Y, X)
+allcells(Y, X) :- px(Y, X, C).

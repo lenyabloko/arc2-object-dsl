@@ -1,0 +1,4 @@
+% row: d_a644e277_2_gap_corners
+% source: distillation batch reading, task a644e277, sample 2
+% output: gap_corners(Y, X)
+gap_corners(Y, X) :- px(Y, X, C), !cell(Y, X, C), Y1 = Y - 1, cell(Y1, X, S), Y2 = Y + 1, cell(Y2, X, S), X1 = X - 1, cell(Y, X1, S), X2 = X + 1, cell(Y, X2, S).

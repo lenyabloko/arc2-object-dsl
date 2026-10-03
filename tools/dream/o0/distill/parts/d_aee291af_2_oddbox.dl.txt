@@ -1,0 +1,12 @@
+% row: d_aee291af_2_oddbox
+% source: distillation batch reading, task aee291af, sample 2
+% output: oddbox(Y, X)
+c2(O) :- obj(O, Y, X), cell(Y, X, C), C = 2.
+top(O, min(Y)) :- c2(O), obj(O, Y, X).
+lft(O, min(X)) :- c2(O), obj(O, Y, X).
+rel(O, DY, DX) :- c2(O), obj(O, Y, X), top(O, T), lft(O, L), DY = Y - T, DX = X - L.
+differ(O1, O2) :- rel(O1, DY, DX), c2(O2), !rel(O2, DY, DX).
+differ(O1, O2) :- rel(O2, DY, DX), c2(O1), !rel(O1, DY, DX).
+nsame(O, count(O2)) :- c2(O), c2(O2), !differ(O, O2).
+odd2(O) :- nsame(O, N), N = 1.
+oddbox(Y2, X2) :- odd2(O), obj(O, Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX.

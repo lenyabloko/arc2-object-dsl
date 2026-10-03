@@ -1,0 +1,6 @@
+% row: d_6c434453_4_ring_centre
+% source: distillation batch reading, task 6c434453, sample 4
+% output: ring_centre(Y, X)
+fgc(Y, X) :- cell(Y, X, C).
+nb(Y, X, count(DY, DX)) :- px(Y, X, C), !fgc(Y, X), off(DY, DX), Y2 = Y + DY, X2 = X + DX, fgc(Y2, X2).
+ring_centre(Y, X) :- nb(Y, X, N), N = 8.

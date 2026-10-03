@@ -1,0 +1,9 @@
+% row: d_3f7978a0_3_box5
+% source: distillation batch reading, task 3f7978a0, sample 3
+% output: box5(Y, X)
+f(Y, X) :- cell(Y, X, C), C = 5.
+ya(min(Y)) :- f(Y, X).
+yb(max(Y)) :- f(Y, X).
+xa(min(X)) :- f(Y, X).
+xb(max(X)) :- f(Y, X).
+box5(Y, X) :- px(Y, X, C), ya(A), yb(B), xa(P), xb(Q), A1 = A - 1, B1 = B + 1, Y >= A1, Y <= B1, X >= P, X <= Q.
